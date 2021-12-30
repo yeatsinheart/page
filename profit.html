@@ -90,9 +90,10 @@
         <thead>
         <tr>
             <th>期数</th>
-            <th>总金</th>
+            <th>本金</th>
             <th>平投</th>
             <th>目标</th>
+            <th>总金</th>
         </tr>
         </thead>
         <tbody id="plan">
@@ -157,9 +158,10 @@
         for(var i=1;i<(period+1) && target(money,i)<=1000*10000;i++){
             table.innerHTML+='<tr>' +
                 '            <td>'+i+'</td>' +
-                '            <td>'+afterPeriod(money,i)+'</td>' +
+                '            <td>'+afterPeriod(money,i-1)+'</td>' +
                 '            <td>'+avg(money,i)+'</td>' +
                 '            <td>'+target(money,i)+'</td>' +
+                '            <td>'+afterPeriod(money,i)+'</td>' +
                 '        </tr>'
         }
     }

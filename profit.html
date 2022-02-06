@@ -150,7 +150,7 @@
     }
     /**某一期输到指定金额*/
     function lose(start,period){
-        return parseInt(start*to(period)) - parseInt(start*to(period)) + parseInt(start*to( period-1));
+        return parseInt(start*to(period-1)) - parseInt(start*to(period)) + parseInt(start*to( period-1));
     }
 
     /**某一期盈利结束后总金额*/

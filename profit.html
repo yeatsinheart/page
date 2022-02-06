@@ -34,47 +34,49 @@
 <div class="container">
     <form class="form-inline">
         <div class="row">
-            <label for="money" class="col-3 col-form-label">本金</label>
+            <label for="money" class="col-3 col-form-label">principal</label>
             <div class="col-9">
                 <div class="input-group">
-                    <input id="money" class="form-control" type="text" placeholder="本金" value="400000">
-                    <span class="input-group-text">$</span>
+                    <input id="money" class="form-control" type="text" placeholder="principal" value="400000">
+                    <span class="input-group-text">PHP</span>
                 </div>
             </div>
         </div>
         <div class="row">
-            <label for="profit" class="col-3 col-form-label">利率</label>
+            <label for="bet" class="col-3 col-form-label">bet</label>
             <div class="col-9">
                 <div class="input-group">
-                    <input id="profit" class="form-control" type="text" placeholder="利率" value="10">
+                    <input id="bet" class="form-control" type="text" placeholder="bet" value="10">
                     <span class="input-group-text">%</span>
                 </div>
             </div>
         </div>
+
         <div class="row">
-            <label for="hours" class="col-3 col-form-label">几个小时</label>
+            <label for="times" class="col-3 col-form-label">win times per day</label>
             <div class="col-9">
                 <div class="input-group">
-                    <input id="hours" class="form-control" type="text" placeholder="几个小时" value="2">
-                    <span class="input-group-text">轮</span>
+                    <input id="times" class="form-control" type="text" placeholder="win times per day" value="2">
+                    <span class="input-group-text">times</span>
                 </div>
             </div>
         </div>
         <div class="row">
-            <label for="num" class="col-3 col-form-label">每轮净赢</label>
+            <label for="period" class="col-3 col-form-label">days</label>
             <div class="col-9">
                 <div class="input-group">
-                    <input id="num" class="form-control" type="text" placeholder="每轮净赢次数" value="2">
-                    <span class="input-group-text">次</span>
+                    <input id="period" class="form-control" type="text" placeholder="days" value="36">
+                    <span class="input-group-text">day</span>
                 </div>
             </div>
         </div>
+
         <div class="row">
-            <label for="period" class="col-3 col-form-label">几天</label>
+            <label for="period" class="col-3 col-form-label">target</label>
             <div class="col-9">
                 <div class="input-group">
-                    <input id="period" class="form-control" type="text" placeholder="净赢次数" value="36">
-                    <span class="input-group-text">天</span>
+                    <input id="target" class="form-control" type="text" placeholder="target" value="10000000">
+                    <span class="input-group-text">PHP</span>
                 </div>
             </div>
         </div>
@@ -82,18 +84,19 @@
     </form>
 <br/>
     <div style="text-align:center">
-    <button type="button" class="btn btn-info" onclick="set()">生成</button>
+    <button type="button" class="btn btn-info" onclick="set()">calculate</button>
     </div>
 <br/>
 <br/>
     <table class="table table-success table-striped table-bordered">
         <thead>
         <tr>
-            <th>期数</th>
-            <th>本金</th>
-            <th>平投</th>
-            <th>目标</th>
-            <th>总金</th>
+            <th>date</th>
+            <th>principal</th>
+            <th>bet per times</th>
+            <th>target</th>
+            <th>win</th>
+            <th>loseleave</th>
         </tr>
         </thead>
         <tbody id="plan">
@@ -104,64 +107,78 @@
 <script>
     function set(){
         localStorage.setItem("money",parseInt(document.querySelector('#money').value))
-        localStorage.setItem("profit",parseInt(document.querySelector('#profit').value))
+        localStorage.setItem("bet",parseInt(document.querySelector('#bet').value))
+        localStorage.setItem("times",parseInt(document.querySelector('#times').value))
         localStorage.setItem("period",parseInt(document.querySelector('#period').value))
-        localStorage.setItem("hours",parseInt(document.querySelector('#hours').value))
-        localStorage.setItem("num",parseInt(document.querySelector('#num').value))
         let money = localStorage.getItem("money")?parseInt(localStorage.getItem("money")):parseInt(document.querySelector('#money').value)
+        let times = localStorage.getItem("times")?parseInt(localStorage.getItem("times")):parseInt(document.querySelector('#times').value)
+        let bet = localStorage.getItem("bet")?parseInt(localStorage.getItem("bet")):parseInt(document.querySelector('#bet').value)
         let period = localStorage.getItem("period")?parseInt(localStorage.getItem("period")):parseInt(document.querySelector('#period').value)
-        let hours = localStorage.getItem("hours")?parseInt(localStorage.getItem("hours")):parseInt(document.querySelector('#hours').value)
-        let num = localStorage.getItem("num")?parseInt(localStorage.getItem("num")):parseInt(document.querySelector('#num').value)
-        let profit = localStorage.getItem("profit")?parseInt(localStorage.getItem("profit")):parseInt(document.querySelector('#profit').value)
         document.querySelector('#money').value=money
-        document.querySelector('#profit').value=profit
+        document.querySelector('#bet').value=bet
+        document.querySelector('#times').value=times
         document.querySelector('#period').value=period
-        document.querySelector('#hours').value=hours
-        document.querySelector('#num').value=num
         plan();
     }
     function init(){
         let money = localStorage.getItem("money")?parseInt(localStorage.getItem("money")):parseInt(document.querySelector('#money').value)
+        let bet = localStorage.getItem("bet")?parseInt(localStorage.getItem("bet")):parseInt(document.querySelector('#bet').value)
+        let times = localStorage.getItem("times")?parseInt(localStorage.getItem("times")):parseInt(document.querySelector('#times').value)
         let period = localStorage.getItem("period")?parseInt(localStorage.getItem("period")):parseInt(document.querySelector('#period').value)
-        let hours = localStorage.getItem("hours")?parseInt(localStorage.getItem("hours")):parseInt(document.querySelector('#hours').value)
-        let num = localStorage.getItem("num")?parseInt(localStorage.getItem("num")):parseInt(document.querySelector('#num').value)
-        let profit = localStorage.getItem("profit")?parseInt(localStorage.getItem("profit")):parseInt(document.querySelector('#profit').value)
         document.querySelector('#money').value=money
-        document.querySelector('#profit').value=profit
+        document.querySelector('#bet').value=bet
+        document.querySelector('#times').value=times
         document.querySelector('#period').value=period
-        document.querySelector('#hours').value=hours
-        document.querySelector('#num').value=num
         plan();
     }
     init()
-    function avg(start,period){
+
+
+
+
+
+
+    function bet(start,period){
         let target = parseInt(start*to(period))-parseInt(start*to(period-1));
-        let hours = parseInt(document.querySelector('#hours').value)
-        let num = parseInt(document.querySelector('#num').value)
-        return parseInt(target/hours/num);
+        let times = parseInt(document.querySelector('#times').value)
+        return parseInt(target/times);
     }
+
+    /**某一期盈利金额*/
     function target(start,period){
         return parseInt(start*to(period))-parseInt(start*to( period-1));
     }
+    /**某一期输到指定金额*/
+    function lose(start,period){
+        return parseInt(start*to(period)) - parseInt(start*to(period)) + parseInt(start*to( period-1));
+    }
+
+    /**某一期盈利结束后总金额*/
     function afterPeriod(start,period){
         return parseInt(start*to(period));
     }
+    /**
+     * 某一期盈利结束后 相对初始本金 的比例
+     * */
     function to(count){
-        let profit = parseInt(document.querySelector('#profit').value)
-        return Math.pow((1+profit/100), count)
+        let bet = parseInt(document.querySelector('#bet').value)
+        let times = parseInt(document.querySelector('#times').value)
+        return Math.pow((1+bet*times/100), count)
     }
     function plan(){
         let money = parseInt(document.querySelector('#money').value)
         let period = parseInt(document.querySelector('#period').value)
+        let mintarget = parseInt(document.querySelector('#target').value)
         let table = document.querySelector('#plan')
         table.innerHTML=''
-        for(var i=1;i<(period+1) && target(money,i)<=1000*10000;i++){
+        for(var i=1;i<(period+1) && afterPeriod(money,i-2)<=mintarget;i++){
             table.innerHTML+='<tr>' +
                 '            <td>'+i+'</td>' +
                 '            <td>'+afterPeriod(money,i-1)+'</td>' +
-                '            <td>'+avg(money,i)+'</td>' +
+                '            <td>'+bet(money,i)+'</td>' +
                 '            <td>'+target(money,i)+'</td>' +
                 '            <td>'+afterPeriod(money,i)+'</td>' +
+                '            <td>'+lose(money,i)+'</td>' +
                 '        </tr>'
         }
     }

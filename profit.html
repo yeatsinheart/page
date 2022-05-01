@@ -25,7 +25,51 @@
     <!--<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+    <style>
+        .blue{
+            background: blue;
+            border: 2px solid blue;
+            color: #fff;
+        }
+        .red {
+            background: red;
+            border: 2px solid red;
+            color: #fff;
+        }
+        .notBg {
+            background: transparent!important;
+        }
+        p span{
+            display: inline-block;
+            vertical-align: middle;
+            width: 8px;
+            height: 3px;
+            -webkit-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+        }
+        p i{
+            -webkit-transform: scale(.7);
+            transform: scale(.7);
+        }
+        p {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            margin-bottom: 2px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
 
+        }
+    </style>
 </head>
 
 <body style="font-size: 12px;">
@@ -108,6 +152,26 @@
         </tbody>
     </table>
 </div>
+
+
+
+
+<div><p class="notBg blue"></p></div>
+<div><p class=" blue"></p></div>
+<div><p class=" blue"><i>闲</i></p></div>
+<div><p ><span class="blue"></span></p></div>
+
+<div><p class="notBg red"></p></div>
+<div><p class=" red"></p></div>
+<div><p class=" red"><i>庄</i></p></div>
+<div><p ><span class="red"></span></p></div>
+<div onclick="random()" style="padding: 5px;border-radius: 4px;border: 1px solid blue;">随机结果</div>
+<div style="display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;" id="mainC">
+
+</div>
+
 <script>
     function set(){
         localStorage.setItem("money",parseInt(document.querySelector('#money').value))
@@ -190,4 +254,51 @@
 
 </script>
 
+<script>
+    let arr=[0,1,1,1,1,1,1,1,1,1,1,0,0,0]
+    function random(){
+        arr.push(Math.round(Math.random()))
+        mainChat()
+    }
+    function draw(arr){
+        let tmp ="";
+        for (let i = 0; i < arr.length; i++) {
+            let data = arr[i];
+            let num = data.num;
+            tmp+='<div>'
+            for (let j = 0; j < num; j++) {
+                if(data.data==0){
+                    tmp+='<p class=" blue"></p>'
+                }else {
+                    tmp+='<p class=" red"></p>'
+                }
+            }
+            tmp+='</div>'
+        }
+        console.log(tmp)
+        document.querySelector('#mainC').innerHTML=tmp;
+    }
+    function mainChat(){
+        let c = []
+        for (let i = 0; i < arr.length; i++) {
+            let data = arr[i];
+            let num = findNum(i,data)
+            c.push({"data":data,"num":num})
+            i=i+num-1;
+        }
+        draw(c)
+        console.log(c)
+
+    }
+    function findNum(index,compare){
+        let sameNum=0;
+        while (index<arr.length && arr[index]==compare){
+            sameNum++;
+            index++;
+        }
+        return sameNum;
+
+    }
+    mainChat()
+</script>
 </html>

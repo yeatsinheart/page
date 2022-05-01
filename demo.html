@@ -131,10 +131,9 @@
     <div><p class=" red"></p></div>
     <div><p class=" red"><i>庄</i></p></div>
     <div><p ><span class="red"></span></p></div>
-<div class="flex flex-space">
+    <input id="times" value=50>
     <div onclick="reset()" style="padding: 5px;border-radius: 4px;border: 1px solid blue;">重新开局</div>
     <div onclick="random()" style="padding: 5px;border-radius: 4px;border: 1px solid blue;">随机结果</div>
-</div>
 
     <div>路图</div>
     <div>
@@ -153,8 +152,9 @@
         arr.push(Math.round(Math.random()))
     }
     function reset() {
+        let times = document.querySelector('#times').value;
         arr=[]
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < times; i++) {
             arr.push(Math.round(Math.random()))
         }
         mainChat()
@@ -194,7 +194,6 @@
             i=i+num-1;
         }
          draw(c)
-        console.log(c)
 
     }
     function findNum(index,compare){

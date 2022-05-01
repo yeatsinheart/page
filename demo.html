@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size: 64px;height: 100%;">
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"
+          name="viewport">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="yes" name="full-screen">
+    <meta content="true" name="x5-fullscreen">
+    <meta content="mobile" name="applicable-device">
+
+    <meta content="-1" http-equiv="Expires">
+    <meta content="no-cache" http-equiv="Pragma">
+    <meta content="no-cache" http-equiv="Cache-control">
+    <meta content="no-cache" http-equiv="Cache">
+
+    <title>DEMO</title>
+    <!--启动设置-->
+<style>
+    .blue{
+        background: blue;
+        border: 2px solid blue;
+        color: #fff;
+    }
+     .red {
+        background: red;
+        border: 2px solid red;
+         color: #fff;
+    }
+     .notBg {
+        background: transparent!important;
+    }
+     p span{
+         display: inline-block;
+         vertical-align: middle;
+         width: 8px;
+         height: 3px;
+         -webkit-transform: rotate(-30deg);
+         transform: rotate(-30deg);
+     }
+     p i{
+         -webkit-transform: scale(.7);
+         transform: scale(.7);
+     }
+     p {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        margin-bottom: 2px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+
+    }
+
+    .flex{
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    .flex-center{
+        -moz-box-pack: justify;
+        -ms-flex-pack: justify;
+        -moz-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+    .flex-space{
+        -moz-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }
+    body, html {
+        font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, Helvetica Neue, Arial, sans-serif;
+        color: #333;
+        background-color: #f4f5f6;
+
+        -webkit-font-smoothing: antialiased;
+        position: relative;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-overflow-scrolling: touch;
+        -moz-overflow-scrolling: touch;
+        -o-overflow-scrolling: touch;
+        /* width: 100%;
+         height: 100%;*/
+    }
+
+    body, button, dd, div, dl, dt, footer, form, h1, h2, h3, h4, h5, h6, header, input, li, menu, nav, ol, p, section, td, textarea, th, ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: #fff;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        padding: 0;
+    }
+
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    *::before, *::after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+</style>
+</head>
+
+<body style="font-size: 12px;height: 100%;">
+    <div></div>
+    <div><p class="notBg blue"></p></div>
+    <div><p class=" blue"></p></div>
+    <div><p class=" blue"><i>闲</i></p></div>
+    <div><p ><span class="blue"></span></p></div>
+
+    <div><p class="notBg red"></p></div>
+    <div><p class=" red"></p></div>
+    <div><p class=" red"><i>庄</i></p></div>
+    <div><p ><span class="red"></span></p></div>
+<div class="flex flex-space">
+    <div onclick="reset()" style="padding: 5px;border-radius: 4px;border: 1px solid blue;">重新开局</div>
+    <div onclick="random()" style="padding: 5px;border-radius: 4px;border: 1px solid blue;">随机结果</div>
+</div>
+
+    <div>路图</div>
+    <div>
+        <div>
+            <div>大路</div>
+            <div class="flex" style="flex-wrap: nowrap;overflow-x: auto;" id="mainC">
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    let arr=[]
+    for (let i = 0; i < 20; i++) {
+        arr.push(Math.round(Math.random()))
+    }
+    function reset() {
+        arr=[]
+        for (let i = 0; i < 20; i++) {
+            arr.push(Math.round(Math.random()))
+        }
+        mainChat()
+    }
+    function random(){
+        arr.push(Math.round(Math.random()))
+        mainChat()
+    }
+    function draw(arr){
+        let tmp ="";
+        for (let i = 0; i < arr.length; i++) {
+            let data = arr[i];
+            let num = data.num;
+            tmp+='<div>'
+            for (let j = 0; j < num; j++) {
+                if(data.data==0){
+                    tmp+='<p class=" blue"></p>'
+                }else {
+                    tmp+='<p class=" red"></p>'
+                }
+            }
+            tmp+='</div>'
+        }
+        document.querySelector('#mainC').innerHTML=tmp;
+        setTimeout(function () {
+            let div = document.querySelector('#mainC');
+            div.scrollTop = div.scrollHeight;
+            div.scrollLeft=div.scrollWidth;
+        },500)
+    }
+     function mainChat(){
+        let c = []
+        for (let i = 0; i < arr.length; i++) {
+            let data = arr[i];
+            let num = findNum(i,data)
+            c.push({"data":data,"num":num})
+            i=i+num-1;
+        }
+         draw(c)
+        console.log(c)
+
+    }
+    function findNum(index,compare){
+        let sameNum=0;
+        while (index<arr.length && arr[index]==compare){
+            sameNum++;
+            index++;
+        }
+        return sameNum;
+
+    }
+    reset()
+</script>
+
+</html>

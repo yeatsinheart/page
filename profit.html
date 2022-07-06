@@ -78,7 +78,7 @@
 <div class="container">
     <form class="form-inline">
         <div class="row">
-            <label for="money" class="col-3 col-form-label">principal</label>
+            <label for="money" class="col-3 col-form-label">手上还剩多少钱</label>
             <div class="col-9">
                 <div class="input-group">
                     <input id="money" class="form-control" type="text" placeholder="principal" value="400000">
@@ -87,7 +87,7 @@
             </div>
         </div>
         <div class="row">
-            <label for="bet" class="col-3 col-form-label">bet start</label>
+            <label for="bet" class="col-3 col-form-label">未来最高下注</label>
             <div class="col-9">
                 <div class="input-group">
                     <input id="bet" class="form-control" type="text" placeholder="bet" value="2">
@@ -97,7 +97,7 @@
         </div>
 
         <div class="row">
-            <label for="times" class="col-3 col-form-label">win times</label>
+            <label for="times" class="col-3 col-form-label">平投净赢</label>
             <div class="col-9">
                 <div class="input-group">
                     <input id="times" class="form-control" type="text" placeholder="win times per day" value="10">
@@ -107,7 +107,7 @@
         </div>
 
         <div class="row">
-            <label for="period" class="col-3 col-form-label">days</label>
+            <label for="period" class="col-3 col-form-label">轮次</label>
             <div class="col-9">
                 <div class="input-group">
                     <input id="period" class="form-control" type="text" placeholder="days" value="365">
@@ -117,7 +117,7 @@
         </div>
 
         <div class="row">
-            <label for="period" class="col-3 col-form-label">target</label>
+            <label for="period" class="col-3 col-form-label">日久天长</label>
             <div class="col-9">
                 <div class="input-group">
                     <input id="target" class="form-control" type="text" placeholder="target" value="50000000">
@@ -131,12 +131,11 @@
     <div style="text-align:center">
         <button type="button" class="btn btn-info" onclick="set()">calculate</button>
     </div>
-    不是下注赢，而是赢下注
-    小注平投，慢慢累积亏损值。逐渐加大投注，但是总占比还是不能超过10%。超过以后，需要把总亏损拆成一个等差数列，一步步的小注打回来<br/>
-    1 1.5 2 2.5 1 0.5 1 输了这样投注，不能超过总资金5%进行下注，否则死得很惨，还容易上头<br/>
+    不是下注赢，而是赢下注，没有3次连赢机会，就不要去想着赢一把就走人，太容易被追杀了。
+    平投，慢慢累积亏损值。逐渐加大投注，但是总占比还是不能超过10%。超过以后，需要把总亏损拆成一个等差数列，一步步的小注打回来<br/>
+    
     只看路子会不会单跳3口，会不会长龙3口，会不会双跳三口<br/>
-    前期是否再这个位置惯性的下一个出什么。
-    只赌前期是有规律的1/2，不要赌这个又赌那个，机会等出来的。<br/>
+    只赌前期是有规律的1/2，非常小的本金去慢慢加注，不要赌这个又赌那个，机会等出来的。<br/>
     <table class="table table-success table-striped table-bordered">
         <thead>
         <tr>

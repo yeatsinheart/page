@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" style="font-size: 15px;">
+<html lang="zh-CN" style="font-size: 64px;height: 100%;">
 
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
@@ -16,30 +16,32 @@
     <meta content="no-cache" http-equiv="Cache-control">
     <meta content="no-cache" http-equiv="Cache">
 
-    <title>王者段位排位赛</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
-    <!--<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+    <title>DEMO</title>
+    <!--启动设置-->
     <style>
-        .blue{
+        .blue {
             background: blue;
             border: 2px solid blue;
             color: #fff;
         }
+
         .red {
             background: red;
             border: 2px solid red;
             color: #fff;
         }
-        .notBg {
-            background: transparent!important;
+
+        .green {
+            background: green;
+            border: 2px solid green;
+            color: #fff;
         }
-        p span{
+
+        .notBg {
+            background: transparent !important;
+        }
+
+        p span {
             display: inline-block;
             vertical-align: middle;
             width: 8px;
@@ -47,10 +49,12 @@
             -webkit-transform: rotate(-30deg);
             transform: rotate(-30deg);
         }
-        p i{
+
+        p i {
             -webkit-transform: scale(.7);
             transform: scale(.7);
         }
+
         p {
             width: 14px;
             height: 14px;
@@ -69,237 +73,190 @@
             align-items: center;
 
         }
+
+        .flex {
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .flex-center {
+            -moz-box-pack: justify;
+            -ms-flex-pack: justify;
+            -moz-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .flex-space {
+            -moz-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+
+        body, html {
+            font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, Helvetica Neue, Arial, sans-serif;
+            color: #333;
+            background-color: #f4f5f6;
+
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-overflow-scrolling: touch;
+            -moz-overflow-scrolling: touch;
+            -o-overflow-scrolling: touch;
+            /* width: 100%;
+             height: 100%;*/
+        }
+
+        body, button, dd, div, dl, dt, footer, form, h1, h2, h3, h4, h5, h6, header, input, li, menu, nav, ol, p, section, td, textarea, th, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #fff;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            padding: 0;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        *::before, *::after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 
-<body style="font-size: 12px;">
-</body>
+<body style="font-size: 12px;height: 100%;">
+<!--<div></div>-->
+<!--<div><p class="notBg blue"></p></div>-->
+<!--<div><p class=" blue"></p></div>-->
+<!--<div><p class=" blue"><i>闲</i></p></div>-->
+<!--<div><p ><span class="blue"></span></p></div>-->
 
-<div class="container">
-    <form class="form-inline">
-        <div class="row">
-            <label for="money" class="col-3 col-form-label">手上还剩多少钱</label>
-            <div class="col-9">
-                <div class="input-group">
-                    <input id="money" class="form-control" type="text" placeholder="principal" value="400000">
-                    <span class="input-group-text">PHP</span>
-                </div>
+<!--<div><p class="notBg red"></p></div>-->
+<!--<div><p class=" red"></p></div>-->
+<!--<div><p class=" red"><i>庄</i></p></div>-->
+<!--<div><p ><span class="red"></span></p></div>-->
+<input id="times" value=20>
+<div style="max-width:600px;">
+    <div>
+        <div class="flex"
+             style="flex-wrap: nowrap;overflow-x: auto;padding-left: 10px;padding-bottom: 10px;min-height: 200px"
+             id="mainC"></div>
+        <div class="flex flex-space">
+            <div class="red"
+                 style="width: 30%;text-align: center;padding: 5px;border-radius: 4px;margin-left: 20px;margin-right: 20px;"
+                 onclick="random(1)">庄（红）
+            </div>
+            <div style="padding: 5px;border-radius: 4px;border: 1px solid yellowgreen;" onclick="random()">跳过</div>
+            <div onclick="reset()" style="padding: 5px;border-radius: 4px;border: 1px solid yellowgreen;">重新</div>
+            <div class="blue"
+                 style="width: 30%;text-align: center;padding: 5px;border-radius: 4px;margin-left: 20px;margin-right: 20px;"
+                 onclick="random(0)">闲（蓝）
             </div>
         </div>
-        <div class="row">
-            <label for="bet" class="col-3 col-form-label">未来最高下注</label>
-            <div class="col-9">
-                <div class="input-group">
-                    <input id="bet" class="form-control" type="text" placeholder="bet" value="2">
-                    <span class="input-group-text">%</span>
-                </div>
-            </div>
-        </div>
+        <div id="result-log">
 
-        <div class="row">
-            <label for="times" class="col-3 col-form-label">平投净赢</label>
-            <div class="col-9">
-                <div class="input-group">
-                    <input id="times" class="form-control" type="text" placeholder="win times per day" value="10">
-                    <span class="input-group-text">times</span>
-                </div>
-            </div>
         </div>
-
-        <div class="row">
-            <label for="period" class="col-3 col-form-label">轮次</label>
-            <div class="col-9">
-                <div class="input-group">
-                    <input id="period" class="form-control" type="text" placeholder="days" value="365">
-                    <span class="input-group-text">day</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <label for="period" class="col-3 col-form-label">日久天长</label>
-            <div class="col-9">
-                <div class="input-group">
-                    <input id="target" class="form-control" type="text" placeholder="target" value="50000000">
-                    <span class="input-group-text">PHP</span>
-                </div>
-            </div>
-        </div>
-
-    </form>
-    <br/>
-    <div style="text-align:center">
-        <button type="button" class="btn btn-info" onclick="set()">calculate</button>
     </div>
-    赌场找你赌，你的本金要足够支撑无数局<br/><br/>方向是没错的，但是输了以后以大注作为起注，赢了不敢再冲，冲了又输本金又少一大部分比例<br/>
-    不是下注赢，而是赢下注，没有3次连赢机会，就不要去想着赢一把就走人，太容易被追杀了。
-    平投，慢慢累积亏损值。逐渐加大投注，但是总占比还是不能超过10%。超过以后，需要把总亏损拆成一个等差数列，一步步的小注打回来<br/>
-
-    只看路子会不会单跳3口，会不会长龙3口，会不会双跳三口<br/>
-    只赌前期是有规律的1/2，非常小的本金去慢慢加注，不要赌这个又赌那个，机会等出来的。<br/>
-    <table class="table table-success table-striped table-bordered">
-        <thead>
-        <tr>
-            <th>date</th>
-            <th>take</th>
-            <th>bet per times</th>
-            <th>target</th>
-            <th>win</th>
-            <th>loseleave</th>
-        </tr>
-        </thead>
-        <tbody id="plan">
-
-        </tbody>
-    </table>
 </div>
-
-
-
-
-<div><p class="notBg blue"></p></div>
-<div><p class=" blue"></p></div>
-<div><p class=" blue"><i>闲</i></p></div>
-<div><p ><span class="blue"></span></p></div>
-
-<div><p class="notBg red"></p></div>
-<div><p class=" red"></p></div>
-<div><p class=" red"><i>庄</i></p></div>
-<div><p ><span class="red"></span></p></div>
-<div onclick="random()" style="padding: 5px;border-radius: 4px;border: 1px solid blue;">随机结果</div>
-<div style="display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;" id="mainC">
-
-</div>
-
+</body>
 <script>
-    function set(){
-        localStorage.setItem("money",parseInt(document.querySelector('#money').value))
-        localStorage.setItem("bet",parseInt(document.querySelector('#bet').value))
-        localStorage.setItem("times",parseInt(document.querySelector('#times').value))
-        localStorage.setItem("period",parseInt(document.querySelector('#period').value))
-        let money = localStorage.getItem("money")?parseInt(localStorage.getItem("money")):parseInt(document.querySelector('#money').value)
-        let times = localStorage.getItem("times")?parseInt(localStorage.getItem("times")):parseInt(document.querySelector('#times').value)
-        let bet = localStorage.getItem("bet")?parseInt(localStorage.getItem("bet")):parseInt(document.querySelector('#bet').value)
-        let period = localStorage.getItem("period")?parseInt(localStorage.getItem("period")):parseInt(document.querySelector('#period').value)
-        document.querySelector('#money').value=money
-        document.querySelector('#bet').value=bet
-        document.querySelector('#times').value=times
-        document.querySelector('#period').value=period
-        plan();
-    }
-    function init(){
-        let money = localStorage.getItem("money")?parseInt(localStorage.getItem("money")):parseInt(document.querySelector('#money').value)
-        let bet = localStorage.getItem("bet")?parseInt(localStorage.getItem("bet")):parseInt(document.querySelector('#bet').value)
-        let times = localStorage.getItem("times")?parseInt(localStorage.getItem("times")):parseInt(document.querySelector('#times').value)
-        let period = localStorage.getItem("period")?parseInt(localStorage.getItem("period")):parseInt(document.querySelector('#period').value)
-        document.querySelector('#money').value=money
-        document.querySelector('#bet').value=bet
-        document.querySelector('#times').value=times
-        document.querySelector('#period').value=period
-        plan();
-    }
-    init()
-
-
-
-
-
-
-    function bet(start,period){
-        let target = parseInt(start*to(period))-parseInt(start*to(period-1));
-        let times = parseInt(document.querySelector('#times').value)
-        return parseInt(target/times);
-    }
-
-    /**某一期盈利金额*/
-    function target(start,period){
-        return parseInt(start*to(period))-parseInt(start*to( period-1));
-    }
-    /**某一期输到指定金额*/
-    function lose(start,period){
-        return parseInt(start*to(period-1)) - parseInt(start*to(period)) + parseInt(start*to( period-1));
-    }
-
-    /**某一期盈利结束后总金额*/
-    function afterPeriod(start,period){
-        return parseInt(start*to(period));
-    }
-    /**
-     * 某一期盈利结束后 相对初始本金 的比例
-     * */
-    function to(count){
-        let bet = parseInt(document.querySelector('#bet').value)
-        let times = parseInt(document.querySelector('#times').value)
-        return Math.pow((1+bet*times/100), count)
-    }
-    function plan(){
-        let money = parseInt(document.querySelector('#money').value)
-        let period = parseInt(document.querySelector('#period').value)
-        let mintarget = parseInt(document.querySelector('#target').value)
-        let table = document.querySelector('#plan')
-        table.innerHTML=''
-        for(var i=1;i<(period+1) && afterPeriod(money,i-2)<=mintarget;i++){
-            table.innerHTML+='<tr>' +
-                '            <td>'+i+'</td>' +
-                '            <td>'+afterPeriod(money,i-1)+'</td>' +
-                '            <td>'+bet(money,i)+'</td>' +
-                '            <td>'+target(money,i)+'</td>' +
-                '            <td>'+afterPeriod(money,i)+'</td>' +
-                '            <td>'+lose(money,i)+'</td>' +
-                '        </tr>'
-        }
-    }
-
-
-</script>
-
-<script>
-    let arr=[0,1,1,1,1,1,1,1,1,1,1,0,0,0]
-    function random(){
+    let arr = []
+    let log = []
+    for (let i = 0; i < 20; i++) {
         arr.push(Math.round(Math.random()))
+    }
+
+    function reset() {
+        let times = document.querySelector('#times').value;
+        arr = []
+        for (let i = 0; i < times; i++) {
+            arr.push(Math.round(Math.random()))
+        }
         mainChat()
     }
-    function draw(arr){
-        let tmp ="";
+
+    function random(guess) {
+        // 1 庄红 0 闲蓝
+        let result = Math.round(Math.random());
+        arr.push(result)
+        if (guess == 0 || guess == 1) {
+            log.push({"guess": guess, "result": result})
+        }
+        mainChat()
+    }
+
+    function draw(arr) {
+        let tmp = "";
         for (let i = 0; i < arr.length; i++) {
             let data = arr[i];
             let num = data.num;
-            tmp+='<div>'
+            tmp += '<div>'
             for (let j = 0; j < num; j++) {
-                if(data.data==0){
-                    tmp+='<p class=" blue"></p>'
-                }else {
-                    tmp+='<p class=" red"></p>'
+                if (data.data == 0) {
+                    tmp += '<p class=" blue"></p>'
+                } else {
+                    tmp += '<p class=" red"></p>'
                 }
             }
-            tmp+='</div>'
+            tmp += '</div>'
         }
-        console.log(tmp)
-        document.querySelector('#mainC').innerHTML=tmp;
+        document.querySelector('#mainC').innerHTML = tmp;
+        setTimeout(function () {
+            let div = document.querySelector('#mainC');
+            div.scrollTop = div.scrollHeight;
+            div.scrollLeft = div.scrollWidth;
+        }, 100)
+
+        let tmplog = "";
+        let net = 0;
+        for (let i = log.length - 1; i >= 0; i--) {
+            let data = log[i];
+            if (data.guess == data.result) {
+                net=net+1;
+                tmplog += '<div class="red" style="margin-top: 5px;">' + data.guess + '</div>'
+            } else {
+                net=net-1;
+                tmplog += '<div class="green" style="margin-top: 5px;">' + data.guess + '</div>'
+            }
+        }
+
+        document.querySelector('#result-log').innerHTML = '<div style="text-align: center;margin-top: 10px;">'+log.length+'净胜'+net+'</div>'+tmplog;
+
     }
-    function mainChat(){
+
+    function mainChat() {
         let c = []
         for (let i = 0; i < arr.length; i++) {
             let data = arr[i];
-            let num = findNum(i,data)
-            c.push({"data":data,"num":num})
-            i=i+num-1;
+            let num = findNum(i, data)
+            c.push({"data": data, "num": num})
+            i = i + num - 1;
         }
         draw(c)
-        console.log(c)
 
     }
-    function findNum(index,compare){
-        let sameNum=0;
-        while (index<arr.length && arr[index]==compare){
+
+    function findNum(index, compare) {
+        let sameNum = 0;
+        while (index < arr.length && arr[index] == compare) {
             sameNum++;
             index++;
         }
         return sameNum;
 
     }
-    mainChat()
+
+    reset()
 </script>
+
 </html>

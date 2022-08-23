@@ -19,6 +19,15 @@
     <title>DEMO</title>
     <!--启动设置-->
     <style>
+        .porker {
+            display: inline-block;
+            margin: 2px;
+            width: 30px;
+            border-radius: 8%;
+            border: 1px solid gray;
+            text-align: center;
+        }
+
         .blue {
             background: blue;
             border: 2px solid blue;
@@ -145,22 +154,40 @@
 <!--<div><p class=" red"></p></div>-->
 <!--<div><p class=" red"><i>庄</i></p></div>-->
 <!--<div><p ><span class="red"></span></p></div>-->
-<input id="times" value=20>
+每局先开<input id="times" value=20>把
+<div id="all"></div>
+<div class="flex flex-space" style="text-align: center;padding-top: 20px;padding-bottom: 20px">
+    <div></div>
+    <div style="width: 110px">闲
+        <div id="player-area"></div>
+    </div>
+    <div style="width: 110px">庄
+        <div id="banker-area"></div>
+    </div>
+    <div></div>
+</div>
+<div style="text-align: center">剩余牌<span id="leaveCards"></span></div>
+<div class="flex flex-space" style="padding-top: 20px;padding-bottom: 20px">
+    <div></div>
+    <div onclick="reset()" style="padding: 5px;border-radius: 4px;border: 1px solid yellowgreen;">换桌</div>
+    <div></div>
+</div>
+
 <div style="max-width:600px;">
     <div>
+
         <div class="flex"
              style="flex-wrap: nowrap;overflow-x: auto;padding-left: 10px;padding-bottom: 10px;min-height: 200px"
              id="mainC"></div>
         <div class="flex flex-space">
-            <div class="red"
-                 style="width: 30%;text-align: center;padding: 5px;border-radius: 4px;margin-left: 20px;margin-right: 20px;"
-                 onclick="random(1)">庄（红）
-            </div>
-            <div style="padding: 5px;border-radius: 4px;border: 1px solid yellowgreen;" onclick="random()">观望</div>
-            <div onclick="reset()" style="padding: 5px;border-radius: 4px;border: 1px solid yellowgreen;">换桌</div>
             <div class="blue"
                  style="width: 30%;text-align: center;padding: 5px;border-radius: 4px;margin-left: 20px;margin-right: 20px;"
-                 onclick="random(0)">闲（蓝）
+                 onclick="hand(0)">闲（蓝）
+            </div>
+            <div style="padding: 5px;border-radius: 4px;border: 1px solid yellowgreen;" onclick="hand()">观望</div>
+            <div class="red"
+                 style="width: 30%;text-align: center;padding: 5px;border-radius: 4px;margin-left: 20px;margin-right: 20px;"
+                 onclick="hand(1)">庄（红）
             </div>
         </div>
         <div id="result-log">
@@ -175,24 +202,19 @@
     for (let i = 0; i < 20; i++) {
         arr.push(Math.round(Math.random()))
     }
-
+    /** 重开一局 */
     function reset() {
-        let times = document.querySelector('#times').value;
         arr = []
+        readIndex=0
+        mainChat()
+        xipai()
+        let times = document.querySelector('#times').value;
+        //arr = []
         for (let i = 0; i < times; i++) {
-            arr.push(Math.round(Math.random()))
+            hand()
+            //arr.push(Math.round(Math.random()))
         }
-        mainChat()
-    }
-
-    function random(guess) {
-        // 1 庄红 0 闲蓝
-        let result = Math.round(Math.random());
-        arr.push(result)
-        if (guess == 0 || guess == 1) {
-            log.push({"guess": guess, "result": result})
-        }
-        mainChat()
+        //mainChat()
     }
 
     function draw(arr) {
@@ -222,15 +244,15 @@
         for (let i = log.length - 1; i >= 0; i--) {
             let data = log[i];
             if (data.guess == data.result) {
-                net=net+1;
+                net = net + 1;
                 tmplog += '<div class="red" style="margin-top: 5px;">' + data.guess + '</div>'
             } else {
-                net=net-1;
+                net = net - 1;
                 tmplog += '<div class="green" style="margin-top: 5px;">' + data.guess + '</div>'
             }
         }
 
-        document.querySelector('#result-log').innerHTML = '<div style="text-align: center;margin-top: 10px;">'+log.length+'净胜'+net+'</div>'+tmplog;
+        document.querySelector('#result-log').innerHTML = '<div style="text-align: center;margin-top: 10px;">' + log.length + '净胜' + net + '</div>' + tmplog;
 
     }
 
@@ -243,7 +265,7 @@
             i = i + num - 1;
         }
         draw(c)
-
+        //console.log(poker)
     }
 
     function findNum(index, compare) {
@@ -253,7 +275,169 @@
             index++;
         }
         return sameNum;
+    }
 
+    let poker = [];
+
+    function shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+        // While there remain elements to shuffle.
+        while (currentIndex != 0) {
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
+
+    /** 开牌*/
+    let readIndex = 0;
+    function hand(guess) {
+        if(readIndex>(8*52-10)){
+            alert("没牌了")
+            reset()
+            return;
+        }
+        let readNum = 4;
+        let player = {
+            "cards": [poker[readIndex], poker[readIndex + 2]],
+            "value": (poker[readIndex].value + poker[readIndex + 2].value) % 10
+        }
+        let banker = {
+            "cards": [poker[readIndex + 1], poker[readIndex + 3]],
+            "value": (poker[readIndex + 1].value + poker[readIndex + 3].value) % 10
+        }
+        if (player.value <= 5 && banker.value <= 7) {
+            player.cards.push(poker[readIndex + 4]);
+            player.value = (player.value + poker[readIndex + 4].value) % 10
+            readNum++;
+            if (banker.value <= 2) {
+                banker.cards.push(poker[readIndex + 5]);
+                banker.value = (banker.value + poker[readIndex + 5].value) % 10
+                readNum++;
+            } else if (banker.value == 3 && poker[readIndex + 4].value != 8) {
+                banker.cards.push(poker[readIndex + 5]);
+                banker.value = (banker.value + poker[readIndex + 5].value) % 10
+                readNum++;
+            } else if (banker.value == 4 && (poker[readIndex + 4].value != 0 && poker[readIndex + 4].value != 1 && poker[readIndex + 4].value != 8 && poker[readIndex + 4].value != 9)) {
+                banker.cards.push(poker[readIndex + 5]);
+                banker.value = (banker.value + poker[readIndex + 5].value) % 10
+                readNum++;
+            } else if (banker.value == 5 && (poker[readIndex + 4].value != 0 && poker[readIndex + 4].value != 1 && poker[readIndex + 4].value != 2 && poker[readIndex + 4].value != 3 && poker[readIndex + 4].value != 8 && poker[readIndex + 4].value != 9)) {
+                banker.cards.push(poker[readIndex + 5]);
+                banker.value = (banker.value + poker[readIndex + 5].value) % 10
+                readNum++;
+            } else if (banker.value == 6 && (poker[readIndex + 4].value == 6 || poker[readIndex + 4].value == 7)) {
+                banker.cards.push(poker[readIndex + 5]);
+                banker.value = (banker.value + poker[readIndex + 5].value) % 10
+                readNum++;
+            }
+        } else if (player.value <= 7 && banker.value < 6) {
+            banker.cards.push(poker[readIndex + 4]);
+            banker.value = (banker.value + poker[readIndex + 4].value) % 10
+            readNum++;
+        }
+        let playerCards = '';
+        for (let i = 0; i < player.cards.length; i++) {
+            playerCards += getCart(player.cards[i])
+        }
+        document.querySelector('#player-area').innerHTML = playerCards + "<div>" + player.value + "</div>";
+
+        let bankerCards = '';
+        for (let i = 0; i < banker.cards.length; i++) {
+            bankerCards += getCart(banker.cards[i])
+        }
+        document.querySelector('#banker-area').innerHTML = bankerCards + "<div>" + banker.value + "</div>";
+        readIndex = readIndex + readNum;
+        // 1 庄红 0 闲蓝
+        if(banker.value==player.value){
+        }else {
+            let result = banker.value>player.value?1:0;
+            arr.push(result)
+            if (guess == 0 || guess == 1) {
+                log.push({"guess": guess, "result": result})
+            }
+            mainChat()
+        }
+
+        document.querySelector('#leaveCards').innerHTML = 8*52-readIndex;
+
+    }
+
+    /** 重新洗牌 新一句*/
+    function xipai() {
+        for (let i = 0; i < 52 * 8; i++) {
+            let data = (i) % 52;
+            let card = {}
+            // 四种花色（suit）
+            let suits = parseInt(data / 13);
+            switch (suits) {
+                case 0:
+                    card.color = 'red';
+                    card.suits = '♥';
+                    break;
+                case 1:
+                    card.color = 'black';
+                    card.suits = '♠';
+                    break;
+                case 2:
+                    card.color = 'red';
+                    card.suits = '♦';
+                    break;
+                case 3:
+                    card.color = 'black';
+                    card.suits = '♣';
+                    break;
+            }
+            let value = data % 13;
+            switch (value) {
+                case 0:
+                    card.face = 'A';
+                    card.value = 1;
+                    break;
+                case 9:
+                    card.face = '10';
+                    card.value = 0;
+                    break;
+                case 10:
+                    card.face = 'J';
+                    card.value = 0;
+                    break;
+                case 11:
+                    card.face = 'Q';
+                    card.value = 0;
+                    break;
+                case 12:
+                    card.face = 'K';
+                    card.value = 0;
+                    break;
+                default:
+                    card.face = value + 1 + '';
+                    card.value = value + 1;
+                    break;
+            }
+            poker[i] = card;
+        }
+        shuffle(poker);
+        //showallpoker()
+    }
+
+    /** 获取牌型*/
+    function getCart(card) {
+        return '<div class="porker" style="color:' + card.color + ';">' +
+            '<div>' + card.suits + '</div>' + card.face + '</div>'
+    }
+
+    /** 展示所有牌*/
+    function showallpoker() {
+        let ps = ""
+        for (let i = 0; i < poker.length; i++) {
+            ps += getCart(poker[i])
+        }
+        document.querySelector('#all').innerHTML = ps;
     }
 
     reset()

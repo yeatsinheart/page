@@ -22,7 +22,9 @@
         .porker {
             display: inline-block;
             margin: 2px;
-            width: 30px;
+            width: 50px;
+            height: 60px;
+            font-size: 18px;
             border-radius: 8%;
             border: 1px solid gray;
             text-align: center;
@@ -156,7 +158,7 @@
 <!--<div><p ><span class="red"></span></p></div>-->
 每局先开<input id="times" value=20>把
 <div id="all"></div>
-<div class="flex flex-space" style="text-align: center;padding-top: 20px;padding-bottom: 20px">
+<div class="flex flex-space" style="height:215px;text-align: center;padding-top: 20px;padding-bottom: 20px">
     <div></div>
     <div style="width: 110px">闲
         <div id="player-area"></div>
@@ -344,13 +346,13 @@
         for (let i = 0; i < player.cards.length; i++) {
             playerCards += getCart(player.cards[i])
         }
-        document.querySelector('#player-area').innerHTML = playerCards + "<div>" + player.value + "</div>";
+        document.querySelector('#player-area').innerHTML = playerCards + "<div style='font-size: 22px'>" + player.value + "</div>";
 
         let bankerCards = '';
         for (let i = 0; i < banker.cards.length; i++) {
             bankerCards += getCart(banker.cards[i])
         }
-        document.querySelector('#banker-area').innerHTML = bankerCards + "<div>" + banker.value + "</div>";
+        document.querySelector('#banker-area').innerHTML = bankerCards + "<div style='font-size: 22px'>" + banker.value + "</div>";
         readIndex = readIndex + readNum;
         // 1 庄红 0 闲蓝
         if(banker.value==player.value){

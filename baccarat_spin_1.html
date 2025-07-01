@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>靶子转盘 - 动态局数</title>
-    <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/vant@4/lib/index.css" />
+    <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/vant@4/lib/index.css"/>
     <style>
         .wheel-container {
             position: relative;
-            width: 320px;
+            max-width: 320px;
             height: 320px;
             margin: 30px auto;
         }
+
         .pointer {
             position: absolute;
             top: -25px;
@@ -20,33 +21,45 @@
             font-size: 32px;
             z-index: 10;
         }
+
         svg {
             transform-origin: center center;
-            transition: transform 4s ease-out;
+            transition: transform 1s ease-out;
         }
+
         text {
             font-size: 10px;
             fill: white;
             text-anchor: middle;
             dominant-baseline: middle;
         }
+
+        .dial {
+            width: 60px;
+            height: 40px;
+            line-height: 40px;
+            border: 2px solid #444;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            background: #f9f9f9;
+            touch-action: none;
+        }
+
     </style>
 </head>
 <body>
 <div id="app">
     <div class="wheel-container">
         <div class="pointer">🔻</div>
-        <svg :style="{ transform: `rotate(${rotation}deg)` }" width="300" height="300" viewBox="0 0 300 300">
+        <svg :style="{ transform: `rotate(${rotation}deg)` ,display:`block`,margin:`0 auto`}" width="300" height="300"
+             viewBox="0 0 300 300">
 
-            <!-- ✅ 每圈添加完整背景圆 -->
+            <!-- ✅ 每圈添加完整背景圆 stroke="#fff" stroke-width="1" -->
             <template v-for="j in numRounds">
-                <circle
-                        :r="getRadius(j - 1) + (getRadius(1) - getRadius(0)) / 2"
-                        cx="150"
-                        cy="150"
+                <circle :r="getRadius(j - 1) + (getRadius(1) - getRadius(0)) / 2"
+                        cx="150" cy="150"
                         :fill="j % 2 === 0 ? '#f8f8f8' : '#eaeaea'"
-                        stroke="#ddd"
-                        stroke-width="1"
                 />
             </template>
 
@@ -69,16 +82,21 @@
     <van-row justify="center" style="margin-top: 20px;">
         <van-col span="20" style="text-align: center;">
             <van-stepper v-model="numRounds" theme="round" button-size="22" disable-input @change="reset()"/>
-
         </van-col>
     </van-row>
-
+    <van-row justify="center" style="margin-top: 20px;">
+        <van-col span="20" style="text-align: center;display: flex;justify-content: center;
+            gap: 10px;margin-top: 5px;">
+            <div v-for="r in spin_result" class="dial" :style="'color:#fff;background:'+getColor(r)">
+                {{r}}
+            </div>
+        </van-col>
+    </van-row>
     <van-row justify="center" style="margin-top: 20px;">
         <van-col span="20" style="text-align: center;">
-            <van-button type="primary"  @click="spin()">随机{{combinations.length}}选1</van-button>
+            <van-button :disabled="spinning" type="primary" @click="spin()">随机{{combinations.length}}选1</van-button>
         </van-col>
     </van-row>
-    {{combinations?.[index]?.join(' - ')}}
     <!--<van-field
             v-model.number="numRounds"
             label="局数"
@@ -93,17 +111,20 @@
 <script src="https://fastly.jsdelivr.net/npm/vue@3"></script>
 <script src="https://fastly.jsdelivr.net/npm/vant@4/lib/vant.min.js"></script>
 <script>
-    const { createApp, ref, watch } = Vue;
+    const {createApp, ref, watch,onMounted} = Vue;
 
     createApp({
         setup() {
-            const numRounds = ref(3);
-            const rotation = ref(0);
+            const numRounds = ref(2);
+            const rotation = ref(Math.random() * 360);
             const spinning = ref(false);
+            const spin_result = ref();
             const combinations = ref(generateCombinations(numRounds.value));
 
             watch(numRounds, (newVal) => {
                 combinations.value = generateCombinations(newVal);
+                spinning.value = false;
+                spin()
             });
 
             function generateCombinations(n) {
@@ -121,10 +142,12 @@
             }
 
             function getRadius(layerIndex) {
-                const minRadius = 10;
+                const minRadius = 1;
                 //const maxRadius = numRounds.value <= 4 ? 100 : 140;
-                const maxRadius = 100;
-                const step = (maxRadius - minRadius) / (numRounds.value - 1 || 1);
+                const maxRadius = 300;
+                let step = (maxRadius - minRadius) / (numRounds.value || 1);
+                step = layerIndex === 0 ? minRadius : (300 / (2 * numRounds.value) - minRadius);
+                //console.log(layerIndex,minRadius,maxRadius,step,minRadius + layerIndex * step)
                 return minRadius + layerIndex * step;
             }
 
@@ -161,13 +184,21 @@
             function spin() {
                 if (spinning.value) return;
                 spinning.value = true;
-                const index = Math.floor(Math.random() * combinations.value.length);
-                const degPer = 360 / combinations.value.length;
-                const deg = 5 * 360 + index * degPer + degPer / 2;
-                rotation.value += deg;
 
+
+                const result_index = Math.floor(Math.random() * combinations.value.length);
+                spin_result.value = combinations.value[result_index];
+
+                const degPer = 360 / (combinations.value.length);
+                let result_deg = -result_index * degPer - degPer / 2;
+
+                let times = 0;
+                while (Math.abs(result_deg+times-rotation.value)<720){
+                    times = 2 * 360 + Math.floor(Math.random() * 5) * 360;
+                }
+                rotation.value = result_deg+times ;
                 setTimeout(() => {
-                   // vant.Toast(`🎯 抽中：${combinations.value[index].join(' - ')}`);
+                    // vant.Toast(`🎯 抽中：${combinations.value[result_index].join(' - ')}`);
                     spinning.value = false;
                 }, 1000);
             }
@@ -176,9 +207,11 @@
                 rotation.value = 0;
                 combinations.value = generateCombinations(numRounds.value);
             }
-
+            onMounted(()=>{
+                spin()
+            })
             return {
-                numRounds,
+                numRounds, spin_result,
                 rotation,
                 spinning,
                 combinations,

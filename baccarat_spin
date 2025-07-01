@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>随机百家乐</title>
+    <!-- 引入 Vant CSS -->
+    <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/vant@4/lib/index.css" />
+    <style>
+        .lock-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .dial {
+            width: 60px;
+            height: 40px;
+            border: 2px solid #444;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            background: #f9f9f9;
+            touch-action: none;
+        }
+
+        .dial ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            transition: transform 0.3s ease-out;
+        }
+
+        .dial li {
+            height: 40px;
+            line-height: 40px;
+            font-size: 24px;
+            text-align: center;
+            /*border-bottom: 1px solid #ccc;*/
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <van-row justify="center">
+        <van-col span="20">
+        </van-col>
+    </van-row>
+
+    <div class="lock-wrapper" id="result">
+        <!--        <div class="dial" data-index="0"></div>
+                <div class="dial" data-index="1"></div>
+                <div class="dial" data-index="2"></div>-->
+    </div>
+
+    <van-row justify="center" style="margin-top: 20px;">
+        <van-col span="20" style="text-align: center;">
+            <van-stepper v-model="count" theme="round" button-size="22" disable-input @change="init()"/>
+        </van-col>
+    </van-row>
+
+    <van-row justify="center" style="margin-top: 20px;">
+        <van-col span="20" style="text-align: center;">
+            <van-button type="primary"  @click="randomSpin()">随机</van-button>
+        </van-col>
+    </van-row>
+    <!-- 使用 Vant 按钮组件 -->
+
+
+
+</div>
+
+<!-- 引入 Vant JS -->
+<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+<script src="https://fastly.jsdelivr.net/npm/vue@3"></script>
+<script src="https://fastly.jsdelivr.net/npm/vant@4/lib/vant.min.js"></script>
+
+<script>
+    // 创建 Vue 应用
+    /*const app = Vue.createApp({
+        data() {
+            return {};
+        },
+        methods: {
+            showToast() {
+                vant.Toast('按钮已点击');
+            }
+        }
+    });*/
+    const { createApp, ref,onBeforeMount,onMounted } = Vue
+    const app = createApp({
+        setup() {
+            const count = ref(3)
+
+            function init() {
+                const pane = document.querySelector('#result');
+                while (pane.firstChild) {
+                    console.log(pane.firstChild);
+                    pane.removeChild(pane.firstChild);
+                }
+                for (let i = 0; i < count.value; i++) {
+                    let dial = document.createElement('div');
+                    dial.className = 'dial';
+                    dial.dataIndex = i;
+
+                    const ul = document.createElement('ul');
+                    for (let i = 0; i < 130; i++) { // 重复数字实现无限滚动感
+                        const li = document.createElement('li');
+                        li.style.color = '#fff';
+                        if(i%2==0){
+                            li.textContent = "庄";
+                            li.style.background = 'red';
+                        }else {
+                            li.textContent = "闲";
+                            li.style.background = 'blue';
+                        }
+                        ul.appendChild(li);
+                    }
+                    dial.appendChild(ul);
+                    pane.appendChild(dial);
+                }
+                setTimeout(() => {
+                randomSpin()
+                }, 100);
+            }
+
+            function randomSpin() {
+                document.querySelectorAll('.dial').forEach((dial, idx) => {
+                    const ul = dial.querySelector('ul');
+
+                    const randomDigit = Math.floor(Math.random() * 10);
+
+                    const rounds = Math.floor(Math.random() * 3) + 2; // 多转几圈更自然
+                    const targetIndex = rounds * 10 + randomDigit; // 例如：转动2~4圈 + 目标数字
+                    const targetY = -targetIndex * 40;
+
+                    ul.style.transition = 'transform 1s ease-in-out';
+                    ul.style.transform = `translateY(${targetY}px)`;
+
+                    // 存储最终值
+                    setTimeout(() => {
+                        ul.style.transition = 'none';
+                        ul.style.transform = `translateY(${-randomDigit * 40}px)`;
+                        dial.setAttribute('data-value', randomDigit);
+                    }, 1000);
+                });
+            }
+            onMounted(()=>{
+                init()
+                /*
+                document.querySelectorAll('.dial').forEach((dial, idx) => {
+                   /!* const ul = document.createElement('ul');
+                    for (let i = 0; i < 130; i++) { // 重复数字实现无限滚动感
+                        const li = document.createElement('li');
+                        li.textContent = i % 10;
+                        ul.appendChild(li);
+                    }
+                    dial.appendChild(ul);
+*!/
+                    let startY = 0;
+                    let currentY = 0;
+                    let translateY = 0;
+
+                    const maxIndex = 29;
+
+                    const onMove = (e) => {
+                        const y = e.touches ? e.touches[0].clientY : e.clientY;
+                        const deltaY = y - startY;
+                        translateY += deltaY;
+                        startY = y;
+
+                        if (translateY > 0) translateY = 0;
+                        if (translateY < -((maxIndex - 2) * 40)) translateY = -((maxIndex - 2) * 40);
+
+                        ul.style.transform = `translateY(${translateY}px)`;
+                    };
+
+                    const onEnd = () => {
+                        const index = Math.round(-translateY / 40);
+                        translateY = -index * 40;
+                        ul.style.transform = `translateY(${translateY}px)`;
+                        dial.setAttribute('data-value', index % 10);
+
+                        document.removeEventListener('mousemove', onMove);
+                        document.removeEventListener('mouseup', onEnd);
+                        dial.removeEventListener('touchmove', onMove);
+                        dial.removeEventListener('touchend', onEnd);
+                    };
+
+                    dial.addEventListener('mousedown', (e) => {
+                        startY = e.clientY;
+                        document.addEventListener('mousemove', onMove);
+                        document.addEventListener('mouseup', onEnd);
+                    });
+
+                    dial.addEventListener('touchstart', (e) => {
+                        startY = e.touches[0].clientY;
+                        dial.addEventListener('touchmove', onMove);
+                        dial.addEventListener('touchend', onEnd);
+                    });
+                });
+*/
+            })
+
+            // 必须 return，否则 template 访问不到
+            return {
+                count,randomSpin,init
+            }
+        }
+    });
+    // 注册 Vant 组件
+    app.use(vant);
+
+    // 挂载 Vue 应用
+    app.mount("#app");
+</script>
+</body>
+</html>

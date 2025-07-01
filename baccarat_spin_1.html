@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>靶子转盘 - 动态局数</title>
+    <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/vant@4/lib/index.css" />
+    <style>
+        .wheel-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            margin: 30px auto;
+        }
+        .pointer {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 32px;
+            z-index: 10;
+        }
+        svg {
+            transform-origin: center center;
+            transition: transform 4s ease-out;
+        }
+        text {
+            font-size: 10px;
+            fill: white;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="wheel-container">
+        <div class="pointer">🔻</div>
+        <svg :style="{ transform: `rotate(${rotation}deg)` }" width="300" height="300" viewBox="0 0 300 300">
+
+            <!-- ✅ 每圈添加完整背景圆 -->
+            <template v-for="j in numRounds">
+                <circle
+                        :r="getRadius(j - 1) + (getRadius(1) - getRadius(0)) / 2"
+                        cx="150"
+                        cy="150"
+                        :fill="j % 2 === 0 ? '#f8f8f8' : '#eaeaea'"
+                        stroke="#ddd"
+                        stroke-width="1"
+                />
+            </template>
+
+            <!-- ✅ 绘制每个组合扇形 -->
+            <g v-for="(combo, i) in combinations" :key="combo.join('')">
+                <template v-for="(val, j) in combo">
+                    <path
+                            :d="getArcPath(150, 150, getRadius(j), getRadius(j + 1), i, combinations.length)"
+                            :fill="getColor(val)"
+                    />
+                </template>
+                <!--<text v-bind="getTextPos(i, combinations.length, getRadius(numRounds - 1) - 10)">
+                    {{ combo.join('') }}
+                </text>-->
+            </g>
+        </svg>
+    </div>
+
+
+    <van-row justify="center" style="margin-top: 20px;">
+        <van-col span="20" style="text-align: center;">
+            <van-stepper v-model="numRounds" theme="round" button-size="22" disable-input @change="reset()"/>
+
+        </van-col>
+    </van-row>
+
+    <van-row justify="center" style="margin-top: 20px;">
+        <van-col span="20" style="text-align: center;">
+            <van-button type="primary"  @click="spin()">随机{{combinations.length}}选1</van-button>
+        </van-col>
+    </van-row>
+    {{combinations?.[index]?.join(' - ')}}
+    <!--<van-field
+            v-model.number="numRounds"
+            label="局数"
+            type="digit"
+            placeholder="请输入局数"
+            @change="reset"
+            style="margin: 16px"
+    />
+    <van-button type="primary" @click="spin">点击抽奖</van-button>-->
+</div>
+
+<script src="https://fastly.jsdelivr.net/npm/vue@3"></script>
+<script src="https://fastly.jsdelivr.net/npm/vant@4/lib/vant.min.js"></script>
+<script>
+    const { createApp, ref, watch } = Vue;
+
+    createApp({
+        setup() {
+            const numRounds = ref(3);
+            const rotation = ref(0);
+            const spinning = ref(false);
+            const combinations = ref(generateCombinations(numRounds.value));
+
+            watch(numRounds, (newVal) => {
+                combinations.value = generateCombinations(newVal);
+            });
+
+            function generateCombinations(n) {
+                const result = [];
+                const total = 2 ** n;
+                for (let i = 0; i < total; i++) {
+                    const bin = i.toString(2).padStart(n, '0');
+                    result.push([...bin].map(d => d === '0' ? 'B' : 'P'));
+                }
+                return result;
+            }
+
+            function getColor(val) {
+                return val === 'B' ? '#f44336' : '#2196f3';
+            }
+
+            function getRadius(layerIndex) {
+                const minRadius = 10;
+                //const maxRadius = numRounds.value <= 4 ? 100 : 140;
+                const maxRadius = 100;
+                const step = (maxRadius - minRadius) / (numRounds.value - 1 || 1);
+                return minRadius + layerIndex * step;
+            }
+
+            function getArcPath(cx, cy, r1, r2, index, total) {
+                const angle = (2 * Math.PI) / total;
+                const start = angle * index - Math.PI / 2;
+                const end = angle * (index + 1) - Math.PI / 2;
+
+                const x1 = cx + r1 * Math.cos(start);
+                const y1 = cy + r1 * Math.sin(start);
+                const x2 = cx + r1 * Math.cos(end);
+                const y2 = cy + r1 * Math.sin(end);
+                const x3 = cx + r2 * Math.cos(end);
+                const y3 = cy + r2 * Math.sin(end);
+                const x4 = cx + r2 * Math.cos(start);
+                const y4 = cy + r2 * Math.sin(start);
+
+                return `M ${x1} ${y1}
+              A ${r1} ${r1} 0 0 1 ${x2} ${y2}
+              L ${x3} ${y3}
+              A ${r2} ${r2} 0 0 0 ${x4} ${y4}
+              Z`;
+            }
+
+            function getTextPos(index, total, radius) {
+                const angle = (360 / total) * index - 360 / total / 2;
+                const rad = (angle * Math.PI) / 180;
+                return {
+                    x: 150 + radius * Math.cos(rad),
+                    y: 150 + radius * Math.sin(rad)
+                };
+            }
+
+            function spin() {
+                if (spinning.value) return;
+                spinning.value = true;
+                const index = Math.floor(Math.random() * combinations.value.length);
+                const degPer = 360 / combinations.value.length;
+                const deg = 5 * 360 + index * degPer + degPer / 2;
+                rotation.value += deg;
+
+                setTimeout(() => {
+                   // vant.Toast(`🎯 抽中：${combinations.value[index].join(' - ')}`);
+                    spinning.value = false;
+                }, 1000);
+            }
+
+            function reset() {
+                rotation.value = 0;
+                combinations.value = generateCombinations(numRounds.value);
+            }
+
+            return {
+                numRounds,
+                rotation,
+                spinning,
+                combinations,
+                getColor,
+                getRadius,
+                getArcPath,
+                getTextPos,
+                spin,
+                reset
+            };
+        }
+    }).use(vant).mount('#app');
+</script>
+</body>
+</html>

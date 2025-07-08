@@ -10,8 +10,8 @@
 </template>
 
 <script setup>
-import {appStore} from "@/store/app.js";
-import {changeLanguage} from "@/lang/18n.js";
+import {appStore} from "@/config/store/app.js";
+import {changeLanguage} from "@/config/lang/18n.js";
 
 const appState = appStore();
 const localLanguage = ref("");

@@ -1,5 +1,5 @@
 <script setup>
-import {userStore} from "@/store/user.js";
+import {userStore} from "@/config/store/user.js";
 import {showToast} from "vant";
 import {ref} from "vue";
 import {ApiRequest} from "@/api/index.js";

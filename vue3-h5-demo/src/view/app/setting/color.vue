@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import {appStore} from "@/store/app.js";
+import {appStore} from "@/config/store/app.js";
 
 const appState = appStore();
 const choose = (color_version) => {

@@ -10,8 +10,9 @@ import { VantResolver } from '@vant/auto-import-resolver';
 import postCssPxToRem from 'postcss-pxtorem'
 import autoprefixer from 'autoprefixer'
 
-// https://vite.dev/config/
+// https://cn.vite.dev/config/
 export default defineConfig({
+  base:import.meta.env.DEV?'/': 'https://cdn.example.com/', // ✅ 替换为你自己的域名或路径
   plugins: [
     vue(),
     AutoImport({

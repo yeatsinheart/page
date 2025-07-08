@@ -3,7 +3,7 @@
 import {showToast} from "vant";
 import {ApiRequest} from "@/api/index.js";
 
-import {userStore} from "@/store/user.js";
+import {userStore} from "@/config/store/user.js";
 
 const props = defineProps({phone:null})
 const emit = defineEmits(["destroy"]);

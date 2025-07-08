@@ -1,9 +1,0 @@
- {
-    "app_layout": "/app/layout/demo",
-    "bottom_bar": "/app/bottom_bar/demo",
-    "home": "/app/home/demo",
-
-    "color": "/app/setting/color",
-    "language": "/app/setting/language",
-    "view": "/app/setting/view"
-}

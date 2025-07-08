@@ -4,7 +4,7 @@ import {showToast} from "vant";
 import i18n from "@/lang/18n.js";
 import {paymentAccountStore} from "@/store/paymentAccount.js";
 import {CurrencyUtil} from "@/tool/currency.js";
-import {userStore} from "@/store/user.js";
+import {userStore} from "@/config/store/user.js";
 
 export const withdrawStore = defineStore("withdrawStore", {
     state: () => ({

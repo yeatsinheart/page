@@ -1,7 +1,6 @@
 import axios from "axios";
 import router from "@/config/router";
 import dayjs from "dayjs"
-import {userStore} from "@/config/store/user.js";
 import {canvas_device_id, getOS} from "@/tool/canvas.js";
 
 const devHost = 'http://localhost:8089';
@@ -18,14 +17,13 @@ service.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 // 请求拦截器
 service.interceptors.request.use(
     config => {
-        let userState = userStore();
         if (config.Api) config.headers.Api = config.Api;
         config.headers.language = localStorage.getItem('Language');
         config.headers.connectId = localStorage.getItem('connectId');
         config.headers.system =getOS()
         config.headers.code ='h5'
         config.headers.deviceId =canvas_device_id()
-        config.headers.token =userState.token
+        //config.headers.token =userStore().token
         config.headers.time = dayjs().valueOf()
         return config
     },
@@ -41,7 +39,7 @@ service.interceptors.response.use(
             if (response.data.code === 1) {
                 return Promise.resolve(response.data.data);
             } else if (response.data.code === -6) {
-                userStore().toLogin()
+                //userStore().toLogin()
                 return Promise.reject(response);
             } else {
                 showToast({ message: response.data.msg,duration: 1500, forbidClick: true});
@@ -109,6 +107,28 @@ service.interceptors.response.use(
         }
     });
 
+
+import MockAdapter from 'axios-mock-adapter';
+if (import.meta.env.DEV) {
+    console.log("开发环境下加载 mock")
+    const mock = new MockAdapter(service, { delayResponse: 300 }); // 可选延迟
+/*
+    mock.onAny().reply(config => {
+        console.log(config);
+        return [200, { code: 1, data: { id: 1, name: 'Zane' } }];
+    })*/
+    const mock_data_map = import.meta.glob("@/api/mock/*.json", { eager: true });
+    mock.onPost('/api/client').reply(config => {
+        let key = `/src/api/mock/${config.Api}.json`
+        if(mock_data_map[key]){
+            return [200, { code: 1, data: mock_data_map[key].default }];
+        }
+        return undefined;
+    });
+    // 所有其他请求继续发给真实后端
+    mock.onAny().passThrough();
+}
 export default service;
+
 
 

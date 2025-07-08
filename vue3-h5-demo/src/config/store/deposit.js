@@ -5,7 +5,7 @@ import {showToast} from "vant";
 
 import i18n from '@/lang/18n.js';
 import {paymentAccountStore} from "@/store/paymentAccount.js";
-import {appStore} from "@/store/app.js";
+import {appStore} from "@/config/store/app.js";
 import { CurrencyUtil} from "@/tool/currency.js"; // 确保 i18n 实例已在 main.ts 里创建
 
 export const depositStore = defineStore("depositStore", {

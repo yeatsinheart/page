@@ -1,0 +1,10 @@
+ {
+    "app_layout": {"path":"/app/layout/demo","isLoggedIn": false,"openBy": null},
+    "bottom_bar": {"path":"/app/bottom_bar/demo","isLoggedIn": false,"openBy": null},
+    "home": {"path":"/app/home/demo","isLoggedIn": false,"openBy": null},
+    "auth": {"path":"/account/auth/demo","isLoggedIn": false,"openBy": "/ui/popup/close_bottom"},
+
+    "color": {"path":"/app/setting/color","isLoggedIn": false,"openBy": null},
+    "language": {"path":"/app/setting/language","isLoggedIn": false,"openBy": null},
+    "view": {"path":"/app/setting/view","isLoggedIn": false,"openBy": null}
+}

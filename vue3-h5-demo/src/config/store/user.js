@@ -3,10 +3,12 @@ import {ApiRequest} from "@/api";
 import {appStore} from "@/config/store/app.js";
 import {CurrencyUtil} from "@/tool/currency.js";
 import {paymentAccountStore} from "@/config/store/paymentAccount.js";
+import {open_by_key, ViewKeyDict} from "@/view.js";
 
 export const userStore = defineStore("userStore", {
     state: () => ({
         inviteCode: null,
+
         account:null,
         token:null,
         loginConfig:null,
@@ -55,12 +57,12 @@ export const userStore = defineStore("userStore", {
         toLogin(){
             this.token = null;
             this.account = null;
-            view_route_by_key(ViewKeyDict.auth, { action: 'login' })
+            open_by_key(ViewKeyDict.auth, { action: 'login' })
         },
         toRegister(){
             this.token = null;
             this.account = null;
-            view_route_by_key(ViewKeyDict.auth, { action: 'register' })
+            open_by_key(ViewKeyDict.auth, { action: 'register' })
         },
         logout(){
             ApiRequest._logout().then(res=>{

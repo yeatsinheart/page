@@ -33,7 +33,8 @@ export const ViewKeyPathMap = {
     language: "/app/setting/language",
     view: "/app/setting/view",
 
-    auth: "/account/auth/wg",
+    auth: "/account/auth/demo",
+    me: "/account/home/demo",
     avatar: "/account/avatar/demo",
 
     notfound: "/app/page/home/wg",
@@ -130,10 +131,10 @@ export function open_by_key(view_key, params) {
 
 
 export const loadViewVersion = async (app_view_version) => {
-    let view_version_file_data = await import(`@/setting/version/${app_view_version}.json`);
+    let view_version_file_data = await import(`@/setting/view-version/${app_view_version}.json`);
     console.debug(app_view_version,"页面组合",view_version_file_data.default);
     for (let view_key in view_version_file_data.default) {
-        ViewKeyPathMap[view_key] = view_version_file_data[view_key];
+        ViewKeyPathMap[view_key] = view_version_file_data[view_key].path;
     }
 }
 

@@ -76,7 +76,7 @@ export const gameStore = defineStore("gameStore", {
             })
         },
         async fetchData() {
-            await Promise.all([
+            /*await Promise.all([
                     ApiRequest._8uDDbr15(),//  大类+品牌
                     ApiRequest._DzvQ6e7M(),//  所有品牌
                     ApiRequest._WX35wiOt(),// 所有游戏
@@ -97,7 +97,7 @@ export const gameStore = defineStore("gameStore", {
                         }
                         return a.name.localeCompare(b.name); // value 相同，再按 name 升序
                     });
-                })
+                })*/
         },
         // 初始化应用数据
         async init() {

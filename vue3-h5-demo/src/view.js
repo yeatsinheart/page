@@ -87,8 +87,6 @@ export const ViewKeyPathMap = {
 };
 
 export const ViewKeyDict = Object.freeze({
-    login: "login",
-    register: "register",
     auth: "auth",
     home: "home",
 });
@@ -129,12 +127,4 @@ export function open_by_key(view_key, params) {
     }
 }
 
-
-export const loadViewVersion = async (app_view_version) => {
-    let view_version_file_data = await import(`@/setting/view-version/${app_view_version}.json`);
-    console.debug(app_view_version,"页面组合",view_version_file_data.default);
-    for (let view_key in view_version_file_data.default) {
-        ViewKeyPathMap[view_key] = view_version_file_data[view_key].path;
-    }
-}
 

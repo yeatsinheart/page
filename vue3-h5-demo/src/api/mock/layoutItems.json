@@ -1,0 +1,155 @@
+{
+  "bar_bottom": [
+    {
+      "iconI18nKey": "https://x4.runtu123.com/0/global/1741121380209_icon_btm_sy.avif",
+      "iconFocusI18nKey": "https://x5.runtu123.com/0/global/1742274541661_47144ec2-aa9c-4ebc-8aa1-49241d3f465c_icon_btm_sy1.avif",
+      "titleI18nKey": "首页",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "home",
+      "counterListenKey": null
+    },
+    {
+      "iconI18nKey": "https://x1.runtu123.com/0/global/1741121380836_icon_btm_yh.avif",
+      "iconFocusI18nKey": "https://x4.runtu123.com/0/global/1742274577332_5b65c93f-3482-4352-9929-3bf4fbc34ec7_icon_btm_yh1.avif",
+      "titleI18nKey": "活动",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "bonus",
+      "counterListenKey": null
+    },
+    {
+      "iconI18nKey": "https://x2.runtu123.com/0/global/1741121383066_icon_btm_wd.avif",
+      "iconFocusI18nKey": "https://x2.runtu123.com/0/global/1742274628698_c28e7236-a0aa-48a8-a822-41b0e17f8be1_icon_btm_wd1.avif",
+      "titleI18nKey": "我的",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "account",
+      "counterListenKey": null
+    }
+  ],
+  "global_left_bottom": [
+    {
+      "iconI18nKey": "https://x2.runtu123.com/0/global/1741121391651_3199899.png",
+      "iconFocusI18nKey": null,
+      "titleI18nKey": "切换颜色",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "color",
+      "counterListenKey": null
+    },
+    {
+      "iconI18nKey": "https://x1.runtu123.com/0/global/1741121390460_3898082.png",
+      "iconFocusI18nKey": null,
+      "titleI18nKey": "切换语言",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "language",
+      "counterListenKey": null
+    }
+  ],
+  "global_right_bottom": [
+    {
+      "iconI18nKey": "https://x2.runtu123.com/0/global/1742274793548_96e297aa-9865-4ecc-b2e0-10b85565406d_4961759.png",
+      "iconFocusI18nKey": null,
+      "titleI18nKey": "客服",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "customer",
+      "counterListenKey": null
+    }
+  ],
+  "account_top": [
+    {
+      "iconI18nKey": "https://x2.runtu123.com/0/global/1742274793548_96e297aa-9865-4ecc-b2e0-10b85565406d_4961759.png",
+      "iconFocusI18nKey": null,
+      "titleI18nKey": "客服",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "customer",
+      "counterListenKey": null
+    },
+    {
+      "iconI18nKey": "https://x4.runtu123.com/0/global/1742275108031_89cd91ba-bf8e-43b0-86c1-38e05d6e0727_11472723.png",
+      "iconFocusI18nKey": null,
+      "titleI18nKey": "资料",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "profile",
+      "counterListenKey": null
+    }
+  ],
+  "account_hot": [
+    {
+      "iconI18nKey": "https://x5.runtu123.com/0/global/1741121383671_7939956.png",
+      "iconFocusI18nKey": null,
+      "titleI18nKey": "提现",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "withdraw",
+      "counterListenKey": "max_bonus_withdraw"
+    },
+    {
+      "iconI18nKey": "https://x1.runtu123.com/0/global/1741121384224_10991490.png",
+      "iconFocusI18nKey": null,
+      "titleI18nKey": "充值",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "deposit",
+      "counterListenKey": "max_bonus_deposit"
+    }
+  ],
+  "account_data": [],
+  "account_other": [
+    {
+      "iconI18nKey": "https://x2.runtu123.com/0/global/1742274793548_96e297aa-9865-4ecc-b2e0-10b85565406d_4961759.png",
+      "iconFocusI18nKey": null,
+      "titleI18nKey": "客服",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "customer",
+      "counterListenKey": null
+    },
+    {
+      "iconI18nKey": "https://x2.runtu123.com/0/global/1741121391009_922699.png",
+      "iconFocusI18nKey": null,
+      "titleI18nKey": "切换皮肤",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "view",
+      "counterListenKey": null
+    },
+    {
+      "iconI18nKey": "https://x1.runtu123.com/0/global/1741121390460_3898082.png",
+      "iconFocusI18nKey": null,
+      "titleI18nKey": "切换语言",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "language",
+      "counterListenKey": null
+    },
+    {
+      "iconI18nKey": "https://x2.runtu123.com/0/global/1741121391651_3199899.png",
+      "iconFocusI18nKey": null,
+      "titleI18nKey": "切换颜色",
+      "tip": null,
+      "content": null,
+      "bonusId": null,
+      "openViewKey": "color",
+      "counterListenKey": null
+    }
+  ]
+}

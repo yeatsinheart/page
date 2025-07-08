@@ -3,6 +3,9 @@ import {userStore} from "@/config/store/user.js";
 /** 调用时直接引用 ApiRequest._某个KEY(参数) **/
 export const ApiRequest = {
   /**接口Start**/
+  views:(data)=>post_json({api:'views',data:data}),//页面组合
+  layoutItems:(data)=>post_json({api:'layoutItems',data:data}),//布局元素
+
   _XuhIjT6s:(data)=>post_json({api:'XuhIjT6s',data:data}),//初始化集成
   _DYN7TM69:(data)=>post_json({api:'DYN7TM69',data:data},1),//刷新账号信息
   _B7vKm2x5:(data)=>post_json({api:'B7vKm2x5',data:data},1),//刷新余额

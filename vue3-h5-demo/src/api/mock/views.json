@@ -1,0 +1,216 @@
+{
+  "app_layout": {"path":"/app/layout/demo","isLoggedIn": false,"openBy": null},
+  "bottom_bar": {"path":"/app/bottom_bar/demo","isLoggedIn": false,"openBy": null},
+  "home": {"path":"/app/home/demo","isLoggedIn": false,"openBy": null},
+  "auth": {"path":"/account/auth/demo","isLoggedIn": false,"openBy": "/ui/popup/close_bottom"},
+
+  "color": {"path":"/app/setting/color","isLoggedIn": false,"openBy": null},
+  "language": {"path":"/app/setting/language","isLoggedIn": false,"openBy": null},
+  "view": {"path":"/app/setting/view","isLoggedIn": false,"openBy": null},
+
+    "account": {
+      "path": "/account/home/wg",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "account_config": {
+      "path": "/account/config/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "add_to_desk": {
+      "path": "/app/add_to_desk/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "announce": {
+      "path": "/market/announce/home/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "announce_pop": {
+      "path": "/market/announce/pop/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+
+    "avatar": {
+      "path": "/account/avatar/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "bonus": {
+      "path": "/bonus/home/demo",
+      "isLoggedIn": false,
+      "openBy": null
+    },
+    "bonus_detail": {
+      "path": "/bonus/detail/demo",
+      "isLoggedIn": false,
+      "openBy": "\u0000"
+    },
+    "bonus_history": {
+      "path": "/bonus/history/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "bonus_pop": {
+      "path": "/bonus/pop/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+
+    "customer": {
+      "path": "/problem/customer/demo",
+      "isLoggedIn": false,
+      "openBy": "/ui/popup/close_right_top"
+    },
+    "deposit": {
+      "path": "/cashier/deposit/home/demo",
+      "isLoggedIn": false,
+      "openBy": "/ui/popup/close_right_top"
+    },
+    "deposit-to-pay": {
+      "path": "/cashier/deposit/topay",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "deposit_history": {
+      "path": "/cashier/deposit/history/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "download": {
+      "path": "/app/download/demo",
+      "isLoggedIn": false,
+      "openBy": "/ui/popup/close_bottom"
+    },
+    "feedback": {
+      "path": "/problem/feedback/wg",
+      "isLoggedIn": false,
+      "openBy": "/ui/popup/close_bottom"
+    },
+    "forbidden": {
+      "path": "/problem/forbidden/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "game-login": {
+      "path": "/game/login/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "game_brand_detail": {
+      "path": "/game/brand_detail/category_left_bar",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "game_category_detail": {
+      "path": "/game/category_detail/brand_left_bar",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "game_history": {
+      "path": "/game/history/wg",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "game_home": {
+      "path": "/game/home/wg",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "game_search": {
+      "path": "/game/search/wg",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+
+    "kyc": {
+      "path": "/account/kyc/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+
+    "maintain": {
+      "path": "/problem/maintain/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "marquee": {
+      "path": "/market/marquee/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "member_new": {
+      "path": "/team/member_new/demo",
+      "isLoggedIn": false,
+      "openBy": null
+    },
+    "member_summary": {
+      "path": "/team/member_summary/demo",
+      "isLoggedIn": false,
+      "openBy": null
+    },
+    "message": {
+      "path": "/account/message/demo",
+      "isLoggedIn": false,
+      "openBy": "/ui/popup/close_bottom"
+    },
+    "nomore": {
+      "path": "/app/nomore/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "payment_account": {
+      "path": "/payment_account/home/demo",
+      "isLoggedIn": false,
+      "openBy": "/ui/popup/close_right_top"
+    },
+    "profile": {
+      "path": "/account/profile/wg",
+      "isLoggedIn": true,
+      "openBy": ""
+    },
+    "share": {
+      "path": "/team/share/wg",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "swiper": {
+      "path": "/market/swiper/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "team": {
+      "path": "/team/home/five55",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+
+    "vip": {
+      "path": "/account/vip/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "wallet": {
+      "path": "/wallet/home/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "wallet_pwd": {
+      "path": "/wallet/pwd/wg",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "wallet_pwd_check": {
+      "path": "/wallet/pwd_check/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "withdraw": {
+      "path": "/cashier/withdraw/home/demo",
+      "isLoggedIn": false,
+      "openBy": null
+    }
+  }

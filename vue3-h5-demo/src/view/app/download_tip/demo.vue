@@ -4,8 +4,7 @@ import {appStore} from "@/config/store/app.js";
 
 const download_tip_show = ref(true);
 
-const params = defineProps({modelValue: null,path:null,props:null,});
-
+const params = defineProps({modelValue: null});
 const emit = defineEmits(['update:modelValue', 'destroy'])
 // 监听对话框隐藏时的逻辑 因为时通过pop弹出需要发起注销事件
 watch(download_tip_show, (newVal) => {

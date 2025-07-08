@@ -53,9 +53,6 @@ ApiRequest.getApp().then((app_data => {
         userStore().inviteCode = inviteCode;
     }
     appStore().app = app_data;
-    console.debug(appStore().app)
-    console.debug(appStore().app.layoutItem.bar_bottom)
-
     setTimeout(() => {
         app.use(router)
         app.mount("#app");

@@ -1,10 +1,8 @@
 <script setup>
 import {onBeforeMount, ref} from "vue";
 import {appStore} from "@/config/store/app.js";
-import {openby} from "@/tool/pop.js";
 import {userStore} from "@/config/store/user.js";
 import Menu from "./menu.vue";
-
 
 onBeforeMount(() => {
   //获取配置数据 需要弹出在弹出 排前面弹出的会最后显示
@@ -16,18 +14,22 @@ onBeforeMount(() => {
 });
 
 const changemenu = () => {
-  appStore().showSideMenu = !appStore().showSideMenu;
+  show_sidebar.value = !show_sidebar.value;
 };
+
+const show_sidebar = ref(false);
+
 </script>
 
 <template>
-  <div :style="(appStore().app?.info?.home_bg? 'background:url(' + appStore().app.info.home_bg + ')': '' )" class="home">
+  <div :style="(appStore().app?.info?.home_bg? 'background:url(' + appStore().app.info.home_bg + ')': '' )
+  +('overflow-y:'+show_sidebar?'hidden':'auto')" class="home">
 
     <div class="brand_bar" style="background: var(--bg1);padding: 0 0.2rem;">
       <div style=" display: flex;height: 0.9rem;justify-content: space-between;align-items: center;">
         <div class="flex-center">
           <div class="flex-center" style="height: .9rem" @click="changemenu">
-            <i :class="!appStore().showSideMenu ? 'fa-indent' : 'fa-outdent'" class="fa-solid fa-indent"
+            <i :class="!show_sidebar ? 'fa-indent' : 'fa-outdent'" class="fa-solid fa-indent"
                style="color: var(--main);font-size: 0.3rem;margin-right: 0.2rem;"></i>
           </div>
           <img :src="appStore().app?.info?.logo330x100" alt="" style="height: 0.74rem"/>
@@ -54,19 +56,17 @@ const changemenu = () => {
       </div>
     </div>
 
-    <div v-if="appStore().showSideMenu" class="mask" @click="appStore().showSideMenu = false"></div>
-    <div :style="'height:100%;position:relative;background-attachment: fixed;'">
-      <Menu v-if="appStore().showSideMenu" style="position: absolute;height:100%;"/>
+    <div v-if="show_sidebar" class="mask" @click="show_sidebar = false"></div>
+    <div :style="'height:calc(100% - .9rem);position:relative;background-attachment: fixed;'">
+      <Menu v-if="show_sidebar" style="position: absolute;height:100%;" v-model="show_sidebar"/>
 <!--
       <ViewImportByPath :path="ViewKeyPathMap.swiper"></ViewImportByPath>
       <ViewImportByPath :path="ViewKeyPathMap.marquee"></ViewImportByPath>
       <ViewImportByPath :path="ViewKeyPathMap.game_home"></ViewImportByPath>
       -->
-      <div class="ck-content" style="padding:.2rem;background-color: var(--bg1);padding-bottom: 1.4rem;"
+      <div class="ck-content" style="padding:.2rem;background-color: var(--bg1);"
            v-html="appStore().app.info.description"></div>
     </div>
-
-    <div style="height: 2.1rem;"></div>
   </div>
 </template>
 

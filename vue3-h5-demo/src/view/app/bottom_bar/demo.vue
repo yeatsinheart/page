@@ -1,24 +1,19 @@
 <script setup>
 import {open_by_key} from "@/view.js";
 
-import { useRoute } from "vue-router";
 import {appStore} from "@/config/store/app.js";
+import { useRoute } from "vue-router";
 const route = useRoute();
 
 const isActive = (callKey) => {
   return route.path === callKey || ("/" === route.path && "/home" === callKey);
 };
 
-const canShow = () => {
-  return appStore().app.layoutItem.bar_bottom.some((item) => {
-    return route?.path === "/" || "/" + item.openViewKey === route?.path;
-  });
-};
-
+const params = defineProps({modelValue: null});
 </script>
 
 <template>
-  <div class="bottom-bar max-width flex" v-if="canShow()">
+  <div class="bottom-bar max-width flex" v-if="modelValue">
     <div class="flex bottom-tab-item" v-for="layoutItem in appStore().app.layoutItem.bar_bottom"
          :key="layoutItem.titleI18nKey" @click="open_by_key(layoutItem.openViewKey)">
       <img class="img1x1" :src="isActive('/' + layoutItem.openViewKey)

@@ -39,10 +39,10 @@ const copyToClipboard = async (data) => {
     <div style="background: url('@/assets/images2/style_1_topbg_yd.avif') 0 0 / 100% no-repeat;">
       <header class="flex-center head_superior" style="height: 1rem; font-size: 0.2rem; justify-content: flex-end">
         <div style="flex-grow: 1"></div>
-        <div @click="open_by_key(item.callViewKey)" class="flex-column" style="padding: 0.1rem"
-             v-for="(item, index) in appState.app.layout.account_top" :key="index">
-          <img class="img1x1" style="width: 0.5rem" :src="item.icon"/>
-          <span>{{ $t(item.title) }}</span>
+        <div @click="open_by_key(item.openViewKey)" class="flex-column" style="padding: 0.1rem"
+             v-for="(item, index) in appState.app.layoutItem.account_top" :key="index">
+          <img class="img1x1" style="width: 0.5rem" :src="item.iconI18nKey"/>
+          <span>{{ $t(item.titleI18nKey) }}</span>
         </div>
       </header>
 
@@ -70,10 +70,10 @@ const copyToClipboard = async (data) => {
       </div>
 
       <div class="flex-center" style="justify-content:space-around;padding: 0.2rem">
-        <div @click="open_by_key(item.callViewKey)" class="flex-column"
-            v-for="(item, index) in appState.app.layout.account_hot" :key="index">
-          <img class="img1x1" style="width: 0.5rem" :src="item.icon"/>
-          <span>{{ $t(item.title) }}</span>
+        <div @click="open_by_key(item.openViewKey)" class="flex-column"
+            v-for="(item, index) in appState.app.layoutItem.account_hot" :key="index">
+          <img class="img1x1" style="width: 0.5rem" :src="$t(item.iconI18nKey)"/>
+          <span>{{ $t(item.titleI18nKey) }}</span>
         </div>
       </div>
     </div>
@@ -110,14 +110,14 @@ const copyToClipboard = async (data) => {
 
     <div class="container">
       <ul>
-        <li @click="open_by_key(item.callViewKey)" v-for="(item, index) in appState.app.layout.account_data" :key="index"
-            :style=" index !== appState.app.layout.account_data.length - 1 ? 'border-bottom: 0.015rem solid var(--f1)' : ''">
+        <li @click="open_by_key(item.openViewKey)" v-for="(item, index) in appState.app.layoutItem.account_data" :key="index"
+            :style=" index !== appState.app.layoutItem.account_data.length - 1 ? 'border-bottom: 0.015rem solid var(--f1)' : ''">
           <div>
-            <img style="width: 0.5rem" :src="item.icon"/>
-            <span class="span-title">{{ $t(item.title) }}</span>
+            <img style="width: 0.5rem" :src="item.iconI18nKey"/>
+            <span class="span-title">{{ $t(item.titleI18nKey) }}</span>
           </div>
           <div>
-            <span v-show="item.subtitle" style="color: var(--f3)">{{item.subtitle}}</span>
+            <span v-show="item.subtitleI18nKey" style="color: var(--f3)">{{item.subtitleI18nKey}}</span>
             <i class="fa-solid fa-chevron-right" style="color: var(--f3)"></i>
           </div>
         </li>
@@ -155,13 +155,13 @@ const copyToClipboard = async (data) => {
     </van-cell-group>-->
 
     <van-cell-group inset style="margin:.2rem 0;">
-      <van-cell  @click="open_by_key(item.callViewKey)"
-                v-for="(item, index) in appState.app.layout.account_other" :key="index">
-        <template #icon><div class="flex-center"><img style="width: 0.5rem" :src="item.icon"/></div></template>
+      <van-cell  @click="open_by_key(item.openViewKey)"
+                v-for="(item, index) in appState.app.layoutItem.account_other" :key="index">
+        <template #icon><div class="flex-center"><img style="width: 0.5rem" :src="item.iconI18nKey"/></div></template>
 
         <template #title >
-            <div class="flex" style="flex-shrink: 0;">{{ $t(item.title) }}</div>
-            <div class="flex truncate"  style="padding-left: .1rem;flex:1;display: block;" v-show="item.subtitle">{{item.subtitle}}</div>
+            <div class="flex" style="flex-shrink: 0;">{{ $t(item.titleI18nKey) }}</div>
+            <div class="flex truncate"  style="padding-left: .1rem;flex:1;display: block;" v-show="item.subtitleI18nKey">{{item.subtitleI18nKey}}</div>
         </template>
         <template #right-icon><div class="flex-center"><i class="fa-solid fa-angle-right" style="color: var(--f3)"></i></div></template>
       </van-cell>

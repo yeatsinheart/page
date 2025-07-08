@@ -7,7 +7,6 @@
   "color": {"path":"/app/setting/color","isLoggedIn": false,"openBy": null},
   "language": {"path":"/app/setting/language","isLoggedIn": false,"openBy": null},
   "view": {"path":"/app/setting/view","isLoggedIn": false,"openBy": null},
-
     "account": {
       "path": "/account/home/wg",
       "isLoggedIn": false,

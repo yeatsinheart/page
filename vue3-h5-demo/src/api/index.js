@@ -3,6 +3,7 @@ import {userStore} from "@/config/store/user.js";
 /** 调用时直接引用 ApiRequest._某个KEY(参数) **/
 export const ApiRequest = {
   /**接口Start**/
+  getApp:(data)=>post_json({api:'getApp',data:data}),//页面组合
   views:(data)=>post_json({api:'views',data:data}),//页面组合
   layoutItems:(data)=>post_json({api:'layoutItems',data:data}),//布局元素
 

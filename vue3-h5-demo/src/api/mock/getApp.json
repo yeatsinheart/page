@@ -1,0 +1,556 @@
+{
+  "appId": 0,
+  "info": {
+    "name": "demo",
+    "appName": "demo",
+    "description": "欢迎观临👏👏👏👏",
+    "favicon": "https://x3.runtu123.com/0/global/1741119471980_h5icon.ico",
+    "logo330x100": "https://x4.runtu123.com/0/global/1741119525132_1743167310040870913.avif",
+    "logo512x512": "https://x5.runtu123.com/0/global/1741119545010_appIconBig.png",
+    "logo70x70": "https://x5.runtu123.com/0/global/1741119545010_appIconBig.png",
+    "maintain1x1": "https://x3.runtu123.com/0/global/1743187708356_9a339e38-1dc7-449a-bb7c-f68677ae6e3f_img_whz_style_1.avif",
+    "launch_img": [
+      "https://x3.runtu123.com/0/global/1742013538617_ae511a1c-db84-47b0-b505-058be7b709d3_226044dba4eae61fe5907d8890c039e0.jpg"
+    ],
+    "download_img7x1": "https://x2.runtu123.com/0/global/1741119447521_1831992421251534850.webp",
+    "download_txt": "下载APP,领取更多奖励",
+    "register_img": "https://x4.runtu123.com/0/global/1741901893062_2344d446-01ff-4ffa-bba4-bc16e75038a8_test.jpeg",
+    "home_bg": "https://x5.runtu123.com/0/global/1741119494279_bg_pattern_tile.avif",
+    "launch_time": 5,
+    "lazy_img3x4": "https://x5.runtu123.com/0/global/1743188177563_868e516e-ca63-4f82-a378-ed56d26e537c_bg_pattern_tile.avif",
+    "lazy_img1x1": "https://x5.runtu123.com/0/global/1743188177563_868e516e-ca63-4f82-a378-ed56d26e537c_bg_pattern_tile.avif",
+    "lazy_img7x2": "https://x5.runtu123.com/0/global/1743188177563_868e516e-ca63-4f82-a378-ed56d26e537c_bg_pattern_tile.avif"
+  },
+  "view": {
+    "app_layout": {"path":"/app/layout/demo","isLoggedIn": false,"openBy": null},
+    "bottom_bar": {"path":"/app/bottom_bar/demo","isLoggedIn": false,"openBy": null},
+    "home": {"path":"/app/home/demo","isLoggedIn": false,"openBy": null},
+    "auth": {"path":"/account/auth/demo","isLoggedIn": false,"openBy": "/ui/popup/close_bottom"},
+
+    "color": {"path":"/app/setting/color","isLoggedIn": false,"openBy": null},
+    "language": {"path":"/app/setting/language","isLoggedIn": false,"openBy": null},
+    "view": {"path":"/app/setting/view","isLoggedIn": false,"openBy": null},
+    "account": {
+      "path": "/account/home/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "account_config": {
+      "path": "/account/config/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "add_to_desk": {
+      "path": "/app/add_to_desk/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "announce": {
+      "path": "/market/announce/home/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "announce_pop": {
+      "path": "/market/announce/pop/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+
+    "avatar": {
+      "path": "/account/avatar/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "bonus": {
+      "path": "/bonus/home/demo",
+      "isLoggedIn": false,
+      "openBy": null
+    },
+    "bonus_detail": {
+      "path": "/bonus/detail/demo",
+      "isLoggedIn": false,
+      "openBy": "\u0000"
+    },
+    "bonus_history": {
+      "path": "/bonus/history/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "bonus_pop": {
+      "path": "/bonus/pop/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+
+    "customer": {
+      "path": "/problem/customer/demo",
+      "isLoggedIn": false,
+      "openBy": "/ui/popup/close_right_top"
+    },
+    "deposit": {
+      "path": "/cashier/deposit/home/demo",
+      "isLoggedIn": false,
+      "openBy": "/ui/popup/close_right_top"
+    },
+    "deposit-to-pay": {
+      "path": "/cashier/deposit/topay",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "deposit_history": {
+      "path": "/cashier/deposit/history/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "download": {
+      "path": "/app/download/demo",
+      "isLoggedIn": false,
+      "openBy": "/ui/popup/close_bottom"
+    },
+    "feedback": {
+      "path": "/problem/feedback/wg",
+      "isLoggedIn": false,
+      "openBy": "/ui/popup/close_bottom"
+    },
+    "forbidden": {
+      "path": "/problem/forbidden/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "game-login": {
+      "path": "/game/login/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "game_brand_detail": {
+      "path": "/game/brand_detail/category_left_bar",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "game_category_detail": {
+      "path": "/game/category_detail/brand_left_bar",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "game_history": {
+      "path": "/game/history/wg",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "game_home": {
+      "path": "/game/home/wg",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "game_search": {
+      "path": "/game/search/wg",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+
+    "kyc": {
+      "path": "/account/kyc/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+
+    "maintain": {
+      "path": "/problem/maintain/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "marquee": {
+      "path": "/market/marquee/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "member_new": {
+      "path": "/team/member_new/demo",
+      "isLoggedIn": false,
+      "openBy": null
+    },
+    "member_summary": {
+      "path": "/team/member_summary/demo",
+      "isLoggedIn": false,
+      "openBy": null
+    },
+    "message": {
+      "path": "/account/message/demo",
+      "isLoggedIn": false,
+      "openBy": "/ui/popup/close_bottom"
+    },
+    "nomore": {
+      "path": "/app/nomore/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "payment_account": {
+      "path": "/payment_account/home/demo",
+      "isLoggedIn": false,
+      "openBy": "/ui/popup/close_right_top"
+    },
+    "profile": {
+      "path": "/account/profile/wg",
+      "isLoggedIn": true,
+      "openBy": ""
+    },
+    "share": {
+      "path": "/team/share/wg",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "swiper": {
+      "path": "/market/swiper/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "team": {
+      "path": "/team/home/five55",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+
+    "vip": {
+      "path": "/account/vip/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "wallet": {
+      "path": "/wallet/home/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "wallet_pwd": {
+      "path": "/wallet/pwd/wg",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "wallet_pwd_check": {
+      "path": "/wallet/pwd_check/demo",
+      "isLoggedIn": false,
+      "openBy": ""
+    },
+    "withdraw": {
+      "path": "/cashier/withdraw/home/demo",
+      "isLoggedIn": false,
+      "openBy": null
+    }
+  },
+  "layoutItem": {
+    "bar_bottom": [
+      {
+        "iconI18nKey": "https://x4.runtu123.com/0/global/1741121380209_icon_btm_sy.avif",
+        "iconFocusI18nKey": "https://x5.runtu123.com/0/global/1742274541661_47144ec2-aa9c-4ebc-8aa1-49241d3f465c_icon_btm_sy1.avif",
+        "titleI18nKey": "首页",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "home",
+        "counterListenKey": null
+      },
+      {
+        "iconI18nKey": "https://x1.runtu123.com/0/global/1741121380836_icon_btm_yh.avif",
+        "iconFocusI18nKey": "https://x4.runtu123.com/0/global/1742274577332_5b65c93f-3482-4352-9929-3bf4fbc34ec7_icon_btm_yh1.avif",
+        "titleI18nKey": "活动",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "bonus",
+        "counterListenKey": null
+      },
+      {
+        "iconI18nKey": "https://x2.runtu123.com/0/global/1741121383066_icon_btm_wd.avif",
+        "iconFocusI18nKey": "https://x2.runtu123.com/0/global/1742274628698_c28e7236-a0aa-48a8-a822-41b0e17f8be1_icon_btm_wd1.avif",
+        "titleI18nKey": "我的",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "account",
+        "counterListenKey": null
+      }
+    ],
+    "global_left_bottom": [
+      {
+        "iconI18nKey": "https://x2.runtu123.com/0/global/1741121391651_3199899.png",
+        "iconFocusI18nKey": null,
+        "titleI18nKey": "切换颜色",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "color",
+        "counterListenKey": null
+      },
+      {
+        "iconI18nKey": "https://x1.runtu123.com/0/global/1741121390460_3898082.png",
+        "iconFocusI18nKey": null,
+        "titleI18nKey": "切换语言",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "language",
+        "counterListenKey": null
+      }
+    ],
+    "global_right_bottom": [
+      {
+        "iconI18nKey": "https://x2.runtu123.com/0/global/1742274793548_96e297aa-9865-4ecc-b2e0-10b85565406d_4961759.png",
+        "iconFocusI18nKey": null,
+        "titleI18nKey": "客服",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "customer",
+        "counterListenKey": null
+      }
+    ],
+    "account_top": [
+      {
+        "iconI18nKey": "https://x2.runtu123.com/0/global/1742274793548_96e297aa-9865-4ecc-b2e0-10b85565406d_4961759.png",
+        "iconFocusI18nKey": null,
+        "titleI18nKey": "客服",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "customer",
+        "counterListenKey": null
+      },
+      {
+        "iconI18nKey": "https://x4.runtu123.com/0/global/1742275108031_89cd91ba-bf8e-43b0-86c1-38e05d6e0727_11472723.png",
+        "iconFocusI18nKey": null,
+        "titleI18nKey": "资料",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "profile",
+        "counterListenKey": null
+      }
+    ],
+    "account_hot": [
+      {
+        "iconI18nKey": "https://x5.runtu123.com/0/global/1741121383671_7939956.png",
+        "iconFocusI18nKey": null,
+        "titleI18nKey": "提现",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "withdraw",
+        "counterListenKey": "max_bonus_withdraw"
+      },
+      {
+        "iconI18nKey": "https://x1.runtu123.com/0/global/1741121384224_10991490.png",
+        "iconFocusI18nKey": null,
+        "titleI18nKey": "充值",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "deposit",
+        "counterListenKey": "max_bonus_deposit"
+      }
+    ],
+    "account_data": [],
+    "account_other": [
+      {
+        "iconI18nKey": "https://x2.runtu123.com/0/global/1742274793548_96e297aa-9865-4ecc-b2e0-10b85565406d_4961759.png",
+        "iconFocusI18nKey": null,
+        "titleI18nKey": "客服",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "customer",
+        "counterListenKey": null
+      },
+      {
+        "iconI18nKey": "https://x2.runtu123.com/0/global/1741121391009_922699.png",
+        "iconFocusI18nKey": null,
+        "titleI18nKey": "切换皮肤",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "view",
+        "counterListenKey": null
+      },
+      {
+        "iconI18nKey": "https://x1.runtu123.com/0/global/1741121390460_3898082.png",
+        "iconFocusI18nKey": null,
+        "titleI18nKey": "切换语言",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "language",
+        "counterListenKey": null
+      },
+      {
+        "iconI18nKey": "https://x2.runtu123.com/0/global/1741121391651_3199899.png",
+        "iconFocusI18nKey": null,
+        "titleI18nKey": "切换颜色",
+        "tip": null,
+        "content": null,
+        "bonusId": null,
+        "openViewKey": "color",
+        "counterListenKey": null
+      }
+    ]
+  },
+  "coin": {
+    "code": "CNY",
+    "name": "人民币",
+    "logo": "https://x1.runtu123.com/0/global/1741120692371_C040756B67950C8F.png",
+    "symbol": "元",
+    "scale": 2,
+    "denomination": 1
+  },
+  "languageList": [
+    {
+      "code": "zh_CN",
+      "name": "简体中文"
+    },
+    {
+      "code": "en_US",
+      "name": "English"
+    },
+    {
+      "code": "pt_BR",
+      "name": "Português brasileiro"
+    }
+  ],
+  "countryList": [
+    {
+      "code": "cn",
+      "name": "中国",
+      "timeZone": "GMT+08:00",
+      "flag": "https://x5.runtu123.com/0/global/1741121099650_cn.svg",
+      "phoneCode": "+86",
+      "phoneLength": 11,
+      "phoneRegExp": "/^1[3-9]\\\\d{9}$/"
+    },
+    {
+      "code": "ph",
+      "name": "菲律宾",
+      "timeZone": "GMT+08:00",
+      "flag": "https://x4.runtu123.com/0/global/1741121119606_ph.svg",
+      "phoneCode": "+63",
+      "phoneLength": 11,
+      "phoneRegExp": null
+    },
+    {
+      "code": "us",
+      "name": "美国",
+      "timeZone": "GMT+08:00",
+      "flag": "https://x4.runtu123.com/0/global/1741121139782_us.svg",
+      "phoneCode": "+1",
+      "phoneLength": 11,
+      "phoneRegExp": null
+    },
+    {
+      "code": "br",
+      "name": "巴西",
+      "timeZone": "GMT+08:00",
+      "flag": "https://x4.runtu123.com/0/global/1741121172239_br.svg",
+      "phoneCode": "+55",
+      "phoneLength": 11,
+      "phoneRegExp": null
+    }
+  ],
+  "customerList": [
+    {
+      "title": "Live",
+      "logo": "https://s33xa.runtu123.com/0/global/1741119411464_CStype3-7588d980.png",
+      "src": "https://www.damansvc.org/wap/indexE.jsp"
+    },
+    {
+      "title": "Live Chat - Technical & Game Issues",
+      "logo": "https://s33xa.runtu123.com/0/global/1741119411464_CStype3-7588d980.png",
+      "src": null
+    },
+    {
+      "title": "Live Chat - Activities Issues",
+      "logo": "https://s33xa.runtu123.com/0/global/1741119411464_CStype3-7588d980.png",
+      "src": "https://secure.livechatinc.com/licence/13913922/v2/open_chat.cgi?groups=3"
+    }
+  ],
+  "sociaList": [
+    {
+      "title": "Telegram Official Channel",
+      "logo": "https://s33xa.runtu123.com/0/global/1741119383202_CStype5-6b3a66e3.png",
+      "src": "https://t.me/A535BET"
+    }
+  ],
+  "hostList": [
+    {
+      "host": "client.dev.biyingbaowang.co",
+      "https": false
+    },
+    {
+      "host": "client.55five.biyingbaowang.co",
+      "https": false
+    },
+    {
+      "host": "client.vue.biyingbaowang.co",
+      "https": false
+    },
+    {
+      "host": "test",
+      "https": true
+    },
+    {
+      "host": "client.vue.biyingbaowang.co",
+      "https": false
+    },
+    {
+      "host": "client-dev.biyingbaowang.co",
+      "https": false
+    }
+  ],
+  "announceList": [
+    {
+      "title": "新用户礼包🎁",
+      "html": "Welcome to 535.BET. We promise to provide every customer with the safest, most convenient and fairest gambling games, as well as a full range of services! Welcome to join~",
+      "createAt": 1721072535000,
+      "popUp": true
+    },
+    {
+      "title": "平台通知📢",
+      "html": "<div class=\"promptContent\"><h4><span>Due to recent impersonation of our companyThere are too many fake websites, pleaseMembers remember&nbsp;</span><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://535.bet/\"><font style=\"background-color:rgb(255, 255, 255);\"><span><u>535.bet</u></span></font></a><span> inquire usIs the 535 website available?</span></h4><p><span>Join our 535 official channel to get the latest updates on exciting events, good news and various announcements. Thank you for supporting 535 along the way and continue to spread the word：&nbsp;</span><br><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://t.me/A535BET\"><font style=\"background-color:rgb(255, 255, 255);\"><span><u>535.BET OFFICIAL</u></span></font></a><br><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://t.me/B535BET\"><font style=\"background-color:rgb(255, 255, 255);\"><span><u>535.BET WIN GO 1MIN PREDICT</u></span></font></a><br>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>",
+      "createAt": 1721072335000,
+      "popUp": true
+    },
+    {
+      "title": "1234",
+      "html": "<h2>Congratulations on setting up ! 🎉</h2>\n<p>\n\tYou've successfully created a  project. This powerful text editor\n\twill enhance your application, enabling rich text editing capabilities that\n\tare customizable and easy to use.\n</p><figure class=\"image\">\n    <img style=\"aspect-ratio:544/184;\" src=\"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png\" width=\"544\" height=\"184\">\n</figure>\n<h3>What's next?</h3>\n<ol>\n\t<li>\n\t\t<strong>Integrate into your app</strong>: time to bring the editing into\n\t\tyour application. Take the code you created and add to your application.\n\t</li>\n\t<li>\n\t\t<strong>Explore features:</strong> Experiment with different plugins and\n\t\ttoolbar options to discover what works best for your needs.\n\t</li>\n\t<li>\n\t\t<strong>Customize your editor:</strong> Tailor the editor's\n\t\tconfiguration to match your application's style and requirements. Or\n\t\teven write your plugin!\n\t</li>\n</ol>\n<p>\n\tKeep experimenting, and don't hesitate to push the boundaries of what you\n\tcan achieve with CKEditor 5. Your feedback is invaluable to us as we strive\n\tto improve and evolve. Happy editing!\n</p>\n<h3>Helpful resources</h3>\n<ul>\n\t<li>📝 <a href=\"https://portal.ckeditor.com/checkout?plan=free\">Trial sign up</a>,</li>\n\t<li>📕 <a href=\"https://ckeditor.com/docs/ckeditor5/latest/installation/index.html\">Documentation</a>,</li>\n\t<li>⭐️ <a href=\"https://github.com/ckeditor/ckeditor5\">GitHub</a> (star us if you can!),</li>\n\t<li>🏠 <a href=\"https://ckeditor.com\">CKEditor Homepage</a>,</li>\n\t<li>🧑‍💻 <a href=\"https://ckeditor.com/ckeditor-5/demo/\">CKEditor 5 Demos</a>,</li>\n</ul>\n<h3>Need help?</h3>\n<p>\n\tSee this text, but the editor is not starting up? Check the browser's\n\tconsole for clues and guidance. It may be related to an incorrect license\n\tkey if you use premium features or another feature-related requirement. If\n\tyou cannot make it work, file a GitHub issue, and we will help as soon as\n\tpossible!\n</p>\n",
+      "createAt": null,
+      "popUp": true
+    }
+  ],
+  "swiperList": [
+    {
+      "title": null,
+      "src": "https://x4.runtu123.com/0/global/1741119186504_1741119106152_8aee7c72e76783e376b8f.png",
+      "bonusId": 0
+    },
+    {
+      "title": null,
+      "src": "https://x5.runtu123.com/0/global/1741119187605_1741119108204_55a37f0357bb18d1ba511.png",
+      "bonusId": null
+    }
+  ],
+  "bonus": {
+    "type": [
+      "充值"
+    ],
+    "list": [
+      {
+        "bonusId": 1,
+        "type": "充值",
+        "title": "每日充值享福利",
+        "visibleStartAt": null,
+        "visibleEndAt": null,
+        "popUp": true,
+        "popImg": "https://x4.runtu123.com/0/g/uJ3CceMa64f96.jpg",
+        "banner": "https://x4.runtu123.com/0/g/uJ3BUQFb2d15f.jpg",
+        "howToClaim": "bySystem",
+        "detailPath": "/bonus/detail/bonus-rich-html",
+        "openBy": "/ui/popup/poppage"
+      }
+    ]
+  }
+}

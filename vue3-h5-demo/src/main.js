@@ -1,5 +1,5 @@
 import {createApp} from 'vue'
-import { view_get_by_path, ViewKeyPathMap} from "@/view.js";
+import {view_get_by_path, ViewKeyPathMap} from "@/view.js";
 import i18n from "@/config/lang/18n";
 import router, {addRoute} from "@/config/router";
 import {Lazyload} from "vant";
@@ -9,42 +9,59 @@ import piniaPluginPersistedstate from "pinia-plugin-persistedstate"; //引入持
 import vLoading from "@/tool/v-loading.js";
 import {userStore} from "@/config/store/user.js";
 import {appStore} from "@/config/store/app.js";
-
-const app = createApp(defineAsyncComponent({
-    loader: view_get_by_path(ViewKeyPathMap.app_layout),
-})); //先用空对象创建 app
+import {ApiRequest} from "@/api/index.js";
 
 //创建pinia实例
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 
-app.use(pinia).use(i18n).directive("loading", vLoading).use(Lazyload, {
-    loading: "imgI18nKey",
-    lazyComponent: true,
-});
+ApiRequest.getApp().then((app_data => {
+    // 首选语言
+    let chosen_language = localStorage.getItem('Language');
+    let right_language = app_data.languageList.some(item => item.code === chosen_language);
+    if (!right_language) {
+        chosen_language = app_data.languageList[0].code;
+    }
+    // 页面组合
+    let viewMap = app_data.view;
+    for (let view_key in viewMap) {
+        ViewKeyPathMap[view_key] = viewMap[view_key].path;
+    }
+    // 默认首页
+    addRoute("", ViewKeyPathMap.home);
+    // ViewKeyPathMap 写入路由中，弹出的界面不写入
+    for (let key in ViewKeyPathMap) {
+        if (!viewMap[key]?.openBy) {
+            addRoute(key, ViewKeyPathMap[key]);
+        }
+    }
 
-// 解析 URL 并存储邀请码
-const urlParams = new URLSearchParams(window.location.search);
-const inviteCode = urlParams.get("ic");
-if (inviteCode) {
-    console.log("邀请码:", inviteCode);
-    userStore().inviteCode=inviteCode;
-}
+    const app = createApp(defineAsyncComponent({
+        loader: view_get_by_path(ViewKeyPathMap.app_layout),
+    }));
 
-const init = async () => {
-    await appStore().init()
+    app.use(pinia).use(i18n).directive("loading", vLoading).use(Lazyload, {
+        loading: "imgI18nKey",
+        lazyComponent: true,
+    });
 
-}
+    // 解析 URL 并存储邀请码
+    const urlParams = new URLSearchParams(window.location.search);
+    const inviteCode = urlParams.get("ic");
+    if (inviteCode) {
+        console.log("邀请码:", inviteCode);
+        userStore().inviteCode = inviteCode;
+    }
+    appStore().app = app_data;
+    console.debug(appStore().app)
+    console.debug(appStore().app.layoutItem.bar_bottom)
 
-init().then(() => {
     setTimeout(() => {
-        app._component = defineAsyncComponent({
-            loader: view_get_by_path(ViewKeyPathMap.app_layout),
-        });//Component is missing template or render function:
         app.use(router)
         app.mount("#app");
     }, 200);
-}).catch(console.error);
+})).catch(console.error);
+
 
 window.addEventListener('resize', () => {
     const isMobile = window.innerWidth <= 768;

@@ -2,8 +2,6 @@ import {defineStore} from "pinia";
 import {ApiRequest} from "@/api";
 import {gameStore} from "./game.js";
 import {userStore} from "./user.js";
-import {ViewKeyPathMap} from "@/view.js";
-import {addRoute} from "@/config/router/index.js";
 
 export const appStore = defineStore("appStore", {
     state: () => ({
@@ -36,21 +34,8 @@ export const appStore = defineStore("appStore", {
             try {
                 await Promise.all([
                     ApiRequest._XuhIjT6s(),
-                    ApiRequest.views(),
                     ApiRequest.layoutItems(),
-                ]).then(([app_res, views_res, layoutItems_res]) => {
-                    console.log(views_res, layoutItems_res);
-                    for (let view_key in views_res) {
-                        ViewKeyPathMap[view_key] = views_res[view_key].path;
-                    }
-                    // 默认首页
-                    addRoute("", ViewKeyPathMap.home);
-                    // ViewKeyPathMap 写入路由中，弹出的界面不写入
-                    for (let key in ViewKeyPathMap) {
-                        if (!views_res[key]?.openBy) {
-                            addRoute(key, ViewKeyPathMap[key]);
-                        }
-                    }
+                ]).then(([app_res, layoutItems_res]) => {
                     this.layoutItem = layoutItems_res;
                     this.app = app_res;
                     let chosen_language = localStorage.getItem('Language');

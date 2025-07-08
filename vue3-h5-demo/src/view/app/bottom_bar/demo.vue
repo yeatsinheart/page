@@ -2,19 +2,15 @@
 import {open_by_key} from "@/view.js";
 
 import { useRoute } from "vue-router";
+import {appStore} from "@/config/store/app.js";
 const route = useRoute();
 
 const isActive = (callKey) => {
   return route.path === callKey || ("/" === route.path && "/home" === callKey);
 };
 
-const bar_bottom=[
-  {titleI18nKey:"首页",logoI18nKey:"https://x4.runtu123.com/0/global/1741121380209_icon_btm_sy.avif",openViewKey:"/"},
-  {titleI18nKey:"活动",logoI18nKey:"https://x1.runtu123.com/0/global/1741121380836_icon_btm_yh.avif",openViewKey:"bonus"},
-  {titleI18nKey:"我的",logoI18nKey:"https://x2.runtu123.com/0/global/1741121383066_icon_btm_wd.avif",openViewKey:"me"},
-]
 const canShow = () => {
-  return bar_bottom.some((item) => {
+  return appStore().app.layoutItem.bar_bottom.some((item) => {
     return route?.path === "/" || "/" + item.openViewKey === route?.path;
   });
 };
@@ -23,10 +19,11 @@ const canShow = () => {
 
 <template>
   <div class="bottom-bar max-width flex" v-if="canShow()">
-    <div class="flex bottom-tab-item" v-for="layoutItem in bar_bottom" :key="layoutItem.title" @click="open_by_key(layoutItem.openViewKey)">
+    <div class="flex bottom-tab-item" v-for="layoutItem in appStore().app.layoutItem.bar_bottom"
+         :key="layoutItem.titleI18nKey" @click="open_by_key(layoutItem.openViewKey)">
       <img class="img1x1" :src="isActive('/' + layoutItem.openViewKey)
-            ? layoutItem.iconFocus ? $t(layoutItem.logoFocusI18nKey) : $t(layoutItem.logoI18nKey)
-            : $t(layoutItem.logoI18nKey)
+            ? layoutItem.iconFocusI18nKey ? $t(layoutItem.iconFocusI18nKey) : $t(layoutItem.iconI18nKey)
+            : $t(layoutItem.iconI18nKey)
         "
       />
       <span class="bottom-tab-item-title" :style="isActive('/' + layoutItem.openViewKey) ? 'color:var(--main)' : ''">

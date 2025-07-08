@@ -1,3 +1,4 @@
+import {view_get_by_path} from "@/view.js";
 
 const popMap = shallowRef(new Map()); // 🚀 维护所有弹出组件的 Map
 

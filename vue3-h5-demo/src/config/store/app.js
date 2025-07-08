@@ -1,6 +1,5 @@
 import {defineStore} from "pinia";
 import {ApiRequest} from "@/api";
-import {changeLanguage} from "../lang/18n";
 import {gameStore} from "./game.js";
 import {userStore} from "./user.js";
 import {ViewKeyPathMap} from "@/view.js";
@@ -9,11 +8,23 @@ import {addRoute} from "@/config/router/index.js";
 export const appStore = defineStore("appStore", {
     state: () => ({
         app: null,
-        layoutItem:{
-            bar_bottom:[
-                {titleI18nKey:"首页",logoI18nKey:"https://x4.runtu123.com/0/global/1741121380209_icon_btm_sy.avif",openViewKey:"home"},
-                {titleI18nKey:"活动",logoI18nKey:"https://x1.runtu123.com/0/global/1741121380836_icon_btm_yh.avif",openViewKey:"bonus"},
-                {titleI18nKey:"我的",logoI18nKey:"https://x2.runtu123.com/0/global/1741121383066_icon_btm_wd.avif",openViewKey:"me"},
+        layoutItem: {
+            bar_bottom: [
+                {
+                    titleI18nKey: "首页",
+                    logoI18nKey: "https://x4.runtu123.com/0/global/1741121380209_icon_btm_sy.avif",
+                    openViewKey: "home"
+                },
+                {
+                    titleI18nKey: "活动",
+                    logoI18nKey: "https://x1.runtu123.com/0/global/1741121380836_icon_btm_yh.avif",
+                    openViewKey: "bonus"
+                },
+                {
+                    titleI18nKey: "我的",
+                    logoI18nKey: "https://x2.runtu123.com/0/global/1741121383066_icon_btm_wd.avif",
+                    openViewKey: "me"
+                },
             ]
         },
         showSideMenu: false,
@@ -23,11 +34,12 @@ export const appStore = defineStore("appStore", {
         // 异步 action 方法
         async fetchData() {
             try {
-                Promise.all([
+                await Promise.all([
+                    ApiRequest._XuhIjT6s(),
                     ApiRequest.views(),
                     ApiRequest.layoutItems(),
-                ]).then(([views_res, layoutItems_res]) => {
-                    console.log(views_res,layoutItems_res);
+                ]).then(([app_res, views_res, layoutItems_res]) => {
+                    console.log(views_res, layoutItems_res);
                     for (let view_key in views_res) {
                         ViewKeyPathMap[view_key] = views_res[view_key].path;
                     }
@@ -39,24 +51,24 @@ export const appStore = defineStore("appStore", {
                             addRoute(key, ViewKeyPathMap[key]);
                         }
                     }
-                    this.layoutItem=layoutItems_res;
+                    this.layoutItem = layoutItems_res;
+                    this.app = app_res;
+                    let chosen_language = localStorage.getItem('Language');
+                    let right_language = app_res.languageList.some(item => item.code === chosen_language);
+                    if (!right_language) {
+                        chosen_language = app_res.languageList[0].code;
+                    }
                 })
-                let response = await ApiRequest._XuhIjT6s();
-                this.app = response;
-                let chosen_language = localStorage.getItem('Language');
-                let right_language = response.languageList.some(item => item.code===chosen_language);
-                if(!right_language){
-                    chosen_language=response.languageList[0].code;
-                }
+                //await changeLanguage(chosen_language);
                 await gameStore().init();
-                await changeLanguage(chosen_language);
+
             } catch (error) {
             }
         },
 
         // 初始化应用数据
         async init() {
-            if(userStore().isLoggedIn){
+            if (userStore().isLoggedIn) {
                 userStore().refreshAccount()
             }
             if (import.meta.env.DEV) {

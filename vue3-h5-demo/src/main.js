@@ -10,7 +10,9 @@ import vLoading from "@/tool/v-loading.js";
 import {userStore} from "@/config/store/user.js";
 import {appStore} from "@/config/store/app.js";
 
-const app = createApp({}); //先用空对象创建 app
+const app = createApp(defineAsyncComponent({
+    loader: view_get_by_path(ViewKeyPathMap.app_layout),
+})); //先用空对象创建 app
 
 //创建pinia实例
 const pinia = createPinia();
@@ -31,12 +33,14 @@ if (inviteCode) {
 
 const init = async () => {
     await appStore().init()
+
 }
 
 init().then(() => {
-    app._component = defineAsyncComponent(view_get_by_path(ViewKeyPathMap.app_layout))
-    console.debug("已完成初始化",ViewKeyPathMap.app_layout)
     setTimeout(() => {
+        app._component = defineAsyncComponent({
+            loader: view_get_by_path(ViewKeyPathMap.app_layout),
+        });//Component is missing template or render function:
         app.use(router)
         app.mount("#app");
     }, 200);

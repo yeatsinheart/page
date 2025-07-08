@@ -24,7 +24,7 @@ export const view_get_by_path = (path) => {
     );
 };
 export const ViewKeyPathMap = {
-    app_layout: "/app/layout/demo",
+    app_layout: "/app/layout/test",
     download_tip: "/app/download_tip/demo",
     bottom_bar: "/app/bottom_bar/demo",
     home: "/app/home/demo",

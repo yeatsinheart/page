@@ -6,12 +6,12 @@
     <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"
           name="viewport"/>
 
-    <link href="./css/html.css" rel="stylesheet">
-    <link href="./css/rem-h5.css" rel="stylesheet">
+    <link href="/css/html.css" rel="stylesheet">
+    <link href="/css/rem-h5.css" rel="stylesheet">
 
 
+    <link id="favicon" href="https://vite.dev/logo.svg" rel="icon" type="image/svg+xml"/>
     <title>loading</title>
-    <link id="favicon" href="" rel="icon" type="image/svg+xml"/>
 
 </head>
 <body>
@@ -38,8 +38,6 @@
         // const listArray = listStr.replace(/['"]+/g, "").split(/\s*,\s*/).map(item => item.trim());
         // console.log(listArray); // ["apple", "banana", "cherry"]
     }
-    document.title = style_var('--name');
-    //document.getElementById('favicon').setAttribute('href', style_var('--logo70x70'))
     /*重新打包发布新的代码时，如果历史文件删除，那么异步打开的模块久找不到了*/
     window.addEventListener('error', (event) => {
         const message = event.message || "";
@@ -49,6 +47,10 @@
         const message = event.reason?.message || "";
         not_found_updated_file(message);
     });
+
+
+    //document.title = style_var('--name');
+    //document.getElementById('favicon').setAttribute('href', style_var('--logo70x70'))
 
 
 </script>

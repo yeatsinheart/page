@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="apple-mobile-web-app-capable" content="yes" /> -->
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"
+          name="viewport"/>
+
+    <link href="./css/html.css" rel="stylesheet">
+    <link href="./css/rem-h5.css" rel="stylesheet">
+
+
+    <title>loading</title>
+    <link id="favicon" href="" rel="icon" type="image/svg+xml"/>
+
+</head>
+<body>
+<div id="app" style="height: 100%;width: 100%;"></div>
+<script src="/src/main.js" type="module"></script>
+<script type="text/javascript">
+    function not_found_updated_file(message) {
+        if (
+            message.includes('Failed to fetch dynamically imported module')||
+            message.includes('Importing a module script failed')||
+            message.includes('Failed to load module script')
+        ) {
+            console.warn('检测到资源丢失，自动刷新页面');
+            location.reload();
+        }
+    }
+    function style_var(key){
+        // 字符串值
+        return getComputedStyle(document.documentElement).getPropertyValue(key);
+        // 把一个 列表（数组）字符串 存入 CSS 变量 --list，然后在 JavaScript 中获取并解析成数组，可以这样做：
+        // --list: 'apple, banana, cherry';// 获取 CSS 变量的值
+        //。const listStr = style_var('--list').trim();
+        // 将字符串转换为数组
+        // const listArray = listStr.replace(/['"]+/g, "").split(/\s*,\s*/).map(item => item.trim());
+        // console.log(listArray); // ["apple", "banana", "cherry"]
+    }
+    document.title = style_var('--name');
+    document.getElementById('favicon').setAttribute('href', style_var('--logo70x70'))
+    /*重新打包发布新的代码时，如果历史文件删除，那么异步打开的模块久找不到了*/
+    window.addEventListener('error', (event) => {
+        const message = event.message || "";
+        not_found_updated_file(message);
+    });
+    window.addEventListener('unhandledrejection', (event) => {
+        const message = event.reason?.message || "";
+        not_found_updated_file(message);
+    });
+
+
+</script>
+</body>
+</html>

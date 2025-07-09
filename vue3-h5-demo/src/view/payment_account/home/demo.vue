@@ -45,7 +45,7 @@
 
 <script setup>
 import { onBeforeMount, ref } from "vue";
-import {paymentAccountStore} from "@/store/paymentAccount.js";
+import {paymentAccountStore} from "@/config/store/paymentAccount.js";
 const  loading = ref(false);
 
 const showDialog = ref(false);

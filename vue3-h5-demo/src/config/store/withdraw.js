@@ -2,7 +2,7 @@ import {defineStore} from "pinia";
 import {ApiRequest} from "@/api/index.js";
 import {showToast} from "vant";
 import i18n from "@/config/lang/18n.js";
-import {paymentAccountStore} from "@/store/paymentAccount.js";
+import {paymentAccountStore} from "@/config/store/paymentAccount.js";
 import {CurrencyUtil} from "@/tool/currency.js";
 import {userStore} from "@/config/store/user.js";
 

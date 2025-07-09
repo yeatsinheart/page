@@ -1,6 +1,6 @@
 <script setup>
 import {ApiRequest} from "@/api/index.js";
-import {paymentAccountStore} from "@/store/paymentAccount.js";
+import {paymentAccountStore} from "@/config/store/paymentAccount.js";
 
 const form = ref({})
 const params = defineProps({props: null})

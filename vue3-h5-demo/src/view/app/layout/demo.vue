@@ -28,7 +28,17 @@ onBeforeMount(() => {
 <template>
     <div style="height: 100%;width: 100%;">
       <ViewImportByPath :path="ViewKeyPathMap.download_tip" v-model="show_download_tip"></ViewImportByPath>
-      <router-view :style="'height: calc(100% '+(show_download_tip?'- 0.7rem':'')+' '+(show_bottom_bar?'- 1.44rem':'')+')'"/>
+<!--      <router-view :style="'height: calc(100% '+(show_download_tip?'- 0.7rem':'')+' '+(show_bottom_bar?'- 1.44rem':'')+')'"/>-->
+      <Suspense>
+        <template #default>
+          <router-view v-slot="{ Component }"  :style="'height: calc(100% '+(show_download_tip?'- 0.7rem':'')+' '+(show_bottom_bar?'- 1.44rem':'')+')'">
+            <component :is="Component" />
+          </router-view>
+        </template>
+        <template #fallback>
+          <div>加载中...</div>
+        </template>
+      </Suspense>
       <ViewImportByPath :path="ViewKeyPathMap.bottom_bar" v-model="show_bottom_bar"></ViewImportByPath>
 
       <div style="z-index:5;position:fixed;bottom: 1.6rem;left:.2rem;" v-if="appStore().app?.layoutItem?.global_left_bottom">

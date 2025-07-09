@@ -92,7 +92,7 @@ watch(()=>depositStore().amount_coin, (newVal) => {
 
     <div class="flex-center" style="justify-content: space-between;padding:.1rem 0;">
       <div @click="openby('/ui/popup/close_right_top','/cashier/deposit/history/demo')">{{ $t('充值记录') }}</div>
-      <div @click="view_route_by_key('customer')">{{ $t('联系客服') }}</div>
+      <div @click="open_by_key('customer')">{{ $t('联系客服') }}</div>
     </div>
 
     <div class="fixed" style="padding:.2rem .2rem;bottom: 0;">

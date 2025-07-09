@@ -1,9 +1,8 @@
 <script setup>
-import {gameStore} from "@/store/game.js";
-import router from "@/router/index.js";
+import {gameStore} from "@/config/store/game.js";
+import router from "@/config/router/index.js";
 import {useRoute} from "vue-router";
 import GameListViewX3 from "@/view/game/ui/game-list-view-x3.vue";
-import {view_route_by_key} from "@/tool/View.js";
 
 const gameState = gameStore()
 const searchvalue = ref("");
@@ -51,7 +50,7 @@ const show_choice = ref(false)
         {{ $t(category_chosen.name) }}
         <i class="fa-solid fa-angle-down" :class="show_choice?'fa-angle-up':'fa-angle-down'" style="padding:0 .2rem;"></i>
       </div>
-      <div class="flex-center" style="width: 1rem" @click="view_route_by_key('customer')">
+      <div class="flex-center" style="width: 1rem" @click="open_by_key('customer')">
         <i class="fa-solid fa-headset"></i></div>
     </div>
     <!--  大类选择  -->

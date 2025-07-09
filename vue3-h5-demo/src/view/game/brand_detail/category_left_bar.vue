@@ -1,6 +1,6 @@
 <script setup>
-import {appStore} from "@/store/app.js";
-import {gameStore} from "@/store/game.js";
+import {appStore} from "@/config/store/app.js";
+import {gameStore} from "@/config/store/game.js";
 const gameState = gameStore()
 const searchvalue = ref("");
 const active = ref(0);
@@ -11,8 +11,8 @@ const clicksearch = () => {
 
 import { useRoute } from "vue-router";
 import GameListViewX3 from "@/view/game/ui/game-list-view-x3.vue";
-import router from "@/router/index.js";
-import {view_route_by_key} from "@/tool/View.js";
+import router from "@/config/router/index.js";
+import {open_by_key} from "@/view.js";
 const route = useRoute();
 const categories = ref([]);
 const category_chosen = ref({});
@@ -45,7 +45,7 @@ const show_choice = ref(false);
         {{$t(brand_chosen.name)}}
         <i class="fa-solid fa-angle-down" :class="show_choice?'fa-angle-up':'fa-angle-down'" style="padding:0 .2rem;"></i>
       </div>
-      <div style="width: 1rem" class="flex-center" @click="view_route_by_key('customer')"><i class="fa-solid fa-headset"></i></div>
+      <div style="width: 1rem" class="flex-center" @click="open_by_key('customer')"><i class="fa-solid fa-headset"></i></div>
     </div>
 
     <!--  品牌选择  -->

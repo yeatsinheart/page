@@ -26,8 +26,8 @@
 </template>
 
 <script setup>
-import {gameStore} from "@/store/game.js";
-import router from "@/router"
+import {gameStore} from "@/config/store/game.js";
+import router from "@/config/router"
 const emit = defineEmits();
 const howToLogin = ref({});
 

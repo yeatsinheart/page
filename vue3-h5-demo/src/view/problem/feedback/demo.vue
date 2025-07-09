@@ -35,7 +35,7 @@ const beforeRead = () => {
       <div class="flex-center">
         {{$t('反馈中心')}}
       </div>
-      <div class="flex-center" style="width: 1rem" @click="view_route_by_key('customer')">
+      <div class="flex-center" style="width: 1rem" @click="open_by_key('customer')">
         <i class="fa-solid fa-headset"></i></div>
     </div>
 

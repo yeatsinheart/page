@@ -1,12 +1,13 @@
 <script setup>
-import mitt from "@/mitt";
+import mitt from "@/config/mitt";
 import { ref } from "vue";
 const scrollToref = ref(null);
 const homegameactive = ref(null);
 mitt.on("typescrollTo", (i) => {
   scrollToref.value && scrollToref.value.scrollTo(i);
 });
-import { gameStore } from "@/store/game.js";
+import { gameStore } from "@/config/store/game.js";
+import ViewImportByPath from "@/tool/ViewImportByPath.vue";
 const gameState = gameStore();
 onBeforeMount(()=>{
 })

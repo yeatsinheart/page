@@ -7,7 +7,7 @@
       <div class="flex-center">
         {{$t('游戏搜索')}}
       </div>
-      <div class="flex-center" style="width: 1rem" @click="view_route_by_key('customer')">
+      <div class="flex-center" style="width: 1rem" @click="open_by_key('customer')">
         <i class="fa-solid fa-headset"></i></div>
     </div>
 
@@ -29,7 +29,7 @@
           <div v-if="gameStore().games_search.length>0" style="padding:0 .2rem;width:100%;">
             <GameListViewX4 v-model="gameStore().games_search"/>
           </div>
-          <ViewImportByPath v-else :path="ViewPathDict.nomore" style="padding:0 .2rem;width:100%;"></ViewImportByPath>
+          <ViewImportByPath v-else :path="ViewKeyPathMap.nomore" style="padding:0 .2rem;width:100%;"></ViewImportByPath>
         </van-tab>
         <van-tab>
           <template #title><i class="fa-solid fa-clock"></i>{{$t("最近游戏")}}</template>
@@ -43,7 +43,7 @@
               </div>
             </div>
           </div>
-          <ViewImportByPath :path="ViewPathDict.nomore"></ViewImportByPath>
+          <ViewImportByPath :path="ViewKeyPathMap.nomore"></ViewImportByPath>
         </van-tab>
         <van-tab>
           <template #title><i class="fa-solid fa-star"></i>{{$t("我的收藏")}}</template>
@@ -57,7 +57,7 @@
               </div>
             </div>
           </div>
-          <ViewImportByPath :path="ViewPathDict.nomore"></ViewImportByPath>
+          <ViewImportByPath :path="ViewKeyPathMap.nomore"></ViewImportByPath>
         </van-tab>
       </van-tabs>
     </div>
@@ -66,11 +66,12 @@
 
 <script setup>
 import { ref, reactive, onMounted, computed } from "vue";
-import {view_route_by_key, ViewPathDict} from "@/tool/View.js";
-import {gameStore} from "@/store/game.js";
+import {gameStore} from "@/config/store/game.js";
 import GameListViewX3 from "@/view/game/ui/game-list-view-x3.vue";
 import GameListViewX4 from "@/view/game/ui/game-list-view-x4.vue";
-import router from "@/router/index.js";
+import router from "@/config/router/index.js";
+import {ViewKeyPathMap} from "@/view.js";
+import ViewImportByPath from "@/tool/ViewImportByPath.vue";
 const active = ref(0);
 const search_word = ref("");
 watch(() => search_word.value, (val) => {

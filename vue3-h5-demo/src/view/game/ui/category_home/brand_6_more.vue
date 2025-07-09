@@ -1,9 +1,9 @@
 <script setup>
 
-import {gameStore} from "@/store/game.js";
+import {gameStore} from "@/config/store/game.js";
 import {format_str} from "@/tool/string.js";
-import {view_route_by_key} from "@/tool/View.js";
-import {appStore} from "@/store/app.js";
+import {appStore} from "@/config/store/app.js";
+import {open_by_key} from "@/view.js";
 
 const gameState = gameStore();
 /** 动态传参数为 props*/
@@ -21,7 +21,7 @@ const active = ref(6);
           <div style="padding-left: .1rem;">{{ $t(category.name) }}</div>
         </div>
         <div style="flex-shrink: 0;line-height: 0.53333rem;width: 1.4rem;text-align: right;padding-right: .2rem;"
-          @click="view_route_by_key('game_category_detail',{category:props.categoryKey})">
+          @click="open_by_key('game_category_detail',{category:props.categoryKey})">
           {{$t("更多")}}
         </div>
       </div>
@@ -33,7 +33,7 @@ const active = ref(6);
         <div class="col-3">
         <template v-for="(brand, brand_index) in category.brands" :key="'brand'+brand_index">
           <div v-if="brand_index < active" style="border-radius: .18rem;position: relative;"
-               @click="view_route_by_key('game_brand_detail',{category:props.categoryKey,brand:brand.brandKey})">
+               @click="open_by_key('game_brand_detail',{category:props.categoryKey,brand:brand.brandKey})">
             <img v-if="'maintain'===brand.status" :src="appStore().app.info.maintain1x1" style="position: absolute;width: 100%;object-fit: contain;aspect-ratio:3/4;">
             <img v-lazy="brand.img3x4" class="img3x4" />
             <div style="width:100%;text-align: center;position: absolute;bottom: 0;background: linear-gradient(transparent, rgba(1, 1, 1, 0.8));color:#fff;">{{$t(brand.name)}}</div>

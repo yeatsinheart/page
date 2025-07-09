@@ -3,7 +3,7 @@ import { useRouter } from "vue-router";
 import {userStore} from "@/config/store/user.js";
 
 import {useI18n} from "vue-i18n";
-import {view_route_by_key} from "@/tool/View.js";
+import {open_by_key} from "@/tool/View.js";
 const {t} = useI18n();
 
 const router = useRouter();
@@ -33,7 +33,7 @@ const confirm=(i)=>{
       <div class="flex-center">
         {{$t('账号资料')}}
       </div>
-      <div class="flex-center" style="width: 1rem" @click="view_route_by_key('customer')">
+      <div class="flex-center" style="width: 1rem" @click="open_by_key('customer')">
         <i class="fa-solid fa-headset"></i></div>
     </div>
 

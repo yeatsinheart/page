@@ -1,8 +1,8 @@
 <script setup>
 import { useRouter } from "vue-router";
-import {gameStore} from "@/store/game.js";
+import {gameStore} from "@/config/store/game.js";
 import {format_str} from "@/tool/string.js";
-import {appStore} from "@/store/app.js";
+import {appStore} from "@/config/store/app.js";
 import GameListViewX3 from "../game-list-view-x3.vue";
 const active = ref(6);
 

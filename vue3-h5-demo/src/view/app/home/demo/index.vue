@@ -65,18 +65,8 @@ const show_sidebar = ref(false);
 
       <ViewImportByPath :path="ViewKeyPathMap.swiper"></ViewImportByPath>
       <ViewImportByPath :path="ViewKeyPathMap.marquee"></ViewImportByPath>
-<!--      <ViewImportByPath :path="ViewKeyPathMap.game_home"></ViewImportByPath>-->
+      <ViewImportByPath :path="ViewKeyPathMap.game_home"></ViewImportByPath>
 
-      <div style="height: 100%;padding: .2rem .1rem;" class="col-3">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
       <div class="ck-content" style="padding:.2rem;background-color: var(--bg1);"
            v-html="appStore().app.info.description"></div>
     </div>

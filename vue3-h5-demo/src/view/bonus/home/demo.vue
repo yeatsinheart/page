@@ -1,10 +1,10 @@
 <script setup>
 import {computed, ref} from "vue";
 
-import {appStore} from "@/store/app.js";
+import {appStore} from "@/config/store/app.js";
 import {show,openby} from "@/tool/pop.js";
-import {view_route_by_key, ViewPathDict} from "@/tool/View.js";
 import ViewImportByPath from "@/tool/ViewImportByPath.vue";
+import {open_by_key} from "@/view.js";
 
 const appState = appStore();
 
@@ -40,7 +40,7 @@ const open_detail = (bonus) => {
         <span :class="{ active: hdtype === 1 }" @click="hdtype=1;">{{ $t("领取记录") }}</span>
       </div>
       <div class="flex-center" style="width: .8rem;height:100%;position: absolute;right:0;top:0;"
-           @click="view_route_by_key('customer')">
+           @click="open_by_key('customer')">
         <i class="fa-solid fa-headset"></i>
       </div>
     </div>

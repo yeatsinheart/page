@@ -30,7 +30,7 @@ export const gameStore = defineStore("gameStore", {
                 //router.push({ path: "/game-login" , params: res });
                 if (res) {
                     this.login_game_res = res;
-                    view_route_by_key('game-login')
+                    open_by_key('game-login')
                 }
 
             })

@@ -1,9 +1,9 @@
 <script setup>
 
-import {appStore} from "@/store/app.js";
+import {appStore} from "@/config/store/app.js";
 import {ApiRequest} from "@/api/index.js";
-import router from "@/router/index.js";
-import {gameStore} from "@/store/game.js";
+import router from "@/config/router/index.js";
+import {gameStore} from "@/config/store/game.js";
 
 const games = ref([])
 const params = defineProps({modelValue: null})

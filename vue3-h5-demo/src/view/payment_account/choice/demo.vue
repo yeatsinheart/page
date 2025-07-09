@@ -2,7 +2,7 @@
 
 import {withdrawStore} from "@/store/withdraw.js";
 import {paymentAccountStore} from "@/store/paymentAccount.js";
-import {view_route_by_key} from "@/tool/View.js";
+import {open_by_key} from "@/tool/View.js";
 </script>
 
 <template>
@@ -34,7 +34,7 @@ import {view_route_by_key} from "@/tool/View.js";
     </van-radio-group>
 
     <van-cell style="margin: .1rem 0;border: thin solid var(--border);border-radius: .1rem;"
-              @click="view_route_by_key('payment_account')">
+              @click="open_by_key('payment_account')">
       <template #icon>
         <div class="flex-center">
           <img v-if="withdrawStore().withdrawPayment?.img1x1" :src="withdrawStore().withdrawPayment.img1x1"

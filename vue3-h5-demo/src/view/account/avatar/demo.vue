@@ -5,7 +5,7 @@ import {ApiRequest} from "@/api/index.js";
 import {userStore} from "@/config/store/user.js";
 import {showToast} from "vant";
 import i18n from "@/config/lang/18n.js";
-import {view_route_by_key} from "@/tool/View.js";
+import {open_by_key} from "@/tool/View.js";
 const router = useRouter();
 const avatarIndex = ref();
 const avatars = ref([]);
@@ -40,7 +40,7 @@ function update() {
       <div class="flex-center">
         {{$t('更换头像')}}
       </div>
-      <div class="flex-center" style="width: 1rem" @click="view_route_by_key('customer')">
+      <div class="flex-center" style="width: 1rem" @click="open_by_key('customer')">
         <i class="fa-solid fa-headset"></i></div>
     </div>
 

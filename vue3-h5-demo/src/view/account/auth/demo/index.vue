@@ -77,7 +77,7 @@ watch(() => userState.isLoggedIn, () => {
       <OAuth/>
 
       <div class="flex-center">
-      <span @click="view_route_by_key('customer')" style="padding: .2rem">
+      <span @click="open_by_key('customer')" style="padding: .2rem">
         {{ $t("联系客服") }}
       </span>
       </div>

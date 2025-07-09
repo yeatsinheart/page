@@ -6,7 +6,7 @@
       <div class="flex-center">
         {{$t('游戏记录')}}
       </div>
-      <div class="flex-center" style="width: 1rem" @click="view_route_by_key('customer')">
+      <div class="flex-center" style="width: 1rem" @click="open_by_key('customer')">
         <i class="fa-solid fa-headset"></i></div>
     </div>
 
@@ -53,7 +53,7 @@
 <script setup>
 import { ref, reactive, onMounted, computed } from "vue";
 import router from "@/router/index.js";
-import {view_route_by_key} from "@/tool/View.js";
+import {open_by_key} from "@/tool/View.js";
 
 const award = ref();
 // 时间选择

@@ -28,7 +28,7 @@ export const paymentAccountStore = defineStore("paymentAccountStore", {
             })
         },
         toAdd() {
-            view_route_by_key('payment_account')
+            open_by_key('payment_account')
         },
         can_add(payment){
             return (this.accountsOfMethod(payment.paymentMethodKey)?.length ?? 0 )< payment.linkedAccountMax

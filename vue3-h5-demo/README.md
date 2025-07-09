@@ -11,7 +11,7 @@ https://www.flaticon.com/search?word=test&order_by=4
 
 
 跳转页面 包含弹出页面：
-/src/tool/View.js    view_route_by_key(ViewPathDict.login, {'x':'y'})
+/src/tool/View.js    open_by_key(ViewPathDict.login, {'x':'y'})
 
 
 npm install -g npm-check-updates

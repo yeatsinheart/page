@@ -41,7 +41,7 @@ ApiRequest.getApp().then((app_data => {
     }));
 
     app.use(pinia).use(i18n).directive("loading", vLoading).use(Lazyload, {
-        loading: "imgI18nKey",
+        loading: app_data.info.lazy_img1x1,
         lazyComponent: true,
     });
 

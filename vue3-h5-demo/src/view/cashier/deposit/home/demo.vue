@@ -97,7 +97,7 @@
         </van-radio-group>
 
         <van-cell style="margin: .1rem 0;border: thin solid var(--border);border-radius: .1rem;"
-                  @click="view_route_by_key('payment_account')">
+                  @click="open_by_key('payment_account')">
           <template #icon>
             <div class="flex-center">
               <img v-if="depositStore().paymentMethod.img1x1" :src="depositStore().paymentMethod.img1x1"

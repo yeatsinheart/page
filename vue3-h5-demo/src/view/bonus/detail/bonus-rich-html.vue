@@ -1,8 +1,7 @@
 <script setup>
 import {ApiRequest} from "@/api/index.js";
 import {showNotify} from "vant";
-import {view_route_by_key, ViewKeyDict} from "@/tool/View.js";
-import {userStore} from "@/store/user.js";
+import {userStore} from "@/config/store/user.js";
 
 const params = defineProps({props: {}})
 const claim_check = ref()

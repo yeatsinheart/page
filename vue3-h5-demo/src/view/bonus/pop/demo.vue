@@ -20,7 +20,7 @@
 <script setup>
 import {ref} from "vue";
 import {show,openby} from "@/tool/pop.js";
-import {appStore} from "@/store/app.js";
+import {appStore} from "@/config/store/app.js";
 
 const emit = defineEmits();
 const active = ref(-1);

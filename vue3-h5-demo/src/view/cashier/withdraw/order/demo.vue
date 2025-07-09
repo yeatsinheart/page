@@ -88,7 +88,7 @@ watch(() => withdrawStore().paymentMethod, (newVal) => {withdrawStore().amount_o
 
     <div class="flex-center" style="justify-content: space-between;padding:.1rem 0;">
       <div @click="openby('/ui/popup/close_right_top','/cashier/withdraw/history/demo')">{{ $t('提现记录') }}</div>
-      <div @click="view_route_by_key('customer')">{{ $t('联系客服') }}</div>
+      <div @click="open_by_key('customer')">{{ $t('联系客服') }}</div>
     </div>
 
 

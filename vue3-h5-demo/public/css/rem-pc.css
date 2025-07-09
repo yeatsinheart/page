@@ -11,7 +11,6 @@
 
 html {
     margin: 0 auto;
-    max-width: var(--theme-max-width);
 }
 
 
@@ -25,7 +24,7 @@ html {
 /* 大屏幕固定 控制*/
 @media screen and (min-width: 547.59px) {
     html {
-        font-size: calc(var(--theme-max-width)/(750/100)) !important;
+        font-size: 73.012px !important;
     }
 }
 

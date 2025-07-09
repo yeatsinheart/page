@@ -5,7 +5,7 @@ const appState = appStore();
 </script>
 
 <template>
-  <div style="padding-bottom: 0.2rem; width: 7rem; margin: 0 auto">
+  <div style="padding-bottom: 0.2rem; width: 100%; margin: 0 auto">
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <template v-for="(data, index) in appState.app.swiperList" :key="index">
         <van-swipe-item v-if="data">

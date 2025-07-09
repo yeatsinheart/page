@@ -62,6 +62,12 @@ ApiRequest.getApp().then((app_data => {
 
 window.addEventListener('resize', () => {
     const isMobile = window.innerWidth <= 768;
+    // mobile responsive
+    if(isMobile) {
+        document.documentElement.classList.add('responsive');
+    }else {
+        document.documentElement.classList.remove('responsive');
+    }
     // 做动态处理
 });
 

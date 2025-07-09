@@ -3,6 +3,8 @@ import {onBeforeMount, ref} from "vue";
 import {appStore} from "@/config/store/app.js";
 import {userStore} from "@/config/store/user.js";
 import Menu from "./menu.vue";
+import ViewImportByPath from "@/tool/ViewImportByPath.vue";
+import {ViewKeyPathMap} from "@/view.js";
 
 onBeforeMount(() => {
   //获取配置数据 需要弹出在弹出 排前面弹出的会最后显示
@@ -22,8 +24,9 @@ const show_sidebar = ref(false);
 </script>
 
 <template>
-  <div :style="(appStore().app?.info?.home_bg? 'background:url(' + appStore().app.info.home_bg + ')': '' )
-  +('overflow-y:'+show_sidebar?'hidden':'auto')" class="home">
+  <div :style="(show_sidebar?'overflow-y:hidden !important;':'overflow-y:auto;')
+  +(appStore().app?.info?.home_bg? 'background:url(' + appStore().app.info.home_bg + ');': '' )
+  " class="home">
 
     <div class="brand_bar" style="background: var(--bg1);padding: 0 0.2rem;">
       <div style=" display: flex;height: 0.9rem;justify-content: space-between;align-items: center;">
@@ -59,11 +62,21 @@ const show_sidebar = ref(false);
     <div v-if="show_sidebar" class="mask" @click="show_sidebar = false"></div>
     <div :style="'height:calc(100% - .9rem);position:relative;background-attachment: fixed;'">
       <Menu v-if="show_sidebar" style="position: absolute;height:100%;" v-model="show_sidebar"/>
-<!--
+
       <ViewImportByPath :path="ViewKeyPathMap.swiper"></ViewImportByPath>
       <ViewImportByPath :path="ViewKeyPathMap.marquee"></ViewImportByPath>
-      <ViewImportByPath :path="ViewKeyPathMap.game_home"></ViewImportByPath>
-      -->
+<!--      <ViewImportByPath :path="ViewKeyPathMap.game_home"></ViewImportByPath>-->
+
+      <div style="height: 100%;padding: .2rem .1rem;" class="col-3">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       <div class="ck-content" style="padding:.2rem;background-color: var(--bg1);"
            v-html="appStore().app.info.description"></div>
     </div>
@@ -73,8 +86,6 @@ const show_sidebar = ref(false);
 <style lang="scss" scoped>
 .home {
   height: 100%;
-  overflow-y: auto;
-
 
   .brand_bar {
     .right {

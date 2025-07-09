@@ -1,12 +1,16 @@
 <!--根据实际地址引用页面-->
 <template>
   <div class="color-choose">
-    <div @click="choose('blue_black')"
+    <div @click="choose('blue-black')"
          class="flex-center"  style="height:.7rem;padding:.1rem 0;color: var(--f4);">
         蓝黑
     </div>
+    <div @click="choose('blue-white')"
+         class="flex-center"  style="height:.7rem;padding:.1rem 0;color: var(--f4);">
+      蓝白
+    </div>
 
-    <div @click="choose('red_white')"
+    <div @click="choose('red-white')"
         class="flex-center"  style="height:.7rem;padding:.1rem 0;color: var(--f4);">
       粉白
     </div>
@@ -20,7 +24,7 @@ import {appStore} from "@/config/store/app.js";
 const appState = appStore();
 const choose = (color_version) => {
   localStorage.setItem("color_version", color_version);
-  document.getElementById('color-version').setAttribute('href', '/api/style.css?'+color_version)
+  document.getElementById('color-version').setAttribute('href', '/css/color'+color_version+'.css')
 }
 </script>
 <style scoped>

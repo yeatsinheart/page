@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import router from "@/router/index.js";
-import {view_route_by_key} from "@/tool/View.js";
+import router from "@/config/router/index.js";
 
 const tabActive = ref(0);
 // 类型列表

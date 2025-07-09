@@ -104,13 +104,13 @@ export function is_pop_view(view_key,params){
             return true;
         }
         /** 未登录且页面需要登录 */
-        if (!isLogged && true === view_info.loggedIn) {
+        if (!isLogged && true === view_info.isLoggedIn) {
             userStore().toLogin()
             return true;
         }
         /** 弹出逻辑 */
         if (view_info.openBy) {
-            openby(view.openBy, view.dir, params);
+            openby(view_info.openBy, view_info.path, params);
             return true;
         }
     }

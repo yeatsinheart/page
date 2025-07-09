@@ -4,7 +4,7 @@ import { useRouter } from "vue-router";
 import {ApiRequest} from "@/api/index.js";
 import {userStore} from "@/config/store/user.js";
 import {showToast} from "vant";
-import i18n from "@/lang/18n.js";
+import i18n from "@/config/lang/18n.js";
 import {view_route_by_key} from "@/tool/View.js";
 const router = useRouter();
 const avatarIndex = ref();

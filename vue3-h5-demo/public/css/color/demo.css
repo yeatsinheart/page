@@ -1,0 +1,37 @@
+:root {
+    --error: #f56c6c;
+    --border: #e4e7ed;
+    --shadow: rgba(0, 0, 0, 0.12);
+
+    --main: #409eff;
+    --main_font: #ffffff;
+    --main_linear_from: #005DFE;
+    --main_linear_to: #005DFE;
+
+    --active: #ffd04b;
+    --inactive: #ffd04b;
+
+    --c1: #04BE02;
+    --c1_font: #ffffff;
+    --c1_linear_from: #04BE02;
+    --c1_linear_to: #00feac;
+    --c2: #feb200;
+    --c2_font: #ffffff;
+    --c2_linear_from: #feb200;
+    --c2_linear_to: #fe4a00;
+    --c3: #da15e9;
+    --c3_font: #ffffff;
+    --c3_linear_from: #da15e9;
+    --c3_linear_to: #fe0087;
+
+    --browser: #f6f7f9;
+    --bg: #fff;
+    --bg1: #fff;
+    --bg2: #fff;
+    --bg3: #fff;
+
+    --f1: #909399;
+    --f2: #070707;
+    --f3: #070707;
+    --f4: #070707;
+}

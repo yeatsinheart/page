@@ -13,8 +13,7 @@ const questionList = ref([
 ]);
 
 import { appStore } from "@/config/store/app.js";
-import router from "@/router/index.js";
-import {view_route_by_key} from "@/tool/View.js";
+import router from "@/config/router/index.js";
 const appState = appStore();
 </script>
 

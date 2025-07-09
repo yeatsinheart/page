@@ -1,13 +1,12 @@
 <script setup>
-import {view_route_by_key} from "@/tool/View.js";
 import {appStore} from "@/config/store/app.js";
 import {userStore} from "@/config/store/user.js";
-import OAuth from "@/view/account/auth/wg/o-auth.vue";
+import OAuth from "./o-auth.vue";
 import {useRoute} from "vue-router";
-import LoginByPhone from "@/view/account/auth/wg/login-by-phone.vue";
-import RegisterByPhone from "@/view/account/auth/wg/register-by-phone.vue";
-import LoginByName from "@/view/account/auth/wg/login-by-name.vue";
-import RegisterByName from "@/view/account/auth/wg/register-by-name.vue";
+import LoginByPhone from "./login-by-phone.vue";
+import RegisterByPhone from "./register-by-phone.vue";
+import LoginByName from "./login-by-name.vue";
+import RegisterByName from "./register-by-name.vue";
 
 const route = useRoute();
 const emit = defineEmits();

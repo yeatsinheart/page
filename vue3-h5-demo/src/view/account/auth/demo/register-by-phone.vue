@@ -81,7 +81,6 @@ import {userStore} from "@/config/store/user.js";
 import {appStore} from "@/config/store/app.js";
 import {ref} from "vue";
 import {showToast} from "vant";
-import PhoneSms from "@/view/account/auth/wg/phone-sms.vue";
 import {openby, show} from "@/tool/pop.js";
 
 const appState = appStore();

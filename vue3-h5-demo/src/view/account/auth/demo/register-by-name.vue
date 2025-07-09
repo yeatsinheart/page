@@ -51,7 +51,6 @@ import {useI18n} from "vue-i18n";
 import {ApiRequest} from "@/api/index.js";
 import {userStore} from "@/config/store/user.js";
 import Captcha from "@/view/ui/captcha/captcha.vue";
-import InviteCode from "@/view/account/auth/wg/invite-code.vue";
 import {appStore} from "@/config/store/app.js";
 
 const userState = userStore();

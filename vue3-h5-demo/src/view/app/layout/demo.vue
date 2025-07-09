@@ -10,9 +10,10 @@ const route = useRoute();
 const show_download_tip =ref(true)
 
 const show_bottom_bar =computed(()=>{
-    return appStore().app.layoutItem.bar_bottom.some((item) => {
+    /*return appStore().app.layoutItem.bar_bottom.some((item) => {
       return route?.path === "/" || "/" + item.openViewKey === route?.path;
-    });
+    });*/
+    return true;
 })
 
 onBeforeMount(() => {

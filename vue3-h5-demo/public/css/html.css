@@ -257,3 +257,26 @@ select:-webkit-autofill {
         transform: rotate(360deg);
     }
 }
+
+
+/*
+*::-webkit-scrollbar:vertical {
+    !* 设置垂直滚动条宽度 *!
+    width: 2px;
+}
+*::-webkit-scrollbar:horizontal {
+    !* 设置水平滚动条厚度 *!
+    height: 2px;
+}
+*::-webkit-scrollbar-thumb {
+    !* 滚动条的其他样式定制，注意，这个一定也要定制，否则就是一个透明的滚动条 *!
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, .4);
+    background-color: rgba(0, 0, 0, .5);
+}
+*/
+
+/*隐藏滚动条*/
+*::-webkit-scrollbar {
+    display: none;
+}

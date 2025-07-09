@@ -10,7 +10,6 @@
 
     --active: #ffd04b;
     --inactive: #ffd04b;
-
     --c1: #04BE02;
     --c1_font: #ffffff;
     --c1_linear_from: #04BE02;
@@ -25,13 +24,19 @@
     --c3_linear_to: #fe0087;
 
     --browser: #f6f7f9;
-    --bg: #fff;
-    --bg1: #b5b2b2;
-    --bg2: #cac5c5;
+    --bg: #ffffff;
+    --bg1: #ecedef;
+    --bg2: #ffffff;
     --bg3: #fff;
 
     --f1: #909399;
     --f2: #070707;
     --f3: #070707;
     --f4: #070707;
+}
+html, body {
+    background: var(--browser);
+}
+#app{
+    background: var(--bg);
 }

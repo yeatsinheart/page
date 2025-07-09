@@ -35,7 +35,7 @@ const copyToClipboard = async (data) => {
 </script>
 
 <template>
-  <div style="height: 100%;padding:0 .2rem;padding-bottom: 1.4rem;overflow-y: auto;background: var(--bg);">
+  <div style="height: 100%;padding:0 .2rem;padding-bottom: 1.4rem;overflow-y: auto;">
     <div style="background: url('@/assets/images2/style_1_topbg_yd.avif') 0 0 / 100% no-repeat;">
       <header class="flex-center head_superior" style="height: 1rem; font-size: 0.2rem; justify-content: flex-end">
         <div style="flex-grow: 1"></div>

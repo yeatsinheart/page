@@ -24,7 +24,7 @@ const show_sidebar = ref(false);
 </script>
 
 <template>
-  <div :style="(show_sidebar?'overflow-y:hidden !important;':'overflow-y:auto;')
+  <div :style="(show_sidebar?'overflow-y:hidden !important;':'overflow-y:auto;')+''
   +(appStore().app?.info?.home_bg? 'background:url(' + appStore().app.info.home_bg + ');': '' )
   " class="home">
 

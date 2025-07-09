@@ -1,6 +1,6 @@
 <script setup>
-import { open_by_key} from "@/tool/View.js";
-import router from "@/router/index.js";
+import router from "@/config/outer/index.js";
+import {open_by_key} from "@/view.js";
 </script>
 
 <template>

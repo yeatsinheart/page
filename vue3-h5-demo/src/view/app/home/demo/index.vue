@@ -4,7 +4,7 @@ import {appStore} from "@/config/store/app.js";
 import {userStore} from "@/config/store/user.js";
 import Menu from "./menu.vue";
 import ViewImportByPath from "@/tool/ViewImportByPath.vue";
-import {ViewKeyPathMap} from "@/view.js";
+import {open_by_key, ViewKeyDict, ViewKeyPathMap} from "@/view.js";
 
 onBeforeMount(() => {
   //获取配置数据 需要弹出在弹出 排前面弹出的会最后显示
@@ -50,7 +50,7 @@ const show_sidebar = ref(false);
           </div>
 
           <span class="flex-center" style="height: 0.9rem"
-                @click="open_by_key(ViewKeyDict.game_search)">
+                @click="open_by_key('game_search')">
             <i class="fa-solid fa-magnifying-glass"
                style="color: var(--main); font-size: 0.3rem; margin-left: 0.2rem"></i>
           </span>

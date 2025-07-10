@@ -32,7 +32,7 @@ onMounted(() => {
     <div
       class="flex-center"
       @click="open_by_key('announce')"
-      style="flex-grow: 1; max-width: 6.5rem"
+      style="flex-grow: 1; max-width: 90%"
     >
       <div class="flex-center" style="padding: 0 0.2rem; height: 100%">
         <i class="fa-solid fa-volume-high"></i>

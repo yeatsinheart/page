@@ -8,12 +8,10 @@
 }
 
 html, body {
+
     width:100%;height: 100%;
-    -webkit-text-size-adjust: 100%; /* 禁止 Safari 自动调整字体 */
     padding: 0;
     margin: 0 auto;
-    /*阻止用户选择文本*/
-    -webkit-user-select: none;
     /* 针对 Safari 和旧版 WebKit */
     -moz-user-select: none;
     /* 针对 Firefox */
@@ -24,8 +22,13 @@ html, body {
     /*防止文本弹出选择菜单*/
     -webkit-touch-callout: none;
     overflow: hidden;
-    touch-action: manipulation;
     /* 禁用双击和手势缩放 */
+    touch-action: none;   /* 禁止所有手势（包括双指缩放） */
+    overscroll-behavior: none;
+    -ms-touch-action: none;/* IE / Edge */
+    /*阻止用户选择文本*/
+    -webkit-user-select: none;  /* iOS Safari 防止双击缩放 */
+    -webkit-text-size-adjust: 100%; /* 禁止 Safari 自动调整字体 禁止自动文字缩放*/
 }
 
 

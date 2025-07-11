@@ -56,8 +56,7 @@
 
 <script setup>
 import { ref, reactive, onMounted, computed } from "vue";
-import router from "@/router/index.js";
-import {open_by_key} from "@/tool/View.js";
+import router from "@/config/router/index.js";
 
 const award = ref();
 // 时间选择

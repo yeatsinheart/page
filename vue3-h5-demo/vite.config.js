@@ -60,7 +60,19 @@ export default defineConfig(({mode}) => {
             }
 
         },
+        terserOptions: {
+            format: {
+                comments: false, // 去除注释
+            },
+            compress: {
+                pure_funcs: ['console.log'], // 更暴力地移除 console.log
+            },
+        },
+        build: {
+            minify: 'terser', // ✅ 默认，可选 'esbuild' 或 false
+        },
         server: {
+            allowedHosts: ['s1.cdn.com','s2.cdn.com','s3.cdn.com','s4.cdn.com','s5.cdn.com'], // ⚠️ 放开域名
             host: '0.0.0.0',
             port: '8092',
             open: true,

@@ -2,7 +2,6 @@
 import {defineStore} from "pinia";
 import {ApiRequest} from "@/api";
 
-import {open_by_key} from "@/tool/View.js";
 import i18n from "@/config/lang/18n.js";
 
 export const demoStore = defineStore("demoStore", {

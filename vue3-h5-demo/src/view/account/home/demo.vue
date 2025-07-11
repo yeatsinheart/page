@@ -4,9 +4,6 @@ import {useRouter} from "vue-router";
 import {appStore} from "@/config/store/app.js";
 import {userStore} from "@/config/store/user.js";
 
-import un_login_avatar from '@/assets/un_login_avatar.png';
-import coin from '@/assets/coin.png';
-
 const appState = appStore();
 const userState = userStore();
 
@@ -22,6 +19,7 @@ import {CurrencyUtil} from "@/tool/currency.js";
 
 import {useI18n} from "vue-i18n";
 import {open_by_key} from "@/view.js";
+import {cdn} from "@/tool/string.js";
 const {t} = useI18n();
 
 const copyToClipboard = async (data) => {
@@ -48,7 +46,7 @@ const copyToClipboard = async (data) => {
 
       <div class="flex" style="height: 0.88rem;">
         <img @click="()=>{if(userState.isLoggedIn){open_by_key('avatar')}}" class="img1x1" style="width: 0.88rem;height: 0.88rem;border-radius: 50%;margin-right: 0.1333rem;"
-             :src="userState.account?.avatar||un_login_avatar"/>
+             :src="userState.account?.avatar||cdn('/img/un_login_avatar.png')"/>
         <div class="flex" style="flex-direction: column;width: 100%;justify-content: space-between">
           <div>
             <span class="account">{{ $t("昵称") }}:</span>
@@ -61,7 +59,7 @@ const copyToClipboard = async (data) => {
               <i v-if="userState.account" class="fa-solid fa-copy" style="padding-left: 0.13rem" @click="copyToClipboard(userState.account?.accountId)"></i>
             </div>
             <div class="flex" style="align-items:center;padding-right: .5rem;" >
-              <img class="img1x1" style="width: 0.32rem; height: 0.32rem;margin-right: .1rem;" :src="coin"/>
+              <img class="img1x1" style="width: 0.32rem; height: 0.32rem;margin-right: .1rem;" :src="cdn('/img/coin.png')"/>
               <span class="info_id_Balance" >{{ CurrencyUtil.formatBy1000(userState.account?.balance) }}</span>
               <i v-if="userState.isLoggedIn" @click="userStore().refreshBalance()" class="fa-solid fa-arrows-rotate" style="padding-left: 0.13rem"/>
             </div>

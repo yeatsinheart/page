@@ -1,3 +1,4 @@
+
 :root {
     --error: #f56c6c;
     --border: #e4e7ed;
@@ -10,6 +11,7 @@
 
     --active: #ffd04b;
     --inactive: #ffd04b;
+
     --c1: #04BE02;
     --c1_font: #ffffff;
     --c1_linear_from: #04BE02;
@@ -24,6 +26,7 @@
     --c3_linear_to: #fe0087;
 
     --browser: #f6f7f9;
+
     --bg: #ffffff;
     --bg1: #ecedef;
     --bg2: #ffffff;
@@ -34,6 +37,10 @@
     --f3: #070707;
     --f4: #070707;
 }
+
+.light{}
+.dark{}
+
 html, body {
     background: var(--browser);
 }

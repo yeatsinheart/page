@@ -1,8 +1,8 @@
 <script setup>
 
-import {withdrawStore} from "@/store/withdraw.js";
+import {withdrawStore} from "@/config/store/withdraw.js";
 import {paymentAccountStore} from "@/config/store/paymentAccount.js";
-import {open_by_key} from "@/tool/View.js";
+
 </script>
 
 <template>

@@ -3,7 +3,6 @@ import { useRouter } from "vue-router";
 import {userStore} from "@/config/store/user.js";
 
 import {useI18n} from "vue-i18n";
-import {open_by_key} from "@/tool/View.js";
 const {t} = useI18n();
 
 const router = useRouter();

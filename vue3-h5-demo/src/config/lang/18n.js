@@ -1,6 +1,7 @@
 import {createI18n} from 'vue-i18n'
 import {ApiRequest} from '@/api'
 import { websocket_api} from "@/tool/websocket.js";
+import {gameStore} from "@/config/store/game.js";
 
 // 本地没有语言包
 const missed_keys ={};
@@ -66,3 +67,7 @@ export const changeLanguage = async (lang) => {
     //console.log(`语言切换至: ${lang}`, i18n.global.getLocaleMessage(lang));
 };
 export default i18n
+
+export function i18nvalue(key){
+    return i18n.global.t("收款账号");
+}

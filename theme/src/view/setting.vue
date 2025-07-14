@@ -6,19 +6,22 @@ import FontSetting from "@/view/setting/font-setting.vue";
 import ColorSetting from "@/view/setting/color-setting.vue";
 import Show from "@/view/template/show.vue";
 import BarSetting from "@/view/setting/bar-setting.vue";
+import Colors from "@/view/template/colors.vue";
 </script>
 
 <template>
   <div >
+    <input type="color">
+
     <div class="flex">
       <ColorPicker v-model="appStore().container.browser">浏览器</ColorPicker>
       <ColorPicker v-model="appStore().container.page">页面</ColorPicker>
     </div>
 
     <div class="flex">
-    <ColorPicker v-model="appStore().container.border">通用边框</ColorPicker>
-    <ColorPicker v-model="appStore().container.shadow">通用阴影</ColorPicker>
-    <ColorPicker v-model="appStore().container.mask">通用mask</ColorPicker>
+      <ColorPicker v-model="appStore().container.border">通用边框</ColorPicker>
+      <ColorPicker v-model="appStore().container.shadow">通用阴影</ColorPicker>
+      <ColorPicker v-model="appStore().container.mask">通用mask</ColorPicker>
     </div>
     <br/>
     <FontSetting/>
@@ -43,6 +46,10 @@ import BarSetting from "@/view/setting/bar-setting.vue";
     <ColorSetting/>
     <br/>
     <Show/>
+    <br/>
+    <br/>
+    颜色过渡工具：两个颜色之间生成一系列中间色（色阶）
+    <Colors/>
   </div>
 </template>
 

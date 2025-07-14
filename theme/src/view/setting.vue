@@ -16,7 +16,7 @@ const handleClick = (tab, event) => {
 </script>
 
 <template>
-  <div >
+  <div>
       <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
         <el-tab-pane label="案例" name="案例"><Show/></el-tab-pane>
         <el-tab-pane label="色阶" name="色阶">

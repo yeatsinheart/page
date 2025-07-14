@@ -1,0 +1,446 @@
+<html>
+<title>色彩搭配</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"
+      name="viewport">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="yes" name="full-screen">
+<meta content="true" name="x5-fullscreen">
+<meta content="mobile" name="applicable-device">
+
+<meta content="-1" http-equiv="Expires">
+<meta content="no-cache" http-equiv="Pragma">
+<meta content="no-cache" http-equiv="Cache-control">
+<meta content="no-cache" http-equiv="Cache">
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<style>
+    html,body{padding:0;margin: 0;}
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    *::before, *::after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    a, a:hover {
+        text-decoration: none;
+    }
+    .flex{
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+    .el-button--mini, .el-button--mini.is-round {
+        padding: 2px 5px !important;
+    }
+    html, body {
+    }
+    .container{
+        margin: 8px;
+        padding: 8px;
+    }
+    .el-form-item {
+        margin-bottom: 0px;margin-right: 0px;
+        display: inline-block;
+    }
+    form{margin: 0;}
+    .el-form-item__label ,.el-form-item__content{
+        line-height: 28px;
+        display: inline-block;padding: 0 0px 0 5px;
+    }
+    .el-form-item__label, .el-form-item__content{
+    }
+    /*.el-form-item__content input{
+        width: 70px;
+    }
+    .rgba{
+        width: 145px!important;
+    }*/
+    .table-font,.table-color{
+        width: 100px;
+    }
+</style>
+<body>
+<div id="app">
+    <div class="flex" style="flex-direction: column">
+        <div style="margin-right: 15px;">
+            底色
+            <el-radio-group v-model="back" size="small" >
+                <el-radio-button v-for="choice in back_option" :label="choice" :key="choice">{{choice}}</el-radio-button>
+            </el-radio-group>
+
+        </div>
+        <div>
+            主色
+            <el-radio-group v-model="main" size="small" >
+                <el-radio-button v-for="choice in main_option" :label="choice" :key="choice">{{choice}}</el-radio-button>
+            </el-radio-group>
+        </div>
+        <div>
+            导航
+            <el-radio-group v-model="bar" size="small" >
+                <el-radio-button v-for="choice in bar_option" :label="choice" :key="choice">{{choice}}</el-radio-button>
+            </el-radio-group>
+        </div>
+    </div>
+    <div style="width: 100%;" class="flex">
+        <back :color="color"></back>
+        <palette :color="color"></palette>
+    </div>
+
+    {{color}}
+</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+
+    async function post(api,data,callback){
+        let url ='http://localhost:8089'+api;
+        url ='http://client.dev.biyingbaowang.co'+api;
+        $.ajax({
+            type: "POST",async: false,headers: {
+                "time":new Date().getTime(),
+            },
+            contentType: "application/json; charset=utf-8",
+            url: url,
+            data:JSON.stringify(data),
+            success: function (result) {
+                if(callback){
+                    callback(result)
+                }
+            },
+            error:function(){
+            }
+        });
+    }
+
+</script>
+<script>
+    Vue.component('color-picker-rgba', {props: ['label','color_key','color',],
+        methods:{changed(value){this.color[this.color_key]=value;}},
+        template: `
+          <el-form-item :label="label">
+            <div class="flex" >
+              <input style="width:150px!important;" v-model="color[color_key]">
+              <el-color-picker v-model="color[color_key]" color-format="rgb" show-alpha @active-change="changed" size="mini"></el-color-picker>
+            </div>
+          </el-form-item>
+      `
+    });
+    Vue.component('color-picker-linear', {props: ['color_key_from','color_key_to','color',],
+        methods:{changed(value,color_key){this.color[color_key]=value;}},
+        template: `
+          <div class="flex" >
+            <input style="width:70px!important;"  v-model="color[color_key_from]">
+            <input style="width:70px!important;"  v-model="color[color_key_to]">
+            <el-color-picker v-model="color[color_key_from]"   @active-change="function(value){changed(value,color_key_from)}" size="mini"/>
+            <el-color-picker v-model="color[color_key_to]"   @active-change="function(value){changed(value,color_key_to)}" size="mini"/>
+          </div>`
+    });
+
+    Vue.component('color-table', {props: ['color_key','color',],
+        methods:{changed(value,color_key){this.color[color_key]=value;}},
+        template: `<tr>
+          <td>{{color_key}}</td>
+          <td class="table-color">
+            <div class="flex" >
+              <input style="width:70px!important;" v-model="color[color_key]">
+              <el-color-picker v-model="color[color_key]" color-format="hex" @active-change="function(value){changed(value,color_key)}" size="mini"></el-color-picker><br>
+            </div>
+          </td>
+          <td class="table-font">
+            <div class="flex" >
+              <input style="width:70px!important;" v-model="color[color_key+'_font']">
+              <el-color-picker v-model="color[color_key+'_font']" color-format="hex" @active-change="function(value){changed(value,color_key+'_font')}" size="mini"></el-color-picker><br>
+            </div>
+          </td>
+          <td><color-picker-linear :color="color" :color_key_from="color_key+'_linear_from'" :color_key_to="color_key+'_linear_to'"/></td>
+        </tr>`
+    });
+
+    Vue.component('color-picker-hex', {props: ['label','color_key','color',],
+        methods:{changed(value){this.color[this.color_key]=value;}},
+        template: `
+          <el-form-item :label="label">
+            <div class="flex" >
+              <input style="width:70px!important;" v-model="color[color_key]">
+              <el-color-picker v-model="color[color_key]" color-format="hex" @active-change="changed" size="mini"></el-color-picker>
+            </div>
+          </el-form-item>
+      `
+    });
+    Vue.component('back', {props: ['color'],
+        template: `
+          <div :style="'background-color: '+color.browser+';color:'+color.f3+';padding:0 30px 0 30px;'">
+            浏览器背景色 pc打开时填充页面之外的背景 Safari theme-color browser
+            <div class="flex" style="flex-direction: column;">
+              <div  :style="'height: 600px;overflow-y: auto;background-color: '+color.bg+';color:'+color.f3+';'">
+                整个页面背景色 bg 默认字色 f3
+<!--                <div class="container" :style="'background-color: '+color.bg1">
+                  一级容器[距离页面一层]背景色 底部导航 头部导航 bg1
+                  <div class="container" :style="'background-color: '+color.bg2+';border:1px solid '+color.border+';'">
+                    二级容器[距离页面二层]背景色 bg2 边框色 border
+                    <div class="container" :style="'background-color: '+color.bg3+';border:1px solid '+color.border+';'">
+                      三级容器[距离页面三层]背景色 bg3 边框色 border
+                    </div>
+                  </div>
+                </div>-->
+                <example :color="color"></example>
+              </div>
+            </div>
+          </div>`});
+    Vue.component('example', {props: ['color'],
+        template: `
+          <div :style="'color: '+color.f3">
+              <div :style="'color: '+color.f4+';'"><b>标题字色 f4</b></div>
+              <div :style="'color: '+color.f3+';'">默认字色 f3</div>
+              <div :style="'color: '+color.f2+';'">浅字色 f2</div>
+              <div :style="'color: '+color.f1+';'">不重要字色 f1</div>
+              <div class="flex">
+                    <div :style="'color:'+color.error+';'">强调/重点/特别提醒色 error</div>
+              </div>
+            <div class="flex" :style="'line-height:42.4px;height:42.4px;color:'+color.bar_top_font+';padding:0 30px 0 30px;background: linear-gradient(0.25turn,'+color.bar_top_linear_from+','+ color.bar_top_linear_to+');'">
+              <div>头部导航渐变</div><div><span :style="'color: '+color.main+';'">选中</span></div>
+            </div>
+            <div class="flex" :style="'line-height:42.4px;height:42.4px;color:'+color.bar_top_font+';padding:0 30px 0 30px;background-color: '+color.bar_top+';'">
+              <div>头部导航单色</div><div><span :style="'color: '+color.main+';'">选中</span></div>
+            </div>
+            <div class="container" :style="'background-color: '+color.bg1">
+              一级容器[距离页面一层]背景色 底部导航 头部导航 bg1
+              <div class="container" :style="'background-color: '+color.bg2+';border:1px solid '+color.border+';'">
+                二级容器[距离页面二层]背景色 bg2 边框色 border
+                <div class="container" :style="'background-color: '+color.bg3+';border:1px solid '+color.border+';'">
+                  三级容器[距离页面三层]背景色 bg3 边框色 border
+                </div>
+              </div>
+            </div>
+                  <div class="container" :style="'background-color:'+color.main+';color:'+color.main_font+';'">主色调背景[main]对应字色[main_font]</div>
+                  <div class="container" :style="'color:'+color.main+';border:1px solid'+color.main+';'">主色调做字色[main]边框[main]</div>
+            <div class="flex"  :style="'line-height:70px;height:70px;color:'+color.bar_bottom_font+';padding:0 30px 0 30px;background: linear-gradient(0.25turn,'+color.bar_bottom_linear_from+','+ color.bar_bottom_linear_to+');'">
+              <div>底部导航渐变</div> <div :style="'color: '+color.main+';'">选中</div>
+            </div>
+            <div class="flex"  :style="'line-height:70px;height:70px;color:'+color.bar_bottom_font+';padding:0 30px 0 30px;background-color: '+color.bar_bottom+';'">
+              <div>底部导航单色</div> <div :style="'color: '+color.main+';'">选中</div>
+            </div>
+            <br>
+            <div class="flex" style="place-content: center;margin-bottom: 5px;">
+              <div :style="'width:100px;background-color: '+color.main+';color:'+color.main_font+';'" style="margin-right: 15px;">主色</div>
+              <div style="margin-right: 15px;" :style="'width:100px;background: linear-gradient(to right,'+color.main_linear_from+','+ color.main_linear_to+');color:'+color.main_font+';'">渐变色(主)</div>
+              <div style="margin-right: 15px;" :style="'width:100px;background: linear-gradient(to right bottom,'+color.main_linear_from+','+ color.main_linear_to+');color:'+color.main_font+';'">渐变色(主)</div>
+              <div style="margin-right: 15px;" :style="'width:100px;background: linear-gradient(to bottom,'+color.main_linear_from+','+ color.main_linear_to+');color:'+color.main_font+';'">渐变色(主)</div>
+            </div>
+            <div class="flex" style="place-content: center;margin-bottom: 5px;">
+              <div :style="'width:100px;background-color: '+color.c1+';color:'+color.c1_font+';'" style="margin-right: 15px;">辅色1</div>
+              <div style="margin-right: 15px;" :style="'width:100px;background: linear-gradient(to right,'+color.c1_linear_from+','+ color.c1_linear_to+');color:'+color.c1_font+';'">渐变色1</div>
+              <div style="margin-right: 15px;" :style="'width:100px;background: linear-gradient(to right bottom,'+color.c1_linear_from+','+ color.c1_linear_to+');color:'+color.c1_font+';'">渐变色1</div>
+              <div style="margin-right: 15px;" :style="'width:100px;background: linear-gradient(to bottom,'+color.c1_linear_from+','+ color.c1_linear_to+');color:'+color.c1_font+';'">渐变色1</div>
+            </div>
+            <div class="flex" style="place-content: center;margin-bottom: 5px;">
+              <div style="margin-right: 15px;" :style="'width:100px;background-color: '+color.c2+';color:'+color.c2_font+';'">辅色2</div>
+              <div style="margin-right: 15px;" :style="'width:100px;background: linear-gradient(to right,'+color.c2_linear_from+','+ color.c2_linear_to+');color:'+color.c2_font+';'">渐变色2</div>
+              <div style="margin-right: 15px;" :style="'width:100px;background: linear-gradient(to right bottom,'+color.c2_linear_from+','+ color.c2_linear_to+');color:'+color.c2_font+';'">渐变色2</div>
+              <div style="margin-right: 15px;" :style="'width:100px;background: linear-gradient(to bottom,'+color.c2_linear_from+','+ color.c2_linear_to+');color:'+color.c2_font+';'">渐变色2</div>
+            </div>
+            <div class="flex" style="place-content: center;margin-bottom: 5px;">
+              <div style="margin-right: 15px;" :style="'width:100px;background-color: '+color.c3+';color:'+color.c3_font+';'">辅色3</div>
+              <div style="margin-right: 15px;" :style="'width:100px;background: linear-gradient(to right,'+color.c3_linear_from+','+ color.c3_linear_to+');color:'+color.c3_font+';'">渐变色3</div>
+              <div style="margin-right: 15px;" :style="'width:100px;background: linear-gradient(to right bottom,'+color.c3_linear_from+','+ color.c3_linear_to+');color:'+color.c3_font+';'">渐变色3</div>
+              <div style="margin-right: 15px;" :style="'width:100px;background: linear-gradient(to bottom,'+color.c3_linear_from+','+ color.c3_linear_to+');color:'+color.c3_font+';'">渐变色3</div>
+            </div>
+
+
+            <br/>
+            <br/>
+            <br/>
+
+
+          </div>
+      `
+    });
+    Vue.component('color-example', {props: ['color'],
+        methods:{changed(value){this.color=value;}},
+        template: `
+            <div class="flex" >
+              <input style="width:70px!important;" :value="color">
+              <el-color-picker v-model="color" @active-change="changed"  size="mini"/>
+              <div :style="'background-color:'+color+';color:#000;margin-right:5px;'">字</div>
+              <div :style="'background-color:'+color+';color:#fff;margin-right:5px;'">字</div>
+              <div :style="'background-color:'+color+';color:#818181;margin-right:5px;'">字</div>
+              <div :style="'background-color:#000;color:'+color+';margin-right:5px;'">字</div>
+              <div :style="'background-color:#fff;color:'+color+';margin-right:5px;'">字</div>
+              <div :style="'background-color:#818181;color:'+color+';margin-right:5px;'">字</div>
+            </div>
+      `
+    });
+    Vue.component('palette', {props: ['label','color_key','color',],
+        template: `
+          <div style="padding-left: 5px;">调色板  颜色格式：1.#开头六位  2.transparent  3.rgba(1,1,10.1)
+            <div class="flex" style="flex-direction: column;">
+              <el-form ref="form"  class="flex">
+                <span>浏览器背色/safari theme-color </span>
+                <color-picker-hex :color="color" color_key="browser" label="browser"></color-picker-hex>
+                <span>警告[提醒]色 </span>
+                <color-picker-hex :color="color" color_key="error" label="error"></color-picker-hex>
+              </el-form>
+
+            <br>
+              <span>底色 图层底色区分   第一层[页面上的面板] 第二层[第一层面板上的面板] 第三层[第二层面板上的面板]</span>
+              <el-form ref="form"  class="flex">
+                <color-picker-hex :color="color" color_key="bg" label="整页背景 bg"></color-picker-hex>
+                <color-picker-hex :color="color" color_key="bg1" label="bg1"></color-picker-hex>
+                <color-picker-hex :color="color" color_key="bg2" label="bg2"></color-picker-hex>
+                <color-picker-hex :color="color" color_key="bg3" label="bg3"></color-picker-hex>
+              </el-form>
+              <span>字色 </span>
+              <el-form ref="form" >
+                <color-picker-hex :color="color" color_key="f1" label="忽略 f1"></color-picker-hex>
+                <color-picker-hex :color="color" color_key="f2" label="辅助 f2"></color-picker-hex>
+                <color-picker-hex :color="color" color_key="f3" label="正文 f3"></color-picker-hex>
+                <color-picker-hex :color="color" color_key="f4" label="标题 f4"></color-picker-hex>
+              </el-form>
+
+              <br>
+              <el-form ref="form" class="flex">
+                <span>边框 </span>
+                <color-picker-rgba :color="color" color_key="border" label="border"></color-picker-rgba>
+                <span>阴影 </span>
+                <color-picker-rgba :color="color" color_key="shadow" label="shadow"></color-picker-rgba>
+              </el-form>
+
+              <!--
+              <span>透明色 </span>
+              <el-form ref="form" class="flex">
+                  <el-form-item label="透明色 mask"><div class="flex"><input class="rgba" v-model="color.mask"><el-color-picker @active-change="changed" color-format="rgb" show-alpha size="mini" v-model="color.mask"></el-color-picker></div></el-form-item>
+                  <el-form-item label="对应字色 maskFont"><div class="flex"><input class="rgba" v-model="color.maskFont"><el-color-picker @active-change="changed"  color-format="rgb" show-alpha size="mini" v-model="color.maskFont"></el-color-picker></div></el-form-item>
+              </el-form>-->
+              <br>
+              <a :href="'https://encycolorpedia.cn/'+color.main.replace('#','')" target="_blank" >配色</a>
+              <br>
+              <table>
+                <tr><td>主色</td><td class="table-color">颜色</td><td class="table-font">文字_font</td><td>渐变_linear_from->_linear_to</td></tr>
+                <tbody>
+                    <color-table :color="color" color_key="main"/>
+                    <color-table :color="color" color_key="c1"/>
+                    <color-table :color="color" color_key="c2"/>
+                    <color-table :color="color" color_key="c3"/>
+                </tbody>
+              </table>
+              <br>
+              <table>
+                <tr><td>导航</td><td class="table-color">颜色</td><td class="table-font">文字_font</td><td>渐变_linear_from->_linear_to</td></tr>
+                <tbody>
+                    <color-table :color="color" color_key="bar_top"/>
+                    <color-table :color="color" color_key="bar_bottom"/>
+                </tbody>
+              </table>
+            </div>
+          </div>
+      `
+    });
+
+    // 颜色定义  底色部分  主色部分
+
+    const template_back = {
+        "browser": null, "error": null,
+        "bg":null,"bg1": null, "bg2": null, "bg3": null,
+        "border": null,"shadow": null,
+        "f1": null, "f2": null, "f3": null, "f4": null,}
+    const template_main = {
+        "main": null, "main_font": null,"main_linear_from":null,"main_linear_to":null,
+        "c1": null, "c1_font": null,"c1_linear_from":null,"c1_linear_to":null,
+        "c2": null, "c2_font": null,"c2_linear_from":null,"c2_linear_to":null,
+        "c3": null, "c3_font": null,"c3_linear_from":null,"c3_linear_to":null,
+    };
+    const template_bar = {
+        "bar_top":null,"bar_top_font":null,"bar_top_linear_from":null,"bar_top_linear_to":null,
+        "bar_bottom":null,"bar_bottom_font":null,"bar_bottom_linear_from":null,"bar_bottom_linear_to":null,
+    };
+    // jquery $.extend的作用就是：用于将一个或多个对象的内容合并到目标对象：$.extend( target [, object1 ] [, objectN ] )
+    const template=$.extend(template_back,template_main,template_bar);
+
+    let back_option=['黑','白'];
+    let main_option=['蓝','珊瑚红'];
+    let bar_option=['黑','白'];
+
+    const tmp ={
+        back:{
+            白:{"browser":"#9195a3","bg":"#f7f8ff","bg1":"#ffffff","bg2":"#f6f6f6","bg3":"#E4E4E4","border":"rgba(227, 227, 227, .1)","f3":"#737272","f4":"#1E2637","f2":"#768096","f1":"#C0C4CC","error":"#D23838","shadow":"rgba(65,69,73,0.25)"},
+            黑:{"browser":"#293549","bg":"#0e131b","bg1":"#141d29","bg2":"#0f0e0e","bg3":"#000000","border":"#293549","f3":"#adb6c4","f4":"#FFFFFF","f2":"#55657e","f1":"#555666","error":"#EA4E3D","shadow":"rgba(0,0,0,0.1)"},
+        },
+        main:{
+            珊瑚红:{
+                "main":"#f95959","main_font":"#ffffff","main_linear_from":"#f95959","main_linear_to":"#ff9a8e",
+                "c1":"#4169e1","c1_font":"#ffffff","c1_linear_from":"#4169e1","c1_linear_to":"#f83600",
+                "c2":"#00fe00","c2_font":"#ffffff","c2_linear_from":"#00fe00","c2_linear_to":"#c8f65c",
+                "c3":"#ffde53","c3_font":"#ffffff","c3_linear_from":"#ffde53","c3_linear_to":"#fe0087",
+            },
+            蓝:{
+                "main":"#005DFE","main_font":"#ffffff","main_linear_from":"#005DFE","main_linear_to":"#005DFE",
+                "c1":"#04BE02","c1_font":"#ffffff","c1_linear_from":"#04BE02","c1_linear_to":"#00feac",
+                "c2":"#feb200","c2_font":"#ffffff","c2_linear_from":"#feb200","c2_linear_to":"#fe4a00",
+                "c3":"#da15e9","c3_font":"#ffffff","c3_linear_from":"#da15e9","c3_linear_to":"#fe0087",
+            },
+        },
+        bar:{
+            黑:{"bar_top":"#141d29","bar_top_linear_from":"#141d29","bar_top_linear_to":"#141d29","bar_top_font":"#adb6c4",
+                "bar_bottom":"#111923","bar_bottom_linear_from":"#111923","bar_bottom_linear_to":"#111923","bar_bottom_font":"#7d8ba1",},
+            白:{ "bar_top":"#ffffff","bar_top_linear_from":"#ffffff","bar_top_linear_to":"#ffffff","bar_top_font":"#768096",
+                "bar_bottom":"#ffffff","bar_bottom_linear_from":"#ffffff","bar_bottom_linear_to":"#ffffff","bar_bottom_font":"#768096",}
+        }
+    }
+    let init_color =$.extend(JSON.parse(JSON.stringify(template)),
+        JSON.parse(JSON.stringify(tmp.back[back_option[0]])),
+        JSON.parse(JSON.stringify(tmp.bar[bar_option[0]])),
+        JSON.parse(JSON.stringify(tmp.main[main_option[0]])));
+    new Vue({
+        el: '#app',
+        watch:{
+            main:{
+                handler(value,old){
+                    this.color=$.extend(this.color,
+                        JSON.parse(JSON.stringify(tmp.main[value])));
+                }
+            },
+            back:{
+                handler(value,old){
+                    this.color=$.extend(this.color,
+                        JSON.parse(JSON.stringify(tmp.back[value])))
+                }
+            },
+            bar:{
+                handler(value,old){
+                    this.color=$.extend(this.color,
+                        JSON.parse(JSON.stringify(tmp.bar[value])))
+                }
+            },
+        },
+        data: function () {
+            return {
+                back_option:back_option,
+                main_option:main_option,
+                bar_option:bar_option,
+                main:main_option[0],
+                back:back_option[0],
+                bar:bar_option[0],
+                color: init_color,
+            }
+        },
+        created:function () {
+        }
+    })
+
+</script>
+</html>
+

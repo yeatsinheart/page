@@ -1,0 +1,90 @@
+:root, :host {
+    --van-primary-color: var(--main)!important;
+
+    --van-text-color: var(--f4)!important;
+    --van-text-color-2: var(--f3)!important;
+    --van-text-color-3: var(--f2)!important;
+    --van-active-color: var(--f1)!important;
+
+    --van-background: var(--bg)!important;
+    --van-background-2: var(--bg1)!important;
+    --van-background-3: var(--bg2)!important;
+
+    --van-padding-base: 0.06857rem;
+    --van-padding-xs: 0.13714rem;
+    --van-padding-sm: 0.20571rem;
+    --van-padding-md: 0.27429rem;
+    --van-padding-lg: 0.41143rem;
+    --van-padding-xl: 0.54857rem;
+    --van-font-bold: 600;
+    --van-font-size-xs: 0.17143rem;
+    --van-font-size-sm: 0.20571rem;
+    --van-font-size-md: 0.24rem;
+    --van-font-size-lg: 0.27429rem;
+    --van-line-height-xs: 0.24rem;
+    --van-line-height-sm: 0.30857rem;
+    --van-line-height-md: 0.34286rem;
+    --van-line-height-lg: 0.37714rem;
+    --van-duration-base: .3s;
+    --van-duration-fast: .2s;
+    --van-ease-out: ease-out;
+    --van-ease-in: ease-in;
+    --van-border-color: var(--border)!important;
+
+    --van-border-width: 0.01714rem;
+    --van-radius-sm: 0.03429rem;
+    --van-radius-md: 0.06857rem;
+    --van-radius-lg: 0.13714rem;
+    --van-radius-max: 17.12572rem;
+
+    --van-toast-max-width:var(--theme-max-width)!important;
+}
+
+
+.van-dialog{
+    background: var(--bg)!important;
+    color: var(--f3)!important;
+}
+.van-dialog__cancel{
+    background: var(--browser)!important;
+    color: var(--f1)!important;
+}
+
+.van-dialog__confirm{
+    background: var(--bg1)!important;
+}
+.van-checkbox__icon .van-icon{
+    border: 0.01714rem solid var(--f3)!important;
+}
+.van-checkbox__label{
+    color: var(--f3)!important;
+}
+
+.van-cell__title, .van-cell__value{
+    padding-left:.1rem;
+    padding-right:.1rem;
+
+    flex-shrink: 0;
+    display: block;
+    white-space: nowrap; /* 强制文本不换行 */
+    overflow: hidden;    /* 超出部分隐藏 */
+    text-overflow: ellipsis; /* 超出部分显示省略号 */
+/*
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: nowrap;overflow: hidden;
+
+    align-items: center;justify-content: space-between;
+    */
+    height: 100%;
+}
+
+.van-cell__value{
+    justify-content: end;
+}
+.van-tab__text{
+    height: 100%;width: 100%;text-align: center;
+    align-content: center;
+}

@@ -9,15 +9,12 @@ const theme = ref()
 const bar = ref()
 
 watch(bg, (newVal) => {
-  console.log(newVal)
 });
 
 watch(theme, (newVal) => {
-  console.log(newVal)
 });
 
 watch(bar, (newVal) => {
-  console.log(newVal)
 });
 </script>
 

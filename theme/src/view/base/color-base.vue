@@ -1,7 +1,15 @@
 <script setup>
 import ColorPicker from "./color-picker.vue";
+import {fontColor} from "@/view/base/color.js";
 
-const container = ref()
+const container = ref({color:null,font:null})
+
+// 监听具体属性 config.x：
+watch(() => container.value.color, (newVal, oldVal) => {
+  if(newVal!==oldVal){
+    container.value.font=fontColor(newVal)
+  }
+});
 
 const params = defineProps({modelValue: null})
 const emit = defineEmits(['update:modelValue'])

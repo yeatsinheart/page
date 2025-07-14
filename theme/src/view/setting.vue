@@ -7,49 +7,58 @@ import ColorSetting from "@/view/setting/color-setting.vue";
 import Show from "@/view/template/show.vue";
 import BarSetting from "@/view/setting/bar-setting.vue";
 import Colors from "@/view/template/colors.vue";
+import {ref} from "vue";
+
+const activeName = ref('案例')
+const handleClick = (tab, event) => {
+  //console.log(tab, event)
+}
 </script>
 
 <template>
   <div >
-    <input type="color">
+      <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+        <el-tab-pane label="案例" name="案例"><Show/></el-tab-pane>
+        <el-tab-pane label="色阶" name="色阶">
+          颜色过渡工具：两个颜色之间生成一系列中间色（色阶）
+          <Colors/></el-tab-pane>
+        <el-tab-pane label="调试" name="调试">
 
-    <div class="flex">
-      <ColorPicker v-model="appStore().container.browser">浏览器</ColorPicker>
-      <ColorPicker v-model="appStore().container.page">页面</ColorPicker>
-    </div>
 
-    <div class="flex">
-      <ColorPicker v-model="appStore().container.border">通用边框</ColorPicker>
-      <ColorPicker v-model="appStore().container.shadow">通用阴影</ColorPicker>
-      <ColorPicker v-model="appStore().container.mask">通用mask</ColorPicker>
-    </div>
-    <br/>
-    <FontSetting/>
-    <br/>
-    容器
-    <br/>
-      <ContainerBase v-model="appStore().container.reverse">reverse</ContainerBase>
-      <ContainerBase v-model="appStore().container.gap">gap</ContainerBase>
-    <br/>
-      <ContainerBase v-model="appStore().container.notify">notify</ContainerBase>
-    <br/>
-      <ContainerBase v-model="appStore().container.card">card</ContainerBase>
-      <ContainerBase v-model="appStore().container.div1">div1</ContainerBase>
-      <ContainerBase v-model="appStore().container.div2">div2</ContainerBase>
-    <br/>
+          <div class="flex">
+            <ColorPicker v-model="appStore().container.browser">浏览器</ColorPicker>
+            <ColorPicker v-model="appStore().container.page">页面</ColorPicker>
+          </div>
 
-    <br/>
-    <BarSetting/>
-    <br/>
-    配色
-    <br/>
-    <ColorSetting/>
-    <br/>
-    <Show/>
-    <br/>
-    <br/>
-    颜色过渡工具：两个颜色之间生成一系列中间色（色阶）
-    <Colors/>
+          <div class="flex">
+            <ColorPicker v-model="appStore().container.border">通用边框</ColorPicker>
+            <ColorPicker v-model="appStore().container.shadow">通用阴影</ColorPicker>
+            <ColorPicker v-model="appStore().container.mask">通用mask</ColorPicker>
+          </div>
+          <br/>
+          <FontSetting/>
+          <br/>
+          容器
+          <br/>
+          <ContainerBase v-model="appStore().container.reverse">reverse</ContainerBase>
+          <ContainerBase v-model="appStore().container.gap">gap</ContainerBase>
+          <br/>
+          <ContainerBase v-model="appStore().container.notify">notify</ContainerBase>
+          <br/>
+          <ContainerBase v-model="appStore().container.card">card</ContainerBase>
+          <ContainerBase v-model="appStore().container.div1">div1</ContainerBase>
+          <ContainerBase v-model="appStore().container.div2">div2</ContainerBase>
+          <br/>
+
+          <br/>
+          <BarSetting/>
+          <br/>
+          配色
+          <br/>
+          <ColorSetting/>
+        </el-tab-pane>
+      </el-tabs>
+
   </div>
 </template>
 

@@ -1,19 +1,18 @@
 <script setup>
+import {blendColors} from "@/view/base/color.js";
 
+
+const color = ref()
+const mixed = computed(() => {
+  if(!color.value){return blendColors('#000','#fff',100)}
+  return [
+      ...blendColors(color.value,'#fff',100),
+    ...blendColors(color.value,'#000',100),]
+})
 const predefineColors = ref([
-    /*白色*/
-  '#f8f9fa','#e9ecef','#dee2e6','#ced4da','#adb5bd','#6c757d','#495057','#343a40','#212529',
-    /*黑色*/
-
-    /*红色*/
-    /*橙色*/
-    /*黄色*/
-    /*绿色*/
-    /*蓝色*/
-    /*青色*/
-    /*紫色*/
-    /*金色*/
-
+  //...mixed.value,
+    ...blendColors('#000','#fff',100),
+  //'#f8f9fa','#e9ecef','#dee2e6','#ced4da','#adb5bd','#6c757d','#495057','#343a40','#212529',
   '#ff4500',
   '#ff8c00',
   '#ffd700',
@@ -29,7 +28,6 @@ const predefineColors = ref([
   'hsla(209, 100%, 56%, 0.73)',
   '#c7158577',
 ])
-const color = ref()
 function changed(value){
   color.value = value
 }

@@ -18,6 +18,18 @@ function normalizeHex(hex) {
 
     return '#' + hex;
 }
+function getFontColor(hex) {
+    hex = normalizeHex(hex).slice(1);
+    const r = parseInt(hex.substr(0, 2), 16);
+    const g = parseInt(hex.substr(2, 2), 16);
+    const b = parseInt(hex.substr(4, 2), 16);
+
+    // YIQ 亮度公式
+    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+
+    return yiq >= 128 ? '#000000' : '#ffffff'; // 浅背景用黑字，深背景用白字
+}
+
 function hexToRgb(hex) {
     hex = normalizeHex(hex);
     const bigint = parseInt(hex.slice(1), 16);

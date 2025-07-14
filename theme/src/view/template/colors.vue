@@ -1,12 +1,12 @@
 <script setup>
 import {blendColors} from "@/view/base/color.js";
 import {ElNotification} from "element-plus";
-import {appStore} from "@/store/app.js";
 import ColorPicker from "@/view/base/color-picker.vue";
 
 const from = ref('#000000');
 const to = ref('#ffffff');
-const step = ref(60);
+
+const step = ref(80);
 const colors = computed(() => {
   return blendColors(from.value, to.value,step.value);
 })
@@ -39,9 +39,7 @@ function copyText(value) {
   <div class="flex">
     <ColorPicker v-model="from">开始颜色</ColorPicker>
     <ColorPicker v-model="to">结束颜色</ColorPicker>
-    <el-input-number v-model="step" :min="1" :max="100" />
-
-
+    <el-input-number v-model="step" :min="1"  />
   </div>
   <div >
     <template v-for="color in colors" >

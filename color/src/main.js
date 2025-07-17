@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 
-import {routerInit} from "@/init/router.js";
+//import {routerInit} from "@/init/router.js";
 import {piniaInit} from "@/init/pinia.js";
 import {elementPlusInit} from "@/init/element-plus.js";
 

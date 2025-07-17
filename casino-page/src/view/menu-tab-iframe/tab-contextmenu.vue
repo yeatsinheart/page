@@ -8,8 +8,10 @@ const menuTabState  = menuTabStore()
 function hideMenu() {
   menuTabState.tab_contextmenu.visible = false
 }
+/*
 
 function clickOutside(e) {
+  console.log(e.target.closest('.tab-context-menu'))
   //如果点击的目标元素（e.target）不是菜单元素 .menu 本身，也不是其子元素，则隐藏菜单。
   if (!e.target.closest('.tab-context-menu')) hideMenu()
 }
@@ -20,10 +22,12 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener('click', clickOutside)
 })
+*/
 
 </script>
 
 <template>
+
   <div class="tab-context-menu" :style="{ top: `${menuTabState.tab_contextmenu.y}px`, left: `${menuTabState.tab_contextmenu.x}px` }" v-if="menuTabState.tab_contextmenu.visible">
     <div class="menu-item" @click="()=>{hideMenu();menuTabState.reload(menuTabState.tab_contextmenu.tabIndex);}">重新加载</div>
     <div class="menu-item" @click="()=>{hideMenu();new_tab(menuTabState.tab_contextmenu.title,menuTabState.tab_contextmenu.url);}">复制</div>
@@ -34,6 +38,7 @@ onBeforeUnmount(() => {
     <div class="menu-item" @click="()=>{hideMenu();menuTabState.closeTabs(menuTabState.tab_contextmenu.tabIndex,1);}">关闭右侧-></div>
     <div class="menu-item" @click="()=>{hideMenu();menuTabState.closeTabs(menuTabState.tab_contextmenu.tabIndex,-1);}">关闭左侧<-</div>
   </div>
+    <div @click="hideMenu" style="position:absolute; top:0; left:0;width:100%; height:100%; background:transparent;"  v-if="menuTabState.tab_contextmenu.visible"></div>
 </template>
 
 <style scoped lang="scss">

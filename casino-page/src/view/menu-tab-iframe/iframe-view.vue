@@ -20,6 +20,7 @@ iframes.forEach((iframe, index) => {
 <template>
   <!--  Iframe 窗口  box-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.15); background: #1c1d1f -->
   <div class="flex" style="height: calc(100% - 27px);background-color:var(--bg);">
+
     <template v-for="(tab,index) in menuTabState.tabs">
       <iframe  :id="'iframe_'+tab.id" :src="tab.url" frameborder="0"
                style="background-color:var(--page);width:100%;height: 100%; border: 0;"

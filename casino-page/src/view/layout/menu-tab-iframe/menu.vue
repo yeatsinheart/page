@@ -71,8 +71,8 @@
     </el-menu>
 
     <div style="cursor: pointer;background-color: #8a4c4c;height: 40px;line-height: 40px;text-align: center;">
-      <div @click="pop_by_container('/pop/container/close_bottom','/color/index')">
-        新建页面
+      <div @click="pop_by_container('/pop/container/close_bottom','/example/new-example')">
+        新页面
       </div>
     </div>
   </div>

@@ -11,8 +11,8 @@
 <!-- 内部内容过高 可以滚动  @destroy="notifyParent"-->
         <component :is="props.async_component" :props="params"/>
       </div>
-      <div class="flex-center" style="height: 1rem;">
-        <i @click="notifyParent" style="font-size: .5rem;color: #fff" class="fa-sharp fa-regular fa-circle-xmark"></i>
+      <div class="flex-center" style="height: .6rem;">
+        <i @click="notifyParent" style="font-size: .4rem;color: #fff" class="fa-sharp fa-regular fa-circle-xmark"></i>
       </div>
     </div>
   </div>

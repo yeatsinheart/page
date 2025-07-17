@@ -44,7 +44,7 @@ export const menuTabStore = defineStore("menuTabStore", {
 
         // 关闭其他
         onlyKeepThis(index) {
-            this.tab_dropdown = !this.tab_dropdown;
+            this.tab_dropdown = false;
             if (index !== 0) {
                 this.tabs.splice(0, index);
             }
@@ -70,7 +70,7 @@ export const menuTabStore = defineStore("menuTabStore", {
             let nowActiveIndex = this.select_index;
             //关闭所有 总保留一个？
             if (index === -1) {
-                this.tab_dropdown = !this.tab_dropdown;
+                this.tab_dropdown = false;
                 this.tabs.splice(0);
                 this.activeTab(0)
                 return;

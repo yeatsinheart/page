@@ -7,14 +7,12 @@
 
 html, body {
     width:100%;height: 100%;
-    padding: 0;
-    margin: 0 auto;
-    /* 针对 Safari 和旧版 WebKit */
-    -moz-user-select: none;
-    /* 针对 Firefox */
-    -ms-user-select: none;
-    /* 针对 IE */
-    user-select: none;
+    padding: 0;margin: 0 auto;
+    /*阻止用户选择文本*/
+    user-select: none;/* 针对 IE */
+    -webkit-user-select: none;  /* iOS Safari  */
+    -moz-user-select: none;/* 针对 Safari 和旧版 WebKit */
+    -ms-user-select: none;/* 针对 Firefox */
     /* 通用属性 */
     /*防止文本弹出选择菜单*/
     -webkit-touch-callout: none;
@@ -23,8 +21,7 @@ html, body {
     touch-action: none;   /* 禁止所有手势（包括双指缩放） */
     overscroll-behavior: none;
     -ms-touch-action: none;/* IE / Edge */
-    /*阻止用户选择文本*/
-    -webkit-user-select: none;  /* iOS Safari 防止双击缩放 */
+
     -webkit-text-size-adjust: 100%; /* 禁止 Safari 自动调整字体 禁止自动文字缩放*/
 }
 

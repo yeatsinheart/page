@@ -1,36 +1,34 @@
 <script setup>
 import {menuTabStore} from './menu-tab.js'
-import TabContextmenu from "@/view/menu-tab-iframe/tab-contextmenu.vue";
-
 const menuTabState = menuTabStore()
+import TabContextmenu from "./tab-contextmenu.vue";
+import draggable from "vuedraggable";
+function updateWeight(event){menuTabState.select_index = event.newIndex}
 </script>
 
 <template>
-  <nav id="tab_scroller" class="flex" style="width:100%;flex-wrap: nowrap;overflow-x: auto;">
-    <template v-for="(tab,index) in menuTabState.tabs">
-      <!--   @contextmenu.prevent="showMenu($event)"        -->
-      <div :id="'tab_'+tab.id" :class="menuTabState.select_index!==index?'':'tab-selected'" class="nav-tab-item"
-           style="padding: 0 14px;"
-           @click="menuTabState.activeTab(index)"
-           @contextmenu.prevent="menuTabState.activeTabMenu(index,$event)">
+    <draggable :list="menuTabState.tabs" item-key="id" @end="updateWeight" id="tab_scroller" class="flex" style="width:100%;flex-wrap: nowrap;overflow-x: auto;">
+      <template #item="{ element ,index }">
+          <div :id="'tab_'+element.id" :class="menuTabState.select_index!==index?'':'tab-selected'" class="nav-tab-item"
+               style="padding: 0 14px;"
+               @click="menuTabState.activeTab(index)"
+               @contextmenu.prevent="menuTabState.activeTabMenu(index,$event)">
+            <!--<el-tooltip :content="'切换到'+tab.title" class="item" effect="dark" placement="bottom"></el-tooltip>-->
+            <span style="">{{ element.title+element.id }}</span>
 
-        <el-tooltip :content="'切换到'+tab.title" class="item" effect="dark" placement="bottom">
-          <span style="">{{ tab.title }}</span>
-        </el-tooltip>
+            <el-tooltip class="item" content="刷新" effect="dark" placement="bottom">
+              <i class="fa fa-rotate-right" style="margin: 0 10px;" @click="menuTabState.reload(index)"></i></el-tooltip>
+            <el-tooltip class="item" content="关闭" effect="dark" placement="bottom">
+              <i class="fa fa-times-circle" @click="menuTabState.closeTabs(index)"></i></el-tooltip>
 
-        <el-tooltip class="item" content="刷新" effect="dark" placement="bottom">
-          <i class="fa fa-rotate-right" style="margin: 0 10px;" @click="menuTabState.reload(index)"></i></el-tooltip>
-        <el-tooltip class="item" content="关闭" effect="dark" placement="bottom">
-          <i class="fa fa-times-circle" @click="menuTabState.closeTabs(index)"></i></el-tooltip>
+            <el-divider
+                v-if="!(menuTabState.select_index===(index+1) || index===(menuTabState.tabs.length-1)) && menuTabState.select_index!==index"
+                direction="vertical"></el-divider>
 
-        <el-divider
-            v-if="!(menuTabState.select_index===(index+1) || index===(menuTabState.tabs.length-1)) && menuTabState.select_index!==index"
-            direction="vertical"></el-divider>
-
-      </div>
-    </template>
+          </div>
+      </template>
+    </draggable>
     <TabContextmenu/>
-  </nav>
 </template>
 
 <style lang="scss" scoped>
@@ -52,7 +50,7 @@ const menuTabState = menuTabStore()
 /*定义滑块*/
 #tab_scroller::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: var(--c1);
+  background-color: var(--color2-color);
 }
 
 

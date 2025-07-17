@@ -109,7 +109,22 @@ function hexToRgb(hex) {
 function rgbToHex([r, g, b]) {
     return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
 }
-
+export function invertColor(hex) {
+    hex = normalizeHex(hex).slice(1);
+    // 取反每个颜色通道
+    const r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16).padStart(2, '0')
+    const g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16).padStart(2, '0')
+    const b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16).padStart(2, '0')
+    return `#${r}${g}${b}`
+}
+function mixColors(c1, c2, ratio = 0.5) {
+    const rgb1 = hexToRgb(c1)
+    const rgb2 = hexToRgb(c2)
+    const r = Math.round(rgb1.r * (1 - ratio) + rgb2.r * ratio)
+    const g = Math.round(rgb1.g * (1 - ratio) + rgb2.g * ratio)
+    const b = Math.round(rgb1.b * (1 - ratio) + rgb2.b * ratio)
+    return rgbToHex(r, g, b)
+}
 export function blendColors(start, end, steps) {
     const [r1, g1, b1] = hexToRgb(start);
     const [r2, g2, b2] = hexToRgb(end);
@@ -124,5 +139,15 @@ export function blendColors(start, end, steps) {
     return result;
 }
 
+//调整亮度（变浅/变深）
+function adjustBrightness(hex, amount) {
+    const { r, g, b } = hexToRgb(hex)
+    const clamp = val => Math.max(0, Math.min(255, val))
+    return rgbToHex(
+        clamp(r + amount),
+        clamp(g + amount),
+        clamp(b + amount)
+    )
+}
 // 示例：
 //console.log(blendColors('#000000', '#ffffff', 50));

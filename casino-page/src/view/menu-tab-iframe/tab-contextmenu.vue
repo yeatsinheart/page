@@ -1,28 +1,11 @@
 <script setup>
 
-import {onBeforeUnmount, onMounted, ref} from "vue";
-
 import {menuTabStore, new_tab} from './menu-tab.js'
 const menuTabState  = menuTabStore()
 
 function hideMenu() {
   menuTabState.tab_contextmenu.visible = false
 }
-/*
-
-function clickOutside(e) {
-  console.log(e.target.closest('.tab-context-menu'))
-  //如果点击的目标元素（e.target）不是菜单元素 .menu 本身，也不是其子元素，则隐藏菜单。
-  if (!e.target.closest('.tab-context-menu')) hideMenu()
-}
-
-onMounted(() => {
-  document.addEventListener('click', clickOutside)
-})
-onBeforeUnmount(() => {
-  document.removeEventListener('click', clickOutside)
-})
-*/
 
 </script>
 

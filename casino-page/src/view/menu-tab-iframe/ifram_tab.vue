@@ -38,9 +38,12 @@
 
       <!-- 选项卡操作 -->
       <div class="flex" style="flex-shrink: 0;height:27px;">
+        <div @click="()=>{menuTabState.tab_dropdown=false;}" style="position:absolute; top:0; left:0;width:100%; height:100%; background:transparent;"  v-if="menuTabState.tab_dropdown"></div>
+
         <div class="nav-tab-item">
           <div class="nav-tab-more flex-center"
-               @click="menuTabState.tab_dropdown=!menuTabState.tab_dropdown">
+               @click="menuTabState.tab_dropdown=!menuTabState.tab_dropdown"
+          >
             {{ menuTabState.tabs.length }}
           </div>
           <div class="dropdown-menu" :style="!menuTabState.tab_dropdown?'display:none':''">

@@ -2,7 +2,7 @@
 
 import Menu from "./menu.vue";
 import IframeTab from "./ifram_tab.vue";
-import {menuTabStore, new_tab} from '@/store/menu-tab.js'
+import {menuTabStore, new_tab} from './menu-tab.js'
 
 const menuTabState = menuTabStore()
 </script>

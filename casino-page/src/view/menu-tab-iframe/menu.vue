@@ -74,14 +74,14 @@
 </template>
 
 <script setup>
-import {menuTabStore, new_tab} from '@/store/menu-tab.js'
+import {menuTabStore, new_tab} from './menu-tab.js'
 import {colorModeStore} from "@/store/color-mode.js";
 const colorModeState = colorModeStore()
 
 const menuTabState = menuTabStore()
 
 const menus = [ {"key":"应用", "icon": "menu.icon", "label": "应用", children: [
-    {"key": "首页", "icon": "page.icon", "label": "首页"}
+    {"key": "/view/templates", "icon": "page.icon", "label": "首页"}
   ]}];
 
 function getAllIndexes() {

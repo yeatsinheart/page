@@ -3,6 +3,7 @@ import {defineStore} from "pinia";
 export const menuTabStore = defineStore("menuTabStore", {
     state: () => ({
         show_menu: true,
+        tab_contextmenu: {visible:false,x:0,y:0,tabIndex:0,title:'',url:''},
         show_setting_menu: false,
         iframe_times: 10,
         tabs: [],
@@ -26,6 +27,15 @@ export const menuTabStore = defineStore("menuTabStore", {
         activeTab(index) {
             this.select_index = index;
             this.right_place();
+        },
+
+        activeTabMenu(index,e) {
+            this.tab_contextmenu.visible = true;
+            this.tab_contextmenu.x = e.clientX;
+            this.tab_contextmenu.y = e.clientY;
+            this.tab_contextmenu.tabIndex = index;
+            this.tab_contextmenu.title = this.tabs[index].title;
+            this.tab_contextmenu.url = this.tabs[index].url;
         },
 
         isActive(index) {
@@ -152,15 +162,15 @@ const handleMessage = (event) => {
     }
 }
 
-export const new_tab=(name,url)=>{
+export const new_tab=(title,url)=>{
     if (window.top !== window.self) {
         // IFRAME 通过window事件来传递新窗口
-        window.top.postMessage({"type": "OPENTAB", "title": name, "url": url}, '*')
+        window.top.postMessage({"type": "OPENTAB", "title": title, "url": url}, '*')
         return;
     }
     // 首页直接打开
     if (window.top === window.self) {
-       menuTabStore().open(name, url);
+       menuTabStore().open(title, url);
     }
 }
 if (window.top === window.self) {

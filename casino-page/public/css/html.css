@@ -104,7 +104,7 @@ img {
 }
 
 div{
-    transition: color,background .3s;
+    /*transition: color,background .3s;*/
 }
 
 .col-1,

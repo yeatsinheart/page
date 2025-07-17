@@ -64,7 +64,7 @@
 <script setup>
 import {menuTabStore, scroll_tab} from './menu-tab.js'
 import TabItem from "./tab-item.vue";
-import IframeView from "@/view/menu-tab-iframe/iframe-view.vue";
+import IframeView from "./iframe-view.vue";
 const menuTabState  = menuTabStore()
 const loaders = document.querySelectorAll('.loader');
 // 初始化：显示所有加载指示器

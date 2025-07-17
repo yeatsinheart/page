@@ -36,7 +36,7 @@ router.beforeEach((to, from, next) => {
 })
 
 export function routerInit(app) {
-    addRoute("","/menu-tab-iframe")
+    addRoute("","/layout/menu-tab-iframe")
     app.use(router)
 }
 

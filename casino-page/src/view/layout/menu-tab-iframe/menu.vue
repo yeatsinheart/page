@@ -16,6 +16,14 @@
         </el-tooltip>-->
 
         <el-tooltip class="item" effect="dark" placement="bottom-start"
+                    :content="'颜色'">
+          <el-icon style="cursor: pointer;width: 30px;height: 30px;"
+                   @click.native.stop="new_tab('调色盘','/view/color/index');">
+            <HelpFilled/>
+          </el-icon>
+        </el-tooltip>
+<!--
+        <el-tooltip class="item" effect="dark" placement="bottom-start"
                     :content="'仪表盘'">
           <el-icon style="cursor: pointer;width: 30px;height: 30px;"
                    @click.native.stop="new_tab('仪表盘','/home');">
@@ -31,6 +39,7 @@
             <Sunny v-else/>
           </el-icon>
         </el-tooltip>
+        -->
       </div>
 
     </div>
@@ -39,27 +48,24 @@
              style="width: 100%; height: calc(100% - 30px - 40px); overflow-y: auto;"
              :default-openeds="getAllIndexes()">
       <template v-for="menu in menus">
-        <el-sub-menu v-if="menu.children" :index="menu.key">
+        <el-sub-menu v-if="menu.children" :index="menu.title">
           <template #title>
-            <el-icon v-if="menu.icon">
-              <component :is="menu.icon"/>
-            </el-icon>
-            <span>{{ menu.label }}</span></template>
+            <el-icon v-if="menu.icon"><component :is="menu.icon"/></el-icon>
+            <span>{{ menu.title }}</span>
+          </template>
           <!-- 递归渲染子菜单 -->
           <template v-for="child in menu.children">
-            <el-menu-item @click="new_tab(child.label,child.key)" :index="child.key">
-              <el-icon v-if="child.icon">
-                <component :is="child.icon"/>
-              </el-icon>
-              {{ child.label }}
+            <el-menu-item @click="new_tab(child.title,child.url)" :index="child.url">
+              <el-icon v-if="child.icon"><component :is="child.icon"/></el-icon>
+              {{ child.title }}
             </el-menu-item>
           </template>
         </el-sub-menu>
-        <el-menu-item v-else :index="menu.key" @click="new_tab(menu.label,menu.key)">
+        <el-menu-item v-else :index="menu.title" @click="new_tab(menu.title,menu.url)">
           <el-icon v-if="menu.icon">
             <component :is="menu.icon"/>
           </el-icon>
-          {{ menu.label }}
+          {{ menu.title }}
         </el-menu-item>
       </template>
     </el-menu>
@@ -74,15 +80,11 @@
 </template>
 
 <script setup>
-import {menuTabStore, new_tab} from './menu-tab.js'
+import {new_tab} from './menu-tab.js'
 import {colorModeStore} from "@/store/color-mode.js";
+import menus from "./menu.js";
 const colorModeState = colorModeStore()
 
-const menuTabState = menuTabStore()
-
-const menus = [ {"key":"应用", "icon": "menu.icon", "label": "应用", children: [
-    {"key": "/view/templates", "icon": "page.icon", "label": "首页"}
-  ]}];
 
 function getAllIndexes() {
   const indexes = [];

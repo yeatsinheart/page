@@ -8,8 +8,8 @@
         <i @click="notifyParent" style="font-size: .3rem;color: var(--color1-color)" class="fa-solid fa-angle-left"></i>
       </div>
       <div style="height:100%;background-color:var(--page);overflow-y: auto;">
-        <!-- 内部内容过高 可以滚动 style="width: 100%;height:100%;overflow:auto;"-->
-        <component :is="props.async_component" :props="params" @destroy="notifyParent" ></component>
+        <!-- 内部内容过高 可以滚动 style="width: 100%;height:100%;overflow:auto;"  @destroy="notifyParent" -->
+        <component :is="props.async_component" :props="params"></component>
       </div>
 
     </div>
@@ -25,5 +25,6 @@ const notifyParent = () => {emit('destroy');};
 const data = defineProps({props:null,});
 
 // ✅ 让 props.params 变成响应式
-const params = toRef(data.props, "params");
+//const params = toRef(data.props?? {}, "params");
+const params = computed(() => data.props?.params ?? {});
 </script>

@@ -4,8 +4,7 @@ function node(title,url,icon){
 
 const menus = [
     {...node("应用"), children: [
-        node("首页","/view/templates"),
+        node("首页","/view/templates?m=key"),
     ]},
 ];
-console.log(menus);
 export default menus;

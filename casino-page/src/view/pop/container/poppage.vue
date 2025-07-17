@@ -13,11 +13,7 @@
     <div class="flex-center" style="position: fixed;right:.01rem;width: 1rem;height: 1rem;z-index:3000;" @click="close()">
       <van-icon name="close" class="custom-close" style="font-size: .45rem;"/>
     </div>
-
-    <component
-      :is="props.async_component"
-      :props="params"
-    ></component>
+    <component :is="props.async_component" :props="params"></component>
   </van-popup>
 </template>
 
@@ -32,7 +28,8 @@ const close = () => {
 const data = defineProps({props: null,});
 
 // ✅ 让 props.params 变成响应式
-const params = toRef(data.props, "params");
+//const params = toRef(data.props?? {}, "params");
+const params = computed(() => data.props?.params ?? {});
 onMounted(() => {
   setTimeout(() => {
     showBottom.value = true;

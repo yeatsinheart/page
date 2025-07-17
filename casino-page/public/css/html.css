@@ -4,6 +4,9 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+/* 默认rem */
+html{font-size: 73.012px !important;}
+body{font-size: 14px !important;line-height: 1.43 !important;}
 
 html, body {
     width:100%;height: 100%;
@@ -21,7 +24,6 @@ html, body {
     touch-action: none;   /* 禁止所有手势（包括双指缩放） */
     overscroll-behavior: none;
     -ms-touch-action: none;/* IE / Edge */
-
     -webkit-text-size-adjust: 100%; /* 禁止 Safari 自动调整字体 禁止自动文字缩放*/
 }
 

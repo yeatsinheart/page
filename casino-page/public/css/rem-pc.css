@@ -35,6 +35,20 @@ html {
     }
 }
 
+/* 大屏幕固定 控制*/
+@media screen and (min-width: 547.59px) {
+    html {
+        font-size: calc(var(--theme-max-width)/(750/100)) !important;
+    }
+}
+
+/* 小屏幕动态 控制*/
+@media only screen and (min-width: 150px) and (max-width: 547.59px) {
+    html {
+        font-size: calc(100vw/(750/100)) !important;
+    }
+}
+
 /* .24rem */
 body {
     font-size: .22rem !important;

@@ -16,9 +16,9 @@
         </el-tooltip>-->
 
         <el-tooltip class="item" effect="dark" placement="bottom-start"
-                    :content="'颜色'">
+                    :content="'颜色设计'">
           <el-icon style="cursor: pointer;width: 30px;height: 30px;"
-                   @click.native.stop="new_tab('调色盘','/view/color/index');">
+                   @click.native.stop="new_tab('颜色设计','/view/color/index');">
             <HelpFilled/>
           </el-icon>
         </el-tooltip>
@@ -71,28 +71,25 @@
     </el-menu>
 
     <div style="cursor: pointer;background-color: #8a4c4c;height: 40px;line-height: 40px;text-align: center;">
-      <div>
-        xxx
+      <div @click="pop_by_container('/pop/container/close_bottom','/color/index')">
+        新建页面
       </div>
-
     </div>
   </div>
 </template>
 
 <script setup>
 import {new_tab} from './menu-tab.js'
-import {colorModeStore} from "@/store/color-mode.js";
 import menus from "./menu.js";
-const colorModeState = colorModeStore()
-
+import {pop_by_container} from "@/init/pop.js";
 
 function getAllIndexes() {
   const indexes = [];
   menus.forEach((item) => {
-    indexes.push(item.key); // 添加当前菜单的 index
-    //if (item.children) {
-    //indexes.push(...getAllIndexes(item.children)); // 递归添加子菜单的 index
-    //}
+    indexes.push(item.title); // 添加当前菜单的 index
+    // if (item.children) {
+    //   indexes.push(...getAllIndexes(item.children)); // 递归添加子菜单的 index
+    // }
   });
   return indexes;
 }

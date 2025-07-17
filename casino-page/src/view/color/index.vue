@@ -1,6 +1,9 @@
 <script setup>
 import Setting from './setting.vue'
 import Demo from './demo.vue'
+
+// 外部传入参数
+const data = defineProps({props:null,});
 </script>
 
 <template>

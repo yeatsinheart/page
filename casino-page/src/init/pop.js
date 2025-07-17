@@ -51,7 +51,7 @@ function pop_container_for_close(async_view, reactiveParams) {
     return container;
 }
 
-export async function pop_by_container(container_path, view_path, params, name, event) {
+export async function pop_by_container(container_path, view_path, params={}, name, event) {
     if (container_path) {
         const async_view = await view_get_by_path(container_path)();
         const async_child_view = await view_get_by_path(view_path)();
@@ -61,7 +61,7 @@ export async function pop_by_container(container_path, view_path, params, name, 
     }
 }
 
-export async function pop_view(view_path, params, name, event) {
+export async function pop_view(view_path, params={}, name, event) {
     const async_view = await view_get_by_path(view_path)();
     push_to_list(view_path, async_view, params, event);
 }

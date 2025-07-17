@@ -14,7 +14,7 @@ function updateWeight(event){menuTabState.select_index = event.newIndex}
                @click="menuTabState.activeTab(index)"
                @contextmenu.prevent="menuTabState.activeTabMenu(index,$event)">
             <!--<el-tooltip :content="'切换到'+tab.title" class="item" effect="dark" placement="bottom"></el-tooltip>-->
-            <span style="">{{ element.title+element.id }}</span>
+            <span style="">{{ element.title }}</span>
 
             <el-tooltip class="item" content="刷新" effect="dark" placement="bottom">
               <i class="fa fa-rotate-right" style="margin: 0 10px;" @click="menuTabState.reload(index)"></i></el-tooltip>

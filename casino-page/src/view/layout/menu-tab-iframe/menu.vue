@@ -71,7 +71,7 @@
     </el-menu>
 
     <div style="cursor: pointer;background-color: #8a4c4c;height: 40px;line-height: 40px;text-align: center;">
-      <div @click="pop_by_container('/pop/container/sub-screen','/example/new-example')">
+      <div @click="pop_by_container('/pop/container/sub-screen-right-80','/example/new-example')">
         新页面
       </div>
     </div>

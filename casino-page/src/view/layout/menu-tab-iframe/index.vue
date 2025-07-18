@@ -36,7 +36,7 @@ const menuTabState = menuTabStore()
 }
 .menu_hide{
   .menu{
-    width: 0;opacity: 0;
+    width: 0;opacity: 0;height: 0;
     /*display: none;*/
   }
 }

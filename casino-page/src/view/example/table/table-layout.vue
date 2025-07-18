@@ -79,8 +79,8 @@ const toggleSelection = (row) => {
       <!--搜索栏-->
       <div v-if="$slots.header" style="width:100%;padding: 4px;">
         <slot name="header"></slot>
-        <div class="border"></div>
       </div>
+      <div class="border" v-if="$slots.header"></div>
       <!--表格数据栏-->
       <div v-if="$slots.column" style="width:100%;height:100%;overflow: auto;padding: 4px;">
         <el-auto-resizer v-slot="{ height, width }">

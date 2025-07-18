@@ -1,0 +1,7 @@
+Scaffold
+    头部导航 appBar ：AppBar
+    抽屉 drawer ：
+    悬浮按钮 floatingActionButton ：FloatingActionButton
+    底部导航 bottomNavigationBar：BottomNavigationBar
+
+FittedBox(fit: boxFit,child: Container(width: 60, height: 70, color: Colors.blue),),

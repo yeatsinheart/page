@@ -13,9 +13,11 @@ function hideMenu() {
 
   <div class="tab-context-menu" :style="{ top: `${menuTabState.tab_contextmenu.y}px`, left: `${menuTabState.tab_contextmenu.x}px` }" v-if="menuTabState.tab_contextmenu.visible">
     <div class="menu-item" @click="()=>{hideMenu();menuTabState.reload(menuTabState.tab_contextmenu.tabIndex);}">重新加载</div>
+    <el-divider style="margin: 2px !important;"/>
     <div class="menu-item" @click="()=>{hideMenu();new_tab(menuTabState.tab_contextmenu.title,menuTabState.tab_contextmenu.url);}">复制</div>
     <el-divider style="margin: 2px !important;"/>
     <div class="menu-item" @click="()=>{hideMenu();menuTabState.closeTabs(menuTabState.tab_contextmenu.tabIndex);}">关闭</div>
+    <el-divider style="margin: 2px !important;"/>
     <div class="menu-item" @click="()=>{hideMenu();menuTabState.closeTabs(-1);}">关闭全部</div>
     <div class="menu-item" @click="()=>{hideMenu();menuTabState.onlyKeepThis(menuTabState.tab_contextmenu.tabIndex);}">关闭其他</div>
     <div class="menu-item" @click="()=>{hideMenu();menuTabState.closeTabs(menuTabState.tab_contextmenu.tabIndex,1);}">关闭右侧-></div>

@@ -7,7 +7,7 @@
     <el-button type="primary" @click="pop_by_container('/pop/container/close_bottom','/example/new-version')">新页面</el-button>
   </div>
   <div style="height:calc(100% - 40px);overflow: auto;">
-    <div class="card-grid"  >
+      <ListCard>
       <div class="card" v-for="item in list" :key="item.example">
         <img :src="item.example"/>
         <!-- style="white-space: pre-wrap;"     -->
@@ -19,7 +19,7 @@
           <el-button type="primary" round size="small">修改</el-button>
         </div>
       </div>
-    </div>
+      </ListCard>
 </div>
 
 </template>
@@ -27,6 +27,7 @@
 <script setup>
 // 解析 URL 并存储邀请码
 import {pop_by_container} from "@/init/pop.js";
+import ListCard from "@/view/example/list-card.vue";
 
 const urlParams = new URLSearchParams(window.location.search);
 const key = urlParams.get("key");
@@ -46,6 +47,7 @@ const list = ref([
     {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
     {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
 ])
+
 </script>
 
 <style scoped lang="scss">
@@ -58,11 +60,6 @@ const list = ref([
   gap: 10px;
 }*/
 
-.card-grid {//外面再套一层div，就能实现内容高度
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));//minmax(200px, 1fr) 的意思是：每个网格项最小宽度 200px，最大可以占满剩余空间。
-  gap: 10px;
-}
 .card {
   border: 1px solid #cbe6dd;
   img{width: 100%;aspect-ratio: 1 /1;}

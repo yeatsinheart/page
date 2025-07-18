@@ -75,7 +75,6 @@ export const menuTabStore = defineStore("menuTabStore", {
                 this.activeTab(0)
                 return;
             }
-
             //关闭指定的位置
             // 操作后会导致所有的tags重新刷一遍
             // 剩下的tab

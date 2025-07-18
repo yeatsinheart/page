@@ -9,10 +9,20 @@ const search = ref({})
 const more_search_show = ref(false)
 
 const list = ref([])
-const tableId = ref('xxx')
-const pagination = ref({page: 1, size: 50, total: 1000000000});
+const tableId = ref('xxx')//数据主键
+const pagination = ref({page: 1, size: 50, total: 1000000000});// 分页信息
 
-function query(){
+function query(){ // 条件搜索
+  // 默认第一页 自动调用翻页搜索
+  if(pagination.value.page===1){
+    pageQuery()
+  }
+  pagination.value.page=1;
+}
+
+function pageQuery(){ // 翻页搜索 按照翻页插件中的值进行分页搜索
+  chosenIds.value=[];// 搜索后选中信息清空
+  list.value=[{xxx:1},{xxx:2}]
   pagination.value.total=1000000000+1;
 }
 
@@ -23,7 +33,8 @@ function excel(){
 </script>
 
 <template>
-  <TableLayout :query="query" :excel="excel" :table-id="tableId" :chosen-ids="chosenIds" :pagination="pagination" :list="list">
+  <TableLayout :page-query="pageQuery" :excel="excel" :table-id="tableId"
+               v-model:chosen-ids="chosenIds" v-model:pagination="pagination" v-model:list="list">
     <template  #header>
       <div style="display: flex;align-items: center;justify-content: space-between;">
         <div>
@@ -58,7 +69,7 @@ function excel(){
             <el-icon style="margin: 0 4px;cursor: pointer;color:#909399;transition:.2s;">
               <Filter/>
             </el-icon>
-            更多筛选
+            更多筛选条件
           </div>
         </div>
       </div>
@@ -88,16 +99,21 @@ function excel(){
         </div>
 
       </div>
+
+    </template>
+    <template  #action>
       <!--      操作      -->
-      <div v-if="chosenIds.length > 0" style="padding-top: 5px;">
+      <el-button size="small">新增</el-button>
+      <el-button size="small" v-if="chosenIds.length === 1">删除</el-button>
+      <template v-if="chosenIds.length > 0" style="padding-top: 5px;">
+        <el-button size="small">修改</el-button>
         <el-button size="small">启用</el-button>
         <el-button size="small">禁用</el-button>
         <el-button size="small">备注</el-button>
-      </div>
+      </template>
     </template>
 
-
-    <template  #column>
+    <template  #data>
       <el-table-column type="selection" width="20"/>
       <el-table-column prop="recharge" label="用户名"  show-overflow-tooltip/>
       <el-table-column prop="recharge" label="密码"  show-overflow-tooltip/>
@@ -106,12 +122,26 @@ function excel(){
       <el-table-column prop="recharge" label="操作日期"  show-overflow-tooltip/>
     </template>
 
-
-    <template #data>搜索条件下统计数据</template>
+    <template #statistics>搜索条件下统计数据</template>
   </TableLayout>
 </template>
 
 <style scoped lang="scss">
+
+:deep(.el-range-editor.el-range-editor--small){
+  width: 270px!important;
+}
+:deep(.el-range-editor.el-input__wrapper){
+  padding: 0!important;
+  flex-grow: 0!important;
+}
+
+:deep(.el-date-editor .el-range-separator){
+  flex:0!important;
+}
+:deep(.el-range-editor--small .el-range-input){
+  width:  110px!important;
+}
 
 :deep(.el-input-group__append){
   padding:0 5px!important;

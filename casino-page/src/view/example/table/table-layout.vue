@@ -2,7 +2,7 @@
 const params = defineProps({
   pagination: {type: Object,required: true,default: {page: 1, size: 50, total: 1000000000}},
   list:{type: Array,required: true,default:()=>[]},
-  query: {type: Function,required: true,},
+  pageQuery: {type: Function,required: true,},
   excel: {type: Function,required: true,},
   tableId:{type: String,required: true,},
   chosenIds:{type: Array,required: true,}
@@ -13,6 +13,7 @@ const pagination = ref({page: 1, size: 50, total: 1000000000});
 onBeforeMount(()=>{
   list.value = params.list
   pagination.value = params.pagination
+  chosenIds.value = params.chosenIds
 })
 
 const emit = defineEmits(['update:pagination','update:chosenIds'])
@@ -37,14 +38,14 @@ watch(pagination, (newVal) => {
   if (JSON.stringify(newVal) !== JSON.stringify(params.pagination)) {
     emit('update:pagination', newVal);
   }
-});
+}, { deep: true });
 
-// 监听 pagination 的变化
+// 监听 chosenIds 的变化
 watch(chosenIds, (newVal) => {
   if (JSON.stringify(newVal) !== JSON.stringify(params.chosenIds)) {
     emit('update:chosenIds', newVal);
   }
-});
+}, { deep: true });
 
 
 //  watch(() => [变量1, 变量2], callback) 监听 currentPage 和 pageSize 的变化 immediate: true 加载就搜索
@@ -54,7 +55,7 @@ watch(() => [pagination.value.page, pagination.value.size], // 监听数组
         pagination.value.page=1;return;
       }
       chosenIds.value = [];
-      await params.query();
+      await params.pageQuery();
     },
     { immediate: true }
 );
@@ -81,22 +82,30 @@ const toggleSelection = (row) => {
         <slot name="header"></slot>
       </div>
       <div class="border" v-if="$slots.header"></div>
+
+      <!--操作栏-->
+      <div v-if="$slots.action" style="width:100%;padding: 4px;">
+        <slot name="action"></slot>
+      </div>
+      <div class="border" v-if="$slots.action"></div>
+
       <!--表格数据栏-->
-      <div v-if="$slots.column" style="width:100%;height:100%;overflow: auto;padding: 4px;">
+      <div v-if="$slots.data" style="width:100%;height:100%;overflow: auto;padding: 4px;">
         <el-auto-resizer v-slot="{ height, width }">
           <el-table ref="table"
                     :data="list" :row-key="params.tableId"
                     @row-click="toggleSelection" @selection-change="handleSelectionChange"
                     highlight-current-row stripe :max-height="height" :height="height" style="width: 100%"
           >
-            <slot name="column"></slot>
+            <slot name="data"></slot>
           </el-table>
         </el-auto-resizer>
       </div>
+
       <!--统计栏-->
-      <div v-if="$slots.data" style="width:100%;">
+      <div v-if="$slots.statistics" style="width:100%;">
         <div class="border"></div>
-        <slot name="data"></slot>
+        <slot name="statistics"></slot>
       </div>
       <!--分页工具栏-->
       <div style="width:100%;">

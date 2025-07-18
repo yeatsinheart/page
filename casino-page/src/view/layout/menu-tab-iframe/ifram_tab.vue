@@ -54,7 +54,7 @@
             <div @click="menuTabState.closeTabs(menuTabState.select_index,-1)">关闭左侧</div>
           </div>
         </div>
-        <div class="flex-center">其余</div>
+<!--        <div class="flex-center">其余</div>-->
       </div>
     </div>
     <IframeView/>

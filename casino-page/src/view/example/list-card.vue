@@ -28,7 +28,7 @@ const updateColumns = () => {
   }else {
     if(params.minCardWidth) {
       let cardWidth = getNumber(params.minCardWidth)??100;
-      cols=Math.floor(width/(cardWidth+gapPx))
+      cols=Math.max(1, Math.floor(width/(cardWidth+gapPx)))
     }else {
       if (width > 1000) cols = 6;
       else if (width > 800) cols = 5;
@@ -37,8 +37,6 @@ const updateColumns = () => {
       else cols = 2;
     }
   }
-  // 计算最大可容纳列数
-  //const cols = Math.max(1, Math.floor((width + gap) / (idealCardWidth + gap)));
   container.style.setProperty('--card-columns', cols);
   container.style.setProperty('--card-gap', params.gap);
 };

@@ -6,33 +6,28 @@ const params = defineProps({
   gap:{type: String,default:()=>".1rem"},// 单位px 或者rem eg:200px 6rem
   minCardWidth:{type: String,default:()=>"3rem"},// 最小卡片宽度 单位px 或者rem eg:200px 6rem
 })
+function getNumber(value){
+  const remInPx = parseFloat(getComputedStyle(document.documentElement).fontSize);//1rem=xxx
+  if(value.indexOf("rem")>0){
+    return remInPx*parseFloat(value.replace("rem",""));
+  }
+  if(value.indexOf("px")>0){
+    return parseFloat(value.replace("px",""))
+  }
+}
 const updateColumns = () => {
   const container = document.querySelector('.col');
   if (!container) return;
   const width = container.offsetWidth;// px 宽度
 
-  const remInPx = parseFloat(getComputedStyle(document.documentElement).fontSize);//1rem=xxx
 
-  let gapPx = 7.3;
-  if(params.gap.indexOf("rem")>0){
-   gapPx = remInPx*parseFloat(params.gap.replace("rem",""));
-  }
-  if(params.gap.indexOf("px")>0){
-    gapPx = parseFloat(params.gap.replace("px",""))
-  }
-
+  let gapPx = getNumber(params.gap)??7.3;
   let cols = 1;
   if(params.columns) {
     cols = params.columns;
   }else {
     if(params.minCardWidth) {
-      let cardWidth = 100;
-      if(params.minCardWidth.indexOf("rem")>0){
-        cardWidth = remInPx*parseFloat(params.minCardWidth.replace("rem",""));
-      }
-      if(params.minCardWidth.indexOf("px")>0){
-        cardWidth = parseFloat(params.minCardWidth.replace("px",""))
-      }
+      let cardWidth = getNumber(params.minCardWidth)??100;
       cols=Math.floor(width/(cardWidth+gapPx))
     }else {
       if (width > 1000) cols = 6;

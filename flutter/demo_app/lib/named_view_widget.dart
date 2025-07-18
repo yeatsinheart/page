@@ -32,7 +32,7 @@ class NamedViewWidget {
 
   }
 
-  static getViewWidget(String uri) {//  asdfasdfasdfasd /    /page/permission
+  static getViewWidget(String? uri) {//  asdfasdfasdfasd /    /page/permission
     //if(api_route_map.contains(uri)) uri=api_route_map[uri]//  /->/home/555five
     switch (uri){
 
@@ -44,10 +44,10 @@ class NamedViewWidget {
     case "/test/nestcs": return TestNestcs();
     case "/test/herodetail": return TestHerodetail();
 
+    case "/test/appstore": return TestAppstore();
     case "/test/cs": return TestCs();
     case "/test/detailpage": return TestDetailpage();
     case "/test/apptext": return TestApptext();
-    case "/test/appstore": return TestAppstore();
     case "/test/detail": return TestDetail();
 
     case "/launch/splash/demo": return LaunchSplashDemo();

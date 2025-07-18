@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'app/route.dart';
 import 'service/app_service.dart';
 import 'service/network_service.dart';
 import 'util/context.dart';
+
+import 'views.dart';
 
 void main() {
   // 默认输屏
@@ -66,7 +67,7 @@ class Root extends StatelessWidget {
         useMaterial3: true,
       ),
       onGenerateRoute: (setting) {
-        return AppRoute.getRoute(setting);
+        return getRoute(setting);
       },
     );
   }

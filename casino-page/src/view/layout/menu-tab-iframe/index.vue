@@ -9,7 +9,7 @@ const menuTabState = menuTabStore()
 
 <template>
   <!--左 中 右 当 float: left; 存在时，如果外层容器（parent）没有 padding 或 overflow: hidden; 之类的属性，可能会导致盒子模型异常，比如塌陷或子元素超出预期布局。-->
-  <div style="height: 100%;" :class="menuTabState.show_menu?'menu_show':'menu_hide'">
+  <div style="height: 100%;overflow: auto;" :class="menuTabState.show_menu?'menu_show':'menu_hide'">
     <Menu class="menu"></Menu>
     <IframeTab class="tab"></IframeTab>
   </div>
@@ -24,7 +24,7 @@ const menuTabState = menuTabStore()
   /*, opacity 0.3s ease-in-out*/
 }
 .tab{
-  min-width:700px;
+  min-width:1010px;
   height: 100%;
   width:100%;
   background: var(--bg1);

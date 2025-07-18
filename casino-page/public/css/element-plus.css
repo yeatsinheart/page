@@ -1,0 +1,187 @@
+
+.el-table{
+    user-select: text;
+    background-color: transparent!important;
+}
+
+.el-table--border .el-table__cell{
+    border-bottom-color: #ccc!important;
+    border-right-color: #ccc!important;
+}
+.el-table thead .cell{ padding: 0 0 !important;}
+
+.el-table tbody .el-table__cell{ padding: 1px 0 !important;}
+
+.el-table tbody .cell ,.el-table tbody .el-table__cell {
+    line-height: 18px !important;
+    /*padding: 0 0 !important;*/
+    padding: 1px!important;
+    font-size: 13px !important;
+    word-break: unset !important;
+    white-space: nowrap!important;  /* 防止文本换行 */
+    overflow: hidden!important;     /* 超出部分隐藏 */
+    text-overflow: ellipsis!important; /* 使用省略号表示溢出的文本 */
+}
+
+.el-scrollbar__thumb{
+    /*bottom: -4px!important;*/
+    background-color:var(--main)!important;
+}
+
+.el-tabs--card>.el-tabs__header{
+    border-bottom:1px solid transparent!important;
+}
+.el-tabs__item{
+    color:var(--f3)!important;
+}
+.el-tabs__item.is-active, .el-tabs__item:hover {
+    color: var(--main)!important;
+}
+.el-tabs__header{
+    margin: 0!important;
+}
+.el-loading-mask{
+    z-index: 3000!important;
+}
+
+.el-form-item{
+    justify-content: center!important;
+    align-items: center!important;
+    margin-bottom: 4px!important;
+}
+
+.el-form-item__content {
+    line-height: initial!important;
+}
+/*.ck-body {
+!*.ck-balloon-panel*!
+    z-index: 5000!important;
+}*/
+.container-box{
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 var(--shadow);
+}
+.ck-body-wrapper {
+    position: relative !important; /* 确保它的子元素可以使用 z-index */
+    z-index: 5000 !important;      /* 确保它本身不会干扰弹出层 */
+}
+.ck-powered-by-balloon{
+    display: none !important;
+}
+/* 覆盖 ElMessage 的样式，使其居中 */
+.el-message {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 50% !important; /* 如果需要垂直居中 */
+    z-index: 5001 !important;
+}
+.draggable-list{
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;gap:4px;padding: 4px;
+}
+.draggable-item{
+    /* flex-direction:column;*/
+    cursor: move;box-shadow: 0 0 10px 0 var(--shadow);border-radius:7px;padding:4px;position:relative;
+}
+
+.el-dialog{
+    max-height: 99vh!important;
+    padding:10px!important;
+    border-radius:10px!important;
+}
+.el-dialog__header{
+    padding-bottom:4px!important;
+    padding-right:0px!important;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;gap:4px;
+    align-items: center;
+    justify-content: space-between;
+}
+.el-dialog__headerbtn{
+    font-size: 24px!important;
+    height: 28px!important;
+    position: initial!important;
+    width: 48px;
+}
+
+.el-dialog__body{
+    /*margin-top: 20px;*/
+    max-height: calc(100vh - 48px - 32px)!important;
+    overflow-y: auto;
+}
+.fixed-dialog .el-dialog__body{
+    position:absolute!important;
+    height: calc(100% - 28px - 4px - 20px)!important;
+    width: calc(100% - 2*10px)!important;
+}
+/*
+不需要fotter了，body中去实现
+.full-dialog .el-dialog__footer{
+    padding-top:4px!important;
+    position:absolute!important;top:calc(100% - 8px - 28px - 4px)!important;
+    width: calc(100% - 8px)!important;
+}*/
+
+.el-range-editor.el-range-editor--small{
+    width: 270px!important;
+}
+.el-range-editor.el-input__wrapper{
+    padding: 0!important;
+    flex-grow: 0!important;
+}
+
+.el-date-editor .el-range-separator{
+    flex:0!important;
+}
+.el-range-editor--small .el-range-input{
+    width:  110px!important;
+}
+.el-input-group__append{
+    padding:0 5px!important;
+}
+
+.el-checkbox{
+    margin-right:4px!important;
+}
+.el-checkbox__label{
+    padding-left: 2px!important;
+}
+
+.el-radio{
+    margin-right: 4px!important;
+}
+
+.el-radio__label{
+    padding-left: 2px!important;
+}
+
+
+
+/*整个滚动条*/
+.el-dialog__body::-webkit-scrollbar {
+    height: 7px;width: 5px;
+    display: block; cursor: pointer;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+.el-dialog__body::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color:  rgba(9, 38, 180, 0.1);
+}
+/*定义滑块*/
+.el-dialog__body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color:  var(--c1);
+}
+.el-radio-button__inner{
+    border: 1px solid var(--border)!important;
+}
+.el-radio-button.is-active .el-radio-button__original-radio:not(:disabled)+.el-radio-button__inner{
+    box-shadow: none!important;
+}

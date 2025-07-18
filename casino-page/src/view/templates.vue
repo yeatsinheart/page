@@ -6,20 +6,22 @@
     <el-icon size="32"><Guide /></el-icon>
     <el-button type="primary" @click="pop_by_container('/pop/container/close_bottom','/example/new-version')">新页面</el-button>
   </div>
-
-  <div class="card-grid"  style="height:calc(100% - 40px);overflow: auto;">
-    <div class="card" v-for="item in list" :key="item.example">
-      <img :src="item.example"/>
-<!-- style="white-space: pre-wrap;"     -->
-      <div   class="truncate" >
-        123xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      </div>
-      <div style="text-align: center">
-        <el-button type="primary" round size="small">删除</el-button>
-        <el-button type="primary" round size="small">修改</el-button>
+  <div style="height:calc(100% - 40px);overflow: auto;">
+    <div class="card-grid"  >
+      <div class="card" v-for="item in list" :key="item.example">
+        <img :src="item.example"/>
+        <!-- style="white-space: pre-wrap;"     -->
+        <div   class="truncate" >
+          123xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        </div>
+        <div style="text-align: center">
+          <el-button type="primary" round size="small">删除</el-button>
+          <el-button type="primary" round size="small">修改</el-button>
+        </div>
       </div>
     </div>
-  </div>
+</div>
+
 </template>
 
 <script setup>
@@ -34,13 +36,21 @@ if (key) {
 const list = ref([
     {example:'https://image.meiye.art/pic_1750165986844?imageMogr2/thumbnail/640x/interlace/1'},
     {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
-    {example:'https://image.meiye.art/pic_1750165986844?imageMogr2/thumbnail/640x/interlace/1'},
+    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
+    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
+    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
+    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
+    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
+    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
+    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
+    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
     {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
 ])
 </script>
 
 <style scoped lang="scss">
-/*✅ 当卡片数量少（不足以占满一行）时 → 卡片宽度固定，不被拉伸
+/*
+✅ 当卡片数量少（不足以占满一行）时 → 卡片宽度固定，不被拉伸
 ✅ 当卡片数量多（可以排满或超出一行）时 → 自动均分一行空间，形成宫格布局*/
 /*.card-grid {
   display: grid;
@@ -48,9 +58,9 @@ const list = ref([
   gap: 10px;
 }*/
 
-.card-grid {
+.card-grid {//外面再套一层div，就能实现内容高度
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));//minmax(200px, 1fr) 的意思是：每个网格项最小宽度 200px，最大可以占满剩余空间。
   gap: 10px;
 }
 .card {

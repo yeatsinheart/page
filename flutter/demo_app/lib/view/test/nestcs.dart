@@ -5,7 +5,7 @@ import 'package:flutter3/util/context.dart';
 import 'package:mutex/mutex.dart';
 
 import '../../util/lock.dart';
-import 'game.dart';
+import 'package:flutter3/service/game.dart';
 
 class TestNestcs extends StatefulWidget {
   @override

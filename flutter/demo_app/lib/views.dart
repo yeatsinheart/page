@@ -10,7 +10,7 @@ enum ViewKeyDict {
 }
 
 // 顶层变量，Map<String, String>
-final Map<String, String> viewKeyPathMap = {
+final Map<String, String> ViewKeyPathMap = {
   "layout": "/test/appstore",
   "app_layout": "/app/layout/test",
   "download_tip": "/app/download_tip/demo",
@@ -88,10 +88,10 @@ final Map<String, String> viewKeyPathMap = {
     return PageRouteBuilder(
         settings: settings,
         pageBuilder: (cxt, ani1, ani2) {
-          return FadeTransition(opacity: ani1, child: NamedViewWidget.getViewWidget(viewKeyPathMap[ViewKeyDict.splash]));
+          return FadeTransition(opacity: ani1, child: NamedViewWidget.getViewWidget(ViewKeyPathMap[ViewKeyDict.splash.name]));
         });
   } else if (routeName == '/') {
-    String? path = viewKeyPathMap[ViewKeyDict.layout.name];
+    String? path = ViewKeyPathMap[ViewKeyDict.layout.name];
     print(path);
     Widget view = NamedViewWidget.getViewWidget(path);
     if(null==view){

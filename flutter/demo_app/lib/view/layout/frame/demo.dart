@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../named_view_widget.dart';
-import '../../../app/route.dart';
-import '../../../app/store.dart';
 import '../../../util/context.dart';
+import 'package:flutter3/named_view_widget.dart';
+import 'package:flutter3/store/color_store.dart';
 
 class LayoutFrameDemo extends StatefulWidget {
   const LayoutFrameDemo({super.key});
@@ -30,7 +30,7 @@ class _LayoutFrameDemoState extends State<LayoutFrameDemo> {
 
   void change() async {
     _timer = Timer.periodic(const Duration(milliseconds: 1000), (v) {
-      Get.put(Store()).changeColor("");
+      Get.put(ColorStore()).changeColor("");
     });
   }
 
@@ -40,7 +40,7 @@ class _LayoutFrameDemoState extends State<LayoutFrameDemo> {
   Widget build(BuildContext context) {
     /// layout 布局 与底部导航绑定
     //final List _pageList = [NamedViewWidget.getViewWidget(layout[0].path), NamedViewWidget.getViewWidget(layout[1].path), NamedViewWidget.getViewWidget(layout[2].path)];
-    final List _pageList =  [AppRoute.home(), AppRoute.contact(), AppRoute.discover(), AppRoute.me()];
+    final List _pageList =  [NamedViewWidget.getViewWidget("home"),NamedViewWidget.getViewWidget("contact"), NamedViewWidget.getViewWidget("discover"), NamedViewWidget.getViewWidget("me")];
     // for(var item in layout.bottom_tab){
     //   _pageList.add(NamedViewWidget.getViewWidget(layout[0].path)) ;
     //   //data.add(value)

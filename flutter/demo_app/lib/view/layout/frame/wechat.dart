@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/service/app_service.dart';
+import 'package:flutter3/named_view_widget.dart';
 
-import '../../../app/route.dart';
 
 class LayoutFrameWechat extends StatefulWidget {
   const LayoutFrameWechat({super.key});
@@ -20,7 +20,7 @@ class _LayoutFrameWechatState extends State<LayoutFrameWechat> {
   }
 
   /// layout 布局 与底部导航绑定
-  final List _pageList = [AppRoute.home(), AppRoute.contact(), AppRoute.discover(), AppRoute.me()];
+  final List _pageList = [NamedViewWidget.getViewWidget("home"),NamedViewWidget.getViewWidget("contact"), NamedViewWidget.getViewWidget("discover"), NamedViewWidget.getViewWidget("me")];
   var data = [
     {"title": "首页", "icon": "0xf2dc", "route": "/"},
     {"title": "奖励", "icon": "0xf2dc", "route": "/"},

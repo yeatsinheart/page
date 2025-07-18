@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'game.dart';
+
+import 'package:flutter3/service/game.dart';
 import '../../util/context.dart';
 
 class TestDetail extends StatelessWidget {

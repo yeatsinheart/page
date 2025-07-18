@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import '../util/color.dart';
 import 'dart:math';
 
-class Store extends GetxController {
+class ColorStore extends GetxController {
   // GetBuilder 手动调用 update  GetBuilder<Store>( id:特殊指定ID空为全局,builder: (store){return ***** store.color   ******;},initState: (store){},dispose: (store){},),
   // GetX GetX<Store>( id:特殊指定ID空为全局,builder: (store){return ***** store.color   ******;},initState: (store){},dispose: (store){},),
   // Obx Obx(()=> )

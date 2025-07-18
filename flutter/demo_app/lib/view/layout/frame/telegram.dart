@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/service/app_service.dart';
+import 'package:flutter3/named_view_widget.dart';
 
-import '../../../app/route.dart';
 
-class LayoutFrameWechat extends StatefulWidget {
-  const LayoutFrameWechat({super.key});
+class LayoutFrameTelegram extends StatefulWidget {
+  const LayoutFrameTelegram({super.key});
 
   @override
-  State<LayoutFrameWechat> createState() => _LayoutFrameWechatState();
+  State<LayoutFrameTelegram> createState() => _LayoutFrameTelegramState();
 }
 
 /// 必须确定初始化打开哪个页面
-class _LayoutFrameWechatState extends State<LayoutFrameWechat> {
+class _LayoutFrameTelegramState extends State<LayoutFrameTelegram> {
   int _currentIndex = 0;
 
   @override
@@ -20,7 +20,7 @@ class _LayoutFrameWechatState extends State<LayoutFrameWechat> {
   }
 
   /// layout 布局 与底部导航绑定
-  final List _pageList = [AppRoute.home(), AppRoute.contact(), AppRoute.discover(), AppRoute.me()];
+  final List _pageList = [NamedViewWidget.getViewWidget("home"),NamedViewWidget.getViewWidget("contact"), NamedViewWidget.getViewWidget("discover"), NamedViewWidget.getViewWidget("me")];
   var data = [
     {"title": "动态", "icon": "0xf2dc", "route": "/"},
     {"title": "对话", "icon": "0xf2dc", "route": "/"},

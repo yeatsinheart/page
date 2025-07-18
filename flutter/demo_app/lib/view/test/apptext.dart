@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'game.dart';
+
+import 'package:flutter3/service/game.dart';
 
 class TestApptext extends StatelessWidget {
   @override

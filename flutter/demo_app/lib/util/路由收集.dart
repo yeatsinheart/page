@@ -30,28 +30,28 @@ main() async {
   });
 
   content += """
-
-
 class NamedViewWidget {
   NamedViewWidget._internal();
-
   factory NamedViewWidget() => _instance;
   static late final NamedViewWidget _instance = NamedViewWidget._internal();
-  
   """;
-  content += "\n\n\n";
+  content += "\n";
 
-  content += "  static getViewWidget(String uri) { switch (uri){\n";
+  content += "  static getViewWidget(String? uri) { \n"
+      "    if(null==uri)return null;\n"
+      "    switch (uri){\n";
 
   widgets.forEach((widget) {
-    content += "    case \"${widget}\": return ${fileToName(widget)}();\n";
+    content += "      case \"${widget}\": return ${fileToName(widget)}();\n";
   });
-  content += "}}}\n";
+  content += "    }\n"
+      "  }\n"
+      "}\n";
 
   print(content);
   try {
     // 向文件写入字符串
-    await File('lib/app/named_view_widget.dart').writeAsString(content);
+    await File('lib/named_view_widget.dart').writeAsString(content);
     print('成功写入.');
   } catch (e) {
     print(e);

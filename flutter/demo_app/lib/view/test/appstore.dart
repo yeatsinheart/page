@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter3/service/data/skin_data.dart';
 import 'package:flutter3/util/context.dart';
 
+import 'package:flutter3/service/game.dart';
 import 'apptext.dart';
 import 'cs.dart';
-import 'game.dart';
 import 'nestcs.dart';
 
 class TestAppstore extends StatefulWidget {

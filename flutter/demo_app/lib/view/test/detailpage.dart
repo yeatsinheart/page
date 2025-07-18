@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'game.dart';
+import 'package:flutter3/service/game.dart';
 
 class _HeroDetailPageState extends State<TestDetailpage> with TickerProviderStateMixin {
   final ScrollController _pagecontroller = ScrollController();

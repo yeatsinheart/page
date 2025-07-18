@@ -37,15 +37,6 @@ if (key) {
 const list = ref([
     {example:'https://image.meiye.art/pic_1750165986844?imageMogr2/thumbnail/640x/interlace/1'},
     {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
-    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
-    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
-    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
-    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
-    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
-    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
-    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
-    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
-    {example:'https://image.meiye.art/pic_1750164347033?imageMogr2/thumbnail/640x/interlace/1'},
 ])
 
 </script>

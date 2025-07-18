@@ -114,11 +114,13 @@ div{
     /*transition: color,background .3s;*/
 }
 
+/*/example/list-card组件*/
 .col {
-    --columns: 1; /* 默认列数，可通过类或 style 覆盖 */
+    --card-columns: 1; /* 默认列数，可通过类或 style 覆盖 */
+    --card-gap: .1rem; /* 默认间隔，可通过类或 style 覆盖 */
     width: 100%;
-    gap: .1rem;
-    margin: .1rem 0;
+    gap: var(--card-gap);
+    /*margin: .1rem 0;*/
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -132,14 +134,14 @@ div{
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     /* 自动根据列数计算宽度 */
-    width: calc((100% - (var(--columns) - 1) * .1rem) / var(--columns));
+    width: calc((100% - (var(--card-columns) - 1) * var(--card-gap)) / var(--card-columns));
 }
-.col-1 { --columns: 1 }
-.col-2 { --columns: 2 }
-.col-3 { --columns: 3 }
-.col-4 { --columns: 4 }
-.col-5 { --columns: 5 }
-.col-6 { --columns: 6 }
+.col-1 { --card-columns: 1 }
+.col-2 { --card-columns: 2 }
+.col-3 { --card-columns: 3 }
+.col-4 { --card-columns: 4 }
+.col-5 { --card-columns: 5 }
+.col-6 { --card-columns: 6 }
 
 /*
 <!-- 3列 -->

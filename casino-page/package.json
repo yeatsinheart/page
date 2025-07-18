@@ -9,13 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.21",
     "dayjs": "^1.11.13",
     "decimal.js": "^10.5.0",
-    "autoprefixer": "^10.4.21",
+    "dompurify": "^3.2.6",
     "element-plus": "^2.10.4",
+    "marked": "^16.1.1",
     "pinia": "^3.0.3",
     "vue": "^3.5.17",
     "vue-router": "4",
+    "vue3-virtual-scroll-list": "^0.2.1",
     "vuedraggable": "^4.1.0",
     "xlsx": "^0.18.5"
   },

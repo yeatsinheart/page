@@ -26,9 +26,16 @@ class GlobalOverlayContext {
     return OverlayEntry(
         opaque: opaque,
         maintainState: maintainState,
-        builder: (context) {
-          return widget;
-        });
+        builder: (context) => Material(
+          type: MaterialType.transparency, // 或 canvas
+          child: Theme(
+            data: Theme.of(context), // 复用当前主题
+            child: SafeArea(
+              child: widget,
+            ),
+          ),
+        ),
+        );
   }
 
   static void showOverlay(OverlayEntry widget, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {

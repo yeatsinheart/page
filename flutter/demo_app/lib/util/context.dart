@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class GlobalContext {
+  // 如果你的路由结构使用了 nested Navigator 或 shell（如 go_router 的 ShellRoute），则 GlobalKey<NavigatorState> 控制的并非是嵌套路由中的 Navigator，需要使用局部 navigatorKey。
   GlobalContext._internal();
-
   factory GlobalContext() => _instance;
-
   static final GlobalContext _instance = GlobalContext._internal();
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Rex');
 
-  static BuildContext? get context => GlobalContext.navigatorKey.currentState?.context;
-
+  static BuildContext get context {
+    final ctx = navigatorKey.currentState?.context;
+    if (ctx == null) throw Exception('GlobalContext.context is null');
+    return ctx;
+  }
   static OverlayState? get overlay => navigatorKey.currentState!.overlay;
 
   // 整个组件碰上物理返回时，是否返回 WillPopScope(onWillPop: 判断方法,child: 组件,),

@@ -53,10 +53,11 @@ class Root extends StatelessWidget {
       }),
       navigatorKey: GlobalContext.navigatorKey,
       debugShowCheckedModeBanner: false,
-
       title: AppService().get()!.name,
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white, // 全局页面背景色
         // 点击时的高亮效果设置为透明 长按时的扩散效果设置为透明 以上两者去除按钮点击水波纹
+        splashFactory: NoSplash.splashFactory,
         hoverColor: Colors.transparent,
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,

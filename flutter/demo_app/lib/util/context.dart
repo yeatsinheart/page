@@ -57,6 +57,10 @@ class GlobalContext {
     return MediaQuery.of(context).size.height;
   }
 
+  static double getRem(double num) {
+    return num * getWidth() / (750/100); // 假设设计稿宽度是 750px 按照 1rem = 1% of 设计稿宽度  rem 换算方式： 按照「设计稿 750px，100rem = 750px」来换算
+  }
+
 /**
     Navigator.pop(context,[result]) 方法参数中的可选参数 result 就是页面回退时携带的参数，Navigator.push 会返回一个 Future 在 then 语句中处理页面回退的结果，具体使用参考如下：
     // 从Navigator中移除当前所在路由再跳转到新的路由，相当于finish再startActivity

@@ -12,7 +12,7 @@ enum ViewKeyDict {
 // 顶层变量，Map<String, String>
 final Map<String, String> ViewKeyPathMap = {
   "splash": "/app/splash/demo",
-  "app_layout": "/layout/wechat",
+  "app_layout": "/layout/demo1",
   "bottom_bar": "/app/bottom_bar/wechat",
 
   "home": "/wechat/msg",
@@ -72,10 +72,22 @@ final Map<String, String> ViewKeyPathMap = {
   "recharge_history": "/wallet/recharge_history/demo",
   "nomore": "/app/nomore/demo",
 };
-
-dynamic getWidget(String? key){
-  if(null==key) return null;
-  return NamedViewWidget.getViewWidget(ViewKeyPathMap[key]);
+dynamic getWidget(String? key) {
+  if (key == null) {
+    debugPrint('getWidget: key is null');
+    return null;
+  }
+  final path = ViewKeyPathMap[key];
+  if (path == null) {
+    debugPrint('getWidget: path not found for key $key');
+    return null;
+  }
+  final widget = NamedViewWidget.getViewWidget(path)
+      ?? NamedViewWidget.getViewWidget('$path/index');
+  if (widget == null) {
+    debugPrint('getWidget: widget not found for path $path');
+  }
+  return widget;
 }
 
  PageRoute getRoute(RouteSettings settings) {

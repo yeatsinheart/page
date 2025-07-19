@@ -5,13 +5,16 @@ import 'package:flutter3/util/context.dart';
 import 'package:flutter3/service/app_service.dart';
 import 'package:flutter3/views.dart';
 
-class LayoutDemo extends StatefulWidget {
-  const LayoutDemo({super.key});
+import '_bottom_bar_demo.dart';
+
+
+class LayoutDemo1 extends StatefulWidget {
+  const LayoutDemo1({super.key});
   @override
-  State<LayoutDemo> createState() => _LayoutDemoState();
+  State<LayoutDemo1> createState() => _LayoutDemoState();
 }
 /// 必须确定初始化打开哪个页面
-class _LayoutDemoState extends State<LayoutDemo> {
+class _LayoutDemoState extends State<LayoutDemo1> {
   int _currentIndex = 0;
   @override
   void initState() {super.initState();}
@@ -37,37 +40,10 @@ class _LayoutDemoState extends State<LayoutDemo> {
       pages.add(getWidget(item['openViewKey']));
     }
     return Scaffold(body: pages[_currentIndex],
-        bottomNavigationBar:Theme(
-            data: ThemeData(
-              navigationBarTheme: NavigationBarThemeData(
-                // 去除涟漪效果 & 悬浮时背景色
-                overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                      (states) {
-                    if (states.contains(MaterialState.hovered) ||
-                        states.contains(MaterialState.focused) ||
-                        states.contains(MaterialState.pressed)) {
-                      return Colors.transparent;
-                    }
-                    return null;
-                  },
-                ),
-                indicatorColor: Colors.transparent, // 取消背景选中高亮
-                labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-                labelTextStyle: MaterialStateProperty.all(
-                  TextStyle(
-                    color: Colors.green,
-                    fontSize: GlobalContext.getRem(0.24),
-                    height: 1.2, // 行高为字体大小，避免顶部留白
-                    // 也可以尝试 height: null，如果你完全想用默认布局计算
-                  ),
-                ),
-              ),
-            ),
-            child: NavigationBar(
-      height: GlobalContext.getRem(1.24), // 这个属性在 Material3 支持
-      selectedIndex: _currentIndex,
-      onDestinationSelected: (index) => setState(() => _currentIndex = index),
-      destinations: destinations
-    )));
+        bottomNavigationBar:AppBottomBarDemo(
+          currentIndex: _currentIndex,
+          onTap: (i) => setState(() => _currentIndex = i),
+        ),
+    );
   }
 }

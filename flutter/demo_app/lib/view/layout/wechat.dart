@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
+import 'package:flutter3/util/context.dart';
 import 'package:flutter3/service/app_service.dart';
 import 'package:flutter3/views.dart';
 
@@ -27,13 +28,12 @@ class _LayoutWechatState extends State<LayoutWechat> {
     List<dynamic> pages =[];
     for (Map<String, dynamic> item in items) {
       navItems.add(BottomNavigationBarItem(
-        icon: getUrlImg(item["iconI18nKey"], 25, 25, null), // 你可以根据 iconI18nKey 加载图标
-        activeIcon: getUrlImg(item["iconFocusI18nKey"], 25, 25, null), // 你可以根据 iconFocusI18nKey 加载图标
+        icon: getUrlImg(item["iconI18nKey"], GlobalContext.getRem(.5), GlobalContext.getRem(.5), null), // 你可以根据 iconI18nKey 加载图标
+        activeIcon: getUrlImg(item["iconFocusI18nKey"], GlobalContext.getRem(.5), GlobalContext.getRem(.5), null), // 你可以根据 iconFocusI18nKey 加载图标
         label: item['titleI18nKey'],
       ));
       pages.add(getWidget(item['openViewKey']));
     }
-
     return Scaffold(body: pages[_currentIndex],bottomNavigationBar:BottomNavigationBar(
         backgroundColor: AppService().skin()!.ground,
         //主要用于设置item及字体颜色
@@ -51,9 +51,10 @@ class _LayoutWechatState extends State<LayoutWechat> {
         //selectedLabelStyle: TextStyle(color: AppService().skin()!.color),
         selectedItemColor: AppService().skin()!.fontSpecial,
         currentIndex: _currentIndex,
-        iconSize: 25,
+        iconSize: GlobalContext.getRem(.5),// rem
         //fixedColor: GlobalContext.color(),
-        unselectedFontSize: 12,
+        unselectedFontSize: GlobalContext.getRem(.24),// rem
+        selectedFontSize: GlobalContext.getRem(.24),// rem
         type: BottomNavigationBarType.fixed,
         onTap: (index) {setState(() {_currentIndex = index;});},
           //https://fontawesomeicons.com/flutter/icons

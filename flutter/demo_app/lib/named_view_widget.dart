@@ -12,6 +12,7 @@ import 'package:flutter3/view/test/detailpage.dart';
 import 'package:flutter3/view/test/apptext.dart';
 import 'package:flutter3/view/test/appstore.dart';
 import 'package:flutter3/view/test/detail.dart';
+import 'package:flutter3/view/layout/demo1.dart';
 import 'package:flutter3/view/layout/telegram.dart';
 import 'package:flutter3/view/layout/wechat.dart';
 import 'package:flutter3/view/layout/demo.dart';
@@ -39,6 +40,7 @@ class NamedViewWidget {
       case "/test/apptext": return TestApptext();
       case "/test/appstore": return TestAppstore();
       case "/test/detail": return TestDetail();
+      case "/layout/demo1": return LayoutDemo1();
       case "/layout/telegram": return LayoutTelegram();
       case "/layout/wechat": return LayoutWechat();
       case "/layout/demo": return LayoutDemo();

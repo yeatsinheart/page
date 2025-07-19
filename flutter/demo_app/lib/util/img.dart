@@ -37,7 +37,7 @@ CachedNetworkImage img(String url){
   );
 }
 SizedBox getUrlImg(String url,double? width,double? height,double? radius){
-  // ClipOval ≠ ClipRRect[radius为半径时]
+  // ClipOval = ClipRRect[radius为半径时] = 圆形⭕️
   return SizedBox(width: width, height: width, child:null==radius?img(url):ClipRRect(borderRadius: BorderRadius.circular(5),child: img(url),));
 }
 

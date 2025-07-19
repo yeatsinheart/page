@@ -9,8 +9,9 @@ class Page404Undified extends StatelessWidget {
     var routeArgs = GlobalContext.routeArgs();
     return Scaffold(
       body: Center(
-        child: Text(' ${routeArgs.name} is not defined'),
+        child: Text('  is not defined'),// ${routeArgs.name}
       ),
     );
   }
 }
+

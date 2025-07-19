@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:path/path.dart' as p;
 
 String base_path = "";
 String pkg = "";
@@ -64,8 +65,9 @@ dirLookUp(Directory dir) async {
     Stream<FileSystemEntity> fse = await dir.list();
     await for (FileSystemEntity entity in fse) {
       if (entity is File && entity.path.endsWith(".dart")) {
+        String fileName = p.basename(entity.path); // 只获取文件名
         String file = entity.path.replaceAll(base_path, '');
-        if (file.startsWith("/view/")) {
+        if (file.startsWith("/view/") && !fileName.startsWith("_")) {
           imports.add("import 'package:${pkg}${file}';");
           String widget = file.substring(5, file.length - 5);
           widgets.add(widget);

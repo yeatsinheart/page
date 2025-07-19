@@ -4,15 +4,15 @@ import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
 import 'package:flutter3/views.dart';
 
-class LayoutWechat extends StatefulWidget {
-  const LayoutWechat({super.key});
+class DemoBottomNavigationBar extends StatefulWidget {
+  const DemoBottomNavigationBar({super.key});
 
   @override
-  State<LayoutWechat> createState() => _LayoutWechatState();
+  State<DemoBottomNavigationBar> createState() => _DemoBottomNavigationBarState();
 }
 
 /// 必须确定初始化打开哪个页面
-class _LayoutWechatState extends State<LayoutWechat> {
+class _DemoBottomNavigationBarState extends State<DemoBottomNavigationBar> {
   int _currentIndex = 0;
 
   @override

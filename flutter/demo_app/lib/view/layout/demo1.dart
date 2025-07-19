@@ -3,8 +3,6 @@ import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
 import 'package:flutter3/views.dart';
 
-import '_bottom_bar_demo.dart';
-
 class LayoutDemo1 extends StatefulWidget {
   const LayoutDemo1({super.key});
 
@@ -24,28 +22,56 @@ class _LayoutDemoState extends State<LayoutDemo1> {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> items = [
-      {"iconI18nKey": "https://s33xa.runtu123.com/0/global/1741121380209_icon_btm_sy.avif", "iconFocusI18nKey": "https://s33xa.runtu123.com/0/global/1742274541661_47144ec2-aa9c-4ebc-8aa1-49241d3f465c_icon_btm_sy1.avif", "titleI18nKey": "微信", "openViewKey": "home"},
-      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "通讯录", "openViewKey": "contact"},
-      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "发现", "openViewKey": "discover"},
-      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "发现1", "openViewKey": "discover"},
-      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "我", "openViewKey": "me"},
+      {"iconI18nKey": "https://cdn-icons-png.flaticon.com/128/1946/1946488.png", "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/619/619153.png", "titleI18nKey": "首页", "openViewKey": "home"},
+      {"iconI18nKey": "https://cdn-icons-png.flaticon.com/128/428/428094.png", "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/4697/4697500.png", "titleI18nKey": "发现", "openViewKey": "discover"},
+      {"iconI18nKey": "https://cdn-icons-png.flaticon.com/128/892/892781.png", "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/3135/3135715.png", "titleI18nKey": "我", "openViewKey": "me"},
     ];
-    List<NavigationDestination> destinations = [];
+    List<Widget> list = [];
     List<dynamic> pages = [];
-    for (Map<String, dynamic> item in items) {
-      destinations.add(
-        NavigationDestination(
-          icon: getUrlImg(item["iconI18nKey"], GlobalContext.getRem(.5), GlobalContext.getRem(.5), null), // 你可以根据 iconI18nKey 加载图标
-          selectedIcon: getUrlImg(item["iconFocusI18nKey"], GlobalContext.getRem(.5), GlobalContext.getRem(.5), null), // 你可以根据 iconFocusI18nKey 加载图标
-          label: item['titleI18nKey'],
-          tooltip: '',
-        ),
-      );
+    for (int i = 0; i < items.length; i++) {
+      Map<String, dynamic> item = items[i];
+      list.add(_buildNavItem(icon: item['iconI18nKey'], activeIcon: item['iconFocusI18nKey'], label: item['titleI18nKey'], index: i));
       pages.add(getWidget(item['openViewKey']));
     }
+
     return Scaffold(
       body: pages[_currentIndex],
-      bottomNavigationBar: AppBottomBarDemo(currentIndex: _currentIndex, onTap: (i) => setState(() => _currentIndex = i)),
+      bottomNavigationBar: Container(
+        height: GlobalContext.getRem(1.24),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [BoxShadow(blurRadius: 3, color: Colors.black12)], // 还带了阴影呢
+        ),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: list),
+      ),
+    );
+  }
+
+  Widget _buildNavItem({required String icon, required String activeIcon, required String label, required int index}) {
+    final isActive = index == _currentIndex;
+    //自动扩展均分
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => setState(() => _currentIndex = index),
+        behavior: HitTestBehavior.opaque, // 保证整块区域可点
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              getUrlImg(isActive ? activeIcon : icon, GlobalContext.getRem(.5), GlobalContext.getRem(.5), null),
+              Text(
+                label,
+                style: TextStyle(
+                  color: isActive ? Colors.green : Colors.black,
+                  fontSize: GlobalContext.getRem(0.24),
+                  height: 1.2, // 行高为字体大小，避免顶部留白
+                  // 也可以尝试 height: null，如果你完全想用默认布局计算
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

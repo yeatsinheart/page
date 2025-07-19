@@ -4,6 +4,7 @@ import 'package:flutter3/service/data/skin_data.dart';
 import 'package:flutter3/util/context.dart';
 
 import 'package:flutter3/service/game.dart';
+import 'package:flutter3/util/img.dart';
 import 'apptext.dart';
 import 'cs.dart';
 import 'nestcs.dart';
@@ -56,11 +57,20 @@ class _AppStoreState extends State<TestAppstore> with TickerProviderStateMixin {
                         ),
                       ),
                       ClipOval(
-                        child: Image.network(
+                        child: getUrlImg('https://99designs-blog.imgix.net/blog/wp-content/uploads/2022/06/Starbucks_Corporation_Logo_2011.svg-e1657703028844.png?auto=format&q=60&fit=max&w=930',50,50)
+                       /* Image.network(
                           'https://99designs-blog.imgix.net/blog/wp-content/uploads/2022/06/Starbucks_Corporation_Logo_2011.svg-e1657703028844.png?auto=format&q=60&fit=max&w=930',
                           width: 50,
                           height: 50,
-                        ),
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/img_1.png', // 本地占位图
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.cover,
+                            );
+                          },
+                        ),*/
                       )
                     ],
                   ),

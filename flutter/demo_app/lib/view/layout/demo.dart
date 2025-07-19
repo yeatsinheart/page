@@ -3,20 +3,20 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../named_view_widget.dart';
-import '../../../util/context.dart';
+import 'package:flutter3/util/context.dart';
 import 'package:flutter3/named_view_widget.dart';
+import 'package:flutter3/views.dart';
 import 'package:flutter3/store/color_store.dart';
 
-class LayoutFrameDemo extends StatefulWidget {
-  const LayoutFrameDemo({super.key});
+class LayoutDemo extends StatefulWidget {
+  const LayoutDemo({super.key});
 
   @override
-  State<LayoutFrameDemo> createState() => _LayoutFrameDemoState();
+  State<LayoutDemo> createState() => _LayoutDemoState();
 }
 
 /// 必须确定初始化打开哪个页面
-class _LayoutFrameDemoState extends State<LayoutFrameDemo> {
+class _LayoutDemoState extends State<LayoutDemo> {
   int _currentIndex = 0;
 
   @override
@@ -39,8 +39,11 @@ class _LayoutFrameDemoState extends State<LayoutFrameDemo> {
   @override
   Widget build(BuildContext context) {
     /// layout 布局 与底部导航绑定
-    //final List _pageList = [NamedViewWidget.getViewWidget(layout[0].path), NamedViewWidget.getViewWidget(layout[1].path), NamedViewWidget.getViewWidget(layout[2].path)];
-    final List _pageList =  [NamedViewWidget.getViewWidget("home"),NamedViewWidget.getViewWidget("contact"), NamedViewWidget.getViewWidget("discover"), NamedViewWidget.getViewWidget("me")];
+      final List _pageList = [
+        NamedViewWidget.getViewWidget(ViewKeyPathMap["home"]),
+        NamedViewWidget.getViewWidget(ViewKeyPathMap["contact"]),
+        NamedViewWidget.getViewWidget(ViewKeyPathMap["discover"]),
+        NamedViewWidget.getViewWidget(ViewKeyPathMap["me"])];
     // for(var item in layout.bottom_tab){
     //   _pageList.add(NamedViewWidget.getViewWidget(layout[0].path)) ;
     //   //data.add(value)

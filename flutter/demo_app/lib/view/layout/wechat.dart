@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/service/app_service.dart';
 import 'package:flutter3/named_view_widget.dart';
+import 'package:flutter3/views.dart';
 
 
-class LayoutFrameWechat extends StatefulWidget {
-  const LayoutFrameWechat({super.key});
+class LayoutWechat extends StatefulWidget {
+  const LayoutWechat({super.key});
 
   @override
-  State<LayoutFrameWechat> createState() => _LayoutFrameWechatState();
+  State<LayoutWechat> createState() => _LayoutWechatState();
 }
 
 /// 必须确定初始化打开哪个页面
-class _LayoutFrameWechatState extends State<LayoutFrameWechat> {
+class _LayoutWechatState extends State<LayoutWechat> {
   int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
   }
-
   /// layout 布局 与底部导航绑定
-  final List _pageList = [NamedViewWidget.getViewWidget("home"),NamedViewWidget.getViewWidget("contact"), NamedViewWidget.getViewWidget("discover"), NamedViewWidget.getViewWidget("me")];
+  final List _pageList = [
+    NamedViewWidget.getViewWidget(ViewKeyPathMap["home"]),
+    NamedViewWidget.getViewWidget(ViewKeyPathMap["contact"]),
+    NamedViewWidget.getViewWidget(ViewKeyPathMap["discover"]),
+    NamedViewWidget.getViewWidget(ViewKeyPathMap["me"])];
   var data = [
     {"title": "首页", "icon": "0xf2dc", "route": "/"},
     {"title": "奖励", "icon": "0xf2dc", "route": "/"},
@@ -30,6 +34,7 @@ class _LayoutFrameWechatState extends State<LayoutFrameWechat> {
 
   @override
   Widget build(BuildContext context) {
+
     /// Icon String icons = "";
     // // accessible: &#xE914; or 0xE914 or E914
     // icons += "\uE914";

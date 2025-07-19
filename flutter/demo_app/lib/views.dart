@@ -11,16 +11,21 @@ enum ViewKeyDict {
 
 // 顶层变量，Map<String, String>
 final Map<String, String> ViewKeyPathMap = {
-  "layout": "/test/appstore",
-  "app_layout": "/app/layout/test",
+  "layout": "/layout/wechat",
+  "app_layout": "/layout/wechat",
+
+  "home": "/wechat/msg",
+  "home": "/test/appstore",
+  "discover": "/wechat/discover",
+  "me": "/page/me/demo",
+  "contact": "/wechat/contact",
+
   "download_tip": "/app/download_tip/demo",
   "bottom_bar": "/app/bottom_bar/demo",
-  "home": "/app/home/demo",
   "color": "/app/setting/color",
   "language": "/app/setting/language",
   "view": "/app/setting/view",
   "auth": "/account/auth/demo",
-  "me": "/account/home/demo",
   "avatar": "/account/avatar/demo",
   "notfound": "/app/page/home/wg",
   "swiper": "/market/swiper/demo",
@@ -92,7 +97,6 @@ final Map<String, String> ViewKeyPathMap = {
         });
   } else if (routeName == '/') {
     String? path = ViewKeyPathMap[ViewKeyDict.layout.name];
-    print(path);
     Widget view = NamedViewWidget.getViewWidget(path);
     if(null==view){
       return AnimationPageRoute(

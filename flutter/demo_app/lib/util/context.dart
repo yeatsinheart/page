@@ -16,45 +16,45 @@ class GlobalContext {
 
   // 整个组件碰上物理返回时，是否返回 WillPopScope(onWillPop: 判断方法,child: 组件,),
   /// 获取路由携带的参数
-  static routeArgs() {
-    return ModalRoute.of(context!)!.settings.arguments;
+  static Object? routeArgs() {
+    return ModalRoute.of(context)!.settings.arguments;
   }
 
-  static redirect(name, args) {
+  static void redirect(name, args) {
     navigatorKey.currentState?.pushNamed(name, arguments: args);
   }
 
 
-  static loadRoute(name, args) {
+  static void loadRoute(name, args) {
     navigatorKey.currentState?.pushNamedAndRemoveUntil(name, (route) => true, arguments: args);
   }
 
-  static loadWidget(Route widget) {
+  static void loadWidget(Route widget) {
     navigatorKey.currentState?.pushAndRemoveUntil(widget, (route) => true);
   }
 
-  static open(Route route) {
+  static void open(Route route) {
     navigatorKey.currentState?.push(route);
   }
 
-  static pop() {
+  static void pop() {
     navigatorKey.currentState?.pop();
   }
 
-  static color() {
-    return Theme.of(context!).colorScheme.primary;
+  static Color color() {
+    return Theme.of(context).colorScheme.primary;
   }
 
-  static colorScheme() {
-    return Theme.of(context!).colorScheme;
+  static ColorScheme colorScheme() {
+    return Theme.of(context).colorScheme;
   }
 
-  static getWidth() {
-    return MediaQuery.of(context!).size.width;
+  static double getWidth() {
+    return MediaQuery.of(context).size.width;
   }
 
-  static getHeight() {
-    return MediaQuery.of(context!).size.height;
+  static double getHeight() {
+    return MediaQuery.of(context).size.height;
   }
 
 /**

@@ -13,6 +13,7 @@ enum ViewKeyDict {
 final Map<String, String> ViewKeyPathMap = {
   "splash": "/app/splash/demo",
   "app_layout": "/layout/wechat",
+  "bottom_bar": "/app/bottom_bar/wechat",
 
   "home": "/wechat/msg",
   "home": "/test/appstore",

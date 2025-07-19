@@ -71,6 +71,11 @@ final Map<String, String> ViewKeyPathMap = {
   "nomore": "/app/nomore/demo",
 };
 
+getWidget(String? key){
+  if(null==key) return null;
+  return NamedViewWidget.getViewWidget(ViewKeyPathMap["home"]);
+}
+
  getRoute(RouteSettings settings) {
   String routeName = settings.name!;
   // 自定义：PageRouteBuilder，可以自定义动画效果

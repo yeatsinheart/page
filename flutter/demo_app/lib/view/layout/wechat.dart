@@ -1,40 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/service/app_service.dart';
 import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
-import 'package:flutter3/util/context.dart';
-import 'package:flutter3/service/app_service.dart';
 import 'package:flutter3/views.dart';
 
 class LayoutWechat extends StatefulWidget {
   const LayoutWechat({super.key});
+
   @override
   State<LayoutWechat> createState() => _LayoutWechatState();
 }
+
 /// 必须确定初始化打开哪个页面
 class _LayoutWechatState extends State<LayoutWechat> {
   int _currentIndex = 0;
+
   @override
-  void initState() {super.initState();}
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-
     List<Map<String, dynamic>> items = [
-      {"iconI18nKey": "1","iconFocusI18nKey": "1", "titleI18nKey": "微信","openViewKey":"home"},
-      {"iconI18nKey": "1","iconFocusI18nKey": "1", "titleI18nKey": "通讯录","openViewKey":"contact"},
-      {"iconI18nKey": "1","iconFocusI18nKey": "1", "titleI18nKey": "发现","openViewKey":"discover"},
-      {"iconI18nKey": "1","iconFocusI18nKey": "1", "titleI18nKey": "我","openViewKey":"me"}
+      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "微信", "openViewKey": "home"},
+      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "通讯录", "openViewKey": "contact"},
+      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "发现", "openViewKey": "discover"},
+      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "我", "openViewKey": "me"},
     ];
-    List<BottomNavigationBarItem> navItems =[];
-    List<dynamic> pages =[];
+    List<BottomNavigationBarItem> navItems = [];
+    List<dynamic> pages = [];
     for (Map<String, dynamic> item in items) {
-      navItems.add(BottomNavigationBarItem(
-        icon: getUrlImg(item["iconI18nKey"], GlobalContext.getRem(.5), GlobalContext.getRem(.5), null), // 你可以根据 iconI18nKey 加载图标
-        activeIcon: getUrlImg(item["iconFocusI18nKey"], GlobalContext.getRem(.5), GlobalContext.getRem(.5), null), // 你可以根据 iconFocusI18nKey 加载图标
-        label: item['titleI18nKey'],
-      ));
+      navItems.add(
+        BottomNavigationBarItem(
+          icon: getUrlImg(item["iconI18nKey"], GlobalContext.getRem(.5), GlobalContext.getRem(.5), null), // 你可以根据 iconI18nKey 加载图标
+          activeIcon: getUrlImg(item["iconFocusI18nKey"], GlobalContext.getRem(.5), GlobalContext.getRem(.5), null), // 你可以根据 iconFocusI18nKey 加载图标
+          label: item['titleI18nKey'],
+        ),
+      );
       pages.add(getWidget(item['openViewKey']));
     }
-    return Scaffold(body: pages[_currentIndex],bottomNavigationBar:BottomNavigationBar(
+    return Scaffold(
+      body: pages[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
         backgroundColor: AppService().skin()!.ground,
         //主要用于设置item及字体颜色
         //主要用于设置icon颜色,作用优先于unselectedItemColor
@@ -51,16 +59,20 @@ class _LayoutWechatState extends State<LayoutWechat> {
         //selectedLabelStyle: TextStyle(color: AppService().skin()!.color),
         selectedItemColor: AppService().skin()!.fontSpecial,
         currentIndex: _currentIndex,
-        iconSize: GlobalContext.getRem(.5),// rem
+        iconSize: GlobalContext.getRem(.5),
+        // rem
         //fixedColor: GlobalContext.color(),
-        unselectedFontSize: GlobalContext.getRem(.24),// rem
-        selectedFontSize: GlobalContext.getRem(.24),// rem
+        unselectedFontSize: GlobalContext.getRem(.24),
+        // rem
+        selectedFontSize: GlobalContext.getRem(.24),
+        // rem
         type: BottomNavigationBarType.fixed,
-        onTap: (index) {setState(() {_currentIndex = index;});},
-          //https://fontawesomeicons.com/flutter/icons
-          // https://fonts.google.com/icons?selected=Material+Icons:home:&icon.platform=flutter
-        items: navItems
-    )
+        //onTap: (index) {setState(() {_currentIndex = index;});},
+        onTap: (index) => setState(() => _currentIndex = index),
+        //https://fontawesomeicons.com/flutter/icons
+        // https://fonts.google.com/icons?selected=Material+Icons:home:&icon.platform=flutter
+        items: navItems,
+      ),
     );
   }
 }

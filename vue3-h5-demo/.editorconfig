@@ -1,0 +1,7 @@
+# .editorconfig 能够让代码格式化时尽量在一行展示
+root = true
+
+[*]
+max_line_length = 500
+indent_style = space
+indent_size = 2

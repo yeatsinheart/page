@@ -16,22 +16,23 @@ class _LayoutWechatState extends State<LayoutWechat> {
   void initState() {super.initState();}
   @override
   Widget build(BuildContext context) {
+
     List<Map<String, dynamic>> items = [
       {"iconI18nKey": "1","iconFocusI18nKey": "1", "titleI18nKey": "微信","openViewKey":"home"},
       {"iconI18nKey": "1","iconFocusI18nKey": "1", "titleI18nKey": "通讯录","openViewKey":"contact"},
       {"iconI18nKey": "1","iconFocusI18nKey": "1", "titleI18nKey": "发现","openViewKey":"discover"},
       {"iconI18nKey": "1","iconFocusI18nKey": "1", "titleI18nKey": "我","openViewKey":"me"}
     ];
-    List<BottomNavigationBarItem> navItems = items.map((item) {
-      return BottomNavigationBarItem(
+    List<BottomNavigationBarItem> navItems =[];
+    List<dynamic> pages =[];
+    for (Map<String, dynamic> item in items) {
+      navItems.add(BottomNavigationBarItem(
         icon: getUrlImg(item["iconI18nKey"], 25, 25, null), // 你可以根据 iconI18nKey 加载图标
-        activeIcon: getUrlImg(item["iconFocusI18nKey"], 25, 25, null), // 你可以根据 iconI18nKey 加载图标
+        activeIcon: getUrlImg(item["iconFocusI18nKey"], 25, 25, null), // 你可以根据 iconFocusI18nKey 加载图标
         label: item['titleI18nKey'],
-      );
-    }).toList();
-    List<dynamic> pages = items.map((item) {
-      return getWidget(item['openViewKey']);
-    }).toList();
+      ));
+      pages.add(getWidget(item['openViewKey']));
+    }
 
     return Scaffold(body: pages[_currentIndex],bottomNavigationBar:BottomNavigationBar(
         backgroundColor: AppService().skin()!.ground,

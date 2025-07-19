@@ -27,14 +27,18 @@ final customCacheManager = kIsWeb?null:CacheManager(
   ),
 );
 
-getUrlImg(String url,double width,double height){
-  return Container(width: width, height: width, child:CachedNetworkImage(
+CachedNetworkImage img(String url){
+  return CachedNetworkImage(
     imageUrl: url,
     cacheManager: customCacheManager,
     fit: BoxFit.cover,
     placeholder: (context, url) => CircularProgressIndicator(),
     errorWidget: (context, url, error) => Icon(Icons.broken_image),
-  ));
+  );
+}
+SizedBox getUrlImg(String url,double? width,double? height,double? radius){
+  // ClipOval ≠ ClipRRect[radius为半径时]
+  return SizedBox(width: width, height: width, child:null==radius?img(url):ClipRRect(borderRadius: BorderRadius.circular(5),child: img(url),));
 }
 
 Future<void> clearMyCache() async {

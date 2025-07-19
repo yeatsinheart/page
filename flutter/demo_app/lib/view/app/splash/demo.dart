@@ -1,19 +1,17 @@
 import 'dart:async';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3/service/app_service.dart';
+import 'package:flutter3/util/context.dart';
+import 'package:flutter3/util/img.dart';
 
-import '../../../util/context.dart';
-
-class LaunchSplashDemo extends StatefulWidget {
-  const LaunchSplashDemo({super.key});
-
+class AppSplashDemo extends StatefulWidget {
+  const AppSplashDemo({super.key});
   @override
-  _StartPageDemoState createState() => _StartPageDemoState();
+  _AppSplashDemoState createState() => _AppSplashDemoState();
 }
 
-class _StartPageDemoState extends State<LaunchSplashDemo> {
+class _AppSplashDemoState extends State<AppSplashDemo> {
   late Timer _timer;
   int count = 1;
   bool initialed = false;
@@ -39,19 +37,12 @@ class _StartPageDemoState extends State<LaunchSplashDemo> {
   Widget build(BuildContext context) {
     //展示广告
     //alignment: Alignment(1.0, -1.0), // 右上角对齐
-
     return Scaffold(
         body: Stack(
       children: [
         Column(
           children: [
-            Container(
-              width: GlobalContext.getWidth(),
-              height: GlobalContext.getHeight() * 7 / 8,
-              child: ClipRRect(
-                  //borderRadius: BorderRadius.circular(5),
-                  child: CachedNetworkImage(fit: BoxFit.cover, placeholder: (context, url) => Container(), errorWidget: (context, url, error) => Text("图片失败"), imageUrl: AppService().get()!.splash)),
-            ),
+            getUrlImg(AppService().get()!.splash,GlobalContext.getWidth(),GlobalContext.getHeight() * 7 / 8,null),
             Expanded(
               child: Container(
                 width: GlobalContext.getWidth(),
@@ -59,7 +50,7 @@ class _StartPageDemoState extends State<LaunchSplashDemo> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
                   children: <Widget>[
-                    Container(width: 32, height: 32, child: CachedNetworkImage(fit: BoxFit.cover, placeholder: (context, url) => Container(), errorWidget: (context, url, error) => Text("图片失败"), imageUrl: AppService().get()!.logo)),
+                    getUrlImg(AppService().get()!.logo,32,32,null),
                     Text(
                       AppService().get()!.name,
                       style: TextStyle(color: AppService().skin()?.font, fontSize: 14),

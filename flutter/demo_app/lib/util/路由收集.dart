@@ -23,7 +23,7 @@ main() async {
   await dirLookUp(dir);
 
 
-  String content = "";
+  String content = "import 'package:flutter/material.dart';\n";
 
   imports.forEach((item) {
     content += "${item}\n";
@@ -33,11 +33,11 @@ main() async {
 class NamedViewWidget {
   NamedViewWidget._internal();
   factory NamedViewWidget() => _instance;
-  static late final NamedViewWidget _instance = NamedViewWidget._internal();
+  static final NamedViewWidget _instance = NamedViewWidget._internal();
   """;
   content += "\n";
 
-  content += "  static getViewWidget(String? uri) { \n"
+  content += "  static Widget? getViewWidget(String? uri) { \n"
       "    if(null==uri)return null;\n"
       "    switch (uri){\n";
 
@@ -45,6 +45,7 @@ class NamedViewWidget {
     content += "      case \"${widget}\": return ${fileToName(widget)}();\n";
   });
   content += "    }\n"
+      "    return null;\n"
       "  }\n"
       "}\n";
 

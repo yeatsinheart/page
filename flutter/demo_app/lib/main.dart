@@ -15,9 +15,7 @@ void main() {
   //SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,]);
   //Flutter 中存在三棵树，Widget[虚拟的结构]、Element 和 RenderObject。
   WidgetsFlutterBinding.ensureInitialized();
-
   runApp(const Root());
-
 }
 
 class Root extends StatelessWidget {

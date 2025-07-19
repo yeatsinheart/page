@@ -11,11 +11,12 @@ enum ViewKeyDict {
 
 // 顶层变量，Map<String, String>
 final Map<String, String> ViewKeyPathMap = {
-  "layout": "/layout/wechat",
+  "splash": "/app/splash/demo",
   "app_layout": "/layout/wechat",
 
   "home": "/wechat/msg",
   "home": "/test/appstore",
+
   "discover": "/wechat/discover",
   "me": "/page/me/demo",
   "contact": "/wechat/contact",
@@ -71,12 +72,12 @@ final Map<String, String> ViewKeyPathMap = {
   "nomore": "/app/nomore/demo",
 };
 
-getWidget(String? key){
+dynamic getWidget(String? key){
   if(null==key) return null;
-  return NamedViewWidget.getViewWidget(ViewKeyPathMap["home"]);
+  return NamedViewWidget.getViewWidget(ViewKeyPathMap[key]);
 }
 
- getRoute(RouteSettings settings) {
+ PageRoute getRoute(RouteSettings settings) {
   String routeName = settings.name!;
   // 自定义：PageRouteBuilder，可以自定义动画效果
   // Flutter 提供了两个转场动画，分别为 MaterialPageRoute 和 CupertinoPageRoute，
@@ -98,19 +99,11 @@ getWidget(String? key){
     return PageRouteBuilder(
         settings: settings,
         pageBuilder: (cxt, ani1, ani2) {
-          return FadeTransition(opacity: ani1, child: NamedViewWidget.getViewWidget(ViewKeyPathMap[ViewKeyDict.splash.name]));
+          return FadeTransition(opacity: ani1, child: getWidget("splash")??Container());
         });
   } else if (routeName == '/') {
-    String? path = ViewKeyPathMap[ViewKeyDict.layout.name];
-    Widget view = NamedViewWidget.getViewWidget(path);
-    if(null==view){
-      return AnimationPageRoute(
-        Container(),
-        settings: settings,
-      );
-    }
     return AnimationPageRoute(
-      view,
+      getWidget("app_layout")??Container(),
       settings: settings,
     );
   } else {

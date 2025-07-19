@@ -1,11 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter3/views.dart';
 
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'app/route.dart';
-import 'service/app_service.dart';
 import 'service/network_service.dart';
 import 'util/context.dart';
 // 测试网络状态，有网状态才能启动
@@ -24,7 +23,7 @@ _test_network_until_good() {
     // 监听
     if (await NetworkService.check()) {
       GlobalContext.loadWidget(PageRouteBuilder(pageBuilder: (cxt, ani1, ani2) {
-        return FadeTransition(opacity: ani1, child: AppRoute.splash());
+        return FadeTransition(opacity: ani1, child: getWidget("splash"));
       }));
     } else {
       _test_network_until_good();

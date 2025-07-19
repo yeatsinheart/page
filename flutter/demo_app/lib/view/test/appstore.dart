@@ -57,7 +57,7 @@ class _AppStoreState extends State<TestAppstore> with TickerProviderStateMixin {
                         ),
                       ),
                       ClipOval(
-                        child: getUrlImg('https://99designs-blog.imgix.net/blog/wp-content/uploads/2022/06/Starbucks_Corporation_Logo_2011.svg-e1657703028844.png?auto=format&q=60&fit=max&w=930',50,50)
+                        child: getUrlImg('https://99designs-blog.imgix.net/blog/wp-content/uploads/2022/06/Starbucks_Corporation_Logo_2011.svg-e1657703028844.png?auto=format&q=60&fit=max&w=930',50,50,25)
                        /* Image.network(
                           'https://99designs-blog.imgix.net/blog/wp-content/uploads/2022/06/Starbucks_Corporation_Logo_2011.svg-e1657703028844.png?auto=format&q=60&fit=max&w=930',
                           width: 50,

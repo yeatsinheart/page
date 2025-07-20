@@ -23,7 +23,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
       final offset = _controller.offset;
       // 你可以根据 offset 区间判断当前显示哪个 Header
       int newIndex = offset > 500 ? 0 : 1;
-      print("offset ${offset} header ${newIndex}");
+      //print("offset ${offset} header ${newIndex}");
       if (newIndex != currentHeaderIndex) {
         setState(() {
           currentHeaderIndex = newIndex;

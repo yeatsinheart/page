@@ -51,7 +51,7 @@ class AppLanguage extends StatelessWidget {
                 ),
                 Center(
                   child: IconButton(
-                    icon: Icon(Icons.close, size: 32, color: Colors.white),
+                    icon: Icon(Icons.cancel, size: 32, color: Colors.white),
                     onPressed: () {
                       // 执行关闭逻辑，例如：OverlayEntry?.remove()
                       GlobalOverlayContext.removeByWidgetSelf(key.toString());

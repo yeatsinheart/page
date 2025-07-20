@@ -128,7 +128,7 @@ class _GameHomeDemo1State extends State<GameHomeDemo1>  {
                     )
                   : null,
               child: Text(
-                '${tabs[index]}${_currentIndex}',
+                '${tabs[index]}',
                 style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? Colors.blue : Colors.black),
               ),
             ),

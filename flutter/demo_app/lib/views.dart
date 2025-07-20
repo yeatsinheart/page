@@ -14,6 +14,7 @@ final Map<String, String> ViewKeyPathMap = {
   "splash": "/app/splash/demo",
   "app_layout": "/layout/demo",
 
+  "language": "/app/language",
   "home": "/app/home/wg",
   "swiper": "/market/swiper/demo",
   "marquee": "/market/marquee/demo",

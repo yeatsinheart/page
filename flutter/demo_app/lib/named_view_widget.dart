@@ -5,6 +5,7 @@ import 'package:flutter3/view/page/404/undified.dart';
 import 'package:flutter3/view/page/demo.dart';
 import 'package:flutter3/view/app/home/wg.dart';
 import 'package:flutter3/view/app/splash/demo.dart';
+import 'package:flutter3/view/app/language.dart';
 import 'package:flutter3/view/test/nestcs.dart';
 import 'package:flutter3/view/test/herodetail.dart';
 import 'package:flutter3/view/test/cs.dart';
@@ -37,6 +38,7 @@ class NamedViewWidget {
       case "/page/demo": return PageDemo();
       case "/app/home/wg": return AppHomeWg();
       case "/app/splash/demo": return AppSplashDemo();
+      case "/app/language": return AppLanguage();
       case "/test/nestcs": return TestNestcs();
       case "/test/herodetail": return TestHerodetail();
       case "/test/cs": return TestCs();

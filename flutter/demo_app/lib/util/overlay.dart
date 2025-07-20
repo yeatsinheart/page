@@ -40,7 +40,7 @@ class GlobalOverlayContext {
   }
 
   static void show(String key, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
-    showOverlay(item(getWidget("game_search")),autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);
+    showOverlay(item(getWidget(key)),autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);
   }
   static void showOverlay(OverlayEntry widget, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
     try {

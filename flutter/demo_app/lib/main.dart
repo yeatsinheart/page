@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter3/store/language.dart';
+import 'package:flutter3/store/language_store.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -23,7 +23,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //debugPaintSizeEnabled = true; // ✅ 开启边界调试 会把所有东西，边距什么的都画线
   // 多语言初始化
-  await Get.putAsync(() => Language().init());
+  await Get.putAsync(() => LanguageStore().init());
   runApp(const Root());
 }
 
@@ -33,32 +33,12 @@ class Root extends StatelessWidget {
 // 空界面，方便overlay等设置
   @override
   Widget build(BuildContext context) {
-    final langService = Get.find<Language>();
-    return GetMaterialApp(
-      translations: langService.translations,
-      locale: Locale('en', 'US'),             // 默认语言
-      //fallbackLocale: Locale('en', 'US'),     // 回退语言
+    final languageStore = Get.find<LanguageStore>();
       // 多语言
-      // 通过GETX 实现多语言 https://juejin.cn/post/7205417093973590071
-
-      // https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization
-      //https://book.flutterchina.club/chapter13/multi_languages_support.html#_13-1-4-%E7%9B%91%E5%90%AC%E7%B3%BB%E7%BB%9F%E8%AF%AD%E8%A8%80%E5%88%87%E6%8D%A2
-      //https://juejin.cn/post/7019679538778996749
-      // localizationsDelegates: [
-      //   // 本地化的代理类
-      //   AppLocalizations.delegate,
-      //   GlobalMaterialLocalizations.delegate,
-      //   GlobalWidgetsLocalizations.delegate,
-      //   GlobalCupertinoLocalizations.delegate,
-      // ],
-      //localizationsDelegates: AppLocalizations.localizationsDelegates,
-      //supportedLocales: AppLocalizations.supportedLocales,
-      // supportedLocales: [
-      //   const Locale('en', 'US'), // 美国英语
-      //   const Locale('zh', 'CN'), // 中文简体
-      //   //其他Locales
-      // ],
-      //locale: const  Locale('zh', 'CN'),
+    return GetMaterialApp(
+      translations: languageStore.translations,
+      locale: parseLocale("en_US"),             // 默认语言
+      //fallbackLocale: Locale('en', 'US'),     // 回退语言
 
       scrollBehavior: ScrollBehavior().copyWith(dragDevices: {
         PointerDeviceKind.touch,

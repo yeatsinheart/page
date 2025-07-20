@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 
+import '../views.dart';
 import 'context.dart';
 
 class GlobalOverlayContext {
@@ -38,6 +39,9 @@ class GlobalOverlayContext {
         );
   }
 
+  static void show(String key, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
+    showOverlay(item(getWidget("game_search")),autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);
+  }
   static void showOverlay(OverlayEntry widget, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
     try {
       overlay!.insert(widget);

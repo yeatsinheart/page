@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
 import 'package:flutter3/views.dart';
+import 'package:get/get.dart';
 
 class LayoutDemo extends StatefulWidget {
   const LayoutDemo({super.key});
@@ -58,9 +59,9 @@ class _LayoutDemoState extends State<LayoutDemo> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              getUrlImg(isActive ? activeIcon : icon, GlobalContext.getRem(.5), GlobalContext.getRem(.5), null),
+              getUrlImg(isActive ? activeIcon.tr : icon.tr, GlobalContext.getRem(.5), GlobalContext.getRem(.5), null),
               Text(
-                label,
+                label.tr,
                 style: TextStyle(
                   color: isActive ? Colors.green : Colors.black,
                   fontSize: GlobalContext.getRem(0.24),

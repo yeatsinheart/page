@@ -2,6 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter3/store/language.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -11,12 +16,14 @@ import 'util/context.dart';
 
 import 'views.dart';
 
-void main() {
+void main() async {
   // 默认输屏
   //SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,]);
   //Flutter 中存在三棵树，Widget[虚拟的结构]、Element 和 RenderObject。
   WidgetsFlutterBinding.ensureInitialized();
   //debugPaintSizeEnabled = true; // ✅ 开启边界调试 会把所有东西，边距什么的都画线
+  // 多语言初始化
+  await Get.putAsync(() => Language().init());
   runApp(const Root());
 }
 
@@ -26,7 +33,11 @@ class Root extends StatelessWidget {
 // 空界面，方便overlay等设置
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final langService = Get.find<Language>();
+    return GetMaterialApp(
+      translations: langService.translations,
+      locale: Locale('en', 'US'),             // 默认语言
+      //fallbackLocale: Locale('en', 'US'),     // 回退语言
       // 多语言
       // 通过GETX 实现多语言 https://juejin.cn/post/7205417093973590071
 
@@ -55,7 +66,7 @@ class Root extends StatelessWidget {
       }),
       navigatorKey: GlobalContext.navigatorKey,
       debugShowCheckedModeBanner: false,
-      title: AppService().get()!.name,
+      title: AppService().get()!.name.tr,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white, // 全局页面背景色
         // 点击时的高亮效果设置为透明 长按时的扩散效果设置为透明 以上两者去除按钮点击水波纹

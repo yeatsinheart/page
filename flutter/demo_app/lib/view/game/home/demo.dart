@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/util/context.dart';
+import 'package:get/get.dart';
 
 class GameHomeDemo extends StatefulWidget {
   @override
@@ -128,7 +129,7 @@ class _GameHomeDemoState extends State<GameHomeDemo>  {
                     )
                   : null,
               child: Text(
-                '${tabs[index]}',
+                tabs[index].tr,
                 style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? Colors.blue : Colors.black),
               ),
             ),
@@ -164,7 +165,7 @@ class _GameHomeDemoState extends State<GameHomeDemo>  {
           // SliverChildListDelegate立即渲染
           delegate: SliverChildListDelegate(
             List.generate(tabs.length, (index) {
-              return _buildSection(tabs[index], _data_keys[index]);
+              return _buildSection(tabs[index].tr, _data_keys[index]);
             }),
           ),
         ),

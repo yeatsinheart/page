@@ -104,7 +104,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
                             SizedBox(width: 8),
                             //IconButton(onPressed: () {GlobalContext.load("game_search");}, icon: Icon(Icons.search), splashColor: Colors.transparent, highlightColor: Colors.transparent, hoverColor: Colors.transparent),
                             IconButton(onPressed: () {GlobalOverlayContext.show("game_search",autoRemoveTime: 3000);}, icon: Icon(Icons.search), splashColor: Colors.transparent, highlightColor: Colors.transparent, hoverColor: Colors.transparent),
-                            IconButton(onPressed: () {GlobalOverlayContext.show("language",autoRemoveTime: 3000);}, icon: Icon(Icons.language), splashColor: Colors.transparent, highlightColor: Colors.transparent, hoverColor: Colors.transparent),
+                            IconButton(onPressed: () {GlobalOverlayContext.show("language");}, icon: Icon(Icons.language), splashColor: Colors.transparent, highlightColor: Colors.transparent, hoverColor: Colors.transparent),
                           ],
                         ),
                         //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, GlobalContext.getRem(0.7), null),

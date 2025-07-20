@@ -38,9 +38,20 @@ class GlobalOverlayContext {
         ),
         );
   }
+  static final Map<String, OverlayEntry> _entries = {};
 
   static void show(String key, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
-    showOverlay(item(getWidget(key)),autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);
+    Widget widget = getWidget(key);
+    OverlayEntry entry = item(widget);
+    _entries[widget.key.toString()] = entry;
+    showOverlay(entry,autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);
+  }
+  static void removeByWidgetSelf(String key) {
+    final entry = _entries[key];
+    if (entry != null && entry.mounted) {
+      entry.remove();
+      _entries.remove(key);
+    }
   }
   static void showOverlay(OverlayEntry widget, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
     try {
@@ -66,5 +77,6 @@ class GlobalOverlayContext {
 
   static void removeOverlay(OverlayEntry widget) {
     if (widget.mounted) widget.remove();
+    _entries.removeWhere((_, v) => v == widget);
   }
 }

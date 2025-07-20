@@ -58,7 +58,14 @@ class GlobalContext {
   }
 
   static double getRem(double num) {
-    return num * getWidth() / (750/100); // 假设设计稿宽度是 750px 按照 1rem = 1% of 设计稿宽度  rem 换算方式： 按照「设计稿 750px，100rem = 750px」来换算
+    // 7.5rem=100%;
+    return num * getWidth() / (750/100);
+  }
+
+  static dynamic getScrollController(){
+    //PrimaryScrollController.of(context);
+    var scrollable = Scrollable.of(context);
+    return scrollable.widget.controller;
   }
 
 /**

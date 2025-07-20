@@ -12,13 +12,14 @@ import 'package:flutter3/view/test/detailpage.dart';
 import 'package:flutter3/view/test/apptext.dart';
 import 'package:flutter3/view/test/appstore.dart';
 import 'package:flutter3/view/test/detail.dart';
-import 'package:flutter3/view/layout/demo1.dart';
-import 'package:flutter3/view/layout/telegram.dart';
-import 'package:flutter3/view/layout/wechat.dart';
+import 'package:flutter3/view/layout/demoNavigationBar.dart';
+import 'package:flutter3/view/layout/demoBottomNavigationBar.dart';
 import 'package:flutter3/view/layout/demo.dart';
 import 'package:flutter3/view/wechat/contact.dart';
 import 'package:flutter3/view/wechat/msg.dart';
 import 'package:flutter3/view/wechat/discover.dart';
+import 'package:flutter3/view/market/swiper/demo.dart';
+import 'package:flutter3/view/market/marquee/demo.dart';
 class NamedViewWidget {
   NamedViewWidget._internal();
   factory NamedViewWidget() => _instance;
@@ -40,13 +41,14 @@ class NamedViewWidget {
       case "/test/apptext": return TestApptext();
       case "/test/appstore": return TestAppstore();
       case "/test/detail": return TestDetail();
-      case "/layout/demo1": return LayoutDemo1();
-      case "/layout/telegram": return LayoutTelegram();
-      case "/layout/wechat": return LayoutWechat();
+      case "/layout/demoNavigationBar": return LayoutDemoNavigationBar();
+      case "/layout/demoBottomNavigationBar": return LayoutDemoBottomNavigationBar();
       case "/layout/demo": return LayoutDemo();
       case "/wechat/contact": return WechatContact();
       case "/wechat/msg": return WechatMsg();
       case "/wechat/discover": return WechatDiscover();
+      case "/market/swiper/demo": return MarketSwiperDemo();
+      case "/market/marquee/demo": return MarketMarqueeDemo();
     }
     return null;
   }

@@ -11,34 +11,58 @@ Image.network(
 */
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 // 自定义缓存策略，比如缓存大小100张、过期时间7天 等：
 // web不支持 plugins.flutter.io/path_provider
-final customCacheManager = kIsWeb?null:CacheManager(
-  Config(
-    'customCacheKey',
-    stalePeriod: const Duration(days: 7),
-    maxNrOfCacheObjects: 100,
-    repo: JsonCacheInfoRepository(databaseName: 'myCache'),
-    fileService: HttpFileService(),
-  ),
-);
+final customCacheManager = kIsWeb
+    ? null
+    : CacheManager(
+        Config(
+          'customCacheKey',
+          stalePeriod: const Duration(days: 7),
+          maxNrOfCacheObjects: 100,
+          repo: JsonCacheInfoRepository(databaseName: 'myCache'),
+          fileService: HttpFileService(),
+        ),
+      );
 
-CachedNetworkImage img(String url){
+CachedNetworkImage img(String url, err) {
   return CachedNetworkImage(
     imageUrl: url,
+    httpHeaders: {
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36", // 伪装请求头，某些 CDN 要求
+    },
     cacheManager: customCacheManager,
     fit: BoxFit.cover,
-    placeholder: (context, url) => CircularProgressIndicator(),
-    errorWidget: (context, url, error) => Icon(Icons.broken_image),
+    placeholder: (context, url) => Center(
+      // 圆形 且自定义颜色
+      child: SizedBox(width: 30, height: 30, child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation<Color>(Colors.white))),
+    ),
+    errorWidget: (context, url, error) => err ?? Icon(Icons.broken_image),
   );
 }
-SizedBox getUrlImg(String url,double? width,double? height,double? radius){
+
+SizedBox getUrlImg(String url, double? width, double? height, double? radius) {
   // ClipOval = ClipRRect[radius为半径时] = 圆形⭕️
-  return SizedBox(width: width, height: width, child:null==radius?img(url):ClipRRect(borderRadius: BorderRadius.circular(5),child: img(url),));
+  var err = SizedBox.expand(
+    child: Container(
+      color: Colors.grey.shade200,
+      child: Icon(
+        Icons.broken_image,
+        color: Colors.grey,
+        size: 48, // 可自适应
+      ),
+    ),
+  );
+  var item = img(url, err);
+  return SizedBox(
+    width: width,
+    height: width,
+    child: null == radius ? item : ClipRRect(borderRadius: BorderRadius.circular(radius), child: item),
+  );
 }
 
 Future<void> clearMyCache() async {

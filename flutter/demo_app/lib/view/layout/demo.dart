@@ -3,15 +3,15 @@ import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
 import 'package:flutter3/views.dart';
 
-class LayoutDemo1 extends StatefulWidget {
-  const LayoutDemo1({super.key});
+class LayoutDemo extends StatefulWidget {
+  const LayoutDemo({super.key});
 
   @override
-  State<LayoutDemo1> createState() => _LayoutDemoState();
+  State<LayoutDemo> createState() => _LayoutDemoState();
 }
 
 /// 必须确定初始化打开哪个页面
-class _LayoutDemoState extends State<LayoutDemo1> {
+class _LayoutDemoState extends State<LayoutDemo> {
   int _currentIndex = 0;
 
   @override

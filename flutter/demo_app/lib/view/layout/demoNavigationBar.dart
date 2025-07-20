@@ -3,15 +3,15 @@ import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
 import 'package:flutter3/views.dart';
 
-class DemoNavigationBar extends StatefulWidget {
-  const DemoNavigationBar({super.key});
+class LayoutDemoNavigationBar extends StatefulWidget {
+  const LayoutDemoNavigationBar({super.key});
 
   @override
-  State<DemoNavigationBar> createState() => _DemoNavigationBarState();
+  State<LayoutDemoNavigationBar> createState() => _LayoutDemoNavigationBarState();
 }
 
 /// 必须确定初始化打开哪个页面
-class _DemoNavigationBarState extends State<DemoNavigationBar> {
+class _LayoutDemoNavigationBarState extends State<LayoutDemoNavigationBar> {
   int _currentIndex = 0;
 
   @override

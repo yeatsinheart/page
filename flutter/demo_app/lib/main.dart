@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -15,6 +16,7 @@ void main() {
   //SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,]);
   //Flutter 中存在三棵树，Widget[虚拟的结构]、Element 和 RenderObject。
   WidgetsFlutterBinding.ensureInitialized();
+  //debugPaintSizeEnabled = true; // ✅ 开启边界调试 会把所有东西，边距什么的都画线
   runApp(const Root());
 }
 

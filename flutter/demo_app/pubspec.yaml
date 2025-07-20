@@ -51,7 +51,8 @@ dependencies:
 
   dio: 5.8.0+1
   http: 1.4.0
-
+  carousel_slider: ^5.1.1
+  marquee: ^2.3.0
   # 全局状态管理 路由
   get: 4.7.2
   provider: 6.1.5

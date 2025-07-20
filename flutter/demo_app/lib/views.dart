@@ -12,11 +12,12 @@ enum ViewKeyDict {
 // 顶层变量，Map<String, String>
 final Map<String, String> ViewKeyPathMap = {
   "splash": "/app/splash/demo",
-  "app_layout": "/layout/demo1",
+  "app_layout": "/layout/demo",
   "bottom_bar": "/app/bottom_bar/wechat",
 
   "home": "/wechat/msg",
   "home": "/test/appstore",
+  "home": "/app/home/wg",
 
   "discover": "/wechat/discover",
   "me": "/page/me/demo",

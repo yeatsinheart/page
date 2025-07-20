@@ -40,6 +40,9 @@ class GlobalContext {
   }
 
   static void load(String key) {
+    // push(route) 表示 “压入一个新页面” 到栈顶。原有页面仍保留在栈中，用户可以返回。
+    // pushAndRemoveUntil(route, predicate) 移除部分或全部页面，只保留满足条件的页面 登录后清除登录页、重置栈 (route) => false, // false 表示移除所有旧页面
+    //   ModalRoute.withName('/home'), // 保留名为 /home 的页面
     navigatorKey.currentState?.push(asRoute(key));
   }
   static void pop() {

@@ -62,11 +62,6 @@ class GlobalContext {
     return num * getWidth() / (750/100);
   }
 
-  static dynamic getScrollController(){
-    //PrimaryScrollController.of(context);
-    var scrollable = Scrollable.of(context);
-    return scrollable.widget.controller;
-  }
 
 /**
     Navigator.pop(context,[result]) 方法参数中的可选参数 result 就是页面回退时携带的参数，Navigator.push 会返回一个 Future 在 then 语句中处理页面回退的结果，具体使用参考如下：

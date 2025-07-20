@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/view/game/home/demo1.dart';
 
 import '../../../service/data/skin_data.dart';
 import '../../../util/context.dart';
@@ -30,6 +31,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
         });
       }
     });
+
   }
 
   @override
@@ -40,6 +42,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
         child: SafeArea(
           bottom: false,
           child: CustomScrollView(
+            cacheExtent: 10000, // 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
             controller: _controller,
             slivers: [
               /*SliverAppBar(
@@ -51,73 +54,80 @@ class _AppHomeWgState extends State<AppHomeWg> {
                 flexibleSpace: FlexibleSpaceBar(titlePadding:EdgeInsetsGeometry.all(0),title: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, GlobalContext.getRem(0.7), null)),
               ),*/
               // 固定顶部图片
-              SliverPersistentHeader(
-                pinned: true, // 关键：固定吸顶
-                delegate: _StickyHeaderDelegate(
-                  height: currentHeaderIndex==1?GlobalContext.getRem(0.9):0,
-                  child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                          color: Colors.white,
-                          child: Row(
-                            children: [
-                              // 左侧 logo
-                              //Image.asset('assets/logo.png', height: 40),
-                              getUrlImg('assets/logo.png', GlobalContext.getRem(0.7), GlobalContext.getRem(0.7), null),
-                              Spacer(),
-                              // 右侧按钮和图标
-                              TextButton(
-                                onPressed: () {},
-                                child: Text('注册'),
-                                style: ButtonStyle(
-                                  overlayColor: WidgetStateProperty.all(Colors.transparent),
-                                  // 去除水波纹、hover等
-                                  splashFactory: NoSplash.splashFactory,
-                                  // 完全禁用点击水波纹动画
-                                  shadowColor: WidgetStateProperty.all(Colors.transparent),
-                                  // 去除阴影
-                                  backgroundColor: WidgetStateProperty.all(Colors.blue),
-                                  // 背景颜色
-                                  foregroundColor: WidgetStateProperty.all(Colors.white),
-                                  // 文字颜色
-                                  padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
-                                  shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                                ),
+              SliverMainAxisGroup(
+                slivers: [
+                  SliverPersistentHeader(
+                    pinned: true, // 关键：固定吸顶
+                    delegate: _StickyHeaderDelegate(
+                      //height: currentHeaderIndex == 1 ? GlobalContext.getRem(0.9) : 0,
+                      height:  GlobalContext.getRem(0.9) ,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                        color: Colors.white,
+                        child: Row(
+                          children: [
+                            // 左侧 logo
+                            //Image.asset('assets/logo.png', height: 40),
+                            getUrlImg('assets/logo.png', GlobalContext.getRem(0.7), GlobalContext.getRem(0.7), null),
+                            Spacer(),
+                            // 右侧按钮和图标
+                            TextButton(
+                              onPressed: () {},
+                              child: Text('注册'),
+                              style: ButtonStyle(
+                                overlayColor: WidgetStateProperty.all(Colors.transparent),
+                                // 去除水波纹、hover等
+                                splashFactory: NoSplash.splashFactory,
+                                // 完全禁用点击水波纹动画
+                                shadowColor: WidgetStateProperty.all(Colors.transparent),
+                                // 去除阴影
+                                backgroundColor: WidgetStateProperty.all(Colors.blue),
+                                // 背景颜色
+                                foregroundColor: WidgetStateProperty.all(Colors.white),
+                                // 文字颜色
+                                padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
+                                shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
                               ),
-                              SizedBox(width: 8),
-                              TextButton(
-                                onPressed: () {},
-                                child: Text('登录'),
-                                style: ButtonStyle(
-                                  overlayColor: WidgetStateProperty.all(Colors.transparent),
-                                  // 去除水波纹、hover等
-                                  splashFactory: NoSplash.splashFactory,
-                                  // 完全禁用点击水波纹动画
-                                  shadowColor: WidgetStateProperty.all(Colors.transparent),
-                                  // 去除阴影
-                                  backgroundColor: WidgetStateProperty.all(Colors.transparent),
-                                  // 去除背景
-                                  foregroundColor: WidgetStateProperty.all(Colors.blue),
-                                  // 文字颜色
-                                  padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
-                                  shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                      side: BorderSide(color: Colors.blue),
-                                    ),
+                            ),
+                            SizedBox(width: 8),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text('登录'),
+                              style: ButtonStyle(
+                                overlayColor: WidgetStateProperty.all(Colors.transparent),
+                                // 去除水波纹、hover等
+                                splashFactory: NoSplash.splashFactory,
+                                // 完全禁用点击水波纹动画
+                                shadowColor: WidgetStateProperty.all(Colors.transparent),
+                                // 去除阴影
+                                backgroundColor: WidgetStateProperty.all(Colors.transparent),
+                                // 去除背景
+                                foregroundColor: WidgetStateProperty.all(Colors.blue),
+                                // 文字颜色
+                                padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
+                                shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                    side: BorderSide(color: Colors.blue),
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 8),
-                              IconButton(onPressed: () {}, icon: Icon(Icons.search), splashColor: Colors.transparent, highlightColor: Colors.transparent, hoverColor: Colors.transparent),
-                            ],
-                          ),
-                          //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, GlobalContext.getRem(0.7), null),
+                            ),
+                            SizedBox(width: 8),
+                            IconButton(onPressed: () {}, icon: Icon(Icons.search), splashColor: Colors.transparent, highlightColor: Colors.transparent, hoverColor: Colors.transparent),
+                          ],
                         ),
+                        //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, GlobalContext.getRem(0.7), null),
+                      ),
+                    ),
                   ),
+                  SliverToBoxAdapter(child: MarketSwiperDemo()),
+                  SliverToBoxAdapter(child: MarketMarqueeDemo()),
+                ],
               ),
 
-              SliverToBoxAdapter(child: MarketSwiperDemo()),
-              SliverToBoxAdapter(child: MarketMarqueeDemo()),
+              GameHomeDemo1(),
+              //SliverToBoxAdapter(child: GameHomeDemo1()),
 
               /* SliverPersistentHeader(
                 pinned: true, // 也固定住
@@ -137,16 +147,19 @@ class _AppHomeWgState extends State<AppHomeWg> {
                   height: 500, // 你想显示的高度
                 ),
               ),*/
+              // 所有 200 项都会同时构建（因为 shrinkWrap: true 表示先算完高度）。
               SliverToBoxAdapter(
                 child: ListView.builder(
                   itemCount: 200,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return ListTile(title: Text('Item $index'));
+                    return ListTile(title: Text('Item SliverToBoxAdapter $index'));
                   },
                 ),
               ),
+              // 只有可视区域的子项才会被构建（懒加载）。
+              SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 30)),
               //SliverToBoxAdapter(child: SizedBox(height: 10000)),
             ],
           ),

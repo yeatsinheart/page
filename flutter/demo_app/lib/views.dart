@@ -13,65 +13,17 @@ enum ViewKeyDict {
 final Map<String, String> ViewKeyPathMap = {
   "splash": "/app/splash/demo",
   "app_layout": "/layout/demo",
-  "bottom_bar": "/app/bottom_bar/wechat",
 
-  "home": "/wechat/msg",
-  "home": "/test/appstore",
   "home": "/app/home/wg",
+  "swiper": "/market/swiper/demo",
+  "marquee": "/market/marquee/demo",
+  "game_home": "/game/home/demo",
+  "game_search": "/game/search/demo",
 
   "discover": "/wechat/discover",
   "me": "/page/me/demo",
   "contact": "/wechat/contact",
 
-  "download_tip": "/app/download_tip/demo",
-  "bottom_bar": "/app/bottom_bar/demo",
-  "color": "/app/setting/color",
-  "language": "/app/setting/language",
-  "view": "/app/setting/view",
-  "auth": "/account/auth/demo",
-  "avatar": "/account/avatar/demo",
-  "notfound": "/app/page/home/wg",
-  "swiper": "/market/swiper/demo",
-  "game_home": "/game/home/wg",
-  "bonus_history": "/bonus/bonus_history/demo",
-  "message": "/account/message/demo",
-  "game_history": "/game/history/demo",
-  "game_search": "/game/search/wg",
-  "marquee": "/market/marquee/demo",
-  "announcement": "/market/announcement/demo",
-  "account_config": "/account/config/demo",
-  "withdraw": "/cashier/withdraw/home/demo",
-  "invite": "/fixation/invite",
-  "loginPassword": "/fixation/loginPassword",
-  "mail": "/fixation/mail",
-  "fbettingHistory": "/fixation/bettingHistory",
-  "faddBankCard": "/fixation/addBankCard",
-  "fsubordinate": "/fixation/subordinate",
-  "finvitation": "/fixation/invitation",
-  "fteamReport": "/fixation/teamReport",
-  "fmycommission": "/fixation/mycommission",
-  "fteamPartner": "/fixation/teamPartner",
-  "fpromotionRule": "/fixation/promotionRule",
-  "fsettingCenter": "/fixation/settingCenter",
-  "frebate": "/fixation/rebate",
-  "fnotify": "/fixation/notify",
-  "fgiftExchange": "/fixation/giftExchange",
-  "fgameStatistics": "/fixation/gameStatistics",
-  "retBalance": "/fixation/retBalance",
-  "accountDetails": "/fixation/accountDetails",
-  "betRecords": "/fixation/betRecords",
-  "reports": "/fixation/reports",
-  "promotion": "/fixation/promotion",
-  "device": "/fixation/device",
-  "safety": "/fixation/safety",
-  "about": "/fixation/about",
-  "customer": "/problem/customer/demo",
-  "gdbrand_all": "/ui/gamble_detail/brand_all",
-  "brand_left_bar": "/ui/gamble_detail/brand_left_bar",
-  "forbidden": "/problem/forbidden/demo",
-  "maintain": "/problem/maintain/demo",
-  "recharge_history": "/wallet/recharge_history/demo",
-  "nomore": "/app/nomore/demo",
 };
 dynamic getWidget(String? key) {
   if (key == null) {
@@ -89,6 +41,12 @@ dynamic getWidget(String? key) {
     debugPrint('getWidget: widget not found for path $path');
   }
   return widget;
+}
+PageRoute asRoute(String key) {
+  return PageRouteBuilder(
+      pageBuilder: (cxt, ani1, ani2) {
+        return FadeTransition(opacity: ani1, child: getWidget(key)??Container());
+      });
 }
 
  PageRoute getRoute(RouteSettings settings) {

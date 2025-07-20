@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../views.dart';
+
 class GlobalContext {
   // 如果你的路由结构使用了 nested Navigator 或 shell（如 go_router 的 ShellRoute），则 GlobalKey<NavigatorState> 控制的并非是嵌套路由中的 Navigator，需要使用局部 navigatorKey。
   GlobalContext._internal();
@@ -37,6 +39,9 @@ class GlobalContext {
     navigatorKey.currentState?.push(route);
   }
 
+  static void load(String key) {
+    navigatorKey.currentState?.push(asRoute(key));
+  }
   static void pop() {
     navigatorKey.currentState?.pop();
   }

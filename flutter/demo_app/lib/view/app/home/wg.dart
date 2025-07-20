@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/view/game/home/demo1.dart';
+import 'package:flutter3/view/game/home/demo.dart';
 
 import '../../../service/data/skin_data.dart';
 import '../../../util/context.dart';
 import '../../../util/img.dart';
-import '../../market/marquee/demo.dart';
-import '../../market/swiper/demo.dart';
+import '../../../views.dart';
 
 class AppHomeWg extends StatefulWidget {
   @override
@@ -20,18 +19,6 @@ class _AppHomeWgState extends State<AppHomeWg> {
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() {
-      final offset = _controller.offset;
-      // 你可以根据 offset 区间判断当前显示哪个 Header
-      int newIndex = offset > 500 ? 0 : 1;
-      //print("offset ${offset} header ${newIndex}");
-      if (newIndex != currentHeaderIndex) {
-        setState(() {
-          currentHeaderIndex = newIndex;
-        });
-      }
-    });
-
   }
 
   @override
@@ -114,19 +101,19 @@ class _AppHomeWgState extends State<AppHomeWg> {
                               ),
                             ),
                             SizedBox(width: 8),
-                            IconButton(onPressed: () {}, icon: Icon(Icons.search), splashColor: Colors.transparent, highlightColor: Colors.transparent, hoverColor: Colors.transparent),
+                            IconButton(onPressed: () {GlobalContext.load("game_search");}, icon: Icon(Icons.search), splashColor: Colors.transparent, highlightColor: Colors.transparent, hoverColor: Colors.transparent),
                           ],
                         ),
                         //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, GlobalContext.getRem(0.7), null),
                       ),
                     ),
                   ),
-                  SliverToBoxAdapter(child: MarketSwiperDemo()),
-                  SliverToBoxAdapter(child: MarketMarqueeDemo()),
+                  SliverToBoxAdapter(child: getWidget("swiper"),),
+                  SliverToBoxAdapter(child: getWidget("marquee"),),
                 ],
               ),
-
-              GameHomeDemo1(),
+              getWidget("game_home"),
+                  //SliverToBoxAdapter(child: getWidget("game_home"),),
               //SliverToBoxAdapter(child: GameHomeDemo1()),
 
               /* SliverPersistentHeader(
@@ -148,18 +135,16 @@ class _AppHomeWgState extends State<AppHomeWg> {
                 ),
               ),*/
               // 所有 200 项都会同时构建（因为 shrinkWrap: true 表示先算完高度）。
-              SliverToBoxAdapter(
-                child: ListView.builder(
-                  itemCount: 200,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+              SliverToBoxAdapter(child: ListView.builder(itemCount: 20,
+                  shrinkWrap: true,physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return ListTile(title: Text('Item SliverToBoxAdapter $index'));
                   },
                 ),
               ),
               // 只有可视区域的子项才会被构建（懒加载）。
-              SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 30)),
+              SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 20)),
+              SliverList(delegate: SliverChildListDelegate(List.generate(20, (index) {return Text('Item SliverList $index');}))),
               //SliverToBoxAdapter(child: SizedBox(height: 10000)),
             ],
           ),

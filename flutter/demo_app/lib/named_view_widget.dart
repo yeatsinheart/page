@@ -15,11 +15,15 @@ import 'package:flutter3/view/test/detail.dart';
 import 'package:flutter3/view/layout/demoNavigationBar.dart';
 import 'package:flutter3/view/layout/demoBottomNavigationBar.dart';
 import 'package:flutter3/view/layout/demo.dart';
+import 'package:flutter3/view/game/home/demo.dart';
+import 'package:flutter3/view/game/byCategory/hot_game_demo.dart';
+import 'package:flutter3/view/game/search/demo.dart';
 import 'package:flutter3/view/wechat/contact.dart';
 import 'package:flutter3/view/wechat/msg.dart';
 import 'package:flutter3/view/wechat/discover.dart';
 import 'package:flutter3/view/market/swiper/demo.dart';
 import 'package:flutter3/view/market/marquee/demo.dart';
+import 'package:flutter3/view/devDemo.dart';
 class NamedViewWidget {
   NamedViewWidget._internal();
   factory NamedViewWidget() => _instance;
@@ -44,11 +48,15 @@ class NamedViewWidget {
       case "/layout/demoNavigationBar": return LayoutDemoNavigationBar();
       case "/layout/demoBottomNavigationBar": return LayoutDemoBottomNavigationBar();
       case "/layout/demo": return LayoutDemo();
+      case "/game/home/demo": return GameHomeDemo();
+      case "/game/byCategory/hot_game_demo": return GameByCategoryHotGameDemo();
+      case "/game/search/demo": return GameSearchDemo();
       case "/wechat/contact": return WechatContact();
       case "/wechat/msg": return WechatMsg();
       case "/wechat/discover": return WechatDiscover();
       case "/market/swiper/demo": return MarketSwiperDemo();
       case "/market/marquee/demo": return MarketMarqueeDemo();
+      case "/devDemo": return DevDemo();
     }
     return null;
   }

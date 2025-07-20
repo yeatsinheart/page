@@ -23,7 +23,6 @@ import 'package:flutter3/view/wechat/msg.dart';
 import 'package:flutter3/view/wechat/discover.dart';
 import 'package:flutter3/view/market/swiper/demo.dart';
 import 'package:flutter3/view/market/marquee/demo.dart';
-import 'package:flutter3/view/devDemo.dart';
 class NamedViewWidget {
   NamedViewWidget._internal();
   factory NamedViewWidget() => _instance;
@@ -56,7 +55,6 @@ class NamedViewWidget {
       case "/wechat/discover": return WechatDiscover();
       case "/market/swiper/demo": return MarketSwiperDemo();
       case "/market/marquee/demo": return MarketMarqueeDemo();
-      case "/devDemo": return DevDemo();
     }
     return null;
   }

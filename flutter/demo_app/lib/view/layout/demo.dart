@@ -5,7 +5,7 @@ import 'package:flutter3/views.dart';
 import 'package:get/get.dart';
 
 class LayoutDemo extends StatefulWidget {
-  const LayoutDemo({super.key});
+  const LayoutDemo({super.key, required params});
 
   @override
   State<LayoutDemo> createState() => _LayoutDemoState();

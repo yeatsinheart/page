@@ -242,5 +242,7 @@ class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStat
 }
 
 class TestHerodetail extends StatefulWidget {
+  const TestHerodetail({super.key, required params});
+
   _HeroDetailPageState createState() => _HeroDetailPageState();
 }

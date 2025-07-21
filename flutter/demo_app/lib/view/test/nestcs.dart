@@ -8,6 +8,8 @@ import '../../util/lock.dart';
 import 'package:flutter3/service/game.dart';
 
 class TestNestcs extends StatefulWidget {
+  const TestNestcs({super.key, params});
+
   @override
   AppNetCsPaneState createState() => AppNetCsPaneState();
 }

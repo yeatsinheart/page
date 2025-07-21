@@ -22,6 +22,8 @@ const bool USE_CUSTOM_BAR = true;
 const bool USE_CUSTOM_BAR_BUILDER = true;
 
 class WechatDiscover extends StatefulWidget {
+  const WechatDiscover({super.key, required params});
+
   _ContactsPageState createState() => _ContactsPageState();
 }
 

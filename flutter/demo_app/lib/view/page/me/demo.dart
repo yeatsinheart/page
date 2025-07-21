@@ -4,7 +4,7 @@ import '../../../util/MyEasyRefresh.dart';
 
 /// 结构
 class PageMeDemo extends StatelessWidget {
-  const PageMeDemo({super.key});
+  const PageMeDemo({super.key, required params});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

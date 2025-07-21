@@ -3,6 +3,9 @@ import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
 
 class GameByCategoryHotGameDemo extends StatefulWidget {
+  final dynamic params;
+  const GameByCategoryHotGameDemo({this.params,super.key});
+
   @override
   _GameByCategoryHotGameDemoState createState() => _GameByCategoryHotGameDemoState();
 }

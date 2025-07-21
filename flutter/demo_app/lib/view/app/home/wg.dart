@@ -7,6 +7,8 @@ import '../../../util/img.dart';
 import '../../../views.dart';
 
 class AppHomeWg extends StatefulWidget {
+  final dynamic params;
+  const AppHomeWg({this.params,super.key});
   @override
   _AppHomeWgState createState() => _AppHomeWgState();
 }

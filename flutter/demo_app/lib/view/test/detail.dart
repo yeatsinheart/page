@@ -5,6 +5,8 @@ import 'package:flutter3/service/game.dart';
 import '../../util/context.dart';
 
 class TestDetail extends StatelessWidget {
+  const TestDetail({super.key, required params});
+
   @override
   Widget build(BuildContext context) {
     Game? game = ModalRoute.of(context)?.settings.arguments as Game?;

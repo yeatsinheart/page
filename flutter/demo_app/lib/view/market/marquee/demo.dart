@@ -4,6 +4,8 @@ import 'package:marquee/marquee.dart';
 import 'package:flutter3/util/context.dart';
 
 class MarketMarqueeDemo extends StatefulWidget {
+  const MarketMarqueeDemo({super.key, required params});
+
   @override
   _MarketMarqueeDemoState createState() => _MarketMarqueeDemoState();
 }

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 class GameHomeDemo extends StatefulWidget {
   final dynamic params;
-
   const GameHomeDemo({super.key, this.params});
 
   @override
@@ -200,6 +199,7 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
           final title = tabs[index].tr;
           final expanded = _expandedStates[index];
           final showCount = expanded ? 32 : 6;
+
           return index!=0?SliverToBoxAdapter(child: getWidgetByPath(path: "/game/byCategory/list_brand",params: {"title":title})):
            SliverToBoxAdapter(
             child: Column(

@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:flutter3/store/language_store.dart';
 
 class AppLanguage extends StatelessWidget {
-  const AppLanguage({super.key});
+  final dynamic params;
+  const AppLanguage({this.params,super.key});
 
   void switchLanguage(String code) {
     Get.find<LanguageStore>().loadLanguage(code);

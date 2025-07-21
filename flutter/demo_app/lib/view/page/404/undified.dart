@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/util/context.dart';
 
 class Page404Undified extends StatelessWidget {
-  const Page404Undified({super.key});
+  const Page404Undified({super.key, required params});
 
   @override
   Widget build(BuildContext context) {

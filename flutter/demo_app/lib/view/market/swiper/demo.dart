@@ -4,6 +4,8 @@ import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
 
 class MarketSwiperDemo extends StatefulWidget {
+  const MarketSwiperDemo({super.key, required params});
+
   @override
   _MarketSwiperDemoState createState() => _MarketSwiperDemoState();
 }

@@ -8,6 +8,8 @@ import 'package:mutex/mutex.dart';
 import 'package:flutter3/service/game.dart';
 
 class TestCs extends StatefulWidget {
+  const TestCs({super.key, required params});
+
   @override
   AppCsPaneState createState() => AppCsPaneState();
 }

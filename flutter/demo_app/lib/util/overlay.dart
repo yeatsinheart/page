@@ -50,7 +50,7 @@ class GlobalOverlayContext {
 
   static void popBy(String containerPath,String childKey, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
     Widget childWidget = getWidget(childKey);
-    Widget? pop = NamedViewWidget.getViewWidget(containerPath,childWidget);
+    Widget? pop = NamedViewWidget.getViewWidget(path: containerPath,params: childWidget);
     OverlayEntry entry = item(pop!);
     _entries[pop.key.toString()] = entry;
     showOverlay(entry,autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);

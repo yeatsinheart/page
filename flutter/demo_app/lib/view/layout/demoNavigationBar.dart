@@ -4,7 +4,7 @@ import 'package:flutter3/util/img.dart';
 import 'package:flutter3/views.dart';
 
 class LayoutDemoNavigationBar extends StatefulWidget {
-  const LayoutDemoNavigationBar({super.key});
+  const LayoutDemoNavigationBar({super.key, required params});
 
   @override
   State<LayoutDemoNavigationBar> createState() => _LayoutDemoNavigationBarState();

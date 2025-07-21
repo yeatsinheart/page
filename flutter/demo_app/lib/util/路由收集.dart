@@ -40,12 +40,12 @@ class NamedViewWidget {
   """;
   content += "\n";
 
-  content += "  static Widget? getViewWidget(String? path,Widget?child) { \n"
+  content += "  static Widget? getViewWidget({String? path, dynamic params}) { \n"
       "    if(null==path)return null;\n"
       "    switch (path){\n";
 
   widgets.forEach((Map<String, dynamic> widgetInfo) {
-    content += "      case \"${widgetInfo["path"]}\": return ${fileToName(widgetInfo["name"])}(${widgetInfo["isPopContainer"]?'child: child??Container()':''});\n";
+    content += "      case \"${widgetInfo["path"]}\": return ${fileToName(widgetInfo["name"])}(params: params);\n";
   });
   content += "    }\n"
       "    return null;\n"

@@ -39,8 +39,8 @@ dynamic getWidgetByPath({path,params}){
     debugPrint('getWidgetByPath: path is null');
     return null;
   }
-  final widget = NamedViewWidget.getViewWidget(path,params)
-      ?? NamedViewWidget.getViewWidget('$path/index',params);
+  final widget = NamedViewWidget.getViewWidget(path: path,params: params)
+      ?? NamedViewWidget.getViewWidget(path: '$path/index',params: params);
   if (widget == null) {
     debugPrint('getWidgetByPath: widget not found for path $path');
   }

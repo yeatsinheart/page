@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 // 但State实例只会在第一次插入到树中时被创建，当在重新构建时，如果 widget 被修改了，Flutter 框架会动态设置State. widget 为新的 widget 实例。
 // 当 State 对象从树中被永久移除时调用；通常在此回调中释放资源。
 class PageDemo extends StatefulWidget {
-  const PageDemo({super.key});
+  const PageDemo({super.key, required params});
 
   @override
   _PageDemoState createState() => _PageDemoState();

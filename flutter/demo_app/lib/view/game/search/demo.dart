@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GameSearchDemo extends StatefulWidget {
-  const GameSearchDemo({super.key});
+  const GameSearchDemo({super.key, required params});
 
   @override
   State<GameSearchDemo> createState() => _GameSearchDemoState();

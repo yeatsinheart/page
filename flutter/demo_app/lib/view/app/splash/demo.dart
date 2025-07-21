@@ -6,7 +6,10 @@ import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
 
 class AppSplashDemo extends StatefulWidget {
-  const AppSplashDemo({super.key});
+
+  final dynamic params;
+  const AppSplashDemo({this.params,super.key});
+
   @override
   _AppSplashDemoState createState() => _AppSplashDemoState();
 }

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/service/game.dart';
 
 class TestApptext extends StatelessWidget {
+  const TestApptext({super.key, required params});
+
   @override
   Widget build(BuildContext context) {
     Game? game = ModalRoute.of(context)?.settings.arguments as Game?;

@@ -8,6 +8,8 @@ import 'package:flutter3/util/img.dart';
 import 'nestcs.dart';
 
 class TestAppstore extends StatefulWidget {
+  const TestAppstore({super.key, required params});
+
   @override
   _AppStoreState createState() => _AppStoreState();
 }

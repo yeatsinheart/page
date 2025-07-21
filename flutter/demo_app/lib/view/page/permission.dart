@@ -5,6 +5,8 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../service/permission_service.dart';
 
 class PagePermission extends StatelessWidget {
+  const PagePermission({super.key, required params});
+
   @override
   Widget build(BuildContext context) {
     List list = PermissionService.permissionList();

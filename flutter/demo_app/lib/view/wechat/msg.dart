@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/service/app_service.dart';
 
 class WechatMsg extends StatefulWidget {
+  const WechatMsg({super.key, required params});
+
   @override
   _HomeViewState createState() => _HomeViewState();
 }

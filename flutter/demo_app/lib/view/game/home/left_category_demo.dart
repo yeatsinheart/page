@@ -3,19 +3,19 @@ import 'package:flutter3/util/context.dart';
 import 'package:flutter3/views.dart';
 import 'package:get/get.dart';
 
-class GameHomeDemo extends StatefulWidget {
+class GameHomeLeftCategoryDemo extends StatefulWidget {
   final dynamic params;
 
-  const GameHomeDemo({super.key, this.params});
+  const GameHomeLeftCategoryDemo({super.key, this.params});
 
   @override
-  _GameHomeDemoState createState() => _GameHomeDemoState();
+  _GameHomeLeftCategoryDemoState createState() => _GameHomeLeftCategoryDemoState();
 }
 // with AutomaticKeepAliveClientMixin
 // @override
 // bool get wantKeepAlive => true;
 
-class _GameHomeDemoState extends State<GameHomeDemo> {
+class _GameHomeLeftCategoryDemoState extends State<GameHomeLeftCategoryDemo> {
   late ScrollController _pageScrollController;
 
   final ScrollController _tabScrollController = ScrollController();
@@ -76,17 +76,9 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
-      final double targetOffset =
-          index * box.size.width - (screenWidth - box.size.width) / 2;
+      final double targetOffset = index * box.size.height - (screenWidth - box.size.height) / 2;
       //print("tab移动到${targetOffset} 选中 ${_currentIndex}");
-      _tabScrollController.animateTo(
-        targetOffset.clamp(
-          _tabScrollController.position.minScrollExtent,
-          _tabScrollController.position.maxScrollExtent,
-        ),
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      );
+      _tabScrollController.animateTo(targetOffset.clamp(_tabScrollController.position.minScrollExtent, _tabScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeOut);
     }
   }
 
@@ -97,23 +89,14 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
     if (dataContext != null) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
-      final offset =
-          box.localToGlobal(Offset.zero).dy +
-          _pageScrollController.offset -
-          GlobalContext.getRem(.9);
+      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset - GlobalContext.getRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
-      _pageScrollController
-          .animateTo(
-            offset,
-            duration: Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
-          )
-          .then((_) {
-            Future.delayed(Duration(milliseconds: 100), () {
-              _scrollingByClick = false;
-            });
-          });
+      _pageScrollController.animateTo(offset.clamp(_pageScrollController.position.minScrollExtent, _pageScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
+        Future.delayed(Duration(milliseconds: 100), () {
+          _scrollingByClick = false;
+        });
+      });
     }
   }
 
@@ -125,11 +108,12 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
 
   Widget _buildTabBar() {
     return Container(
-      height: 50,
-      color: Colors.white,
-      child: ListView.builder(
+      color: Colors.transparent,
+      child: ListView.separated(
+        shrinkWrap: true,
+        // 按内容高度
         controller: _tabScrollController,
-        scrollDirection: Axis.horizontal,
+        scrollDirection: Axis.vertical,
         itemCount: tabs.length,
         itemBuilder: (context, index) {
           final selected = index == _currentIndex;
@@ -141,27 +125,37 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
                 _clickTo(index);
               });
             },
-            child: Container(
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(16), // 设置圆角
+                child: AspectRatio(
+                aspectRatio: 1, // 宽高比 1:1
+                child: Container(
               key: _tab_keys[index],
+              color: !selected ? Colors.green : null,
               alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              //padding: EdgeInsets.symmetric(horizontal: 16),
               decoration: selected
                   ? BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(width: 2, color: Colors.blue),
-                      ),
+                      color: Colors.blue,
+                     // border: Border(bottom: BorderSide(width: 2, color: Colors.blue)),
                     )
                   : null,
-              child: Text(
-                tabs[index].tr,
-                style: TextStyle(
-                  fontWeight: selected ? FontWeight.bold : FontWeight.normal,
-                  color: selected ? Colors.blue : Colors.black,
+              child: Column(
+                mainAxisSize: MainAxisSize.min, // 子组件按内容大小排列，不占满全高
+                mainAxisAlignment: MainAxisAlignment.center, // 垂直方向居中
+                crossAxisAlignment: CrossAxisAlignment.center, // 水平方向居中
+                children: [
+                Icon(Icons.search,size: 20,),
+                Text(
+                  tabs[index].tr,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? Colors.white : Colors.black),
                 ),
-              ),
-            ),
+              ],)
+            ),))
           );
-        },
+        }, separatorBuilder: (context, index) => SizedBox(height: 10), // 仅在 item 之间插入 gap
       ),
     );
   }
@@ -178,13 +172,23 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
 
   @override
   Widget build(BuildContext context) {
-    return SliverMainAxisGroup(
-      slivers: [
-        SliverPersistentHeader(
-          pinned: true,
-          delegate: _StickyHeaderDelegate(height: 50, child: _buildTabBar()),
-        ),
-        /*
+    // 在主轴方向（通常是垂直）保持同步滚动行为。
+    // 上下结构 SliverMainAxisGroup 类似 Column
+    // 左右结构 SliverCrossAxisGroup 类似 Row
+    return SliverPadding(
+      padding: EdgeInsets.symmetric(horizontal: GlobalContext.getRem(.2)),
+      sliver: SliverCrossAxisGroup(
+        slivers: [
+          SliverConstrainedCrossAxis(
+            maxExtent: 80,
+            sliver: SliverPersistentHeader(
+              pinned: true,
+              // 最大高度
+              delegate: _StickyHeaderDelegate(height: GlobalContext.getHeight() - GlobalContext.getRem(1.24), child: _buildTabBar()),
+            ),
+          ),
+
+          /*
         SliverChildBuilderDelegate懒加载[监听位置会有找不到的问题]
         SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
@@ -192,30 +196,26 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
           }, childCount: tabs.length),
         ),*/
 
-        // SliverChildListDelegate立即渲染
-        //SliverList(delegate: SliverChildListDelegate(
-        // 为什么用 SliverToBoxAdapter 包裹组件后，localToGlobal(Offset.zero) 只能获取到 viewport 内的偏移？而用 SliverList 的子项则能返回全局偏移（如 2390）？
-        // 因为 SliverList 使用了 SliverChildBuilderDelegate，具有 懒加载 机制，它会：
-        // 根据当前滚动情况提前加载一些 item（前后多个 buffer 区域）；
-        // 如果你用 SliverChildListDelegate（你用的是这个），它实际上是一次性构建所有子项，所以你会发现所有组件的 key.currentContext 都能用；
-        // 所以你才能获取 Offset(0.0, 2390.0)，因为它被提前 build 出来了。
-        //
-        // 虽然每个 SliverToBoxAdapter 是一个完整的 Sliver，但它不会自动预渲染所有项；
-        // 并且如果组件太大或不在视图附近，Flutter 就不构建它（为了性能优化）；
-        // 所以你在尝试获取 key.currentContext 时会失败或得到 Offset.zero（默认坐标）；
-        SliverList(
           // SliverChildListDelegate立即渲染
-          delegate: SliverChildListDelegate(
-            List.generate(tabs.length, (index) {
-              return getWidgetByPath(
-                path: "/game/byCategory/list_brand",
-                key: _data_keys[index],
-                params: {"title": tabs[index]},
-              );
-            }),
+          //SliverList(delegate: SliverChildListDelegate(
+          // 为什么用 SliverToBoxAdapter 包裹组件后，localToGlobal(Offset.zero) 只能获取到 viewport 内的偏移？而用 SliverList 的子项则能返回全局偏移（如 2390）？
+          // 因为 SliverList 使用了 SliverChildBuilderDelegate，具有 懒加载 机制，它会：
+          // 根据当前滚动情况提前加载一些 item（前后多个 buffer 区域）；
+          // 如果你用 SliverChildListDelegate（你用的是这个），它实际上是一次性构建所有子项，所以你会发现所有组件的 key.currentContext 都能用；
+          // 所以你才能获取 Offset(0.0, 2390.0)，因为它被提前 build 出来了。
+          //
+          // 虽然每个 SliverToBoxAdapter 是一个完整的 Sliver，但它不会自动预渲染所有项；
+          // 并且如果组件太大或不在视图附近，Flutter 就不构建它（为了性能优化）；
+          // 所以你在尝试获取 key.currentContext 时会失败或得到 Offset.zero（默认坐标）；
+          SliverList(
+            // SliverChildListDelegate立即渲染
+            delegate: SliverChildListDelegate(
+              List.generate(tabs.length, (index) {
+                return getWidgetByPath(path: "/game/home_category/list_brand", key: _data_keys[index], params: {"title": tabs[index]});
+              }),
+            ),
           ),
-        ),
-        /*...List.generate(tabs.length, (index) {
+          /*...List.generate(tabs.length, (index) {
           final title = tabs[index].tr;
           final expanded = _expandedStates[index];
           final showCount = expanded ? 32 : 6;
@@ -223,7 +223,7 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
           return index != 0
               ? SliverToBoxAdapter(
                   child: getWidgetByPath(
-                    path: "/game/byCategory/list_brand",
+                    path: "/game/home_category/list_brand",
                     key: _data_keys[index],
                     params: {"title": title},
                   ),
@@ -288,7 +288,8 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
                   ),
                 );
         }),*/
-      ],
+        ],
+      ),
     );
     /*
       Column(
@@ -308,9 +309,7 @@ Widget buildGridItem(String title) {
       children: [
         Container(
           color: Colors.grey[300],
-          child: Center(
-            child: Icon(Icons.image, size: 50, color: Colors.white),
-          ),
+          child: Center(child: Icon(Icons.image, size: 50, color: Colors.white)),
         ),
         Positioned(
           bottom: 0,
@@ -319,11 +318,7 @@ Widget buildGridItem(String title) {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.black.withOpacity(0.3), Colors.transparent],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-              ),
+              gradient: LinearGradient(colors: [Colors.black.withOpacity(0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
             ),
             child: Text(
               title,
@@ -353,12 +348,8 @@ class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => height;
 
   @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
-    return SizedBox.expand(child: child); // 让图片填满整个 header 区域
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(child:  child,); // 填满整个 header 区域 否则报错
   }
 
   @override

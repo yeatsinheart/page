@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-class GameByCategoryListBrand extends StatefulWidget {
+
+import '../../../util/context.dart';
+class GameHomeCategoryListBrand extends StatefulWidget {
   final dynamic params;
 
-  const GameByCategoryListBrand({this.params, super.key});
+  const GameHomeCategoryListBrand({this.params, super.key});
 
   @override
-  _GameByCategoryListBrandState createState() => _GameByCategoryListBrandState();
+  _GameHomeCategoryListBrandState createState() => _GameHomeCategoryListBrandState();
 }
 // with AutomaticKeepAliveClientMixin
 // @override
 // bool get wantKeepAlive => true;
 
-class _GameByCategoryListBrandState extends State<GameByCategoryListBrand> {
+class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
   bool expanded = false;
   String title = "";
 
@@ -39,7 +41,14 @@ class _GameByCategoryListBrandState extends State<GameByCategoryListBrand> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(title.tr, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-              Text("更多 >", style: TextStyle(color: Colors.blue)),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    GlobalContext.loadByPath("/game/by_category/left_brand");
+                  });
+                },
+                child: Text("更多 >", style: TextStyle(color: Colors.blue)),
+              )
             ],
           ),
           GridView.builder(
@@ -88,8 +97,8 @@ class _GameByCategoryListBrandState extends State<GameByCategoryListBrand> {
               ),
               child: Center(child: Text(
                 "$title$title$title$title$title$title$title$title$title$title$title",
-                textAlign: TextAlign.center,
                 maxLines: 2,
+                textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(color: Colors.white, fontSize: 12),
               ),)

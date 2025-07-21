@@ -18,7 +18,8 @@ final Map<String, String> ViewKeyPathMap = {
   "home": "/app/home/wg",
   "swiper": "/market/swiper/demo",
   "marquee": "/market/marquee/demo",
-  "game_home": "/game/home/demo",
+
+  "game_home": "/game/home/top_category_demo",
   "game_search": "/game/search/demo",
 
   "discover": "/wechat/discover",

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
 
-class GameByCategoryHotGameDemo extends StatefulWidget {
+class GameHomeCategoryHotGameDemo extends StatefulWidget {
   final dynamic params;
-  const GameByCategoryHotGameDemo({this.params,super.key});
+  const GameHomeCategoryHotGameDemo({this.params,super.key});
 
   @override
-  _GameByCategoryHotGameDemoState createState() => _GameByCategoryHotGameDemoState();
+  _GameHomeCategoryHotGameDemoState createState() => _GameHomeCategoryHotGameDemoState();
 }
 // with AutomaticKeepAliveClientMixin
 // @override
@@ -20,7 +20,7 @@ class Item {
   Item(this.title, this.imageUrl);
 }
 
-class _GameByCategoryHotGameDemoState extends State<GameByCategoryHotGameDemo> {
+class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDemo> {
   bool _expanded = false;
   int columns = 3;
   int leastShow = 6;

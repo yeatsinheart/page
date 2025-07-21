@@ -87,7 +87,8 @@ class _AppHomeWgState extends State<AppHomeWg> {
                             //IconButton(onPressed: () {GlobalContext.load("game_search");}, icon: Icon(Icons.search)),
                             IconButton(
                               onPressed: () {
-                                GlobalOverlayContext.show("game_search", autoRemoveTime: 3000);
+                                GlobalContext.load("game_search");
+                                //GlobalOverlayContext.show("game_search", autoRemoveTime: 3000);
                               },
                               icon: Icon(Icons.search),
                             ),

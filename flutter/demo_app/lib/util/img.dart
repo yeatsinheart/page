@@ -21,9 +21,9 @@ final customCacheManager = kIsWeb
     ? null
     : CacheManager(
         Config(
-          'customCacheKey',
+          'customCacheManagerKey',
           stalePeriod: const Duration(days: 7),
-          maxNrOfCacheObjects: 100,
+          maxNrOfCacheObjects: 5000,
           repo: JsonCacheInfoRepository(databaseName: 'myCache'),
           fileService: HttpFileService(),
         ),

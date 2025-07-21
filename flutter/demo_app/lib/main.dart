@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter3/store/language_store.dart';
 import 'package:flutter3/_theme_data.dart';
 import 'package:get/get.dart';
@@ -35,20 +36,33 @@ class Root extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final languageStore = Get.find<LanguageStore>();
-      // 多语言
     return GetMaterialApp(
       translations: languageStore.translations,
-      locale: parseLocale("en_US"),             // 默认语言
+      locale: parseLocale(languageStore.locale),             // 默认语言
       //fallbackLocale: Locale('en', 'US'),     // 回退语言
 
       scrollBehavior: ScrollBehavior().copyWith(dragDevices: {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
+        PointerDeviceKind.touch,//移动设备的手指滑动
+        PointerDeviceKind.mouse,//鼠标滚轮/拖动
+        PointerDeviceKind.trackpad,//触控板
       }),
+
       navigatorKey: GlobalContext.navigatorKey,
       debugShowCheckedModeBanner: false,
-      title: AppService().get()!.name.tr,
       theme: getThemeData(),
+      builder: (context, child) {
+        // 延迟设置 title（不会影响 AppBar 的 title）
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          SystemChrome.setApplicationSwitcherDescription(
+            ApplicationSwitcherDescription(
+              label: AppService().get()!.name.tr,
+              primaryColor: Theme.of(context).primaryColor.value,
+            ),
+          );
+        });
+        return child!;
+      },
+      //title: AppService().get()!.name.tr,
       onGenerateRoute: (setting) {
         return getRoute(setting);
       },

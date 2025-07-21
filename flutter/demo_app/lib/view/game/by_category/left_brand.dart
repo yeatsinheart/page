@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter3/util/context.dart';
 import 'package:flutter3/views.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,8 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
   List<bool> _expandedStates = [];
   int _currentIndex = 0;
   bool _scrollingByClick = false;
+  GlobalKey _header2Key = GlobalKey();
+  double _header2Padding = 0;
 
   @override
   void initState() {
@@ -38,44 +41,65 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     _tab_keys.addAll(List.generate(tabs.length, (_) => GlobalKey()));
     _expandedStates = List.filled(tabs.length, false);
 
-    _pageScrollController.addListener(() => _onPageScroll());
+    //_pageScrollController.addListener(() => _onPageScroll());
   }
 
+ void headerSticky(){
+   SchedulerBinding.instance.addPostFrameCallback((_) {
+   final header2_context = _header2Key.currentContext;
+   if (header2_context != null) {
+     final header2 = header2_context.findRenderObject() as RenderBox;
+     final offset2 = header2.localToGlobal(Offset.zero).dy;
+      print("$offset2 ${offset2 - GlobalContext.getRem(.9)} $_header2Padding");
+     if(offset2 < GlobalContext.getRem(.9)){
+       setState(() {
+         _header2Padding = (offset2 - GlobalContext.getRem(.9)).abs();
+       });
+     }
+     if(offset2 >= GlobalContext.getRem(.9) && _header2Padding!=0){
+       setState(() {
+         _header2Padding = 0;
+       });
+     }
+   }
+   });
+ }
   void _onPageScroll() {
-    double minDistance = double.infinity;
-    int closestIndex = 0;
-
-    for (int i = 0; i < _data_keys.length; i++) {
-      final context = _data_keys[i].currentContext;
-      if (context != null) {
-        final box = context.findRenderObject() as RenderBox;
-        final offset = box.localToGlobal(Offset.zero).dy;
-
-        // 计算距离屏幕顶部的距离（越小越接近顶部）
-        final distanceFromTop = offset.abs();
-
-        if (distanceFromTop < minDistance) {
-          minDistance = distanceFromTop;
-          closestIndex = i;
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      double minDistance = double.infinity;
+      int closestIndex = 0;
+      for (int i = 0; i < _data_keys.length; i++) {
+        final context = _data_keys[i].currentContext;
+        if (context != null) {
+          final box = context.findRenderObject() as RenderBox;
+          final offset = box
+              .localToGlobal(Offset.zero)
+              .dy;
+          // 计算距离屏幕顶部的距离（越小越接近顶部）
+          final distanceFromTop = offset.abs();
+          if (distanceFromTop < minDistance) {
+            minDistance = distanceFromTop;
+            closestIndex = i;
+          }
         }
       }
-    }
-    if (closestIndex != _currentIndex) {
-      setState(() {
-        if (_scrollingByClick) return;
-        //print("距离顶部最近的是第 $closestIndex 个元素");
-        _currentIndex = closestIndex;
-        _scrollTabToCenter(closestIndex);
-      });
-    }
+      print("距离顶部最近的是第 $closestIndex 个元素");
+      if (closestIndex != _currentIndex) {
+        setState(() {
+          if (_scrollingByClick) return;
+          _currentIndex = closestIndex;
+          _scrollTabToCenter(closestIndex);
+        });
+      }
+    });
   }
 
   void _scrollTabToCenter(int index) {
-    final double screenWidth = GlobalContext.getWidth();
+    final double screenHeight = GlobalContext.getHeight();
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
-      final double targetOffset = index * box.size.height - (screenWidth - box.size.height) / 2;
+      final double targetOffset = index * box.size.height - (screenHeight - box.size.height) / 2;
       //print("tab移动到${targetOffset} 选中 ${_currentIndex}");
       _tabScrollController.animateTo(targetOffset.clamp(_tabScrollController.position.minScrollExtent, _tabScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeOut);
     }
@@ -107,6 +131,8 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
 
   Widget _buildTabBar() {
     return Container(
+      key: _header2Key,
+      padding: EdgeInsetsGeometry.only(top: _header2Padding),
       color: Colors.transparent,
       child: ListView.separated(
         shrinkWrap: true,
@@ -173,62 +199,100 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     );
   }
 
+  Widget getHeader1(){
+    return SliverPersistentHeader(
+      // padding 永远和header保持>一个导航栏高度
+        pinned: true,
+        // 最大高度
+        delegate: _StickyHeaderDelegate(height: GlobalContext.getRem(.9), child:Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        // 左侧 logo
+        //Image.asset('assets/logo.png', height: 40),
+        getUrlImg('assets/logo.png', GlobalContext.getRem(0.7), GlobalContext.getRem(0.7), null),
+        TextButton(
+          onPressed: () {
+            setState(() {
+              _changeCategory = !_changeCategory;
+            });
+          },
+          child: Text('某分类'),
+          style: ButtonStyle(
+            foregroundColor: WidgetStateProperty.all(Colors.blue),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(GlobalContext.getRem(.1)),
+                side: BorderSide(color: Colors.blue),
+              ),
+            ),
+          ),
+        ),
+      ],
+    )));
+  }
+
+  Widget getHeader2(){
+    return SliverConstrainedCrossAxis(
+        maxExtent: 80,
+        sliver: SliverPersistentHeader(
+      // padding 永远和header保持>一个导航栏高度
+      pinned: true,
+      // 最大高度
+      delegate: _StickyHeaderDelegate(height: GlobalContext.getHeight() - GlobalContext.getRem(1.24), child: _buildTabBar()),
+    ));
+  }
+  Widget scrollListener(child){
+    return NotificationListener(
+        onNotification: (notification) {
+          if (notification is ScrollStartNotification) {
+            print('🚀 Start Scrolling');
+            //isScrolling = true;
+          } else if (notification is ScrollUpdateNotification) {
+            //headerSticky();_onPageScroll();
+            print('📦 Offset = ${notification.metrics.pixels}');
+          } else if (notification is ScrollEndNotification) {
+            headerSticky();_onPageScroll();
+            print('🛑 Scroll End');
+            //isScrolling = false;
+          }else if (notification is OverscrollNotification) {
+            //headerSticky();_onPageScroll();
+          }
+          return true; // 阻止通知继续传递
+          //return false; // 不阻止通知继续传递
+        },
+        child:child);
+        }
   @override
   Widget build(BuildContext context) {
     // 在主轴方向（通常是垂直）保持同步滚动行为。
     // 上下结构 SliverMainAxisGroup 类似 Column
     // 左右结构 SliverCrossAxisGroup 类似 Row
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // 左侧 logo
-            //Image.asset('assets/logo.png', height: 40),
-            getUrlImg('assets/logo.png', GlobalContext.getRem(0.7), GlobalContext.getRem(0.7), null),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  _changeCategory = !_changeCategory;
-                });
-              },
-              child: Text('某分类'),
-              style: ButtonStyle(
-                foregroundColor: WidgetStateProperty.all(Colors.blue),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(GlobalContext.getRem(.1)),
-                    side: BorderSide(color: Colors.blue),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
       body: Container(
         decoration: BoxDecoration(gradient: SkinData().gradient()),
         child: SafeArea(
           bottom: false,
           child: Stack(
             children: [
-              CustomScrollView(
+              scrollListener(CustomScrollView(
                 physics: _changeCategory?NeverScrollableScrollPhysics():null, // 禁止滚动
                 cacheExtent: 1000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
                 controller: _pageScrollController,
                 slivers: [
+                  SliverToBoxAdapter(
+                    child: Container(
+                      height: 150,
+                      color: Colors.orange.shade100,
+                      alignment: Alignment.center,
+                      child: Text('👋 欢迎页面介绍内容，滚动后会消失'),
+                    ),
+                  ),
+                  getHeader1(),
                   SliverPadding(
                     padding: EdgeInsets.symmetric(horizontal: GlobalContext.getRem(.2)),
                     sliver: SliverCrossAxisGroup(
                       slivers: [
-                        SliverConstrainedCrossAxis(
-                          maxExtent: 80,
-                          sliver: SliverPersistentHeader(
-                            pinned: true,
-                            // 最大高度
-                            delegate: _StickyHeaderDelegate(height: GlobalContext.getHeight() - GlobalContext.getRem(1.24), child: _buildTabBar()),
-                          ),
-                        ),
+                        getHeader2(),
 
                         /*
         SliverChildBuilderDelegate懒加载[监听位置会有找不到的问题]
@@ -334,6 +398,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                     ),
                   ),
                 ],
+              )
               ),
               _changeCategory
                   ? Positioned.fill(

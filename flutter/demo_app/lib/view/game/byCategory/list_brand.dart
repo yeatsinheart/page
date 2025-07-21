@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 class GameByCategoryListBrand extends StatefulWidget {
   final dynamic params;
 
@@ -38,7 +38,7 @@ class _GameByCategoryListBrandState extends State<GameByCategoryListBrand> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              Text(title.tr, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               Text("更多 >", style: TextStyle(color: Colors.blue)),
             ],
           ),
@@ -48,7 +48,7 @@ class _GameByCategoryListBrandState extends State<GameByCategoryListBrand> {
             itemCount: expanded ? 32 : 6,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 0.75, crossAxisSpacing: 8, mainAxisSpacing: 8),
             itemBuilder: (_, gridIndex) {
-              return buildGridItem(title);
+              return buildGridItem(title.tr);
             },
           ),
           if (!expanded)
@@ -81,17 +81,18 @@ class _GameByCategoryListBrandState extends State<GameByCategoryListBrand> {
             left: 0,
             right: 0,
             child: Container(
+              height: 50,
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
               decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [Colors.black.withOpacity(0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
               ),
-              child: Text(
-                title,
+              child: Center(child: Text(
+                "$title$title$title$title$title$title$title$title$title$title$title",
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(color: Colors.white, fontSize: 12),
-              ),
+              ),)
             ),
           ),
         ],

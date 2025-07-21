@@ -207,11 +207,10 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
           // SliverChildListDelegate立即渲染
           delegate: SliverChildListDelegate(
             List.generate(tabs.length, (index) {
-              final title = tabs[index].tr;
               return getWidgetByPath(
                 path: "/game/byCategory/list_brand",
                 key: _data_keys[index],
-                params: {"title": title},
+                params: {"title": tabs[index]},
               );
             }),
           ),

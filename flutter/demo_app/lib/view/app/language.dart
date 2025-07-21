@@ -78,14 +78,14 @@ class AppLanguage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(lang["flag"]!, style: const TextStyle(fontSize: 20)),
                   Expanded(
                     child: Text(
                       lang["name"]!,
-                      textAlign: TextAlign.right,
+                      textAlign: TextAlign.left,
                       style: TextStyle(fontSize: 16,color: selected?Colors.white:Colors.black),
                     ),
                   ),
+                  Text(lang["flag"]!, style: const TextStyle(fontSize: 20)),
                 ],
               ),
             );

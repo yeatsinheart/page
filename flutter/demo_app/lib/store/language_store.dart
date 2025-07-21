@@ -45,6 +45,7 @@ class LanguageStore extends GetxService {
     // 更新翻译
     _translations.setTranslations(wrapped);
     Get.updateLocale(parseLocale(langCode));
+    _locale.value=langCode;
   }
 
   Future<Map<String, String>> fetchRemoteTranslations(String langCode) async {

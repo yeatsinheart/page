@@ -31,18 +31,22 @@ dynamic getWidget(String? key) {
     debugPrint('getWidget: key is null');
     return null;
   }
-  final path = ViewKeyPathMap[key];
+  return getWidgetByPath(ViewKeyPathMap[key]);
+}
+
+dynamic getWidgetByPath(String? path){
   if (path == null) {
-    debugPrint('getWidget: path not found for key $key');
+    debugPrint('getWidgetByPath: path is null');
     return null;
   }
-  final widget = NamedViewWidget.getViewWidget(path)
-      ?? NamedViewWidget.getViewWidget('$path/index');
+  final widget = NamedViewWidget.getViewWidget(path,null)
+      ?? NamedViewWidget.getViewWidget('$path/index',null);
   if (widget == null) {
-    debugPrint('getWidget: widget not found for path $path');
+    debugPrint('getWidgetByPath: widget not found for path $path');
   }
   return widget;
 }
+
 PageRoute asRoute(String key) {
   return PageRouteBuilder(
       pageBuilder: (cxt, ani1, ani2) {

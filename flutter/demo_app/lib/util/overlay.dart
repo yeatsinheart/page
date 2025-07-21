@@ -4,6 +4,7 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 
 import '../views.dart';
+import '../named_view_widget.dart';
 import 'context.dart';
 
 class GlobalOverlayContext {
@@ -46,6 +47,15 @@ class GlobalOverlayContext {
     _entries[widget.key.toString()] = entry;
     showOverlay(entry,autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);
   }
+
+  static void popBy(String containerPath,String childKey, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
+    Widget childWidget = getWidget(childKey);
+    Widget? pop = NamedViewWidget.getViewWidget(containerPath,childWidget);
+    OverlayEntry entry = item(pop!);
+    _entries[pop.key.toString()] = entry;
+    showOverlay(entry,autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);
+  }
+
   static void removeByWidgetSelf(String key) {
     final entry = _entries[key];
     if (entry != null && entry.mounted) {

@@ -4,9 +4,11 @@ import 'package:path/path.dart' as p;
 
 String base_path = "";
 String pkg = "";
-List<String> widgets = [];
+
 List<String> imports = [];
+List<Map<String, dynamic>> widgets = [];
 // https://api.dart.dev/stable/3.1.4/index.html
+
 main() async {
   print("收集所有页面");
   //Directory directory = await getTemporaryDirectory();
@@ -38,12 +40,12 @@ class NamedViewWidget {
   """;
   content += "\n";
 
-  content += "  static Widget? getViewWidget(String? uri) { \n"
-      "    if(null==uri)return null;\n"
-      "    switch (uri){\n";
+  content += "  static Widget? getViewWidget(String? path) { \n"
+      "    if(null==path)return null;\n"
+      "    switch (path){\n";
 
-  widgets.forEach((widget) {
-    content += "      case \"${widget}\": return ${fileToName(widget)}();\n";
+  widgets.forEach((Map<String, dynamic> widgetInfo) {
+    content += "      case \"${widgetInfo["path"]}\": return ${fileToName(widgetInfo["name"])}(${widgetInfo["isPopContainer"]?'child: child??Container()':''});\n";
   });
   content += "    }\n"
       "    return null;\n"
@@ -69,8 +71,8 @@ dirLookUp(Directory dir) async {
         String file = entity.path.replaceAll(base_path, '');
         if (file.startsWith("/view/") && !fileName.startsWith("_")) {
           imports.add("import 'package:${pkg}${file}';");
-          String widget = file.substring(5, file.length - 5);
-          widgets.add(widget);
+          String path = file.substring(5, file.length - 5);
+          widgets.add({"isPopContainer":file.startsWith("/view/pop"),"path":path,"name":fileToName(path)});
         }
       } else if (entity is Directory) {
         await dirLookUp(entity);

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter3/store/language_store.dart';
+import 'package:flutter3/_theme_data.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -47,17 +48,7 @@ class Root extends StatelessWidget {
       navigatorKey: GlobalContext.navigatorKey,
       debugShowCheckedModeBanner: false,
       title: AppService().get()!.name.tr,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white, // 全局页面背景色
-        // 点击时的高亮效果设置为透明 长按时的扩散效果设置为透明 以上两者去除按钮点击水波纹
-        splashFactory: NoSplash.splashFactory,
-        hoverColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        //,background: Colors.grey
-        //colorScheme: ColorScheme.fromSeed(seedColor: colorFromHex(AppService().get()!.color)),
-        useMaterial3: true,
-      ),
+      theme: getThemeData(),
       onGenerateRoute: (setting) {
         return getRoute(setting);
       },

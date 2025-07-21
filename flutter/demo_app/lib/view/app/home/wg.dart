@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/util/overlay.dart';
-import 'package:flutter3/view/game/home/demo.dart';
 
 import '../../../service/data/skin_data.dart';
 import '../../../util/context.dart';
@@ -30,7 +29,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
         child: SafeArea(
           bottom: false,
           child: CustomScrollView(
-            cacheExtent: 10000, // 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
+            cacheExtent: 50000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
             controller: _controller,
             slivers: [
               /*SliverAppBar(
@@ -48,7 +47,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
                     pinned: true, // 关键：固定吸顶
                     delegate: _StickyHeaderDelegate(
                       //height: currentHeaderIndex == 1 ? GlobalContext.getRem(0.9) : 0,
-                      height:  GlobalContext.getRem(0.9) ,
+                      height: GlobalContext.getRem(0.9),
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                         color: Colors.white,
@@ -63,18 +62,9 @@ class _AppHomeWgState extends State<AppHomeWg> {
                               onPressed: () {},
                               child: Text('注册'),
                               style: ButtonStyle(
-                                overlayColor: WidgetStateProperty.all(Colors.transparent),
-                                // 去除水波纹、hover等
-                                splashFactory: NoSplash.splashFactory,
-                                // 完全禁用点击水波纹动画
-                                shadowColor: WidgetStateProperty.all(Colors.transparent),
-                                // 去除阴影
                                 backgroundColor: WidgetStateProperty.all(Colors.blue),
-                                // 背景颜色
                                 foregroundColor: WidgetStateProperty.all(Colors.white),
-                                // 文字颜色
-                                padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
-                                shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                                shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(GlobalContext.getRem(.1)))),
                               ),
                             ),
                             SizedBox(width: 8),
@@ -82,41 +72,42 @@ class _AppHomeWgState extends State<AppHomeWg> {
                               onPressed: () {},
                               child: Text('登录'),
                               style: ButtonStyle(
-                                overlayColor: WidgetStateProperty.all(Colors.transparent),
-                                // 去除水波纹、hover等
-                                splashFactory: NoSplash.splashFactory,
-                                // 完全禁用点击水波纹动画
-                                shadowColor: WidgetStateProperty.all(Colors.transparent),
-                                // 去除阴影
-                                backgroundColor: WidgetStateProperty.all(Colors.transparent),
-                                // 去除背景
                                 foregroundColor: WidgetStateProperty.all(Colors.blue),
-                                // 文字颜色
-                                padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(GlobalContext.getRem(.1)),
                                     side: BorderSide(color: Colors.blue),
                                   ),
                                 ),
                               ),
                             ),
                             SizedBox(width: 8),
-                            //IconButton(onPressed: () {GlobalContext.load("game_search");}, icon: Icon(Icons.search), splashColor: Colors.transparent, highlightColor: Colors.transparent, hoverColor: Colors.transparent),
-                            IconButton(onPressed: () {GlobalOverlayContext.show("game_search",autoRemoveTime: 3000);}, icon: Icon(Icons.search), splashColor: Colors.transparent, highlightColor: Colors.transparent, hoverColor: Colors.transparent),
-                            IconButton(onPressed: () {GlobalOverlayContext.show("language");}, icon: Icon(Icons.language), splashColor: Colors.transparent, highlightColor: Colors.transparent, hoverColor: Colors.transparent),
+                            //IconButton(onPressed: () {GlobalContext.load("game_search");}, icon: Icon(Icons.search)),
+                            IconButton(
+                              onPressed: () {
+                                GlobalOverlayContext.show("game_search", autoRemoveTime: 3000);
+                              },
+                              icon: Icon(Icons.search),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                //GlobalOverlayContext.show("language");
+                                GlobalOverlayContext.popBy("/pop/close_bottom","language");
+                              },
+                              icon: Icon(Icons.language),
+                            ),
                           ],
                         ),
                         //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, GlobalContext.getRem(0.7), null),
                       ),
                     ),
                   ),
-                  SliverToBoxAdapter(child: getWidget("swiper"),),
-                  SliverToBoxAdapter(child: getWidget("marquee"),),
+                  SliverToBoxAdapter(child: getWidget("swiper")),
+                  SliverToBoxAdapter(child: getWidget("marquee")),
                 ],
               ),
               getWidget("game_home"),
-                  //SliverToBoxAdapter(child: getWidget("game_home"),),
+              //SliverToBoxAdapter(child: getWidget("game_home"),),
               //SliverToBoxAdapter(child: GameHomeDemo1()),
 
               /* SliverPersistentHeader(
@@ -138,8 +129,11 @@ class _AppHomeWgState extends State<AppHomeWg> {
                 ),
               ),*/
               // 所有 200 项都会同时构建（因为 shrinkWrap: true 表示先算完高度）。
-              SliverToBoxAdapter(child: ListView.builder(itemCount: 20,
-                  shrinkWrap: true,physics: NeverScrollableScrollPhysics(),
+              SliverToBoxAdapter(
+                child: ListView.builder(
+                  itemCount: 20,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return ListTile(title: Text('Item SliverToBoxAdapter $index'));
                   },
@@ -147,7 +141,13 @@ class _AppHomeWgState extends State<AppHomeWg> {
               ),
               // 只有可视区域的子项才会被构建（懒加载）。
               SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 20)),
-              SliverList(delegate: SliverChildListDelegate(List.generate(20, (index) {return Text('Item SliverList $index');}))),
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  List.generate(20, (index) {
+                    return Text('Item SliverList $index');
+                  }),
+                ),
+              ),
               //SliverToBoxAdapter(child: SizedBox(height: 10000)),
             ],
           ),

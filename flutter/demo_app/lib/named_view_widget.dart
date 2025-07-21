@@ -31,7 +31,7 @@ class NamedViewWidget {
   factory NamedViewWidget() => _instance;
   static final NamedViewWidget _instance = NamedViewWidget._internal();
   
-  static Widget? getViewWidget({String? path, key, params}) {
+  static Widget? getViewWidget({String? path, key, params}) { 
     if(null==path)return null;
     switch (path){
       case "/app/home/wg": return AppHomeWg(key:key,params: params);

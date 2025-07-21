@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 class GameHomeDemo extends StatefulWidget {
   final dynamic params;
+
   const GameHomeDemo({super.key, this.params});
 
   @override
@@ -17,7 +18,7 @@ class GameHomeDemo extends StatefulWidget {
 class _GameHomeDemoState extends State<GameHomeDemo> {
   late ScrollController _pageScrollController;
 
-  ScrollController _tabScrollController = ScrollController();
+  final ScrollController _tabScrollController = ScrollController();
   final List<String> tabs = ['热门', '电子老虎机', '彩票投注', '体育竞赛', '真人视讯', '捕鱼游戏'];
   final List<GlobalKey> _data_keys = [];
   final List<GlobalKey> _tab_keys = [];
@@ -36,11 +37,8 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
     // 延迟到第一帧渲染后再访问 context
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final scrollable = Scrollable.of(context); // 🔥 此时才安全
-      if (scrollable != null) {
-        _pageScrollController = scrollable.widget.controller!;
-        _pageScrollController.addListener(() => _onPageScroll());
-        // safe to use
-      }
+      _pageScrollController = scrollable.widget.controller!;
+      _pageScrollController.addListener(() => _onPageScroll());
     });
   }
 
@@ -94,16 +92,17 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
 
   void _clickTo(int index) {
     _scrollingByClick = true;
-    final data_context = _data_keys[index].currentContext;
+    final dataContext = _data_keys[index].currentContext;
     //print("点击时找到的页面元素${data_context}");
-    if (data_context != null) {
-      final box = data_context.findRenderObject() as RenderBox;
+    if (dataContext != null) {
+      final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
       final offset =
           box.localToGlobal(Offset.zero).dy +
           _pageScrollController.offset -
           GlobalContext.getRem(.9);
-      //print("页面移动到${offset}");
+      //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
+
       _pageScrollController
           .animateTo(
             offset,
@@ -120,7 +119,7 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
 
   @override
   void dispose() {
-    //_scrollController?.dispose();
+    _tabScrollController.dispose();
     super.dispose();
   }
 
@@ -195,59 +194,101 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
 
         // SliverChildListDelegate立即渲染
         //SliverList(delegate: SliverChildListDelegate(
-        ...List.generate(tabs.length, (index) {
+        // 为什么用 SliverToBoxAdapter 包裹组件后，localToGlobal(Offset.zero) 只能获取到 viewport 内的偏移？而用 SliverList 的子项则能返回全局偏移（如 2390）？
+        // 因为 SliverList 使用了 SliverChildBuilderDelegate，具有 懒加载 机制，它会：
+        // 根据当前滚动情况提前加载一些 item（前后多个 buffer 区域）；
+        // 如果你用 SliverChildListDelegate（你用的是这个），它实际上是一次性构建所有子项，所以你会发现所有组件的 key.currentContext 都能用；
+        // 所以你才能获取 Offset(0.0, 2390.0)，因为它被提前 build 出来了。
+        //
+        // 虽然每个 SliverToBoxAdapter 是一个完整的 Sliver，但它不会自动预渲染所有项；
+        // 并且如果组件太大或不在视图附近，Flutter 就不构建它（为了性能优化）；
+        // 所以你在尝试获取 key.currentContext 时会失败或得到 Offset.zero（默认坐标）；
+        SliverList(
+          // SliverChildListDelegate立即渲染
+          delegate: SliverChildListDelegate(
+            List.generate(tabs.length, (index) {
+              final title = tabs[index].tr;
+              return getWidgetByPath(
+                path: "/game/byCategory/list_brand",
+                key: _data_keys[index],
+                params: {"title": title},
+              );
+            }),
+          ),
+        ),
+        /*...List.generate(tabs.length, (index) {
           final title = tabs[index].tr;
           final expanded = _expandedStates[index];
           final showCount = expanded ? 32 : 6;
 
-          return index!=0?SliverToBoxAdapter(child: getWidgetByPath(path: "/game/byCategory/list_brand",key:_data_keys[index],params: {"title":title})):
-           SliverToBoxAdapter(
-            child: Column(
-              key: _data_keys[index],
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                        Text("更多 >", style: TextStyle(color: Colors.blue)),
-                      ],
-                    ),
+          return index != 0
+              ? SliverToBoxAdapter(
+                  child: getWidgetByPath(
+                    path: "/game/byCategory/list_brand",
+                    key: _data_keys[index],
+                    params: {"title": title},
                   ),
-                Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: GlobalContext.getRem(.2),vertical: GlobalContext.getRem(.01)),
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: showCount,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      childAspectRatio: 0.75,
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                    ),
-                    itemBuilder: (_, gridIndex) {
-                      return buildGridItem(title);
-                    },
+                )
+              : SliverToBoxAdapter(
+                  child: Column(
+                    key: _data_keys[index],
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              title,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text("更多 >", style: TextStyle(color: Colors.blue)),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: GlobalContext.getRem(.2),
+                          vertical: GlobalContext.getRem(.01),
+                        ),
+                        child: GridView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: showCount,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                childAspectRatio: 0.75,
+                                crossAxisSpacing: 8,
+                                mainAxisSpacing: 8,
+                              ),
+                          itemBuilder: (_, gridIndex) {
+                            return buildGridItem(title);
+                          },
+                        ),
+                      ),
+                      if (!expanded)
+                        Center(
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                _expandedStates[index] = true;
+                              });
+                            },
+                            child: Text("查看更多"),
+                          ),
+                        ),
+                    ],
                   ),
-                ),
-                if (!expanded)
-                  Center(
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          _expandedStates[index] = true;
-                        });
-                      },
-                      child: Text("查看更多"),
-                    ),
-                  ),
-              ],
-            ),
-          );
-        }),
+                );
+        }),*/
       ],
     );
     /*

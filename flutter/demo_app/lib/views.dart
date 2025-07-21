@@ -34,13 +34,13 @@ dynamic getWidget(String? key) {
   return getWidgetByPath(path: ViewKeyPathMap[key]);
 }
 
-dynamic getWidgetByPath({path,params}){
+dynamic getWidgetByPath({path,key,params}){
   if (path == null) {
     debugPrint('getWidgetByPath: path is null');
     return null;
   }
-  final widget = NamedViewWidget.getViewWidget(path: path,params: params)
-      ?? NamedViewWidget.getViewWidget(path: '$path/index',params: params);
+  final widget = NamedViewWidget.getViewWidget(path: path,key:key,params: params)
+      ?? NamedViewWidget.getViewWidget(path: '$path/index',key:key,params: params);
   if (widget == null) {
     debugPrint('getWidgetByPath: widget not found for path $path');
   }

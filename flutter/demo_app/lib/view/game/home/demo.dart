@@ -200,7 +200,7 @@ class _GameHomeDemoState extends State<GameHomeDemo> {
           final expanded = _expandedStates[index];
           final showCount = expanded ? 32 : 6;
 
-          return index!=0?SliverToBoxAdapter(child: getWidgetByPath(path: "/game/byCategory/list_brand",params: {"title":title})):
+          return index!=0?SliverToBoxAdapter(child: getWidgetByPath(path: "/game/byCategory/list_brand",key:_data_keys[index],params: {"title":title})):
            SliverToBoxAdapter(
             child: Column(
               key: _data_keys[index],

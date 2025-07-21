@@ -31,36 +31,36 @@ class NamedViewWidget {
   factory NamedViewWidget() => _instance;
   static final NamedViewWidget _instance = NamedViewWidget._internal();
   
-  static Widget? getViewWidget({String? path, globalKey, dynamic params}) {
+  static Widget? getViewWidget({String? path, key, params}) {
     if(null==path)return null;
     switch (path){
-      case "/app/home/wg": return AppHomeWg(params: params);
-      case "/app/language": return AppLanguage(params: params);
-      case "/app/splash/demo": return AppSplashDemo(params: params);
-      case "/game/byCategory/hot_game_demo": return GameByCategoryHotGameDemo(params: params);
-      case "/game/byCategory/list_brand": return GameByCategoryListBrand(params: params);
-      case "/game/home/demo": return GameHomeDemo(params: params);
-      case "/game/search/demo": return GameSearchDemo(params: params);
-      case "/layout/demo": return LayoutDemo(params: params);
-      case "/layout/demoBottomNavigationBar": return LayoutDemoBottomNavigationBar(params: params);
-      case "/layout/demoNavigationBar": return LayoutDemoNavigationBar(params: params);
-      case "/market/marquee/demo": return MarketMarqueeDemo(params: params);
-      case "/market/swiper/demo": return MarketSwiperDemo(params: params);
-      case "/page/404/undified": return Page404Undified(params: params);
-      case "/page/demo": return PageDemo(params: params);
-      case "/page/me/demo": return PageMeDemo(params: params);
-      case "/page/permission": return PagePermission(params: params);
-      case "/pop/close_bottom": return PopCloseBottom(params: params);
-      case "/test/appstore": return TestAppstore(params: params);
-      case "/test/apptext": return TestApptext(params: params);
-      case "/test/cs": return TestCs(params: params);
-      case "/test/detail": return TestDetail(params: params);
-      case "/test/detailpage": return TestDetailpage(params: params);
-      case "/test/herodetail": return TestHerodetail(params: params);
-      case "/test/nestcs": return TestNestcs(params: params);
-      case "/wechat/contact": return WechatContact(params: params);
-      case "/wechat/discover": return WechatDiscover(params: params);
-      case "/wechat/msg": return WechatMsg(params: params);
+      case "/app/home/wg": return AppHomeWg(key:key,params: params);
+      case "/app/language": return AppLanguage(key:key,params: params);
+      case "/app/splash/demo": return AppSplashDemo(key:key,params: params);
+      case "/game/byCategory/hot_game_demo": return GameByCategoryHotGameDemo(key:key,params: params);
+      case "/game/byCategory/list_brand": return GameByCategoryListBrand(key:key,params: params);
+      case "/game/home/demo": return GameHomeDemo(key:key,params: params);
+      case "/game/search/demo": return GameSearchDemo(key:key,params: params);
+      case "/layout/demo": return LayoutDemo(key:key,params: params);
+      case "/layout/demoBottomNavigationBar": return LayoutDemoBottomNavigationBar(key:key,params: params);
+      case "/layout/demoNavigationBar": return LayoutDemoNavigationBar(key:key,params: params);
+      case "/market/marquee/demo": return MarketMarqueeDemo(key:key,params: params);
+      case "/market/swiper/demo": return MarketSwiperDemo(key:key,params: params);
+      case "/page/404/undified": return Page404Undified(key:key,params: params);
+      case "/page/demo": return PageDemo(key:key,params: params);
+      case "/page/me/demo": return PageMeDemo(key:key,params: params);
+      case "/page/permission": return PagePermission(key:key,params: params);
+      case "/pop/close_bottom": return PopCloseBottom(key:key,params: params);
+      case "/test/appstore": return TestAppstore(key:key,params: params);
+      case "/test/apptext": return TestApptext(key:key,params: params);
+      case "/test/cs": return TestCs(key:key,params: params);
+      case "/test/detail": return TestDetail(key:key,params: params);
+      case "/test/detailpage": return TestDetailpage(key:key,params: params);
+      case "/test/herodetail": return TestHerodetail(key:key,params: params);
+      case "/test/nestcs": return TestNestcs(key:key,params: params);
+      case "/wechat/contact": return WechatContact(key:key,params: params);
+      case "/wechat/discover": return WechatDiscover(key:key,params: params);
+      case "/wechat/msg": return WechatMsg(key:key,params: params);
     }
     return null;
   }

@@ -64,8 +64,11 @@ class NamedViewWidget {
 
 dirLookUp(Directory dir) async {
   if (await dir.exists()) {
-    Stream<FileSystemEntity> fse = await dir.list();
-    await for (FileSystemEntity entity in fse) {
+    //Stream<FileSystemEntity> fse = await dir.list();
+    List<FileSystemEntity> fse = await dir.list().toList();
+    // 按文件路径（字符串）排序，类似按文件名排序
+    fse.sort((a, b) => a.path.compareTo(b.path));
+    for (FileSystemEntity entity in fse) {
       if (entity is File && entity.path.endsWith(".dart")) {
         String fileName = p.basename(entity.path); // 只获取文件名
         String file = entity.path.replaceAll(base_path, '');

@@ -31,7 +31,7 @@ getThemeData() {
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
-            side: BorderSide(color: Colors.blue),
+            //side: BorderSide(color: Colors.blue),
           ),
         ),
       ),

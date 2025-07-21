@@ -35,7 +35,7 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
                   child: TextField(
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search),
-                      hintText: "搜索游戏/应用",
+                      hintText: "搜索",
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
                       filled: true,
                       fillColor: Colors.grey[200],
@@ -131,7 +131,7 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.black.withOpacity(0.5), Colors.transparent],
+                  colors: [Colors.black.withOpacity(0.3), Colors.transparent],
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
                 ),

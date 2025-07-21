@@ -31,16 +31,16 @@ dynamic getWidget(String? key) {
     debugPrint('getWidget: key is null');
     return null;
   }
-  return getWidgetByPath(ViewKeyPathMap[key]);
+  return getWidgetByPath(path: ViewKeyPathMap[key]);
 }
 
-dynamic getWidgetByPath(String? path){
+dynamic getWidgetByPath({path,params}){
   if (path == null) {
     debugPrint('getWidgetByPath: path is null');
     return null;
   }
-  final widget = NamedViewWidget.getViewWidget(path,null)
-      ?? NamedViewWidget.getViewWidget('$path/index',null);
+  final widget = NamedViewWidget.getViewWidget(path,params)
+      ?? NamedViewWidget.getViewWidget('$path/index',params);
   if (widget == null) {
     debugPrint('getWidgetByPath: widget not found for path $path');
   }

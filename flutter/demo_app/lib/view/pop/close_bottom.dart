@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/util/context.dart';
 
-import '../../util/overlay.dart';
+import 'package:flutter3/util/overlay.dart';
 
 class PopCloseBottom extends StatelessWidget {
-  final Widget child;
-  const PopCloseBottom({required this.child, super.key});
+  final dynamic params;
+  const PopCloseBottom({this.params, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class PopCloseBottom extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(GlobalContext.getRem(.2)), // 设置圆角半径
                 ),
-                child: child,
+                child: params??Container(),
               ),
             ),
             Center(

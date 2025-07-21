@@ -29,7 +29,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
         child: SafeArea(
           bottom: false,
           child: CustomScrollView(
-            cacheExtent: 50000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
+            cacheExtent: 5000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
             controller: _controller,
             slivers: [
               /*SliverAppBar(

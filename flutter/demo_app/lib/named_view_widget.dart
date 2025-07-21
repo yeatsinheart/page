@@ -3,6 +3,7 @@ import 'package:flutter3/view/app/home/wg.dart';
 import 'package:flutter3/view/app/language.dart';
 import 'package:flutter3/view/app/splash/demo.dart';
 import 'package:flutter3/view/game/byCategory/hot_game_demo.dart';
+import 'package:flutter3/view/game/byCategory/list_brand.dart';
 import 'package:flutter3/view/game/home/demo.dart';
 import 'package:flutter3/view/game/search/demo.dart';
 import 'package:flutter3/view/layout/demo.dart';
@@ -30,13 +31,14 @@ class NamedViewWidget {
   factory NamedViewWidget() => _instance;
   static final NamedViewWidget _instance = NamedViewWidget._internal();
   
-  static Widget? getViewWidget(String? path,Widget?child) { 
+  static Widget? getViewWidget(String? path,dynamic params) {
     if(null==path)return null;
     switch (path){
       case "/app/home/wg": return AppHomeWg();
       case "/app/language": return AppLanguage();
       case "/app/splash/demo": return AppSplashDemo();
       case "/game/byCategory/hot_game_demo": return GameByCategoryHotGameDemo();
+      case "/game/byCategory/list_brand": return GameByCategoryListBrand(params: params);
       case "/game/home/demo": return GameHomeDemo();
       case "/game/search/demo": return GameSearchDemo();
       case "/layout/demo": return LayoutDemo();
@@ -48,7 +50,7 @@ class NamedViewWidget {
       case "/page/demo": return PageDemo();
       case "/page/me/demo": return PageMeDemo();
       case "/page/permission": return PagePermission();
-      case "/pop/close_bottom": return PopCloseBottom(child: child??Container());
+      case "/pop/close_bottom": return PopCloseBottom(params: params);
       case "/test/appstore": return TestAppstore();
       case "/test/apptext": return TestApptext();
       case "/test/cs": return TestCs();

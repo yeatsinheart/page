@@ -40,7 +40,7 @@ class NamedViewWidget {
   """;
   content += "\n";
 
-  content += "  static Widget? getViewWidget(String? path) { \n"
+  content += "  static Widget? getViewWidget(String? path,Widget?child) { \n"
       "    if(null==path)return null;\n"
       "    switch (path){\n";
 

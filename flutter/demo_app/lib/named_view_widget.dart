@@ -3,10 +3,10 @@ import 'package:flutter3/view/page/permission.dart';
 import 'package:flutter3/view/page/me/demo.dart';
 import 'package:flutter3/view/page/404/undified.dart';
 import 'package:flutter3/view/page/demo.dart';
+import 'package:flutter3/view/pop/close_bottom.dart';
 import 'package:flutter3/view/app/home/wg.dart';
 import 'package:flutter3/view/app/splash/demo.dart';
 import 'package:flutter3/view/app/language.dart';
-import 'package:flutter3/view/pop/close_bottom.dart';
 import 'package:flutter3/view/test/nestcs.dart';
 import 'package:flutter3/view/test/herodetail.dart';
 import 'package:flutter3/view/test/cs.dart';
@@ -30,14 +30,14 @@ class NamedViewWidget {
   factory NamedViewWidget() => _instance;
   static final NamedViewWidget _instance = NamedViewWidget._internal();
   
-  static Widget? getViewWidget(String? path,Widget? child) {
+  static Widget? getViewWidget(String? path,Widget?child) {
     if(null==path)return null;
     switch (path){
-      case "/pop/close_bottom": return PopCloseBottom(child: child??Container());
       case "/page/permission": return PagePermission();
       case "/page/me/demo": return PageMeDemo();
       case "/page/404/undified": return Page404Undified();
       case "/page/demo": return PageDemo();
+      case "/pop/close_bottom": return PopCloseBottom(child: child??Container());
       case "/app/home/wg": return AppHomeWg();
       case "/app/splash/demo": return AppSplashDemo();
       case "/app/language": return AppLanguage();

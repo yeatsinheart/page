@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/util/SliverHeaderDelegate.dart';
+import 'package:flutter3/share/sliver_header_delegate.dart';
 
 class Demo1 extends StatefulWidget {
   final dynamic params;
@@ -65,7 +65,7 @@ class _Demo1State extends State<Demo1> with TickerProviderStateMixin {
                               handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                               sliver: SliverPersistentHeader(
                                 pinned: true,
-                                delegate: SliverHeaderDelegate(
+                                delegate: ShareSliverPersistentHeaderDelegate(
                                   height: 50,
                                   child: SizedBox.expand(
                                     child: Container(

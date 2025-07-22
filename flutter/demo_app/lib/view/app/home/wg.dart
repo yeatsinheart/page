@@ -144,8 +144,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
               ),
               // 只有可视区域的子项才会被构建（懒加载）。
               SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 20)),
-              SliverList(
-                delegate: SliverChildListDelegate(
+              SliverList(delegate: SliverChildListDelegate(
                   List.generate(20, (index) {
                     return Text('Item SliverList $index');
                   }),

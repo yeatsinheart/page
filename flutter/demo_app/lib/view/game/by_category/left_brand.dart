@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter3/share/sliver_header_delegate.dart';
 import 'package:flutter3/util/context.dart';
 import 'package:flutter3/views.dart';
 import 'package:get/get.dart';
 
 import '../../../service/data/skin_data.dart';
-import '../../../util/SliverHeaderDelegate.dart';
 import '../../../util/img.dart';
 
 class GameByCategoryLeftBrand extends StatefulWidget {
@@ -206,7 +206,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       // padding 永远和header保持>一个导航栏高度
         pinned: true,
         // 最大高度
-        delegate: SliverHeaderDelegate(height: GlobalContext.getRem(.9), child:Row(
+        delegate: ShareSliverPersistentHeaderDelegate(height: GlobalContext.getRem(.9), child:Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // 左侧 logo
@@ -240,7 +240,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       // padding 永远和header保持>一个导航栏高度
       pinned: true,
       // 最大高度
-      delegate: SliverHeaderDelegate(height: GlobalContext.getHeight() - GlobalContext.getRem(1.24), child: _buildTabBar()),
+      delegate: ShareSliverPersistentHeaderDelegate(height: GlobalContext.getHeight() - GlobalContext.getRem(1.24), child: _buildTabBar()),
     ));
   }
   Widget scrollListener(child){

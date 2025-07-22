@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
-Widget tab_bar_demo({tabs, currentIndex, onTap}){
+
+container_demo({height,txt='占位',color=Colors.white}){
+  return Container(height: height, color: color, alignment: Alignment.center, child: Text(txt, style: TextStyle(color: Colors.white)));
+}
+
+list_demo(count) {
+  return List.generate(count, (index) {
+    return Text('Item SliverList $index');
+  });
+  //ListTile(title: Text('Item SliverList $index')), childCount: 20)
+}
+
+Widget tab_bar_demo({tabs, currentIndex, onTap}) {
   return Container(
     color: Colors.white,
     child: Row(
@@ -25,6 +37,7 @@ Widget tab_bar_demo({tabs, currentIndex, onTap}){
     ),
   );
 }
+
 Widget sliver_grid_demo(String title, int count) {
   return SliverGrid(
     delegate: SliverChildBuilderDelegate((context, index) {

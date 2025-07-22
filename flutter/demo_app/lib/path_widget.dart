@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+import 'package:flutter3/view/ademo/main.dart';
+import 'package:flutter3/view/app/home/wg.dart';
+import 'package:flutter3/view/app/language.dart';
+import 'package:flutter3/view/app/splash/demo.dart';
+import 'package:flutter3/view/game/by_category/left_brand.dart';
+import 'package:flutter3/view/game/home/left_category_demo.dart';
+import 'package:flutter3/view/game/home/top_category_demo.dart';
+import 'package:flutter3/view/game/home_category/hot_game_demo.dart';
+import 'package:flutter3/view/game/home_category/list_brand.dart';
+import 'package:flutter3/view/game/search/demo.dart';
+import 'package:flutter3/view/layout/demo.dart';
+import 'package:flutter3/view/layout/demoBottomNavigationBar.dart';
+import 'package:flutter3/view/layout/demoNavigationBar.dart';
+import 'package:flutter3/view/market/marquee/demo.dart';
+import 'package:flutter3/view/market/swiper/demo.dart';
+import 'package:flutter3/view/page/404/undified.dart';
+import 'package:flutter3/view/page/demo.dart';
+import 'package:flutter3/view/page/me/demo.dart';
+import 'package:flutter3/view/page/permission.dart';
+import 'package:flutter3/view/pop/close_bottom.dart';
+import 'package:flutter3/view/test/appstore.dart';
+import 'package:flutter3/view/test/apptext.dart';
+import 'package:flutter3/view/test/cs.dart';
+import 'package:flutter3/view/test/detail.dart';
+import 'package:flutter3/view/test/detailpage.dart';
+import 'package:flutter3/view/test/herodetail.dart';
+import 'package:flutter3/view/test/nestcs.dart';
+import 'package:flutter3/view/wechat/contact.dart';
+import 'package:flutter3/view/wechat/discover.dart';
+import 'package:flutter3/view/wechat/msg.dart';
+
+Widget? getByPath(String? path,{key,params}) {
+  if(null==path)return null;
+  switch (path){
+    case "/ademo/main": return MainDemo(key:key,params: params);
+    case "/app/home/wg": return AppHomeWg(key:key,params: params);
+    case "/app/language": return AppLanguage(key:key,params: params);
+    case "/app/splash/demo": return AppSplashDemo(key:key,params: params);
+    case "/game/by_category/left_brand": return GameByCategoryLeftBrand(key:key,params: params);
+    case "/game/home/left_category_demo": return GameHomeLeftCategoryDemo(key:key,params: params);
+    case "/game/home/top_category_demo": return GameHomeTopCategoryDemo(key:key,params: params);
+    case "/game/home_category/hot_game_demo": return GameHomeCategoryHotGameDemo(key:key,params: params);
+    case "/game/home_category/list_brand": return GameHomeCategoryListBrand(key:key,params: params);
+    case "/game/search/demo": return GameSearchDemo(key:key,params: params);
+    case "/layout/demo": return LayoutDemo(key:key,params: params);
+    case "/layout/demoBottomNavigationBar": return LayoutDemoBottomNavigationBar(key:key,params: params);
+    case "/layout/demoNavigationBar": return LayoutDemoNavigationBar(key:key,params: params);
+    case "/market/marquee/demo": return MarketMarqueeDemo(key:key,params: params);
+    case "/market/swiper/demo": return MarketSwiperDemo(key:key,params: params);
+    case "/page/404/undified": return Page404Undified(key:key,params: params);
+    case "/page/demo": return PageDemo(key:key,params: params);
+    case "/page/me/demo": return PageMeDemo(key:key,params: params);
+    case "/page/permission": return PagePermission(key:key,params: params);
+    case "/pop/close_bottom": return PopCloseBottom(key:key,params: params);
+    case "/test/appstore": return TestAppstore(key:key,params: params);
+    case "/test/apptext": return TestApptext(key:key,params: params);
+    case "/test/cs": return TestCs(key:key,params: params);
+    case "/test/detail": return TestDetail(key:key,params: params);
+    case "/test/detailpage": return TestDetailpage(key:key,params: params);
+    case "/test/herodetail": return TestHerodetail(key:key,params: params);
+    case "/test/nestcs": return TestNestcs(key:key,params: params);
+    case "/wechat/contact": return WechatContact(key:key,params: params);
+    case "/wechat/discover": return WechatDiscover(key:key,params: params);
+    case "/wechat/msg": return WechatMsg(key:key,params: params);
+  }
+  return null;
+}

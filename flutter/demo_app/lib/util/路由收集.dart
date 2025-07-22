@@ -33,29 +33,23 @@ main() async {
   });
 
   content += """
-class NamedViewWidget {
-  NamedViewWidget._internal();
-  factory NamedViewWidget() => _instance;
-  static final NamedViewWidget _instance = NamedViewWidget._internal();
+Widget? getByPath(String? path,{key,params}) {
   """;
   content += "\n";
 
-  content += "  static Widget? getViewWidget({String? path, key, params}) { \n"
-      "    if(null==path)return null;\n"
-      "    switch (path){\n";
-
+  content += "  if(null==path)return null;\n"
+      "  switch (path){\n";
   widgets.forEach((Map<String, dynamic> widgetInfo) {
-    content += "      case \"${widgetInfo["path"]}\": return ${fileToName(widgetInfo["name"])}(key:key,params: params);\n";
+    content += "    case \"${widgetInfo["path"]}\": return ${fileToName(widgetInfo["name"])}(key:key,params: params);\n";
   });
-  content += "    }\n"
-      "    return null;\n"
-      "  }\n"
+  content += "  }\n"
+      "  return null;\n"
       "}\n";
 
   print(content);
   try {
     // 向文件写入字符串
-    await File('lib/named_view_widget.dart').writeAsString(content);
+    await File('lib/path_widget.dart').writeAsString(content);
     print('成功写入.');
   } catch (e) {
     print(e);
@@ -75,7 +69,7 @@ dirLookUp(Directory dir) async {
         if (file.startsWith("/view/") && !fileName.startsWith("_")) {
           imports.add("import 'package:${pkg}${file}';");
           String path = file.substring(5, file.length - 5);
-          widgets.add({"isPopContainer":file.startsWith("/view/pop"),"path":path,"name":fileToName(path)});
+          widgets.add({"path":path,"name":fileToName(path)});
         }
       } else if (entity is Directory) {
         await dirLookUp(entity);

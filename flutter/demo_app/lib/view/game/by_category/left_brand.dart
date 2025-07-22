@@ -5,6 +5,7 @@ import 'package:flutter3/views.dart';
 import 'package:get/get.dart';
 
 import '../../../service/data/skin_data.dart';
+import '../../../util/SliverHeaderDelegate.dart';
 import '../../../util/img.dart';
 
 class GameByCategoryLeftBrand extends StatefulWidget {
@@ -64,6 +65,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
    }
    });
  }
+
   void _onPageScroll() {
     SchedulerBinding.instance.addPostFrameCallback((_) {
       double minDistance = double.infinity;
@@ -204,7 +206,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       // padding 永远和header保持>一个导航栏高度
         pinned: true,
         // 最大高度
-        delegate: _StickyHeaderDelegate(height: GlobalContext.getRem(.9), child:Row(
+        delegate: SliverHeaderDelegate(height: GlobalContext.getRem(.9), child:Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // 左侧 logo
@@ -238,21 +240,21 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       // padding 永远和header保持>一个导航栏高度
       pinned: true,
       // 最大高度
-      delegate: _StickyHeaderDelegate(height: GlobalContext.getHeight() - GlobalContext.getRem(1.24), child: _buildTabBar()),
+      delegate: SliverHeaderDelegate(height: GlobalContext.getHeight() - GlobalContext.getRem(1.24), child: _buildTabBar()),
     ));
   }
   Widget scrollListener(child){
     return NotificationListener(
         onNotification: (notification) {
           if (notification is ScrollStartNotification) {
-            print('🚀 Start Scrolling');
+            //print('🚀 Start Scrolling');
             //isScrolling = true;
           } else if (notification is ScrollUpdateNotification) {
             //headerSticky();_onPageScroll();
-            print('📦 Offset = ${notification.metrics.pixels}');
+            //print('📦 Offset = ${notification.metrics.pixels}');
           } else if (notification is ScrollEndNotification) {
             headerSticky();_onPageScroll();
-            print('🛑 Scroll End');
+            //print('🛑 Scroll End');
             //isScrolling = false;
           }else if (notification is OverscrollNotification) {
             //headerSticky();_onPageScroll();
@@ -452,28 +454,4 @@ Widget buildGridItem(String title) {
       ],
     ),
   );
-}
-
-// 自定义 delegate 来实现吸顶 header
-class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final Widget child;
-  final double height;
-
-  _StickyHeaderDelegate({required this.child, required this.height});
-
-  @override
-  double get minExtent => height;
-
-  @override
-  double get maxExtent => height;
-
-  @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SizedBox.expand(child: child); // 填满整个 header 区域 否则报错
-  }
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
-  }
 }

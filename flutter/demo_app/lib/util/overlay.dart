@@ -4,7 +4,7 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter3/views.dart';
-import 'package:flutter3/path_widget.dart';
+import 'package:flutter3/widget_of_path.dart';
 import 'context.dart';
 
 class GlobalOverlayContext {
@@ -50,7 +50,7 @@ class GlobalOverlayContext {
 
   static void popBy(String containerPath,String childKey, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
     Widget childWidget = getWidget(childKey);
-    Widget? pop = getByPath(containerPath,params: childWidget);
+    Widget? pop = widgetOfPath(containerPath,params: childWidget);
     OverlayEntry entry = item(pop!);
     _entries[pop.key.toString()] = entry;
     showOverlay(entry,autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);

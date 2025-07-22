@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/view/ademo/main.dart';
+import 'package:flutter3/demo/main.dart';
 import 'package:flutter3/view/app/home/wg.dart';
 import 'package:flutter3/view/app/language.dart';
 import 'package:flutter3/view/app/splash/demo.dart';
@@ -29,11 +29,10 @@ import 'package:flutter3/view/test/nestcs.dart';
 import 'package:flutter3/view/wechat/contact.dart';
 import 'package:flutter3/view/wechat/discover.dart';
 import 'package:flutter3/view/wechat/msg.dart';
-
-Widget? getByPath(String? path,{key,params}) {
+ Widget? widgetOfPath(String? path,{key,params}) {
   if(null==path)return null;
   switch (path){
-    case "/ademo/main": return MainDemo(key:key,params: params);
+    case "/demo/main": return MainDemo(key:key,params: params);
     case "/app/home/wg": return AppHomeWg(key:key,params: params);
     case "/app/language": return AppLanguage(key:key,params: params);
     case "/app/splash/demo": return AppSplashDemo(key:key,params: params);

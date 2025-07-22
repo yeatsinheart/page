@@ -26,19 +26,17 @@ main() async {
   await dirLookUp(dir);
 
 
-  String content = "import 'package:flutter/material.dart';\n";
+  String content = "import 'package:flutter/material.dart';\nimport 'package:flutter3/demo/main.dart';\n";
 
   imports.forEach((item) {
     content += "${item}\n";
   });
 
-  content += """
-Widget? getByPath(String? path,{key,params}) {
-  """;
-  content += "\n";
+  content += """""";
+  content += "Widget? widgetOfPath(String? path,{key,params}) {\n";
 
   content += "  if(null==path)return null;\n"
-      "  switch (path){\n";
+      "  switch (path){\n    case \"/demo/main\": return MainDemo(key:key,params: params);\n";
   widgets.forEach((Map<String, dynamic> widgetInfo) {
     content += "    case \"${widgetInfo["path"]}\": return ${fileToName(widgetInfo["name"])}(key:key,params: params);\n";
   });
@@ -49,7 +47,7 @@ Widget? getByPath(String? path,{key,params}) {
   print(content);
   try {
     // 向文件写入字符串
-    await File('lib/path_widget.dart').writeAsString(content);
+    await File('lib/widget_of_path.dart').writeAsString(content);
     print('成功写入.');
   } catch (e) {
     print(e);

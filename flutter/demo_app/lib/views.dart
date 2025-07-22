@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter3/path_widget.dart';
+import 'package:flutter3/widget_of_path.dart';
 // 定义枚举（不加分号）
 enum ViewKeyDict {
   splash,
@@ -42,8 +42,8 @@ dynamic getWidgetByPath({path,key,params}){
     debugPrint('getWidgetByPath: path is null');
     return null;
   }
-  final widget = getByPath(path,key:key,params: params)
-      ?? getByPath('$path/index',key:key,params: params);
+  final widget = widgetOfPath(path,key:key,params: params)
+      ?? widgetOfPath('$path/index',key:key,params: params);
   if (widget == null) {
     debugPrint('getWidgetByPath: widget not found for path $path');
   }

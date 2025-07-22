@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../views.dart';
+import 'package:flutter3/views.dart';
 
 class GlobalContext {
   // 如果你的路由结构使用了 nested Navigator 或 shell（如 go_router 的 ShellRoute），则 GlobalKey<NavigatorState> 控制的并非是嵌套路由中的 Navigator，需要使用局部 navigatorKey。
@@ -53,7 +53,7 @@ class GlobalContext {
 
     navigatorKey.currentState?.push(PageRouteBuilder(
         pageBuilder: (cxt, ani1, ani2) {
-          return FadeTransition(opacity: ani1, child: getWidgetByPath(path: path,params: params)??Container());
+          return FadeTransition(opacity: ani1, child: getWidgetByPath(path,params: params)??Container());
         }));
   }
   static void pop() {

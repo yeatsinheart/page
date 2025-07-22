@@ -38,7 +38,7 @@ class _LayoutDemoBottomNavigationBarState extends State<LayoutDemoBottomNavigati
           label: item['titleI18nKey'],
         ),
       );
-      pages.add(getWidget(item['openViewKey']));
+      pages.add(widgetOfKey(item['openViewKey']));
     }
     return Scaffold(
       body: pages[_currentIndex],

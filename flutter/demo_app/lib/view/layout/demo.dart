@@ -32,7 +32,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
     for (int i = 0; i < items.length; i++) {
       Map<String, dynamic> item = items[i];
       list.add(_buildNavItem(icon: item['iconI18nKey'], activeIcon: item['iconFocusI18nKey'], label: item['titleI18nKey'], index: i));
-      pages.add(getWidget(item['openViewKey']));
+      pages.add(widgetOfKey(item['openViewKey']));
     }
 
     return Scaffold(

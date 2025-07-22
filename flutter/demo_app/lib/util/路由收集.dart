@@ -32,7 +32,10 @@ main() async {
     content += "${item}\n";
   });
 
-  content += """""";
+  content += """
+  \n
+  """;
+
   content += "Widget? widgetOfPath(String? path,{key,params}) {\n";
 
   content += "  if(null==path)return null;\n"
@@ -47,7 +50,7 @@ main() async {
   print(content);
   try {
     // 向文件写入字符串
-    await File('lib/widget_of_path.dart').writeAsString(content);
+    await File('lib/widget_of_path_info.dart').writeAsString(content);
     print('成功写入.');
   } catch (e) {
     print(e);

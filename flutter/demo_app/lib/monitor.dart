@@ -23,7 +23,7 @@ _test_network_until_good() {
     // 监听
     if (await NetworkService.check()) {
       GlobalContext.loadWidget(PageRouteBuilder(pageBuilder: (cxt, ani1, ani2) {
-        return FadeTransition(opacity: ani1, child: getWidget("splash"));
+        return FadeTransition(opacity: ani1, child: widgetOfKey("splash"));
       }));
     } else {
       _test_network_until_good();

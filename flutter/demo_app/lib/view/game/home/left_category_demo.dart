@@ -3,6 +3,7 @@ import 'package:flutter3/util/context.dart';
 import 'package:flutter3/views.dart';
 import 'package:get/get.dart';
 
+
 class GameHomeLeftCategoryDemo extends StatefulWidget {
   final dynamic params;
 
@@ -211,7 +212,8 @@ class _GameHomeLeftCategoryDemoState extends State<GameHomeLeftCategoryDemo> {
             // SliverChildListDelegate立即渲染
             delegate: SliverChildListDelegate(
               List.generate(tabs.length, (index) {
-                return getWidgetByPath(path: "/game/home_category/list_brand", key: _data_keys[index], params: {"title": tabs[index]});
+                Widget? x = getWidgetByPath("/game/home_category/list_brand", key: _data_keys[index], params: {"title": tabs[index]});
+                return x??Container();
               }),
             ),
           ),

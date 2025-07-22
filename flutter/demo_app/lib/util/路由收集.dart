@@ -32,9 +32,7 @@ main() async {
     content += "${item}\n";
   });
 
-  content += """
-  \n
-  """;
+  //content += """""";
 
   content += "Widget? widgetOfPath(String? path,{key,params}) {\n";
 

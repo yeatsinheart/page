@@ -29,7 +29,6 @@ import 'package:flutter3/view/test/nestcs.dart';
 import 'package:flutter3/view/wechat/contact.dart';
 import 'package:flutter3/view/wechat/discover.dart';
 import 'package:flutter3/view/wechat/msg.dart';
-
 Widget? widgetOfPath(String? path,{key,params}) {
   if(null==path)return null;
   switch (path){

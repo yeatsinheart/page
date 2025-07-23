@@ -1,3 +1,6 @@
+# dart pub upgrade --major-versions
+# 带^：允许升级 可以自动升级
+# 不带^：仅这个版本 不会自动升级
 name: flutter3
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
@@ -51,8 +54,8 @@ dependencies:
 
   dio: 5.8.0+1
   http: 1.4.0
-  carousel_slider: ^5.1.1
-  marquee: ^2.3.0
+  carousel_slider: 5.1.1
+  marquee: 2.3.0
   # 全局状态管理 路由
   get: 4.7.2
   provider: 6.1.5

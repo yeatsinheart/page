@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3/share/app.dart';
+import 'package:flutter3/share/default_config.dart';
 import 'package:flutter3/share/network_monitor.dart';
 import 'package:flutter3/store/language_store.dart';
 import 'package:flutter3/_theme_data.dart';
@@ -24,6 +25,8 @@ void main() async {
   //Flutter 中存在三棵树，Widget[虚拟的结构]、Element 和 RenderObject。
   WidgetsFlutterBinding.ensureInitialized();
   //debugPaintSizeEnabled = true; // ✅ 开启边界调试 会把所有东西，边距什么的都画线
+
+  DefaultConfig.loadConfig().then((value){});
 
   // 多语言初始化
   await Get.putAsync(() => LanguageStore().init());

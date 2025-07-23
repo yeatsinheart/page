@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter3/share/share_widget.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
 import 'package:flutter3/util/context.dart';
+
 /// 顶部说明操作，左边分类 右边分类详情
 /// 屏幕高度-吸顶高度-底部导航栏高度-顶部导航栏高度==左右联动区域的高度
 /// 由于需要 滚动条 接力，所以左右结构的底部不能再有其它东西了。
@@ -17,7 +18,9 @@ class TopLeftRight extends StatefulWidget {
 // bool get wantKeepAlive => true;
 
 class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMixin {
-  final ScrollController _controller = ScrollController();
+  final ScrollController _pageScrollController = ScrollController();
+  final ScrollController _categoryScrollController = ScrollController();
+  final ScrollController _detailScrollController = ScrollController();
   double persit_header_height = GlobalContext.getRem(1.24);
   double left_right_height = GlobalContext.getHeight();
 
@@ -33,23 +36,34 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
   }
 
   bool outerScrolledToEnd = false;
-
+void update(function){
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    // 在下一帧中安全地调用 setState
+    setState(() {
+      function();
+    });
+  });
+}
   @override
   void initState() {
     super.initState();
     left_right_height = GlobalContext.getHeight() - persit_header_height;
-    _controller.addListener(() {
-      // 因为太多滚动条，所以放到外面监听。
-      if (_controller.position.pixels >= _controller.position.maxScrollExtent) {
-        setState(() {
-          // 内层滚动到头了 即时是拉伸了最后还是会有结束事件
-          setState(() {
-            outerScrolledToEnd = true;
-          });
-        });
-      } else if (outerScrolledToEnd) {
-        setState(() {
-          outerScrolledToEnd = false;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      //print("详情滚动条：${_detailScrollController.position.minScrollExtent} ${_detailScrollController.position.maxScrollExtent}");
+      // 防止没有详情滚动条的情况
+      if (_detailScrollController.position.minScrollExtent != _detailScrollController.position.maxScrollExtent) {
+        _pageScrollController.addListener(() {
+          // 因为太多滚动条，所以放到外面监听。
+          if (_pageScrollController.position.pixels >= _pageScrollController.position.maxScrollExtent) {
+            setState(() {
+              // 内层滚动到头了 即时是拉伸了最后还是会有结束事件
+                outerScrolledToEnd = true;
+            });
+          } else if (outerScrolledToEnd) {
+            setState(() {
+              outerScrolledToEnd = false;
+            });
+          }
         });
       }
     });
@@ -88,7 +102,7 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
                 setState(() {
                   // 子滚动条已经到头了。再操作就是父滚动条了。所以位移一部分 如果继续下滑才能触发父滚动条触底事件
                   outerScrolledToEnd = false;
-                  _controller.animateTo(_controller.position.maxScrollExtent - 0.01, duration: Duration(milliseconds: 30), curve: Curves.easeOut);
+                  _pageScrollController.animateTo(_pageScrollController.position.maxScrollExtent - 0.01, duration: Duration(milliseconds: 30), curve: Curves.easeOut);
                 });
               });
             }
@@ -107,7 +121,7 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
   Widget build(BuildContext context) {
     return CustomScrollView(
       cacheExtent: 1000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
-      controller: _controller,
+      controller: _pageScrollController,
       physics: outerScrolledToEnd ? NeverScrollableScrollPhysics() : BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       slivers: [
         SliverToBoxAdapter(
@@ -125,19 +139,20 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
                   width: GlobalContext.getRem(2),
                   color: Colors.grey,
                   // 虽然这里滚动到底也会拉动最外层的滚动到底，但是也没啥影响
-                  child: ListView.builder(itemCount: 35, itemBuilder: (_, i) => ListTile(title: Text('Tab2 - $i'))), // 左边可滚也可不滚
+                  child: ListView.builder(
+                    controller: _categoryScrollController,
+                    itemCount: 35,
+                    itemBuilder: (_, i) => ListTile(title: Text('Tab2 - $i')),
+                  ), // 左边可滚也可不滚
                 ),
                 Expanded(
                   child: innerScrollListener(
                     CustomScrollView(
+                      controller: _detailScrollController,
                       physics: outerScrolledToEnd ? BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()) : NeverScrollableScrollPhysics(),
                       slivers: [
                         persit_header("内部Header 吸顶", Colors.blue, persit_header_height),
-                        SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 30)), // 右边 Sliver 滚动
-
-                        persit_header("内部Header 吸顶", Colors.amberAccent, persit_header_height),
-                        SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 30)), // 右边 Sliver 滚动
-
+                        SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 5)), // 右边 Sliver 滚动
                       ],
                     ),
                   ),

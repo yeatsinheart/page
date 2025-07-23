@@ -81,8 +81,7 @@ class DefaultConfig {
         print('[${kIsWeb?'Web':'Android'}] 读取 $path 失败: $e');
         return null;
       }
-    }
-    }else if (defaultTargetPlatform==TargetPlatform.iOS) {
+    } else if (defaultTargetPlatform==TargetPlatform.iOS) {
       const channel = MethodChannel('default_config');
       try {
         final result = await channel.invokeMethod<String>('loadConfigJson');

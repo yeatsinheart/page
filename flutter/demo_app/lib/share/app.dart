@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 
 import '../service/app_service.dart';
 import '../util/context.dart';
-import 'default_config.dart';
 
 /// 配置获取：运营中最新的配置=>没网或者失败=>本地缓存配置=>没有=>打包时候的配置
 class App extends StatelessWidget {
@@ -22,9 +21,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final languageStore = Get.find<LanguageStore>();
-    DefaultConfig.loadConfig().then((value){
-      print("应用配置：${value}");
-    });
     return GetMaterialApp(
       translations: languageStore.translations,
       locale: parseLocale(languageStore.locale),

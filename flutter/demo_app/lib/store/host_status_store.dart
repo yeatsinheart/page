@@ -13,8 +13,8 @@ class HostStatusStore extends GetxController {
       LineStatus(name: '香港节点', host: 'https://hk.example.com/ping'),
       LineStatus(name: '美国节点', host: 'https://us.example.com/ping'),
     ]);
-    lines.value[0].chosen.value=true;
-    //testAllLines();
+    chooseLine(lines[0]);
+    testAllLines();
   }
 
   // 初始化线路列表
@@ -22,9 +22,15 @@ class HostStatusStore extends GetxController {
     lines.assignAll(list);
   }
 
+  // 手动选中线路
+  Future<void> chooseLine(LineStatus line) async {
+    lines.forEach((item) => item.chosen.value = false);
+    line.chosen.value = true;
+    lines.refresh();
+  }
+
   // 测速某一条线路
   Future<void> testLine(LineStatus line) async {
-    Log.info("${line}");
     //Stopwatch 是 Dart 提供的一个类，用于测量代码执行所花费的时间（精确到毫秒甚至微秒），就像现实中的秒表一样。
     if(line.status.value=="testing")return;
     final stopwatch = Stopwatch()..start();
@@ -43,10 +49,10 @@ class HostStatusStore extends GetxController {
       line.speed.value = stopwatch.elapsedMilliseconds;
       line.status.value = "on";
     } catch (_) {
-      line.speed.value = 9999;
       line.status.value = "off";
+      line.speed.value = 9999;
     }
-    lines.refresh(); // 通知 UI 更新
+    //lines.refresh(); // 通知 UI 更新
   }
 
   // 测速全部线路

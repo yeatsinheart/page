@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3/request/http_util.dart';
+import 'package:flutter3/share/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:get/get.dart';
@@ -16,14 +17,10 @@ class DefaultConfig {
   /// 加载配置
   static Future<Map<String, dynamic>> loadConfig() async {
     // 1. 尝试拉取网络配置
-    try {
-      Map<String, dynamic> remote = await _loadRemote();
-      if (remote != null) {
-        await _saveCache(remote);
-        return remote;
-      }
-    } catch (e) {
-      // 忽略错误或打印日志
+    Map<String, dynamic>? remote = await _loadRemote();
+    if (remote != null) {
+      await _saveCache(remote);
+      return remote;
     }
 
     // 2. 尝试读取本地缓存
@@ -36,9 +33,15 @@ class DefaultConfig {
   }
 
   /// 获取远程配置
-  static Future<Map<String, dynamic>> _loadRemote() async {
-    final response = await HttpRequestUtil.get('https://your-config-url.com/config.json');
-    return response.data;
+  static Future<Map<String, dynamic>?> _loadRemote() async {
+    try {
+      final response = await HttpRequestUtil.get('https://your-config-url.com/config.json');
+      return response.data;
+    } catch (e) {
+      // 忽略错误或打印日志
+      Log.info("获取远程配置出错，所以取消");
+      return null;
+    }
   }
 
   /// 保存缓存
@@ -62,26 +65,26 @@ class DefaultConfig {
   }
 
   static Future<String?> _readBuildInConfig() async {
-    if (kIsWeb || defaultTargetPlatform==TargetPlatform.android) {
+    if (kIsWeb || defaultTargetPlatform == TargetPlatform.android) {
       //String path = 'assets/config/default_config.json'; 感觉会自动加 assets/ 导致加载时是assets/assets/config/default_config.json
-      String path = 'config/default_config.json';//   Web 运行时 会自动加前缀 assets/
+      String path = 'config/default_config.json'; //   Web 运行时 会自动加前缀 assets/
       try {
         final result = await rootBundle.loadString(path);
         return result;
       } catch (e) {
-        print('[${kIsWeb?'Web':'Android'}] 读取 $path 失败: $e');
+        print('[${kIsWeb ? 'Web' : 'Android'}] 读取 $path 失败: $e');
         return null;
       }
-    }else if (defaultTargetPlatform==TargetPlatform.iOS) {
+    } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       String path = 'assets/config/default_config.json';
       try {
-        final result = await rootBundle.loadString(path);// 会自动加前缀 assets/
+        final result = await rootBundle.loadString(path); // 会自动加前缀 assets/
         return result;
       } catch (e) {
-        print('[${kIsWeb?'Web':'Android'}] 读取 $path 失败: $e');
+        print('[${kIsWeb ? 'Web' : 'Android'}] 读取 $path 失败: $e');
         return null;
       }
-    } else if (defaultTargetPlatform==TargetPlatform.iOS) {
+    } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       const channel = MethodChannel('default_config');
       try {
         final result = await channel.invokeMethod<String>('loadConfigJson');

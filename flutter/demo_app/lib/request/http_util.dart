@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter3/share/logger.dart';
 
 Dio createDioWithBadCertSupport() {
   final dio = Dio(
@@ -51,6 +52,10 @@ Dio createDioWithBadCertSupport() {
         // }
         options.headers['Accept-Language'] = 'en-US';
         return handler.next(options);
+      },
+      onError: (DioException e, handler) {
+        Log.err('Request to: ${e.requestOptions.uri}',error: e);
+        handler.next(e);
       },
     ),
   );

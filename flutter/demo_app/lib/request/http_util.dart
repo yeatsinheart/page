@@ -1,19 +1,59 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
+Dio createDioWithBadCertSupport() {
+  final dio = Dio(
+    BaseOptions(
+      baseUrl: 'https://example.com/api',
+      connectTimeout: const Duration(seconds: 5), // 建立连接最大等待时间
+      receiveTimeout: const Duration(seconds: 10), // 接收响应最大等待时间 等待服务器响应的最大时间
+      sendTimeout: const Duration(seconds: 5), // 发送数据最大等待时间 向服务器写入数据的最大时间
 
-final dio = Dio(
-  BaseOptions(
-    baseUrl: 'https://example.com/api',
-    connectTimeout: const Duration(seconds: 5), // 建立连接最大等待时间
-    receiveTimeout: const Duration(seconds: 10), // 接收响应最大等待时间 等待服务器响应的最大时间
-    sendTimeout: const Duration(seconds: 5), // 发送数据最大等待时间 向服务器写入数据的最大时间
+      headers: {
+        'Authorization': 'Bearer your_token_here',
+        'Content-Type': 'application/json',
+        'Accept-Language': 'en-US',
+        'Host': 'api.example.com', // 伪造域名 使用IP直连时才生效
+      },
+    ),
+  );
 
-    headers: {
-      'Authorization': 'Bearer your_token_here',
-      'Content-Type': 'application/json',
-      'Accept-Language': 'en-US',
-    },
-  ),
-);
+    // 忽略 HTTPS 证书校验
+  (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = (client) {
+    client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+    return client;
+  } as CreateHttpClient?;
+  // ios 真机上是无效的，底层用 NSURLSession，属于系统底层拦截，还是要按照正常的文件配置去配信任域名
+  final adapter = IOHttpClientAdapter()..createHttpClient = () {
+    final client = HttpClient();
+    // 忽略 HTTPS 证书校验
+    client.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+    return client;
+  };
+  adapter.validateCertificate = (cert, host, port) {
+    // 始终返回 true，表示跳过验证
+    return true;
+  };
+  dio.httpClientAdapter = adapter;
+  // 动态全局请求头
+  dio.interceptors.add(
+    InterceptorsWrapper(
+      onRequest: (options, handler) async {
+        // 你可以从缓存/本地存储等获取 token
+        // final token = await getToken(); // 假设是异步获取
+        // if (token != null) {
+        //   options.headers['Authorization'] = 'Bearer $token';
+        // }
+        options.headers['Accept-Language'] = 'en-US';
+        return handler.next(options);
+      },
+    ),
+  );
+  return dio;
+}
+final dio = createDioWithBadCertSupport();
 
 /*
 dio.options.headers['Authorization'] = 'Bearer $token';
@@ -21,19 +61,6 @@ dio.options.headers['Accept-Language'] = 'zh-CN';
 
 dio.options.headers.remove('Authorization');
 
-dio.interceptors.add(
-  InterceptorsWrapper(
-    onRequest: (options, handler) async {
-      // 你可以从缓存/本地存储等获取 token
-      final token = await getToken(); // 假设是异步获取
-      if (token != null) {
-        options.headers['Authorization'] = 'Bearer $token';
-      }
-      options.headers['Accept-Language'] = 'en-US';
-      return handler.next(options);
-    },
-  ),
-);
 
 * */
 class HttpRequestUtil {

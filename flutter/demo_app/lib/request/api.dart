@@ -3,6 +3,8 @@ import 'api_cache.dart';
 import 'http_util.dart';
 /// 如果接口定义： 前段本地缓存毫秒时间
 /// 初始打包默认配置文件key，如果刚安装，就碰上网络请求不通的情况，最坏策略就是本地有打包对应的数据。
+/// 如果全用请求版本，那么我只改了一个活动，只改了游戏一张图片，那么全量的所有数据都要重新下载。。。
+///
 class ApiService {
   ApiService._internal();
   factory ApiService() => _instance;

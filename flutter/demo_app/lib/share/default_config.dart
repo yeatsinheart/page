@@ -35,6 +35,7 @@ class DefaultConfig {
   /// 获取远程配置
   static Future<Map<String, dynamic>?> _loadRemote() async {
     try {
+      // 最好是Api调用
       final response = await HttpRequestUtil.get('https://your-config-url.com/config.json');
       return response.data;
     } catch (e) {

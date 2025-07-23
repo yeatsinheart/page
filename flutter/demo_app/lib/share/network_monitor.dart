@@ -63,9 +63,9 @@ class _NetworkMonitorState extends State<NetworkMonitor> {
             children: [
               const Icon(Icons.wifi_off, size: 80, color: Colors.grey),
               const SizedBox(height: 20),
-              const Text('网络已断开，请检查网络连接'),
+              Text('网络已断开，请检查网络连接'.tr),
               const SizedBox(height: 10),
-              ElevatedButton(onPressed: _checkInitialConnection, child: const Text("重试")),
+              ElevatedButton(onPressed: _checkInitialConnection, child: Text("重试".tr)),
             ],
           ),
         ),

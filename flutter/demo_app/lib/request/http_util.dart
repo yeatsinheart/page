@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter3/request/api_cache.dart';
 import 'package:flutter3/share/logger.dart';
 
 Dio createDioWithBadCertSupport() {
@@ -53,6 +54,14 @@ Dio createDioWithBadCertSupport() {
         options.headers['Accept-Language'] = 'en-US';
         return handler.next(options);
       },
+      onResponse: (response,handler) async{
+        final headers = response.headers;
+        final api_request_version = headers.value(ApiCache.versionKey);
+        if(null!=api_request_version){
+          ApiCache.setCache(ApiCache.versionKey, api_request_version,expire: -1);
+        }
+        return handler.next(response);
+      } ,
       onError: (DioException e, handler) {
         Log.err('Request to: ${e.requestOptions.uri}',error: e);
         handler.next(e);

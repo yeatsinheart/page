@@ -1,6 +1,8 @@
 
+import 'api_cache.dart';
 import 'http_util.dart';
-
+/// 如果接口定义： 静态资源版本号 本地缓存时间 初始打包配置文件
+///
 class ApiService {
   ApiService._internal();
   factory ApiService() => _instance;
@@ -40,15 +42,14 @@ class Api {
 
   // 网关地址+API
   String get path => "/api/$_path";
-  byHttp(){
-    if (cache) {
-      // 是否支持离线数据。。。 版本更新后。。。老数据是否有效。
-      // var stored =
-      // if !=null
-      // int request_time = stored['request_time']
-      // api.cacheTime > now-request_time
+  byHttp() async{
+    // 静态资源版本号。打包时写入，每次请求后动态更新=>重启后还能生效。。
+    String v = await ApiCache.getCache(ApiCache.versionKey);
+    var cached = await ApiCache.getCache(_path,version: v);
+    if (cache && null!=cached) {
+      return cached;
     }
-    HttpRequestUtil.postJson(this.path, this.params);
+    return HttpRequestUtil.postJson(this.path, this.params);
   }
 }
 

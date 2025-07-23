@@ -26,6 +26,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //debugPaintSizeEnabled = true; // ✅ 开启边界调试 会把所有东西，边距什么的都画线
 
+  // 获取基础配置 远程更新->本地缓存->初始打包配置
   DefaultConfig.loadConfig().then((value){});
 
   // 多语言初始化

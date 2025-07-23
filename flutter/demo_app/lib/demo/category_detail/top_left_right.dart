@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter3/share/share_widget.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
 import 'package:flutter3/util/context.dart';
-
+/// 顶部说明操作，左边分类 右边分类详情
 /// 屏幕高度-吸顶高度-底部导航栏高度-顶部导航栏高度==左右联动区域的高度
 /// 由于需要 滚动条 接力，所以左右结构的底部不能再有其它东西了。
 class TopLeftRight extends StatefulWidget {
@@ -132,7 +132,12 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
                     CustomScrollView(
                       physics: outerScrolledToEnd ? BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()) : NeverScrollableScrollPhysics(),
                       slivers: [
+                        persit_header("内部Header 吸顶", Colors.blue, persit_header_height),
                         SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 30)), // 右边 Sliver 滚动
+
+                        persit_header("内部Header 吸顶", Colors.amberAccent, persit_header_height),
+                        SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 30)), // 右边 Sliver 滚动
+
                       ],
                     ),
                   ),

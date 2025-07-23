@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../util/context.dart';
 import '../util/overlay.dart';
@@ -22,22 +23,23 @@ class NetworkService {
     //ConnectivityResult connectivityResult = await _connectChecker.checkConnectivity();
     List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
 
-    _listen_change();
+    //_listen_change();
     if (connectivityResult.contains(ConnectivityResult.none)) {
-      whichnet = "没有网络";
+      whichnet = "没有网络".tr;
       _net_bad();
       return false;
     } else {
       whichnet = "$connectivityResult网络";
-      _net_good();
+      _net_bad();
+      //_net_good();
       return true;
     }
   }
+
   // 确定可用的网关。。。 随机三个。
-  static gate() async{
+  static gate() async {
     // 第一次调用打包时设置的网关
     // 以后调用本地保存的有效网关
-
   }
 
   // id 网址 发起时间 响应时间 异常时间
@@ -71,52 +73,79 @@ class NetworkService {
     });
   }
 
-  static final OverlayEntry _tip = GlobalOverlayContext.item(_page(
-      // 去除 Container 无法自适应宽度问题
+  static final OverlayEntry _tip = GlobalOverlayContext.item(
+    _page(
       UnconstrainedBox(
-          child: Container(
-              height: 70,
-              //margin: const EdgeInsets.all(20),
-              padding: const EdgeInsets.all(20),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.black87,
+        child: Container(
+          //padding: const EdgeInsets.all(20),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.black87),
+          //https://www.jianshu.com/p/d78d7e5db07f
+          child: SizedBox(
+            width: 200,
+            height: 200,
+            //margin: const EdgeInsets.all(20),
+            child: Container(
+              //color: Colors.white,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.wifi_off, size: 80, color: Colors.grey),
+                    const SizedBox(height: 20),
+                    Text("网络连接失败".tr, style: TextStyle(fontSize: 20, color: Colors.black87)),
+                    const SizedBox(height: 10),
+                    TextButton(
+                      onPressed: () {
+                        check();
+                      },
+                      child: Text("重新尝试".tr),
+                    ),
+                  ],
+                ),
               ),
-              //https://www.jianshu.com/p/d78d7e5db07f
-              child: Text("您现在处于离线状态",
-                  style: TextStyle(
-                    decoration: TextDecoration.none,
-                    color: Colors.white,
-                  ))))));
+            ),
+          ),
+        ),
+      ),
+    ),
+    // 去除 Container 无法自适应宽度问题 UnconstrainedBox(child: ,),
+  );
 
   static _page(child) {
     return Scaffold(
-        backgroundColor: Colors.transparent,
-        body: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-            child: Stack(alignment: Alignment.center, children: [
-              // 背景
-              GestureDetector(
-                onTap: () {
-                  _net_good();
-                },
-                child: Container(
-                    width: GlobalContext.getWidth(),
-                    height: GlobalContext.getHeight(),
-                    decoration: BoxDecoration(
-                        //borderRadius: BorderRadius.circular(10),
-                        //color: Colors.black54,
-                        // gradient: const LinearGradient(
-                        //   colors: [Color(0xFFfbab66), Color(0xFFf7418c)],
-                        //   begin: Alignment.topCenter,
-                        //   end: Alignment.bottomCenter,
-                        // )
-                        )),
+      backgroundColor: Colors.transparent,
+      body: BackdropFilter(
+        // 雾化背景
+        filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // 背景
+            GestureDetector(
+              onTap: () {
+                _net_good();
+              },
+              child: Container(
+                width: GlobalContext.getWidth(),
+                height: GlobalContext.getHeight(),
+                decoration: BoxDecoration(
+                  //borderRadius: BorderRadius.circular(10),
+                  //color: Colors.black54,
+                  // gradient: const LinearGradient(
+                  //   colors: [Color(0xFFfbab66), Color(0xFFf7418c)],
+                  //   begin: Alignment.topCenter,
+                  //   end: Alignment.bottomCenter,
+                  // )
+                ),
               ),
-              // 主要显示空间
-              child
-            ])));
+            ),
+            // 主要显示空间
+            child,
+          ],
+        ),
+      ),
+    );
   }
 
   static _net_bad() {

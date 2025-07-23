@@ -49,7 +49,7 @@ class LanguageStore extends GetxService {
   }
 
   Future<Map<String, String>> fetchRemoteTranslations(String langCode) async {
-    await Future.delayed(Duration(milliseconds: 300)); // 模拟网络延迟
+//    await Future.delayed(Duration(milliseconds: 300)); // 模拟网络延迟
 
     if (langCode == 'zh_CN') {
       return {

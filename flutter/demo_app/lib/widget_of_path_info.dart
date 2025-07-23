@@ -19,16 +19,6 @@ import 'package:flutter3/view/page/demo.dart';
 import 'package:flutter3/view/page/me/demo.dart';
 import 'package:flutter3/view/page/permission.dart';
 import 'package:flutter3/view/pop/close_bottom.dart';
-import 'package:flutter3/view/test/appstore.dart';
-import 'package:flutter3/view/test/apptext.dart';
-import 'package:flutter3/view/test/cs.dart';
-import 'package:flutter3/view/test/detail.dart';
-import 'package:flutter3/view/test/detailpage.dart';
-import 'package:flutter3/view/test/herodetail.dart';
-import 'package:flutter3/view/test/nestcs.dart';
-import 'package:flutter3/view/wechat/contact.dart';
-import 'package:flutter3/view/wechat/discover.dart';
-import 'package:flutter3/view/wechat/msg.dart';
 Widget? widgetOfPath(String? path,{key,params}) {
   if(null==path)return null;
   switch (path){
@@ -52,16 +42,6 @@ Widget? widgetOfPath(String? path,{key,params}) {
     case "/page/me/demo": return PageMeDemo(key:key,params: params);
     case "/page/permission": return PagePermission(key:key,params: params);
     case "/pop/close_bottom": return PopCloseBottom(key:key,params: params);
-    case "/test/appstore": return TestAppstore(key:key,params: params);
-    case "/test/apptext": return TestApptext(key:key,params: params);
-    case "/test/cs": return TestCs(key:key,params: params);
-    case "/test/detail": return TestDetail(key:key,params: params);
-    case "/test/detailpage": return TestDetailpage(key:key,params: params);
-    case "/test/herodetail": return TestHerodetail(key:key,params: params);
-    case "/test/nestcs": return TestNestcs(key:key,params: params);
-    case "/wechat/contact": return WechatContact(key:key,params: params);
-    case "/wechat/discover": return WechatDiscover(key:key,params: params);
-    case "/wechat/msg": return WechatMsg(key:key,params: params);
   }
   return null;
 }

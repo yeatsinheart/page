@@ -18,6 +18,11 @@ class PermissionService {
     }
     List<Permission> list = Permission.values.where((permission) {
       print(permission);
+      print(permission.isGranted);
+      // bool allGranted = permission.values.every((status) => status.isGranted);
+      // if (!allGranted) {
+      //   throw Exception('Required permissions not granted');
+      // }
       print(Platform.operatingSystem);
       print(Platform.operatingSystem);
       if (Platform.isIOS) {

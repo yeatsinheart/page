@@ -110,6 +110,47 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
   process_run: ^1.2.4
+# 添加配置
+#  flutter_icons:
+  #  android: true
+  #  ios: true
+  #  image_path: "assets/app_icon.png" 方形的高分辨率图标文件（比如 512x512 PNG），放在 assets/ 目录
+
+#  运行生成软件图标
+#  flutter pub get
+#  flutter pub run flutter_launcher_icons:main
+  flutter_launcher_icons: 0.14.4
+  # 运行生成闪屏
+#  flutter_native_splash:
+  #  # Light mode 配置
+  #  color: "#ffffff"                 # 白色背景
+  #  image: assets/splash_light.png   # 白天模式的启动图
+  #  android: true
+  #  ios: true
+  #  android_gravity: center          # 图片居中
+  #  ios_content_mode: scaleAspectFit # iOS 图片适应模式
+  #
+  #  # Dark mode 配置
+  #  dark:
+  #    color: "#121212"               # 深色背景
+  #    image: assets/splash_dark.png  # 夜间模式的启动图
+  #    android_gravity: center
+  #    ios_content_mode: scaleAspectFill
+  #
+  #  # 安卓状态栏配置
+  #  android_status_bar_color: "#ffffff"
+  #  android_status_bar_icon_brightness: dark  # 状态栏图标为深色
+  #
+  #flutter:
+  #  assets:
+  #    - assets/splash_light.png
+  #    - assets/splash_dark.png
+  #flutter pub get 先准备好你的启动图图片（比如 assets/splash.png 或复杂示例里的 splash_light.png 和 splash_dark.png）
+#  ，放到你的 Flutter 项目里，并在 pubspec.yaml 中声明它们为资源。
+  #flutter pub run flutter_native_splash:create
+  flutter_native_splash: 2.4.6
+
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

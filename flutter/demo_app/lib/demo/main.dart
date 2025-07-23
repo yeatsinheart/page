@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/demo/tab_demo.dart';
 import 'package:flutter3/demo/category_detail/top_left_right.dart';
 
+import '../view/app/host_status/index.dart';
 import 'custom_scroll_demo.dart';
 import 'nest_scroll_demo.dart';
 
@@ -18,6 +19,6 @@ class MainDemo extends StatefulWidget {
 class _MainDemoState extends State<MainDemo> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: TopLeftRight()));
+    return Scaffold(body: SafeArea(child: AppHostStatusIndex()));
   }
 }

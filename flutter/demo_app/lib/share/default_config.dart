@@ -63,7 +63,8 @@ class DefaultConfig {
 
   static Future<String?> _readBuildInConfig() async {
     if (kIsWeb || defaultTargetPlatform==TargetPlatform.android) {
-      String path = 'assets/config/default_config.json';
+      //String path = 'assets/config/default_config.json'; 感觉会自动加 assets/ 导致加载时是assets/assets/config/default_config.json
+      String path = 'config/default_config.json';//   Web 运行时 会自动加前缀 assets/
       try {
         final result = await rootBundle.loadString(path);
         return result;
@@ -71,6 +72,16 @@ class DefaultConfig {
         print('[${kIsWeb?'Web':'Android'}] 读取 $path 失败: $e');
         return null;
       }
+    }else if (defaultTargetPlatform==TargetPlatform.iOS) {
+      String path = 'assets/config/default_config.json';
+      try {
+        final result = await rootBundle.loadString(path);// 会自动加前缀 assets/
+        return result;
+      } catch (e) {
+        print('[${kIsWeb?'Web':'Android'}] 读取 $path 失败: $e');
+        return null;
+      }
+    }
     }else if (defaultTargetPlatform==TargetPlatform.iOS) {
       const channel = MethodChannel('default_config');
       try {

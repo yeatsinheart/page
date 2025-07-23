@@ -1,3 +1,5 @@
+cd /Users/apple/IdeaProjects/page/flutter/demo_app
+
 flutter pub get
 flutter clean
 dart --enable-asserts lib/util/widget_of_path.dart

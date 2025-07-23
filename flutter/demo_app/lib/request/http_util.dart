@@ -2,14 +2,19 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+import 'package:flutter/foundation.dart';
+
 Dio createDioWithBadCertSupport() {
   final dio = Dio(
     BaseOptions(
       baseUrl: 'https://example.com/api',
-      connectTimeout: const Duration(seconds: 5), // 建立连接最大等待时间
-      receiveTimeout: const Duration(seconds: 10), // 接收响应最大等待时间 等待服务器响应的最大时间
-      sendTimeout: const Duration(seconds: 5), // 发送数据最大等待时间 向服务器写入数据的最大时间
+      connectTimeout: const Duration(seconds: 5),
+      // 建立连接最大等待时间
+      receiveTimeout: const Duration(seconds: 10),
+      // 接收响应最大等待时间 等待服务器响应的最大时间
+      sendTimeout: const Duration(seconds: 5),
 
+      // 发送数据最大等待时间 向服务器写入数据的最大时间
       headers: {
         'Authorization': 'Bearer your_token_here',
         'Content-Type': 'application/json',
@@ -19,24 +24,22 @@ Dio createDioWithBadCertSupport() {
     ),
   );
 
-    // 忽略 HTTPS 证书校验
-  (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = (client) {
-    client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
-    return client;
-  } as CreateHttpClient?;
-  // ios 真机上是无效的，底层用 NSURLSession，属于系统底层拦截，还是要按照正常的文件配置去配信任域名
-  final adapter = IOHttpClientAdapter()..createHttpClient = () {
-    final client = HttpClient();
-    // 忽略 HTTPS 证书校验
-    client.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
-    return client;
-  };
-  adapter.validateCertificate = (cert, host, port) {
-    // 始终返回 true，表示跳过验证
-    return true;
-  };
-  dio.httpClientAdapter = adapter;
+  // 忽略 HTTPS 证书校验
+  if (!kIsWeb) {
+    // ios 真机上是无效的，底层用 NSURLSession，属于系统底层拦截，还是要按照正常的文件配置去配信任域名
+    final adapter = IOHttpClientAdapter()
+      ..createHttpClient = () {
+        final client = HttpClient();
+        // 忽略 HTTPS 证书校验
+        client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+        return client;
+      };
+    adapter.validateCertificate = (cert, host, port) {
+      // 始终返回 true，表示跳过验证
+      return true;
+    };
+    dio.httpClientAdapter = adapter;
+  }
   // 动态全局请求头
   dio.interceptors.add(
     InterceptorsWrapper(
@@ -53,6 +56,7 @@ Dio createDioWithBadCertSupport() {
   );
   return dio;
 }
+
 final dio = createDioWithBadCertSupport();
 
 /*
@@ -69,8 +73,7 @@ class HttpRequestUtil {
   factory HttpRequestUtil() => _instance;
   static final HttpRequestUtil _instance = HttpRequestUtil._internal();
 
-
-  static getHttp(String url) async {
+  static get(String url) async {
     try {
       var response = await dio.get(url);
       return Future.value(response);
@@ -150,7 +153,7 @@ application/x-www-form-urlencoded 表单数据格式
 }
 
 main() async {
-  Future a = HttpRequestUtil.getHttp("https://www.baiduddddd.com");
+  Future a = HttpRequestUtil.get("https://www.baiduddddd.com");
   a.then((valua) {
     print(valua);
   });

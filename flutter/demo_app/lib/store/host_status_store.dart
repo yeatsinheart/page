@@ -13,6 +13,7 @@ class HostStatusStore extends GetxController {
       LineStatus(name: '香港节点', host: 'https://hk.example.com/ping'),
       LineStatus(name: '美国节点', host: 'https://us.example.com/ping'),
     ]);
+    lines.value[0].chosen.value=true;
     //testAllLines();
   }
 
@@ -65,12 +66,14 @@ class LineStatus {
   final String host;
   RxInt speed; // 响应延迟
   RxString status;
+  RxBool chosen;
 
   LineStatus({
     required this.name,
     required this.host,
+    bool chosen = false,
     int speed = 9999,
     String status = "unknown",// testing off online unknown
   }): speed = speed.obs,
-        status = status.obs;
+        status = status.obs,chosen=chosen.obs;
 }

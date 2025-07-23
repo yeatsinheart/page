@@ -22,10 +22,16 @@ class AppHostStatusIndex extends StatelessWidget {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               child: ListTile(
                 // leading: _buildStatusIcon(line.status.value),
-                leading: line.status.value == 'off'?const Icon(Icons.help_outline, color: Colors.orange):SignalBar(speed: line.speed.value, isOffline: line.status.value == 'off'),
+                leading: line.status.value == 'off' ? const Icon(Icons.help_outline, color: Colors.orange) : SignalBar(speed: line.speed.value, isOffline: line.status.value == 'off'),
                 title: Text(line.name, style: const TextStyle(fontWeight: FontWeight.bold)),
                 subtitle: Text(_getStatusText(line)),
-                trailing: line.status.value == 'testing' ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)) : IconButton(icon: const Icon(Icons.refresh), onPressed: () => hostStatusStore.testLine(line)),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    line.status.value == 'testing' ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)) : IconButton(icon: const Icon(Icons.refresh), onPressed: () => hostStatusStore.testLine(line)),
+                    line.chosen.value? const Icon(Icons.check_circle, color: Colors.green):const Icon(Icons.circle_outlined, color: Colors.grey),
+                  ],
+                ),
               ),
             );
           },
@@ -34,20 +40,6 @@ class AppHostStatusIndex extends StatelessWidget {
         );
       }),
     );
-    /*return Column(
-          children: hostStatusStore.lines.map((line) {
-            return ListTile(
-              title: Text('${line.name}'),
-              subtitle: Text(
-                line.status == "online"
-                    ? '${line.speed} ms'
-                    : '⚠️',
-                style: TextStyle(
-                    color: line.status == "online" ? Colors.green : Colors.red),
-              ),
-            );
-          }).toList(),
-        );*/
   }
 }
 

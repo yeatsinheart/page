@@ -1,0 +1,60 @@
+/*
+使用方法 https://fonts.google.com/icons?icon.set=Material+Symbols
+<div>
+<span class="material-outlined">home</span>
+<span class="material-outlined">search</span>
+<span class="material-outlined">close</span>
+</div>
+*/
+
+/* fallback */
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./material-outlined.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Material Symbols Rounded';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./material-rounded.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Material Symbols Sharp';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./material-sharp.woff2') format('woff2');
+}
+
+/* === Base Styles Shared by All Icons === */
+.material-symbol {
+  font-weight: normal;
+  font-style: normal;
+  font-size: 32px;         /* you can override per use if needed */
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  color: #d51313;         /* global icon color */
+}
+
+/* === Variants by Font Family === */
+.material-outlined {
+  font-family: 'Material Symbols Outlined';
+}
+
+.material-rounded {
+  font-family: 'Material Symbols Rounded';
+}
+
+.material-sharp {
+  font-family: 'Material Symbols Sharp';
+}

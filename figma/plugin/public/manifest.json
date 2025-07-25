@@ -1,0 +1,8 @@
+{
+  "name": "Vue 3 Figma Plugin",
+  "id": "your-plugin-id",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "index.html",
+  "editorType": ["figma"]
+}

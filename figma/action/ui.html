@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!--
+文件都必须放在插件的根目录或子目录下（不能用外链）
+❗Figma 插件不能访问外网，所依赖的资源都必须是本地的
+
+在弹出时的尺寸，是你通过 showUI 方法设置的。
+你可以在主线程的 code.js 里设置 UI 尺寸，比如：
+figma.showUI(__html__, {
+  width: 300,
+  height: 100 // 初始高度
+});
+
+figma.ui.onmessage = (msg) => {
+  if (msg.type === 'resize') {
+    figma.ui.resize(msg.width, msg.height);
+  }
+};
+这样你弹出的插件面板 UI 宽度就是 320px，高度是 480px。
+-->
+类别	建议组件
+按钮	默认按钮、次要按钮、幽灵按钮等
+文本	标题、正文、辅助说明等
+输入框	标准输入、带图标、带校验等
+布局单元	List Item、Grid Item 等
+容器	Card、Section、Modal 等
+
+颜色：primary / secondary
+
+尺寸：small / medium / large
+
+状态：default / hover / disabled
+
+
+
+<body>
+创建变量集合与[模式]以及变量值
+默认行为覆盖。
+清理变量集合
+删除所有样式：效果保留，但是不再绑定
+
+生效数据确认->像figma一样的表格
+无效数据->可勾选操作进行删除
+
+操作 key[被引用次数] style[被引用次数] mode1-value mode2-value mode3-value
+
+被引用详情不知道看了有没有意义
+
+<h2>上传变量 JSON 文件</h2>
+<input type="file" id="file-input" accept=".json" />
+<script src="ui.js"></script>
+<script>
+    function resizeToContent() {
+      const content = document.getElementById('content');
+      const height = content.offsetHeight + 40; // +padding
+      const width = content.offsetWidth + 40; // 可根据需要调整
+      parent.postMessage({ pluginMessage: { type: 'resize', width, height } }, '*');
+    }
+
+    window.onload = resizeToContent;
+</script>
+</body>
+</html>
+🧠 插件建议：
+如果你开发插件，建议在删除样式前查找所有使用情况：
+
+const uses = figma.root.findAll(node => {
+const fills = (node as GeometryMixin).fills;
+return Array.isArray(fills) && fills.some(f => f.boundStyleId === myPaintStyle.id);
+});
+
+figma.notify(`该样式被 ${uses.length} 个图层使用`);
+需要我帮你封装“安全删除样式/变量”功能？可以加上统计 + 确认 + 自动解绑处理。
+
+
+
+⚙️ 工作流程简述
+输入属性与属性值
+颜色: primary, secondary, danger
+状态: default, hover, active
+尺寸: sm, md, lg
+
+插件会：
+创建一个组件集合（Component Set）
+自动命名属性（Figma 的 variant 命名规则）
+生成所有组合
+可选择：跳过某些不合法组合、自动填入占位设计等
+结果展示
+在画布中一次性铺开所有组合，方便修改和上传为主组件

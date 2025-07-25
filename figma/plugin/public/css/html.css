@@ -1,0 +1,255 @@
+/* 盒子模型 */
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/* 默认rem */
+html{font-size: 73.012px !important;}
+body{font-size: 14px !important;line-height: 1.43 !important;}
+
+html, body {
+    width:100%;height: 100%;
+    padding: 0;margin: 0 auto;
+    /*阻止用户选择文本*/
+    user-select: none;/* 针对 IE */
+    -webkit-user-select: none;  /* iOS Safari  */
+    -moz-user-select: none;/* 针对 Safari 和旧版 WebKit */
+    -ms-user-select: none;/* 针对 Firefox */
+    /* 通用属性 */
+    /*防止文本弹出选择菜单*/
+    -webkit-touch-callout: none;
+    overflow: hidden;
+    /* 禁用双击和手势缩放 */
+    touch-action: none;   /* 禁止所有手势（包括双指缩放） */
+    overscroll-behavior: none;
+    -ms-touch-action: none;/* IE / Edge */
+    -webkit-text-size-adjust: 100%; /* 禁止 Safari 自动调整字体 禁止自动文字缩放*/
+}
+
+
+a, a:hover {
+    text-decoration: none;
+}
+
+.max-width {
+    width: 100%;
+    max-width: var(--theme-max-width);
+    margin: 0 auto;
+}
+
+.new-page {
+    width: 100%;
+    max-width: var(--theme-max-width);
+    height: 100%;
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mask {
+    width: 100vw;
+    max-width: var(--theme-max-width);
+    height: 100vh;
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(1, 1, 1, .5);
+}
+
+
+.flex {
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+    gap: 16px;
+}
+/*中心居中*/
+.flex-center {
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column {
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-space {
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+img {
+    -webkit-user-select: none;
+    object-fit: contain;
+}
+
+div{
+    /*transition: color,background .3s;*/
+}
+
+/*/example/list-card组件*/
+.col {
+    --card-columns: 1; /* 默认列数，可通过类或 style 覆盖 */
+    --card-gap: .1rem; /* 默认间隔，可通过类或 style 覆盖 */
+    width: 100%;
+    gap: var(--card-gap);
+    /*margin: .1rem 0;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.col > div {
+    position: relative;
+    align-content: center;
+    background-color: var(--bg1);
+    /*display: flex;align-items: center;justify-content: center;*/
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    /* 自动根据列数计算宽度 */
+    width: calc((100% - (var(--card-columns) - 1) * var(--card-gap)) / var(--card-columns));
+}
+.col-1 { --card-columns: 1 }
+.col-2 { --card-columns: 2 }
+.col-3 { --card-columns: 3 }
+.col-4 { --card-columns: 4 }
+.col-5 { --card-columns: 5 }
+.col-6 { --card-columns: 6 }
+
+/*
+<!-- 3列 -->
+<div class="col col-3">...</div>
+<div class="col" style="--columns: 3"><div>item1</div><div>item2</div><div>item3</div></div>
+*/
+.fa-solid {
+    color: var(--main);
+}
+
+.fixed {
+    position: fixed;
+    width: 100%;
+    max-width: calc(var(--theme-max-width));
+    left: 50%;
+    transform: translate(-50%, -0%);
+}
+
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    //background-color: unset !important;  /* 背景色 */
+    color: var(--f3) !important;  /* 文字颜色 */
+    font-size: .27rem !important;
+    border: none!important;
+    background-color: var(--bg) !important;
+    box-shadow: 1000px 0 0 -1px var(--bg) inset !important;
+    background-clip:text;
+    caret-color: var(--f3) !important; /* 强制光标颜色 */
+    -webkit-text-fill-color: var(--f3) !important;
+}
+.truncate {
+    width: 100%;
+    white-space: nowrap; /* 强制文本不换行 */
+    overflow: hidden;    /* 超出部分隐藏 */
+    text-overflow: ellipsis; /* 超出部分显示省略号 */
+}
+
+.truncate.scrollable {
+    display: inline-block;
+    animation: scroll-text 10s linear infinite;
+}
+
+@keyframes scroll-text {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.img1x1{width: 100%;object-fit: contain;aspect-ratio: 1 / 1;}
+.img3x4{width: 100%;object-fit: contain;aspect-ratio: 3 / 4;}
+
+
+/* 遮罩层 */
+.loading-mask {
+    position: absolute;
+    z-index: 4000;
+    width: 2.5rem;
+    height: 2.5rem;border-radius: .2rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(1, 1, 1, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 旋转动画 */
+.loading-spinner {
+    width: 1rem;
+    height: 1rem;
+    border: .05rem solid var(--main);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/*
+*::-webkit-scrollbar:vertical {
+    !* 设置垂直滚动条宽度 *!
+    width: 2px;
+}
+*::-webkit-scrollbar:horizontal {
+    !* 设置水平滚动条厚度 *!
+    height: 2px;
+}
+*::-webkit-scrollbar-thumb {
+    !* 滚动条的其他样式定制，注意，这个一定也要定制，否则就是一个透明的滚动条 *!
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, .4);
+    background-color: rgba(0, 0, 0, .5);
+}
+*/
+
+/*隐藏滚动条*/
+*::-webkit-scrollbar {
+    display: none;
+}

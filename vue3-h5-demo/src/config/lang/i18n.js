@@ -1,11 +1,8 @@
 import {createI18n} from 'vue-i18n'
-import {ApiRequest} from '@/api'
-import { websocket_api} from "@/tool/websocket.js";
-import {gameStore} from "@/config/store/game.js";
 
 // 本地没有语言包
 const missed_keys ={};
-setInterval(()=>{
+/*setInterval(()=>{
     if(Object.keys(missed_keys).length > 0){
         let data = {};
         Object.keys(missed_keys).forEach((locale)=>{
@@ -14,9 +11,8 @@ setInterval(()=>{
                 data[locale].push(word_key);
             })
         })
-        websocket_api("i18nMiss",{miss:data})
     }
-},30*1000);
+},30*1000);*/
 //mitt.on("ws:topic:api:action:i18nMiss",(call)=>{console.log(call);});
 const i18n = createI18n({
     legacy: false,
@@ -58,16 +54,15 @@ export const changeLanguage = async (lang) => {
     }
     // 记住选择
     localStorage.setItem("Language", lang);
-    let response = await ApiRequest._R097w25d();
     // 更新 i18n 语言包
-    i18n.global.setLocaleMessage(lang, response);
+    //i18n.global.setLocaleMessage(lang, map);
     // 切换语言
     i18n.global.locale.value = lang;
-    gameStore().translate();
     //console.log(`语言切换至: ${lang}`, i18n.global.getLocaleMessage(lang));
 };
-export default i18n
 
-export function i18nvalue(key){
+export function i18nValue(key){
     return i18n.global.t("收款账号");
 }
+export default i18n
+

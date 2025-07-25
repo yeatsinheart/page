@@ -1,0 +1,33 @@
+{
+  "collectionName": "App Tokens",
+  "modes": ["light", "dark"],
+  "variables":{
+    "COLOR":[{
+      "name": "page","values": {
+        "Light": { "r": 1, "g": 1, "b": 1 },
+        "Dark": { "r": 0.1, "g": 0.1, "b": 0.1 }
+      }
+    }],
+      "FLOAT":[{
+      "name": "size.radius.medium",
+      "values": {
+        "Light": 8,
+        "Dark": 8
+      }
+    }],
+    "STRING":[{
+      "name": "size.radius.medium",
+      "values": {
+        "Light": "8",
+        "Dark": "8"
+      }
+    }],
+    "BOOLEAN":[{
+      "name": "size.radius.medium",
+      "values": {
+        "Light": true,
+        "Dark": false
+      }
+    }]
+  }
+}

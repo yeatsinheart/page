@@ -1,7 +1,68 @@
 # .editorconfig 能够让代码格式化时尽量在一行展示
+# 🧠 IDEA / VSCode 配合 .editorconfig
+# IDEA 会默认识别 .editorconfig，自动覆盖 IDE 的 Code Style 设置
+# VSCode 也会在安装 EditorConfig 插件 后自动生效
 root = true
 
 [*]
 max_line_length = 500
 indent_style = space
 indent_size = 2
+charset = utf-8
+
+
+[*.java]
+indent_size = 4
+# Dart 文件特殊设置
+[*.dart]
+indent_size = 2
+#########################
+# JavaScript / TypeScript / Vue
+#########################
+[*.js]
+indent_size = 2
+
+[*.ts]
+indent_size = 2
+
+[*.vue]
+indent_size = 2
+
+#########################
+# JSON / YAML / TOML / HTML / CSS
+#########################
+[*.json]
+indent_size = 2
+
+[*.yml]
+indent_size = 2
+
+[*.yaml]
+indent_size = 2
+
+[*.toml]
+indent_size = 2
+
+[*.html]
+indent_size = 2
+
+[*.css]
+indent_size = 2
+
+#########################
+# Markdown / 文档文件
+#########################
+[*.md]
+trim_trailing_whitespace = false
+insert_final_newline = true
+max_line_length = off
+
+[*.txt]
+trim_trailing_whitespace = false
+max_line_length = off
+
+#########################
+# Makefile 保留 tab
+#########################
+[Makefile]
+indent_style = tab

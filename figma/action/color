@@ -1,0 +1,15 @@
+-brand Our default accent color, which may shift between blue in Figma design and purple in FigJam.
+
+-selected Light blue or purple fills for the backgrounds of a selected element, or a border around a focused element.
+
+-disabled Light grey fills for inactive text, buttons, and inputs that a user cannot interact with.
+
+-component Purple text, icons, and backgrounds for component layer names, as well as features connected to components (like variants)
+
+-danger Red indicators when there is an error, or something a user should urgently attend to.
+
+-warning Yellow indicators used to warn a user about a potential problem, such as a missing font.
+
+-success Green indicators used for confirmation, approval, or when a task has completed.
+
+-inverse Dark grey / white fills used for elements that need to be “the opposite of the background color”.

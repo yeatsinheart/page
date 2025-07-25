@@ -76,6 +76,7 @@ export default defineConfig(({mode}) => {
       },
     },
     build: {
+      target: 'es2017',
       minify: 'terser', // ✅ 默认，可选 'esbuild' 或 false
       rollupOptions: {
         input: {

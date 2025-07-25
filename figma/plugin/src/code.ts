@@ -1,8 +1,12 @@
+//主线程和 UI 是两个环境
 figma.showUI(__html__, {width: 375, height: 640});
 // 最大为 960px，再大也不会显示更宽。
 // Figma 插件弹出的 UI 界面（showUI()）高度最大限制为 640 像素（截至 2025 年的官方限制），否则超出的部分将被裁剪并可能出现滚动条。
+
 figma.ui.onmessage = (msg) => {
-  if (msg.type === 'resize') {
+  if (msg.type === 'hello') {
+      figma.closePlugin('✅ 插件完成')
+    }else if (msg.type === 'resize') {
     figma.ui.resize(msg.width, msg.height);
   } else if (msg.type === 'import-json') {
     const json = JSON.parse(msg.data);
@@ -38,7 +42,7 @@ figma.ui.onmessage = (msg) => {
   }
 };
 
-figma.showUI(`<script>window.close()</script>`, {visible: false});
+//figma.showUI(`<script>window.close()</script>`, {visible: false});
 
 // 本地模拟 JSON 文件
 //const tokens = require("./tokens.json");
@@ -198,3 +202,6 @@ function createOrUpdatePaintStyle(name: string, paint: Paint) {
  }
 
  */
+function notify(type,data){
+  figma.ui.postMessage({ type: type, data: data });
+}

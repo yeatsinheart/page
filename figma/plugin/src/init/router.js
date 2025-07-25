@@ -1,7 +1,7 @@
 // 根据不同路径 打开不同的页面。
 // 比如iframe 是打开纯
 // router-view 指定页面。。 嵌套路由如何动态替换父。
-import {createRouter, createWebHistory} from "vue-router";
+import {createRouter, createWebHistory,createWebHashHistory} from "vue-router";
 import {get_file_router, view_get_by_path} from "@/init/file.js";
 // 避免多 //// 访问报错问题
 if (window.location.pathname.match(/^\/{2,}/)) {
@@ -9,7 +9,7 @@ if (window.location.pathname.match(/^\/{2,}/)) {
 }
 
 const routes = [
-  {path: "/:pathMatch(.*)*", redirect: "/",},
+  //{path: "/:pathMatch(.*)*", redirect: "/",},
 ];
 
 if (import.meta.env.DEV) {
@@ -19,7 +19,7 @@ if (import.meta.env.DEV) {
 
 const router = createRouter({
   //history: createWebHashHistory(style_var("--base")),createWebHashHistory
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
   scrollBehavior() {
     return {top: 0, left: 0};

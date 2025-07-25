@@ -9,6 +9,7 @@ import autoprefixer from 'autoprefixer'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
+import fs from 'fs';
 import {resolve} from 'path';
 
 // https://cn.vite.dev/config/
@@ -17,6 +18,7 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, process.cwd());
   return {
     //base: mode === 'development' ? '/' : 'https://cdn.example.com/', // ✅ 替换为你自己的域名或路径
+    base: './',
     plugins: [
       vue(),
       AutoImport({
@@ -24,6 +26,20 @@ export default defineConfig(({mode}) => {
         resolvers: [ElementPlusResolver()],
       }),
       Components({resolvers: [ElementPlusResolver()],}),
+//      {
+//            name: 'virtual-html',
+//            transformIndexHtml: {
+//              enforce: 'pre',
+//              transform(html) {
+//                return html;
+//              }
+//            },
+//            transform(code, id) {
+//              if (id.endsWith('code.js')) {
+//                return code.replace('__html__', '`' + fs.readFileSync('dist/index.html', 'utf-8') + '`');
+//              }
+//            }
+//          },
     ],
     resolve: {
       alias: {
@@ -72,23 +88,23 @@ export default defineConfig(({mode}) => {
         comments: false, // 去除注释
       },
       compress: {
-        pure_funcs: ['console.log'], // 更暴力地移除 console.log
+        //pure_funcs: ['console.log'], // 更暴力地移除 console.log
       },
     },
     build: {
       target: 'es2017',
-      minify: 'terser', // ✅ 默认，可选 'esbuild' 或 false
-      rollupOptions: {
-        input: {
-          ui: resolve(__dirname, 'index.html'),  // Vue 入口
-          code: resolve(__dirname, 'src/code.ts')     // 插件主逻辑
-        },
-        output: {
-          dir: 'dist',
-          entryFileNames: assetInfo => assetInfo.name === 'code' ? 'code.js' : '[name].js',
-        },
-      },
-      outDir: 'dist',
+      //minify: 'terser', // ✅ 默认，可选 'esbuild' 或 false
+//      rollupOptions: {
+//        input: {
+//          ui: resolve(__dirname, 'index.html'),  // Vue 入口
+//          code: resolve(__dirname, 'src/code.ts')     // 插件主逻辑
+//        },
+//        output: {
+//          dir: 'dist',
+//          entryFileNames: assetInfo => assetInfo.name === 'code' ? 'code.js' : '[name].js',
+//        },
+//      },
+//      outDir: 'dist',
       emptyOutDir: true             // 清空 dist
     },
 

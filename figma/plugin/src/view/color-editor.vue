@@ -10,6 +10,14 @@ const input = ref('')
 const error = ref('');
 const prettyJson = ref('');
 
+onMounted(()=>{
+onmessage = (event) => {
+  const msg = event.data.pluginMessage;
+  if (msg.type === 'init') {
+    console.log(msg.data); // 'init config or json'
+  }
+};
+})
 
 watch(input, (newVal) => {
   try {

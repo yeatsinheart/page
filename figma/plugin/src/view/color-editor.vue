@@ -9,6 +9,9 @@ const input = ref('')
 const error = ref('');
 const prettyJson = ref('');
 
+
+window.parent.postMessage({ pluginMessage: { type: 'import-json', content } }, '*');
+
 function validateJson() {
   try {
     const parsed = JSON.parse(input.value);

@@ -1,19 +1,48 @@
-
-figma.showUI(__html__, {width: 375,height: 640});
+figma.showUI(__html__, {width: 375, height: 640});
 // 最大为 960px，再大也不会显示更宽。
 // Figma 插件弹出的 UI 界面（showUI()）高度最大限制为 640 像素（截至 2025 年的官方限制），否则超出的部分将被裁剪并可能出现滚动条。
 figma.ui.onmessage = (msg) => {
   if (msg.type === 'resize') {
     figma.ui.resize(msg.width, msg.height);
+  } else if (msg.type === 'import-json') {
+    const json = JSON.parse(msg.data);
+    const {collectionName, modes, variables} = json;
+
+    const collection = figma.variables.getLocalVariableCollections()
+      .find(c => c.name === collectionName) ?? figma.variables.createVariableCollection(collectionName);
+
+//["light","dark"]
+    ensureModes(collection, modes);
+
+// ✅ 必须重新获取，才能拿到新的 modeId
+    const updatedModes = collection.modes;
+
+    // 创建变量并设置值 'COLOR' | 'FLOAT' | 'STRING' | 'BOOLEAN'
+    for (const token of variables) {
+      let variable = collection.variables.find(v => v.name === token.name && v.type === token.type);
+      if (!variable) {
+        variable = figma.variables.createVariable(token.name, token.type as VariableResolvedDataType, collection.id);
+      }
+      for (const mode of modes) {
+        const value = token.values[mode];
+        if (value !== undefined) {
+          const modeId = collection.modes.find(m => m.name === mode)?.modeId;
+          if (modeId) {
+            // 如果 改模式，json中没有配置，则设置一个默认值
+            variable.setValueForMode(modeId, {r: 1, g: 0, b: 0}); // 设置为红色
+          }
+        }
+      }
+    }
+    figma.closePlugin(`导入完成，共 ${variables.length} 个变量`);
   }
 };
 
-figma.showUI(`<script>window.close()</script>`, { visible: false });
+figma.showUI(`<script>window.close()</script>`, {visible: false});
 
 // 本地模拟 JSON 文件
 //const tokens = require("./tokens.json");
 
-//const { collectionName, modes, variables } = tokens;
 
 // 创建变量集合figma.showUI(`<script>window.close()</script>`, { visible: false });
 
@@ -21,7 +50,7 @@ function ensureModes(collection: VariableCollection, modeNames: string[]) {
   const existingModeNames = new Set(collection.modes.map(m => m.name));
   for (const modeName of modeNames) {
     if (!existingModeNames.has(modeName)) {
-        // 你不能自己去构造 modeId，只能让 collection.addMode() 自动生成或你传入旧的。
+      // 你不能自己去构造 modeId，只能让 collection.addMode() 自动生成或你传入旧的。
       collection.addMode(modeName);
       console.log(`➕ 添加 mode: ${modeName}`);
     } else {
@@ -30,34 +59,6 @@ function ensureModes(collection: VariableCollection, modeNames: string[]) {
   }
 }
 
-const collection = figma.variables.getLocalVariableCollections()
-  .find(c => c.name === collectionName) ?? figma.variables.createVariableCollection(collectionName);
-
-//["light","dark"]
-ensureModes(collection,modes);
-// 重新获取modes
-
-// ✅ 必须重新获取，才能拿到新的 modeId
-const updatedModes = collection.modes;
-
-         // 创建变量并设置值 'COLOR' | 'FLOAT' | 'STRING' | 'BOOLEAN'
-         for (const token of variables) {
-             let variable = collection.variables.find(v => v.name === token.name && v.type === token.type);
-             if (!variable) {
-                variable = figma.variables.createVariable(token.name, token.type as VariableResolvedDataType, collection.id);
-             }
-           for (const mode of modes) {
-             const value = token.values[mode];
-             if (value !== undefined) {
-                const modeId = collection.modes.find(m => m.name === mode)?.modeId;
-                if (modeId) {
-                    // 如果 改模式，json中没有配置，则设置一个默认值
-                  variable.setValueForMode(modeId, { r: 1, g: 0, b: 0 }); // 设置为红色
-                }
-             }
-           }
-         }
-         figma.closePlugin(`导入完成，共 ${variables.length} 个变量`);
 
 // 如果是Color的，自动绑定颜色样式
 function createOrUpdatePaintStyle(name: string, paint: Paint) {

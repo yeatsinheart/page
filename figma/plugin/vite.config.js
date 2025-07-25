@@ -3,6 +3,7 @@ import {fileURLToPath, URL} from 'node:url'
 import {defineConfig, loadEnv} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite';
+import postCssPxToRem from 'postcss-pxtorem'
 import Components from 'unplugin-vue-components/vite';
 import autoprefixer from 'autoprefixer'
 
@@ -30,6 +31,21 @@ export default defineConfig(({mode}) => {
     css: {
       postcss: {
         plugins: [
+          postCssPxToRem({ // 自适应，px>rem转换
+            rootValue({file}){
+              // vant 37.5 默认75 对应750设计稿
+              // vant 14px 要变成 .24rem 需要58.33333 14/24
+              // element 14px 要变成 .2rem 需要58.33333 14/20
+              if(file.indexOf('element-plus')!==-1){
+                 return 75;
+              }else if(file.indexOf('vant')!==-1){
+                return 58.33333
+              }
+              return 75;
+            },
+            propList: ['*'], // 需要转换的属性，这里选择全部都进行转换
+            //exclude: /node_modules/i,//不处理node_modules文件下的css
+          }),
           autoprefixer({ // 自动添加前缀
             overrideBrowserslist: [
               "Android 4.1",

@@ -30,7 +30,7 @@
 }
 
 /* === Base Styles Shared by All Icons === */
-.material-symbol {
+.material-outlined,.material-rounded,.material-sharp {
   font-weight: normal;
   font-style: normal;
   font-size: 32px;         /* you can override per use if needed */

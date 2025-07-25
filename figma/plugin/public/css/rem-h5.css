@@ -3,39 +3,43 @@
 100vh会有工具栏遮盖的问题 存在底部导航栏时，页面底部需要再加1.4rem
 */
 :root {
-    --theme-max-width: 547.59px;
-    /*最大屏幕宽度*/
-    --theme-bottom-height: 1.24rem;
-    /*底部导航栏高度*/
+  --theme-max-width: 547.59px;
+  /*最大屏幕宽度*/
+  --theme-bottom-height: 1.24rem;
+  /*底部导航栏高度*/
 }
+
 html {
-    max-width: var(--theme-max-width);
+  max-width: var(--theme-max-width);
+  margin: 0 auto;
 }
+
 /* .24rem */
 body {
-    font-size: .22rem !important;
-    line-height: 1.43 !important;
+  font-size: .22rem !important;
+  line-height: 1.43 !important;
 }
+
 /*
 写死精度为1的情况下
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 */
 /* 大屏幕固定 控制*/
 @media screen and (min-width: 547.59px) {
-    html {
-        font-size: calc(var(--theme-max-width)/(750/100)) !important;
-    }
+  html {
+    font-size: calc(var(--theme-max-width) / (750 / 100)) !important;
+  }
 }
 
 /* 小屏幕动态 控制*/
 @media only screen and (min-width: 150px) and (max-width: 547.59px) {
-    html {
-        font-size: calc(100vw/(750/100)) !important;
-    }
+  html {
+    font-size: calc(100vw / (750 / 100)) !important;
+  }
 }
 
 .fa-solid {
-    font-size: .24rem;
+  font-size: .24rem;
 }
 
 

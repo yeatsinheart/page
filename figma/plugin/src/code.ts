@@ -40,6 +40,7 @@ figma.ui.onmessage = (msg) => {
     }
     figma.closePlugin(`导入完成，共 ${variables.length} 个变量`);
   }
+  figma.closePlugin();
 };
 
 //figma.showUI(`<script>window.close()</script>`, {visible: false});

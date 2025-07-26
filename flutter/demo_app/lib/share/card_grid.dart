@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/app_img.dart';
-import 'package:flutter3/util/img.dart';
 
 
 Widget sliver_grid_demo(List<dynamic> list, {numberOfRow, gap = 8, aspectRatio = 3 / 4}) {
@@ -40,7 +39,7 @@ Widget card_demo(data, {borderRadius = 12, bg = Colors.grey, nestTitle = true}) 
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
             decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.black.withOpacity(0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+              gradient: LinearGradient(colors: [Colors.black.withValues(alpha: 0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
             ),
             child: name,
           ),

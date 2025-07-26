@@ -4,12 +4,10 @@ import 'package:easy_refresh/easy_refresh.dart';
 
 //刷新加载控件封装
 class MyEasyRefresh extends StatelessWidget {
-  late EasyRefreshController easyRefreshController;
-  Widget listView;
+  final EasyRefreshController easyRefreshController= EasyRefreshController();
+  final Widget listView;
 
-  MyEasyRefresh(this.listView) {
-    easyRefreshController = EasyRefreshController();
-  }
+  MyEasyRefresh({required this.listView,super.key});
 
   @override
   Widget build(BuildContext context) {

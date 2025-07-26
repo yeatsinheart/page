@@ -58,6 +58,7 @@ class AppCsPaneState extends State<TestCs> with TickerProviderStateMixin {
 
   @override
   initState() {
+    super.initState();
     scroll_controller.addListener(() {
       if (scroll_controller.offset < 0) {
         close_process = scroll_controller.offset / -30;

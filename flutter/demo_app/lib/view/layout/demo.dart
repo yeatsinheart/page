@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/app_img.dart';
 import 'package:flutter3/util/context.dart';
-import 'package:flutter3/util/img.dart';
 import 'package:flutter3/views.dart';
 import 'package:get/get.dart';
 

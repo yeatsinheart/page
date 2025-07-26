@@ -70,7 +70,7 @@ void update(function){
   }
 
   @override
-  void deposed() {}
+  void deposed() {super.dispose();}
 
   // 防止嵌套，嵌套了以后要考虑的太多了。
   Widget innerScrollListener(child) {

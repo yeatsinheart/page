@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter3/util/context.dart';
 
 to(widget, args) {
-  Navigator.of(GlobalContext.context!).push(
+  Navigator.of(GlobalContext.context).push(
     PageRouteBuilder(
       opaque: false,
       fullscreenDialog: true,

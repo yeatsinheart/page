@@ -37,7 +37,7 @@ class TestDetail extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                game!.headText,
+                                game.headText,
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.grey,

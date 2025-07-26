@@ -8,7 +8,7 @@ class PageMeDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: MyEasyRefresh(ListView(
+      body: MyEasyRefresh(listView: ListView(
         padding: const EdgeInsets.only(left: 15, top: 0, right: 15),
         children: <Widget>[
           Stack(
@@ -70,9 +70,9 @@ class PageMeDemo extends StatelessWidget {
 }
 
 class MineMenu extends StatelessWidget {
-  List<String> titles1 = [];
+  final List<String> titles1 ;
 
-  MineMenu({super.key}) {
+  MineMenu({this.titles1=const [],super.key}) {
     titles1.add("消息通知");
     titles1.add("收藏");
     titles1.add("浏览历史");
@@ -86,15 +86,14 @@ class MineMenu extends StatelessWidget {
         height: 90,
         alignment: Alignment.center,
         margin: const EdgeInsets.only(top: 25),
-        child: MenuRow(titles1, Colors.red));
+        child: MenuRow(titles: titles1, iconColor:Colors.red));
   }
 }
 
 class MoreService extends StatelessWidget {
-  List<String> titles1 = [];
-  List<String> titles2 = [];
-
-  MoreService({super.key}) {
+  final List<String> titles1 ;
+  final List<String> titles2;
+  MoreService({this.titles1 = const [],this.titles2= const [],super.key}) {
     titles1.add("用户反馈");
     titles1.add("钱包");
     titles1.add("广告推广");
@@ -122,8 +121,8 @@ class MoreService extends StatelessWidget {
               )
             ],
           ),
-          MenuRow(titles1, Colors.black87),
-          MenuRow(titles2, Colors.black87)
+          MenuRow(titles: titles1, iconColor:Colors.black87),
+          MenuRow(titles: titles2, iconColor:Colors.black87)
         ],
       ),
     );
@@ -159,10 +158,10 @@ class Applets extends StatelessWidget {
 
 //服务类型组件
 class MenuRow extends StatelessWidget {
-  List<String> titles = [];
-  Color iconColor = Colors.red;
+  final List<String> titles ;
+  final Color iconColor;
 
-  MenuRow(this.titles, this.iconColor, {super.key});
+  const MenuRow({ required this.titles, this.iconColor=Colors.red,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -230,7 +229,7 @@ class AppletMenuRow extends StatelessWidget {
 }
 
 class AppIcon extends StatelessWidget {
-  String asset;
+  final String asset;
 
   AppIcon(this.asset, {super.key});
 

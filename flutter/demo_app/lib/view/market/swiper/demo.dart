@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/app_img.dart';
 import 'package:flutter3/util/context.dart';
-import 'package:flutter3/util/img.dart';
 
 class MarketSwiperDemo extends StatefulWidget {
   const MarketSwiperDemo({super.key, required params});

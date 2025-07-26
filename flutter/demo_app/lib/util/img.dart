@@ -45,7 +45,7 @@ CachedNetworkImage img(String url, err) {
   );
 }
 
-Widget getUrlImg(String url, double? width, double? height, double? radius) {
+Widget getUrlImg(String url, {double? width, double? height, double? radius}) {
   // ClipOval = ClipRRect[radius为半径时] = 圆形⭕️
   var err = SizedBox.expand(
     child: Container(
@@ -57,12 +57,12 @@ Widget getUrlImg(String url, double? width, double? height, double? radius) {
       ),
     ),
   );
-  var item = img(url, err);
+  var item= null!=radius?img(url, err):ClipRRect(borderRadius: BorderRadius.circular(radius!), child: img(url, err));
   if(width==null && height==null)return item;
   return SizedBox(
     width: width,
     height: height,
-    child: null == radius ? item : ClipRRect(borderRadius: BorderRadius.circular(radius), child: item),
+    child: item,
   );
 }
 

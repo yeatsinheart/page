@@ -81,7 +81,7 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
               borderRadius: BorderRadius.circular(borderRadius), // 圆角半径
               child: Stack(
                 children: [
-                  getUrlImg(item.imageUrl, gridWidth, gridHeight, null),
+                  getUrlImg(item.imageUrl, width: gridWidth, height: gridHeight),
                   // 底部标题，遮罩 + 居中 + 固定高度
                   Positioned(
                     bottom: 0,

@@ -33,8 +33,8 @@ class _LayoutDemoNavigationBarState extends State<LayoutDemoNavigationBar> {
     for (Map<String, dynamic> item in items) {
       destinations.add(
         NavigationDestination(
-          icon: getUrlImg(item["iconI18nKey"], GlobalContext.getRem(.5), GlobalContext.getRem(.5), null), // 你可以根据 iconI18nKey 加载图标
-          selectedIcon: getUrlImg(item["iconFocusI18nKey"], GlobalContext.getRem(.5), GlobalContext.getRem(.5), null), // 你可以根据 iconFocusI18nKey 加载图标
+          icon: getUrlImg(item["iconI18nKey"], width: GlobalContext.getRem(.5), height: GlobalContext.getRem(.5)), // 你可以根据 iconI18nKey 加载图标
+          selectedIcon: getUrlImg(item["iconFocusI18nKey"], width: GlobalContext.getRem(.5), height: GlobalContext.getRem(.5)), // 你可以根据 iconFocusI18nKey 加载图标
           label: item['titleI18nKey'],
           tooltip: '',
         ),

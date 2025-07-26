@@ -55,50 +55,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
                         color: Colors.white,
                         child: Row(
                           children: [
-                            // 左侧 logo
-                            //Image.asset('assets/logo.png', height: 40),
-                            getUrlImg('assets/logo.png', GlobalContext.getRem(0.7), GlobalContext.getRem(0.7), null),
-                            Spacer(),
-                            // 右侧按钮和图标
-                            TextButton(
-                              onPressed: () {},
-                              child: Text('注册'),
-                              style: ButtonStyle(
-                                backgroundColor: WidgetStateProperty.all(Colors.blue),
-                                foregroundColor: WidgetStateProperty.all(Colors.white),
-                                shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(GlobalContext.getRem(.1)))),
-                              ),
-                            ),
-                            SizedBox(width: 8),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text('登录'),
-                              style: ButtonStyle(
-                                foregroundColor: WidgetStateProperty.all(Colors.blue),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(GlobalContext.getRem(.1)),
-                                    side: BorderSide(color: Colors.blue),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 8),
-                            //IconButton(onPressed: () {GlobalContext.load("game_search");}, icon: Icon(Icons.search)),
-                            IconButton(
-                              onPressed: () {
-                                GlobalContext.load("game_search");
-                                //GlobalOverlayContext.show("game_search", autoRemoveTime: 3000);
-                              },
-                              icon: Icon(Icons.search),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                //GlobalOverlayContext.show("language");
-                                GlobalOverlayContext.popBy("/pop/close_bottom","language");
-                              },
-                              icon: Icon(Icons.language),
-                            ),
+
                           ],
                         ),
                         //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, GlobalContext.getRem(0.7), null),

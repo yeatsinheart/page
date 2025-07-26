@@ -59,7 +59,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              getUrlImg(isActive ? activeIcon.tr : icon.tr, GlobalContext.getRem(.5), GlobalContext.getRem(.5), null),
+              getUrlImg(isActive ? activeIcon.tr : icon.tr, width: GlobalContext.getRem(.5), height: GlobalContext.getRem(.5)),
               Text(
                 label.tr,
                 style: TextStyle(

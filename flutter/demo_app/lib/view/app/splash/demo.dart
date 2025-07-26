@@ -45,7 +45,7 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
       children: [
         Column(
           children: [
-            getUrlImg(AppService().get()!.splash,GlobalContext.getWidth(),GlobalContext.getHeight() * 7 / 8,null),
+            getUrlImg(AppService().get()!.splash,width: GlobalContext.getWidth(),height:GlobalContext.getHeight() * 7 / 8),
             Expanded(
               child: Container(
                 width: GlobalContext.getWidth(),
@@ -53,7 +53,7 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
                   children: <Widget>[
-                    getUrlImg(AppService().get()!.logo,32,32,null),
+                    getUrlImg(AppService().get()!.logo,width: 32,height: 32),
                     Text(
                       AppService().get()!.name,
                       style: TextStyle(color: AppService().skin()?.font, fontSize: 14),

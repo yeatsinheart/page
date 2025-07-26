@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:flutter3/log/logger.dart';
+import 'package:flutter3/request/api.dart';
 import 'package:get/get.dart';
 
 // 其实就是扩展String .tr 其实依赖的是 BuildContext 的 rebuild，而不是 Obx 或 GetX。
@@ -8,14 +10,17 @@ import 'package:get/get.dart';
 class LanguageStore extends GetxService {
   // 当前语言
   final _locale = "".obs;
+  final Rx<List?> language = Rx<List?>([]);
 
   String get locale => _locale.value;
 
-  Future<LanguageStore> init() async {
-    // 初始默认语言
-    await loadLanguage('en_US');
+  Future<LanguageStore> init(List<dynamic> list,String fallback) async {
+    // 初始默认语言 .update((_)=>data) 是用于 RxMap（即 Rx<Map>）的；
+    language.value = list;
+    language.refresh();
+    await loadLanguage(list[0]["code"]);
     // 英文保底 最好能动态保底
-    Get.fallbackLocale = parseLocale("en_US");
+    Get.fallbackLocale = parseLocale(fallback);
     return this;
   }
 
@@ -31,13 +36,7 @@ class LanguageStore extends GetxService {
   }
 
   Future<Map<String, String>> fetchRemoteTranslations(String langCode) async {
-    await Future.delayed(Duration(milliseconds: 1000)); // 模拟网络延迟
-
-    if (langCode == 'zh_CN') {
-      return {'微信': '微信xxx', 'testImage': 'https://pic.616pic.com/photoone/00/02/58/618cf527354c35308.jpg!/fw/1120'};
-    } else {
-      return {'testImage': 'https://pic.616pic.com/photoone/00/06/02/618e27a728fd34751.jpg!/fw/1120', '首页': 'home', '发现': 'discover', '我': 'me', '微信': 'wechat', '热门': '🔥Hot', 'https://cdn-icons-png.flaticon.com/128/619/619153.png': 'https://cdn-icons-png.flaticon.com/128/428/428094.png'};
-    }
+    return await ApiRequest.translate({"language":langCode})??{};
   }
 }
 

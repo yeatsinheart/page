@@ -5,7 +5,13 @@ class HostStatusStore extends GetxService {
   final lines = <LineStatus>[].obs;
   final Dio _dio = Dio();
 
-  Future<HostStatusStore> init() async {
+  Future<HostStatusStore> init(List<dynamic> list) async {
+    List<LineStatus> tmp = [];
+    for (var data in list) {
+      lines.add( LineStatus(name: data["name"], host: data["host"]));
+    }
+    setLines(tmp);
+    testAllLines();
     return this;
   }
 
@@ -13,11 +19,7 @@ class HostStatusStore extends GetxService {
   void onInit() {
     super.onInit();
     /// 启动时就加载
-    // setLines([
-    //   LineStatus(name: '中国节点', host: 'https://cn.example.com/ping'),
-    //   LineStatus(name: '香港节点', host: 'https://hk.example.com/ping'),
-    //   LineStatus(name: '美国节点', host: 'https://us.example.com/ping'),
-    // ]);
+    //
     // chooseLine(lines[0]);
     testAllLines();
   }
@@ -37,7 +39,7 @@ class HostStatusStore extends GetxService {
       line.status.value = "testing";
       // 实际调用接口 get 或者 post
       await _dio.get(
-        line.host,
+        line.host+"/api/init",
         options: Options(
           method: 'GET',
           headers: {'Cache-Control': 'no-cache'},

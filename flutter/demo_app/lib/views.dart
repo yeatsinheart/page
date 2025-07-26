@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/share/logger.dart' show Log;
+import 'package:flutter3/log/logger.dart' show Log;
 import 'package:flutter3/widget_of_path_info.dart';
 
 // 顶层变量，Map<String, String>

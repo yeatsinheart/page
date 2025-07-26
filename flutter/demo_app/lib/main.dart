@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter3/share/logger.dart';
+import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/share/default_config.dart';
 
 import 'package:flutter3/share/app.dart';
@@ -43,11 +43,11 @@ init() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   // 获取基础配置 远程更新->本地缓存->初始打包配置
-  DefaultConfig.init().then((value) async {
+  DefaultConfig.init().then((config) async {
     // 配置更新后，必须先加载完成当前语言的翻译信息
-    AppStore appStore = await Get.putAsync(() => AppStore().init(value));
-    await Get.putAsync(() => LanguageStore().init());
-    await Get.putAsync(() => HostStatusStore().init());
+    AppStore appStore = await Get.putAsync(() => AppStore().init(config));
+    await Get.putAsync(() => LanguageStore().init(config["language"]??[{"name":"en_US"}],config["languageFallback"]??"en_US"));
+    await Get.putAsync(() => HostStatusStore().init(config["host"]));
 
     runApp(App(widgetOfKey("app_layout") ?? Container()));
   });

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter3/share/logger.dart';
+import 'package:flutter3/log/logger.dart';
 
 import 'package:flutter3/views.dart';
 import 'context.dart';

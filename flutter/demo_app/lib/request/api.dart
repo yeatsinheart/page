@@ -15,6 +15,7 @@ class ApiRequest {
 
   static init() => _Api("init").post_json(null); // app初始化配置
 
+  static translate(data) => _Api("translate").post_json(data); //页面组合
   static getApp(data) => _Api("asdf").post_json(data); //页面组合
   static getApp1(data) => _Api("asdf",loginRequired: true,cache: true,cacheTime: 0).post_json(data); //页面组合
   static upload(data) => _Api("asdf").upload({"file":data}); //页面组合

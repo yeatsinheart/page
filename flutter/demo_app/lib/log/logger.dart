@@ -18,8 +18,8 @@ class Log {
       // logger/src/printers/pretty_printer.dart
       excludePaths: [
         'logger/src/printers/pretty_printer.dart', 'logger/src/logger.dart',
-        "flutter/","lib/","dio/",
-        'flutter3/share/logger.dart', 'flutter3/views.dart'],
+        "flutter/","lib/","dio/","get/",
+        'flutter3/log/logger.dart', 'flutter3/views.dart'],
     ),
     // Disable logging in release mode if needed
     level: kReleaseMode ? Level.nothing : Level.debug,

@@ -5,7 +5,7 @@ import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter3/request/api_cache.dart';
 import 'package:flutter3/request/api_test.dart';
-import 'package:flutter3/share/logger.dart';
+import 'package:flutter3/log/logger.dart';
 
 Dio init() {
   final dio = Dio(
@@ -52,9 +52,9 @@ Dio init() {
         // if (token != null) {
         //   options.headers['Authorization'] = 'Bearer $token';
         // }
-        options.headers['Accept-Language'] = 'en-US';
+        options.headers['Accept-Language'] = 'en_US';
         var response = ApiTest.test(options);
-        if (null != response) handler.resolve(Response(requestOptions: options, data: response, statusCode: 200));
+        if (null != response) return handler.resolve(Response(requestOptions: options, data: response, statusCode: 200));
         return handler.next(options);
       },
       onResponse: (response, handler) async {
@@ -93,7 +93,7 @@ class HttpRequestUtil {
   static get(String url, {Map<String, dynamic>? header}) async {
     try {
       var response = await dio.get(url, options: Options(headers: header));
-      return response;
+      return response.data;
     } catch (e) {
       Log.error(e);
     }
@@ -107,7 +107,7 @@ class HttpRequestUtil {
         data: params ?? {},
         options: Options(contentType: Headers.jsonContentType, headers: header),
       );
-      return response;
+      return response.data;
     } catch (e) {
       Log.error(e);
     }
@@ -121,7 +121,7 @@ class HttpRequestUtil {
         data: params ?? {},
         options: Options(contentType: Headers.formUrlEncodedContentType, headers: header),
       );
-      return Future.value(response);
+      return response.data;
     } catch (e) {
       Log.error(e);
     }
@@ -136,7 +136,7 @@ class HttpRequestUtil {
         data: formData,
         options: Options(contentType: Headers.multipartFormDataContentType, headers: header),
       );
-      return Future.value(response);
+      return response.data;
     } catch (e) {
       Log.error(e);
     }
@@ -144,11 +144,12 @@ class HttpRequestUtil {
 
   static postString(String url, String? data, {Map<String, dynamic>? header}) async {
     try {
-      return dio.post(
+      Response response = await  dio.post(
         url,
         data: data,
         options: Options(contentType: Headers.textPlainContentType, headers: header),
       );
+      return response.data;
     } catch (e) {
       Log.error(e);
       //MsgOverlay.notify("网络异常");

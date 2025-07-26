@@ -12,7 +12,7 @@ class AppStore extends GetxService {
   void setFromJson(Map<String, dynamic> json) {
     data.value = AppStoreData.fromJson(json);
     data.refresh();
-    data.update((_)=>AppStoreData.fromJson(json));
+        //.update((_)=>data) 是用于 RxMap（即 Rx<Map>）的；
   }
 
   // 可以写异步初始化、网络请求等

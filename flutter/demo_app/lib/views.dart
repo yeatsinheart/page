@@ -46,7 +46,7 @@ PageRoute asRoute(String key,{params,RouteSettings? settings}) {
   return PageRouteBuilder(
     settings: settings,
     pageBuilder: (cxt, ani1, ani2) {
-      return FadeTransition(opacity: ani1, child: widgetOfKey(key) ?? Container());
+      return FadeTransition(opacity: ani1, child: widgetOfKey(key,params: params) ?? Container());
     },
   );
 }

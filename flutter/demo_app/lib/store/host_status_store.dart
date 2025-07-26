@@ -5,6 +5,10 @@ class HostStatusStore extends GetxService {
   final lines = <LineStatus>[].obs;
   final Dio _dio = Dio();
 
+  Future<HostStatusStore> init() async {
+    return this;
+  }
+
   @override
   void onInit() {
     super.onInit();

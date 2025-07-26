@@ -10,7 +10,7 @@ import 'package:flutter3/share/logger.dart';
 Dio init() {
   final dio = Dio(
     BaseOptions(
-      baseUrl: 'https://example.com/api',
+      baseUrl: 'https://example.com/api/',
       connectTimeout: const Duration(seconds: 5),
       // 建立连接最大等待时间
       receiveTimeout: const Duration(seconds: 10),
@@ -19,8 +19,6 @@ Dio init() {
 
       // 发送数据最大等待时间 向服务器写入数据的最大时间
       headers: {
-        'Authorization': 'Bearer your_token_here',
-        'Content-Type': 'application/json',
         'Accept-Language': 'en-US',
         'Host': 'api.example.com', // 伪造域名 使用IP直连时才生效
       },
@@ -68,7 +66,7 @@ Dio init() {
         return handler.next(response);
       },
       onError: (DioException e, handler) {
-        Log.err('Request to: ${e.requestOptions.uri}', e);
+        Log.err('Request to: ${e.requestOptions.uri} ', e);
         handler.next(e);
       },
     ),
@@ -129,7 +127,7 @@ class HttpRequestUtil {
     }
   }
 
-  static upload(String url, Map<String, dynamic>? params, {Map<String, dynamic>? header}) async {
+  static upload(String url, dynamic params, {Map<String, dynamic>? header}) async {
     try {
       int now = DateTime.now().millisecondsSinceEpoch;
       FormData formData = FormData.fromMap(params ?? {});

@@ -7,6 +7,8 @@ import 'package:flutter3/request/http_util.dart';
 import 'package:flutter3/share/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../request/api.dart';
+
 
 class DefaultConfig {
   static const _cacheKey = 'cached_default_config';
@@ -35,8 +37,7 @@ class DefaultConfig {
   static Future<Map<String, dynamic>?> _loadRemote() async {
     try {
       // 最好是Api调用
-      final response = await HttpRequestUtil.get('https://your-config-url.com/config.json');
-      return response.data;
+      return await ApiRequest.init();
     } catch (e) {
       // 忽略错误或打印日志
       Log.e("获取远程配置出错，所以取消");

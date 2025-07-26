@@ -7,29 +7,29 @@ import 'http_util.dart';
 /// 初始打包默认配置文件key，如果刚安装，就碰上网络请求不通的情况，最坏策略就是本地有打包对应的数据。
 /// 如果全用请求版本，那么我只改了一个活动，只改了游戏一张图片，那么全量的所有数据都要重新下载。。。
 ///
-class ApiService {
-  ApiService._internal();
+class ApiRequest {
+  ApiRequest._internal();
 
-  factory ApiService() => _instance;
-  static final ApiService _instance = ApiService._internal();
+  factory ApiRequest() => _instance;
+  static final ApiRequest _instance = ApiRequest._internal();
 
-  getApp(data) => _Api("asdf").post_json(data); //页面组合
+  static init() => _Api("init").post_json(null); // app初始化配置
+
+  static getApp(data) => _Api("asdf").post_json(data); //页面组合
+  static getApp1(data) => _Api("asdf",loginRequired: true,cache: true,cacheTime: 0).post_json(data); //页面组合
+  static upload(data) => _Api("asdf").upload({"file":data}); //页面组合
 }
-
 class _Api {
   String _path;
   bool loginRequired;
-
   bool cache;
-
   int cacheTime;
-
   _Api(this._path, {this.loginRequired = false, this.cache = false, this.cacheTime = 0});
 
   dynamic post_json(data) async {
     if (loginRequired) {
       //   /// 未登陆 去 登陆
-      GlobalContext.load("name", params: {"action":"login"});
+      GlobalContext.load("login", params: {"action":"login"});
       //   //userStore().toLogin();return Promise.reject("un-login");
     }
     if (cache) {
@@ -40,7 +40,12 @@ class _Api {
         return cached;
       }
     }
-    return HttpRequestUtil.postJson(_path, data);
+
+    var response = await HttpRequestUtil.postJson(_path, data);
+    if (cache) {
+      ApiCache.setCache(_path, response,expire: cacheTime);
+    }
+    return response;
   }
 
   dynamic upload(data) {

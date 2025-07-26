@@ -1,11 +1,11 @@
-import 'package:flutter3/store/host_status_store.dart';
 import 'package:get/get.dart';
 
 class AppStore extends GetxService {
   final Rx<AppStoreData?> data = Rx<AppStoreData?>(null);
 
 
-  Future<AppStore> init() async {
+  Future<AppStore> init(Map<String, dynamic> json) async {
+    setFromJson(json);
     return this;
   }
 

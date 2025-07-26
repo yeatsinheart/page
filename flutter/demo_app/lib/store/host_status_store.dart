@@ -1,7 +1,8 @@
 import 'package:flutter3/share/logger.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
-class HostStatusStore extends GetxController {
+
+class HostStatusStore extends GetxService {
   final lines = <LineStatus>[].obs;
   final Dio _dio = Dio();
 
@@ -27,7 +28,6 @@ class HostStatusStore extends GetxController {
   Future<void> chooseLine(LineStatus line) async {
     lines.forEach((item) => item.chosen.value = false);
     line.chosen.value = true;
-    //lines.refresh();
   }
 
   // 测速某一条线路
@@ -53,14 +53,12 @@ class HostStatusStore extends GetxController {
       line.status.value = "off";
       line.speed.value = 9999;
     }
-    //lines.refresh(); // 通知 UI 更新
   }
 
   // 测速全部线路
   Future<void> testAllLines() async {
     await Future.wait(lines.map(testLine));
     lines.sort((a, b) => a.speed.value.compareTo(b.speed.value));
-    //lines.refresh();
   }
 
   // 获取最快线路

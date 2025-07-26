@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter3/share/app.dart';
 import 'package:flutter3/share/default_config.dart';
 import 'package:flutter3/share/network_monitor.dart';
+import 'package:flutter3/store/host_status_store.dart';
 import 'package:flutter3/store/language_store.dart';
 import 'package:flutter3/_theme_data.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,7 @@ void main() async {
   // 获取基础配置 远程更新->本地缓存->初始打包配置
   DefaultConfig.loadConfig().then((value){});
 
+  Get.put(HostStatusStore()); // 应用启动时注入一次
   // 多语言初始化
   await Get.putAsync(() => LanguageStore().init());
   runApp(NetworkMonitor(child: App(child: widgetOfKey("app_layout") ?? Container())));

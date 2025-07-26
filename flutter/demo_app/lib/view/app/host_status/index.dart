@@ -3,59 +3,60 @@ import 'package:flutter3/store/host_status_store.dart';
 import 'package:get/get.dart';
 
 class AppHostStatusIndex extends StatelessWidget {
-  final dynamic params;
-
-  const AppHostStatusIndex({this.params, super.key});
-
+  //final dynamic params;
+  // const AppHostStatusIndex({this.params, super.key});
+  final HostStatusStore hostStatusStore = Get.find();
   @override
   Widget build(BuildContext context) {
-    final hostStatusStore = Get.put(HostStatusStore());
-
     return Scaffold(
-      body: Obx(() {
-        return ListView.separated(
-          padding: EdgeInsets.all(12),
-          itemBuilder: (context, index) {
-            final line = hostStatusStore.lines[index];
-            return Card(
-              elevation: 3,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-              child: ListTile(
-                // leading: _buildStatusIcon(line.status.value),
-                leading: SignalBar(line),
-                title: Text(line.name, style: const TextStyle(fontWeight: FontWeight.bold)),
-                subtitle: Text(_getStatusText(line)),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    line.status.value == 'testing'
-                        ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
-                        : SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: IconButton(icon: const Icon(Icons.refresh, size: 18), padding: EdgeInsets.zero, constraints: const BoxConstraints(), onPressed: () => hostStatusStore.testLine(line)),
-                          ),
-                    const SizedBox(width: 4,),
-                    SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: IconButton(
-                              icon: Icon(line.chosen.value?Icons.check_circle:Icons.circle_outlined, color: line.chosen.value?Colors.blue:Colors.grey, size: 20),
-                              padding: EdgeInsets.zero,
-                              constraints: const BoxConstraints(),
-                              onPressed: () => hostStatusStore.chooseLine(line),
-                            ),
-                          ),
-                  ],
+      body: ListView.separated(
+        padding: EdgeInsets.all(12),
+        itemBuilder: (context, index) {
+          final line = hostStatusStore.lines[index];
+          return _build(line);
+        },
+        separatorBuilder: (_, __) => const SizedBox(height: 10),
+        itemCount: hostStatusStore.lines.length,
+      ),
+    );
+  }
+
+  Widget _build(LineStatus line) {
+    return Obx((){
+      return Card(
+        elevation: 3,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: ListTile(
+          // leading: _buildStatusIcon(line.status.value),
+          leading: SignalBar(line),
+          title: Text(line.name, style: const TextStyle(fontWeight: FontWeight.bold)),
+          subtitle: Text(_getStatusText(line)),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              line.status.value == 'testing'
+                  ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+                  : SizedBox(
+                width: 24,
+                height: 24,
+                child: IconButton(icon: const Icon(Icons.refresh, size: 18), padding: EdgeInsets.zero, constraints: const BoxConstraints(), onPressed: () => hostStatusStore.testLine(line)),
+              ),
+              const SizedBox(width: 4),
+              SizedBox(
+                width: 24,
+                height: 24,
+                child: IconButton(
+                  icon: Icon(line.chosen.value ? Icons.check_circle : Icons.circle_outlined, color: line.chosen.value ? Colors.blue : Colors.grey, size: 20),
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  onPressed: () => hostStatusStore.chooseLine(line),
                 ),
               ),
-            );
-          },
-          separatorBuilder: (_, __) => const SizedBox(height: 12),
-          itemCount: hostStatusStore.lines.length,
-        );
-      }),
-    );
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
 

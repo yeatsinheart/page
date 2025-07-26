@@ -8,6 +8,7 @@ class HostStatusStore extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    /// 启动时就加载
     setLines([
       LineStatus(name: '中国节点', host: 'https://cn.example.com/ping'),
       LineStatus(name: '香港节点', host: 'https://hk.example.com/ping'),
@@ -26,7 +27,7 @@ class HostStatusStore extends GetxController {
   Future<void> chooseLine(LineStatus line) async {
     lines.forEach((item) => item.chosen.value = false);
     line.chosen.value = true;
-    lines.refresh();
+    //lines.refresh();
   }
 
   // 测速某一条线路
@@ -59,7 +60,7 @@ class HostStatusStore extends GetxController {
   Future<void> testAllLines() async {
     await Future.wait(lines.map(testLine));
     lines.sort((a, b) => a.speed.value.compareTo(b.speed.value));
-    lines.refresh();
+    //lines.refresh();
   }
 
   // 获取最快线路

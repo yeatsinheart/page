@@ -26,7 +26,7 @@ class _MainDemoState extends State<MainDemo> with TickerProviderStateMixin {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(width: 300, height: 300, child: AppImg("testImage")),
+            SizedBox(height: 300, child: AppImg("testImage")),
             Text("testImage".tr),
             Text("testImage".trParams()),
             Text("微信".tr),

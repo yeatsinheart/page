@@ -4,6 +4,8 @@ import 'package:flutter3/util/overlay.dart';
 import '../../../service/data/skin_data.dart';
 import '../../../util/context.dart';
 import '../../../views.dart';
+import '_child/bar_brand/left.dart';
+import '_child/bar_brand/right.dart';
 
 class AppHomeWg extends StatefulWidget {
   final dynamic params;
@@ -54,7 +56,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
                         color: Colors.white,
                         child: Row(
                           children: [
-
+                            BarBrandLeft(),Spacer(),BarBrandRight()
                           ],
                         ),
                         //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, GlobalContext.getRem(0.7), null),

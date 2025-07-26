@@ -8,18 +8,18 @@ import 'package:get/get.dart';
 import 'package:flutter3/service/app_service.dart';
 import 'package:flutter3/util/context.dart';
 
+import 'network_monitor.dart';
+
 /// 配置获取：运营中最新的配置=>没网或者失败=>本地缓存配置=>没有=>打包时候的配置
 class App extends StatelessWidget {
   final Widget child;
 
-  const App({super.key, required this.child});
+  const App(this.child, {super.key, required});
 
   // 空界面，方便overlay等设置
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // 默认语言
-      //fallbackLocale: Locale('en', 'US'),     // 回退语言
       scrollBehavior: ScrollBehavior().copyWith(
         dragDevices: {
           PointerDeviceKind.touch, //移动设备的手指滑动
@@ -31,6 +31,7 @@ class App extends StatelessWidget {
       navigatorKey: GlobalContext.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: getThemeData(),
+
       builder: (context, child) {
         // 延迟设置 title（不会影响 AppBar 的 title）
         WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -39,7 +40,7 @@ class App extends StatelessWidget {
         return child!;
       },
 
-      home: child,
+      home: NetworkMonitor(child: child),
 
       /// 按照路由展示界面
       // onGenerateRoute: (setting) {

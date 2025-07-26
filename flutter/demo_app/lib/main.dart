@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter3/share/app.dart';
 import 'package:flutter3/share/default_config.dart';
 import 'package:flutter3/share/network_monitor.dart';
+import 'package:flutter3/store/loading_store.dart';
 import 'package:flutter3/store/host_status_store.dart';
 import 'package:flutter3/store/language_store.dart';
 import 'package:flutter3/_theme_data.dart';
@@ -27,13 +28,15 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //debugPaintSizeEnabled = true; // ✅ 开启边界调试 会把所有东西，边距什么的都画线
 
+  await Get.putAsync(() => LoadingStore().init());
+  final loading = Get.find<LoadingStore>();
   // 获取基础配置 远程更新->本地缓存->初始打包配置
-  DefaultConfig.loadConfig().then((value){});
+  DefaultConfig.loadConfig().then((value) {});
 
   // 必须先加载完成当前语言的翻译信息
   await Get.putAsync(() => LanguageStore().init());
   //Get.put(LanguageStore()); // 应用启动时注入一次
   Get.put(HostStatusStore()); // 应用启动时注入一次
   // 多语言初始化
-  runApp(NetworkMonitor(child: App(child: widgetOfKey("app_layout") ?? Container())));
+  runApp(App(widgetOfKey("app_layout") ?? Container()));
 }

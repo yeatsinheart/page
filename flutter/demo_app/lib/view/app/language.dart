@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/store/loading_store.dart';
 import 'package:get/get.dart';
 import 'package:flutter3/store/language_store.dart';
 
 class AppLanguage extends StatelessWidget {
   final dynamic params;
-  const AppLanguage({this.params,super.key});
-  void switchLanguage(String code) {
-    Get.find<LanguageStore>().loadLanguage(code);
-  }
+
+  const AppLanguage({this.params, super.key});
+
   @override
   Widget build(BuildContext context) {
     //这三个语言（波斯语、乌尔都语、希伯来语）是 从右到左（RTL） 的语言。
@@ -19,43 +19,36 @@ class AppLanguage extends StatelessWidget {
     final currentLocale = Get.find<LanguageStore>().locale;
 
     return ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 300), // 限制最大宽度
-        child: ListView.separated(
-          shrinkWrap: true,
-          itemCount: languages.length,
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
-          itemBuilder: (context, index) {
-            final lang = languages[index];
-            final selected = currentLocale == lang["code"];
+      constraints: const BoxConstraints(maxWidth: 300), // 限制最大宽度
+      child: ListView.separated(
+        shrinkWrap: true,
+        itemCount: languages.length,
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
+        itemBuilder: (context, index) {
+          final lang = languages[index];
+          final selected = currentLocale == lang["code"];
 
-            return ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: selected ? Colors.blue : null,
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-              ),
-              onPressed: () => switchLanguage(lang["code"]!),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      lang["name"]!,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(fontSize: 16,color: selected?Colors.white:Colors.black),
-                    ),
+          return ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: selected ? Colors.blue : null, padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16)),
+            onPressed: () => Get.find<LanguageStore>().loadLanguage(lang["code"]!),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    lang["name"]!,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(fontSize: 16, color: selected ? Colors.white : Colors.black),
                   ),
-                  Text(lang["flag"]!, style: const TextStyle(fontSize: 20)),
-                ],
-              ),
-            );
-          },
-          separatorBuilder: (_, __) => const Divider(
-            height: 1,
-            thickness: 1,
-            color: Colors.grey,
-          ),
-        ),
-      );
+                ),
+                Text(lang["flag"]!, style: const TextStyle(fontSize: 20)),
+              ],
+            ),
+          );
+        },
+        separatorBuilder: (_, __) => const Divider(height: 1, thickness: 1, color: Colors.grey),
+      ),
+    );
   }
 }
 

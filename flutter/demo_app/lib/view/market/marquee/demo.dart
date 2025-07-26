@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
 
-import 'package:flutter3/util/context.dart';
+import 'package:flutter3/share/context.dart';
 
 class MarketMarqueeDemo extends StatefulWidget {
   const MarketMarqueeDemo({super.key, required params});

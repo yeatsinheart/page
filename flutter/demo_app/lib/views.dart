@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/share/logger.dart' show Log;
 import 'package:flutter3/widget_of_path_info.dart';
 
 // 顶层变量，Map<String, String>
@@ -23,7 +24,7 @@ final Map<String, String> ViewKeyPathMap = {
 
 dynamic widgetOfKey(String? key) {
   if (key == null) {
-    debugPrint('getWidget: key is null');
+    Log.e('getWidget: key is null');
     return null;
   }
   return getWidgetByPath(ViewKeyPathMap[key]);
@@ -31,12 +32,12 @@ dynamic widgetOfKey(String? key) {
 
 Widget? getWidgetByPath(String? path, {key, params}) {
   if (path == null) {
-    debugPrint('getWidgetByPath: path 路径为空 null');
+    Log.e('getWidgetByPath: path 路径为空 null');
     return null;
   }
   final widget = widgetOfPath(path, key: key, params: params) ?? widgetOfPath('$path/index', key: key, params: params);
   if (widget == null) {
-    debugPrint('getWidgetByPath: widget 找不到 path $path');
+    Log.e('getWidgetByPath: widget 找不到 path $path');
   }
   return widget;
 }

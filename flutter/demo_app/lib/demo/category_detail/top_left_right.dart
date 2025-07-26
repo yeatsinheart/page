@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter3/share/share_widget.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
-import 'package:flutter3/util/context.dart';
+import 'package:flutter3/share/context.dart';
 
 /// 顶部说明操作，左边分类 右边分类详情
 /// 屏幕高度-吸顶高度-底部导航栏高度-顶部导航栏高度==左右联动区域的高度

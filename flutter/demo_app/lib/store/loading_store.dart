@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter3/util/overlay.dart';
+import 'package:flutter3/share/overlay.dart';
 import 'package:get/get.dart';
 //
 class LoadingStore extends GetxService {

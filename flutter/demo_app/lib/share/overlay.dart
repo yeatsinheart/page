@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter3/share/logger.dart';
 
 import 'package:flutter3/views.dart';
 import 'context.dart';
@@ -41,18 +42,12 @@ class GlobalOverlayContext {
   static final Map<String, OverlayEntry> _entries = {};
 
   static void show(String key, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
-    Widget widget = widgetOfKey(key);
-    OverlayEntry entry = item(widget);
-    _entries[widget.key.toString()] = entry;
-    showOverlay(entry,autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);
+    pop(widgetOfKey(key),autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);
   }
 
   static void popBy(String containerPath,String childKey, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
     Widget childWidget = widgetOfKey(childKey);
-    Widget? pop = getWidgetByPath(containerPath,params: childWidget);
-    OverlayEntry entry = item(pop!);
-    _entries[pop.key.toString()] = entry;
-    showOverlay(entry,autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);
+    pop(getWidgetByPath(containerPath,params: childWidget),autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);
   }
 
   static void removeByWidgetSelf(String key) {
@@ -62,6 +57,34 @@ class GlobalOverlayContext {
       _entries.remove(key);
     }
   }
+
+  static OverlayEntry? pop(Widget? widget, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
+    try {
+      if(null==widget)return null;
+      var view = item(widget);
+      _entries[widget.key.toString()] = view;
+      overlay!.insert(view);
+      if (autoRemoveTime > 0) {
+        Future.delayed(Duration(milliseconds: autoRemoveTime), () {
+          removeOverlay(view);
+        });
+      }
+      // 物理返回键 ： 使用最新的back_button_interceptor(7.0.0) WillPopScope 其实也无法拦截 Overlay 的返回事件 因为所处层级不同。
+      if (sysCanRemove) {
+        backName = backName ?? Random().nextDouble().toString();
+        BackButtonInterceptor.add(name: backName, (bool stopDefaultButtonEvent, RouteInfo info) {
+          removeOverlay(view);
+          BackButtonInterceptor.removeByName(backName!);
+          return true;
+        });
+      }
+      return view;
+    } catch (err, stack) {
+      Log.e("插入Overlay 异常",error: err,stackTrace: stack);
+      return null;
+    }
+  }
+
   static void showOverlay(OverlayEntry widget, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
     try {
       overlay!.insert(widget);

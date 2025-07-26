@@ -6,7 +6,7 @@ import 'package:flutter3/views.dart';
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'service/network_service.dart';
-import 'util/context.dart';
+import 'share/context.dart';
 // 测试网络状态，有网状态才能启动
 
 

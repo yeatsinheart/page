@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/share/context.dart';
 
 getThemeData() {
+   //TextStyle fontSize = TextStyle(fontSize: GlobalContext.getRem(.22));
+   TextStyle fontSize = TextStyle(fontSize: 16);
   return ThemeData(
     scaffoldBackgroundColor: Colors.white,
     // 全局页面背景色
@@ -12,8 +15,22 @@ getThemeData() {
     //,background: Colors.grey
     //colorScheme: ColorScheme.fromSeed(seedColor: colorFromHex(AppService().get()!.color)),
     useMaterial3: true,
-    textTheme: const TextTheme(
-      bodyMedium: TextStyle(fontSize: 14), // Material 3 默认 Text()
+    textTheme:  TextTheme(
+      displayLarge: fontSize,
+      displayMedium: fontSize,
+      displaySmall:fontSize,
+      headlineLarge: fontSize,
+      headlineMedium: fontSize,
+      headlineSmall: fontSize,
+      titleLarge: fontSize,
+      titleMedium: fontSize,
+      titleSmall: fontSize,
+      bodyLarge: fontSize,
+      bodyMedium: fontSize,
+      bodySmall: fontSize,
+      labelLarge: fontSize,
+      labelMedium: fontSize,
+      labelSmall: fontSize,// Material 3 默认 Text()
     ),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(

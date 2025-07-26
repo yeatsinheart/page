@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 import 'package:flutter3/service/game.dart';
-import '../../util/context.dart';
+import '../../share/context.dart';
 
 class TestDetail extends StatelessWidget {
   const TestDetail({super.key, required params});

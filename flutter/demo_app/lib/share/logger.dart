@@ -15,7 +15,7 @@ class Log {
         // 按文件路径排除某些 Dart 文件或库（比如 log.dart） startsWith(配置)
         // logger/src/printers/pretty_printer.dart
         excludePaths: ['logger/src/printers/pretty_printer.dart','logger/src/logger.dart',
-          'flutter3/share/logger.dart',]
+          'flutter3/share/logger.dart','flutter3/views.dart']
     ),
     // Disable logging in release mode if needed
     level: kReleaseMode ? Level.nothing : Level.debug,

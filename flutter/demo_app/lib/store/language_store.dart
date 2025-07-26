@@ -3,7 +3,6 @@ import 'dart:ui';
 
 import 'package:get/get.dart';
 
-import 'loading_store.dart';
 
 // 其实就是扩展String .tr 其实依赖的是 BuildContext 的 rebuild，而不是 Obx 或 GetX。
 // /Users/apple/.pub-cache/hosted/pub.dev/get-4.7.2/lib/get_utils/src/extensions/internacionalization.dart
@@ -26,14 +25,12 @@ class LanguageStore extends GetxService {
 
   Future<void> loadLanguage(String langCode) async {
     if (locale == langCode) return;
-    Get.find<LoadingStore>().run(() async {
-      // 🛰️ 假设这里是调用后端接口获取翻译
-      Map<String, String> fetched = await fetchRemoteTranslations(langCode);
-      // 更新翻译
-      Get.addTranslations({langCode: fetched});
-      Get.updateLocale(parseLocale(langCode));
-      _locale.value = langCode;
-    });
+    // 🛰️ 假设这里是调用后端接口获取翻译
+    Map<String, String> fetched = await fetchRemoteTranslations(langCode);
+    // 更新翻译
+    Get.addTranslations({langCode: fetched});
+    Get.updateLocale(parseLocale(langCode));
+    _locale.value = langCode;
   }
 
   Future<Map<String, String>> fetchRemoteTranslations(String langCode) async {

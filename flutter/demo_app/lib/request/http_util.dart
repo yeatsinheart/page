@@ -26,6 +26,9 @@ Dio createDioWithBadCertSupport() {
     ),
   );
 
+
+  dio.interceptors.clear(); // 移除默认 LogInterceptor（有些包预置了）
+
   // 忽略 HTTPS 证书校验
   if (!kIsWeb) {
     // ios 真机上是无效的，底层用 NSURLSession，属于系统底层拦截，还是要按照正常的文件配置去配信任域名

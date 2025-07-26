@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../util/context.dart';
+import 'package:flutter3/util/context.dart';
 
 class BtnLoginRegister extends StatelessWidget {
   const BtnLoginRegister({params, super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [

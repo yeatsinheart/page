@@ -40,7 +40,7 @@ class DefaultConfig {
       return response.data;
     } catch (e) {
       // 忽略错误或打印日志
-      Log.info("获取远程配置出错，所以取消");
+      Log.err("获取远程配置出错，所以取消");
       return null;
     }
   }

@@ -4,16 +4,17 @@ import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/overlay.dart';
 import 'btn_login_register.dart';
 
-class BarBrandRight extends StatelessWidget {
-  const BarBrandRight({params, super.key});
+class BarBrandRightDemo extends StatelessWidget {
+  final dynamic params;
+  const BarBrandRightDemo({this.params, super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           BtnLoginRegister(),
+
           const SizedBox(width: 8),
           SizedBox(width: 8),
           //IconButton(onPressed: () {GlobalContext.load("game_search");}, icon: Icon(Icons.search)),

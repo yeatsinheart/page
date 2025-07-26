@@ -4,8 +4,9 @@ import 'package:flutter3/share/app_img.dart';
 import 'package:flutter3/util/context.dart';
 
 
-class BarBrandLeft extends StatelessWidget {
-  const BarBrandLeft({params, super.key});
+class BarBrandLeftDemo extends StatelessWidget {
+  final dynamic params;
+  const BarBrandLeftDemo({this.params, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/util/overlay.dart';
+import 'package:flutter3/view/app/home/_child/bar_brand/demo.dart';
 
 import '../../../service/data/skin_data.dart';
 import '../../../util/context.dart';
 import '../../../views.dart';
-import '_child/bar_brand/left.dart';
-import '_child/bar_brand/right.dart';
 
 class AppHomeWg extends StatefulWidget {
   final dynamic params;
@@ -51,16 +50,9 @@ class _AppHomeWgState extends State<AppHomeWg> {
                     delegate: _StickyHeaderDelegate(
                       //height: currentHeaderIndex == 1 ? GlobalContext.getRem(0.9) : 0,
                       height: GlobalContext.getRem(0.9),
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                        color: Colors.white,
-                        child: Row(
-                          children: [
-                            BarBrandLeft(),Spacer(),BarBrandRight()
-                          ],
-                        ),
+                      child: BarBrandDemo(),
                         //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, GlobalContext.getRem(0.7), null),
-                      ),
+
                     ),
                   ),
                   SliverToBoxAdapter(child: widgetOfKey("swiper")),
@@ -68,8 +60,6 @@ class _AppHomeWgState extends State<AppHomeWg> {
                 ],
               ),
               widgetOfKey("game_home"),
-              //SliverToBoxAdapter(child: getWidget("game_home"),),
-              //SliverToBoxAdapter(child: GameHomeDemo1()),
 
               /* SliverPersistentHeader(
                 pinned: true, // 也固定住

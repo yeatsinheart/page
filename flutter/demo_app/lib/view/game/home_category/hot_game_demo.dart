@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/share/app_img.dart';
 import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
 
@@ -81,7 +82,7 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
               borderRadius: BorderRadius.circular(borderRadius), // 圆角半径
               child: Stack(
                 children: [
-                  getUrlImg(item.imageUrl, width: gridWidth, height: gridHeight),
+                  AppImg(item.imageUrl, width: gridWidth, height: gridHeight),
                   // 底部标题，遮罩 + 居中 + 固定高度
                   Positioned(
                     bottom: 0,

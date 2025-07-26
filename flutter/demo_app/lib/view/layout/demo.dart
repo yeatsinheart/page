@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/share/app_img.dart';
 import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
 import 'package:flutter3/views.dart';
@@ -59,7 +60,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              getUrlImg(isActive ? activeIcon.tr : icon.tr, width: GlobalContext.getRem(.5), height: GlobalContext.getRem(.5)),
+              AppImg(isActive ? activeIcon.tr : icon.tr, width: GlobalContext.getRem(.5), height: GlobalContext.getRem(.5)),
               Text(
                 label.tr,
                 style: TextStyle(

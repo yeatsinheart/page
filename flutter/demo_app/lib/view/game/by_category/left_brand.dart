@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter3/share/app_img.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
 import 'package:flutter3/util/context.dart';
 import 'package:flutter3/views.dart';
@@ -211,7 +212,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       children: [
         // 左侧 logo
         //Image.asset('assets/logo.png', height: 40),
-        getUrlImg('assets/logo.png', width: GlobalContext.getRem(0.7), height: GlobalContext.getRem(0.7)),
+        AppImg('assets/logo.png', width: GlobalContext.getRem(0.7), height: GlobalContext.getRem(0.7)),
         TextButton(
           onPressed: () {
             setState(() {

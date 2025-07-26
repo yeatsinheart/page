@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/share/app_img.dart';
 import 'package:flutter3/util/img.dart';
 
 
@@ -17,7 +18,7 @@ Widget card_demo(data, {borderRadius = 12, bg = Colors.grey, nestTitle = true}) 
   //{imgI18nKey,nameI18nKey}
   Widget img = Container(
     color: bg,
-    child: Center(child: getUrlImg(data["imgI18nKey"])),
+    child: Center(child: AppImg(data["imgI18nKey"])),
   );
 
   Widget name = Text(

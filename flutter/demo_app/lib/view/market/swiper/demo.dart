@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter3/share/app_img.dart';
 import 'package:flutter3/util/context.dart';
 import 'package:flutter3/util/img.dart';
 
@@ -30,7 +31,7 @@ class _MarketSwiperDemoState extends State<MarketSwiperDemo> {
         children: [
           CarouselSlider(
             items: imageList.map((url) {
-              return getUrlImg(url, width: GlobalContext.getRem(7), height: GlobalContext.getRem(3.5), radius: GlobalContext.getRem(.25));
+              return AppImg(url, width: GlobalContext.getRem(7), height: GlobalContext.getRem(3.5), radius: GlobalContext.getRem(.25));
             }).toList(),
             carouselController: _controller,
             options: CarouselOptions(

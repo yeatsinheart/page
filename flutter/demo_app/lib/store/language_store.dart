@@ -3,7 +3,6 @@ import 'dart:ui';
 
 import 'package:get/get.dart';
 
-
 // 其实就是扩展String .tr 其实依赖的是 BuildContext 的 rebuild，而不是 Obx 或 GetX。
 // /Users/apple/.pub-cache/hosted/pub.dev/get-4.7.2/lib/get_utils/src/extensions/internacionalization.dart
 class LanguageStore extends GetxService {
@@ -13,14 +12,11 @@ class LanguageStore extends GetxService {
   String get locale => _locale.value;
 
   Future<LanguageStore> init() async {
-    await loadLanguage('en_US'); // 默认语言
+    // 初始默认语言
+    await loadLanguage('en_US');
+    // 英文保底 最好能动态保底
+    Get.fallbackLocale = parseLocale("en_US");
     return this;
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    loadLanguage('en_US');
   }
 
   Future<void> loadLanguage(String langCode) async {
@@ -28,7 +24,8 @@ class LanguageStore extends GetxService {
     // 🛰️ 假设这里是调用后端接口获取翻译
     Map<String, String> fetched = await fetchRemoteTranslations(langCode);
     // 更新翻译
-    Get.addTranslations({langCode: fetched});
+    //Get.clearTranslations();
+    Get.appendTranslations({langCode: fetched});
     Get.updateLocale(parseLocale(langCode));
     _locale.value = langCode;
   }

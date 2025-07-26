@@ -21,7 +21,7 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
 
   void nextPage() {
     _timer.cancel();
-    GlobalContext.redirect("/", {"test": "test"});
+    GlobalContext.load("app_layout", params: {"test": "test"});
   }
 
   getTip() {

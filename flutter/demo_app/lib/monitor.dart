@@ -22,9 +22,7 @@ _test_network_until_good() {
   Future.delayed(Duration(milliseconds: 1000), () async {
     // 监听
     if (await NetworkService.check()) {
-      GlobalContext.loadWidget(PageRouteBuilder(pageBuilder: (cxt, ani1, ani2) {
-        return FadeTransition(opacity: ani1, child: widgetOfKey("splash"));
-      }));
+      GlobalContext.load("splash");
     } else {
       _test_network_until_good();
     }

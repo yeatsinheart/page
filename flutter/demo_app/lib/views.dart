@@ -22,12 +22,12 @@ final Map<String, String> ViewKeyPathMap = {
   "contact": "/wechat/contact",
 };
 
-dynamic widgetOfKey(String? key) {
+dynamic widgetOfKey(String? key, { params}) {
   if (key == null) {
     Log.e('getWidget: key is null');
     return null;
   }
-  return getWidgetByPath(ViewKeyPathMap[key]);
+  return getWidgetByPath(ViewKeyPathMap[key],params: params);
 }
 
 Widget? getWidgetByPath(String? path, {key, params}) {
@@ -42,7 +42,7 @@ Widget? getWidgetByPath(String? path, {key, params}) {
   return widget;
 }
 
-PageRoute asRoute(String key,{RouteSettings? settings}) {
+PageRoute asRoute(String key,{params,RouteSettings? settings}) {
   return PageRouteBuilder(
     settings: settings,
     pageBuilder: (cxt, ani1, ani2) {

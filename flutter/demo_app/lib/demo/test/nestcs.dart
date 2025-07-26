@@ -26,7 +26,7 @@ class AppNetCsPaneState extends State<TestNestcs> with TickerProviderStateMixin 
     try {
       if (!dead) {
         dead = true;
-        GlobalContext.pop();
+        GlobalContext.back();
       }
     } finally {
       _sessionlock.release();
@@ -139,7 +139,7 @@ class AppNetCsPaneState extends State<TestNestcs> with TickerProviderStateMixin 
                                 top: 18,
                                 child: IconButton(
                                     onPressed: () {
-                                      GlobalContext.pop();
+                                      GlobalContext.back();
                                     },
                                     icon: Icon(
                                       Icons.clear,

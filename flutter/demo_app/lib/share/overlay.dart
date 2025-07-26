@@ -14,40 +14,50 @@ class GlobalOverlayContext {
 
   static final GlobalOverlayContext _instance = GlobalOverlayContext._internal();
 
-//https://juejin.cn/post/7026150456673959943 弹窗效果说明
-// overlay + dissmiss
+  //https://juejin.cn/post/7026150456673959943 弹窗效果说明
+  // overlay + dissmiss
 
   static OverlayState? get overlay => GlobalContext.navigatorKey.currentState!.overlay;
 
-  /// 获取元素，方便自定义行为控制，与是否取消
   static OverlayEntry item(
     Widget widget, {
     bool opaque = false,
     bool maintainState = true,
+    bool blockTouch = true, // ⬅️ 是否阻止事件穿透
+    Color? barrierColor, // ⬅️ 可自定义遮罩颜色
   }) {
     return OverlayEntry(
-        opaque: opaque,
-        maintainState: maintainState,
-        builder: (context) => Material(
-          type: MaterialType.transparency, // 或 canvas
-          child: Theme(
-            data: Theme.of(context), // 复用当前主题
-            child: SafeArea(
-              child: widget,
+      opaque: opaque,
+      maintainState: maintainState,
+      builder: (context) => Material(
+        type: MaterialType.transparency,
+        child: Stack(
+          children: [
+            if (blockTouch) ModalBarrier(color: barrierColor ?? Colors.transparent, dismissible: false),
+            Theme(
+              data: Theme.of(context),
+              child: SafeArea(child: widget),
             ),
-          ),
+          ],
         ),
-        );
+      ),
+    );
   }
+
   static final Map<String, OverlayEntry> _entries = {};
 
   static void show(String key, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
-    pop(widgetOfKey(key),autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);
+    pop(widgetOfKey(key), autoRemoveTime: autoRemoveTime, sysCanRemove: sysCanRemove, backName: backName);
   }
 
-  static void popBy(String containerPath,String childKey, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
+  static void popBy(String containerPath, String childKey, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
     Widget childWidget = widgetOfKey(childKey);
-    pop(getWidgetByPath(containerPath,params: childWidget),autoRemoveTime: autoRemoveTime,sysCanRemove: sysCanRemove,backName: backName);
+    pop(
+      getWidgetByPath(containerPath, params: childWidget),
+      autoRemoveTime: autoRemoveTime,
+      sysCanRemove: sysCanRemove,
+      backName: backName,
+    );
   }
 
   static void removeByWidgetSelf(String key) {
@@ -60,7 +70,7 @@ class GlobalOverlayContext {
 
   static OverlayEntry? pop(Widget? widget, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
     try {
-      if(null==widget)return null;
+      if (null == widget) return null;
       var view = item(widget);
       _entries[widget.key.toString()] = view;
       overlay!.insert(view);
@@ -80,7 +90,7 @@ class GlobalOverlayContext {
       }
       return view;
     } catch (err, stack) {
-      Log.e("插入Overlay 异常",error: err,stackTrace: stack);
+      Log.e("插入Overlay 异常", error: err, stackTrace: stack);
       return null;
     }
   }

@@ -4,9 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter3/request/api_cache.dart';
+import 'package:flutter3/request/api_test.dart';
 import 'package:flutter3/share/logger.dart';
 
-Dio createDioWithBadCertSupport() {
+Dio init() {
   final dio = Dio(
     BaseOptions(
       baseUrl: 'https://example.com/api',
@@ -25,7 +26,6 @@ Dio createDioWithBadCertSupport() {
       },
     ),
   );
-
 
   dio.interceptors.clear(); // 移除默认 LogInterceptor（有些包预置了）
 
@@ -55,18 +55,20 @@ Dio createDioWithBadCertSupport() {
         //   options.headers['Authorization'] = 'Bearer $token';
         // }
         options.headers['Accept-Language'] = 'en-US';
+        var response = ApiTest.test(options);
+        if (null != response) handler.resolve(Response(requestOptions: options, data: response, statusCode: 200));
         return handler.next(options);
       },
-      onResponse: (response,handler) async{
+      onResponse: (response, handler) async {
         final headers = response.headers;
         final api_request_version = headers.value(ApiCache.versionKey);
-        if(null!=api_request_version){
-          ApiCache.setCache(ApiCache.versionKey, api_request_version,expire: -1);
+        if (null != api_request_version) {
+          ApiCache.setCache(ApiCache.versionKey, api_request_version, expire: -1);
         }
         return handler.next(response);
-      } ,
+      },
       onError: (DioException e, handler) {
-        Log.err('Request to: ${e.requestOptions.uri}',error: e);
+        Log.err('Request to: ${e.requestOptions.uri}', e);
         handler.next(e);
       },
     ),
@@ -74,7 +76,7 @@ Dio createDioWithBadCertSupport() {
   return dio;
 }
 
-final dio = createDioWithBadCertSupport();
+final dio = init();
 
 /*
 dio.options.headers['Authorization'] = 'Bearer $token';
@@ -90,83 +92,71 @@ class HttpRequestUtil {
   factory HttpRequestUtil() => _instance;
   static final HttpRequestUtil _instance = HttpRequestUtil._internal();
 
-  static get(String url) async {
+  static get(String url, {Map<String, dynamic>? header}) async {
     try {
-      var response = await dio.get(url);
-      return Future.value(response);
+      var response = await dio.get(url, options: Options(headers: header));
+      return response;
     } catch (e) {
-      print(e);
-      return Future.error(e);
+      Log.error(e);
     }
   }
 
-  /*
-而我们在实际开发中常用的 Content-Type如下
-multipart/form-data
-application/json JSON数据格式
-application/x-www-form-urlencoded 表单数据格式
-* */
-  //Content-type 是 text/plain
-
-  static postJson(String url, Map<String, dynamic>? params) async {
+  static postJson(String url, Map<String, dynamic>? params, {Map<String, dynamic>? header}) async {
     try {
       int now = DateTime.now().millisecondsSinceEpoch;
       Response response = await dio.post(
         url,
         data: params ?? {},
-        options: Options(contentType: Headers.jsonContentType),
+        options: Options(contentType: Headers.jsonContentType, headers: header),
       );
-      return Future.value(response);
+      return response;
     } catch (e) {
-      print(e);
-      return Future.error(e);
+      Log.error(e);
     }
   }
 
-  static postForm(String url, Map<String, dynamic>? params) async {
+  static postForm(String url, Map<String, dynamic>? params, {Map<String, dynamic>? header}) async {
     try {
       int now = DateTime.now().millisecondsSinceEpoch;
       Response response = await dio.post(
         url,
         data: params ?? {},
-        options: Options(contentType: Headers.formUrlEncodedContentType),
+        options: Options(contentType: Headers.formUrlEncodedContentType, headers: header),
       );
       return Future.value(response);
     } catch (e) {
-      print(e);
-      return Future.error(e);
+      Log.error(e);
     }
   }
 
-  static upload(String url, Map<String, dynamic>? params) async {
+  static upload(String url, Map<String, dynamic>? params, {Map<String, dynamic>? header}) async {
     try {
       int now = DateTime.now().millisecondsSinceEpoch;
       FormData formData = FormData.fromMap(params ?? {});
       Response response = await dio.post(
         url,
         data: formData,
-        options: Options(contentType: Headers.multipartFormDataContentType),
+        options: Options(contentType: Headers.multipartFormDataContentType, headers: header),
       );
       return Future.value(response);
     } catch (e) {
-      print(e);
-      return Future.error(e);
+      Log.error(e);
     }
   }
 
-  static postString(String url, String? data) async {
+  static postString(String url, String? data, {Map<String, dynamic>? header}) async {
     try {
       return dio.post(
         url,
         data: data,
-        options: Options(contentType: Headers.textPlainContentType),
+        options: Options(contentType: Headers.textPlainContentType, headers: header),
       );
     } catch (e) {
-      print(e);
+      Log.error(e);
       //MsgOverlay.notify("网络异常");
-      return Future.error(e);
     }
   }
+
 }
 
 main() async {

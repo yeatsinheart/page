@@ -47,7 +47,7 @@ class AppCsPaneState extends State<TestCs> with TickerProviderStateMixin {
     try {
       if (close_process > 1 && !dead) {
         dead = true;
-        GlobalContext.pop();
+        GlobalContext.back();
       }
     } finally {
       _lock.release();
@@ -144,7 +144,7 @@ class AppCsPaneState extends State<TestCs> with TickerProviderStateMixin {
                                     child: IconButton(
                                         onPressed: () {
                                           //ov.remove();
-                                          GlobalContext.pop();
+                                          GlobalContext.back();
                                           ;
                                         },
                                         icon: Icon(

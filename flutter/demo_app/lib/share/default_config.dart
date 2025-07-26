@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -9,13 +7,13 @@ import 'package:flutter3/request/http_util.dart';
 import 'package:flutter3/share/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:get/get.dart';
 
 class DefaultConfig {
   static const _cacheKey = 'cached_default_config';
 
   /// 加载配置
-  static Future<Map<String, dynamic>> loadConfig() async {
+  static Future<Map<String, dynamic>> init() async {
+
     // 1. 尝试拉取网络配置
     Map<String, dynamic>? remote = await _loadRemote();
     if (remote != null) {
@@ -29,6 +27,7 @@ class DefaultConfig {
 
     // 3. 加载打包内置配置
     final asset = await _loadBuildIn();
+
     return asset;
   }
 
@@ -40,7 +39,7 @@ class DefaultConfig {
       return response.data;
     } catch (e) {
       // 忽略错误或打印日志
-      Log.err("获取远程配置出错，所以取消");
+      Log.e("获取远程配置出错，所以取消");
       return null;
     }
   }

@@ -1,4 +1,3 @@
-import 'package:flutter3/share/logger.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 
@@ -10,12 +9,12 @@ class HostStatusStore extends GetxService {
   void onInit() {
     super.onInit();
     /// 启动时就加载
-    setLines([
-      LineStatus(name: '中国节点', host: 'https://cn.example.com/ping'),
-      LineStatus(name: '香港节点', host: 'https://hk.example.com/ping'),
-      LineStatus(name: '美国节点', host: 'https://us.example.com/ping'),
-    ]);
-    chooseLine(lines[0]);
+    // setLines([
+    //   LineStatus(name: '中国节点', host: 'https://cn.example.com/ping'),
+    //   LineStatus(name: '香港节点', host: 'https://hk.example.com/ping'),
+    //   LineStatus(name: '美国节点', host: 'https://us.example.com/ping'),
+    // ]);
+    // chooseLine(lines[0]);
     testAllLines();
   }
 
@@ -24,11 +23,6 @@ class HostStatusStore extends GetxService {
     lines.assignAll(list);
   }
 
-  // 手动选中线路
-  Future<void> chooseLine(LineStatus line) async {
-    lines.forEach((item) => item.chosen.value = false);
-    line.chosen.value = true;
-  }
 
   // 测速某一条线路
   Future<void> testLine(LineStatus line) async {
@@ -51,20 +45,32 @@ class HostStatusStore extends GetxService {
       line.status.value = "on";
     } catch (_) {
       line.status.value = "off";
-      line.speed.value = 9999;
     }
   }
 
   // 测速全部线路
-  Future<void> testAllLines() async {
-    await Future.wait(lines.map(testLine));
-    lines.sort((a, b) => a.speed.value.compareTo(b.speed.value));
+  testAllLines()  {
+    Future.wait(lines.map(testLine)).then((_){
+      lines.sort((a, b) => a.speed.value.compareTo(b.speed.value));
+      chooseLine(bestLine);
+    });
   }
 
   // 获取最快线路
   LineStatus? get bestLine =>
       lines.firstWhereOrNull((line) => line.status=='online');
+
+  // 选中线路
+  Future<void> chooseLine(LineStatus? line) async {
+    if(null==line)return;
+    lines.forEach((item) => item.chosen.value = false);
+    line!.chosen.value = true;
+  }
+  // 获取已选中线路
+  LineStatus? get chosenLine =>
+      lines.firstWhereOrNull((line) => line.chosen.value);
 }
+
 
 class LineStatus {
   final String name;

@@ -23,7 +23,6 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
   final List<String> tabs = ['热门', '电子老虎机', '彩票投注', '体育竞赛', '真人视讯', '捕鱼游戏'];
   final List<GlobalKey> _data_keys = [];
   final List<GlobalKey> _tab_keys = [];
-  List<bool> _expandedStates = [];
   int _currentIndex = 0;
   bool _scrollingByClick = false;
 
@@ -33,7 +32,6 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
 
     _data_keys.addAll(List.generate(tabs.length, (_) => GlobalKey()));
     _tab_keys.addAll(List.generate(tabs.length, (_) => GlobalKey()));
-    _expandedStates = List.filled(tabs.length, false);
 
     // 延迟到第一帧渲染后再访问 context
     WidgetsBinding.instance.addPostFrameCallback((_) {

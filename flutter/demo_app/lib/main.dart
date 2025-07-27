@@ -20,20 +20,20 @@ import 'views.dart';
 
 //Flutter 中存在三棵树，Widget[虚拟的结构]、Element 和 RenderObject。
 void main() {
-  runZonedGuarded(
-    () {
-      init();
-    },
-    (error, stack) {
-      Log.e("Uncaught error", error: error, stackTrace: stack);
-    },
-    // , zoneSpecification: ZoneSpecification(
-    //   print: (self, parent, zone, message) {
-    //     //Log.i(message);
-    //     //debugPrint(message);
-    //   },
-    // )
-  );
+init();
+  // runZonedGuarded(
+  //   () {
+  //   },
+  //   (error, stack) {
+  //     Log.e("Uncaught error", error: error, stackTrace: stack);
+  //   },
+  //   // , zoneSpecification: ZoneSpecification(
+  //   //   print: (self, parent, zone, message) {
+  //   //     //Log.i(message);
+  //   //     //debugPrint(message);
+  //   //   },
+  //   // )
+  // );
 
   //debugPaintSizeEnabled = true; // ✅ 开启边界调试 会把所有东西，边距什么的都画线
 }

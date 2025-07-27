@@ -82,7 +82,7 @@ class HostStatusStore extends SaveAsJsonStore<HostStatusStore> {
       chooseLine(result!);
     } else {
       // 所有线路都失败了，做个 fallback 逻辑
-      Log.error("没有可用线路");
+      Log.err("没有可用线路",null);
     }
   }
 

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter3/log/printer.dart';
 import 'package:logger/logger.dart';
 
 
@@ -18,10 +19,10 @@ class Log {
       // 按文件路径排除某些 Dart 文件或库（比如 log.dart） startsWith(配置)
       // logger/src/printers/pretty_printer.dart
       excludePaths: [
-        'logger/src/',
+        // 日志打印的可以排除
+        'logger/src/','flutter3/log/logger.dart',
         'dio/src/',
-        "flutter/","lib/","dio/","get/",
-        'flutter3/log/logger.dart',
+        //"flutter/","lib/","dio/","get/",
         //'flutter3/views.dart',
         "flutter3/request/"
       ],
@@ -44,10 +45,6 @@ class Log {
 
   static void w(dynamic message, {dynamic error, StackTrace? stackTrace}) {
     logger.w(stringify(message), error: error, stackTrace: stackTrace);
-  }
-
-  static void error(error,{StackTrace? stackTrace}) {
-    logger.e(error.toString(), error: error, stackTrace: stackTrace);
   }
 
   static void err(dynamic message, error,{StackTrace? stackTrace}) {

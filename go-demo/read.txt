@@ -1,0 +1,9 @@
+go mod init go-demo
+go get -u github.com/gin-gonic/gin
+go get -u gorm.io/gorm
+go get -u gorm.io/driver/mysql
+
+
+go mod download
+
+go run main.go

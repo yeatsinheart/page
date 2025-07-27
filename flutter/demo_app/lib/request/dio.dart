@@ -72,8 +72,9 @@ _onResponse(response, handler) async {
 _onError(DioException e, handler) {
   //Log.err('Request to: ${e.requestOptions.uri} ', e);
   if (e.type == DioExceptionType.connectionError) {
-    //Log.err("❌ 网络连接失败: ${e.requestOptions.uri} ${e.message}",e);
-    handler.next(e);
+    Log.err("❌ 网络连接异常: ${e.requestOptions.uri} ${e.message}",e);
+    // 直接中断，就不继续传个Dio处理了。
+    //handler.next(e);
   } else {
     Log.err("❌ 请求错误: ${e.requestOptions.uri} ${e.message}",e);
     handler.next(e);

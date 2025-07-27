@@ -210,7 +210,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // 左侧 logo
-        AppImg('assets/logo.png', width: GlobalContext.getRem(0.7), height: GlobalContext.getRem(0.7)),
+        AppImg('assets/images/launcher.png', width: GlobalContext.getRem(0.7), height: GlobalContext.getRem(0.7)),
         TextButton(
           onPressed: () {
             setState(() {

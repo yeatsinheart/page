@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/request/api.dart';
 import 'package:flutter3/store/save_as_json.dart';
 import 'package:get/get.dart';
@@ -15,8 +14,11 @@ class LanguageStore extends SaveAsJsonStore<LanguageStore> {
 
   @override
   initFromJson(json) async{
-    data.value = json;
+    dynamic fallback = json["fallback"];
+    await loadLanguage(fallback);//加载备用语言
+    Get.fallbackLocale = parseLocale(fallback);
     choose(json["language"]);
+    data.value = json;
   }
 
   @override
@@ -31,28 +33,22 @@ class LanguageStore extends SaveAsJsonStore<LanguageStore> {
     await save();// 保存到缓存中
     data.refresh();
   }
-  set(List<dynamic> list,String fallback) async {
-    // 初始默认语言 .update((_)=>data) 是用于 RxMap（即 Rx<Map>）的；
-    data.value["list"] = list;
-    String language= list[0]["code"];
-    await loadLanguage(language);
-    await loadLanguage(fallback);
-    // 英文保底 最好能动态保底
-    Get.fallbackLocale = parseLocale(fallback);
-    choose(language);
-  }
+
 
   Future<void> loadLanguage(String langCode) async {
     if (data.value["language"] == langCode) return;
     // 🛰️ 假设这里是调用后端接口获取翻译
-    Map<String, String> fetched = await fetchRemoteTranslations(langCode);
+    var response = await Api.translate({"language":langCode})??{};
+
+    Map<String, String> fetched = {};
+    if (response is Map) {
+      fetched = response.map(
+            (k, v) => MapEntry(k.toString(), v.toString()),
+      );
+    }
     // 更新翻译
     //Get.clearTranslations();
     Get.appendTranslations({langCode: fetched});
-  }
-
-  Future<Map<String, String>> fetchRemoteTranslations(String langCode) async {
-    return await Api.translate({"language":langCode})??{};
   }
 }
 

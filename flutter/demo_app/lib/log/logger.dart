@@ -11,16 +11,19 @@ class Log {
     printer: PrettyPrinter(
       // 打印 调用堆栈（stack trace）显示多少层函数调用路径
       methodCount: 500,
+      errorMethodCount: 500,
       printEmojis: true,
       // （一般是工具类名）
       excludeBox: {},
       // 按文件路径排除某些 Dart 文件或库（比如 log.dart） startsWith(配置)
       // logger/src/printers/pretty_printer.dart
       excludePaths: [
-        //'logger/src/printers/pretty_printer.dart', 'logger/src/logger.dart',
-        //"flutter/","lib/","dio/","get/",
-        //'flutter3/log/logger.dart', 'flutter3/views.dart',
-        //"flutter3/request/"
+        'logger/src/',
+        'dio/src/',
+        "flutter/","lib/","dio/","get/",
+        'flutter3/log/logger.dart',
+        //'flutter3/views.dart',
+        "flutter3/request/"
       ],
     ),
     // Disable logging in release mode if needed

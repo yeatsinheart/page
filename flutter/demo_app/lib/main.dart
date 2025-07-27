@@ -12,6 +12,7 @@ import 'package:flutter3/store/host_status_store.dart';
 
 import 'package:flutter3/store/loading_store.dart';
 import 'package:flutter3/store/language_store.dart';
+import 'package:flutter3/store/store_init_binding.dart';
 
 import 'package:get/get.dart';
 
@@ -42,18 +43,20 @@ init() async {
   // 默认竖屏
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  AppStore appStore =await Get.putAsync(() => AppStore().init());// 优先使用缓存 获取线路
-  HostStatusStore hostStatusStore =Get.put(HostStatusStore());// 优先使用缓存 获取线路
-  hostStatusStore.init();
-  LanguageStore languageStore =await Get.putAsync(() => LanguageStore().init());// 优先使用缓存 获取线路
+  StoreInitBinding().dependencies();
+  // 手动初始化（注意这里已经注册过了）
+  await Get.find<AppStore>().init();
+  await Get.find<HostStatusStore>().init();
+  await Get.find<LanguageStore>().init();
+
+  // 网络更新配置时，这些都需要按照最新网络的数据进行更新
 
   // 获取基础配置 远程更新->本地缓存->初始打包配置
   DefaultConfig.init().then((config) async {
     // 配置更新后，必须先加载完成当前语言的翻译信息
-    await appStore.update(config);
-    await languageStore.set(config["language"]??[{"name":"en_US"}],config["languageFallback"]??"en_US");
-    await hostStatusStore.update(config["host"]);
-
+    await Get.find<AppStore>().update(config);
+    await Get.find<HostStatusStore>().update(config["host"]);
+    await Get.find<LanguageStore>().update(config["language"]);
     runApp(App(widgetOfKey("app_layout") ?? Container()));
   });
 }

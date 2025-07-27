@@ -1,35 +1,13 @@
 https://fonts.google.com/icons?icon.query=close
 icon
-vue中使用
-<!-- Material Symbols Outlined 图标字体（推荐） -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-<!-- 在你的 Vue 组件中 -->
-<template>
-  <div>
-    <span class="material-symbols-outlined">home</span>
-    <span class="material-symbols-outlined">search</span>
-    <span class="material-symbols-outlined">close</span>
-  </div>
-</template>
-
-<style>
-.material-symbols-outlined {
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24;
-  font-size: 24px;
-  vertical-align: middle;
-}
-</style>
-
 
 flutter 说明
 https://docs.flutter.cn/get-started/codelab/
 网页方式运行 指定端口 --web-renderer html
 flutter run -d chrome  --web-hostname 0.0.0.0 --web-port 9123
 
+组件=需要后端控制显示的才有必要拆出来。
+因为你拆出来的组件，只有你自己觉得当时要用，做多几个界面，可能就乱七八遭了
 
 ✅ 一、系统要求
 平台	需求

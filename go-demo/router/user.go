@@ -2,7 +2,7 @@ package router_user
 
 import (
 	"github.com/gin-gonic/gin"
-	"go-demo/api_user"
+	"go-demo/api"
 )
 
 func SetupRouter() *gin.Engine {

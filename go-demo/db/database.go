@@ -48,10 +48,10 @@ func getDSN() string {
 
 	if user == "" {
 		user = "root"
-		pass = "password"
+		pass = "zane"
 		host = "127.0.0.1"
 		port = "3306"
-		name = "testdb"
+		name = "go_demo"
 	}
 
 	return fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",

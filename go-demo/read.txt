@@ -3,7 +3,8 @@ go get -u github.com/gin-gonic/gin
 go get -u gorm.io/gorm
 go get -u gorm.io/driver/mysql
 
+go import 的是目录
 
 go mod download
-
+go mod tidy
 go run main.go

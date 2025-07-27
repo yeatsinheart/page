@@ -2,7 +2,7 @@ package api_user
 
 import (
 	"go-demo/db"
-	"go-demo/db_user"
+	"go-demo/db/user"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

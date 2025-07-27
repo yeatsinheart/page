@@ -62,7 +62,7 @@ dirLookUp(Directory dir) async {
     // 按文件路径（字符串）排序，类似按文件名排序
     fse.sort((a, b) => a.path.compareTo(b.path));
     for (FileSystemEntity entity in fse) {
-      if (entity is File && entity.path.endsWith(".dart")) {
+      if (entity is File && entity.path.endsWith(".dart") && !entity.path.contains("/_child/")) {
         String fileName = p.basename(entity.path); // 只获取文件名
         String file = entity.path.replaceAll(base_path, '');
         if (file.startsWith("/view/") && !fileName.startsWith("_")) {

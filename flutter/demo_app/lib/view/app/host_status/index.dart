@@ -3,8 +3,8 @@ import 'package:flutter3/store/host_status_store.dart';
 import 'package:get/get.dart';
 
 class AppHostStatusIndex extends StatelessWidget {
-  //final dynamic params;
-  // const AppHostStatusIndex({this.params, super.key});
+  final dynamic params;
+  AppHostStatusIndex({this.params, super.key});
   final HostStatusStore hostStatusStore = Get.find();
   @override
   Widget build(BuildContext context) {

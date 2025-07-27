@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 class LanguageStore extends GetxService {
   // 当前语言
   final _locale = "".obs;
-  final Rx<List?> language = Rx<List?>([]);
+  final Rxn<List?> language = Rxn<List?>();
 
   String get locale => _locale.value;
 

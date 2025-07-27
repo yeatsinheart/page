@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter3/request/api_cache.dart';
-import 'package:flutter3/request/api_test.dart';
+import 'package:flutter3/request/cache.dart';
+import 'package:flutter3/request/test.dart';
 import 'package:flutter3/log/logger.dart';
+import 'package:flutter3/store/language_store.dart';
+import 'package:get/get.dart' hide Response, FormData;
 
 Dio init() {
   final dio = Dio(
@@ -52,9 +54,11 @@ Dio init() {
         // if (token != null) {
         //   options.headers['Authorization'] = 'Bearer $token';
         // }
-        options.headers['Accept-Language'] = 'en_US';
+        options.headers['Accept-Language'] = Get.find<LanguageStore>().language;
+        // 模拟测试
         var response = ApiTest.test(options);
         if (null != response) return handler.resolve(Response(requestOptions: options, data: response, statusCode: 200));
+
         return handler.next(options);
       },
       onResponse: (response, handler) async {
@@ -76,23 +80,28 @@ Dio init() {
 
 final dio = init();
 
-/*
-dio.options.headers['Authorization'] = 'Bearer $token';
-dio.options.headers['Accept-Language'] = 'zh-CN';
-
-dio.options.headers.remove('Authorization');
-
-
-* */
 class HttpRequestUtil {
   HttpRequestUtil._internal();
-
   factory HttpRequestUtil() => _instance;
   static final HttpRequestUtil _instance = HttpRequestUtil._internal();
 
-  static get(String url, {Map<String, dynamic>? header}) async {
+  static get(String url, { Map<String, dynamic>? params,contentType=Headers.jsonContentType,Map<String, dynamic>? header}) async {
     try {
-      var response = await dio.get(url, options: Options(headers: header));
+      var response = await dio.get(url, queryParameters:params??{},options: Options(contentType:contentType,headers: header));
+      return response.data;
+    } catch (e) {
+      Log.error(e);
+    }
+  }
+
+  static post(String url,params, {contentType=Headers.jsonContentType,Map<String, dynamic>? header}) async {
+    try {
+      int now = DateTime.now().millisecondsSinceEpoch;
+      Response response = await dio.post(
+        url,
+        data: params ?? {},
+        options: Options(contentType: contentType, headers: header),
+      );
       return response.data;
     } catch (e) {
       Log.error(e);
@@ -100,67 +109,18 @@ class HttpRequestUtil {
   }
 
   static postJson(String url, Map<String, dynamic>? params, {Map<String, dynamic>? header}) async {
-    try {
-      int now = DateTime.now().millisecondsSinceEpoch;
-      Response response = await dio.post(
-        url,
-        data: params ?? {},
-        options: Options(contentType: Headers.jsonContentType, headers: header),
-      );
-      return response.data;
-    } catch (e) {
-      Log.error(e);
-    }
+    return post(url,params,contentType: Headers.jsonContentType,header: header);
   }
 
   static postForm(String url, Map<String, dynamic>? params, {Map<String, dynamic>? header}) async {
-    try {
-      int now = DateTime.now().millisecondsSinceEpoch;
-      Response response = await dio.post(
-        url,
-        data: params ?? {},
-        options: Options(contentType: Headers.formUrlEncodedContentType, headers: header),
-      );
-      return response.data;
-    } catch (e) {
-      Log.error(e);
-    }
+    return post(url,params,contentType: Headers.formUrlEncodedContentType,header: header);
   }
 
   static upload(String url, dynamic params, {Map<String, dynamic>? header}) async {
-    try {
-      int now = DateTime.now().millisecondsSinceEpoch;
-      FormData formData = FormData.fromMap(params ?? {});
-      Response response = await dio.post(
-        url,
-        data: formData,
-        options: Options(contentType: Headers.multipartFormDataContentType, headers: header),
-      );
-      return response.data;
-    } catch (e) {
-      Log.error(e);
-    }
+      return post(url,FormData.fromMap(params ?? {}),contentType: Headers.multipartFormDataContentType,header: header);
   }
 
   static postString(String url, String? data, {Map<String, dynamic>? header}) async {
-    try {
-      Response response = await  dio.post(
-        url,
-        data: data,
-        options: Options(contentType: Headers.textPlainContentType, headers: header),
-      );
-      return response.data;
-    } catch (e) {
-      Log.error(e);
-      //MsgOverlay.notify("网络异常");
-    }
+    return post(url,data,contentType: Headers.textPlainContentType,header: header);
   }
-
-}
-
-main() async {
-  Future a = HttpRequestUtil.get("https://www.baiduddddd.com");
-  a.then((valua) {
-    print(valua);
-  });
 }

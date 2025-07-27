@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 class AppStore extends GetxService {
-  final Rx<Map<String, dynamic>?> data = Rx<Map<String, dynamic>?>(null);
+  final Rxn<Map<String, dynamic>?> data = Rxn<Map<String, dynamic>?>();
 
 
   Future<AppStore> init(Map<String, dynamic> json) async {

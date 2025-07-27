@@ -7,7 +7,7 @@ import 'api_request.dart';
 /// 初始打包默认配置文件key，如果刚安装，就碰上网络请求不通的情况，最坏策略就是本地有打包对应的数据。
 /// 如果全用请求版本，那么我只改了一个活动，只改了游戏一张图片，那么全量的所有数据都要重新下载。。。
 ///
-class Api{
+class Api {
   String apiId;
 
   String type;
@@ -16,13 +16,19 @@ class Api{
   int cacheTime;
   dynamic test;
 
-  static checkHost(host) => Api("init",type: "check").request(host);
+  static checkHost(host) => Api("init", type: "check").request(host);
+
   /// 接口 START 可动态生成
   static init(data) => Api("init").request(data);
+
   static translate(data) => Api("translate").request(data);
+
   static refreshUser(data) => Api("refreshUser").request(data);
+
   static demo(data) => Api("demo", loginRequired: true, cache: true, cacheTime: 0).request(data);
+
   static uploadFile(file) => Api("uploadFile").upload({"file": file});
+
   /// 接口 END 可动态生成
 
   Api(this.apiId, {this.type = "post", this.loginRequired = false, this.cache = false, this.cacheTime = 0, this.test});
@@ -50,11 +56,11 @@ class Api{
       }
     }
 
-    var response =  switch (type){
-       "post"=> await ApiRequest.postJson(apiId, data),
-       "get"=> await ApiRequest.get(apiId,params: data),
-       "check"=> await ApiRequest.check(apiId,data),
-        _ => null,
+    var response = switch (type) {
+      "post" => await ApiRequest.postJson(apiId, data),
+      "get" => await ApiRequest.get(apiId, params: data),
+      "check" => await ApiRequest.check(apiId, data),
+      _ => null,
     };
 
     if (cache) {
@@ -67,4 +73,3 @@ class Api{
     return ApiRequest.upload(apiId, data);
   }
 }
-

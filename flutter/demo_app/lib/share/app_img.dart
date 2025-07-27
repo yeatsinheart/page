@@ -75,8 +75,8 @@ _loadingWidget(loadingColor) => AspectRatio(
 Widget img(String url, BoxFit fit, Color? loadingBg, Color loadingColor) {
   String resource = url.tr;
   // web方式会自动加前缀/assets 所以浏览器运行，需要移除
-  if(kIsWeb && resource.startsWith("/assets/")){
-    resource = resource.substring(8);
+  if(kIsWeb && resource.startsWith("assets/")){
+    resource = resource.substring(7);
   }
   return SizedBox.expand(
     child: url.startsWith('http')
@@ -96,7 +96,7 @@ Widget img(String url, BoxFit fit, Color? loadingBg, Color loadingColor) {
             future: rootBundle.load(resource),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-                return Image.asset(resource, fit: fit, alignment: Alignment.center);
+                return Image.asset(resource, fit: fit);
               } else if (snapshot.hasError) {
                 return Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingColor));
               } else {

@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3/service/app_service.dart';
+import 'package:flutter3/share/app_img.dart';
 
 class WechatMsg extends StatefulWidget {
   const WechatMsg({super.key, required params});
@@ -126,7 +127,7 @@ who(item) {
           // 绘制列表的最左边项，这里放了个圆形的图片
           // 描述图片的圆形，需要使用背景图来做
           // CachedNetworkImage BoxDecoration无效
-          leading: Container(width: 40, height: 40, child: ClipRRect(borderRadius: BorderRadius.circular(5), child: CachedNetworkImage(fit: BoxFit.cover, placeholder: (context, url) => Image.asset("images/a002.jpg"), errorWidget: (context, url, error) => Text("图片失败"), imageUrl: item["img"]))),
+          leading: Container(width: 40, height: 40, child: ClipRRect(borderRadius: BorderRadius.circular(5), child: CachedNetworkImage(fit: BoxFit.cover, placeholder: (context, url) => AppImg("images/a002.jpg"), errorWidget: (context, url, error) => Text("图片失败"), imageUrl: item["img"]))),
           // 绘制消息主体的上半部分，主要是左边的名称和右边的日期，使用row的flex水平布局
           title: Row(
             children: <Widget>[

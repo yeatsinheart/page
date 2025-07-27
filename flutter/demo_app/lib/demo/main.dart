@@ -27,9 +27,9 @@ class _MainDemoState extends State<MainDemo> with TickerProviderStateMixin {
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("testImage"))),
-      SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("/assets/images/game1.jpg"))),
-        SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("/images/game2.png"))),
-          SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("/images/game3.jpg"))),
+      SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("assets/images/game1.jpg"))),
+        SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("assets/images/game2.png"))),
+          SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("assets/images/game3.jpg"))),
             SliverToBoxAdapter(child: Text("testImage".tr)),
               SliverToBoxAdapter(child: Text("testImage".trParams())),
                 SliverToBoxAdapter(child: Text("微信".tr)),

@@ -166,9 +166,9 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+  # 网页加载本地资源时，所有组件默认会添加assets/前缀，所以源码上判断web对应加载的地方需要替换资源前缀
   assets:
     - assets/
-    - images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

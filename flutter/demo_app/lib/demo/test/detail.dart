@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 
 import 'package:flutter3/service/game.dart';
+import '../../share/app_img.dart';
 import '../../share/context.dart';
 
 class TestDetail extends StatelessWidget {
@@ -24,7 +25,7 @@ class TestDetail extends StatelessWidget {
                   height: GlobalContext.getHeight(),
                   child: Stack(
                     children: <Widget>[
-                      Image.asset(
+                      AppImg(
                         game!.imageUrl,
                         fit: BoxFit.cover,
                         height: 500,

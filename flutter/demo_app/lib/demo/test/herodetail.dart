@@ -6,6 +6,8 @@ import 'package:flutter3/share/context.dart';
 
 import 'package:flutter3/service/game.dart';
 
+import '../../share/app_img.dart';
+
 class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStateMixin {
   final ScrollController _pagecontroller = new ScrollController();
   final ScrollController _listcontroller = new ScrollController();
@@ -158,7 +160,7 @@ class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStat
     return Hero(
       tag: 'heropic${game?.title}',
       child: Stack(children: <Widget>[
-        Image.asset(
+        AppImg(
           game!.imageUrl,
           fit: BoxFit.cover,
           height: 480,

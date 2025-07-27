@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../share/app_img.dart';
 import '../../../util/MyEasyRefresh.dart';
 
 /// 结构
@@ -13,8 +14,8 @@ class PageMeDemo extends StatelessWidget {
         children: <Widget>[
           Stack(
             children: [
-              Align(alignment: AlignmentDirectional.topStart, child: Image.asset("assets/images/ic_scan.png", width: 20, height: 20)),
-              Align(alignment: AlignmentDirectional.topEnd, child: Image.asset("assets/images/ic_setting.png", width: 20, height: 20)),
+              Align(alignment: AlignmentDirectional.topStart, child: AppImg("assets/images/ic_scan.png", width: 20, height: 20)),
+              Align(alignment: AlignmentDirectional.topEnd, child: AppImg("assets/images/ic_setting.png", width: 20, height: 20)),
             ],
           ),
           Container(
@@ -27,7 +28,7 @@ class PageMeDemo extends StatelessWidget {
                 },
                 child: Stack(
                   alignment: Alignment.center,
-                  children: [Container(width: 110, height: 110, child: Image.asset("assets/images/circle_bg.png", width: 20, height: 20)), Text("登录", style: TextStyle(fontSize: 19, color: Colors.white))],
+                  children: [Container(width: 110, height: 110, child: AppImg("assets/images/circle_bg.png", width: 20, height: 20)), Text("登录", style: TextStyle(fontSize: 19, color: Colors.white))],
                 ),
               )),
           MineMenu(),
@@ -239,7 +240,7 @@ class AppIcon extends StatelessWidget {
       margin: const EdgeInsets.only(top: 20, bottom: 3),
       width: 35,
       height: 35,
-      child: Image.asset(asset),
+      child: AppImg(asset),
     );
   }
 }

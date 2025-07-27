@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../share/app_img.dart';
+
 class Game {
   String title;
   String headText;
@@ -15,7 +17,7 @@ gameView(game, height, double radius) {
       Positioned.fill(
         child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(radius)),
-          child: Image.asset(
+          child: AppImg(
             game.imageUrl,
             fit: BoxFit.cover,
           ),

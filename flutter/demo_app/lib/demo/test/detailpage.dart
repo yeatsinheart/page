@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:flutter3/service/game.dart';
+import 'package:flutter3/share/app_img.dart';
 
 class _HeroDetailPageState extends State<TestDetailpage> with TickerProviderStateMixin {
   final ScrollController _pagecontroller = ScrollController();
@@ -41,7 +42,7 @@ class _HeroDetailPageState extends State<TestDetailpage> with TickerProviderStat
   }
 
   _ImgLayerLayer(game) {
-    return Image.asset(
+    return AppImg(
       game!.imageUrl,
       fit: BoxFit.cover,
       height: imgarea,

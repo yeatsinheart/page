@@ -36,7 +36,7 @@ main() async {
 
   content += "Widget? widgetOfPath(String? path,{key,params}) {\n";
 
-  content += "  if(null==path)return null;\n"
+  content += "  if(null==path)return null;\n  if(null==key)key=UniqueKey();\n"
       "  switch (path){\n    case \"/demo/main\": return MainDemo(key:key,params: params);\n";
   widgets.forEach((Map<String, dynamic> widgetInfo) {
     content += "    case \"${widgetInfo["path"]}\": return ${fileToName(widgetInfo["name"])}(key:key,params: params);\n";

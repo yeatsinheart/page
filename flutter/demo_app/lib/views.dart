@@ -10,16 +10,15 @@ final Map<String, String> ViewKeyPathMap = {
   //"app_layout": "/demo/main", // 先只跑演示
 
   "language": "/app/language",
+
   "home": "/app/home/wg",
+
   "swiper": "/market/swiper/demo",
   "marquee": "/market/marquee/demo",
 
   "game_home": "/game/home/top_category_demo",
   "game_search": "/game/search/demo",
 
-  "discover": "/wechat/discover",
-  "me": "/page/me/demo",
-  "contact": "/wechat/contact",
 };
 
 dynamic widgetOfKey(String? key, { params}) {

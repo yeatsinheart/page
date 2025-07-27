@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/share/app_img.dart';
 import 'package:flutter3/share/context.dart';
+import 'package:flutter3/store/app_store.dart';
 import 'package:flutter3/views.dart';
 import 'package:get/get.dart';
 
 class LayoutDemo extends StatefulWidget {
-  const LayoutDemo({super.key, required params});
+  final dynamic params;
+  LayoutDemo({super.key, this.params});
 
   @override
   State<LayoutDemo> createState() => _LayoutDemoState();
@@ -14,6 +17,7 @@ class LayoutDemo extends StatefulWidget {
 /// 必须确定初始化打开哪个页面
 class _LayoutDemoState extends State<LayoutDemo> {
   int _currentIndex = 0;
+  AppStore appStore = Get.find<AppStore>();
 
   @override
   void initState() {
@@ -22,18 +26,16 @@ class _LayoutDemoState extends State<LayoutDemo> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> items = [
-      {"iconI18nKey": "https://cdn-icons-png.flaticon.com/128/1946/1946488.png", "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/619/619153.png", "titleI18nKey": "首页", "openViewKey": "home"},
-      {"iconI18nKey": "https://cdn-icons-png.flaticon.com/128/428/428094.png", "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/4697/4697500.png", "titleI18nKey": "发现", "openViewKey": "discover"},
-      {"iconI18nKey": "https://cdn-icons-png.flaticon.com/128/892/892781.png", "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/3135/3135715.png", "titleI18nKey": "我", "openViewKey": "me"},
-    ];
+    List<dynamic> items = appStore.data.value?["layout"]?["barBottom"]??[];
     List<Widget> list = [];
     List<dynamic> pages = [];
     for (int i = 0; i < items.length; i++) {
-      Map<String, dynamic> item = items[i];
+      dynamic item = items[i];
       list.add(_buildNavItem(icon: item['iconI18nKey'], activeIcon: item['iconFocusI18nKey'], label: item['titleI18nKey'], index: i));
-      pages.add(widgetOfKey(item['openViewKey']));
+      Widget widget = widgetOfKey(item['openViewKey'])??Container();
+      pages.add(widget);
     }
+
 
     return Scaffold(
       body: pages[_currentIndex],

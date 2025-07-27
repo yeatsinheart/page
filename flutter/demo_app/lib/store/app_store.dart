@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 class AppStore extends GetxService {
-  final Rx<AppStoreData?> data = Rx<AppStoreData?>(null);
+  final Rx<Map<String, dynamic>?> data = Rx<Map<String, dynamic>?>(null);
 
 
   Future<AppStore> init(Map<String, dynamic> json) async {
@@ -10,7 +10,7 @@ class AppStore extends GetxService {
   }
 
   void setFromJson(Map<String, dynamic> json) {
-    data.value = AppStoreData.fromJson(json);
+    data.value = json;
     data.refresh();
         //.update((_)=>data) 是用于 RxMap（即 Rx<Map>）的；
   }
@@ -27,19 +27,3 @@ class AppStore extends GetxService {
   }
 }
 
-class AppStoreData {
-  String name;
-  Map<String, String> views;
-
-  AppStoreData({this.views = const {}, this.name = ""});
-
-  factory AppStoreData.fromJson(Map<String, dynamic> json) {
-    return AppStoreData(
-      name: json['name']?? '',
-      views: (json['views'] as Map<String, dynamic>?)
-          ?.map((key, value) => MapEntry(key, value.toString())) ??
-          {},
-      //roles: List<String>.from(json['roles']),
-    );
-  }
-}

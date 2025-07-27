@@ -1,29 +1,24 @@
+import 'dart:convert';
+
+import 'package:flutter3/store/save_as_json.dart';
 import 'package:get/get.dart';
 
-class AppStore extends GetxService {
+class AppStore extends SaveAsJsonStore<Map<String, dynamic>>  {
   final Rxn<Map<String, dynamic>?> data = Rxn<Map<String, dynamic>?>();
+  AppStore(): super('app_store');
 
-
-  Future<AppStore> init(Map<String, dynamic> json) async {
-    setFromJson(json);
-    return this;
-  }
-
-  void setFromJson(Map<String, dynamic> json) {
+  @override
+  initFromJson(json) async{
     data.value = json;
     data.refresh();
-        //.update((_)=>data) 是用于 RxMap（即 Rx<Map>）的；
-  }
-
-  // 可以写异步初始化、网络请求等
-  @override
-  void onInit() {
-    super.onInit();
+    await save();// 保存到缓存中
   }
 
   @override
-  void onClose() {
-    super.onClose();
+  toJson() {
+    return jsonEncode(data.value);
   }
+
+
 }
 

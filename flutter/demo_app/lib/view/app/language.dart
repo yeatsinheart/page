@@ -16,16 +16,16 @@ class AppLanguage extends StatelessWidget {
     // {"name": "اردو", "flag": "🇵🇰", "code": "ur_PK"},
     // {"name": "עברית", "flag": "🇮🇱", "code": "he_IL"},
     LanguageStore languageStore = Get.find<LanguageStore>();
-    final currentLocale = languageStore.locale;
+    final currentLocale = languageStore.data.value["language"];
 
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 300), // 限制最大宽度
       child: ListView.separated(
         shrinkWrap: true,
-        itemCount: languageStore.language.value!.length,
+        itemCount: languageStore.data.value["list"]!.length,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
         itemBuilder: (context, index) {
-          final lang = languageStore.language.value![index];
+          final lang = languageStore.data.value["list"][index];
           final selected = currentLocale == lang["code"];
 
           return ElevatedButton(

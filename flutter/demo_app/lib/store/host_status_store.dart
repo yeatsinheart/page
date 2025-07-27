@@ -1,32 +1,34 @@
+import 'dart:convert';
+
+import 'package:flutter3/request/api.dart';
+import 'package:flutter3/store/save_as_json.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 
-class HostStatusStore extends GetxService {
+class HostStatusStore extends SaveAsJsonStore<List<LineStatus>> {
   final lines = <LineStatus>[].obs;
-  final Dio _dio = Dio();
+  //final Rxn<List<LineStatus>> lines = Rxn<List<LineStatus>>([]);
+  // await Get.putAsync(() => HostStatusStore().init(null)); 保证能初始化成功
 
-  Future<HostStatusStore> init(List<dynamic> list) async {
+  @override
+  initFromJson(json) async{
     List<LineStatus> tmp = [];
-    for (var data in list) {
-      lines.add( LineStatus(name: data["name"], host: data["host"]));
+    for (var data in json) {
+      lines.add(LineStatus(name: data["name"], host: data["host"]));
     }
-    setLines(tmp);
-    testAllLines();
-    return this;
+    await setLines(tmp);
   }
 
   @override
-  void onInit() {
-    super.onInit();
-    /// 启动时就加载
-    //
-    // chooseLine(lines[0]);
-    testAllLines();
+  toJson() {
+    return jsonEncode(lines);
   }
 
   // 初始化线路列表
-  void setLines(List<LineStatus> list) {
+  setLines(List<LineStatus> list) async{
     lines.assignAll(list);
+    testAllLines();
+    await save();// 保存到缓存中
   }
 
 
@@ -37,14 +39,7 @@ class HostStatusStore extends GetxService {
     final stopwatch = Stopwatch()..start();
     try {
       line.status.value = "testing";
-      // 实际调用接口 get 或者 post
-      await _dio.get(
-        line.host+"/api/init",
-        options: Options(
-          method: 'GET',
-          headers: {'Cache-Control': 'no-cache'},
-        ),
-      );
+      await ApiRequest.init(null);
       stopwatch.stop();
       // 是不是对应域名的响应速度回写到线路中呢。
       line.speed.value = stopwatch.elapsedMilliseconds;
@@ -55,26 +50,32 @@ class HostStatusStore extends GetxService {
   }
 
   // 测速全部线路
-  testAllLines()  {
-    Future.wait(lines.map(testLine)).then((_){
+  testAllLines() async{
+    await Future.wait(lines.map(testLine)).then((_){
       lines.sort((a, b) => a.speed.value.compareTo(b.speed.value));
       chooseLine(bestLine);
     });
+  }
+
+  // 选中线路
+  chooseLine(LineStatus? line)  {
+    if(null==line)return;
+    lines.forEach((item) => item.chosen.value = false);
+    line.chosen.value = true;
   }
 
   // 获取最快线路
   LineStatus? get bestLine =>
       lines.firstWhereOrNull((line) => line.status=='online');
 
-  // 选中线路
-  Future<void> chooseLine(LineStatus? line) async {
-    if(null==line)return;
-    lines.forEach((item) => item.chosen.value = false);
-    line!.chosen.value = true;
-  }
   // 获取已选中线路
   LineStatus? get chosenLine =>
       lines.firstWhereOrNull((line) => line.chosen.value);
+
+
+  HostStatusStore(): super('host_status_store');
+
+
 }
 
 

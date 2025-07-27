@@ -1,38 +1,49 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/request/api.dart';
+import 'package:flutter3/store/save_as_json.dart';
 import 'package:get/get.dart';
 
 // 其实就是扩展String .tr 其实依赖的是 BuildContext 的 rebuild，而不是 Obx 或 GetX。
 // /Users/apple/.pub-cache/hosted/pub.dev/get-4.7.2/lib/get_utils/src/extensions/internacionalization.dart
-class LanguageStore extends GetxService {
-  // 当前语言
-  final _locale = "".obs;
-  final Rxn<List?> language = Rxn<List?>();
+class LanguageStore extends SaveAsJsonStore<Map<String, dynamic>> {
+  final Rx<Map<String, dynamic>> data = Rx<Map<String, dynamic>>({});
+  LanguageStore(): super('language_store');
 
-  String get locale => _locale.value;
+  @override
+  initFromJson(json) async{
+    data.value = json;
+    loadLanguage(json["language"]);
+    data.refresh();
+  }
 
-  Future<LanguageStore> init(List<dynamic> list,String fallback) async {
+  @override
+  toJson() {
+    return jsonEncode(data.value);
+  }
+
+  set(List<dynamic> list,String fallback) async {
     // 初始默认语言 .update((_)=>data) 是用于 RxMap（即 Rx<Map>）的；
-    language.value = list;
-    language.refresh();
     await loadLanguage(list[0]["code"]);
     // 英文保底 最好能动态保底
     Get.fallbackLocale = parseLocale(fallback);
-    return this;
+    data.value["list"] = list;
+    data.refresh();
   }
 
   Future<void> loadLanguage(String langCode) async {
-    if (locale == langCode) return;
+    if (data.value["language"] == langCode) return;
     // 🛰️ 假设这里是调用后端接口获取翻译
     Map<String, String> fetched = await fetchRemoteTranslations(langCode);
     // 更新翻译
     //Get.clearTranslations();
     Get.appendTranslations({langCode: fetched});
     Get.updateLocale(parseLocale(langCode));
-    _locale.value = langCode;
+    data.value["language"] = langCode;
+    await save();// 保存到缓存中
   }
 
   Future<Map<String, String>> fetchRemoteTranslations(String langCode) async {

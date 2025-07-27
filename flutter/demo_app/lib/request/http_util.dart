@@ -54,7 +54,7 @@ Dio init() {
         // if (token != null) {
         //   options.headers['Authorization'] = 'Bearer $token';
         // }
-        options.headers['Accept-Language'] = Get.find<LanguageStore>().language;
+        options.headers['Accept-Language'] = Get.find<LanguageStore>().data.value["language"];
         // 模拟测试
         var response = ApiTest.test(options);
         if (null != response) return handler.resolve(Response(requestOptions: options, data: response, statusCode: 200));

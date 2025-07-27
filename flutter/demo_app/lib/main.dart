@@ -42,12 +42,16 @@ init() async {
   // 默认竖屏
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
+  AppStore appStore =await Get.putAsync(() => AppStore().init());// 优先使用缓存 获取线路
+  HostStatusStore hostStatusStore =await Get.putAsync(() => HostStatusStore().init());// 优先使用缓存 获取线路
+  LanguageStore languageStore =await Get.putAsync(() => LanguageStore().init());// 优先使用缓存 获取线路
+
   // 获取基础配置 远程更新->本地缓存->初始打包配置
   DefaultConfig.init().then((config) async {
     // 配置更新后，必须先加载完成当前语言的翻译信息
-    AppStore appStore = await Get.putAsync(() => AppStore().init(config));
-    await Get.putAsync(() => LanguageStore().init(config["language"]??[{"name":"en_US"}],config["languageFallback"]??"en_US"));
-    await Get.putAsync(() => HostStatusStore().init(config["host"]));
+    await appStore.update(config);
+    await languageStore.set(config["language"]??[{"name":"en_US"}],config["languageFallback"]??"en_US");
+    await hostStatusStore.update(config["host"]);
 
     runApp(App(widgetOfKey("app_layout") ?? Container()));
   });

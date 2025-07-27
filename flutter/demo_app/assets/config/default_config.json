@@ -43,15 +43,17 @@
   "host": [
     {
       "name": "中国节点",
-      "host": "https://cn.example.com/ping"
+      "host": "https://cn.example.com",
+      "domain": "cn.example.com",
+      "https": true
     },
     {
       "name": "香港节点",
-      "host": "https://hk.example.com/ping"
+      "host": "https://hk.example.com"
     },
     {
       "name": "美国节点",
-      "host": "https://us.example.com/ping"
+      "host": "https://us.example.com"
     }
   ],
   "view": {

@@ -52,7 +52,7 @@ class LanguageStore extends SaveAsJsonStore<LanguageStore> {
   }
 
   Future<Map<String, String>> fetchRemoteTranslations(String langCode) async {
-    return await ApiRequest.translate({"language":langCode})??{};
+    return await Api.translate({"language":langCode})??{};
   }
 }
 

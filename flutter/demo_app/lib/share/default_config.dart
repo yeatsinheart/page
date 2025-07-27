@@ -36,7 +36,7 @@ class DefaultConfig {
   static Future<Map<String, dynamic>?> _loadRemote() async {
     try {
       // 最好是Api调用
-      return await ApiRequest.init(null);
+      return await Api.init(null);
     } catch (e) {
       // 忽略错误或打印日志
       Log.e("获取远程配置出错，所以取消");

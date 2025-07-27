@@ -8,7 +8,6 @@ class UserStore extends GetxService {
   final RxnString token = RxnString();
   final Rxn<Map<String, dynamic>?> data = Rxn<Map<String, dynamic>?>();
 
-
   void setFromJson(Map<String, dynamic> json) {
     data.value = json;
     data.refresh();
@@ -35,11 +34,11 @@ class UserStore extends GetxService {
   Future<void> loadFromCache() async {
     final prefs = await SharedPreferences.getInstance();
     token.value = prefs.getString('user_token') ?? null;
-    if(null!=token.value){
-      ApiRequest.refreshUser(null);
+    if (null != token.value) {
+      Api.refreshUser(null);
     }
     final user_data = prefs.getString('user_data');
-    setFromJson(null==user_data?null:jsonDecode(user_data));
+    setFromJson(null == user_data ? null : jsonDecode(user_data));
   }
 
   void clearCache() async {
@@ -47,6 +46,4 @@ class UserStore extends GetxService {
     await prefs.remove("user_token");
     await prefs.remove("user_data");
   }
-
 }
-

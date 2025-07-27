@@ -6,13 +6,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter3/request/cache.dart';
 import 'package:flutter3/request/test.dart';
 import 'package:flutter3/log/logger.dart';
+import 'package:flutter3/store/host_status_store.dart';
 import 'package:flutter3/store/language_store.dart';
 import 'package:get/get.dart' hide Response, FormData;
 
 Dio init() {
   final dio = Dio(
     BaseOptions(
-      baseUrl: 'https://example.com/api/',
+      baseUrl: '${(Get.find<HostStatusStore>().chosenLine??'https://example.com')}/api/',
       connectTimeout: const Duration(seconds: 5),
       // 建立连接最大等待时间
       receiveTimeout: const Duration(seconds: 10),
@@ -89,8 +90,8 @@ class HttpRequestUtil {
     try {
       var response = await dio.get(url, queryParameters:params??{},options: Options(contentType:contentType,headers: header));
       return response.data;
-    } catch (e) {
-      Log.error(e);
+    } catch (e,s) {
+      Log.error(e,stackTrace: s);
     }
   }
 
@@ -103,8 +104,8 @@ class HttpRequestUtil {
         options: Options(contentType: contentType, headers: header),
       );
       return response.data;
-    } catch (e) {
-      Log.error(e);
+    } catch (e,s) {
+      Log.error(e,stackTrace: s);
     }
   }
 

@@ -3,14 +3,14 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// 整个Store 能保存进缓存中，这样重启时，缓存=store
-abstract class SaveAsJsonStore<T> extends GetxService {
+abstract class SaveAsJsonStore<S> extends GetxService {
   final String storeKey;
   //继承类构造器 UserStore() : super('user_store');
   SaveAsJsonStore(this.storeKey);
 
-  init() async {
+  Future<S> init() async {
     await loadFromCache();
-    return this;
+    return this as S;
   }
 
   update(data) async {

@@ -9,29 +9,37 @@ import 'package:get/get.dart';
 
 // 其实就是扩展String .tr 其实依赖的是 BuildContext 的 rebuild，而不是 Obx 或 GetX。
 // /Users/apple/.pub-cache/hosted/pub.dev/get-4.7.2/lib/get_utils/src/extensions/internacionalization.dart
-class LanguageStore extends SaveAsJsonStore<Map<String, dynamic>> {
+class LanguageStore extends SaveAsJsonStore<LanguageStore> {
   final Rx<Map<String, dynamic>> data = Rx<Map<String, dynamic>>({});
   LanguageStore(): super('language_store');
 
   @override
   initFromJson(json) async{
     data.value = json;
-    loadLanguage(json["language"]);
-    data.refresh();
+    choose(json["language"]);
   }
 
   @override
   toJson() {
-    return jsonEncode(data.value);
+    return data.value;
   }
 
+  choose(String language) async {
+    await loadLanguage(language);
+    Get.updateLocale(parseLocale(language));
+    data.value["language"] = language;
+    await save();// 保存到缓存中
+    data.refresh();
+  }
   set(List<dynamic> list,String fallback) async {
     // 初始默认语言 .update((_)=>data) 是用于 RxMap（即 Rx<Map>）的；
-    await loadLanguage(list[0]["code"]);
+    data.value["list"] = list;
+    String language= list[0]["code"];
+    await loadLanguage(language);
+    await loadLanguage(fallback);
     // 英文保底 最好能动态保底
     Get.fallbackLocale = parseLocale(fallback);
-    data.value["list"] = list;
-    data.refresh();
+    choose(language);
   }
 
   Future<void> loadLanguage(String langCode) async {
@@ -41,9 +49,6 @@ class LanguageStore extends SaveAsJsonStore<Map<String, dynamic>> {
     // 更新翻译
     //Get.clearTranslations();
     Get.appendTranslations({langCode: fetched});
-    Get.updateLocale(parseLocale(langCode));
-    data.value["language"] = langCode;
-    await save();// 保存到缓存中
   }
 
   Future<Map<String, String>> fetchRemoteTranslations(String langCode) async {

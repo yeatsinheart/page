@@ -30,7 +30,7 @@ class AppLanguage extends StatelessWidget {
 
           return ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: selected ? Colors.blue : null, padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16)),
-            onPressed: () => Get.find<LanguageStore>().loadLanguage(lang["code"]!),
+            onPressed: () => languageStore.choose(lang["code"]!),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

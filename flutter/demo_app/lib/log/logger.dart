@@ -41,8 +41,8 @@ class Log {
     logger.w(stringify(message), error: error, stackTrace: stackTrace);
   }
 
-  static void error(error) {
-    logger.e(null, error: error, stackTrace: null);
+  static void error(error,{StackTrace? stackTrace}) {
+    logger.e(error.toString(), error: error, stackTrace: stackTrace);
   }
 
   static void err(dynamic message, error,{StackTrace? stackTrace}) {

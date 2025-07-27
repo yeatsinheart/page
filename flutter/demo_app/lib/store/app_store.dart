@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter3/store/save_as_json.dart';
 import 'package:get/get.dart';
 
-class AppStore extends SaveAsJsonStore<Map<String, dynamic>>  {
+class AppStore extends SaveAsJsonStore<AppStore>  {
   final Rxn<Map<String, dynamic>?> data = Rxn<Map<String, dynamic>?>();
   AppStore(): super('app_store');
 
@@ -16,7 +16,7 @@ class AppStore extends SaveAsJsonStore<Map<String, dynamic>>  {
 
   @override
   toJson() {
-    return jsonEncode(data.value);
+    return data.value;
   }
 
 

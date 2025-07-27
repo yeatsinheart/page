@@ -5,7 +5,7 @@ import 'package:flutter3/store/save_as_json.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 
-class HostStatusStore extends SaveAsJsonStore<List<LineStatus>> {
+class HostStatusStore extends SaveAsJsonStore<HostStatusStore> {
   final lines = <LineStatus>[].obs;
   //final Rxn<List<LineStatus>> lines = Rxn<List<LineStatus>>([]);
   // await Get.putAsync(() => HostStatusStore().init(null)); 保证能初始化成功
@@ -21,7 +21,7 @@ class HostStatusStore extends SaveAsJsonStore<List<LineStatus>> {
 
   @override
   toJson() {
-    return jsonEncode(lines);
+    return lines;
   }
 
   // 初始化线路列表
@@ -71,7 +71,6 @@ class HostStatusStore extends SaveAsJsonStore<List<LineStatus>> {
   // 获取已选中线路
   LineStatus? get chosenLine =>
       lines.firstWhereOrNull((line) => line.chosen.value);
-
 
   HostStatusStore(): super('host_status_store');
 

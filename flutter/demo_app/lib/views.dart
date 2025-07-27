@@ -7,7 +7,7 @@ final Map<String, String> ViewKeyPathMap = {
   "splash": "/app/splash/demo",
   "app_layout": "/layout/demo",
 
-  //"app_layout": "/demo/main", // 先只跑演示
+  "app_layout": "/demo/main", // 先只跑演示
 
   "language": "/app/language",
 

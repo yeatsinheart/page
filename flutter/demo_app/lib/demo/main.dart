@@ -24,13 +24,16 @@ class _MainDemoState extends State<MainDemo> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            SizedBox(height: 300, child: AppImg("testImage")),
-            Text("testImage".tr),
-            Text("testImage".trParams()),
-            Text("微信".tr),
-            SizedBox(width: 300, height: 300, child: AppLanguage()),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("testImage"))),
+      SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("/assets/images/game1.jpg"))),
+        SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("/images/game2.png"))),
+          SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("/images/game3.jpg"))),
+            SliverToBoxAdapter(child: Text("testImage".tr)),
+              SliverToBoxAdapter(child: Text("testImage".trParams())),
+                SliverToBoxAdapter(child: Text("微信".tr)),
+                  SliverToBoxAdapter(child:  SizedBox( child: AppLanguage())),
           ],
         ),
       ),

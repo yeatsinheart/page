@@ -43,7 +43,8 @@ init() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   AppStore appStore =await Get.putAsync(() => AppStore().init());// 优先使用缓存 获取线路
-  HostStatusStore hostStatusStore =await Get.putAsync(() => HostStatusStore().init());// 优先使用缓存 获取线路
+  HostStatusStore hostStatusStore =Get.put(HostStatusStore());// 优先使用缓存 获取线路
+  hostStatusStore.init();
   LanguageStore languageStore =await Get.putAsync(() => LanguageStore().init());// 优先使用缓存 获取线路
 
   // 获取基础配置 远程更新->本地缓存->初始打包配置

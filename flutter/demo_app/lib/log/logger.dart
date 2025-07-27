@@ -19,7 +19,7 @@ class Log {
       excludePaths: [
         'logger/src/printers/pretty_printer.dart', 'logger/src/logger.dart',
         "flutter/","lib/","dio/","get/",
-        'flutter3/log/logger.dart', 'flutter3/views.dart'],
+        'flutter3/log/logger.dart', 'flutter3/views.dart',"flutter3/request/"],
     ),
     // Disable logging in release mode if needed
     level: kReleaseMode ? Level.nothing : Level.debug,

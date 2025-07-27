@@ -17,6 +17,7 @@ class ApiRequest {
 
   ApiRequest(this.path, {this.type = "post", this.loginRequired = false, this.cache = false, this.cacheTime = 0, this.test});
 
+  static testHost(data) => ApiRequest("init").post_json(data);
   /// 接口 START 可动态生成
   static init(data) => ApiRequest("init").post_json(data);
 

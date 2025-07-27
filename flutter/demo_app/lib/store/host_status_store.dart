@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/request/api.dart';
 import 'package:flutter3/store/save_as_json.dart';
 import 'package:get/get.dart';
@@ -14,22 +16,26 @@ class HostStatusStore extends SaveAsJsonStore<HostStatusStore> {
   initFromJson(json) async{
     List<LineStatus> tmp = [];
     for (var data in json) {
-      lines.add(LineStatus(name: data["name"], host: data["host"]));
+      tmp.add(LineStatus(name: data["name"], host: data["host"]));
     }
     await setLines(tmp);
+  }
+  // 初始化线路列表
+  setLines(List<LineStatus> list) async{
+    lines.assignAll(list);
+    await save();// 保存到缓存中
+    bestFirst();
   }
 
   @override
   toJson() {
-    return lines;
+    List list = [];
+    for (var data in lines) {
+      list.add({"name":data.name,"host":data.host,});
+    }
+    return list;
   }
 
-  // 初始化线路列表
-  setLines(List<LineStatus> list) async{
-    lines.assignAll(list);
-    testAllLines();
-    await save();// 保存到缓存中
-  }
 
 
   // 测速某一条线路
@@ -39,7 +45,8 @@ class HostStatusStore extends SaveAsJsonStore<HostStatusStore> {
     final stopwatch = Stopwatch()..start();
     try {
       line.status.value = "testing";
-      await ApiRequest.init(null);
+      /// 因为要指定域名
+      await ApiRequest.testHost(null);
       stopwatch.stop();
       // 是不是对应域名的响应速度回写到线路中呢。
       line.speed.value = stopwatch.elapsedMilliseconds;
@@ -55,6 +62,26 @@ class HostStatusStore extends SaveAsJsonStore<HostStatusStore> {
       lines.sort((a, b) => a.speed.value.compareTo(b.speed.value));
       chooseLine(bestLine);
     });
+  }
+  Future<void> bestFirst() async {
+    LineStatus? result;
+
+    final completer = Completer<void>();
+    for (var line in lines) {
+      testLine(line).then((_) {
+        if (!completer.isCompleted && line.status.value=="on") {
+          result = line;
+          completer.complete(); // 任意一条成功后立即跳出
+        }
+      });
+    }
+    await completer.future;
+    if (result != null) {
+      chooseLine(result!);
+    } else {
+      // 所有线路都失败了，做个 fallback 逻辑
+      Log.error("没有可用线路");
+    }
   }
 
   // 选中线路

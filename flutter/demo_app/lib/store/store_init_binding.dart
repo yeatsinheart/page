@@ -4,7 +4,7 @@ import 'host_status_store.dart';
 import 'language_store.dart';
 
 import 'package:get/get.dart';
-
+// Bindings 是 GetX 提供的 依赖注入声明方式，用于在特定页面或全局初始化时自动注入 controller/store，
 class StoreInitBinding extends Bindings {
   @override
   void dependencies() {

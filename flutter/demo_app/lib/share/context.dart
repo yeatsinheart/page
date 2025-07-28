@@ -9,6 +9,7 @@ class GlobalContext {
   GlobalContext._internal();
   factory GlobalContext() => _instance;
   static final GlobalContext _instance = GlobalContext._internal();
+
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Rex');
 
   static BuildContext get context {

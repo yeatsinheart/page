@@ -32,8 +32,8 @@ class App extends StatelessWidget {
       ),
 
       navigatorKey: GlobalContext.navigatorKey,
+      theme: getThemeData(context),
       debugShowCheckedModeBanner: false,
-      theme: getThemeData(),
 
       builder: (context, child) {
         // 延迟设置 title（不会影响 AppBar 的 title）

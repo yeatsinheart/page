@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter3/log/logger.dart';
@@ -20,26 +22,28 @@ import 'views.dart';
 
 //Flutter 中存在三棵树，Widget[虚拟的结构]、Element 和 RenderObject。
 void main() {
-init();
-  // runZonedGuarded(
-  //   () {
-  //   },
-  //   (error, stack) {
-  //     Log.e("Uncaught error", error: error, stackTrace: stack);
-  //   },
-  //   // , zoneSpecification: ZoneSpecification(
-  //   //   print: (self, parent, zone, message) {
-  //   //     //Log.i(message);
-  //   //     //debugPrint(message);
-  //   //   },
-  //   // )
-  // );
-
-  //debugPaintSizeEnabled = true; // ✅ 开启边界调试 会把所有东西，边距什么的都画线
+  PlatformDispatcher.instance.onError = (error, stack) {
+    Log.err('Platform Error: ${error}',error,stackTrace: stack);
+    return true; // 表示已处理，防止崩溃
+  };
+  // 捕获 Flutter 框架错误（UI 渲染、widget 构建等）
+  FlutterError.onError = (FlutterErrorDetails details) {
+    FlutterError.presentError(details); // 打印日志
+    Log.err('Flutter Error: ${details.exception}',details.exception,stackTrace: details.stack);
+  };
+  // 捕获 Dart 层异步错误
+  runZonedGuarded(() async {
+    init();
+  }, (error, stackTrace) {
+    // Dart 层全局错误处理
+    Log.err('ZonedGuarded caught: $error', error,stackTrace: stackTrace);
+  });
 }
 
 init() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // debugPaintSizeEnabled = true; // ✅ 开启边界调试 会把所有东西，边距什么的都画线
   // 默认竖屏
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 

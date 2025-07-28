@@ -11,13 +11,13 @@ class Browser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> appStyle = getAppStyle();
-    ColorFont fontStyle = getFontStyle();
-    double? maxWidth = getMaxWidth();
+    Map<String, dynamic> appStyle = AppStyle.getAppStyle();
+    ColorFont fontStyle = AppStyle.getFontStyle();
+    double? maxWidth = AppStyle.getLimitedMaxWidth();
     Widget page = AppContainer("page", child);
     return Theme(
       data: Theme.of(context).copyWith(
-        primaryColor: ColorUtil.getColor(getColors()[0]),
+        primaryColor: ColorUtil.getColor(AppStyle.getColors()[0]),
         // secondary: ..., // 辅助色（可选）
         // onPrimary: ..., // 主色上的字体色（如白色）
         textTheme: Theme.of(context).textTheme
@@ -26,7 +26,7 @@ class Browser extends StatelessWidget {
               displayColor: ColorUtil.getColor(fontStyle.txt),
             )
             .copyWith(
-              bodyMedium: TextStyle(fontSize: getRem(appStyle["fontSize"] ?? .22), height: appStyle["lineHeight"] ?? 1.5, color: ColorUtil.getColor(fontStyle.txt)),
+              bodyMedium: TextStyle(fontSize: AppStyle.getRem(appStyle["fontSize"] ?? .22), height: appStyle["lineHeight"] ?? 1.5, color: ColorUtil.getColor(fontStyle.txt)),
             ),
       ),
       child: AppContainer(

@@ -11,9 +11,6 @@ class AppPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> appStyle = getAppStyle();
-    ColorFont fontStyle = getFontStyle();
-    double? maxWidth = getMaxWidth();
     // Scaffold 会有自带颜色 遮盖了页面
     return AppContainer("page", child);
   }

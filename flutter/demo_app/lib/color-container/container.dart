@@ -38,7 +38,7 @@ class AppContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ColorContainer style = getContainerStyle(containerKey);
+    ColorContainer style = AppStyle.getContainerStyle(containerKey);
     return _mask(
       style.mask,
       _imgBg(
@@ -47,7 +47,7 @@ class AppContainer extends StatelessWidget {
           decoration: BoxDecoration(
             /// 边框
             border: style.border != null ? Border.all(color: ColorUtil.getColor(style.border), width: 2.0) : null,
-            borderRadius: (style.radius != null && style.radius > 0) ? BorderRadius.circular(getRem(style.radius)) : null,
+            borderRadius: (style.radius != null && style.radius > 0) ? BorderRadius.circular(AppStyle.getRem(style.radius)) : null,
 
             /// 阴影
             boxShadow: style.shadow != null
@@ -68,7 +68,8 @@ class AppContainer extends StatelessWidget {
             /// 设置渐变背景颜色
             gradient: ColorUtil.getGradient(style.bg),
           ),
-          child: child,
+          child: DefaultTextStyle(style: TextStyle(color: ColorUtil.getColor(style.font)),
+          child: child,),
         ),
       ),
     );

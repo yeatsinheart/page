@@ -1,35 +1,42 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter3/color-container/color-util.dart';
 import 'package:flutter3/share/context.dart';
 import 'package:flutter3/store/app_store.dart';
 import 'package:get/get.dart';
+class AppStyle{
 
-ColorFont getFontStyle() {
-  return ColorFont.fromJson(getAppStyle()["font"]);
-}
-List<dynamic> getColors(){
-  return getAppStyle()["colors"]??["#2196F3"];
-}
+  static getRem(v) {
+    // 7.5rem=100%;
+    // 还有屏幕最大宽度 大屏显示H5效果
+    double maxWidth = getLimitedMaxWidth() ?? GlobalContext.getWidth();
+    double x = min(GlobalContext.getWidth(), maxWidth);
+    return v * x / (750/100);
+  }
 
-getRem(v) {
-  // 7.5rem=100%;
-  // 还有屏幕最大宽度 大屏显示H5效果
-  double maxWidth = getMaxWidth() ?? GlobalContext.getWidth();
-  double x = min(GlobalContext.getWidth(), maxWidth);
-  return v * x / (750/100);
-}
-getMaxWidth() {
-  return getAppStyle()["maxWidth"];
-}
-getAppStyle() {
-  return Get.find<AppStore>().data.value?["style"] ?? {};
-}
+  static getLimitedMaxWidth() {
+    return getAppStyle()["maxWidth"]??GlobalContext.getWidth();
+  }
 
-getContainerStyle(k) {
-  return ColorContainer.fromJson(getAppStyle()["container"]?[k] ?? {});
-}
+  static getAppStyle() {
+    return Get.find<AppStore>().data.value?["style"] ?? {};
+  }
 
+  static getContainerStyle(k) {
+    return ColorContainer.fromJson(getAppStyle()["container"]?[k] ?? {});
+  }
+
+  static ColorFont getFontStyle() {
+    return ColorFont.fromJson(getAppStyle()["font"]);
+  }
+  static List<dynamic> getColors(){
+    return getAppStyle()["colors"]??["#2196F3"];
+  }
+
+  static getMainColor() {return ColorUtil.getColor(getColors()[0]);}
+
+}
 
 class ColorContainer {
   // 颜色值支持多种格式：可以为：null transparent=#00000000 hex简写#000 hex标准#FFFFFF hex带alpha#FFFFFF1A rgb(255, 0, 0) rgba(255, 0, 0, 0.5) gradient对象

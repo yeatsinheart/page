@@ -9,11 +9,9 @@ var config = {
 
   "fontSize":.22,
   "lineHeight":1.2,
-  "font":  ColorFont(title:"#323233",name:"#646566",txt: "#737272",ghost: "#BBB"),
 
   "radius":.14,
 
-  "mask":'#0000001f',"border":'#e3e3e31a',"shadow":'#41454940',
 
   // "gradient": {
   //   "type": "linear",
@@ -21,8 +19,9 @@ var config = {
   //   "begin": "topLeft",
   //   "end": "bottomRight",
   // },
-
+  "font":  ColorFont(title:"#323233",name:"#646566",txt: "#737272",ghost: "#BBB"),
   "colors": ["#2196F3"],
+  "mask":'#0000001f',"border":'#e3e3e31a',"shadow":'#41454940',
 
   "container": {
     // 每一块都有对应组件
@@ -39,14 +38,15 @@ var config = {
       },
         //bg:'#f7f8ff'
     ),
+
+    "bar": ColorContainer(bg:"#000",font: "#fff"),
+    "bar-brand": ColorContainer(bg:"#000",font: "#fff"),
+    "bar-bottom": ColorContainer(bg:"#000",font: "#fff"),
+
 /*
     "div1": ColorContainer(),
     "div2": ColorContainer(),
     "div3": ColorContainer(),
-
-    "bar": ColorContainer(),
-    "bar-brand": ColorContainer(),
-    "bar-bottom": ColorContainer(),
 
     "loading": ColorContainer(),
 

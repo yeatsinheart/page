@@ -15,8 +15,12 @@ class LanguageStore extends SaveAsJsonStore<LanguageStore> {
   @override
   initFromJson(json) async{
     dynamic fallback = json["fallback"];
-    await loadLanguage(fallback);//加载备用语言
-    Get.fallbackLocale = parseLocale(fallback);
+    if(null!=fallback){
+      if(fallback!=json["language"]){
+        await loadLanguage(fallback);//加载备用语言
+      }
+      Get.fallbackLocale = parseLocale(fallback);
+    }
     choose(json["language"]);
     data.value = json;
   }
@@ -35,8 +39,8 @@ class LanguageStore extends SaveAsJsonStore<LanguageStore> {
   }
 
 
-  Future<void> loadLanguage(String langCode) async {
-    if (data.value["language"] == langCode) return;
+  Future<void> loadLanguage(String? langCode) async {
+    if (null==langCode || data.value["language"] == langCode) return;
     // 🛰️ 假设这里是调用后端接口获取翻译
     var response = await Api.translate({"language":langCode})??{};
 

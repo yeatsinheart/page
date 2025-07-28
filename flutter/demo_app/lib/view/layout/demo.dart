@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/log/logger.dart';
+import 'package:flutter3/color-container/app-style.dart';
+import 'package:flutter3/color-container/container.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
 import 'package:flutter3/store/app_store.dart';
@@ -18,7 +19,6 @@ class LayoutDemo extends StatefulWidget {
 class _LayoutDemoState extends State<LayoutDemo> {
   int _currentIndex = 0;
   AppStore appStore = Get.find<AppStore>();
-
   @override
   void initState() {
     super.initState();
@@ -40,13 +40,9 @@ class _LayoutDemoState extends State<LayoutDemo> {
     return Scaffold(
       body: pages[_currentIndex],
       bottomNavigationBar: Container(
-        height: GlobalContext.getRem(1.24),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [BoxShadow(blurRadius: 3, color: Colors.black12)], // 还带了阴影呢
-        ),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: list),
-      ),
+        height: AppStyle.getRem(1.24),
+        child: AppContainer("bar-bottom", Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: list)),
+      )
     );
   }
 
@@ -61,13 +57,13 @@ class _LayoutDemoState extends State<LayoutDemo> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AppImg(isActive ? activeIcon.tr : icon.tr, width: GlobalContext.getRem(.5), height: GlobalContext.getRem(.5)),
+              AppImg(isActive ? activeIcon : icon, square: AppStyle.getRem(.5)),
               Text(
                 label.tr,
                 style: TextStyle(
-                  color: isActive ? Colors.green : Colors.black,
-                  fontSize: GlobalContext.getRem(0.24),
-                  height: 1.2, // 行高为字体大小，避免顶部留白
+                  color: isActive ? AppStyle.getMainColor() : null,
+                  fontSize: AppStyle.getRem(0.24),
+                  //height: 1.2, // 行高为字体大小，避免顶部留白
                   // 也可以尝试 height: null，如果你完全想用默认布局计算
                 ),
               ),

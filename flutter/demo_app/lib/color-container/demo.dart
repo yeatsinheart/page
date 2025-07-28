@@ -27,16 +27,19 @@ var config = {
   "container": {
     // 每一块都有对应组件
     "browser": ColorContainer(
-      // bg: {
-      //   "type": "linear",
-      //   "colors": ["#2196F3", "#FFF"],
-      //   "begin": "topLeft",
-      //   "end": "bottomRight",
-      // },
       bg:"#9195a3",
     ),
-    "page": ColorContainer(bg:'#f7f8ff'),
-
+    "page": ColorContainer(
+      bg: {
+        "type": "linear",
+        "colors": ["#2196F3", "#FFF"],
+        "stops":[0,0.6],
+        "begin": "topRight",
+        "end": "bottomLeft",
+      },
+        //bg:'#f7f8ff'
+    ),
+/*
     "div1": ColorContainer(),
     "div2": ColorContainer(),
     "div3": ColorContainer(),
@@ -48,7 +51,7 @@ var config = {
     "loading": ColorContainer(),
 
     "btn-color1": ColorContainer(),
-    "btn-color1-reverse": ColorContainer(),
+    "btn-color1-reverse": ColorContainer(),*/
   },
 };
 
@@ -62,8 +65,8 @@ class ColorContainer {
   final border;
   final shadow;
 
-  const ColorContainer({double? radius,this.mask, this.bg, this.bgImg,this.font, this.border, this.shadow})
-      : radius = radius ?? 0;
+  const ColorContainer({this.radius,this.mask, this.bg, this.bgImg,this.font, this.border, this.shadow})
+      ;
 
   factory ColorContainer.fromJson(Map<String, dynamic> json) {
     return ColorContainer(radius: json['radius'], mask: json['mask'], bg: json['bg'], bgImg: json['bgImg'], font: json['font'], border: json['border'], shadow: json['shadow']);

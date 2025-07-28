@@ -13,7 +13,7 @@ class Browser extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, dynamic> appStyle = getAppStyle();
     ColorFont fontStyle = getFontStyle();
-    double? maxWidth = appStyle["maxWidth"];
+    double? maxWidth = getMaxWidth();
     Widget page = AppContainer("page", child);
     return Theme(
       data: Theme.of(context).copyWith(
@@ -26,7 +26,7 @@ class Browser extends StatelessWidget {
               displayColor: ColorUtil.getColor(fontStyle.txt),
             )
             .copyWith(
-              bodyMedium: TextStyle(fontSize: GlobalContext.getRem(appStyle["fontSize"] ?? .22), height: appStyle["lineHeight"] ?? 1.5, color: ColorUtil.getColor(fontStyle.txt)),
+              bodyMedium: TextStyle(fontSize: getRem(appStyle["fontSize"] ?? .22), height: appStyle["lineHeight"] ?? 1.5, color: ColorUtil.getColor(fontStyle.txt)),
             ),
       ),
       child: AppContainer(

@@ -47,7 +47,7 @@ class AppContainer extends StatelessWidget {
           decoration: BoxDecoration(
             /// 边框
             border: style.border != null ? Border.all(color: ColorUtil.getColor(style.border), width: 2.0) : null,
-            borderRadius: (style.radius!=null && style.radius>0)?BorderRadius.circular(GlobalContext.getRem(style.radius)):null,
+            borderRadius: (style.radius != null && style.radius > 0) ? BorderRadius.circular(getRem(style.radius)) : null,
 
             /// 阴影
             boxShadow: style.shadow != null
@@ -68,12 +68,7 @@ class AppContainer extends StatelessWidget {
             /// 设置渐变背景颜色
             gradient: ColorUtil.getGradient(style.bg),
           ),
-          child: Center(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 570), // 你想要的最大宽度
-              child: child,
-            ),
-          ),
+          child: child,
         ),
       ),
     );

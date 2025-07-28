@@ -1,7 +1,124 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/context.dart';
 
+class ParsedColor {
+  final Color? color;
+  final Gradient? gradient;
+  ParsedColor({this.color, this.gradient});
+  bool get isGradient => gradient != null;
+  bool get isColor => color != null;
+}
+Alignment _parseAlignment(String name) {
+  switch (name) {
+    case 'topLeft': return Alignment.topLeft;
+    case 'topRight': return Alignment.topRight;
+    case 'bottomLeft': return Alignment.bottomLeft;
+    case 'bottomRight': return Alignment.bottomRight;
+    case 'topCenter': return Alignment.topCenter;
+    case 'bottomCenter': return Alignment.bottomCenter;
+    case 'centerLeft': return Alignment.centerLeft;
+    case 'centerRight': return Alignment.centerRight;
+    case 'center': default: return Alignment.center;
+  }
+}
+Gradient _buildGradient(Map<String, dynamic> json) {
+  final colors = (json['colors'] as List).map((c) => colorValue(c).color!).toList();
+  final List<double>? stops = (json['stops'] as List?)?.map((e) {
+    if (e is double) return e;
+    if (e is int) return e.toDouble();
+    if (e is String) return double.tryParse(e) ?? 0.0;
+    return 0.0;
+  }).toList();
+  final begin = _parseAlignment(json['begin'] ?? 'topLeft');
+  final end = _parseAlignment(json['end'] ?? 'bottomRight');
+
+  return LinearGradient(
+    colors: colors,
+    stops: stops,
+    begin: begin,
+    end: end,
+  );
+}
+ParsedColor colorValue(dynamic value) {
+  if (value == null) return ParsedColor(color: null);
+
+  if (value is Map<String, dynamic> && value['colors'] != null) {
+    // Gradient 对象解析
+    //final gradientMap = Map<String, dynamic>.from(value);
+    return ParsedColor(gradient: _buildGradient(value));
+  }
+
+  if (value is String) {
+    final str = value.trim().toLowerCase();
+    if (str == 'transparent') {
+      return ParsedColor(color: const Color(0x00000000));
+    }
+    // #RGB / #RRGGBB / #RRGGBBAA
+    if (str.startsWith('#')) {
+      String hex = str.substring(1);
+      if (hex.length == 3) {
+        hex = hex.split('').map((c) => '$c$c').join(); // #abc -> #aabbcc
+      }
+      if (hex.length == 6) {
+        // CSS标准：RRGGBB -> AARRGGBB
+        hex = 'FF$hex';
+      } else if (hex.length == 8) {
+        // CSS: RRGGBBAA -> Flutter: AARRGGBB
+        hex = hex.substring(6, 8) + hex.substring(0, 6);
+      }
+      return ParsedColor(color: Color(int.parse(hex, radix: 16)));
+    }
+    // rgb()
+    final rgbMatch = RegExp(r'^rgb\((\d+),\s*(\d+),\s*(\d+)\)$').firstMatch(str);
+    if (rgbMatch != null) {
+      final r = int.parse(rgbMatch.group(1)!);
+      final g = int.parse(rgbMatch.group(2)!);
+      final b = int.parse(rgbMatch.group(3)!);
+      return ParsedColor(color: Color.fromARGB(255, r, g, b));
+    }
+
+    // rgba()
+    final rgbaMatch = RegExp(r'^rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)$').firstMatch(str);
+    if (rgbaMatch != null) {
+      final r = int.parse(rgbaMatch.group(1)!);
+      final g = int.parse(rgbaMatch.group(2)!);
+      final b = int.parse(rgbaMatch.group(3)!);
+      final a = (double.parse(rgbaMatch.group(4)!) * 255).round();
+      return ParsedColor(color: Color.fromARGB(a, r, g, b));
+    }
+  }
+
+  return ParsedColor(color: null); // fallback
+}
+
 getThemeData() {
+  var style= {
+    "font": {"size": 0.22,"line-height":1.2,
+      "color":{"title": "#fff","name": "","txt": "","ghost": ""}
+    },
+    // 颜色值支持多种格式：可以为：null transparent=#00000000 hex简写#000 hex标准#FFFFFF hex带alpha#FFFFFF1A rgb(255, 0, 0) rgba(255, 0, 0, 0.5) gradient对象
+    "browser-bg": "","bg": "","mask": "", "border": "","shadow": "",
+    "gradient": {"colors": [],"stops": [],"center": "","begin": "","end": ""},
+
+    "colors": [],
+    "container": {
+      "browser": {"bg": "","font":{}, "border": "","shadow": null,"mask": null},
+      "page": {"bg": "","font":{}, "border": "","shadow": null,"mask": null},
+      "div1": {"bg": "","font":{}, "border": "","shadow": null,"mask": null},
+      "div2":  {"bg": "","font":{}, "border": "","shadow": null,"mask": null},
+      "div3":  {"bg": "","font":{}, "border": "","shadow": null,"mask": null},
+
+      "bar":  {"bg": "","font":{}, "border": "","shadow": null,"mask": null},
+      "bar-brand":  {"bg": "","font":{}, "border": "","shadow": null,"mask": null},
+      "bar-bottom":  {"bg": "","font":{}, "border": "","shadow": null,"mask": null},
+
+      "icon-close":  {"bg": "","font":{}, "border": "","shadow": null,"mask": null},
+
+      "btn-color1":  {"bg": "","font":{}, "border": "","shadow": null,"mask": null},
+      "btn-color1-reverse":  {"bg": "","font":{}, "border": "","shadow": null,"mask": null}
+    }
+  };
+
    //TextStyle fontSize = TextStyle(fontSize: GlobalContext.getRem(.22));
    TextStyle fontSize = TextStyle(fontSize: 16);
   return ThemeData(

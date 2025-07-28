@@ -94,6 +94,7 @@
       }
     ]
   },
+
   "env": "production",
   "baseUrl": "https://api.example.com",
   "websocketUrl": "wss://ws.example.com/socket",

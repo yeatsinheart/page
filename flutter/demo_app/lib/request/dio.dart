@@ -69,24 +69,7 @@ _onResponse(response, handler) async {
   return handler.next(response);
 }
 
-_onError(DioException e, ErrorInterceptorHandler handler) {
-  //Log.err('Request to: ${e.requestOptions.uri} ', e);
-  if (e.type == DioExceptionType.connectionError || e.type==DioExceptionType.connectionTimeout) {
-    Log.err("❌ 网络连接异常: ${e.requestOptions.uri}",e,stackTrace: e.stackTrace);
-    // ✅ 保留堆栈，异步抛出，避免被 Dio 截断
-    // Future.microtask(() {
-    //   Error.throwWithStackTrace(e, StackTrace.current);
-    // });
-    //handler.next(e);
 
-    // 手动抛出并保留栈
-    return Error.throwWithStackTrace(e, e.stackTrace);
-  } else {
-    Log.err("❌ 请求错误: ${e.requestOptions.uri} ${e.message}",e,stackTrace: e.stackTrace);
-    // 其他错误正常传递 后续堆栈信息会重置
-    handler.next(e);
-  }
-}
 
 _interceptors(Dio dio) {
   dio.interceptors.clear(); // 移除默认 LogInterceptor（有些包预置了）
@@ -99,9 +82,6 @@ _interceptors(Dio dio) {
       onResponse: (response, handler) {
         return _onResponse(response, handler);
       },
-      // onError: (DioException e, ErrorInterceptorHandler handler) {
-      //   return _onError(e, handler);
-      // },
     ),
   );
 }

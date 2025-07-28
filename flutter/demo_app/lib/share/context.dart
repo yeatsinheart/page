@@ -50,26 +50,12 @@ class GlobalContext {
     navigatorKey.currentState?.pop();
   }
 
-  static Color color() {
-    return Theme.of(context).colorScheme.primary;
-  }
-
-  static ColorScheme colorScheme() {
-    return Theme.of(context).colorScheme;
-  }
-
   static double getWidth() {
     return MediaQuery.of(context).size.width;
   }
 
   static double getHeight() {
     return MediaQuery.of(context).size.height;
-  }
-
-  static double getRem(double num) {
-    // 7.5rem=100%;
-    // 还有屏幕最大宽度 大屏显示H5效果 min(getWidth(),570);
-    return num * getWidth() / (750/100);
   }
 
 

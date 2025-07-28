@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/share/share_widget.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
 import 'package:flutter3/share/context.dart';
@@ -21,7 +22,7 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
   final ScrollController _pageScrollController = ScrollController();
   final ScrollController _categoryScrollController = ScrollController();
   final ScrollController _detailScrollController = ScrollController();
-  double persit_header_height = GlobalContext.getRem(1.24);
+  double persit_header_height = AppStyle.byRem(1.24);
   double left_right_height = GlobalContext.getHeight();
 
   persit_header(txt, color, height) {
@@ -136,7 +137,7 @@ void update(function){
             child: Row(
               children: [
                 Container(
-                  width: GlobalContext.getRem(2),
+                  width: AppStyle.byRem(2),
                   color: Colors.grey,
                   // 虽然这里滚动到底也会拉动最外层的滚动到底，但是也没啥影响
                   child: ListView.builder(

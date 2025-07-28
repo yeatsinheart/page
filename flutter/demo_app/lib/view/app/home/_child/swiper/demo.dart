@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
 
@@ -24,17 +25,17 @@ class _SwiperDemoState extends State<SwiperDemo> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: GlobalContext.getRem(.1), horizontal: GlobalContext.getRem(.2)),
+      padding: EdgeInsets.symmetric(vertical: AppStyle.byRem(.1), horizontal: AppStyle.byRem(.2)),
       child: Stack(
         alignment: Alignment.bottomCenter, // 控制指示器位置
         children: [
           CarouselSlider(
             items: imageList.map((url) {
-              return AppImg(url, width: GlobalContext.getRem(7), height: GlobalContext.getRem(3.5), radius: GlobalContext.getRem(.25));
+              return AppImg(url, width: AppStyle.byRem(7), height: AppStyle.byRem(3.5), radius: AppStyle.byRem(.25));
             }).toList(),
             carouselController: _controller,
             options: CarouselOptions(
-              height: GlobalContext.getRem(3.5),
+              height: AppStyle.byRem(3.5),
               autoPlay: true,
               enlargeCenterPage: false,//关闭放大
               aspectRatio: 2 / 1,
@@ -48,7 +49,7 @@ class _SwiperDemoState extends State<SwiperDemo> {
             ),
           ),
           Positioned(
-            bottom: GlobalContext.getRem(.2), // 距离底部位置
+            bottom: AppStyle.byRem(.2), // 距离底部位置
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: imageList.asMap().entries.map((entry) {

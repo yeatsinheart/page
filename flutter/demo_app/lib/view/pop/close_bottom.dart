@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/share/context.dart';
 
 import 'package:flutter3/share/overlay.dart';
@@ -24,10 +25,10 @@ class PopCloseBottom extends StatelessWidget {
                 maxHeight: GlobalContext.getHeight()*.8,
               ),
               child: Container(
-                padding: EdgeInsetsGeometry.all(GlobalContext.getRem(.2)),
+                padding: EdgeInsetsGeometry.all(AppStyle.byRem(.2)),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(GlobalContext.getRem(.2)), // 设置圆角半径
+                  borderRadius: BorderRadius.circular(AppStyle.byRem(.2)), // 设置圆角半径
                 ),
                 child: params??Container(),
               ),

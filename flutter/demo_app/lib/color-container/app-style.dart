@@ -7,7 +7,14 @@ import 'package:flutter3/store/app_store.dart';
 import 'package:get/get.dart';
 class AppStyle{
 
-  static getRem(v) {
+  // 按宽度的百分比
+  static byAppWidthPercent(v) {
+    double maxWidth = getLimitedMaxWidth() ?? GlobalContext.getWidth();
+    double x = min(GlobalContext.getWidth(), maxWidth);
+    return v * x /100;
+  }
+  //
+  static byRem(v) {
     // 7.5rem=100%;
     // 还有屏幕最大宽度 大屏显示H5效果
     double maxWidth = getLimitedMaxWidth() ?? GlobalContext.getWidth();

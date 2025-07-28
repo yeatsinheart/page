@@ -119,7 +119,7 @@ getThemeData() {
     }
   };
 
-   //TextStyle fontSize = TextStyle(fontSize: GlobalContext.getRem(.22));
+   //TextStyle fontSize = TextStyle(fontSize: AppStyle.getRem(.22));
    TextStyle fontSize = TextStyle(fontSize: 16);
   return ThemeData(
     scaffoldBackgroundColor: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
 
@@ -51,7 +52,7 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: GlobalContext.getRem(.2), vertical: GlobalContext.getRem(.05)),
+          padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2), vertical: AppStyle.byRem(.05)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -64,7 +65,7 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
           ),
         ),
         GridView.builder(
-          padding: EdgeInsets.symmetric(horizontal: GlobalContext.getRem(.2), vertical: GlobalContext.getRem(.05)),
+          padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2), vertical: AppStyle.byRem(.05)),
           // 可设置外边距
           //physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,

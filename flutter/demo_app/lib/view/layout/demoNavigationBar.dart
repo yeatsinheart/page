@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
 import 'package:flutter3/views.dart';
@@ -33,8 +34,8 @@ class _LayoutDemoNavigationBarState extends State<LayoutDemoNavigationBar> {
     for (Map<String, dynamic> item in items) {
       destinations.add(
         NavigationDestination(
-          icon: AppImg(item["iconI18nKey"], width: GlobalContext.getRem(.5), height: GlobalContext.getRem(.5)), // 你可以根据 iconI18nKey 加载图标
-          selectedIcon: AppImg(item["iconFocusI18nKey"], width: GlobalContext.getRem(.5), height: GlobalContext.getRem(.5)), // 你可以根据 iconFocusI18nKey 加载图标
+          icon: AppImg(item["iconI18nKey"], width: AppStyle.byRem(.5), height: AppStyle.byRem(.5)), // 你可以根据 iconI18nKey 加载图标
+          selectedIcon: AppImg(item["iconFocusI18nKey"], width: AppStyle.byRem(.5), height: AppStyle.byRem(.5)), // 你可以根据 iconFocusI18nKey 加载图标
           label: item['titleI18nKey'],
           tooltip: '',
         ),
@@ -58,7 +59,7 @@ class _LayoutDemoNavigationBarState extends State<LayoutDemoNavigationBar> {
             labelTextStyle: MaterialStateProperty.all(
               TextStyle(
                 color: Colors.green,
-                fontSize: GlobalContext.getRem(0.24),
+                fontSize: AppStyle.byRem(0.24),
                 height: 1.2, // 行高为字体大小，避免顶部留白
                 // 也可以尝试 height: null，如果你完全想用默认布局计算
               ),
@@ -66,7 +67,7 @@ class _LayoutDemoNavigationBarState extends State<LayoutDemoNavigationBar> {
           ),
         ),
         child: NavigationBar(
-          height: GlobalContext.getRem(1.24), // 这个属性在 Material3 支持
+          height: AppStyle.byRem(1.24), // 这个属性在 Material3 支持
           selectedIndex: _currentIndex,
           onDestinationSelected: (index) => setState(() => _currentIndex = index),
           destinations: destinations,

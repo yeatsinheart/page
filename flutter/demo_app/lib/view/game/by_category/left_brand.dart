@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
 import 'package:flutter3/share/context.dart';
@@ -51,13 +52,13 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
    if (header2_context != null) {
      final header2 = header2_context.findRenderObject() as RenderBox;
      final offset2 = header2.localToGlobal(Offset.zero).dy;
-      print("$offset2 ${offset2 - GlobalContext.getRem(.9)} $_header2Padding");
-     if(offset2 < GlobalContext.getRem(.9)){
+      print("$offset2 ${offset2 - AppStyle.byRem(.9)} $_header2Padding");
+     if(offset2 < AppStyle.byRem(.9)){
        setState(() {
-         _header2Padding = (offset2 - GlobalContext.getRem(.9)).abs();
+         _header2Padding = (offset2 - AppStyle.byRem(.9)).abs();
        });
      }
-     if(offset2 >= GlobalContext.getRem(.9) && _header2Padding!=0){
+     if(offset2 >= AppStyle.byRem(.9) && _header2Padding!=0){
        setState(() {
          _header2Padding = 0;
        });
@@ -114,7 +115,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     if (dataContext != null) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
-      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset - GlobalContext.getRem(.9);
+      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset - AppStyle.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
       _pageScrollController.animateTo(offset.clamp(_pageScrollController.position.minScrollExtent, _pageScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
@@ -206,11 +207,11 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       // padding 永远和header保持>一个导航栏高度
         pinned: true,
         // 最大高度
-        delegate: ShareSliverPersistentHeaderDelegate(height: GlobalContext.getRem(.9), child:Row(
+        delegate: ShareSliverPersistentHeaderDelegate(height: AppStyle.byRem(.9), child:Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // 左侧 logo
-        AppImg('assets/images/launcher.png', width: GlobalContext.getRem(0.7), height: GlobalContext.getRem(0.7)),
+        AppImg('assets/images/launcher.png', width: AppStyle.byRem(0.7), height: AppStyle.byRem(0.7)),
         TextButton(
           onPressed: () {
             setState(() {
@@ -222,7 +223,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
             foregroundColor: WidgetStateProperty.all(Colors.blue),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(GlobalContext.getRem(.1)),
+                borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
                 side: BorderSide(color: Colors.blue),
               ),
             ),
@@ -239,7 +240,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       // padding 永远和header保持>一个导航栏高度
       pinned: true,
       // 最大高度
-      delegate: ShareSliverPersistentHeaderDelegate(height: GlobalContext.getHeight() - GlobalContext.getRem(1.24), child: _buildTabBar()),
+      delegate: ShareSliverPersistentHeaderDelegate(height: GlobalContext.getHeight() - AppStyle.byRem(1.24), child: _buildTabBar()),
     ));
   }
   Widget scrollListener(child){
@@ -290,7 +291,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                   ),
                   getHeader1(),
                   SliverPadding(
-                    padding: EdgeInsets.symmetric(horizontal: GlobalContext.getRem(.2)),
+                    padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
                     sliver: SliverCrossAxisGroup(
                       slivers: [
                         getHeader2(),
@@ -362,8 +363,8 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: GlobalContext.getRem(.2),
-                          vertical: GlobalContext.getRem(.01),
+                          horizontal: AppStyle.getRem(.2),
+                          vertical: AppStyle.getRem(.01),
                         ),
                         child: GridView.builder(
                           shrinkWrap: true,

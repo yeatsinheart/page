@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/share/context.dart';
 import 'package:flutter3/views.dart';
 import 'package:get/get.dart';
@@ -99,7 +100,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
       final offset =
           box.localToGlobal(Offset.zero).dy +
           _pageScrollController.offset -
-          GlobalContext.getRem(.9);
+          AppStyle.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
 
@@ -248,8 +249,8 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: GlobalContext.getRem(.2),
-                          vertical: GlobalContext.getRem(.01),
+                          horizontal: AppStyle.getRem(.2),
+                          vertical: AppStyle.getRem(.01),
                         ),
                         child: GridView.builder(
                           shrinkWrap: true,

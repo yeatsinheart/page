@@ -40,7 +40,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
     return Scaffold(
       body: pages[_currentIndex],
       bottomNavigationBar: Container(
-        height: AppStyle.getRem(1.24),
+        height: AppStyle.byRem(1.24),
         child: AppContainer("bar-bottom", Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: list)),
       )
     );
@@ -57,12 +57,12 @@ class _LayoutDemoState extends State<LayoutDemo> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AppImg(isActive ? activeIcon : icon, square: AppStyle.getRem(.5)),
+              AppImg(isActive ? activeIcon : icon, square: AppStyle.byRem(.5)),
               Text(
                 label.tr,
                 style: TextStyle(
                   color: isActive ? AppStyle.getMainColor() : null,
-                  fontSize: AppStyle.getRem(0.24),
+                  fontSize: AppStyle.byRem(0.24),
                   //height: 1.2, // 行高为字体大小，避免顶部留白
                   // 也可以尝试 height: null，如果你完全想用默认布局计算
                 ),

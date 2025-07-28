@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/service/app_service.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
@@ -33,8 +34,8 @@ class _LayoutDemoBottomNavigationBarState extends State<LayoutDemoBottomNavigati
     for (Map<String, dynamic> item in items) {
       navItems.add(
         BottomNavigationBarItem(
-          icon: AppImg(item["iconI18nKey"], width: GlobalContext.getRem(.5), height: GlobalContext.getRem(.5)), // 你可以根据 iconI18nKey 加载图标
-          activeIcon: AppImg(item["iconFocusI18nKey"], width: GlobalContext.getRem(.5), height: GlobalContext.getRem(.5)), // 你可以根据 iconFocusI18nKey 加载图标
+          icon: AppImg(item["iconI18nKey"], width: AppStyle.byRem(.5), height: AppStyle.byRem(.5)), // 你可以根据 iconI18nKey 加载图标
+          activeIcon: AppImg(item["iconFocusI18nKey"], width: AppStyle.byRem(.5), height: AppStyle.byRem(.5)), // 你可以根据 iconFocusI18nKey 加载图标
           label: item['titleI18nKey'],
         ),
       );
@@ -59,12 +60,12 @@ class _LayoutDemoBottomNavigationBarState extends State<LayoutDemoBottomNavigati
         //selectedLabelStyle: TextStyle(color: AppService().skin()!.color),
         selectedItemColor: AppService().skin()!.fontSpecial,
         currentIndex: _currentIndex,
-        iconSize: GlobalContext.getRem(.5),
+        iconSize: AppStyle.byRem(.5),
         // rem
         //fixedColor: GlobalContext.color(),
-        unselectedFontSize: GlobalContext.getRem(.24),
+        unselectedFontSize: AppStyle.byRem(.24),
         // rem
-        selectedFontSize: GlobalContext.getRem(.24),
+        selectedFontSize: AppStyle.byRem(.24),
         // rem
         type: BottomNavigationBarType.fixed,
         //onTap: (index) {setState(() {_currentIndex = index;});},

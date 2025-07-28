@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/color-container/app-style.dart';
 
 import 'package:flutter3/share/context.dart';
 
@@ -18,7 +19,7 @@ class BtnLoginRegister extends StatelessWidget {
             foregroundColor: MaterialStateProperty.all(Colors.white),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(GlobalContext.getRem(.1)),
+                borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
               ),
             ),
           ),
@@ -31,7 +32,7 @@ class BtnLoginRegister extends StatelessWidget {
             foregroundColor: MaterialStateProperty.all(Colors.blue),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(GlobalContext.getRem(.1)),
+                borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
                 side: const BorderSide(color: Colors.blue),
               ),
             ),

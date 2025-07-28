@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/share/img.dart';
 
 import 'package:flutter3/share/context.dart';
@@ -14,7 +15,7 @@ class BarBrandLeftDemo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         // 左侧 logo
-        AppImg('assets/images/launcher.png', width: GlobalContext.getRem(0.7), height: GlobalContext.getRem(0.7)),
+        AppImg('assets/images/launcher.png', width: AppStyle.byRem(0.7), height: AppStyle.byRem(0.7)),
       ],
     );
   }

@@ -47,7 +47,7 @@ class AppContainer extends StatelessWidget {
           decoration: BoxDecoration(
             /// 边框
             border: style.border != null ? Border.all(color: ColorUtil.getColor(style.border), width: 2.0) : null,
-            borderRadius: (style.radius != null && style.radius > 0) ? BorderRadius.circular(AppStyle.getRem(style.radius)) : null,
+            borderRadius: (style.radius != null && style.radius > 0) ? BorderRadius.circular(AppStyle.byRem(style.radius)) : null,
 
             /// 阴影
             boxShadow: style.shadow != null

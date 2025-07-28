@@ -26,7 +26,7 @@ class Browser extends StatelessWidget {
               displayColor: ColorUtil.getColor(fontStyle.txt),
             )
             .copyWith(
-              bodyMedium: TextStyle(fontSize: AppStyle.getRem(appStyle["fontSize"] ?? .22), height: appStyle["lineHeight"] ?? 1.5, color: ColorUtil.getColor(fontStyle.txt)),
+              bodyMedium: TextStyle(fontSize: AppStyle.byRem(appStyle["fontSize"] ?? .22), height: appStyle["lineHeight"] ?? 1.5, color: ColorUtil.getColor(fontStyle.txt)),
             ),
       ),
       child: AppContainer(

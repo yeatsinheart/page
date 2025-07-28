@@ -63,7 +63,7 @@ void _clickTab(int index) {
     final offset =
         box.localToGlobal(Offset.zero).dy +
             _pageScrollController.offset -
-            GlobalContext.getRem(.9);
+            AppStyle.getRem(.9);
     //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
 

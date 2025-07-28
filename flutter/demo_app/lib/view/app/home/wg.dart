@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/share/overlay.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand/demo.dart';
 
@@ -39,8 +40,8 @@ class _AppHomeWgState extends State<AppHomeWg> {
                 backgroundColor: Colors.transparent,
                 pinned: true,
                 // 👈 吸顶关键
-                expandedHeight: GlobalContext.getRem(0.9),
-                flexibleSpace: FlexibleSpaceBar(titlePadding:EdgeInsetsGeometry.all(0),title: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, GlobalContext.getRem(0.7), null)),
+                expandedHeight: AppStyle.getRem(0.9),
+                flexibleSpace: FlexibleSpaceBar(titlePadding:EdgeInsetsGeometry.all(0),title: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, AppStyle.getRem(0.7), null)),
               ),*/
               // 固定顶部图片
               SliverMainAxisGroup(
@@ -48,10 +49,10 @@ class _AppHomeWgState extends State<AppHomeWg> {
                   SliverPersistentHeader(
                     pinned: true, // 关键：固定吸顶
                     delegate: _StickyHeaderDelegate(
-                      //height: currentHeaderIndex == 1 ? GlobalContext.getRem(0.9) : 0,
-                      height: GlobalContext.getRem(0.9),
+                      //height: currentHeaderIndex == 1 ? AppStyle.getRem(0.9) : 0,
+                      height: AppStyle.byRem(0.9),
                       child: BarBrandDemo(),
-                        //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, GlobalContext.getRem(0.7), null),
+                        //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, AppStyle.getRem(0.7), null),
 
                     ),
                   ),
@@ -66,7 +67,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
                 delegate: _StickyHeaderDelegate(
                   child: Container(
                     color: Colors.white, // 避免透明叠层
-                    padding: EdgeInsets.symmetric(horizontal: GlobalContext.getRem(.2)),
+                    padding: EdgeInsets.symmetric(horizontal: AppStyle.getRem(.2)),
                     alignment: Alignment.centerLeft,
                     child: GameHomeDemo1(),
                     */

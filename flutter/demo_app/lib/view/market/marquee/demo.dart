@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/color-container/app-style.dart';
 import 'package:marquee/marquee.dart';
 
 import 'package:flutter3/share/context.dart';
@@ -69,18 +70,18 @@ class _MarketMarqueeDemoState extends State<MarketMarqueeDemo> {
     // 16.032px
     // ;
     return Container(
-      height: GlobalContext.getRem(.5),
+      height: AppStyle.byRem(.5),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: GlobalContext.getRem(.2)),
+        padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
         child: Row(
           children: [
-            Icon(Icons.volume_up, color: Colors.white, size: GlobalContext.getRem(.36)), // 📢 图标
+            Icon(Icons.volume_up, color: Colors.white, size: AppStyle.byRem(.36)), // 📢 图标
             SizedBox(width: 8),
             Expanded(
               child: Marquee(
                 text: messages.join('     ★     '),
                 // 用特殊字符分隔,
-                style: TextStyle(fontSize: GlobalContext.getRem(.24), height: 2),
+                style: TextStyle(fontSize: AppStyle.byRem(.24), height: 2),
                 // 2倍line-height:这样才居中
                 scrollAxis: Axis.horizontal,
                 crossAxisAlignment: CrossAxisAlignment.start,

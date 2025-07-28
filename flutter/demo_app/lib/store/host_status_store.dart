@@ -46,7 +46,7 @@ class HostStatusStore extends SaveAsJsonStore<HostStatusStore> {
     try {
       line.status.value = "testing";
       /// 因为要指定域名
-      await Api.checkHost(line.getHost());
+      //await Api.checkHost(line.getHost());
       stopwatch.stop();
       // 是不是对应域名的响应速度回写到线路中呢。
       line.speed.value = stopwatch.elapsedMilliseconds;

@@ -42,45 +42,36 @@ Dio getDio(host) {
     ),
   );
   _https_check(dio);
-  _interceptors(dio);
+  _filter(dio);
   return dio;
 }
 
-_onRequest(options, handler) async {
-  // 你可以从缓存/本地存储等获取 token
-  // final token = await getToken(); // 假设是异步获取
-  // if (token != null) {
-  //   options.headers['Authorization'] = 'Bearer $token';
-  // }
-  options.headers['Accept-Language'] = Get.find<LanguageStore>().data.value["language"];
-  // 模拟测试
-  var response = ApiTest.test(options);
-  if (null != response) return handler.resolve(Response(requestOptions: options, data: response, statusCode: 200));
-
-  return handler.next(options);
-}
-
-_onResponse(response, handler) async {
-  final headers = response.headers;
-  final api_request_version = headers.value(ApiCache.versionKey);
-  if (null != api_request_version) {
-    ApiCache.setCache(ApiCache.versionKey, api_request_version, expire: -1);
-  }
-  return handler.next(response);
-}
-
-
-
-_interceptors(Dio dio) {
+_filter(Dio dio) {
   dio.interceptors.clear(); // 移除默认 LogInterceptor（有些包预置了）
   // 动态全局请求头
   dio.interceptors.add(
     InterceptorsWrapper(
-      onRequest: (options, handler) {
-        return _onRequest(options, handler);
+      onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
+        options.headers['Accept-Language'] = Get.find<LanguageStore>().data.value["language"];
+        if(options.method=='GET'){
+          options.sendTimeout=null;
+        }
+        if(options.data==null){
+          options.sendTimeout=null;
+        }
+        // 模拟测试
+        var response = ApiTest.test(options);
+        if (null != response) return handler.resolve(Response(requestOptions: options, data: response, statusCode: 200));
+
+        return handler.next(options);
       },
-      onResponse: (response, handler) {
-        return _onResponse(response, handler);
+      onResponse: (Response<dynamic> response, ResponseInterceptorHandler handler) {
+        final headers = response.headers;
+        final api_request_version = headers.value(ApiCache.versionKey);
+        if (null != api_request_version) {
+          ApiCache.setCache(ApiCache.versionKey, api_request_version, expire: -1);
+        }
+        return handler.next(response);
       },
     ),
   );

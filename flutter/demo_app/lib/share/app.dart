@@ -3,6 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3/_theme_data.dart';
+
+import 'package:flutter3/color-container/browser.dart';
+
 import 'package:get/get.dart';
 
 import 'package:flutter3/service/app_service.dart';
@@ -40,7 +43,7 @@ class App extends StatelessWidget {
         return child!;
       },
 
-      home: NetworkMonitor(child: child),
+      home: Browser(NetworkMonitor(child: child)),
 
       /// 按照路由展示界面
       // onGenerateRoute: (setting) {

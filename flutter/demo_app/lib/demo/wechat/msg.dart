@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3/service/app_service.dart';
-import 'package:flutter3/share/app_img.dart';
+import 'package:flutter3/share/img.dart';
 
 class WechatMsg extends StatefulWidget {
   const WechatMsg({super.key, required params});

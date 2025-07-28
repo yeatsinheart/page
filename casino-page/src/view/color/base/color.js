@@ -7,15 +7,19 @@ export const colorStore = defineStore("colorStore", {
             font:{title:'#323233',sub_title:'#646566',normal:'#737272',placeholder:'#969799',disabled:'#BBBBBB'},
             browser:'#9195a3', page:'#f7f8ff', border:'#e3e3e31a',shadow:'#41454940',mask:'#0000001f',
             gap:{bg:'#d7dae0ff',font:'#adb6c4'},
+
             notify:{bg:'#d7dae0ff',font:'#adb6c4'},
             recommend:{bg:'#d7dae0ff',font:'#adb6c4'},
             reverse:{bg:'#0e131b',font:'#adb6c4'},
+
             card:{bg:'#ffffff',border:'rgba(227, 227, 227, .1)',shadow:'#41454940'},
             div1:{bg:'#f6f6f6'},
             div2:{bg:'#E4E4E4'},
+
             bar:{bg:'#ffffff',font:'#768096'},
             bar_top:{bg:'#ffffff',font:'#768096'},
             bar_bottom:{bg:'#ffffff',font:'#768096'},
+
             grid:{shadow:'#41454940'},
             input:{shadow:'#41454940'},
         },

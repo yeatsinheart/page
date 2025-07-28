@@ -97,5 +97,9 @@ fileToName(path) {
   if (bIndex > -1) {
     return fileToName(upAfterSp(path, bIndex));
   }
+  int xIndex = path.indexOf("-");
+  if (xIndex > -1) {
+    return fileToName(upAfterSp(path, xIndex));
+  }
   return path;
 }

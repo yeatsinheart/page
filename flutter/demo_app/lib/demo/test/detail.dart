@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 import 'package:flutter3/service/game.dart';
-import '../../share/app_img.dart';
+import '../../share/img.dart';
 import '../../share/context.dart';
 
 class TestDetail extends StatelessWidget {

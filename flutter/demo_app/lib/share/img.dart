@@ -7,7 +7,7 @@ import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:get/get.dart';
 
-class AppImg extends StatelessWidget {
+class AppImg extends StatelessWidget  {
   final String url;
   final double? square;
   final double? width;
@@ -22,7 +22,7 @@ class AppImg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ClipOval = ClipRRect[radius为半径时] = 圆形⭕️
-    final image = img(url, fit!, loadingBg, loadingColor!);
+    final image = img(url, fit:fit!, loadingBg: loadingBg, loadingColor:loadingColor!);
     var item = null != radius ? ClipRRect(borderRadius: BorderRadius.circular(radius!), child: image) : image;
 
     final effectiveWidth = square ?? width;
@@ -72,7 +72,7 @@ _loadingWidget(loadingColor) => AspectRatio(
   ),
 );
 
-Widget img(String url, BoxFit fit, Color? loadingBg, Color loadingColor) {
+Widget img(String url, {BoxFit? fit, Color? loadingBg, Color? loadingColor}) {
   String resource = url.tr;
   // web方式会自动加前缀/assets 所以浏览器运行，需要移除
   if(kIsWeb && resource.startsWith("assets/")){

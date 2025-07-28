@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter3/views.dart';
@@ -66,6 +68,7 @@ class GlobalContext {
 
   static double getRem(double num) {
     // 7.5rem=100%;
+    // 还有屏幕最大宽度 大屏显示H5效果 min(getWidth(),570);
     return num * getWidth() / (750/100);
   }
 

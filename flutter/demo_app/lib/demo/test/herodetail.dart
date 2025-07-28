@@ -6,7 +6,7 @@ import 'package:flutter3/share/context.dart';
 
 import 'package:flutter3/service/game.dart';
 
-import '../../share/app_img.dart';
+import '../../share/img.dart';
 
 class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStateMixin {
   final ScrollController _pagecontroller = new ScrollController();

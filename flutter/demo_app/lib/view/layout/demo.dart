@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/log/logger.dart';
-import 'package:flutter3/share/app_img.dart';
+import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
 import 'package:flutter3/store/app_store.dart';
 import 'package:flutter3/views.dart';

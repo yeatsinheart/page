@@ -5,7 +5,7 @@ import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
 import 'package:flutter3/share/context.dart';
-import 'package:flutter3/app-view.dart';
+import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
 
 import '../../../service/data/skin_data.dart';

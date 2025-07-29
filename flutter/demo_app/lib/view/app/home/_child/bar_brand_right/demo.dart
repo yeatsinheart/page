@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/app-route.dart';
 
 import 'package:flutter3/share/context.dart';
 import 'package:flutter3/share/overlay.dart';
+import 'package:flutter3/view/app-view.dart';
 import 'btn_login_register.dart';
 
 class BarBrandRightDemo extends StatelessWidget {
@@ -20,7 +22,7 @@ class BarBrandRightDemo extends StatelessWidget {
           //IconButton(onPressed: () {GlobalContext.load("game_search");}, icon: Icon(Icons.search)),
           IconButton(
             onPressed: () {
-              GlobalContext.load("game_search");
+              AppRoute.slideToKey("game_search");
               //GlobalOverlayContext.show("game_search", autoRemoveTime: 3000);
             },
             icon: Icon(Icons.search),

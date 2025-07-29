@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/app-route.dart';
+import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
 
 import '../../../share/context.dart';
@@ -44,7 +46,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
               TextButton(
                 onPressed: () {
                   setState(() {
-                    GlobalContext.loadByPath("/game/by_category/left_brand");
+                    AppRoute.slideToPath("/game/by_category/left_brand");
                   });
                 },
                 child: Text("更多 >", style: TextStyle(color: Colors.blue)),

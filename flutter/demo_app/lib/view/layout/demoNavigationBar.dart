@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
-import 'package:flutter3/app-view.dart';
+import 'package:flutter3/view/app-view.dart';
 
 class LayoutDemoNavigationBar extends StatefulWidget {
   const LayoutDemoNavigationBar({super.key, required params});

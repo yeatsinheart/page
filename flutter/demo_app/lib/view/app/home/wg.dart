@@ -5,7 +5,7 @@ import 'package:flutter3/view/app/home/_child/bar_brand/demo.dart';
 
 import '../../../service/data/skin_data.dart';
 import '../../../share/context.dart';
-import '../../../app-view.dart';
+import '../../app-view.dart';
 
 class AppHomeWg extends StatefulWidget {
   final dynamic params;

@@ -1,4 +1,6 @@
+import 'package:flutter3/app-route.dart';
 import 'package:flutter3/share/context.dart';
+import 'package:flutter3/view/app-view.dart';
 
 import 'cache.dart';
 import 'api_request.dart';
@@ -42,7 +44,7 @@ class Api {
   Future<dynamic> request(dynamic data) async {
     if (loginRequired && notLoggedIn()) {
       //   /// 未登陆 去 登陆
-      GlobalContext.load("login", params: {"action": "login"});
+      AppRoute.slideToKey("login", params: {"action": "login"});
       Future.error("未登陆");
       //   //userStore().toLogin();return Promise.reject("un-login");
     }

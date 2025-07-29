@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter3/app-view.dart';
+import 'package:flutter3/view/app-view.dart';
 
 class GlobalContext {
   // 如果你的路由结构使用了 nested Navigator 或 shell（如 go_router 的 ShellRoute），则 GlobalKey<NavigatorState> 控制的并非是嵌套路由中的 Navigator，需要使用局部 navigatorKey。
@@ -19,29 +19,7 @@ class GlobalContext {
   }
   static OverlayState? get overlay => navigatorKey.currentState!.overlay;
 
-  // 整个组件碰上物理返回时，是否返回 WillPopScope(onWillPop: 判断方法,child: 组件,),
-  /// 获取路由携带的参数
-  static Object? routeArgs() {
-    return ModalRoute.of(context)!.settings.arguments;
-  }
 
-  static void load(String key,{params}) {
-    // push(route) 表示 “压入一个新页面” 到栈顶。原有页面仍保留在栈中，用户可以返回。
-    // pushAndRemoveUntil(route, predicate) 移除部分或全部页面，只保留满足条件的页面 登录后清除登录页、重置栈 (route) => false, // false 表示移除所有旧页面
-    //   ModalRoute.withName('/home'), // 保留名为 /home 的页面
-    navigatorKey.currentState?.push(asRoute(key,params: params));
-  }
-
-  static void loadByPath(String path,{params}) {
-    // push(route) 表示 “压入一个新页面” 到栈顶。原有页面仍保留在栈中，用户可以返回。
-    // pushAndRemoveUntil(route, predicate) 移除部分或全部页面，只保留满足条件的页面 登录后清除登录页、重置栈 (route) => false, // false 表示移除所有旧页面
-    //   ModalRoute.withName('/home'), // 保留名为 /home 的页面
-
-    navigatorKey.currentState?.push(PageRouteBuilder(
-        pageBuilder: (cxt, ani1, ani2) {
-          return FadeTransition(opacity: ani1, child: getWidgetByPath(path,params: params)??Container());
-        }));
-  }
 
   static void open(Route route) {
     navigatorKey.currentState?.push(route);

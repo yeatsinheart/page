@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-context.dart';
-import 'package:flutter3/app-view.dart';
+import 'package:flutter3/app-route.dart';
+import 'package:flutter3/view/app-view.dart';
 import 'package:flutter3/share/context.dart';
 import 'package:mutex/mutex.dart';
 
@@ -49,7 +50,7 @@ class AppCsPaneState extends State<TestCs> with TickerProviderStateMixin {
     try {
       if (close_process > 1 && !dead) {
         dead = true;
-        AppView.back();
+        AppRoute.back();
       }
     } finally {
       _lock.release();
@@ -146,7 +147,7 @@ class AppCsPaneState extends State<TestCs> with TickerProviderStateMixin {
                                     child: IconButton(
                                         onPressed: () {
                                           //ov.remove();
-                                          AppView.back();
+                                          AppRoute.back();
                                           ;
                                         },
                                         icon: Icon(

@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-context.dart';
+import 'package:flutter3/app-route.dart';
 import 'package:flutter3/service/app_service.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/view/app-view.dart';
 
 class AppSplashDemo extends StatefulWidget {
 
@@ -23,7 +25,7 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
 
   void nextPage() {
     _timer.cancel();
-    GlobalContext.load("app_layout", params: {"test": "test"});
+    AppRoute.slideToKey("app_layout", params: {"test": "test"});
   }
 
   getTip() {

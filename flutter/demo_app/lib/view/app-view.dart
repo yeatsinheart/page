@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-context.dart';
+import 'package:flutter3/app-route.dart';
 import 'package:flutter3/log/logger.dart' show Log;
 import 'package:flutter3/widget_of_path_info.dart';
 
@@ -22,22 +23,14 @@ final Map<String, String> ViewKeyPathMap = {
 
 };
 class AppView{
-  static slideTo(String? key, {params, Offset from = SlideRoute.right, int time = 300}){
-    AppContext.navigatorKey.currentState?.push(SlideRoute(byKey(key,params: params), from: from, time: time));
-  }
-
-  static void back() {
-    AppContext.navigatorKey.currentState?.pop();
-  }
-
-  static byKey(String? key, { params}){if (key == null) {
+  static Widget? ofKey(String? key, { params}){if (key == null) {
     Log.e('getWidget: key is null');
     return null;
   }
-    return byPath(ViewKeyPathMap[key],params: params);
+    return ofPath(ViewKeyPathMap[key],params: params);
   }
 
-  static Widget? byPath(String? path, {key, params}) {
+  static Widget? ofPath(String? path, {key, params}) {
     if (path == null) {
       Log.e('getWidgetByPath: path 路径为空 null');
       return null;
@@ -68,13 +61,4 @@ Widget? getWidgetByPath(String? path, {key, params}) {
     Log.e('getWidgetByPath: widget 找不到 path $path');
   }
   return widget;
-}
-
-PageRoute asRoute(String key,{params,RouteSettings? settings}) {
-  return PageRouteBuilder(
-    settings: settings,
-    pageBuilder: (cxt, ani1, ani2) {
-      return FadeTransition(opacity: ani1, child: widgetOfKey(key,params: params) ?? Container());
-    },
-  );
 }

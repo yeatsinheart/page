@@ -11,7 +11,6 @@ import 'package:flutter3/view/game/home_category/hot_game_demo.dart';
 import 'package:flutter3/view/game/home_category/list_brand.dart';
 import 'package:flutter3/view/game/search/demo.dart';
 import 'package:flutter3/view/layout/demo.dart';
-import 'package:flutter3/view/layout/demoBottomNavigationBar.dart';
 import 'package:flutter3/view/market/marquee/demo.dart';
 import 'package:flutter3/view/market/swiper/demo.dart';
 import 'package:flutter3/view/page/404/undified.dart';
@@ -48,8 +47,6 @@ Widget? widgetOfPath(String? path, {key, params}) {
       return GameSearchDemo(key: key, params: params);
     case "/layout/demo":
       return LayoutDemo(key: key, params: params);
-    case "/layout/demoBottomNavigationBar":
-      return LayoutDemoBottomNavigationBar(key: key, params: params);
     case "/market/marquee/demo":
       return MarketMarqueeDemo(key: key, params: params);
     case "/market/swiper/demo":

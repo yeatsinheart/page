@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/app-context.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/share/context.dart';
-import 'package:flutter3/views.dart';
+import 'package:flutter3/app-view.dart';
 import 'package:get/get.dart';
 
 
@@ -75,7 +75,7 @@ class _GameHomeLeftCategoryDemoState extends State<GameHomeLeftCategoryDemo> {
   }
 
   void _scrollTabToCenter(int index) {
-    final double screenWidth = AppContext.width;
+    final double screenWidth = AppStyle.screenWidth;
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
@@ -187,7 +187,7 @@ class _GameHomeLeftCategoryDemoState extends State<GameHomeLeftCategoryDemo> {
             sliver: SliverPersistentHeader(
               pinned: true,
               // 最大高度
-              delegate: _StickyHeaderDelegate(height: AppContext.height - AppStyle.byRem(1.24), child: _buildTabBar()),
+              delegate: _StickyHeaderDelegate(height: AppStyle.screenHeight - AppStyle.byRem(1.24), child: _buildTabBar()),
             ),
           ),
 

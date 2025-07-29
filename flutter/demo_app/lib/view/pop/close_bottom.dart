@@ -22,8 +22,8 @@ class PopCloseBottom extends StatelessWidget {
           children: [
             ConstrainedBox(
               constraints: BoxConstraints(
-                maxWidth: AppContext.width*.8,
-                maxHeight: AppContext.height*.8,
+                maxWidth: AppStyle.screenWidth*.8,
+                maxHeight: AppStyle.screenHeight*.8,
               ),
               child: Container(
                 padding: EdgeInsetsGeometry.all(AppStyle.byRem(.2)),

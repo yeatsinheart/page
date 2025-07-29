@@ -6,6 +6,7 @@ import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
 
 import 'package:flutter3/service/game.dart';
+import 'package:flutter3/style/app-style.dart';
 import 'nestcs.dart';
 
 class TestAppstore extends StatefulWidget {
@@ -143,7 +144,7 @@ class _AppStoreState extends State<TestAppstore> with TickerProviderStateMixin {
                     Hero(tag: 'tag${game.title}', child: gameView(game, 250, 15)),
                     Positioned(
                       top: 440,
-                      child: Hero(tag: 'hero-dec-${game.title}', child: SizedBox(width: AppContext.width, height: 10)),
+                      child: Hero(tag: 'hero-dec-${game.title}', child: SizedBox(width: AppStyle.screenWidth, height: 10)),
                     )
                   ],
                 )

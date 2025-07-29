@@ -4,7 +4,7 @@ import 'package:flutter3/style/container.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
 import 'package:flutter3/store/global-config.dart';
-import 'package:flutter3/views.dart';
+import 'package:flutter3/app-view.dart';
 import 'package:get/get.dart';
 
 import '../../init/app-initializer.dart';

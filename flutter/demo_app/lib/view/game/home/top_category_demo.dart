@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/app-context.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/share/context.dart';
-import 'package:flutter3/views.dart';
+import 'package:flutter3/app-view.dart';
 import 'package:get/get.dart';
 
 
@@ -73,7 +73,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
   }
 
   void _scrollTabToCenter(int index) {
-    final double screenWidth = AppContext.width;
+    final double screenWidth = AppStyle.screenWidth;
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;

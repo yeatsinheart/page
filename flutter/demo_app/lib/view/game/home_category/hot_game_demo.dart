@@ -47,7 +47,7 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
   @override
   Widget build(BuildContext context) {
     final displayItems = _expanded ? items : items.take(leastShow).toList();
-    double gridWidth = (AppContext.width - (crossAxisSpacing * (columns - 1))) / columns; // 宽高比
+    double gridWidth = (AppStyle.screenWidth - (crossAxisSpacing * (columns - 1))) / columns; // 宽高比
     double gridHeight = gridWidth / childAspectRatio; // 宽高比
 
     return Column(

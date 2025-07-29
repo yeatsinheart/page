@@ -3,6 +3,7 @@ import 'package:flutter3/app-context.dart';
 
 
 import 'package:flutter3/service/game.dart';
+import 'package:flutter3/style/app-style.dart';
 import '../../share/img.dart';
 import '../../share/context.dart';
 
@@ -23,7 +24,7 @@ class TestDetail extends StatelessWidget {
               Hero(
                 tag: 'hero${game?.title}',
                 child: Container(
-                  height: AppContext.height,
+                  height: AppStyle.screenHeight,
                   child: Stack(
                     children: <Widget>[
                       AppImg(

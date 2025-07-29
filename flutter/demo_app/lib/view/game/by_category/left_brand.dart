@@ -5,7 +5,7 @@ import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
 import 'package:flutter3/share/context.dart';
-import 'package:flutter3/views.dart';
+import 'package:flutter3/app-view.dart';
 import 'package:get/get.dart';
 
 import '../../../service/data/skin_data.dart';
@@ -99,7 +99,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
   }
 
   void _scrollTabToCenter(int index) {
-    final double screenHeight = AppContext.height;
+    final double screenHeight = AppStyle.screenHeight;
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
@@ -241,7 +241,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       // padding 永远和header保持>一个导航栏高度
       pinned: true,
       // 最大高度
-      delegate: ShareSliverPersistentHeaderDelegate(height: AppContext.height - AppStyle.byRem(1.24), child: _buildTabBar()),
+      delegate: ShareSliverPersistentHeaderDelegate(height: AppStyle.screenHeight - AppStyle.byRem(1.24), child: _buildTabBar()),
     ));
   }
   Widget scrollListener(child){

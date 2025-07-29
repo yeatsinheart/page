@@ -3,27 +3,12 @@ import 'package:flutter/material.dart';
 class AppContext {
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Rex');
 
-  static BuildContext get _context {
+  static BuildContext get context {
     final ctx = navigatorKey.currentState?.context;
     if (ctx == null) throw Exception('GlobalContext.context is null');
     return ctx;
   }
 
-  static void go(key, {Offset from = AnimationOfRoute.right, int time = 500, RouteSettings? settings}) {
-    navigatorKey.currentState?.push(AnimationOfRoute(Container(), from: from, time: time));
-  }
-
-  static void back() {
-    navigatorKey.currentState?.pop();
-  }
-
-  static double get width {
-    return MediaQuery.of(_context).size.width;
-  }
-
-  static double get height {
-    return MediaQuery.of(_context).size.height;
-  }
 }
 
 /**
@@ -38,11 +23,17 @@ class AppContext {
     Navigator.pushReplacement
 
  * */
-
+//✅ 常见的路由动画效果（基于 Flutter 内置 Transition Widget）
+// 以下是 Flutter 路由切换中最常用的动画类型和对应的 Widget：
+// 动画类型	动画 Widget	说明
+// 滑动	SlideTransition	页面从某个方向滑入/滑出
+// 渐隐（淡入）	FadeTransition	页面透明度逐渐变化
+// 缩放	ScaleTransition	页面从小变大 缩放动画（或相反）
+// 旋转	RotationTransition	页面旋转进入
+// 组合动画	FadeTransition + SlideTransition	常见在登录页/弹窗
 // RelativePositionedTransition 平移动画
-// ScaleTransition 缩放动画
 // SizeTransition 宽度或者高度缩放
-class AnimationOfRoute extends PageRouteBuilder {
+class SlideRoute extends PageRouteBuilder {
   static const Offset left = Offset(-1, 0);
   static const Offset leftTop = Offset(-1, -1);
   static const Offset leftBottom = Offset(-1, 1);
@@ -54,7 +45,7 @@ class AnimationOfRoute extends PageRouteBuilder {
 
   // 左上角为-1,-1 左下角为 0,0  右上角为1,-1 右为 1,0  右下角 1,1
   // 默认页面都是从右到左
-  AnimationOfRoute(this.newPage, {Offset from = right, int time = 500, RouteSettings? settings})
+  SlideRoute(this.newPage, {Offset from = right, int time = 500, RouteSettings? settings})
     : super(
         settings: settings,
         transitionDuration: Duration(milliseconds: time),

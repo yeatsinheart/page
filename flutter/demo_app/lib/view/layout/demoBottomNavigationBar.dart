@@ -3,7 +3,7 @@ import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/service/app_service.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
-import 'package:flutter3/views.dart';
+import 'package:flutter3/app-view.dart';
 
 class LayoutDemoBottomNavigationBar extends StatefulWidget {
   const LayoutDemoBottomNavigationBar({super.key, required params});

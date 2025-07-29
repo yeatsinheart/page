@@ -5,6 +5,7 @@ import 'package:flutter3/app-context.dart';
 import 'package:flutter3/service/app_service.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
+import 'package:flutter3/style/app-style.dart';
 
 class AppSplashDemo extends StatefulWidget {
 
@@ -46,10 +47,10 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
       children: [
         Column(
           children: [
-            AppImg(AppService().get()!.splash,width: AppContext.width,height:AppContext.height * 7 / 8),
+            AppImg(AppService().get()!.splash,width: AppStyle.screenWidth,height:AppStyle.screenHeight * 7 / 8),
             Expanded(
               child: Container(
-                width: AppContext.width,
+                width: AppStyle.screenWidth,
                 color: AppService().skin()?.container,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐

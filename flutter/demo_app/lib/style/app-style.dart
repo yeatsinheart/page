@@ -47,7 +47,9 @@ class AppStyle {
     return ColorUtil.getColor(getColors()[0]);
   }
 }
-
+/// 颜色搭配方案，不要想太多，纯颜色，不要想着这个容器那个容器要控制各种鬼东西。直接产出themeData最好
+/// flutter上，就是一个 themedata -> 下面所有 容器需要对应的修改咯。？？？按钮什么的ofButton ofContainer ofXxxx
+/// css上，就是一个css定义咯。.page{} .div1{}
 class ColorContainer {
   // 颜色值支持多种格式：可以为：null transparent=#00000000 hex简写#000 hex标准#FFFFFF hex带alpha#FFFFFF1A rgb(255, 0, 0) rgba(255, 0, 0, 0.5) gradient对象
   final mask;

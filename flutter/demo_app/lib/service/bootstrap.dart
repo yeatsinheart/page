@@ -5,9 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/request/api.dart';
 import 'package:flutter3/service/cache.dart';
+import 'package:flutter3/store/host-status.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
 
+import 'package:get/get.dart';
 /// 获取 分发 数据
 class BootstrapService {
   static const table = 'bootstrap_config';
@@ -31,6 +33,7 @@ class BootstrapService {
   }
 
   static init() async {
+    Get.put(HostStatusStore());
     _updateAsync();
     await _dispatch(await _get());
   }

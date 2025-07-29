@@ -3,11 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter3/color-container/color-util.dart';
 import 'package:flutter3/color-container/app-style.dart';
+import 'package:flutter3/style/text.dart';
 
 getIconButtonThemeData(){
   return IconButtonThemeData(
     style: ButtonStyle(
-      textStyle: WidgetStateProperty.all(globalTextStyle),
+      textStyle: WidgetStateProperty.all(getTextStyle()),
       //iconSize: WidgetStateProperty.all(28), // 图标大小
       //padding: WidgetStateProperty.all(EdgeInsets.all(8)), // 内边距
       foregroundColor: WidgetStateProperty.all(Colors.blue), // 图标颜色
@@ -19,4 +20,3 @@ getIconButtonThemeData(){
     ),
   );
 }
-TextStyle globalTextStyle = TextStyle(fontSize: AppStyle.byRem(.22), height: 1.5, color: ColorUtil.getColor(AppStyle.getFontStyle().txt));

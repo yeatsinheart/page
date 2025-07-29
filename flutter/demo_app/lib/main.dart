@@ -19,7 +19,6 @@ import 'package:flutter3/store/store_init_binding.dart';
 import 'package:get/get.dart';
 
 import 'app.dart';
-import 'view/style/flutter-style.dart';
 import 'views.dart';
 
 //Flutter 中存在三棵树，Widget[虚拟的结构]、Element 和 RenderObject。

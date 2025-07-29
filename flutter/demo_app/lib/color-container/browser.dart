@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/color-container/color-util.dart';
 import 'package:flutter3/color-container/container.dart';
-import 'package:flutter3/log/logger.dart';
-import 'package:flutter3/share/context.dart';
+import 'package:flutter3/style/flutter-style.dart';
 
-import '../view/style/flutter-style.dart';
 
 class Browser extends StatelessWidget {
   final child;

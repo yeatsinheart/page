@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter3/color-container/color-util.dart';
 import 'package:flutter3/color-container/app-style.dart';
-import 'package:flutter3/view/style/text.dart';
+import 'package:flutter3/style/text.dart';
 
 getTextButtonThemeData(){
   return TextButtonThemeData(

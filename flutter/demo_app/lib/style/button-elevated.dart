@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter3/color-container/color-util.dart';
 import 'package:flutter3/color-container/app-style.dart';
+import 'package:flutter3/style/text.dart';
 
 getElevatedButtonThemeData(){
   return ElevatedButtonThemeData(
@@ -17,8 +18,7 @@ getElevatedButtonThemeData(){
       // 背景颜色
       // foregroundColor: Colors.blue,// 字体颜色
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.byRem(.14))),
-      textStyle: globalTextStyle,
+      textStyle: getTextStyle(),
     ),
   );
 }
-TextStyle globalTextStyle = TextStyle(fontSize: AppStyle.byRem(.22), height: 1.5, color: ColorUtil.getColor(AppStyle.getFontStyle().txt));

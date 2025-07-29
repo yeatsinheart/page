@@ -3,12 +3,17 @@ import 'package:flutter3/view/app-view.dart';
 
 import 'app-context.dart';
 class AppRoute{
-  // 各种路由效果
+  /// 各种效果模式 https://juejin.cn/post/6844903890291261447
   static slideToKey(String? key, {params, Offset from = SlideRoute.right, int time = 300}){
     AppContext.navigatorKey.currentState?.push(SlideRoute(AppView.ofKey(key,params: params), from: from, time: time));
   }
   static slideToPath(String? path, {params, Offset from = SlideRoute.right, int time = 300}){
     AppContext.navigatorKey.currentState?.push(SlideRoute(AppView.ofPath(path,params: params), from: from, time: time));
+  }
+
+
+  static open(PageRouteBuilder route){
+    AppContext.navigatorKey.currentState?.push(route);
   }
 
 

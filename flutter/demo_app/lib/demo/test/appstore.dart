@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3/app-context.dart';
+import 'package:flutter3/app-route.dart';
 import 'package:flutter3/service/data/skin_data.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
@@ -100,7 +101,7 @@ class _AppStoreState extends State<TestAppstore> with TickerProviderStateMixin {
         _animationController.reverse();
       },
       onTap: () {
-        GlobalContext.open(
+        AppRoute.open(
           PageRouteBuilder(
             opaque: false,
             fullscreenDialog: true,

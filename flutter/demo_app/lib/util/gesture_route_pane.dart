@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/app-route.dart';
 import 'package:flutter3/share/context.dart';
 
 to(widget, args) {
-  Navigator.of(GlobalContext.context).push(
+  AppRoute.open(
     PageRouteBuilder(
       opaque: false,
       fullscreenDialog: true,

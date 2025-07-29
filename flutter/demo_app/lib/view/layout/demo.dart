@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/service/bootstrap.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/container.dart';
@@ -26,7 +25,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic> items = BootstrapService.data["layout"]?["barBottom"] ?? [];
+    List<dynamic> items = AppView.layout["barBottom"] ?? [];
     List<Widget> list = [];
     List<dynamic> pages = [];
     for (int i = 0; i < items.length; i++) {

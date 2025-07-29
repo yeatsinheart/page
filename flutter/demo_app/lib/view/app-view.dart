@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/log/logger.dart' show Log;
 import 'package:flutter3/widget_of_path_info.dart';
+import 'package:get/get.dart';
 
 // 顶层变量，Map<String, String>
 final Map<String, String> ViewKeyPathMap = {
@@ -18,8 +19,17 @@ final Map<String, String> ViewKeyPathMap = {
   "game_home": "/game/home/top_category_demo",
   "game_search": "/game/search/demo",
 };
-
 class AppView {
+  static Map<String,dynamic> layout={};
+
+  static void setMap(Map<String,dynamic> v){
+    ViewKeyPathMap.addAll(v.map((k, v) => MapEntry(k.toString(), v.toString())));
+  }
+
+  static void setLayout(Map<String,dynamic> v) {
+    layout.addAll(v);
+  }
+
   static Widget? ofKey(String? key, {params}) {
     if (key == null) {
       Log.e('getWidget: key is null');
@@ -39,4 +49,5 @@ class AppView {
     }
     return widget;
   }
+
 }

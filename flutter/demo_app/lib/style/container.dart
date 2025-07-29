@@ -5,6 +5,19 @@ import '../share/img.dart';
 import '../util/color-util.dart';
 import '../util/gradient-util.dart';
 
+class AppContainer extends StatelessWidget {
+  final String styleKey;
+  final child;
+
+  const AppContainer(this.styleKey, this.child, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    ColorContainer containerStyle = AppStyle.getContainerStyle(styleKey);
+    return _mask(containerStyle.mask, _imgBg(containerStyle.bgImg, _container(containerStyle, child)));
+  }
+}
+
 _imgBg(url, child) {
   return null == url
       ? child
@@ -62,17 +75,4 @@ Container _container(containerStyle, child) {
       child: child,
     ),
   );
-}
-
-class AppContainer extends StatelessWidget {
-  final String styleKey;
-  final child;
-
-  const AppContainer(this.styleKey, this.child, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    ColorContainer containerStyle = AppStyle.getContainerStyle(styleKey);
-    return _mask(containerStyle.mask, _imgBg(containerStyle.bgImg, _container(containerStyle, child)));
-  }
 }

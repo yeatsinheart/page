@@ -6,6 +6,7 @@ import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/request/api.dart';
 import 'package:flutter3/service/cache.dart';
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/view/app-view.dart';
 
 /// 获取 分发 数据
 class BootstrapService {
@@ -17,7 +18,15 @@ class BootstrapService {
   // 将配置分发到各个store
   static _dispatch(Map<String, dynamic> config) async {
     data = config;
-    await Future.wait<dynamic>([]);
+    await Future.wait<dynamic>([
+      /// 数据和页面绑定，且一变动就要在界面展示出来的才放到store中
+      //()async{AppStyle.style=config["host"]??{};}(),
+      //()async{AppStyle.style=config["language"]??{};}(),
+      ()async{AppView.setMap(config["view"]??{});}(),
+      ()async{AppView.setLayout(config["layout"]??{});}(),
+      ()async{AppStyle.style=config["style"]??{};}(),
+      //()async{AppStyle.style=config["app"]??{};}(),
+    ]);
     AppStyle.style = config["style"];
   }
 
@@ -54,8 +63,8 @@ class BootstrapService {
 
   static Future<String?> _readBuildInConfig() async {
     if (kIsWeb) {
-      //String path = 'assets/config/default_config.json'; 感觉会自动加 assets/ 导致加载时是assets/assets/config/default_config.json
-      String path = 'config/default_config.json'; //   Web 运行时 会自动加前缀 assets/
+      //String path = 'assets/config/bootstrap.json'; 感觉会自动加 assets/ 导致加载时是assets/assets/config/bootstrap.json
+      String path = 'config/bootstrap.json'; //   Web 运行时 会自动加前缀 assets/
       try {
         final result = await rootBundle.loadString(path);
         return result;
@@ -64,7 +73,7 @@ class BootstrapService {
         return null;
       }
     } else if (defaultTargetPlatform == TargetPlatform.android) {
-      String path = 'assets/config/default_config.json';
+      String path = 'assets/config/bootstrap.json';
       try {
         final result = await rootBundle.loadString(path); //
         return result;
@@ -74,7 +83,7 @@ class BootstrapService {
       }
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       // 考虑ios复用2进制时打包写入方式
-      const channel = MethodChannel('default_config');
+      const channel = MethodChannel('bootstrap');
       try {
         final result = await channel.invokeMethod<String>('loadConfigJson');
         return result;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/style/container.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand_left/demo.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand_right/demo.dart';
 
@@ -9,10 +10,12 @@ class BarBrandDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      color: Colors.white,
-      child: Row(children: [BarBrandLeftDemo(), Spacer(), BarBrandRightDemo()]),
+    return AppContainer(
+      "bar-brand",
+      Container(
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        child: Row(children: [BarBrandLeftDemo(), Spacer(), BarBrandRightDemo()]),
+      ),
     );
   }
 }

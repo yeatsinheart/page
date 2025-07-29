@@ -12,10 +12,10 @@ main() {
   /// 打包完后直接修改 APK 内容（无需重新编译）
   // APK 本质是一个 zip 文件。
   //
-  // 你可以直接用工具（如 unzip, apktool, 脚本）替换 assets/config/default_config.json：
+  // 你可以直接用工具（如 unzip, apktool, 脚本）替换 assets/config/bootstrap.json：
   //
   // unzip app-release.apk -d temp
-  // cp new_config.json temp/assets/config/default_config.json
+  // cp new_config.json temp/assets/config/bootstrap.json
   // cd temp && zip -r ../new_app.apk .
   // ⚠️ 重新打包后 APK 签名会失效，需要重新签名：
   //

@@ -7,20 +7,20 @@ import 'package:flutter3/util/color-util.dart';
 class AppStyle {
   static Map<String, dynamic> style = {};
 
-  // 按宽度的百分比
   static byPercent(v) {
-    double x = min(screenWidth, getLimitedMaxWidth());
+    // 按宽度的百分比
+    double x = min(screenWidth, maxWidth?? screenWidth);
     return v * x / 100;
   }
 
   static byRem(v) {
     // 7.5rem=100%;
-    double x = min(screenWidth, getLimitedMaxWidth());
+    double x = min(screenWidth, maxWidth?? screenWidth);
     return v * x / (750 / 100);
   }
 
-  static getLimitedMaxWidth() {
-    return get()["maxWidth"] ?? screenWidth;
+  static double? get maxWidth {
+    return style["maxWidth"];
   }
 
   static double get screenWidth {
@@ -31,20 +31,16 @@ class AppStyle {
     return MediaQuery.of(AppContext.context).size.height;
   }
 
-  static get() {
-    return style;
-  }
-
-  static getContainerStyle(k) {
-    return ColorContainer.fromJson(get()["container"]?[k] ?? {});
+  static ColorContainer getContainerStyle(k) {
+    return ColorContainer.fromJson(style["container"]?[k] ?? {});
   }
 
   static ColorFont getFontStyle() {
-    return ColorFont.fromJson(get()["font"]);
+    return ColorFont.fromJson(style["font"] ?? {});
   }
 
   static List<dynamic> getColors() {
-    return get()["colors"] ?? ["#2196F3"];
+    return style["colors"] ?? ["#2196F3"];
   }
 
   static getMainColor() {

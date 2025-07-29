@@ -1,4 +1,24 @@
 {
+  "host": [
+    {
+      "name": "中国节点",
+      "domain": "cn.example.com",
+      "https": true,
+      "wildcard": false
+    },
+    {
+      "name": "香港节点",
+      "domain": "hk.example.com",
+      "https": true,
+      "wildcard": false
+    },
+    {
+      "name": "美国节点",
+      "domain": "us.example.com",
+      "https": true,
+      "wildcard": false
+    }
+  ],
   "language": {
     "list":  [{"name": "简体中文", "flag": "🇨🇳", "code": "zh_CN"},
       {"name": "English", "flag": "🇺🇸", "code": "en_US"},
@@ -42,32 +62,12 @@
     "chosen": "en_US",
     "fallback": "en_US"
   },
-  "host": [
-    {
-      "name": "中国节点",
-      "domain": "cn.example.com",
-      "https": true,
-      "wildcard": false
-    },
-    {
-      "name": "香港节点",
-      "domain": "hk.example.com",
-      "https": true,
-      "wildcard": false
-    },
-    {
-      "name": "美国节点",
-      "host": "https://us.example.com",
-      "domain": "us.example.com",
-      "https": true,
-      "wildcard": false
-    }
-  ],
+
 
   "view": {
     "splash": "/app/splash/demo",
-    "app_layout": "/layout/demo",
     "app_layout": "/demo/main",
+    "app_layout": "/layout/demo",
     "language": "/app/language",
     "home": "/app/home/wg",
     "swiper": "/market/swiper/demo",
@@ -94,37 +94,15 @@
       }
     ]
   },
-  "style": {"maxWidth":570,"minWidth":300,"gap":0.22,"fontSize":0.22,"lineHeight":1.2,"radius":0.14,"font":{"title":"#323233","name":"#646566","txt":"#737272","ghost":"#BBB"},"colors":["#2196F3"],"mask":"#0000001f","border":"#e3e3e31a","shadow":"#41454940","container":{"browser":{"bg":"#9195a3"},"page":{"bg":{"type":"linear","colors":["#2196F3","#FFF"],"stops":[0,0.6],"begin":"topRight","end":"bottomLeft"}},"bar":{"bg":"#000","font":"#fff"},"bar-brand":{"bg":"#000","font":"#fff"},"bar-bottom":{"bg":"#000","font":"#fff"}}},
-  "env": "production",
-  "baseUrl": "https://api.example.com",
-  "websocketUrl": "wss://ws.example.com/socket",
-  "appName": "FlutterApp",
-  "version": "1.2.3",
-  "channel": "appstore",
-  "debug": false,
+
+  "style": {"maxWidth":570,"gap":0.22,"lineHeight":1.2,"radius":0.14,"font":{"title":"#323233","name":"#646566","txt":"#737272","ghost":"#BBB"},"colors":["#2196F3"],"mask":"#0000001f","border":"#e3e3e31a","shadow":"#41454940","container":{"browser":{"bg":"#9195a3"},"page":{"bg":{"type":"linear","colors":["#2196F3","#FFF"],"stops":[0,0.6],"begin":"topRight","end":"bottomLeft"}},"bar":{"bg":"#000","font":"#fff"},"bar-brand":{"bg":"#000","font":"#fff"},"bar-bottom":{"bg":"#000","font":"#fff"}}},
+
+  "app": {"name": "FlutterApp","version": "1.2.3","logo": ""},
+
   "enablePayment": true,
   "paymentProviders": [
     "paypal",
     "stripe"
-  ],
-  "adsEnabled": false,
-  "firebaseEnabled": true,
-  "theme": {
-    "primaryColor": "#FF5722",
-    "logo": "assets/logo_dev.png"
-  },
-  "features": {
-    "adsEnabled": false,
-    "firebaseEnabled": false,
-    "inviteSystem": true,
-    "enableSearch": true,
-    "showInviteBanner": false
-  },
-  "firebaseAppId": "1:234567890:web:abc123",
-  "sentryDsn": "https://xxx@sentry.io/123456",
-  "gaTrackingId": "UA-123456-1",
-  "thirdParty": {
-    "firebaseAppId": "1:999999999:web:zzz999",
-    "sentryDsn": "https://zzz@sentry.io/999999"
-  }
+  ]
+
 }

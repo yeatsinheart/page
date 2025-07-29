@@ -11,18 +11,21 @@ import 'package:flutter3/service/cache.dart';
 import 'package:flutter3/request/api.dart';
 
 import '../style/app-style.dart';
+
 /// 聚合请求封装 启动协调
 class AppInitializer {
   AppInitializer._internal();
+
   static final AppInitializer _instance = AppInitializer._internal();
+
   factory AppInitializer() => _instance;
 
   static const table = 'default_config';
   static const key = 'all';
-  static Map<String,dynamic> data = {};
+  static Map<String, dynamic> data = {};
 
   // 将配置分发到各个store
-  static _dispatch(Map<String,dynamic> config) async {
+  static _dispatch(Map<String, dynamic> config) async {
     data = config;
     // 手动初始化 初始化成功后 才注册到Getx中
     // 调用多次 Get.putAsync<GlobalConfigStore>，实际上最新的实例会覆盖旧的，GetX 只会保存一个。
@@ -34,18 +37,19 @@ class AppInitializer {
     //Get.find<HostStatusStore>();
     Get.put(HostStatusStore());
     Get.put(LanguageStore());
-    HostStatusStore().listen(config["host"]);// 通用 线路 CDN Websocket
+    HostStatusStore().listen(config["host"]); // 通用 线路 CDN Websocket
     LanguageStore().listen(config["language"]);
 
     //LanguageService().updateByJson(config["language"]);
 
-    await Future.wait<dynamic>([
-    ]);
-    AppStyle.style=config["style"];
+    await Future.wait<dynamic>([]);
+    AppStyle.style = config["style"];
   }
-  static init() async{
+
+  static init() async {
     await _dispatch(await _get());
   }
+
   /// 加载配置
   static Future<Map<String, dynamic>> _get() async {
     // 1. 尝试拉取网络配置 异步更新

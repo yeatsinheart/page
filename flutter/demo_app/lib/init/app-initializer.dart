@@ -10,7 +10,7 @@ import 'package:flutter3/service/cache.dart';
 
 import 'package:flutter3/request/api.dart';
 
-import 'color-container/app-style.dart';
+import '../style/app-style.dart';
 /// 聚合请求封装 启动协调
 class AppInitializer {
   AppInitializer._internal();

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/color-container/app-style.dart';
-import 'package:flutter3/color-container/container.dart';
+import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/style/container.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
 import 'package:flutter3/store/global-config.dart';
 import 'package:flutter3/views.dart';
 import 'package:get/get.dart';
 
-import '../../app-initializer.dart';
+import '../../init/app-initializer.dart';
 
 class LayoutDemo extends StatefulWidget {
   final dynamic params;

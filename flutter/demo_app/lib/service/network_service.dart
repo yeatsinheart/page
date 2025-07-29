@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter3/app.dart';
+import 'package:flutter3/app-context.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter3/share/context.dart';
@@ -128,8 +128,8 @@ class NetworkService {
                 _net_good();
               },
               child: Container(
-                width: App.width,
-                height: App.height,
+                width: AppContext.width,
+                height: AppContext.height,
                 decoration: BoxDecoration(
                   //borderRadius: BorderRadius.circular(10),
                   //color: Colors.black54,

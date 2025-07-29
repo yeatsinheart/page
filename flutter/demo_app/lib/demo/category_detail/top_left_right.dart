@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter3/app.dart';
-import 'package:flutter3/color-container/app-style.dart';
+import 'package:flutter3/app-context.dart';
+import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/share/share_widget.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
 import 'package:flutter3/share/context.dart';
@@ -24,7 +24,7 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
   final ScrollController _categoryScrollController = ScrollController();
   final ScrollController _detailScrollController = ScrollController();
   double persit_header_height = AppStyle.byRem(1.24);
-  double left_right_height = App.height;
+  double left_right_height = AppContext.height;
 
   persit_header(txt, color, height) {
     return SliverPersistentHeader(
@@ -49,7 +49,7 @@ void update(function){
   @override
   void initState() {
     super.initState();
-    left_right_height = App.height - persit_header_height;
+    left_right_height = AppContext.height - persit_header_height;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //print("详情滚动条：${_detailScrollController.position.minScrollExtent} ${_detailScrollController.position.maxScrollExtent}");
       // 防止没有详情滚动条的情况

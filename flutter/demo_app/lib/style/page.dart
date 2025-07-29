@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/color-container/app-style.dart';
-import 'package:flutter3/color-container/color-util.dart';
-import 'package:flutter3/color-container/container.dart';
+import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/util/color-util.dart';
+import 'package:flutter3/style/container.dart';
 import 'package:flutter3/share/context.dart';
 
 class AppPage extends StatelessWidget {

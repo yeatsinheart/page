@@ -3,11 +3,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter3/color-container/browser.dart';
+import 'package:flutter3/style/browser.dart';
 
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/service/language.dart';
-import 'package:flutter3/app-initializer.dart';
+import 'package:flutter3/init/app-initializer.dart';
 import 'package:flutter3/share/network_monitor.dart';
 
 import 'package:flutter3/store/global-config.dart';
@@ -18,7 +18,7 @@ import 'package:flutter3/store/store_init_binding.dart';
 
 import 'package:get/get.dart';
 
-import 'app.dart';
+import 'app-context.dart';
 import 'views.dart';
 
 //Flutter 中存在三棵树，Widget[虚拟的结构]、Element 和 RenderObject。
@@ -61,7 +61,7 @@ _main(child) {
         PointerDeviceKind.trackpad, //触控板
       },
     ),
-    navigatorKey: App.navigatorKey,
+    navigatorKey: AppContext.navigatorKey,
     debugShowCheckedModeBanner: false,
     home: Browser(NetworkMonitor(child:child)),
 

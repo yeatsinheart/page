@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/color-container/app-style.dart';
-import 'package:flutter3/color-container/color-util.dart';
-import 'package:flutter3/color-container/container.dart';
-import 'package:flutter3/style/flutter-style.dart';
+import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/util/color-util.dart';
+import 'package:flutter3/style/container.dart';
+import 'package:flutter3/style/theme/all-theme.dart';
 
 
 class Browser extends StatelessWidget {
@@ -17,19 +17,10 @@ class Browser extends StatelessWidget {
     double? maxWidth = AppStyle.getLimitedMaxWidth();
     Widget page = AppContainer("page", child);
     return Theme(
-      data: flutterStyle().copyWith(
-        primaryColor: ColorUtil.getColor(AppStyle.getColors()[0]),
+      data: getFlutterTheme().copyWith(
+        primaryColor: AppStyle.getMainColor(),
         // secondary: ..., // 辅助色（可选）
         // onPrimary: ..., // 主色上的字体色（如白色）
-
-        textTheme: Theme.of(context).textTheme
-            .apply(
-              bodyColor: ColorUtil.getColor(fontStyle.txt),
-              displayColor: ColorUtil.getColor(fontStyle.txt),
-            )
-            .copyWith(
-              //bodyMedium: TextStyle(fontSize: AppStyle.byRem(appStyle["fontSize"] ?? .22), height: appStyle["lineHeight"] ?? 1.5, color: ColorUtil.getColor(fontStyle.txt)),
-            ),
       ),
       child: AppContainer(
         "browser",

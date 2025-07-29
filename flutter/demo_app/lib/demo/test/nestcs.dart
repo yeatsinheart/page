@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter3/app.dart';
+import 'package:flutter3/app-context.dart';
 import 'package:flutter3/share/context.dart';
 import 'package:mutex/mutex.dart';
 
@@ -27,7 +27,7 @@ class AppNetCsPaneState extends State<TestNestcs> with TickerProviderStateMixin 
     try {
       if (!dead) {
         dead = true;
-        App.back();
+        AppContext.back();
       }
     } finally {
       _sessionlock.release();
@@ -140,7 +140,7 @@ class AppNetCsPaneState extends State<TestNestcs> with TickerProviderStateMixin 
                                 top: 18,
                                 child: IconButton(
                                     onPressed: () {
-                                      App.back();
+                                      AppContext.back();
                                     },
                                     icon: Icon(
                                       Icons.clear,
@@ -161,7 +161,7 @@ class AppNetCsPaneState extends State<TestNestcs> with TickerProviderStateMixin 
         body: Container(
             color: Colors.white,
             constraints: BoxConstraints(
-              minHeight: (App.height - 501),
+              minHeight: (AppContext.height - 501),
             ),
             child: CustomScrollView(
                 physics: physics,

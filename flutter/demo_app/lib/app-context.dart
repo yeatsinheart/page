@@ -1,26 +1,27 @@
-
 import 'package:flutter/material.dart';
 
-class App {
+class AppContext {
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Rex');
+
   static BuildContext get _context {
     final ctx = navigatorKey.currentState?.context;
     if (ctx == null) throw Exception('GlobalContext.context is null');
     return ctx;
   }
 
-  static void go(key ,{Offset from = AnimationOfRoute.right, int time = 500, RouteSettings? settings}) {
-    navigatorKey.currentState?.push(AnimationOfRoute(Container(),from: from,time: time));
+  static void go(key, {Offset from = AnimationOfRoute.right, int time = 500, RouteSettings? settings}) {
+    navigatorKey.currentState?.push(AnimationOfRoute(Container(), from: from, time: time));
   }
 
   static void back() {
     navigatorKey.currentState?.pop();
   }
 
-  static double get width{
+  static double get width {
     return MediaQuery.of(_context).size.width;
   }
-  static double get height{
+
+  static double get height {
     return MediaQuery.of(_context).size.height;
   }
 }
@@ -54,17 +55,17 @@ class AnimationOfRoute extends PageRouteBuilder {
   // 左上角为-1,-1 左下角为 0,0  右上角为1,-1 右为 1,0  右下角 1,1
   // 默认页面都是从右到左
   AnimationOfRoute(this.newPage, {Offset from = right, int time = 500, RouteSettings? settings})
-      : super(
-    settings: settings,
-    transitionDuration: Duration(milliseconds: time),
-    reverseTransitionDuration: Duration(milliseconds: time),
-    pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => newPage,
-    transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
-      //使新页面从底部动画出来，它应该从 Offset(0,1) 到 Offset(0, 0) 进行动画
-      //Offset (dx,dy) dx=-1:左边 dy=-1:上面 =0当前屏幕  方向和距离 1整个屏幕宽 高 系数
-      position: Tween(begin: from, end: const Offset(0, 0)).animate(animation),
-      child: child,
-    ),
-  );
+    : super(
+        settings: settings,
+        transitionDuration: Duration(milliseconds: time),
+        reverseTransitionDuration: Duration(milliseconds: time),
+        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => newPage,
+        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
+          //使新页面从底部动画出来，它应该从 Offset(0,1) 到 Offset(0, 0) 进行动画
+          //Offset (dx,dy) dx=-1:左边 dy=-1:上面 =0当前屏幕  方向和距离 1整个屏幕宽 高 系数
+          position: Tween(begin: from, end: const Offset(0, 0)).animate(animation),
+          child: child,
+        ),
+        //SizeTransition(axisAlignment: -1,sizeFactor: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: animation, curve: Curves.easeInSine)),child: widget,
+      );
 }
-

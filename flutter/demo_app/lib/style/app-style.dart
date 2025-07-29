@@ -1,72 +1,59 @@
+import 'dart:math';
 
-import 'dart:convert';
+import 'package:flutter3/app-context.dart';
+import 'package:flutter3/util/color-util.dart';
+class AppStyle{
+  static Map<String,dynamic> style={};
+  // 按宽度的百分比
+  static byAppWidthPercent(v) {
+    double maxWidth = getLimitedMaxWidth() ?? AppContext.width;
+    double x = min(AppContext.width, maxWidth);
+    return v * x /100;
+  }
+  //
+  static byRem(v) {
+    // 7.5rem=100%;
+    // 还有屏幕最大宽度 大屏显示H5效果
+    double maxWidth = getLimitedMaxWidth() ?? AppContext.width;
+    double x = min(AppContext.width, maxWidth);
+    return v * x / (750/100);
+  }
 
+  static getLimitedMaxWidth() {
+    return get()["maxWidth"]??AppContext.width;
+  }
 
-var config = {
-  "maxWidth": 570,
-  "minWidth": 300,
-  "gap":.22,
+  static get() {
+    return style ?? {};
+  }
 
-  "fontSize":.22,
-  "lineHeight":1.2,
+  static getContainerStyle(k) {
+    return ColorContainer.fromJson(get()["container"]?[k] ?? {});
+  }
 
-  "radius":.14,
+  static ColorFont getFontStyle() {
+    return ColorFont.fromJson(get()["font"]);
+  }
+  static List<dynamic> getColors(){
+    return get()["colors"]??["#2196F3"];
+  }
 
+  static getMainColor() {return ColorUtil.getColor(getColors()[0]);}
 
-  // "gradient": {
-  //   "type": "linear",
-  //   "colors": ["#2196F3", "#FFF"],
-  //   "begin": "topLeft",
-  //   "end": "bottomRight",
-  // },
-  "font":  ColorFont(title:"#323233",name:"#646566",txt: "#737272",ghost: "#BBB"),
-  "colors": ["#2196F3"],
-  "mask":'#0000001f',"border":'#e3e3e31a',"shadow":'#41454940',
-
-  "container": {
-    // 每一块都有对应组件
-    "browser": ColorContainer(
-      bg:"#9195a3",
-    ),
-    "page": ColorContainer(
-      bg: {
-        "type": "linear",
-        "colors": ["#2196F3", "#FFF"],
-        "stops":[0,0.6],
-        "begin": "topRight",
-        "end": "bottomLeft",
-      },
-        //bg:'#f7f8ff'
-    ),
-
-    "bar": ColorContainer(bg:"#000",font: "#fff"),
-    "bar-brand": ColorContainer(bg:"#000",font: "#fff"),
-    "bar-bottom": ColorContainer(bg:"#000",font: "#fff"),
-
-/*
-    "div1": ColorContainer(),
-    "div2": ColorContainer(),
-    "div3": ColorContainer(),
-
-    "loading": ColorContainer(),
-
-    "btn-color1": ColorContainer(),
-    "btn-color1-reverse": ColorContainer(),*/
-  },
-};
+}
 
 class ColorContainer {
   // 颜色值支持多种格式：可以为：null transparent=#00000000 hex简写#000 hex标准#FFFFFF hex带alpha#FFFFFF1A rgb(255, 0, 0) rgba(255, 0, 0, 0.5) gradient对象
-  final radius;
   final mask;
   final bg;
   final bgImg;
   final font;
+
   final border;
+  final radius;
   final shadow;
 
-  const ColorContainer({this.radius,this.mask, this.bg, this.bgImg,this.font, this.border, this.shadow})
-      ;
+  const ColorContainer({this.radius, this.mask, this.bg, this.bgImg, this.font, this.border, this.shadow});
 
   factory ColorContainer.fromJson(Map<String, dynamic> json) {
     return ColorContainer(radius: json['radius'], mask: json['mask'], bg: json['bg'], bgImg: json['bgImg'], font: json['font'], border: json['border'], shadow: json['shadow']);
@@ -105,8 +92,4 @@ class ColorFont {
     if (ghost != null) map['ghost'] = ghost;
     return map;
   }
-}
-
-main() {
-  print(jsonEncode(config));
 }

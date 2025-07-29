@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/app.dart';
-import 'package:flutter3/color-container/app-style.dart';
+import 'package:flutter3/app-context.dart';
+import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
 
@@ -47,7 +47,7 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
   @override
   Widget build(BuildContext context) {
     final displayItems = _expanded ? items : items.take(leastShow).toList();
-    double gridWidth = (App.width - (crossAxisSpacing * (columns - 1))) / columns; // 宽高比
+    double gridWidth = (AppContext.width - (crossAxisSpacing * (columns - 1))) / columns; // 宽高比
     double gridHeight = gridWidth / childAspectRatio; // 宽高比
 
     return Column(

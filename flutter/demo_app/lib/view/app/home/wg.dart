@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand/demo.dart';
 
-import '../../../service/data/skin_data.dart';
 import '../../app-view.dart';
 
 class AppHomeWg extends StatefulWidget {
@@ -28,7 +27,6 @@ class _AppHomeWgState extends State<AppHomeWg> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(gradient: SkinData().gradient()),
         child: SafeArea(
           bottom: false,
           child: CustomScrollView(

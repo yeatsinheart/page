@@ -111,7 +111,7 @@ class GlobalOverlayContext {
           return true;
         });
       }
-    } catch (err, stack) {
+    } catch (err) {
       print("插入Overlay 异常${err}");
     }
   }

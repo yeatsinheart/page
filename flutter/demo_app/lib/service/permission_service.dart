@@ -1,4 +1,3 @@
-import 'dart:html' as html;
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -52,7 +51,7 @@ class PermissionService {
 
   Future<void> requestCameraPermission() async {
     try {
-      final stream = await html.window.navigator.mediaDevices?.getUserMedia({'audio': false, 'video': true});
+      // final stream = await html.window.navigator.mediaDevices?.getUserMedia({'audio': false, 'video': true});
       // 处理流
     } catch (e) {
       // 处理错误

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../service/app_service.dart';
 
 // Standard iOS 10 tab bar height.
 
@@ -48,8 +47,7 @@ class _ContactsPageState extends State with AutomaticKeepAliveClientMixin {
         child: AppBar(
           elevation: 0.5,
           automaticallyImplyLeading: false,
-          backgroundColor: AppService().skin()!.ground,
-          title: Text("发现", style: TextStyle(color: AppService().skin()!.font, fontSize: 16)),
+          title: Text("发现", style: TextStyle(fontSize: 16)),
           // flexibleSpace: SafeArea(
           //   child: Column(
           //     mainAxisAlignment: MainAxisAlignment.end,
@@ -86,7 +84,7 @@ class _ContactsPageState extends State with AutomaticKeepAliveClientMixin {
           // ),
         ),
       ),
-      body: Container(color: AppService().skin()!.container),
+      body: Container(),
     );
   }
 }

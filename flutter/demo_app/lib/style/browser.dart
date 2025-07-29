@@ -10,8 +10,6 @@ class Browser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> appStyle = AppStyle.get();
-    ColorFont fontStyle = AppStyle.getFontStyle();
     double? maxWidth = AppStyle.getLimitedMaxWidth();
     Widget page = AppContainer("page", child);
     return Theme(

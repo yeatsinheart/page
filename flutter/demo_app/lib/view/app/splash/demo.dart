@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
-import 'package:flutter3/service/app_service.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/style/app-style.dart';
 
@@ -46,16 +45,15 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
         children: [
           Column(
             children: [
-              AppImg(AppService().get()!.splash, width: AppStyle.screenWidth, height: AppStyle.screenHeight * 7 / 8),
+              AppImg("", width: AppStyle.screenWidth, height: AppStyle.screenHeight * 7 / 8),
               Expanded(
                 child: Container(
                   width: AppStyle.screenWidth,
-                  color: AppService().skin()?.container,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
                     children: <Widget>[
-                      AppImg(AppService().get()!.logo, width: 32, height: 32),
-                      Text(AppService().get()!.name, style: TextStyle(color: AppService().skin()?.font, fontSize: 14)),
+                      AppImg("logo", width: 32, height: 32),
+                      Text("name", style: TextStyle( fontSize: 14)),
                     ],
                   ),
                 ),

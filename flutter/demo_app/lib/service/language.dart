@@ -90,7 +90,6 @@ class _I18nWords {
       kv = response.map((k, v) => MapEntry(k.toString(), v.toString()));
       await CacheService.set(table, langCode, jsonEncode(kv));
     }
-    if (kv == null) return;
     // 更新翻译
     //Get.clearTranslations();
     Get.appendTranslations({langCode: kv});

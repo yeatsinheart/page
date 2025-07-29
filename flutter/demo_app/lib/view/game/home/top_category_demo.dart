@@ -142,15 +142,6 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
     );
   }
 
-  Widget _buildSection(String title, GlobalKey key) {
-    return Container(
-      key: key,
-      padding: EdgeInsets.all(16),
-      height: 400,
-      color: Colors.grey.shade100,
-      child: Text(title, style: TextStyle(fontSize: 24)),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {

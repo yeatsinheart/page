@@ -6,7 +6,6 @@ import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
 
-import '../../../service/data/skin_data.dart';
 
 class GameByCategoryLeftBrand extends StatefulWidget {
   final dynamic params;
@@ -28,7 +27,6 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
   bool _changeCategory = false;
   final List<GlobalKey> _data_keys = [];
   final List<GlobalKey> _tab_keys = [];
-  List<bool> _expandedStates = [];
   int _currentIndex = 0;
   bool _scrollingByClick = false;
   GlobalKey _header2Key = GlobalKey();
@@ -40,7 +38,6 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
 
     _data_keys.addAll(List.generate(tabs.length, (_) => GlobalKey()));
     _tab_keys.addAll(List.generate(tabs.length, (_) => GlobalKey()));
-    _expandedStates = List.filled(tabs.length, false);
 
     //_pageScrollController.addListener(() => _onPageScroll());
   }
@@ -189,16 +186,6 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     );
   }
 
-  Widget _buildSection(String title, GlobalKey key) {
-    return Container(
-      key: key,
-      padding: EdgeInsets.all(16),
-      height: 400,
-      color: Colors.grey.shade100,
-      child: Text(title, style: TextStyle(fontSize: 24)),
-    );
-  }
-
   Widget getHeader1() {
     return SliverPersistentHeader(
       // padding 永远和header保持>一个导航栏高度
@@ -277,7 +264,6 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     // 左右结构 SliverCrossAxisGroup 类似 Row
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(gradient: SkinData().gradient()),
         child: SafeArea(
           bottom: false,
           child: Stack(

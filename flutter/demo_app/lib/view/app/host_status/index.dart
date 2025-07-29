@@ -63,19 +63,6 @@ class AppHostStatusIndex extends StatelessWidget {
   }
 }
 
-Widget _buildStatusIcon(String status) {
-  switch (status) {
-    case 'online':
-      return const Icon(Icons.check_circle, color: Colors.green);
-    case 'off':
-      return const Icon(Icons.cancel, color: Colors.red);
-    case 'testing':
-      return const Icon(Icons.sync, color: Colors.orange);
-    default:
-      return const Icon(Icons.help_outline, color: Colors.orange);
-  }
-}
-
 String _getStatusText(LineStatus line) {
   switch (line.status.value) {
     case 'online':

@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter3/service/app_service.dart';
 import 'package:flutter3/share/img.dart';
 
 class WechatMsg extends StatefulWidget {
@@ -50,8 +49,7 @@ class _HomeViewState extends State {
         child: AppBar(
           elevation: 1,
           automaticallyImplyLeading: false,
-          backgroundColor: AppService().skin()!.ground,
-          title: Text(AppService().get()!.name, style: TextStyle(color: AppService().skin()!.font, fontSize: 16)),
+          title: Text("demo", style: TextStyle( fontSize: 16)),
           // flexibleSpace: SafeArea(
           //   child: Column(
           //     mainAxisAlignment: MainAxisAlignment.end,
@@ -88,7 +86,7 @@ class _HomeViewState extends State {
           // ),
         ),
       ),
-      body: Container(color: AppService().skin()!.container, child: _buildListView()),
+      body: Container( child: _buildListView()),
     );
   }
 
@@ -116,9 +114,7 @@ class _HomeViewState extends State {
 who(item) {
   // ListTile must be wrapped in a Material widget to animate tileColor, selectedTileColor, focusColor, and hoverColor as these colors are not drawn by the list tile
   return Material(
-    color: AppService().skin()!.container,
     child: ListTile(
-      hoverColor: AppService().skin()!.colorHover,
       onTap: () {
         print('点击列表');
       },
@@ -139,9 +135,9 @@ who(item) {
         children: <Widget>[
           Expanded(
             flex: 1,
-            child: Text("${item["title"]}", style: TextStyle(color: AppService().skin()!.font)),
+            child: Text("${item["title"]}", style: TextStyle()),
           ),
-          Text("${DateTime.fromMillisecondsSinceEpoch(item["lastTime"])}", style: TextStyle(color: AppService().skin()!.fontFade, fontSize: 12)),
+          Text("${DateTime.fromMillisecondsSinceEpoch(item["lastTime"])}", style: TextStyle( fontSize: 12)),
         ],
       ),
       // 子标题，给一个向上的5px的间距 Padding(padding: EdgeInsets.only(top: 5),child: ),，同时右边有一个红色的未读消息的标示 , style: TextStyle(fontSize: 12)
@@ -151,7 +147,7 @@ who(item) {
         children: <Widget>[
           Expanded(
             flex: 1,
-            child: Text("${item["lastMsg"]}", style: TextStyle(color: AppService().skin()!.fontFade, fontSize: 12)),
+            child: Text("${item["lastMsg"]}", style: TextStyle( fontSize: 12)),
           ),
           msgcount(item["unRead"]),
         ],

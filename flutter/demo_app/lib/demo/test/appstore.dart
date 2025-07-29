@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3/app-route.dart';
-import 'package:flutter3/service/data/skin_data.dart';
 import 'package:flutter3/service/game.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/style/app-style.dart';
@@ -24,7 +23,6 @@ class _AppStoreState extends State<TestAppstore> with TickerProviderStateMixin {
       value: SystemUiOverlayStyle.dark,
       child: Scaffold(
         body: Container(
-          decoration: BoxDecoration(gradient: SkinData().gradient()),
           child: SafeArea(
             bottom: false,
             child: SingleChildScrollView(
@@ -147,12 +145,6 @@ class _AppStoreState extends State<TestAppstore> with TickerProviderStateMixin {
                 ),
               ],
             ),
-            // Column(
-            //   children: [
-            //
-            //
-            //   ],
-            // ),
           ),
         ),
       ),

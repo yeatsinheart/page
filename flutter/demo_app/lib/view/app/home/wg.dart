@@ -56,11 +56,11 @@ class _AppHomeWgState extends State<AppHomeWg> {
 
                     ),
                   ),
-                  SliverToBoxAdapter(child: widgetOfKey("swiper")),
-                  SliverToBoxAdapter(child: widgetOfKey("marquee")),
+                  SliverToBoxAdapter(child: AppView.ofKey("swiper")),
+                  SliverToBoxAdapter(child: AppView.ofKey("marquee")),
                 ],
               ),
-              widgetOfKey("game_home"),
+              AppView.ofKey("game_home")??Container(),
 
               /* SliverPersistentHeader(
                 pinned: true, // 也固定住

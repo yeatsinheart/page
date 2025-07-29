@@ -33,7 +33,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
     for (int i = 0; i < items.length; i++) {
       dynamic item = items[i];
       list.add(_buildNavItem(icon: item['iconI18nKey'], activeIcon: item['iconFocusI18nKey'], label: item['titleI18nKey'], index: i));
-      Widget widget = widgetOfKey(item['openViewKey'])??Container();
+      Widget widget = AppView.ofKey(item['openViewKey'])??Container();
       pages.add(widget);
     }
 

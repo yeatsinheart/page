@@ -214,7 +214,7 @@ class _GameHomeLeftCategoryDemoState extends State<GameHomeLeftCategoryDemo> {
             // SliverChildListDelegate立即渲染
             delegate: SliverChildListDelegate(
               List.generate(tabs.length, (index) {
-                Widget? x = getWidgetByPath("/game/home_category/list_brand", key: _data_keys[index], params: {"title": tabs[index]});
+                Widget? x = AppView.ofPath("/game/home_category/list_brand", key: _data_keys[index], params: {"title": tabs[index]});
                 return x??Container();
               }),
             ),

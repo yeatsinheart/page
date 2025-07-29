@@ -48,13 +48,13 @@ class GlobalOverlayContext {
   static final Map<String, OverlayEntry> _entries = {};
 
   static void show(String key, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
-    pop(widgetOfKey(key), autoRemoveTime: autoRemoveTime, sysCanRemove: sysCanRemove, backName: backName);
+    pop(AppView.ofKey(key), autoRemoveTime: autoRemoveTime, sysCanRemove: sysCanRemove, backName: backName);
   }
 
   static void popBy(String containerPath, String childKey, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
-    Widget childWidget = widgetOfKey(childKey);
+    Widget? childWidget = AppView.ofKey(childKey);
     pop(
-      getWidgetByPath(containerPath, params: childWidget),
+      AppView.ofPath(containerPath, params: childWidget),
       autoRemoveTime: autoRemoveTime,
       sysCanRemove: sysCanRemove,
       backName: backName,

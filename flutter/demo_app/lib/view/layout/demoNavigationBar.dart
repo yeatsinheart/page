@@ -40,7 +40,7 @@ class _LayoutDemoNavigationBarState extends State<LayoutDemoNavigationBar> {
           tooltip: '',
         ),
       );
-      pages.add(widgetOfKey(item['openViewKey']));
+      pages.add(AppView.ofKey(item['openViewKey']));
     }
     return Scaffold(
       body: pages[_currentIndex],

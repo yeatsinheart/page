@@ -51,7 +51,7 @@ init() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   // 网络更新配置时，这些都需要按照最新网络的数据进行更新
   AppInitializer.init().then((_) {
-    runApp(_main(widgetOfKey("app_layout") ?? Container()));
+    runApp(_main(AppView.ofKey("app_layout") ?? Container()));
   });
 }
 

@@ -5,13 +5,15 @@ import 'package:flutter3/store/language.dart';
 
 class AppLanguage extends StatelessWidget {
   final dynamic params;
-  final LanguageStore languageStore = Get.put(LanguageStore());
 
   AppLanguage({this.params, super.key});
 
   // 不能到处LanguageStore(),因为不是单例
   @override
   Widget build(BuildContext context) {
+
+     LanguageStore languageStore = Get.find();
+
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 300),
       child:

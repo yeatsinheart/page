@@ -51,6 +51,7 @@ init() async {
   await Future.wait([
    Get.putAsync(() => GlobalConfigStore().init()),
    Get.putAsync(() => HostStatusStore().init()),
+    ()async{Get.put(LanguageStore());}(),// 依赖线路接口。。。哎，前提是要有线路
   ]);
 
   // 网络更新配置时，这些都需要按照最新网络的数据进行更新

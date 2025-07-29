@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
+
 // 响应式布局 https://juejin.cn/post/7237791494097567801
 class ResponseWidget extends StatelessWidget {
-  const ResponseWidget({
-    super.key,
-    required this.mobileWidget,
-    required this.desktopWidget,
-  });
+  const ResponseWidget({super.key, required this.mobileWidget, required this.desktopWidget});
+
   final Widget mobileWidget;
   final Widget desktopWidget;
 

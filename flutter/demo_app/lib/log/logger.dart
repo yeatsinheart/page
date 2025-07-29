@@ -1,12 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter3/log/printer.dart';
 import 'package:logger/logger.dart';
 
-
 class Log {
-
   static Logger logger = Logger(
     //output: output,// 可以修改到写入文件
     printer: PrettyPrinter(
@@ -20,20 +17,16 @@ class Log {
       // logger/src/printers/pretty_printer.dart
       excludePaths: [
         // 日志打印的可以排除
-        'logger/src/','flutter3/log/logger.dart',
+        'logger/src/', 'flutter3/log/logger.dart',
         'dio/src/',
-        "flutter/","lib/","dio/","get/",
+        "flutter/", "lib/", "dio/", "get/",
         //'flutter3/views.dart',
-        "flutter3/request/"
+        "flutter3/request/",
       ],
     ),
     // Disable logging in release mode if needed
-    level: kReleaseMode ? Level.nothing : Level.debug,
+    //level: kReleaseMode ? Level.nothing : Level.debug,
   );
-
-  static void d(dynamic message, {dynamic error, StackTrace? stackTrace}) {
-    logger.d(stringify(message), error: error, stackTrace: stackTrace);
-  }
 
   static void info(dynamic message, {dynamic error, StackTrace? stackTrace}) {
     logger.i(stringify(message), error: error, stackTrace: stackTrace);
@@ -47,20 +40,16 @@ class Log {
     logger.w(stringify(message), error: error, stackTrace: stackTrace);
   }
 
-  static void err(dynamic message, error,{StackTrace? stackTrace}) {
+  static void err(dynamic message, error, {StackTrace? stackTrace}) {
     logger.e(stringify(message), error: error, stackTrace: stackTrace);
   }
 
-  static void e(dynamic message,{error,StackTrace? stackTrace}) {
+  static void e(dynamic message, {error, StackTrace? stackTrace}) {
     logger.e(stringify(message), error: error, stackTrace: stackTrace);
-  }
-
-  static void v(dynamic message, {dynamic error, StackTrace? stackTrace}) {
-    logger.v(stringify(message), error: error, stackTrace: stackTrace);
   }
 
   static String stringify(dynamic obj) {
-    if(null==obj)return '';
+    if (null == obj) return '';
     return jsonEncode(
       obj,
       toEncodable: (nonEncodable) {

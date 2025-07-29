@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// 静态资源版本号 最好是数值递增
 class ApiCache {
   static String versionKey = "api_request_version";
+
   static Future<void> setCache(String key, dynamic data, {String version = "0", int expire = 60 * 1000}) async {
     final prefs = await SharedPreferences.getInstance();
     if (expire == -1) {

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter3/app-context.dart';
-import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/share/share_widget.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
+import 'package:flutter3/style/app-style.dart';
 
 /// 顶部说明操作，左边分类 右边分类详情
 /// 屏幕高度-吸顶高度-底部导航栏高度-顶部导航栏高度==左右联动区域的高度
@@ -37,14 +36,16 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
   }
 
   bool outerScrolledToEnd = false;
-void update(function){
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    // 在下一帧中安全地调用 setState
-    setState(() {
-      function();
+
+  void update(function) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // 在下一帧中安全地调用 setState
+      setState(() {
+        function();
+      });
     });
-  });
-}
+  }
+
   @override
   void initState() {
     super.initState();
@@ -58,7 +59,7 @@ void update(function){
           if (_pageScrollController.position.pixels >= _pageScrollController.position.maxScrollExtent) {
             setState(() {
               // 内层滚动到头了 即时是拉伸了最后还是会有结束事件
-                outerScrolledToEnd = true;
+              outerScrolledToEnd = true;
             });
           } else if (outerScrolledToEnd) {
             setState(() {
@@ -69,9 +70,6 @@ void update(function){
       }
     });
   }
-
-  @override
-  void deposed() {super.dispose();}
 
   // 防止嵌套，嵌套了以后要考虑的太多了。
   Widget innerScrollListener(child) {

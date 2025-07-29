@@ -8,13 +8,11 @@ class LayoutDemoBottomNavigationBar extends StatefulWidget {
   const LayoutDemoBottomNavigationBar({super.key, required params});
 
   @override
-  State<LayoutDemoBottomNavigationBar> createState() =>
-      _LayoutDemoBottomNavigationBarState();
+  State<LayoutDemoBottomNavigationBar> createState() => _LayoutDemoBottomNavigationBarState();
 }
 
 /// 必须确定初始化打开哪个页面
-class _LayoutDemoBottomNavigationBarState
-    extends State<LayoutDemoBottomNavigationBar> {
+class _LayoutDemoBottomNavigationBarState extends State<LayoutDemoBottomNavigationBar> {
   int _currentIndex = 0;
 
   @override
@@ -25,46 +23,18 @@ class _LayoutDemoBottomNavigationBarState
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> items = [
-      {
-        "iconI18nKey": "1",
-        "iconFocusI18nKey": "1",
-        "titleI18nKey": "微信",
-        "openViewKey": "home",
-      },
-      {
-        "iconI18nKey": "1",
-        "iconFocusI18nKey": "1",
-        "titleI18nKey": "通讯录",
-        "openViewKey": "contact",
-      },
-      {
-        "iconI18nKey": "1",
-        "iconFocusI18nKey": "1",
-        "titleI18nKey": "发现",
-        "openViewKey": "discover",
-      },
-      {
-        "iconI18nKey": "1",
-        "iconFocusI18nKey": "1",
-        "titleI18nKey": "我",
-        "openViewKey": "me",
-      },
+      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "微信", "openViewKey": "home"},
+      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "通讯录", "openViewKey": "contact"},
+      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "发现", "openViewKey": "discover"},
+      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "我", "openViewKey": "me"},
     ];
     List<BottomNavigationBarItem> navItems = [];
     List<dynamic> pages = [];
     for (Map<String, dynamic> item in items) {
       navItems.add(
         BottomNavigationBarItem(
-          icon: AppImg(
-            item["iconI18nKey"],
-            width: AppStyle.byRem(.5),
-            height: AppStyle.byRem(.5),
-          ), // 你可以根据 iconI18nKey 加载图标
-          activeIcon: AppImg(
-            item["iconFocusI18nKey"],
-            width: AppStyle.byRem(.5),
-            height: AppStyle.byRem(.5),
-          ), // 你可以根据 iconFocusI18nKey 加载图标
+          icon: AppImg(item["iconI18nKey"], width: AppStyle.byRem(.5), height: AppStyle.byRem(.5)), // 你可以根据 iconI18nKey 加载图标
+          activeIcon: AppImg(item["iconFocusI18nKey"], width: AppStyle.byRem(.5), height: AppStyle.byRem(.5)), // 你可以根据 iconFocusI18nKey 加载图标
           label: item['titleI18nKey'],
         ),
       );

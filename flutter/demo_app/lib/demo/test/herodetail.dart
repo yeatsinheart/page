@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter3/service/game.dart';
 
 import '../../share/img.dart';
@@ -18,12 +17,9 @@ class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    var _animationController = AnimationController(
-      duration: const Duration(milliseconds: 200),
-      vsync: this,
-    );
+    var _animationController = AnimationController(duration: const Duration(milliseconds: 200), vsync: this);
     var _animation = Tween<double>(begin: 1, end: 0.5).animate(_animationController);
-    double _top = 0.0; //距顶部的偏移
+    // double _top = 0.0; //距顶部的偏移
 
     @override
     dispose() {
@@ -59,58 +55,61 @@ class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStat
     });
     Game? game = ModalRoute.of(context)?.settings.arguments as Game?;
     return
-        //GestureDetector(
-        // onPanDown: (details) {
-        //   // _animationController.forward();
-        //   setState(() {
-        //     _top = 0;
-        //   });
-        //   print('按下');
-        // },
-        // onPanEnd: (details) {
-        //   print('松开');
-        //   setState(() {
-        //     _top = 0;
-        //   });
-        //   //_animationController.animateTo(0);
-        // },
-        // onPanUpdate: (details) {
-        //   print('${_top} + ${details.delta.dy}');
-        //   setState(() {
-        //     _top += details.delta.dy;
-        //     var p = _top / 80;
-        //     _animationController.animateTo(p);
-        //   });
-        //
-        //   // //setState(() {});
-        //   // if(p>1){
-        //   //   Navigator.pop(context);
-        //   // }
-        // },
-        /*
+    //GestureDetector(
+    // onPanDown: (details) {
+    //   // _animationController.forward();
+    //   setState(() {
+    //     _top = 0;
+    //   });
+    //   print('按下');
+    // },
+    // onPanEnd: (details) {
+    //   print('松开');
+    //   setState(() {
+    //     _top = 0;
+    //   });
+    //   //_animationController.animateTo(0);
+    // },
+    // onPanUpdate: (details) {
+    //   print('${_top} + ${details.delta.dy}');
+    //   setState(() {
+    //     _top += details.delta.dy;
+    //     var p = _top / 80;
+    //     _animationController.animateTo(p);
+    //   });
+    //
+    //   // //setState(() {});
+    //   // if(p>1){
+    //   //   Navigator.pop(context);
+    //   // }
+    // },
+    /*
 
       * */
-        // child:
-        ScaleTransition(
-            scale: _animation,
-            child: scroll(
-                SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  controller: _pagecontroller,
-                  child: Column(mainAxisSize: MainAxisSize.min, children: [
-                    getpic(game),
-                    //Expanded(child:
-                    //SizedBox(
-                    //  height: 980,
-                    //child:
-                    getdesc(context, game), //)
-                    //)
-                  ]),
-                ) //,
-                ,
-                false)
-            //),
-            );
+    // child:
+    ScaleTransition(
+      scale: _animation,
+      child: scroll(
+        SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          controller: _pagecontroller,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              getpic(game),
+              //Expanded(child:
+              //SizedBox(
+              //  height: 980,
+              //child:
+              getdesc(context, game), //)
+              //)
+            ],
+          ),
+        ), //,
+        false,
+      ),
+      //),
+    );
     // Scaffold(
     //     body: InkWell(
     //         onTap: () {
@@ -123,33 +122,29 @@ class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStat
 
   getdesc(context, game) {
     return Hero(
-        tag: 'hero-dec-${game!.title}',
-        child: Container(
-            decoration: BoxDecoration(color: Colors.white),
-            //height: (App.height + 10),
-            child:
-                //scroll(
-                //ListView(
-                //primary: true,
-                //clipBehavior: Clip.none,
-                //physics: const BouncingScrollPhysics(parent: BouncingScrollPhysics()),
-                //controller: _listcontroller,
-                //children: [
-                Padding(
+      tag: 'hero-dec-${game!.title}',
+      child: Container(
+        decoration: BoxDecoration(color: Colors.white),
+        //height: (App.height + 10),
+        child:
+            //scroll(
+            //ListView(
+            //primary: true,
+            //clipBehavior: Clip.none,
+            //physics: const BouncingScrollPhysics(parent: BouncingScrollPhysics()),
+            //controller: _listcontroller,
+            //children: [
+            Padding(
               padding: const EdgeInsets.all(18.0),
               child: Text(
                 game!.content,
-                style: TextStyle(
-                  inherit: false,
-                  fontSize: 16,
-                  color: Colors.black,
-                  decoration: TextDecoration.none,
-                ),
+                style: TextStyle(inherit: false, fontSize: 16, color: Colors.black, decoration: TextDecoration.none),
               ),
-            )
-            //]),
-            //true)
-            ));
+            ),
+        //]),
+        //true)
+      ),
+    );
 
     //Expanded(child:);
   }
@@ -157,23 +152,19 @@ class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStat
   getpic(game) {
     return Hero(
       tag: 'heropic${game?.title}',
-      child: Stack(children: <Widget>[
-        AppImg(
-          game!.imageUrl,
-          fit: BoxFit.cover,
-          height: 480,
-        ),
-        Padding(
+      child: Stack(
+        children: <Widget>[
+          AppImg(game!.imageUrl, fit: BoxFit.cover, height: 480),
+          Padding(
             padding: const EdgeInsets.only(left: 18.0, bottom: 0),
             child: SizedBox(
               height: 480,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: getText(game),
-              ),
-            )),
-        //Expanded(child: getdesc(game))
-      ]),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: getText(game)),
+            ),
+          ),
+          //Expanded(child: getdesc(game))
+        ],
+      ),
     );
   }
 
@@ -183,61 +174,46 @@ class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStat
         children: [
           Expanded(child: Text("")),
           GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(right: 18),
-                child: Icon(
-                  Icons.clear,
-                  color: Colors.white,
-                ),
-              ))
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 18),
+              child: Icon(Icons.clear, color: Colors.white),
+            ),
+          ),
         ],
       ),
       Text(
         game!.headText,
-        style: TextStyle(
-          inherit: false,
-          fontSize: 16,
-          color: Colors.grey,
-          decoration: TextDecoration.none,
-        ),
+        style: TextStyle(inherit: false, fontSize: 16, color: Colors.grey, decoration: TextDecoration.none),
       ),
       Expanded(
         child: Text(
           game.title,
-          style: TextStyle(
-            fontSize: 30,
-            color: Colors.white,
-            decoration: TextDecoration.none,
-          ),
+          style: TextStyle(fontSize: 30, color: Colors.white, decoration: TextDecoration.none),
         ),
       ),
       Padding(
-          padding: const EdgeInsets.only(bottom: 18),
-          child: Text(game.footerText,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
-                decoration: TextDecoration.none,
-              ))),
+        padding: const EdgeInsets.only(bottom: 18),
+        child: Text(
+          game.footerText,
+          style: TextStyle(fontSize: 16, color: Colors.grey, decoration: TextDecoration.none),
+        ),
+      ),
     ];
   }
 
   scroll(child, bar) {
     return ScrollConfiguration(
-        behavior: ScrollConfiguration.of(context).copyWith(
-            //overscroll: true,
-            scrollbars: bar,
-            physics: const BouncingScrollPhysics(parent: BouncingScrollPhysics()),
-            dragDevices: {
-              PointerDeviceKind.unknown,
-              PointerDeviceKind.trackpad,
-              PointerDeviceKind.touch,
-              PointerDeviceKind.mouse,
-            }),
-        child: child);
+      behavior: ScrollConfiguration.of(context).copyWith(
+        //overscroll: true,
+        scrollbars: bar,
+        physics: const BouncingScrollPhysics(parent: BouncingScrollPhysics()),
+        dragDevices: {PointerDeviceKind.unknown, PointerDeviceKind.trackpad, PointerDeviceKind.touch, PointerDeviceKind.mouse},
+      ),
+      child: child,
+    );
   }
 }
 

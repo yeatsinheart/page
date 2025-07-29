@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
-container_demo({height,txt='占位',color=Colors.white}){
-  return Container(height: height, color: color, alignment: Alignment.center, child: Text(txt, style: TextStyle(color: Colors.white)));
+container_demo({height, txt = '占位', color = Colors.white}) {
+  return Container(
+    height: height,
+    color: color,
+    alignment: Alignment.center,
+    child: Text(txt, style: TextStyle(color: Colors.white)),
+  );
 }
 
 list_demo(count) {
@@ -63,7 +68,7 @@ Widget card_demo(String title) {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
             decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.black.withOpacity(0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+              gradient: LinearGradient(colors: [Colors.black.withValues(alpha: 0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
             ),
             child: Text(
               title,

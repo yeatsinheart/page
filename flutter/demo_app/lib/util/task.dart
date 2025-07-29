@@ -2,6 +2,7 @@ import 'dart:async';
 
 class Task {
   Task._internal();
+
   factory Task() => _instance;
   static late final Task _instance = Task._internal();
 

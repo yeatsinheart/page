@@ -14,8 +14,7 @@ class GameByCategoryLeftBrand extends StatefulWidget {
   const GameByCategoryLeftBrand({super.key, this.params});
 
   @override
-  _GameByCategoryLeftBrandState createState() =>
-      _GameByCategoryLeftBrandState();
+  _GameByCategoryLeftBrandState createState() => _GameByCategoryLeftBrandState();
 }
 // with AutomaticKeepAliveClientMixin
 // @override
@@ -100,17 +99,9 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
-      final double targetOffset =
-          index * box.size.height - (screenHeight - box.size.height) / 2;
+      final double targetOffset = index * box.size.height - (screenHeight - box.size.height) / 2;
       //print("tab移动到${targetOffset} 选中 ${_currentIndex}");
-      _tabScrollController.animateTo(
-        targetOffset.clamp(
-          _tabScrollController.position.minScrollExtent,
-          _tabScrollController.position.maxScrollExtent,
-        ),
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      );
+      _tabScrollController.animateTo(targetOffset.clamp(_tabScrollController.position.minScrollExtent, _tabScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeOut);
     }
   }
 
@@ -121,26 +112,14 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     if (dataContext != null) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
-      final offset =
-          box.localToGlobal(Offset.zero).dy +
-          _pageScrollController.offset -
-          AppStyle.byRem(.9);
+      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset - AppStyle.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
-      _pageScrollController
-          .animateTo(
-            offset.clamp(
-              _pageScrollController.position.minScrollExtent,
-              _pageScrollController.position.maxScrollExtent,
-            ),
-            duration: Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
-          )
-          .then((_) {
-            Future.delayed(Duration(milliseconds: 100), () {
-              _scrollingByClick = false;
-            });
-          });
+      _pageScrollController.animateTo(offset.clamp(_pageScrollController.position.minScrollExtent, _pageScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
+        Future.delayed(Duration(milliseconds: 100), () {
+          _scrollingByClick = false;
+        });
+      });
     }
   }
 
@@ -196,12 +175,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                         tabs[index].tr,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontWeight: selected
-                              ? FontWeight.bold
-                              : FontWeight.normal,
-                          color: selected ? Colors.white : Colors.black,
-                        ),
+                        style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? Colors.white : Colors.black),
                       ),
                     ],
                   ),
@@ -210,8 +184,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
             ),
           );
         },
-        separatorBuilder: (context, index) =>
-            SizedBox(height: 10), // 仅在 item 之间插入 gap
+        separatorBuilder: (context, index) => SizedBox(height: 10), // 仅在 item 之间插入 gap
       ),
     );
   }
@@ -237,11 +210,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // 左侧 logo
-            AppImg(
-              'assets/images/launcher.png',
-              width: AppStyle.byRem(0.7),
-              height: AppStyle.byRem(0.7),
-            ),
+            AppImg('assets/images/launcher.png', width: AppStyle.byRem(0.7), height: AppStyle.byRem(0.7)),
             TextButton(
               onPressed: () {
                 setState(() {
@@ -251,7 +220,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
               child: Text('某分类'),
               style: ButtonStyle(
                 foregroundColor: WidgetStateProperty.all(Colors.blue),
-                shape: MaterialStateProperty.all(
+                shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
                     side: BorderSide(color: Colors.blue),
@@ -272,10 +241,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
         // padding 永远和header保持>一个导航栏高度
         pinned: true,
         // 最大高度
-        delegate: ShareSliverPersistentHeaderDelegate(
-          height: AppStyle.screenHeight - AppStyle.byRem(1.24),
-          child: _buildTabBar(),
-        ),
+        delegate: ShareSliverPersistentHeaderDelegate(height: AppStyle.screenHeight - AppStyle.byRem(1.24), child: _buildTabBar()),
       ),
     );
   }
@@ -318,26 +284,16 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
             children: [
               scrollListener(
                 CustomScrollView(
-                  physics: _changeCategory
-                      ? NeverScrollableScrollPhysics()
-                      : null, // 禁止滚动
-                  cacheExtent:
-                      1000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
+                  physics: _changeCategory ? NeverScrollableScrollPhysics() : null, // 禁止滚动
+                  cacheExtent: 1000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
                   controller: _pageScrollController,
                   slivers: [
                     SliverToBoxAdapter(
-                      child: Container(
-                        height: 150,
-                        color: Colors.orange.shade100,
-                        alignment: Alignment.center,
-                        child: Text('👋 欢迎页面介绍内容，滚动后会消失'),
-                      ),
+                      child: Container(height: 150, color: Colors.orange.shade100, alignment: Alignment.center, child: Text('👋 欢迎页面介绍内容，滚动后会消失')),
                     ),
                     getHeader1(),
                     SliverPadding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: AppStyle.byRem(.2),
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
                       sliver: SliverCrossAxisGroup(
                         slivers: [
                           getHeader2(),
@@ -365,11 +321,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                             // SliverChildListDelegate立即渲染
                             delegate: SliverChildListDelegate(
                               List.generate(tabs.length, (index) {
-                                Widget? x = AppView.ofPath(
-                                  "/game/home_category/list_brand",
-                                  key: _data_keys[index],
-                                  params: {"title": tabs[index]},
-                                );
+                                Widget? x = AppView.ofPath("/game/home_category/list_brand", key: _data_keys[index], params: {"title": tabs[index]});
                                 return x ?? Container();
                               }),
                             ),
@@ -455,14 +407,10 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
               ),
               _changeCategory
                   ? Positioned.fill(
-                      child: IgnorePointer(
-                        child: Container(color: Colors.black.withOpacity(0.5)),
-                      ),
+                      child: IgnorePointer(child: Container(color: Colors.black.withValues(alpha: 0.5))),
                     )
                   : SizedBox.shrink(),
-              _changeCategory
-                  ? Container(child: Text("下拉选择"))
-                  : SizedBox.shrink(),
+              _changeCategory ? Container(child: Text("下拉选择")) : SizedBox.shrink(),
             ],
           ),
         ),
@@ -486,9 +434,7 @@ Widget buildGridItem(String title) {
       children: [
         Container(
           color: Colors.grey[300],
-          child: Center(
-            child: Icon(Icons.image, size: 50, color: Colors.white),
-          ),
+          child: Center(child: Icon(Icons.image, size: 50, color: Colors.white)),
         ),
         Positioned(
           bottom: 0,
@@ -497,11 +443,7 @@ Widget buildGridItem(String title) {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.black.withOpacity(0.3), Colors.transparent],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-              ),
+              gradient: LinearGradient(colors: [Colors.black.withValues(alpha: 0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
             ),
             child: Text(
               title,

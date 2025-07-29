@@ -3,20 +3,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter3/style/browser.dart';
-
 import 'package:flutter3/log/logger.dart';
-import 'package:flutter3/service/language.dart';
-import 'package:flutter3/init/app-initializer.dart';
+import 'package:flutter3/service/bootstrap-service.dart';
+import 'package:flutter3/style/browser.dart';
 import 'package:flutter3/view/app/network_monitor.dart';
-
-import 'package:flutter3/store/global-config.dart';
-import 'package:flutter3/store/host-status.dart';
-
-import 'package:flutter3/store/language.dart';
-import 'package:flutter3/store/store_init_binding.dart';
-
-import 'package:get/get.dart';
 
 import 'app-context.dart';
 import 'view/app-view.dart';
@@ -50,7 +40,7 @@ init() async {
   // 默认竖屏
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   // 网络更新配置时，这些都需要按照最新网络的数据进行更新
-  AppInitializer.init().then((_) {
+  BootstrapService.init().then((_) {
     runApp(_main(AppView.ofKey("app_layout") ?? Container()));
   });
 }

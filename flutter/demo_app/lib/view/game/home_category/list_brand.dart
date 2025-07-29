@@ -8,8 +8,7 @@ class GameHomeCategoryListBrand extends StatefulWidget {
   const GameHomeCategoryListBrand({this.params, super.key});
 
   @override
-  _GameHomeCategoryListBrandState createState() =>
-      _GameHomeCategoryListBrandState();
+  _GameHomeCategoryListBrandState createState() => _GameHomeCategoryListBrandState();
 }
 // with AutomaticKeepAliveClientMixin
 // @override
@@ -41,10 +40,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                title.tr,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
+              Text(title.tr, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               TextButton(
                 onPressed: () {
                   setState(() {
@@ -59,12 +55,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemCount: expanded ? 32 : 6,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 0.75,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
-            ),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 0.75, crossAxisSpacing: 8, mainAxisSpacing: 8),
             itemBuilder: (_, gridIndex) {
               return buildGridItem(title.tr);
             },
@@ -92,9 +83,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
         children: [
           Container(
             color: Colors.grey[300],
-            child: Center(
-              child: Icon(Icons.image, size: 50, color: Colors.white),
-            ),
+            child: Center(child: Icon(Icons.image, size: 50, color: Colors.white)),
           ),
           Positioned(
             bottom: 0,
@@ -104,11 +93,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
               height: 50,
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.black.withOpacity(0.3), Colors.transparent],
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                ),
+                gradient: LinearGradient(colors: [Colors.black.withValues(alpha: 0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
               ),
               child: Center(
                 child: Text(

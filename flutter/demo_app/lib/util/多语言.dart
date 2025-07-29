@@ -24,7 +24,7 @@ output-localization-file: app_localizations.dart''';
 {
     "helloWorld": "¡Hola Mundo!"
 }''';
-// 文件操作 https://juejin.cn/post/6844903942720077831
+  // 文件操作 https://juejin.cn/post/6844903942720077831
   try {
     // 向文件写入字符串
     await file.writeAsString(content);

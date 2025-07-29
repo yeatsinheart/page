@@ -79,14 +79,8 @@ class _PermissionState extends State<PermissionWidget> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(
-        _permission.toString(),
-        style: Theme.of(context).textTheme.bodyLarge,
-      ),
-      subtitle: Text(
-        _permissionStatus.toString(),
-        style: TextStyle(color: getPermissionColor()),
-      ),
+      title: Text(_permission.toString(), style: Theme.of(context).textTheme.bodyLarge),
+      subtitle: Text(_permissionStatus.toString(), style: TextStyle(color: getPermissionColor())),
       trailing: (_permission is PermissionWithService)
           ? IconButton(
               icon: const Icon(Icons.info, color: Colors.white),
@@ -101,13 +95,8 @@ class _PermissionState extends State<PermissionWidget> {
     );
   }
 
-  void checkServiceStatus(
-    BuildContext context,
-    PermissionWithService permission,
-  ) async {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text((await permission.serviceStatus).toString())),
-    );
+  void checkServiceStatus(BuildContext context, PermissionWithService permission) async {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text((await permission.serviceStatus).toString())));
   }
 
   Future<void> requestPermission(Permission permission) async {

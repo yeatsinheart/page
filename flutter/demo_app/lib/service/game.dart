@@ -8,6 +8,7 @@ class Game {
   String footerText;
   String imageUrl;
   String content;
+
   Game(this.title, this.headText, this.footerText, this.imageUrl, this.content);
 }
 
@@ -17,51 +18,37 @@ gameView(game, height, double radius) {
       Positioned.fill(
         child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(radius)),
-          child: AppImg(
-            game.imageUrl,
-            fit: BoxFit.cover,
-          ),
+          child: AppImg(game.imageUrl, fit: BoxFit.cover),
         ),
       ),
       SizedBox(
-          height: height,
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  game.headText,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                    decoration: TextDecoration.none,
-                  ),
+        height: height,
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                game.headText,
+                style: TextStyle(fontSize: 16, color: Colors.grey, decoration: TextDecoration.none),
+              ),
+              Expanded(
+                child: Text(
+                  game.title,
+                  style: TextStyle(fontSize: 30, color: Colors.white, decoration: TextDecoration.none),
                 ),
-                Expanded(
-                  child: Text(
-                    game.title,
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.white,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 18),
+                child: Text(
+                  game.footerText,
+                  style: TextStyle(fontSize: 16, color: Colors.grey, decoration: TextDecoration.none),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 18),
-                  child: Text(
-                    game.footerText,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ))
+              ),
+            ],
+          ),
+        ),
+      ),
     ],
   );
 }

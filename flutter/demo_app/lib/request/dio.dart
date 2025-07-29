@@ -3,18 +3,16 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter3/request/api_request.dart';
 import 'package:flutter3/request/test.dart';
 import 'package:flutter3/service/language.dart';
 import 'package:get/get.dart' hide Response;
 
-import '../log/logger.dart';
 import '../store/host-status.dart';
-import '../store/language.dart';
 import 'cache.dart';
 
-class ApiDio{
+class ApiDio {
   ApiDio._internal();
+
   factory ApiDio() => _instance;
   static final ApiDio _instance = ApiDio._internal();
   Dio dio = getDio(Get.find<HostStatusStore>().chosenLine ?? 'https://example.com');
@@ -22,7 +20,9 @@ class ApiDio{
 
 class HostCheckDio {
   final String host;
+
   HostCheckDio(this.host);
+
   Dio get dio => getDio(host);
 }
 
@@ -54,11 +54,11 @@ _filter(Dio dio) {
     InterceptorsWrapper(
       onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
         options.headers['Accept-Language'] = LanguageService().chosen;
-        if(options.method=='GET'){
-          options.sendTimeout=null;
+        if (options.method == 'GET') {
+          options.sendTimeout = null;
         }
-        if(options.data==null){
-          options.sendTimeout=null;
+        if (options.data == null) {
+          options.sendTimeout = null;
         }
         // 模拟测试
         var response = ApiTest.test(options);

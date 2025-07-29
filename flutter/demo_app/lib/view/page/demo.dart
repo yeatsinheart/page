@@ -77,11 +77,7 @@ class _PageDemoState extends State<PageDemo> with TickerProviderStateMixin {
     bar.add(Tab(height: 24, text: '热门'));
     bar.add(Tab(height: 24, text: '日本'));
     bar.add(Tab(height: 24, text: 'xx'));
-    List<Widget> pages = [
-      Center(child: Text('热门')),
-      Center(child: Text('日本')),
-      Center(child: Text('xx')),
-    ];
+    List<Widget> pages = [Center(child: Text('热门')), Center(child: Text('日本')), Center(child: Text('xx'))];
 
     _tabs = bar;
     _tab_content = pages;
@@ -90,11 +86,7 @@ class _PageDemoState extends State<PageDemo> with TickerProviderStateMixin {
     _tabController.dispose();
 
     int defaultIndex = 0;
-    _tabController = TabController(
-      initialIndex: defaultIndex,
-      vsync: this,
-      length: _tabs.length,
-    );
+    _tabController = TabController(initialIndex: defaultIndex, vsync: this, length: _tabs.length);
 
     setState(() {});
 

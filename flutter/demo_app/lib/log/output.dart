@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -16,9 +17,8 @@ class AppLogOutput extends LogOutput {
     }
   }
 
-
   @override
-  void output(OutputEvent event) async{
+  void output(OutputEvent event) async {
     final logLine = event.lines.join('\n');
     try {
       file!.writeAsStringSync('$logLine\n', mode: FileMode.append, flush: true);

@@ -6,6 +6,7 @@ import 'btn_login_register.dart';
 
 class BarBrandRightDemo extends StatelessWidget {
   final dynamic params;
+
   const BarBrandRightDemo({this.params, super.key});
 
   @override

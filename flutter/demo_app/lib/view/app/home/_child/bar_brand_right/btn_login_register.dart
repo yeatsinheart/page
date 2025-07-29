@@ -15,11 +15,7 @@ class BtnLoginRegister extends StatelessWidget {
           style: ButtonStyle().copyWith(
             backgroundColor: WidgetStateProperty.all(Colors.blue),
             foregroundColor: WidgetStateProperty.all(Colors.white),
-            shape: WidgetStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
-              ),
-            ),
+            shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.byRem(.1)))),
           ),
         ),
         const SizedBox(width: 8),

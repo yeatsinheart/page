@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/app-context.dart';
-
-
 import 'package:flutter3/service/game.dart';
 import 'package:flutter3/style/app-style.dart';
+
 import '../../share/img.dart';
 
 class TestDetail extends StatelessWidget {
@@ -26,11 +24,7 @@ class TestDetail extends StatelessWidget {
                   height: AppStyle.screenHeight,
                   child: Stack(
                     children: <Widget>[
-                      AppImg(
-                        game!.imageUrl,
-                        fit: BoxFit.cover,
-                        height: 500,
-                      ),
+                      AppImg(game!.imageUrl, fit: BoxFit.cover, height: 500),
                       SafeArea(
                         bottom: false,
                         child: Padding(
@@ -40,29 +34,17 @@ class TestDetail extends StatelessWidget {
                             children: <Widget>[
                               Text(
                                 game.headText,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey,
-                                  decoration: TextDecoration.none,
-                                ),
+                                style: TextStyle(fontSize: 16, color: Colors.grey, decoration: TextDecoration.none),
                               ),
                               Expanded(
                                 child: Text(
                                   game.title,
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    color: Colors.white,
-                                    decoration: TextDecoration.none,
-                                  ),
+                                  style: TextStyle(fontSize: 30, color: Colors.white, decoration: TextDecoration.none),
                                 ),
                               ),
                               Text(
                                 game.footerText,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey,
-                                  decoration: TextDecoration.none,
-                                ),
+                                style: TextStyle(fontSize: 16, color: Colors.grey, decoration: TextDecoration.none),
                               ),
                             ],
                           ),
@@ -74,13 +56,8 @@ class TestDetail extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Text(
-                  game.content,
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              )
+                child: Text(game.content, style: TextStyle(fontSize: 16)),
+              ),
             ],
           ),
         ),

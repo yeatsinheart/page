@@ -44,53 +44,52 @@ class _HomeViewState extends State {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-        //flutter 中的 Appbar默认高度是 56
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(56),
-            child: AppBar(
-              elevation: 1,
-              automaticallyImplyLeading: false,
-              backgroundColor: AppService().skin()!.ground,
-              title: Text(
-                AppService().get()!.name,
-                style: TextStyle(color: AppService().skin()!.font, fontSize: 16),
-              ),
-              // flexibleSpace: SafeArea(
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.end,
-              //     children: [
-              //       //Container( alignment: Alignment.bottomCenter, child: Text( "微信", style: TextStyle( fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black, ), ), ),
-              //       //padding: EdgeInsets.symmetric(horizontal: 16), margin: EdgeInsets.only(bottom: 12),
-              //       //padding: EdgeInsets.symmetric(horizontal: 18), margin: EdgeInsets.only(bottom: 2)
-              //       Container(
-              //           decoration: BoxDecoration(gradient: SkinData().gradient()),
-              //           child:
-              //               //isCollapsed:true, contentPadding: EdgeInsets.all(5),  contentPadding: EdgeInsets.all(0), isCollapsed:true,
-              //               //这种修改可以在没有prefixIcon的时候生效，如果加入prefixIcon，就会出现一个最小的高度，这时，按照如上方法修改如果高度较小的时候会修改失败。
-              //               // 因而需要再TextField外层加一个BoxConstraints，代码如下：
-              //               ConstrainedBox(
-              //             constraints: BoxConstraints(maxHeight: 25),
-              //             child: TextField(
-              //               style: TextStyle(fontSize: 14, color: Colors.black87),
-              //               decoration: InputDecoration(
-              //                 contentPadding: EdgeInsets.all(0),
-              //                 hintText: "搜索",
-              //                 hintStyle: TextStyle(color: Colors.grey),
-              //                 prefixIcon: Icon(Icons.search, color: Colors.grey),
-              //                 filled: true,
-              //                 fillColor: Colors.white,
-              //                 border: OutlineInputBorder(
-              //                   borderRadius: BorderRadius.circular(12),
-              //                   borderSide: BorderSide.none,
-              //                 ),
-              //               ),
-              //             ),
-              //           )),
-              //     ],
-              //   ),
-              // ),
-            )),
-        body: Container(color: AppService().skin()!.container, child: _buildListView()));
+      //flutter 中的 Appbar默认高度是 56
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(56),
+        child: AppBar(
+          elevation: 1,
+          automaticallyImplyLeading: false,
+          backgroundColor: AppService().skin()!.ground,
+          title: Text(AppService().get()!.name, style: TextStyle(color: AppService().skin()!.font, fontSize: 16)),
+          // flexibleSpace: SafeArea(
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.end,
+          //     children: [
+          //       //Container( alignment: Alignment.bottomCenter, child: Text( "微信", style: TextStyle( fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black, ), ), ),
+          //       //padding: EdgeInsets.symmetric(horizontal: 16), margin: EdgeInsets.only(bottom: 12),
+          //       //padding: EdgeInsets.symmetric(horizontal: 18), margin: EdgeInsets.only(bottom: 2)
+          //       Container(
+          //           decoration: BoxDecoration(gradient: SkinData().gradient()),
+          //           child:
+          //               //isCollapsed:true, contentPadding: EdgeInsets.all(5),  contentPadding: EdgeInsets.all(0), isCollapsed:true,
+          //               //这种修改可以在没有prefixIcon的时候生效，如果加入prefixIcon，就会出现一个最小的高度，这时，按照如上方法修改如果高度较小的时候会修改失败。
+          //               // 因而需要再TextField外层加一个BoxConstraints，代码如下：
+          //               ConstrainedBox(
+          //             constraints: BoxConstraints(maxHeight: 25),
+          //             child: TextField(
+          //               style: TextStyle(fontSize: 14, color: Colors.black87),
+          //               decoration: InputDecoration(
+          //                 contentPadding: EdgeInsets.all(0),
+          //                 hintText: "搜索",
+          //                 hintStyle: TextStyle(color: Colors.grey),
+          //                 prefixIcon: Icon(Icons.search, color: Colors.grey),
+          //                 filled: true,
+          //                 fillColor: Colors.white,
+          //                 border: OutlineInputBorder(
+          //                   borderRadius: BorderRadius.circular(12),
+          //                   borderSide: BorderSide.none,
+          //                 ),
+          //               ),
+          //             ),
+          //           )),
+          //     ],
+          //   ),
+          // ),
+        ),
+      ),
+      body: Container(color: AppService().skin()!.container, child: _buildListView()),
+    );
   }
 
   List _items = [
@@ -102,50 +101,63 @@ class _HomeViewState extends State {
   ListView _buildListView() {
     // list view 无限加载
     return ListView.builder(
-        itemCount: _items.length,
-        itemBuilder: (context, index) {
-          return who(_items[index]);
-        }
-        // children: <Widget>[
-        //   for (int index = 0; index < _items.length; index += 1)
-        //
-        // ],
-        );
+      itemCount: _items.length,
+      itemBuilder: (context, index) {
+        return who(_items[index]);
+      },
+      // children: <Widget>[
+      //   for (int index = 0; index < _items.length; index += 1)
+      //
+      // ],
+    );
   }
 }
 
 who(item) {
   // ListTile must be wrapped in a Material widget to animate tileColor, selectedTileColor, focusColor, and hoverColor as these colors are not drawn by the list tile
   return Material(
-      color: AppService().skin()!.container,
-      child: ListTile(
-          hoverColor: AppService().skin()!.colorHover,
-          onTap: () {
-            print('点击列表');
-          },
-          key: Key('${item["chatId"]}'),
-          // 绘制列表的最左边项，这里放了个圆形的图片
-          // 描述图片的圆形，需要使用背景图来做
-          // CachedNetworkImage BoxDecoration无效
-          leading: Container(width: 40, height: 40, child: ClipRRect(borderRadius: BorderRadius.circular(5), child: CachedNetworkImage(fit: BoxFit.cover, placeholder: (context, url) => AppImg("images/a002.jpg"), errorWidget: (context, url, error) => Text("图片失败"), imageUrl: item["img"]))),
-          // 绘制消息主体的上半部分，主要是左边的名称和右边的日期，使用row的flex水平布局
-          title: Row(
-            children: <Widget>[
-              Expanded(
-                  flex: 1,
-                  child: Text(
-                    "${item["title"]}",
-                    style: TextStyle(color: AppService().skin()!.font),
-                  )),
-              Text("${DateTime.fromMillisecondsSinceEpoch(item["lastTime"])}", style: TextStyle(color: AppService().skin()!.fontFade, fontSize: 12))
-            ],
+    color: AppService().skin()!.container,
+    child: ListTile(
+      hoverColor: AppService().skin()!.colorHover,
+      onTap: () {
+        print('点击列表');
+      },
+      key: Key('${item["chatId"]}'),
+      // 绘制列表的最左边项，这里放了个圆形的图片
+      // 描述图片的圆形，需要使用背景图来做
+      // CachedNetworkImage BoxDecoration无效
+      leading: Container(
+        width: 40,
+        height: 40,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(5),
+          child: CachedNetworkImage(fit: BoxFit.cover, placeholder: (context, url) => AppImg("images/a002.jpg"), errorWidget: (context, url, error) => Text("图片失败"), imageUrl: item["img"]),
+        ),
+      ),
+      // 绘制消息主体的上半部分，主要是左边的名称和右边的日期，使用row的flex水平布局
+      title: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Text("${item["title"]}", style: TextStyle(color: AppService().skin()!.font)),
           ),
-          // 子标题，给一个向上的5px的间距 Padding(padding: EdgeInsets.only(top: 5),child: ),，同时右边有一个红色的未读消息的标示 , style: TextStyle(fontSize: 12)
-          // 每一个需要两个以上的组件构成的组件，都需要使用Row或者Column或者Flex的组件来实现
-          // 小圆点，使用Container类似div的方式实现
-          subtitle: Row(
-            children: <Widget>[Expanded(flex: 1, child: Text("${item["lastMsg"]}", style: TextStyle(color: AppService().skin()!.fontFade, fontSize: 12))), msgcount(item["unRead"])],
-          )));
+          Text("${DateTime.fromMillisecondsSinceEpoch(item["lastTime"])}", style: TextStyle(color: AppService().skin()!.fontFade, fontSize: 12)),
+        ],
+      ),
+      // 子标题，给一个向上的5px的间距 Padding(padding: EdgeInsets.only(top: 5),child: ),，同时右边有一个红色的未读消息的标示 , style: TextStyle(fontSize: 12)
+      // 每一个需要两个以上的组件构成的组件，都需要使用Row或者Column或者Flex的组件来实现
+      // 小圆点，使用Container类似div的方式实现
+      subtitle: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Text("${item["lastMsg"]}", style: TextStyle(color: AppService().skin()!.fontFade, fontSize: 12)),
+          ),
+          msgcount(item["unRead"]),
+        ],
+      ),
+    ),
+  );
 }
 
 msgcount(int num) {

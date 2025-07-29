@@ -2,20 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/view/app-view.dart';
 
 import 'app-context.dart';
-class AppRoute{
+
+class AppRoute {
   /// 各种效果模式 https://juejin.cn/post/6844903890291261447
-  static slideToKey(String? key, {params, Offset from = SlideRoute.right, int time = 300}){
-    AppContext.navigatorKey.currentState?.push(SlideRoute(AppView.ofKey(key,params: params), from: from, time: time));
-  }
-  static slideToPath(String? path, {params, Offset from = SlideRoute.right, int time = 300}){
-    AppContext.navigatorKey.currentState?.push(SlideRoute(AppView.ofPath(path,params: params), from: from, time: time));
+  static slideToKey(String? key, {params, Offset from = SlideRoute.right, int time = 300}) {
+    AppContext.navigatorKey.currentState?.push(
+      SlideRoute(
+        AppView.ofKey(key, params: params),
+        from: from,
+        time: time,
+      ),
+    );
   }
 
+  static slideToPath(String? path, {params, Offset from = SlideRoute.right, int time = 300}) {
+    AppContext.navigatorKey.currentState?.push(
+      SlideRoute(
+        AppView.ofPath(path, params: params),
+        from: from,
+        time: time,
+      ),
+    );
+  }
 
-  static open(PageRouteBuilder route){
+  static open(PageRouteBuilder route) {
     AppContext.navigatorKey.currentState?.push(route);
   }
-
 
   static void back() {
     AppContext.navigatorKey.currentState?.pop();
@@ -25,8 +37,6 @@ class AppRoute{
   static Object? routeArgs() {
     return ModalRoute.of(AppContext.context)!.settings.arguments;
   }
-
-
 }
 
 /**
@@ -65,17 +75,17 @@ class SlideRoute extends PageRouteBuilder {
   // 左上角为-1,-1 左下角为 0,0  右上角为1,-1 右为 1,0  右下角 1,1
   // 默认页面都是从右到左
   SlideRoute(this.newPage, {Offset from = right, int time = 500, RouteSettings? settings})
-      : super(
-    settings: settings,
-    transitionDuration: Duration(milliseconds: time),
-    reverseTransitionDuration: Duration(milliseconds: time),
-    pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => newPage??Container(),
-    transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
-      //使新页面从底部动画出来，它应该从 Offset(0,1) 到 Offset(0, 0) 进行动画
-      //Offset (dx,dy) dx=-1:左边 dy=-1:上面 =0当前屏幕  方向和距离 1整个屏幕宽 高 系数
-      position: Tween(begin: from, end: const Offset(0, 0)).animate(animation),
-      child: child,
-    ),
-    //SizeTransition(axisAlignment: -1,sizeFactor: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: animation, curve: Curves.easeInSine)),child: widget,
-  );
+    : super(
+        settings: settings,
+        transitionDuration: Duration(milliseconds: time),
+        reverseTransitionDuration: Duration(milliseconds: time),
+        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => newPage ?? Container(),
+        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
+          //使新页面从底部动画出来，它应该从 Offset(0,1) 到 Offset(0, 0) 进行动画
+          //Offset (dx,dy) dx=-1:左边 dy=-1:上面 =0当前屏幕  方向和距离 1整个屏幕宽 高 系数
+          position: Tween(begin: from, end: const Offset(0, 0)).animate(animation),
+          child: child,
+        ),
+        //SizeTransition(axisAlignment: -1,sizeFactor: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: animation, curve: Curves.easeInSine)),child: widget,
+      );
 }

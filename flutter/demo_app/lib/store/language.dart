@@ -1,11 +1,4 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:ui';
-
-import 'package:flutter3/log/logger.dart';
-import 'package:flutter3/request/api.dart';
 import 'package:flutter3/service/language.dart';
-import 'package:flutter3/store/cache_as_json.dart';
 import 'package:get/get.dart';
 
 // 其实就是扩展String .tr 其实依赖的是 BuildContext 的 rebuild，而不是 Obx 或 GetX。
@@ -13,13 +6,14 @@ import 'package:get/get.dart';
 class LanguageStore extends GetxService {
   // 单例一旦创建，就会一直存在内存中，直到程序退出或手动销毁
   LanguageStore._internal();
+
   static final LanguageStore _instance = LanguageStore._internal();
+
   factory LanguageStore() => _instance;
 
-  listen(data) async{
-  }
+  listen(data) async {}
 
-  final  chosen ="".obs;
+  final chosen = "".obs;
   final list = <dynamic>[].obs;
 
   @override
@@ -32,10 +26,8 @@ class LanguageStore extends GetxService {
     super.onClose();
   }
 
-  choose(String code) async{
+  choose(String code) async {
     await LanguageService().choose(code);
-    chosen.value=code;
+    chosen.value = code;
   }
-
-
 }

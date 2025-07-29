@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:provider/provider.dart';
 
 import '../../../service/app_service.dart';
 
-
 // Standard iOS 10 tab bar height.
-const double _kTabBarHeight = 50.0;
 
 /// 用作测试用
 const List<String> INDEX_DATA_0 = ['★', '♀', '↑', '@', 'A', 'B', 'C', 'D'];
@@ -27,9 +23,7 @@ class WechatContact extends StatefulWidget {
   _ContactsPageState createState() => _ContactsPageState();
 }
 
-class _ContactsPageState extends State
-    with AutomaticKeepAliveClientMixin {
-
+class _ContactsPageState extends State with AutomaticKeepAliveClientMixin {
   ///
   @override
   bool get wantKeepAlive => true;
@@ -37,7 +31,6 @@ class _ContactsPageState extends State
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
@@ -45,24 +38,21 @@ class _ContactsPageState extends State
     super.dispose();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
       //flutter 中的 Appbar默认高度是 56
       appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(56),
-          child: AppBar(
-            elevation: 0.5,
-            automaticallyImplyLeading: false,
-            backgroundColor: AppService().skin()!.ground,
-            title: Text("通讯录", style: TextStyle(color:AppService().skin()!.font,fontSize: 16),),
-
-          )),
-      body:  Container(color: AppService().skin()!.container,),
+        preferredSize: const Size.fromHeight(56),
+        child: AppBar(
+          elevation: 0.5,
+          automaticallyImplyLeading: false,
+          backgroundColor: AppService().skin()!.ground,
+          title: Text("通讯录", style: TextStyle(color: AppService().skin()!.font, fontSize: 16)),
+        ),
+      ),
+      body: Container(color: AppService().skin()!.container),
     );
   }
-
 }

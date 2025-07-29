@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'host_status/index.dart';
 
 class NetworkMonitor extends StatefulWidget {
@@ -54,19 +55,19 @@ class _NetworkMonitorState extends State<NetworkMonitor> {
 
   Widget _buildNoNetworkOverlay() {
     return Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.wifi_off, size: 80, color: Colors.grey),
-              const SizedBox(height: 20),
-              Text('网络已断开，请检查网络连接'.tr),
-              const SizedBox(height: 10),
-              ElevatedButton(onPressed: _checkInitialConnection, child: Text("重试".tr)),
-              Expanded(child: AppHostStatusIndex()),
-            ],
-          ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.wifi_off, size: 80, color: Colors.grey),
+            const SizedBox(height: 20),
+            Text('网络已断开，请检查网络连接'.tr),
+            const SizedBox(height: 10),
+            ElevatedButton(onPressed: _checkInitialConnection, child: Text("重试".tr)),
+            Expanded(child: AppHostStatusIndex()),
+          ],
         ),
-      );
+      ),
+    );
   }
 }

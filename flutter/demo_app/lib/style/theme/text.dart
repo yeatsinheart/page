@@ -1,10 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter3/util/color-util.dart';
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/util/color-util.dart';
 
-getTextTheme(){
+getTextTheme() {
   return TextTheme(
     displayLarge: globalTextStyle,
     displayMedium: globalTextStyle,
@@ -23,8 +21,10 @@ getTextTheme(){
     labelSmall: globalTextStyle, // Material 3 默认 Text()
   );
 }
+
 TextStyle globalTextStyle = TextStyle(fontSize: AppStyle.byRem(.22), height: 1.5, color: ColorUtil.getColor(AppStyle.getFontStyle().txt));
-getTextStyle(){
+
+getTextStyle() {
   return globalTextStyle;
 }
 

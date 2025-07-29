@@ -29,13 +29,7 @@ class AppLanguage extends StatelessWidget {
             final lang = languageStore.list[index];
             final selected = (languageStore.chosen.value == lang["code"]);
             return ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: selected ? Colors.blue : null,
-                padding: const EdgeInsets.symmetric(
-                  vertical: 12,
-                  horizontal: 16,
-                ),
-              ),
+              style: ElevatedButton.styleFrom(backgroundColor: selected ? Colors.blue : null, padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16)),
               onPressed: () => languageStore.choose(lang["code"]!),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,10 +38,7 @@ class AppLanguage extends StatelessWidget {
                     child: Text(
                       lang["name"]!,
                       textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: selected ? Colors.white : Colors.black,
-                      ),
+                      style: TextStyle(fontSize: 16, color: selected ? Colors.white : Colors.black),
                     ),
                   ),
                   Text(lang["flag"]!, style: const TextStyle(fontSize: 20)),
@@ -55,8 +46,7 @@ class AppLanguage extends StatelessWidget {
               ),
             );
           },
-          separatorBuilder: (_, __) =>
-              const Divider(height: 1, thickness: 1, color: Colors.grey),
+          separatorBuilder: (_, __) => const Divider(height: 1, thickness: 1, color: Colors.grey),
         );
       }),
     );

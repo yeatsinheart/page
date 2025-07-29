@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/service/bootstrap-service.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/container.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
 
-import '../../init/app-initializer.dart';
-
 class LayoutDemo extends StatefulWidget {
   final dynamic params;
+
   LayoutDemo({super.key, this.params});
 
   @override
@@ -18,6 +18,7 @@ class LayoutDemo extends StatefulWidget {
 /// 必须确定初始化打开哪个页面
 class _LayoutDemoState extends State<LayoutDemo> {
   int _currentIndex = 0;
+
   @override
   void initState() {
     super.initState();
@@ -25,19 +26,12 @@ class _LayoutDemoState extends State<LayoutDemo> {
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic> items = AppInitializer.data["layout"]?["barBottom"] ?? [];
+    List<dynamic> items = BootstrapService.data["layout"]?["barBottom"] ?? [];
     List<Widget> list = [];
     List<dynamic> pages = [];
     for (int i = 0; i < items.length; i++) {
       dynamic item = items[i];
-      list.add(
-        _buildNavItem(
-          icon: item['iconI18nKey'],
-          activeIcon: item['iconFocusI18nKey'],
-          label: item['titleI18nKey'],
-          index: i,
-        ),
-      );
+      list.add(_buildNavItem(icon: item['iconI18nKey'], activeIcon: item['iconFocusI18nKey'], label: item['titleI18nKey'], index: i));
       Widget widget = AppView.ofKey(item['openViewKey']) ?? Container();
       pages.add(widget);
     }
@@ -46,23 +40,12 @@ class _LayoutDemoState extends State<LayoutDemo> {
       body: pages[_currentIndex],
       bottomNavigationBar: Container(
         height: AppStyle.byRem(1.24),
-        child: AppContainer(
-          "bar-bottom",
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: list,
-          ),
-        ),
+        child: AppContainer("bar-bottom", Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: list)),
       ),
     );
   }
 
-  Widget _buildNavItem({
-    required String icon,
-    required String activeIcon,
-    required String label,
-    required int index,
-  }) {
+  Widget _buildNavItem({required String icon, required String activeIcon, required String label, required int index}) {
     final isActive = index == _currentIndex;
     //自动扩展均分
     return Expanded(

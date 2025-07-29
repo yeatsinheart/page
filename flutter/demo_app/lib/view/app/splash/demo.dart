@@ -8,6 +8,7 @@ import 'package:flutter3/style/app-style.dart';
 
 class AppSplashDemo extends StatefulWidget {
   final dynamic params;
+
   const AppSplashDemo({this.params, super.key});
 
   @override
@@ -45,11 +46,7 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
         children: [
           Column(
             children: [
-              AppImg(
-                AppService().get()!.splash,
-                width: AppStyle.screenWidth,
-                height: AppStyle.screenHeight * 7 / 8,
-              ),
+              AppImg(AppService().get()!.splash, width: AppStyle.screenWidth, height: AppStyle.screenHeight * 7 / 8),
               Expanded(
                 child: Container(
                   width: AppStyle.screenWidth,
@@ -58,13 +55,7 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
                     mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
                     children: <Widget>[
                       AppImg(AppService().get()!.logo, width: 32, height: 32),
-                      Text(
-                        AppService().get()!.name,
-                        style: TextStyle(
-                          color: AppService().skin()?.font,
-                          fontSize: 14,
-                        ),
-                      ),
+                      Text(AppService().get()!.name, style: TextStyle(color: AppService().skin()?.font, fontSize: 14)),
                     ],
                   ),
                 ),
@@ -76,13 +67,8 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
             top: 32,
             child: MaterialButton(
               color: Color.fromRGBO(0, 0, 0, 0.5),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Text(
-                getTip(),
-                style: TextStyle(color: Colors.white70, fontSize: 15.0),
-              ),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              child: Text(getTip(), style: TextStyle(color: Colors.white70, fontSize: 15.0)),
               onPressed: () {
                 if (count <= 0) {
                   // 倒计时结束 同时没有别的问题。。。
@@ -121,25 +107,11 @@ class LeftToRightPageRoute extends PageRouteBuilder {
 
   LeftToRightPageRoute(this.newPage)
     : super(
-        pageBuilder:
-            (
-              BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-            ) => newPage,
-        transitionsBuilder:
-            (
-              BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-              Widget child,
-            ) => SlideTransition(
-              position: Tween(
-                begin: Offset(-1, 0),
-                end: Offset(0, 0),
-              ).animate(animation),
-              child: child,
-            ),
+        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => newPage,
+        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
+          position: Tween(begin: Offset(-1, 0), end: Offset(0, 0)).animate(animation),
+          child: child,
+        ),
       );
 }
 
@@ -149,35 +121,18 @@ class CustomPageRoute extends PageRouteBuilder {
 
   CustomPageRoute(this.currentPage, this.newPage)
     : super(
-        pageBuilder:
-            (
-              BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-            ) => currentPage,
-        transitionsBuilder:
-            (
-              BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-              Widget child,
-            ) => Stack(
-              children: <Widget>[
-                SlideTransition(
-                  position: new Tween<Offset>(
-                    begin: const Offset(0, 0),
-                    end: const Offset(0, -1),
-                  ).animate(animation),
-                  child: currentPage,
-                ),
-                SlideTransition(
-                  position: new Tween<Offset>(
-                    begin: const Offset(0, 1),
-                    end: Offset(0, 0),
-                  ).animate(animation),
-                  child: newPage,
-                ),
-              ],
+        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => currentPage,
+        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => Stack(
+          children: <Widget>[
+            SlideTransition(
+              position: new Tween<Offset>(begin: const Offset(0, 0), end: const Offset(0, -1)).animate(animation),
+              child: currentPage,
             ),
+            SlideTransition(
+              position: new Tween<Offset>(begin: const Offset(0, 1), end: Offset(0, 0)).animate(animation),
+              child: newPage,
+            ),
+          ],
+        ),
       );
 }

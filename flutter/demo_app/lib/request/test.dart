@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter3/log/logger.dart';
 
 class ApiTest {
   static dynamic test(RequestOptions options) {

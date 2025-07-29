@@ -24,23 +24,9 @@ class AppLogPrinter extends LogPrinter {
   static const doubleDivider = '─';
   static const singleDivider = '┄';
 
-  static final Map<Level, AnsiColor> defaultLevelColors = {
-    Level.trace: AnsiColor.fg(AnsiColor.grey(0.5)),
-    Level.debug: const AnsiColor.none(),
-    Level.info: const AnsiColor.fg(12),
-    Level.warning: const AnsiColor.fg(208),
-    Level.error: const AnsiColor.fg(196),
-    Level.fatal: const AnsiColor.fg(199),
-  };
+  static final Map<Level, AnsiColor> defaultLevelColors = {Level.trace: AnsiColor.fg(AnsiColor.grey(0.5)), Level.debug: const AnsiColor.none(), Level.info: const AnsiColor.fg(12), Level.warning: const AnsiColor.fg(208), Level.error: const AnsiColor.fg(196), Level.fatal: const AnsiColor.fg(199)};
 
-  static final Map<Level, String> defaultLevelEmojis = {
-    Level.trace: '',
-    Level.debug: '🐛',
-    Level.info: '💡',
-    Level.warning: '⚠️',
-    Level.error: '⛔',
-    Level.fatal: '👾',
-  };
+  static final Map<Level, String> defaultLevelEmojis = {Level.trace: '', Level.debug: '🐛', Level.info: '💡', Level.warning: '⚠️', Level.error: '⛔', Level.fatal: '👾'};
 
   /// Matches a stacktrace line as generated on Android/iOS devices.
   ///
@@ -59,8 +45,7 @@ class AppLogPrinter extends LogPrinter {
   /// For example:
   /// * dart:sdk_internal
   /// * package:logger/src/logger.dart
-  static final _browserStackTraceRegex =
-  RegExp(r'^(?:package:)?(dart:\S+|\S+)');
+  static final _browserStackTraceRegex = RegExp(r'^(?:package:)?(dart:\S+|\S+)');
 
   static DateTime? startTime;
 
@@ -186,31 +171,9 @@ class AppLogPrinter extends LogPrinter {
   /// Default fallbacks are modifiable via [defaultLevelEmojis].
   final Map<Level, String>? levelEmojis;
 
-  AppLogPrinter({
-    this.stackTraceBeginIndex = 0,
-    this.methodCount = 2,
-    this.errorMethodCount = 8,
-    this.lineLength = 120,
-    this.colors = true,
-    this.printEmojis = true,
-    @Deprecated(
-        "Use `dateTimeFormat` with `DateTimeFormat.onlyTimeAndSinceStart` or `DateTimeFormat.none` instead.")
-    bool? printTime,
-    DateTimeFormatter dateTimeFormat = DateTimeFormat.none,
-    this.excludeBox = const {},
-    this.noBoxingByDefault = false,
-    this.excludePaths = const [],
-    this.levelColors,
-    this.levelEmojis,
-  })  : assert(
-  (printTime != null && dateTimeFormat == DateTimeFormat.none) ||
-      printTime == null,
-  "Don't set printTime when using dateTimeFormat"),
-        dateTimeFormat = printTime == null
-            ? dateTimeFormat
-            : (printTime
-            ? DateTimeFormat.onlyTimeAndSinceStart
-            : DateTimeFormat.none) {
+  AppLogPrinter({this.stackTraceBeginIndex = 0, this.methodCount = 2, this.errorMethodCount = 8, this.lineLength = 120, this.colors = true, this.printEmojis = true, @Deprecated("Use `dateTimeFormat` with `DateTimeFormat.onlyTimeAndSinceStart` or `DateTimeFormat.none` instead.") bool? printTime, DateTimeFormatter dateTimeFormat = DateTimeFormat.none, this.excludeBox = const {}, this.noBoxingByDefault = false, this.excludePaths = const [], this.levelColors, this.levelEmojis})
+    : assert((printTime != null && dateTimeFormat == DateTimeFormat.none) || printTime == null, "Don't set printTime when using dateTimeFormat"),
+      dateTimeFormat = printTime == null ? dateTimeFormat : (printTime ? DateTimeFormat.onlyTimeAndSinceStart : DateTimeFormat.none) {
     startTime ??= DateTime.now();
 
     var doubleDividerLine = StringBuffer();
@@ -239,16 +202,10 @@ class AppLogPrinter extends LogPrinter {
     String? stackTraceStr;
     if (event.error != null) {
       if ((errorMethodCount == null || errorMethodCount! > 0)) {
-        stackTraceStr = formatStackTrace(
-          event.stackTrace ?? StackTrace.current,
-          errorMethodCount,
-        );
+        stackTraceStr = formatStackTrace(event.stackTrace ?? StackTrace.current, errorMethodCount);
       }
     } else if (methodCount == null || methodCount! > 0) {
-      stackTraceStr = formatStackTrace(
-        event.stackTrace ?? StackTrace.current,
-        methodCount,
-      );
+      stackTraceStr = formatStackTrace(event.stackTrace ?? StackTrace.current, methodCount);
     }
 
     var errorStr = event.error?.toString();
@@ -260,31 +217,14 @@ class AppLogPrinter extends LogPrinter {
       timeStr = getTime(event.time);
     }
 
-    return _formatAndPrint(
-      event.level,
-      messageStr,
-      timeStr,
-      errorStr,
-      stackTraceStr,
-    );
+    return _formatAndPrint(event.level, messageStr, timeStr, errorStr, stackTraceStr);
   }
 
   String? formatStackTrace(StackTrace? stackTrace, int? methodCount) {
-    List<String> lines = stackTrace
-        .toString()
-        .split('\n')
-        .where(
-          (line) =>
-      !_discardDeviceStacktraceLine(line) &&
-          !_discardWebStacktraceLine(line) &&
-          !_discardBrowserStacktraceLine(line) &&
-          line.isNotEmpty,
-    )
-        .toList();
+    List<String> lines = stackTrace.toString().split('\n').where((line) => !_discardDeviceStacktraceLine(line) && !_discardWebStacktraceLine(line) && !_discardBrowserStacktraceLine(line) && line.isNotEmpty).toList();
     List<String> formatted = [];
 
-    int stackTraceLength =
-    (methodCount != null ? min(lines.length, methodCount) : lines.length);
+    int stackTraceLength = (methodCount != null ? min(lines.length, methodCount) : lines.length);
     for (int count = 0; count < stackTraceLength; count++) {
       var line = lines[count];
       if (count < stackTraceBeginIndex) {
@@ -328,8 +268,7 @@ class AppLogPrinter extends LogPrinter {
       return false;
     }
     final segment = match.group(1)!;
-    if (segment.startsWith('packages/logger') ||
-        segment.startsWith('dart-sdk/lib')) {
+    if (segment.startsWith('packages/logger') || segment.startsWith('dart-sdk/lib')) {
       return true;
     }
     return _isInExcludePaths(segment);
@@ -384,13 +323,7 @@ class AppLogPrinter extends LogPrinter {
     return '';
   }
 
-  List<String> _formatAndPrint(
-      Level level,
-      String message,
-      String? time,
-      String? error,
-      String? stacktrace,
-      ) {
+  List<String> _formatAndPrint(Level level, String message, String? time, String? error, String? stacktrace) {
     List<String> buffer = [];
     var verticalLineAtLevel = (_includeBox[level]!) ? ('$verticalLine ') : '';
     var color = _getLevelColor(level);

@@ -33,9 +33,7 @@ class AppView {
       Log.e('getWidgetByPath: path 路径为空 null');
       return null;
     }
-    final widget =
-        widgetOfPath(path, key: key, params: params) ??
-        widgetOfPath('$path/index', key: key, params: params);
+    final widget = widgetOfPath(path, key: key, params: params) ?? widgetOfPath('$path/index', key: key, params: params);
     if (widget == null) {
       Log.e('getWidgetByPath: widget 找不到 path $path');
     }

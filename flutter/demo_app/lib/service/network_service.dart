@@ -2,11 +2,9 @@ import 'dart:ui';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter3/app-context.dart';
+import 'package:flutter3/share/overlay.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:get/get.dart';
-
-import 'package:flutter3/share/overlay.dart';
 
 class NetworkService {
   // 私有的命名构造函数

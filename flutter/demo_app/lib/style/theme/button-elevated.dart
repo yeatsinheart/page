@@ -1,11 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter3/util/color-util.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/theme/text.dart';
 
-getElevatedButtonThemeData(){
+getElevatedButtonThemeData() {
   return ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       // 去除splash水波纹、highlight hover等

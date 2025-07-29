@@ -1,10 +1,9 @@
+import 'dart:html' as html;
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-
-import 'dart:html' as html;
 
 class PermissionService {
   PermissionService._internal();
@@ -53,17 +52,14 @@ class PermissionService {
 
   Future<void> requestCameraPermission() async {
     try {
-      final stream = await html.window.navigator.mediaDevices?.getUserMedia({
-        'audio': false,
-        'video': true,
-      });
+      final stream = await html.window.navigator.mediaDevices?.getUserMedia({'audio': false, 'video': true});
       // 处理流
     } catch (e) {
       // 处理错误
     }
   }
 
-// 获取存储路径
+  // 获取存储路径
   Future<String> _findLocalPath() async {
     // 因为Apple没有外置存储，所以第一步我们需要先对所在平台进行判断
     // 如果是android，使用getExternalStorageDirectory

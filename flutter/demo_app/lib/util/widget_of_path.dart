@@ -1,5 +1,5 @@
-import 'dart:async';
 import 'dart:io';
+
 import 'package:path/path.dart' as p;
 
 String base_path = "";
@@ -25,7 +25,6 @@ main() async {
   Directory dir = Directory('${base_path}');
   await dirLookUp(dir);
 
-
   String content = "import 'package:flutter/material.dart';\nimport 'package:flutter3/demo/main.dart';\n";
 
   imports.forEach((item) {
@@ -36,12 +35,14 @@ main() async {
 
   content += "Widget? widgetOfPath(String? path,{key,params}) {\n";
 
-  content += "  if(null==path)return null;\n  if(null==key)key=UniqueKey();\n"
+  content +=
+      "  if(null==path)return null;\n  if(null==key)key=UniqueKey();\n"
       "  switch (path){\n    case \"/demo/main\": return MainDemo(key:key,params: params);\n";
   widgets.forEach((Map<String, dynamic> widgetInfo) {
     content += "    case \"${widgetInfo["path"]}\": return ${fileToName(widgetInfo["name"])}(key:key,params: params);\n";
   });
-  content += "  }\n"
+  content +=
+      "  }\n"
       "  return null;\n"
       "}\n";
 
@@ -68,7 +69,7 @@ dirLookUp(Directory dir) async {
         if (file.startsWith("/view/") && !fileName.startsWith("_")) {
           imports.add("import 'package:${pkg}${file}';");
           String path = file.substring(5, file.length - 5);
-          widgets.add({"path":path,"name":fileToName(path)});
+          widgets.add({"path": path, "name": fileToName(path)});
         }
       } else if (entity is Directory) {
         await dirLookUp(entity);

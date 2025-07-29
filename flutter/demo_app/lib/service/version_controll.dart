@@ -1,7 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:path_provider/path_provider.dart';
-import 'dart:io';
 
 class VersionControll {
   VersionControll._internal();
@@ -12,7 +13,7 @@ class VersionControll {
   /// 当前代码版本，每次新内容时需要升级一次。
   static int version = 1;
 
-// 最新更新信息 version大于当前版本
+  // 最新更新信息 version大于当前版本
   forceUpdate() {
     var info = versionCheck();
     if (null != info && info["force"]) {
@@ -53,7 +54,7 @@ class VersionControll {
     return directory!.path;
   }
 
-// 下载 https://juejin.cn/post/6844903889087496206
+  // 下载 https://juejin.cn/post/6844903889087496206
   Future<void> executeDownload() async {
     final path = await _findLocalPath();
     //下载
@@ -66,7 +67,7 @@ class VersionControll {
     });
   }
 
-// 安装
+  // 安装
   Future<Null> _installApk() async {
     // XXXXX为项目名
     const platform = MethodChannel("XXXXX");

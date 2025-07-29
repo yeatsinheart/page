@@ -7,7 +7,9 @@ import '../../app-view.dart';
 
 class AppHomeWg extends StatefulWidget {
   final dynamic params;
+
   const AppHomeWg({this.params, super.key});
+
   @override
   _AppHomeWgState createState() => _AppHomeWgState();
 }
@@ -30,8 +32,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
         child: SafeArea(
           bottom: false,
           child: CustomScrollView(
-            cacheExtent:
-                1000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
+            cacheExtent: 1000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
             controller: _controller,
             slivers: [
               /*SliverAppBar(
@@ -86,20 +87,12 @@ class _AppHomeWgState extends State<AppHomeWg> {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text('Item SliverToBoxAdapter $index'),
-                    );
+                    return ListTile(title: Text('Item SliverToBoxAdapter $index'));
                   },
                 ),
               ),
               // 只有可视区域的子项才会被构建（懒加载）。
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) =>
-                      ListTile(title: Text('Item SliverList $index')),
-                  childCount: 20,
-                ),
-              ),
+              SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 20)),
               SliverList(
                 delegate: SliverChildListDelegate(
                   List.generate(20, (index) {
@@ -130,15 +123,10 @@ class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => height;
 
   @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return SizedBox.expand(child: child); // 让图片填满整个 header 区域
   }
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      false;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => false;
 }

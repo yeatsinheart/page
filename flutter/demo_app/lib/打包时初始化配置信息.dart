@@ -1,6 +1,5 @@
-main(){
-
-/// 量产替换配置 + 重新签名
+main() {
+  /// 量产替换配置 + 重新签名
   /// 解决方案总览
   // 平台	实现方式
   // iOS（IPA）	解压 .ipa → 修改 Payload/YourApp.app/config.json 或资源文件 → 重新签名（codesign） → 打包成新 .ipa
@@ -30,8 +29,6 @@ main(){
   // flutter build web 后会产出：build/web/assets/config/config.json
   //
   // 在部署服务器时直接替换这个文件即可
-
-
 
   /// iOS IPA 渠道包生成流程详解
   // 以 iOS 为例，核心流程如下：
@@ -93,8 +90,6 @@ main(){
   // cd temp_ipa
   // zip -r ../MyApp-gw1.ipa .
   // 就得到了新的 .ipa 文件（带你的 config.json）。
-
-
 
   /// ✅ Android（APK）类似操作
   // 用 apktool 解包 APK：

@@ -25,7 +25,8 @@ class AppService {
     _cache ??= AppData.fromJson({"id": 1, "name": "测试应用", "logo": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png"});
     return AppData();
   }
-  SkinData? skin(){
+
+  SkinData? skin() {
     return SkinData();
   }
 }

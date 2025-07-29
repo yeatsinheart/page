@@ -24,11 +24,10 @@ class DeviceService {
   String detail = "";
 
   info() async {
-    if (Platform.isAndroid) {
-
-    }
+    if (Platform.isAndroid) {}
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     Platform.isAndroid;
+
     /// 本地环境信息
     appName = packageInfo.appName;
     packageName = packageInfo.packageName;
@@ -109,20 +108,7 @@ class DeviceService {
   }
 
   Map<String, dynamic> _readIosDeviceInfo(IosDeviceInfo data) {
-    return <String, dynamic>{
-      'name': data.name,
-      'systemName': data.systemName,
-      'systemVersion': data.systemVersion,
-      'model': data.model,
-      'localizedModel': data.localizedModel,
-      'identifierForVendor': data.identifierForVendor,
-      'isPhysicalDevice': data.isPhysicalDevice,
-      'utsname.sysname:': data.utsname.sysname,
-      'utsname.nodename:': data.utsname.nodename,
-      'utsname.release:': data.utsname.release,
-      'utsname.version:': data.utsname.version,
-      'utsname.machine:': data.utsname.machine,
-    };
+    return <String, dynamic>{'name': data.name, 'systemName': data.systemName, 'systemVersion': data.systemVersion, 'model': data.model, 'localizedModel': data.localizedModel, 'identifierForVendor': data.identifierForVendor, 'isPhysicalDevice': data.isPhysicalDevice, 'utsname.sysname:': data.utsname.sysname, 'utsname.nodename:': data.utsname.nodename, 'utsname.release:': data.utsname.release, 'utsname.version:': data.utsname.version, 'utsname.machine:': data.utsname.machine};
   }
 
   Map<String, dynamic> _readWebBrowserInfo(WebBrowserInfo data) {

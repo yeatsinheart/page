@@ -7,8 +7,7 @@ class LayoutDemoNavigationBar extends StatefulWidget {
   const LayoutDemoNavigationBar({super.key, required params});
 
   @override
-  State<LayoutDemoNavigationBar> createState() =>
-      _LayoutDemoNavigationBarState();
+  State<LayoutDemoNavigationBar> createState() => _LayoutDemoNavigationBarState();
 }
 
 /// 必须确定初始化打开哪个页面
@@ -23,54 +22,19 @@ class _LayoutDemoNavigationBarState extends State<LayoutDemoNavigationBar> {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> items = [
-      {
-        "iconI18nKey":
-            "https://s33xa.runtu123.com/0/global/1741121380209_icon_btm_sy.avif",
-        "iconFocusI18nKey":
-            "https://s33xa.runtu123.com/0/global/1742274541661_47144ec2-aa9c-4ebc-8aa1-49241d3f465c_icon_btm_sy1.avif",
-        "titleI18nKey": "微信",
-        "openViewKey": "home",
-      },
-      {
-        "iconI18nKey": "1",
-        "iconFocusI18nKey": "1",
-        "titleI18nKey": "通讯录",
-        "openViewKey": "contact",
-      },
-      {
-        "iconI18nKey": "1",
-        "iconFocusI18nKey": "1",
-        "titleI18nKey": "发现",
-        "openViewKey": "discover",
-      },
-      {
-        "iconI18nKey": "1",
-        "iconFocusI18nKey": "1",
-        "titleI18nKey": "发现1",
-        "openViewKey": "discover",
-      },
-      {
-        "iconI18nKey": "1",
-        "iconFocusI18nKey": "1",
-        "titleI18nKey": "我",
-        "openViewKey": "me",
-      },
+      {"iconI18nKey": "https://s33xa.runtu123.com/0/global/1741121380209_icon_btm_sy.avif", "iconFocusI18nKey": "https://s33xa.runtu123.com/0/global/1742274541661_47144ec2-aa9c-4ebc-8aa1-49241d3f465c_icon_btm_sy1.avif", "titleI18nKey": "微信", "openViewKey": "home"},
+      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "通讯录", "openViewKey": "contact"},
+      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "发现", "openViewKey": "discover"},
+      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "发现1", "openViewKey": "discover"},
+      {"iconI18nKey": "1", "iconFocusI18nKey": "1", "titleI18nKey": "我", "openViewKey": "me"},
     ];
     List<NavigationDestination> destinations = [];
     List<dynamic> pages = [];
     for (Map<String, dynamic> item in items) {
       destinations.add(
         NavigationDestination(
-          icon: AppImg(
-            item["iconI18nKey"],
-            width: AppStyle.byRem(.5),
-            height: AppStyle.byRem(.5),
-          ), // 你可以根据 iconI18nKey 加载图标
-          selectedIcon: AppImg(
-            item["iconFocusI18nKey"],
-            width: AppStyle.byRem(.5),
-            height: AppStyle.byRem(.5),
-          ), // 你可以根据 iconFocusI18nKey 加载图标
+          icon: AppImg(item["iconI18nKey"], width: AppStyle.byRem(.5), height: AppStyle.byRem(.5)), // 你可以根据 iconI18nKey 加载图标
+          selectedIcon: AppImg(item["iconFocusI18nKey"], width: AppStyle.byRem(.5), height: AppStyle.byRem(.5)), // 你可以根据 iconFocusI18nKey 加载图标
           label: item['titleI18nKey'],
           tooltip: '',
         ),
@@ -83,17 +47,15 @@ class _LayoutDemoNavigationBarState extends State<LayoutDemoNavigationBar> {
         data: ThemeData(
           navigationBarTheme: NavigationBarThemeData(
             // 去除涟漪效果 & 悬浮时背景色
-            overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-              if (states.contains(MaterialState.hovered) ||
-                  states.contains(MaterialState.focused) ||
-                  states.contains(MaterialState.pressed)) {
+            overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
+              if (states.contains(WidgetState.hovered) || states.contains(WidgetState.focused) || states.contains(WidgetState.pressed)) {
                 return Colors.transparent;
               }
               return null;
             }),
             indicatorColor: Colors.transparent, // 取消背景选中高亮
             labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-            labelTextStyle: MaterialStateProperty.all(
+            labelTextStyle: WidgetStateProperty.all(
               TextStyle(
                 color: Colors.green,
                 fontSize: AppStyle.byRem(0.24),
@@ -106,8 +68,7 @@ class _LayoutDemoNavigationBarState extends State<LayoutDemoNavigationBar> {
         child: NavigationBar(
           height: AppStyle.byRem(1.24), // 这个属性在 Material3 支持
           selectedIndex: _currentIndex,
-          onDestinationSelected: (index) =>
-              setState(() => _currentIndex = index),
+          onDestinationSelected: (index) => setState(() => _currentIndex = index),
           destinations: destinations,
         ),
       ),

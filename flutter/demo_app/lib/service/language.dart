@@ -13,7 +13,7 @@ class LanguageService {
   static final LanguageService _instance = LanguageService._internal();
 
   // 单例变量 永驻内存
-  String chosen="";
+  String chosen = "";
 
   // {"chosen":"zh_CN","fallback":"en_US"}
   updateByJson(json) async {
@@ -24,7 +24,9 @@ class LanguageService {
           ? _I18nWords._append(fallback).then((_) {
               Get.fallbackLocale = parseLocale(fallback);
             })
-          : ()async{Get.fallbackLocale = parseLocale(fallback);}(),
+          : () async {
+              Get.fallbackLocale = parseLocale(fallback);
+            }(),
       choose(chosen),
     ]);
   }
@@ -53,7 +55,7 @@ class LanguageInfo {
       if (info is! Map) return {};
       await CacheService.set(table, key, jsonEncode(info));
     }
-    return info??{};
+    return info ?? {};
   }
 
   static Future<Map<String, dynamic>?> _fromCache() async {

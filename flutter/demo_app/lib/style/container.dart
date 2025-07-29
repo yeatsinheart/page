@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
+
 import '../share/img.dart';
 import '../util/color-util.dart';
 import '../util/gradient-util.dart';
@@ -72,6 +73,6 @@ class AppContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ColorContainer containerStyle = AppStyle.getContainerStyle(styleKey);
-    return _mask(containerStyle.mask, _imgBg(containerStyle.bgImg, _container(containerStyle,child)));
+    return _mask(containerStyle.mask, _imgBg(containerStyle.bgImg, _container(containerStyle, child)));
   }
 }

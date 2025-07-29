@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter3/service/game.dart';
 import 'package:flutter3/share/img.dart';
 
@@ -11,88 +10,69 @@ class _HeroDetailPageState extends State<TestDetailpage> with TickerProviderStat
 
   _closeLayer() {
     return IconButton(
-        style: ButtonStyle(shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))), backgroundColor: MaterialStateProperty.all(Colors.black45)),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: const Icon(
-          Icons.clear,
-          color: Colors.white,
-        ));
+      style: ButtonStyle(
+        shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))),
+        backgroundColor: WidgetStateProperty.all(Colors.black45),
+      ),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      icon: const Icon(Icons.clear, color: Colors.white),
+    );
   }
 
   _descLayer(game) {
     return scroll(
-        SingleChildScrollView(
-          controller: _pagecontroller,
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Text(
-              game!.content,
-              style: const TextStyle(
-                inherit: false,
-                fontSize: 16,
-                color: Colors.black,
-                decoration: TextDecoration.none,
-              ),
-            ),
+      SingleChildScrollView(
+        controller: _pagecontroller,
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Text(
+            game!.content,
+            style: const TextStyle(inherit: false, fontSize: 16, color: Colors.black, decoration: TextDecoration.none),
           ),
         ),
-        true);
+      ),
+      true,
+    );
   }
 
   _ImgLayerLayer(game) {
-    return AppImg(
-      game!.imageUrl,
-      fit: BoxFit.cover,
-      height: imgarea,
-    );
+    return AppImg(game!.imageUrl, fit: BoxFit.cover, height: imgarea);
   }
 
   _ImgLayerTitleLayer(game) {
     return SizedBox(
-        height: imgarea,
-        child: Column(
-          children: [
-            Text(
-              game!.headText,
-              style: TextStyle(
-                inherit: false,
-                fontSize: 16,
-                color: Colors.grey,
-                decoration: TextDecoration.none,
-              ),
+      height: imgarea,
+      child: Column(
+        children: [
+          Text(
+            game!.headText,
+            style: TextStyle(inherit: false, fontSize: 16, color: Colors.grey, decoration: TextDecoration.none),
+          ),
+          Expanded(
+            child: Text(
+              game.title,
+              style: TextStyle(fontSize: 30, color: Colors.white, decoration: TextDecoration.none),
             ),
-            Expanded(
-              child: Text(
-                game.title,
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.white,
-                  decoration: TextDecoration.none,
-                ),
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 18),
+            child: Text(
+              game.footerText,
+              style: TextStyle(fontSize: 16, color: Colors.grey, decoration: TextDecoration.none),
             ),
-            Padding(
-                padding: const EdgeInsets.only(bottom: 18),
-                child: Text(game.footerText,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                      decoration: TextDecoration.none,
-                    ))),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    var _animationController = AnimationController(
-      duration: const Duration(milliseconds: 200),
-      vsync: this,
-    );
-    var _animation = Tween<double>(begin: 1, end: 0.1).animate(_animationController);
-    double _top = 0.0; //距顶部的偏移
+    var _animationController = AnimationController(duration: const Duration(milliseconds: 200), vsync: this);
+    // var _animation = Tween<double>(begin: 1, end: 0.1).animate(_animationController);
+    // double _top = 0.0; //距顶部的偏移
 
     @override
     dispose() {
@@ -119,12 +99,13 @@ class _HeroDetailPageState extends State<TestDetailpage> with TickerProviderStat
     return Stack(
       children: [
         Hero(
-            tag: 'heropic${game?.title}',
-            child: Stack(children: [
-              _ImgLayerLayer(game),
-              _ImgLayerTitleLayer(game),
-            ])),
-        Padding(padding: EdgeInsets.only(top: imgarea), child: _descLayer(game)),
+          tag: 'heropic${game?.title}',
+          child: Stack(children: [_ImgLayerLayer(game), _ImgLayerTitleLayer(game)]),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: imgarea),
+          child: _descLayer(game),
+        ),
         _closeLayer(),
       ],
     );
@@ -231,12 +212,13 @@ class _HeroDetailPageState extends State<TestDetailpage> with TickerProviderStat
 
   Widget scroll(child, bar) {
     return ScrollConfiguration(
-        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: bar, physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()), dragDevices: {
-          PointerDeviceKind.trackpad,
-          PointerDeviceKind.touch,
-          PointerDeviceKind.mouse,
-        }),
-        child: child);
+      behavior: ScrollConfiguration.of(context).copyWith(
+        scrollbars: bar,
+        physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+        dragDevices: {PointerDeviceKind.trackpad, PointerDeviceKind.touch, PointerDeviceKind.mouse},
+      ),
+      child: child,
+    );
   }
 }
 

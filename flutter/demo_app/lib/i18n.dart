@@ -7,20 +7,14 @@ extension I18n on String {
   // Checks whether the language code and country code are present, and
   // whether the key is also present.
   bool get _fullLocaleAndKey {
-    return Get.translations.containsKey(
-        "${Get.locale!.languageCode}_${Get.locale!.countryCode}") &&
-        Get.translations[
-        "${Get.locale!.languageCode}_${Get.locale!.countryCode}"]!
-            .containsKey(this);
+    return Get.translations.containsKey("${Get.locale!.languageCode}_${Get.locale!.countryCode}") && Get.translations["${Get.locale!.languageCode}_${Get.locale!.countryCode}"]!.containsKey(this);
   }
 
   // Checks if there is a callback language in the absence of the specific
   // country, and if it contains that key.
   Map<String, String>? get _getSimilarLanguageTranslation {
-    final translationsWithNoCountry = Get.translations
-        .map((key, value) => MapEntry(key.split("_").first, value));
-    final containsKey = translationsWithNoCountry
-        .containsKey(Get.locale!.languageCode.split("_").first);
+    final translationsWithNoCountry = Get.translations.map((key, value) => MapEntry(key.split("_").first, value));
+    final containsKey = translationsWithNoCountry.containsKey(Get.locale!.languageCode.split("_").first);
 
     if (!containsKey) {
       return null;
@@ -39,11 +33,11 @@ extension I18n on String {
     if (Get.locale?.languageCode == null) return this;
 
     if (_fullLocaleAndKey) {
-      return Get.translations[
-      "${Get.locale!.languageCode}_${Get.locale!.countryCode}"]![this]!;
+      return Get.translations["${Get.locale!.languageCode}_${Get.locale!.countryCode}"]![this]!;
     }
+
     /// 当前语言 miss fan译 开发环境，线上环境
-    if(!kDebugMode){}
+    if (!kDebugMode) {}
 
     final similarTranslation = _getSimilarLanguageTranslation;
     if (similarTranslation != null && similarTranslation.containsKey(this)) {
@@ -54,12 +48,10 @@ extension I18n on String {
       final fallback = Get.fallbackLocale!;
       final key = "${fallback.languageCode}_${fallback.countryCode}";
 
-      if (Get.translations.containsKey(key) &&
-          Get.translations[key]!.containsKey(this)) {
+      if (Get.translations.containsKey(key) && Get.translations[key]!.containsKey(this)) {
         return Get.translations[key]![this]!;
       }
-      if (Get.translations.containsKey(fallback.languageCode) &&
-          Get.translations[fallback.languageCode]!.containsKey(this)) {
+      if (Get.translations.containsKey(fallback.languageCode) && Get.translations[fallback.languageCode]!.containsKey(this)) {
         return Get.translations[fallback.languageCode]![this]!;
       }
       return this;
@@ -78,7 +70,6 @@ extension I18n on String {
     return key;
   }
 
-
   String tParams([Map<String, String> params = const {}]) {
     var trans = t;
     if (params.isNotEmpty) {
@@ -89,8 +80,7 @@ extension I18n on String {
     return trans;
   }
 
-  String tPluralParams(
-      [String? pluralKey, int? i, Map<String, String> params = const {}]) {
+  String tPluralParams([String? pluralKey, int? i, Map<String, String> params = const {}]) {
     return i == 1 ? tParams(params) : pluralKey!.tParams(params);
   }
 }

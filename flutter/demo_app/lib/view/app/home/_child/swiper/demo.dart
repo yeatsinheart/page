@@ -24,29 +24,23 @@ class _SwiperDemoState extends State<SwiperDemo> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: AppStyle.byRem(.1),
-        horizontal: AppStyle.byRem(.2),
-      ),
+      padding: EdgeInsets.symmetric(vertical: AppStyle.byRem(.1), horizontal: AppStyle.byRem(.2)),
       child: Stack(
         alignment: Alignment.bottomCenter, // 控制指示器位置
         children: [
           CarouselSlider(
             items: imageList.map((url) {
-              return AppImg(
-                url,
-                width: AppStyle.byRem(7),
-                height: AppStyle.byRem(3.5),
-                radius: AppStyle.byRem(.25),
-              );
+              return AppImg(url, width: AppStyle.byRem(7), height: AppStyle.byRem(3.5), radius: AppStyle.byRem(.25));
             }).toList(),
             carouselController: _controller,
             options: CarouselOptions(
               height: AppStyle.byRem(3.5),
               autoPlay: true,
-              enlargeCenterPage: false, //关闭放大
+              enlargeCenterPage: false,
+              //关闭放大
               aspectRatio: 2 / 1,
-              initialPage: 0, //初始化显示第 1 张图。
+              initialPage: 0,
+              //初始化显示第 1 张图。
               viewportFraction: 1,
               autoPlayInterval: Duration(seconds: 5),
               autoPlayAnimationDuration: Duration(milliseconds: 400),
@@ -67,13 +61,9 @@ class _SwiperDemoState extends State<SwiperDemo> {
                     height: 8.0,
                     margin: const EdgeInsets.symmetric(horizontal: 4.0),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        4.0,
-                      ), // 圆角一半，即可变成 pill 形状或小圆点
+                      borderRadius: BorderRadius.circular(4.0), // 圆角一半，即可变成 pill 形状或小圆点
                       shape: BoxShape.rectangle,
-                      color: _currentIndex == entry.key
-                          ? Colors.white
-                          : Colors.white.withValues(alpha: 0.4),
+                      color: _currentIndex == entry.key ? Colors.white : Colors.white.withValues(alpha: 0.4),
                     ),
                   ),
                 );

@@ -6,6 +6,7 @@ import '../../../util/MyEasyRefresh.dart';
 /// 结构
 class PageMeDemo extends StatelessWidget {
   const PageMeDemo({super.key, required params});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,22 +16,8 @@ class PageMeDemo extends StatelessWidget {
           children: <Widget>[
             Stack(
               children: [
-                Align(
-                  alignment: AlignmentDirectional.topStart,
-                  child: AppImg(
-                    "assets/images/ic_scan.png",
-                    width: 20,
-                    height: 20,
-                  ),
-                ),
-                Align(
-                  alignment: AlignmentDirectional.topEnd,
-                  child: AppImg(
-                    "assets/images/ic_setting.png",
-                    width: 20,
-                    height: 20,
-                  ),
-                ),
+                Align(alignment: AlignmentDirectional.topStart, child: AppImg("assets/images/ic_scan.png", width: 20, height: 20)),
+                Align(alignment: AlignmentDirectional.topEnd, child: AppImg("assets/images/ic_setting.png", width: 20, height: 20)),
               ],
             ),
             Container(
@@ -44,19 +31,8 @@ class PageMeDemo extends StatelessWidget {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Container(
-                      width: 110,
-                      height: 110,
-                      child: AppImg(
-                        "assets/images/circle_bg.png",
-                        width: 20,
-                        height: 20,
-                      ),
-                    ),
-                    Text(
-                      "登录",
-                      style: TextStyle(fontSize: 19, color: Colors.white),
-                    ),
+                    Container(width: 110, height: 110, child: AppImg("assets/images/circle_bg.png", width: 20, height: 20)),
+                    Text("登录", style: TextStyle(fontSize: 19, color: Colors.white)),
                   ],
                 ),
               ),
@@ -130,6 +106,7 @@ class MineMenu extends StatelessWidget {
 class MoreService extends StatelessWidget {
   final List<String> titles1;
   final List<String> titles2;
+
   MoreService({this.titles1 = const [], this.titles2 = const [], super.key}) {
     titles1.add("用户反馈");
     titles1.add("钱包");
@@ -181,10 +158,7 @@ class Applets extends StatelessWidget {
               ),
               Align(
                 alignment: AlignmentDirectional.bottomEnd,
-                child: Text(
-                  "全部 >",
-                  style: TextStyle(fontSize: 13, color: Colors.black38),
-                ),
+                child: Text("全部 >", style: TextStyle(fontSize: 13, color: Colors.black38)),
               ),
             ],
           ),
@@ -213,11 +187,7 @@ class MenuRow extends StatelessWidget {
           children: [
             Container(
               margin: const EdgeInsets.only(top: 20, bottom: 5),
-              child: Icon(
-                Icons.notifications_none_outlined,
-                size: 30,
-                color: iconColor,
-              ),
+              child: Icon(Icons.notifications_none_outlined, size: 30, color: iconColor),
             ),
             Text(titles[0], style: TextStyle(fontSize: 13)),
           ],
@@ -263,24 +233,10 @@ class AppletMenuRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround, //子view空间等分
       mainAxisSize: MainAxisSize.max, //match_parent
       children: [
-        Column(
-          children: [AppIcon("assets/images/ic_app_douyin.png"), Text("抖音")],
-        ),
-        Column(
-          children: [
-            AppIcon("assets/images/ic_app_bilibili.png"),
-            Text("bilibili"),
-          ],
-        ),
-        Column(
-          children: [AppIcon("assets/images/ic_app_maoyan.png"), Text("猫眼")],
-        ),
-        Column(
-          children: [
-            AppIcon("assets/images/ic_app_nestes_music.png"),
-            Text("云音乐"),
-          ],
-        ),
+        Column(children: [AppIcon("assets/images/ic_app_douyin.png"), Text("抖音")]),
+        Column(children: [AppIcon("assets/images/ic_app_bilibili.png"), Text("bilibili")]),
+        Column(children: [AppIcon("assets/images/ic_app_maoyan.png"), Text("猫眼")]),
+        Column(children: [AppIcon("assets/images/ic_app_nestes_music.png"), Text("云音乐")]),
       ],
     );
   }
@@ -293,11 +249,6 @@ class AppIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 20, bottom: 3),
-      width: 35,
-      height: 35,
-      child: AppImg(asset),
-    );
+    return Container(margin: const EdgeInsets.only(top: 20, bottom: 3), width: 35, height: 35, child: AppImg(asset));
   }
 }

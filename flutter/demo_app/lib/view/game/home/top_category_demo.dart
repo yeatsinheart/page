@@ -9,8 +9,7 @@ class GameHomeTopCategoryDemo extends StatefulWidget {
   const GameHomeTopCategoryDemo({super.key, this.params});
 
   @override
-  _GameHomeTopCategoryDemoState createState() =>
-      _GameHomeTopCategoryDemoState();
+  _GameHomeTopCategoryDemoState createState() => _GameHomeTopCategoryDemoState();
 }
 // with AutomaticKeepAliveClientMixin
 // @override
@@ -75,17 +74,9 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
-      final double targetOffset =
-          index * box.size.width - (screenWidth - box.size.width) / 2;
+      final double targetOffset = index * box.size.width - (screenWidth - box.size.width) / 2;
       //print("tab移动到${targetOffset} 选中 ${_currentIndex}");
-      _tabScrollController.animateTo(
-        targetOffset.clamp(
-          _tabScrollController.position.minScrollExtent,
-          _tabScrollController.position.maxScrollExtent,
-        ),
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      );
+      _tabScrollController.animateTo(targetOffset.clamp(_tabScrollController.position.minScrollExtent, _tabScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeOut);
     }
   }
 
@@ -96,26 +87,14 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
     if (dataContext != null) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
-      final offset =
-          box.localToGlobal(Offset.zero).dy +
-          _pageScrollController.offset -
-          AppStyle.byRem(.9);
+      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset - AppStyle.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
-      _pageScrollController
-          .animateTo(
-            offset.clamp(
-              _pageScrollController.position.minScrollExtent,
-              _pageScrollController.position.maxScrollExtent,
-            ),
-            duration: Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
-          )
-          .then((_) {
-            Future.delayed(Duration(milliseconds: 100), () {
-              _scrollingByClick = false;
-            });
-          });
+      _pageScrollController.animateTo(offset.clamp(_pageScrollController.position.minScrollExtent, _pageScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
+        Future.delayed(Duration(milliseconds: 100), () {
+          _scrollingByClick = false;
+        });
+      });
     }
   }
 
@@ -149,17 +128,12 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
               padding: EdgeInsets.symmetric(horizontal: 16),
               decoration: selected
                   ? BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(width: 2, color: Colors.blue),
-                      ),
+                      border: Border(bottom: BorderSide(width: 2, color: Colors.blue)),
                     )
                   : null,
               child: Text(
                 tabs[index].tr,
-                style: TextStyle(
-                  fontWeight: selected ? FontWeight.bold : FontWeight.normal,
-                  color: selected ? Colors.blue : Colors.black,
-                ),
+                style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? Colors.blue : Colors.black),
               ),
             ),
           );
@@ -185,10 +159,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
     // 左右结构 SliverCrossAxisGroup
     return SliverMainAxisGroup(
       slivers: [
-        SliverPersistentHeader(
-          pinned: true,
-          delegate: _StickyHeaderDelegate(height: 50, child: _buildTabBar()),
-        ),
+        SliverPersistentHeader(pinned: true, delegate: _StickyHeaderDelegate(height: 50, child: _buildTabBar())),
         /*
         SliverChildBuilderDelegate懒加载[监听位置会有找不到的问题]
         SliverList(
@@ -212,11 +183,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
           // SliverChildListDelegate立即渲染
           delegate: SliverChildListDelegate(
             List.generate(tabs.length, (index) {
-              Widget? x = AppView.ofPath(
-                "/game/home_category/list_brand",
-                key: _data_keys[index],
-                params: {"title": tabs[index]},
-              );
+              Widget? x = AppView.ofPath("/game/home_category/list_brand", key: _data_keys[index], params: {"title": tabs[index]});
               return x ?? Container();
             }),
           ),
@@ -314,9 +281,7 @@ Widget buildGridItem(String title) {
       children: [
         Container(
           color: Colors.grey[300],
-          child: Center(
-            child: Icon(Icons.image, size: 50, color: Colors.white),
-          ),
+          child: Center(child: Icon(Icons.image, size: 50, color: Colors.white)),
         ),
         Positioned(
           bottom: 0,
@@ -325,11 +290,7 @@ Widget buildGridItem(String title) {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.black.withOpacity(0.3), Colors.transparent],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-              ),
+              gradient: LinearGradient(colors: [Colors.black.withValues(alpha: 0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
             ),
             child: Text(
               title,
@@ -359,11 +320,7 @@ class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => height;
 
   @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return SizedBox.expand(child: child); // 让图片填满整个 header 区域
   }
 

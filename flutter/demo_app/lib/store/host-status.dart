@@ -3,17 +3,26 @@ import 'dart:math';
 
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/request/api.dart';
-import 'package:flutter3/store/save_as_json.dart';
+import 'package:flutter3/store/cache_as_json.dart';
 import 'package:get/get.dart';
 
-class HostStatusStore extends SaveAsJsonStore<HostStatusStore> {
+class HostStatusStore extends CacheAsJson<HostStatusStore> {
+  // 单例一旦创建，就会一直存在内存中，直到程序退出或手动销毁
+  HostStatusStore._internal(): super('host-status-store');
+  static final HostStatusStore _instance = HostStatusStore._internal();
+  factory HostStatusStore() => _instance;
+
   final lines = <LineStatus>[].obs;
   //final Rx<List<LineStatus>> lines = Rx<List<LineStatus>>([]);
   //final Rxn<List<LineStatus>> lines = Rxn<List<LineStatus>>([]);
   // await Get.putAsync(() => HostStatusStore().init(null)); 保证能初始化成功
 
   @override
-  initFromJson(json) async{
+  load_from_api() async{
+  }
+
+  @override
+  updateByJson(json) async{
     List<LineStatus> tmp = [];
     for (var data in json) {
       tmp.add(LineStatus(name: data["name"], domain: data["domain"], https: data["https"], wildcard: data["wildcard"]));
@@ -101,7 +110,6 @@ class HostStatusStore extends SaveAsJsonStore<HostStatusStore> {
   LineStatus? get chosenLine =>
       lines.firstWhereOrNull((line) => line.chosen.value);
 
-  HostStatusStore(): super('host_status_store');
 
 
 }

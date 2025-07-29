@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/store/host_status_store.dart';
+import 'package:flutter3/store/host-status.dart';
 import 'package:get/get.dart';
 
 class AppHostStatusIndex extends StatelessWidget {

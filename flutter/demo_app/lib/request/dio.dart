@@ -8,8 +8,8 @@ import 'package:flutter3/request/test.dart';
 import 'package:get/get.dart' hide Response;
 
 import '../log/logger.dart';
-import '../store/host_status_store.dart';
-import '../store/language_store.dart';
+import '../store/host-status.dart';
+import '../store/language.dart';
 import 'cache.dart';
 
 class ApiDio{

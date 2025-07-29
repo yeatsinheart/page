@@ -13,14 +13,10 @@ class DefaultConfig {
   static const _cacheKey = 'cached_default_config';
 
   /// 加载配置
-  static Future<Map<String, dynamic>> init() async {
+  static Future<Map<String, dynamic>> loadConfig() async {
 
-    // 1. 尝试拉取网络配置
-    Map<String, dynamic>? remote = await _loadRemote();
-    if (remote != null) {
-      await _saveCache(remote);
-      return remote;
-    }
+    // 1. 尝试拉取网络配置 异步更新
+    _loadAsyncFromApi();
 
     // 2. 尝试读取本地缓存
     final cache = await _loadCache();
@@ -33,15 +29,19 @@ class DefaultConfig {
   }
 
   /// 获取远程配置
-  static Future<Map<String, dynamic>?> _loadRemote() async {
+  static Future<Map<String, dynamic>?> _loadAsyncFromApi() async {
     try {
       // 最好是Api调用
-      return await Api.init(null);
+      Map<String, dynamic>? remote = await Api.init(null);
+      if (remote != null) {
+        await _saveCache(remote);
+        return remote;
+      }
     } catch (e) {
       // 忽略错误或打印日志
       Log.e("获取远程配置出错，所以取消");
-      return null;
     }
+    return null;
   }
 
   /// 保存缓存
@@ -78,13 +78,14 @@ class DefaultConfig {
     } else if (defaultTargetPlatform == TargetPlatform.android) {
       String path = 'assets/config/default_config.json';
       try {
-        final result = await rootBundle.loadString(path); // 会自动加前缀 assets/
+        final result = await rootBundle.loadString(path); //
         return result;
       } catch (e) {
         print('[Android}] 读取 $path 失败: $e');
         return null;
       }
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+      // 考虑ios复用2进制时打包写入方式
       const channel = MethodChannel('default_config');
       try {
         final result = await channel.invokeMethod<String>('loadConfigJson');

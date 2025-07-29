@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter3/color-container/color-util.dart';
 import 'package:flutter3/share/context.dart';
-import 'package:flutter3/store/app_store.dart';
+import 'package:flutter3/store/global-config.dart';
 import 'package:get/get.dart';
 class AppStyle{
 
@@ -27,7 +27,7 @@ class AppStyle{
   }
 
   static getAppStyle() {
-    return Get.find<AppStore>().data.value?["style"] ?? {};
+    return Get.find<GlobalConfigStore>().data.value?["style"] ?? {};
   }
 
   static getContainerStyle(k) {

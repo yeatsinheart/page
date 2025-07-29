@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/store/loading_store.dart';
 import 'package:get/get.dart';
-import 'package:flutter3/store/language_store.dart';
+import 'package:flutter3/store/language.dart';
 
 class AppLanguage extends StatelessWidget {
   final dynamic params;
@@ -15,22 +14,24 @@ class AppLanguage extends StatelessWidget {
     // {"name": "فارسی", "flag": "🇮🇷", "code": "fa_IR"},
     // {"name": "اردو", "flag": "🇵🇰", "code": "ur_PK"},
     // {"name": "עברית", "flag": "🇮🇱", "code": "he_IL"},
-    LanguageStore languageStore = Get.find<LanguageStore>();
-    final currentLocale = languageStore.data.value["language"];
+    LanguageStore();
+    final currentLocale = LanguageStore().data.value["language"];
 
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 300), // 限制最大宽度
       child: ListView.separated(
         shrinkWrap: true,
-        itemCount: languageStore.data.value["list"]!.length,
+        itemCount: LanguageStore().data.value["list"]!.length,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
         itemBuilder: (context, index) {
-          final lang = languageStore.data.value["list"][index];
+
+          final lang = LanguageStore().data.value["list"][index];
+
           final selected = currentLocale == lang["code"];
 
           return ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: selected ? Colors.blue : null, padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16)),
-            onPressed: () => languageStore.choose(lang["code"]!),
+            onPressed: () => LanguageStore().choose(lang["code"]!),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

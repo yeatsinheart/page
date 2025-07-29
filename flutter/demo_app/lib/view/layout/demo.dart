@@ -3,7 +3,7 @@ import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/color-container/container.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
-import 'package:flutter3/store/app_store.dart';
+import 'package:flutter3/store/global-config.dart';
 import 'package:flutter3/views.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +18,7 @@ class LayoutDemo extends StatefulWidget {
 /// 必须确定初始化打开哪个页面
 class _LayoutDemoState extends State<LayoutDemo> {
   int _currentIndex = 0;
-  AppStore appStore = Get.find<AppStore>();
+  GlobalConfigStore appStore = Get.find<GlobalConfigStore>();
   @override
   void initState() {
     super.initState();

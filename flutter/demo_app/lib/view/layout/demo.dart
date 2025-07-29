@@ -7,6 +7,8 @@ import 'package:flutter3/store/global-config.dart';
 import 'package:flutter3/views.dart';
 import 'package:get/get.dart';
 
+import '../../app-initializer.dart';
+
 class LayoutDemo extends StatefulWidget {
   final dynamic params;
   LayoutDemo({super.key, this.params});
@@ -18,7 +20,6 @@ class LayoutDemo extends StatefulWidget {
 /// 必须确定初始化打开哪个页面
 class _LayoutDemoState extends State<LayoutDemo> {
   int _currentIndex = 0;
-  GlobalConfigStore appStore = Get.find<GlobalConfigStore>();
   @override
   void initState() {
     super.initState();
@@ -26,7 +27,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic> items = appStore.data.value?["layout"]?["barBottom"]??[];
+    List<dynamic> items = AppInitializer.data["layout"]?["barBottom"]??[];
     List<Widget> list = [];
     List<dynamic> pages = [];
     for (int i = 0; i < items.length; i++) {

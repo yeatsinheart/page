@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/app.dart';
 import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/share/context.dart';
 
@@ -21,8 +22,8 @@ class PopCloseBottom extends StatelessWidget {
           children: [
             ConstrainedBox(
               constraints: BoxConstraints(
-                maxWidth: GlobalContext.getWidth()*.8,
-                maxHeight: GlobalContext.getHeight()*.8,
+                maxWidth: App.width*.8,
+                maxHeight: App.height*.8,
               ),
               child: Container(
                 padding: EdgeInsetsGeometry.all(AppStyle.byRem(.2)),

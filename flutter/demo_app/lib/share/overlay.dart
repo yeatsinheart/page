@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter3/app.dart';
 import 'package:flutter3/log/logger.dart';
 
 import 'package:flutter3/views.dart';
@@ -17,7 +18,7 @@ class GlobalOverlayContext {
   //https://juejin.cn/post/7026150456673959943 弹窗效果说明
   // overlay + dissmiss
 
-  static OverlayState? get overlay => GlobalContext.navigatorKey.currentState!.overlay;
+  static OverlayState? get overlay => App.navigatorKey.currentState!.overlay;
 
   static OverlayEntry item(
     Widget widget, {

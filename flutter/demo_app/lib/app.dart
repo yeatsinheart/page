@@ -16,6 +16,7 @@ class App {
   static void back() {
     navigatorKey.currentState?.pop();
   }
+
   static double get width{
     return MediaQuery.of(_context).size.width;
   }

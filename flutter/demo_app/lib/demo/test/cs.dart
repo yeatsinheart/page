@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter3/app.dart';
 import 'package:flutter3/share/context.dart';
 import 'package:mutex/mutex.dart';
 
@@ -47,7 +48,7 @@ class AppCsPaneState extends State<TestCs> with TickerProviderStateMixin {
     try {
       if (close_process > 1 && !dead) {
         dead = true;
-        GlobalContext.back();
+        App.back();
       }
     } finally {
       _lock.release();
@@ -144,7 +145,7 @@ class AppCsPaneState extends State<TestCs> with TickerProviderStateMixin {
                                     child: IconButton(
                                         onPressed: () {
                                           //ov.remove();
-                                          GlobalContext.back();
+                                          App.back();
                                           ;
                                         },
                                         icon: Icon(
@@ -160,7 +161,7 @@ class AppCsPaneState extends State<TestCs> with TickerProviderStateMixin {
   getdesc(context, game) {
     return Container(
         decoration: BoxDecoration(color: Colors.white),
-        //height: (GlobalContext.getHeight() + 10),
+        //height: (App.height + 10),
         child:
             //scroll(
             //ListView(

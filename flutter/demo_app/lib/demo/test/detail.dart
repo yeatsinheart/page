@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/app.dart';
 
 
 import 'package:flutter3/service/game.dart';
@@ -22,7 +23,7 @@ class TestDetail extends StatelessWidget {
               Hero(
                 tag: 'hero${game?.title}',
                 child: Container(
-                  height: GlobalContext.getHeight(),
+                  height: App.height,
                   child: Stack(
                     children: <Widget>[
                       AppImg(

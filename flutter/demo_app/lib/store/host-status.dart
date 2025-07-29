@@ -17,6 +17,9 @@ class HostStatusStore extends CacheAsJson<HostStatusStore> {
   //final Rxn<List<LineStatus>> lines = Rxn<List<LineStatus>>([]);
   // await Get.putAsync(() => HostStatusStore().init(null)); 保证能初始化成功
 
+  listen(data) async{
+  }
+
   @override
   load_from_api() async{
   }

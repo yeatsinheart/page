@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter3/app.dart';
 import 'package:flutter3/service/data/skin_data.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/context.dart';
@@ -142,7 +143,7 @@ class _AppStoreState extends State<TestAppstore> with TickerProviderStateMixin {
                     Hero(tag: 'tag${game.title}', child: gameView(game, 250, 15)),
                     Positioned(
                       top: 440,
-                      child: Hero(tag: 'hero-dec-${game.title}', child: SizedBox(width: GlobalContext.getWidth(), height: 10)),
+                      child: Hero(tag: 'hero-dec-${game.title}', child: SizedBox(width: App.width, height: 10)),
                     )
                   ],
                 )

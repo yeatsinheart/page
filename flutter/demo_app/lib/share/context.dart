@@ -47,17 +47,7 @@ class GlobalContext {
     navigatorKey.currentState?.push(route);
   }
 
-  static void back() {
-    navigatorKey.currentState?.pop();
-  }
 
-  static double getWidth() {
-    return MediaQuery.of(context).size.width;
-  }
-
-  static double getHeight() {
-    return MediaQuery.of(context).size.height;
-  }
 
 
 /**

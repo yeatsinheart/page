@@ -35,7 +35,7 @@ void _onPageScroll() {
 }
 
 void _scrollTabToCenter(int index) {
-  final double screenWidth = GlobalContext.getWidth();
+  final double screenWidth = App.width;
   final tab_context = _tab_keys[index].currentContext;
   if (tab_context != null) {
     final box = tab_context.findRenderObject() as RenderBox;

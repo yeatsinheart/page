@@ -14,10 +14,10 @@ class BtnLoginRegister extends StatelessWidget {
         TextButton(
           onPressed: () {},
           child: const Text('注册'),
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.blue),
-            foregroundColor: MaterialStateProperty.all(Colors.white),
-            shape: MaterialStateProperty.all(
+          style: ButtonStyle().copyWith(
+            backgroundColor: WidgetStateProperty.all(Colors.blue),
+            foregroundColor: WidgetStateProperty.all(Colors.white),
+            shape: WidgetStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
               ),
@@ -28,15 +28,13 @@ class BtnLoginRegister extends StatelessWidget {
         TextButton(
           onPressed: () {},
           child: const Text('登录'),
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(Colors.blue),
-            shape: MaterialStateProperty.all(
+          style: ButtonStyle().copyWith(foregroundColor: WidgetStateProperty.all(Colors.blue),
+            shape: WidgetStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
                 side: const BorderSide(color: Colors.blue),
               ),
-            ),
-          ),
+            ),),
         ),
       ],
     );

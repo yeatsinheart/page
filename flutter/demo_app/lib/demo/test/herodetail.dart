@@ -128,7 +128,7 @@ class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStat
         tag: 'hero-dec-${game!.title}',
         child: Container(
             decoration: BoxDecoration(color: Colors.white),
-            //height: (GlobalContext.getHeight() + 10),
+            //height: (App.height + 10),
             child:
                 //scroll(
                 //ListView(

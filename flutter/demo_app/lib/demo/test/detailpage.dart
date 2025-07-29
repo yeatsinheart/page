@@ -155,7 +155,7 @@ class _HeroDetailPageState extends State<TestDetailpage> with TickerProviderStat
     //         child: getpic(game),
     //       )),
     //   SliverFixedExtentList(
-    //       itemExtent: (GlobalContext.getHeight()),
+    //       itemExtent: (App.height),
     //       delegate: SliverChildBuilderDelegate(
     //         childCount: 1,
     //         (context, index) => Hero(

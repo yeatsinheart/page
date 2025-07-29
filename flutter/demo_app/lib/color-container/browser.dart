@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/color-container/app-style.dart';
 import 'package:flutter3/color-container/color-util.dart';
 import 'package:flutter3/color-container/container.dart';
+import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/share/context.dart';
+
+import '../view/style/flutter-style.dart';
 
 class Browser extends StatelessWidget {
   final child;
@@ -11,22 +14,23 @@ class Browser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> appStyle = AppStyle.getAppStyle();
+    Map<String, dynamic> appStyle = AppStyle.get();
     ColorFont fontStyle = AppStyle.getFontStyle();
     double? maxWidth = AppStyle.getLimitedMaxWidth();
     Widget page = AppContainer("page", child);
     return Theme(
-      data: Theme.of(context).copyWith(
+      data: flutterStyle().copyWith(
         primaryColor: ColorUtil.getColor(AppStyle.getColors()[0]),
         // secondary: ..., // 辅助色（可选）
         // onPrimary: ..., // 主色上的字体色（如白色）
+
         textTheme: Theme.of(context).textTheme
             .apply(
               bodyColor: ColorUtil.getColor(fontStyle.txt),
               displayColor: ColorUtil.getColor(fontStyle.txt),
             )
             .copyWith(
-              bodyMedium: TextStyle(fontSize: AppStyle.byRem(appStyle["fontSize"] ?? .22), height: appStyle["lineHeight"] ?? 1.5, color: ColorUtil.getColor(fontStyle.txt)),
+              //bodyMedium: TextStyle(fontSize: AppStyle.byRem(appStyle["fontSize"] ?? .22), height: appStyle["lineHeight"] ?? 1.5, color: ColorUtil.getColor(fontStyle.txt)),
             ),
       ),
       child: AppContainer(

@@ -22,7 +22,7 @@ class Log {
         // 日志打印的可以排除
         'logger/src/','flutter3/log/logger.dart',
         'dio/src/',
-        //"flutter/","lib/","dio/","get/",
+        "flutter/","lib/","dio/","get/",
         //'flutter3/views.dart',
         "flutter3/request/"
       ],

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
-import 'package:flutter/services.dart';
-
 import '../view/app/host_status/index.dart';
-import 'app.dart';
 
 class NetworkMonitor extends StatefulWidget {
   final Widget child;

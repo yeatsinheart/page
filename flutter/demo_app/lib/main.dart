@@ -8,7 +8,7 @@ import 'package:flutter3/style/browser.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/service/language.dart';
 import 'package:flutter3/init/app-initializer.dart';
-import 'package:flutter3/share/network_monitor.dart';
+import 'package:flutter3/view/app/network_monitor.dart';
 
 import 'package:flutter3/store/global-config.dart';
 import 'package:flutter3/store/host-status.dart';

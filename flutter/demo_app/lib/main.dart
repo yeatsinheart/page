@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3/log/logger.dart';
-import 'package:flutter3/service/bootstrap-service.dart';
+import 'package:flutter3/service/bootstrap.dart';
 import 'package:flutter3/style/browser.dart';
 import 'package:flutter3/view/app/network_monitor.dart';
 

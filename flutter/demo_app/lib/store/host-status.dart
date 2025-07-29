@@ -2,14 +2,13 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter3/log/logger.dart';
-import 'package:flutter3/store/cache_as_json.dart';
 import 'package:get/get.dart';
 
-class HostStatusStore extends CacheAsJson<HostStatusStore> {
-  // 单例一旦创建，就会一直存在内存中，直到程序退出或手动销毁
-  HostStatusStore._internal() : super('host-status-store');
-  static final HostStatusStore _instance = HostStatusStore._internal();
+class HostStatusStore extends GetxService {
 
+  // 单例一旦创建，就会一直存在内存中，直到程序退出或手动销毁
+  HostStatusStore._internal();
+  static final HostStatusStore _instance = HostStatusStore._internal();
   factory HostStatusStore() => _instance;
 
   final lines = <LineStatus>[].obs;
@@ -20,10 +19,7 @@ class HostStatusStore extends CacheAsJson<HostStatusStore> {
 
   listen(data) async {}
 
-  @override
-  load_from_api() async {}
 
-  @override
   updateByJson(json) async {
     List<LineStatus> tmp = [];
     for (var data in json) {
@@ -35,11 +31,9 @@ class HostStatusStore extends CacheAsJson<HostStatusStore> {
   // 初始化线路列表 会发起网络请求，获取最快响应的线路
   setLines(List<LineStatus> list) async {
     lines.assignAll(list);
-    await save(); // 保存到缓存中
     bestFirst();
   }
 
-  @override
   toJson() {
     List list = [];
     for (var data in lines) {

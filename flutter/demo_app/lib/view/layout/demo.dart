@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/service/bootstrap-service.dart';
+import 'package:flutter3/service/bootstrap.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/container.dart';

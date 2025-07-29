@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/service/game.dart';
+import 'package:flutter3/demo/game.dart';
 import 'package:flutter3/style/app-style.dart';
 
 import '../../share/img.dart';

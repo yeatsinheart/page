@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3/app-route.dart';
-import 'package:flutter3/service/game.dart';
+import 'package:flutter3/demo/game.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/style/app-style.dart';
 

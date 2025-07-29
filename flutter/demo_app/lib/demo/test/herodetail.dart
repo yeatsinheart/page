@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter3/service/game.dart';
+import 'package:flutter3/demo/game.dart';
 
 import '../../share/img.dart';
 

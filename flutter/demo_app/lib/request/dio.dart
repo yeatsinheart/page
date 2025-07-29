@@ -5,6 +5,7 @@ import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter3/request/api_request.dart';
 import 'package:flutter3/request/test.dart';
+import 'package:flutter3/service/language.dart';
 import 'package:get/get.dart' hide Response;
 
 import '../log/logger.dart';
@@ -36,7 +37,7 @@ Dio getDio(host) {
       sendTimeout: const Duration(seconds: 5),
       // 发送数据最大等待时间 向服务器写入数据的最大时间
       headers: {
-        'Accept-Language': Get.find<LanguageStore>().data.value["language"],
+        'Accept-Language': LanguageService().chosen,
         'Host': 'api.example.com', // 伪造域名 使用IP直连时才生效
       },
     ),
@@ -52,7 +53,7 @@ _filter(Dio dio) {
   dio.interceptors.add(
     InterceptorsWrapper(
       onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
-        options.headers['Accept-Language'] = Get.find<LanguageStore>().data.value["language"];
+        options.headers['Accept-Language'] = LanguageService().chosen;
         if(options.method=='GET'){
           options.sendTimeout=null;
         }

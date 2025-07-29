@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter3/log/logger.dart';
+import 'package:flutter3/service/language.dart';
 import 'package:flutter3/share/default_config.dart';
 
 import 'package:flutter3/share/app.dart';
@@ -59,7 +60,10 @@ init() async {
     // 配置更新后，必须先加载完成当前语言的翻译信息
     await Get.find<GlobalConfigStore>().updateByJson(config);
     await Get.find<HostStatusStore>().updateByJson(config["host"]);
-    await Get.find<LanguageStore>().updateByJson(config["language"]);
+    await Future.wait<dynamic>([
+
+      LanguageService().updateByJson(config["language"]),
+    ]);
     runApp(App(widgetOfKey("app_layout") ?? Container()));
   });
 }

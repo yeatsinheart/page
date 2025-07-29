@@ -39,7 +39,7 @@
       {"name": "Hrvatski", "flag": "🇭🇷", "code": "hr_HR"},
       {"name": "Malay", "flag": "🇲🇾", "code": "ms_MY"}
     ],
-    "language": "en_US",
+    "chosen": "en_US",
     "fallback": "en_US"
   },
   "host": [

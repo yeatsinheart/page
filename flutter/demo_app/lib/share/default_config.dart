@@ -4,23 +4,25 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3/log/logger.dart';
+import 'package:flutter3/service/cache.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter3/request/api.dart';
 
 
 class DefaultConfig {
-  static const _cacheKey = 'cached_default_config';
+  static const table = 'default_config';
+  static const key = 'detail';
 
   /// 加载配置
   static Future<Map<String, dynamic>> loadConfig() async {
 
     // 1. 尝试拉取网络配置 异步更新
-    _loadAsyncFromApi();
+    _updateAsync();
 
     // 2. 尝试读取本地缓存
-    final cache = await _loadCache();
-    if (cache != null) return cache;
+    final cache = await CacheService.get(table, key);
+    if (cache != null) return jsonDecode(cache);
 
     // 3. 加载打包内置配置
     final asset = await _loadBuildIn();
@@ -29,34 +31,20 @@ class DefaultConfig {
   }
 
   /// 获取远程配置
-  static Future<Map<String, dynamic>?> _loadAsyncFromApi() async {
+  static  _updateAsync() async {
     try {
       // 最好是Api调用
       Map<String, dynamic>? remote = await Api.init(null);
       if (remote != null) {
-        await _saveCache(remote);
-        return remote;
+        CacheService.set(table,key,jsonEncode(remote));
       }
     } catch (e) {
       // 忽略错误或打印日志
       Log.e("获取远程配置出错，所以取消");
     }
-    return null;
   }
 
-  /// 保存缓存
-  static Future<void> _saveCache(Map<String, dynamic> config) async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString(_cacheKey, json.encode(config));
-  }
 
-  /// 读取本地缓存
-  static Future<Map<String, dynamic>?> _loadCache() async {
-    final prefs = await SharedPreferences.getInstance();
-    final jsonStr = prefs.getString(_cacheKey);
-    if (jsonStr == null) return null;
-    return json.decode(jsonStr);
-  }
 
   /// 读取内置配置 统一读取流程（安卓/iOS 通用）
   static Future<Map<String, dynamic>> _loadBuildIn() async {

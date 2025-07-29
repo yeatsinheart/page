@@ -21,6 +21,7 @@ class Api {
   /// 接口 START 可动态生成
   static init(data) => Api("init").request(data);
 
+  static language(data) => Api("language").request(data);
   static translate(data) => Api("translate").request(data);
 
   static refreshUser(data) => Api("refreshUser").request(data);

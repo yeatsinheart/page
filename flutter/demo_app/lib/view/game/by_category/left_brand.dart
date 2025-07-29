@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter3/app-context.dart';
-import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
-import 'package:flutter3/share/context.dart';
+import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +14,8 @@ class GameByCategoryLeftBrand extends StatefulWidget {
   const GameByCategoryLeftBrand({super.key, this.params});
 
   @override
-  _GameByCategoryLeftBrandState createState() => _GameByCategoryLeftBrandState();
+  _GameByCategoryLeftBrandState createState() =>
+      _GameByCategoryLeftBrandState();
 }
 // with AutomaticKeepAliveClientMixin
 // @override
@@ -47,26 +46,26 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     //_pageScrollController.addListener(() => _onPageScroll());
   }
 
- void headerSticky(){
-   SchedulerBinding.instance.addPostFrameCallback((_) {
-   final header2_context = _header2Key.currentContext;
-   if (header2_context != null) {
-     final header2 = header2_context.findRenderObject() as RenderBox;
-     final offset2 = header2.localToGlobal(Offset.zero).dy;
-      print("$offset2 ${offset2 - AppStyle.byRem(.9)} $_header2Padding");
-     if(offset2 < AppStyle.byRem(.9)){
-       setState(() {
-         _header2Padding = (offset2 - AppStyle.byRem(.9)).abs();
-       });
-     }
-     if(offset2 >= AppStyle.byRem(.9) && _header2Padding!=0){
-       setState(() {
-         _header2Padding = 0;
-       });
-     }
-   }
-   });
- }
+  void headerSticky() {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      final header2_context = _header2Key.currentContext;
+      if (header2_context != null) {
+        final header2 = header2_context.findRenderObject() as RenderBox;
+        final offset2 = header2.localToGlobal(Offset.zero).dy;
+        print("$offset2 ${offset2 - AppStyle.byRem(.9)} $_header2Padding");
+        if (offset2 < AppStyle.byRem(.9)) {
+          setState(() {
+            _header2Padding = (offset2 - AppStyle.byRem(.9)).abs();
+          });
+        }
+        if (offset2 >= AppStyle.byRem(.9) && _header2Padding != 0) {
+          setState(() {
+            _header2Padding = 0;
+          });
+        }
+      }
+    });
+  }
 
   void _onPageScroll() {
     SchedulerBinding.instance.addPostFrameCallback((_) {
@@ -76,9 +75,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
         final context = _data_keys[i].currentContext;
         if (context != null) {
           final box = context.findRenderObject() as RenderBox;
-          final offset = box
-              .localToGlobal(Offset.zero)
-              .dy;
+          final offset = box.localToGlobal(Offset.zero).dy;
           // 计算距离屏幕顶部的距离（越小越接近顶部）
           final distanceFromTop = offset.abs();
           if (distanceFromTop < minDistance) {
@@ -103,9 +100,17 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
-      final double targetOffset = index * box.size.height - (screenHeight - box.size.height) / 2;
+      final double targetOffset =
+          index * box.size.height - (screenHeight - box.size.height) / 2;
       //print("tab移动到${targetOffset} 选中 ${_currentIndex}");
-      _tabScrollController.animateTo(targetOffset.clamp(_tabScrollController.position.minScrollExtent, _tabScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+      _tabScrollController.animateTo(
+        targetOffset.clamp(
+          _tabScrollController.position.minScrollExtent,
+          _tabScrollController.position.maxScrollExtent,
+        ),
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
     }
   }
 
@@ -116,14 +121,26 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     if (dataContext != null) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
-      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset - AppStyle.byRem(.9);
+      final offset =
+          box.localToGlobal(Offset.zero).dy +
+          _pageScrollController.offset -
+          AppStyle.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
-      _pageScrollController.animateTo(offset.clamp(_pageScrollController.position.minScrollExtent, _pageScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
-        Future.delayed(Duration(milliseconds: 100), () {
-          _scrollingByClick = false;
-        });
-      });
+      _pageScrollController
+          .animateTo(
+            offset.clamp(
+              _pageScrollController.position.minScrollExtent,
+              _pageScrollController.position.maxScrollExtent,
+            ),
+            duration: Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          )
+          .then((_) {
+            Future.delayed(Duration(milliseconds: 100), () {
+              _scrollingByClick = false;
+            });
+          });
     }
   }
 
@@ -179,7 +196,12 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                         tabs[index].tr,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? Colors.white : Colors.black),
+                        style: TextStyle(
+                          fontWeight: selected
+                              ? FontWeight.bold
+                              : FontWeight.normal,
+                          color: selected ? Colors.white : Colors.black,
+                        ),
                       ),
                     ],
                   ),
@@ -188,7 +210,8 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
             ),
           );
         },
-        separatorBuilder: (context, index) => SizedBox(height: 10), // 仅在 item 之间插入 gap
+        separatorBuilder: (context, index) =>
+            SizedBox(height: 10), // 仅在 item 之间插入 gap
       ),
     );
   }
@@ -203,68 +226,84 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     );
   }
 
-  Widget getHeader1(){
+  Widget getHeader1() {
     return SliverPersistentHeader(
-      // padding 永远和header保持>一个导航栏高度
-        pinned: true,
-        // 最大高度
-        delegate: ShareSliverPersistentHeaderDelegate(height: AppStyle.byRem(.9), child:Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        // 左侧 logo
-        AppImg('assets/images/launcher.png', width: AppStyle.byRem(0.7), height: AppStyle.byRem(0.7)),
-        TextButton(
-          onPressed: () {
-            setState(() {
-              _changeCategory = !_changeCategory;
-            });
-          },
-          child: Text('某分类'),
-          style: ButtonStyle(
-            foregroundColor: WidgetStateProperty.all(Colors.blue),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
-                side: BorderSide(color: Colors.blue),
-              ),
-            ),
-          ),
-        ),
-      ],
-    )));
-  }
-
-  Widget getHeader2(){
-    return SliverConstrainedCrossAxis(
-        maxExtent: 80,
-        sliver: SliverPersistentHeader(
       // padding 永远和header保持>一个导航栏高度
       pinned: true,
       // 最大高度
-      delegate: ShareSliverPersistentHeaderDelegate(height: AppStyle.screenHeight - AppStyle.byRem(1.24), child: _buildTabBar()),
-    ));
+      delegate: ShareSliverPersistentHeaderDelegate(
+        height: AppStyle.byRem(.9),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // 左侧 logo
+            AppImg(
+              'assets/images/launcher.png',
+              width: AppStyle.byRem(0.7),
+              height: AppStyle.byRem(0.7),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _changeCategory = !_changeCategory;
+                });
+              },
+              child: Text('某分类'),
+              style: ButtonStyle(
+                foregroundColor: WidgetStateProperty.all(Colors.blue),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
+                    side: BorderSide(color: Colors.blue),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
-  Widget scrollListener(child){
+
+  Widget getHeader2() {
+    return SliverConstrainedCrossAxis(
+      maxExtent: 80,
+      sliver: SliverPersistentHeader(
+        // padding 永远和header保持>一个导航栏高度
+        pinned: true,
+        // 最大高度
+        delegate: ShareSliverPersistentHeaderDelegate(
+          height: AppStyle.screenHeight - AppStyle.byRem(1.24),
+          child: _buildTabBar(),
+        ),
+      ),
+    );
+  }
+
+  Widget scrollListener(child) {
     return NotificationListener(
-        onNotification: (notification) {
-          if (notification is ScrollStartNotification) {
-            //print('🚀 Start Scrolling');
-            //isScrolling = true;
-          } else if (notification is ScrollUpdateNotification) {
-            //headerSticky();_onPageScroll();
-            //print('📦 Offset = ${notification.metrics.pixels}');
-          } else if (notification is ScrollEndNotification) {
-            headerSticky();_onPageScroll();
-            //print('🛑 Scroll End');
-            //isScrolling = false;
-          }else if (notification is OverscrollNotification) {
-            //headerSticky();_onPageScroll();
-          }
-          return true; // 阻止通知继续传递
-          //return false; // 不阻止通知继续传递
-        },
-        child:child);
+      onNotification: (notification) {
+        if (notification is ScrollStartNotification) {
+          //print('🚀 Start Scrolling');
+          //isScrolling = true;
+        } else if (notification is ScrollUpdateNotification) {
+          //headerSticky();_onPageScroll();
+          //print('📦 Offset = ${notification.metrics.pixels}');
+        } else if (notification is ScrollEndNotification) {
+          headerSticky();
+          _onPageScroll();
+          //print('🛑 Scroll End');
+          //isScrolling = false;
+        } else if (notification is OverscrollNotification) {
+          //headerSticky();_onPageScroll();
         }
+        return true; // 阻止通知继续传递
+        //return false; // 不阻止通知继续传递
+      },
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // 在主轴方向（通常是垂直）保持同步滚动行为。
@@ -277,27 +316,33 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
           bottom: false,
           child: Stack(
             children: [
-              scrollListener(CustomScrollView(
-                physics: _changeCategory?NeverScrollableScrollPhysics():null, // 禁止滚动
-                cacheExtent: 1000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
-                controller: _pageScrollController,
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Container(
-                      height: 150,
-                      color: Colors.orange.shade100,
-                      alignment: Alignment.center,
-                      child: Text('👋 欢迎页面介绍内容，滚动后会消失'),
+              scrollListener(
+                CustomScrollView(
+                  physics: _changeCategory
+                      ? NeverScrollableScrollPhysics()
+                      : null, // 禁止滚动
+                  cacheExtent:
+                      1000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
+                  controller: _pageScrollController,
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Container(
+                        height: 150,
+                        color: Colors.orange.shade100,
+                        alignment: Alignment.center,
+                        child: Text('👋 欢迎页面介绍内容，滚动后会消失'),
+                      ),
                     ),
-                  ),
-                  getHeader1(),
-                  SliverPadding(
-                    padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
-                    sliver: SliverCrossAxisGroup(
-                      slivers: [
-                        getHeader2(),
+                    getHeader1(),
+                    SliverPadding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppStyle.byRem(.2),
+                      ),
+                      sliver: SliverCrossAxisGroup(
+                        slivers: [
+                          getHeader2(),
 
-                        /*
+                          /*
         SliverChildBuilderDelegate懒加载[监听位置会有找不到的问题]
         SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
@@ -305,27 +350,31 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
           }, childCount: tabs.length),
         ),*/
 
-                        // SliverChildListDelegate立即渲染
-                        //SliverList(delegate: SliverChildListDelegate(
-                        // 为什么用 SliverToBoxAdapter 包裹组件后，localToGlobal(Offset.zero) 只能获取到 viewport 内的偏移？而用 SliverList 的子项则能返回全局偏移（如 2390）？
-                        // 因为 SliverList 使用了 SliverChildBuilderDelegate，具有 懒加载 机制，它会：
-                        // 根据当前滚动情况提前加载一些 item（前后多个 buffer 区域）；
-                        // 如果你用 SliverChildListDelegate（你用的是这个），它实际上是一次性构建所有子项，所以你会发现所有组件的 key.currentContext 都能用；
-                        // 所以你才能获取 Offset(0.0, 2390.0)，因为它被提前 build 出来了。
-                        //
-                        // 虽然每个 SliverToBoxAdapter 是一个完整的 Sliver，但它不会自动预渲染所有项；
-                        // 并且如果组件太大或不在视图附近，Flutter 就不构建它（为了性能优化）；
-                        // 所以你在尝试获取 key.currentContext 时会失败或得到 Offset.zero（默认坐标）；
-                        SliverList(
                           // SliverChildListDelegate立即渲染
-                          delegate: SliverChildListDelegate(
-                            List.generate(tabs.length, (index) {
-                              Widget? x = AppView.ofPath("/game/home_category/list_brand", key: _data_keys[index], params: {"title": tabs[index]});
-                              return x??Container();
-                            }),
+                          //SliverList(delegate: SliverChildListDelegate(
+                          // 为什么用 SliverToBoxAdapter 包裹组件后，localToGlobal(Offset.zero) 只能获取到 viewport 内的偏移？而用 SliverList 的子项则能返回全局偏移（如 2390）？
+                          // 因为 SliverList 使用了 SliverChildBuilderDelegate，具有 懒加载 机制，它会：
+                          // 根据当前滚动情况提前加载一些 item（前后多个 buffer 区域）；
+                          // 如果你用 SliverChildListDelegate（你用的是这个），它实际上是一次性构建所有子项，所以你会发现所有组件的 key.currentContext 都能用；
+                          // 所以你才能获取 Offset(0.0, 2390.0)，因为它被提前 build 出来了。
+                          //
+                          // 虽然每个 SliverToBoxAdapter 是一个完整的 Sliver，但它不会自动预渲染所有项；
+                          // 并且如果组件太大或不在视图附近，Flutter 就不构建它（为了性能优化）；
+                          // 所以你在尝试获取 key.currentContext 时会失败或得到 Offset.zero（默认坐标）；
+                          SliverList(
+                            // SliverChildListDelegate立即渲染
+                            delegate: SliverChildListDelegate(
+                              List.generate(tabs.length, (index) {
+                                Widget? x = AppView.ofPath(
+                                  "/game/home_category/list_brand",
+                                  key: _data_keys[index],
+                                  params: {"title": tabs[index]},
+                                );
+                                return x ?? Container();
+                              }),
+                            ),
                           ),
-                        ),
-                        /*...List.generate(tabs.length, (index) {
+                          /*...List.generate(tabs.length, (index) {
           final title = tabs[index].tr;
           final expanded = _expandedStates[index];
           final showCount = expanded ? 32 : 6;
@@ -398,18 +447,22 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                   ),
                 );
         }),*/
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              )
+                  ],
+                ),
               ),
               _changeCategory
                   ? Positioned.fill(
-                      child: IgnorePointer(child: Container(color: Colors.black.withOpacity(0.5))),
+                      child: IgnorePointer(
+                        child: Container(color: Colors.black.withOpacity(0.5)),
+                      ),
                     )
                   : SizedBox.shrink(),
-              _changeCategory ? Container(child: Text("下拉选择")) : SizedBox.shrink(),
+              _changeCategory
+                  ? Container(child: Text("下拉选择"))
+                  : SizedBox.shrink(),
             ],
           ),
         ),
@@ -433,7 +486,9 @@ Widget buildGridItem(String title) {
       children: [
         Container(
           color: Colors.grey[300],
-          child: Center(child: Icon(Icons.image, size: 50, color: Colors.white)),
+          child: Center(
+            child: Icon(Icons.image, size: 50, color: Colors.white),
+          ),
         ),
         Positioned(
           bottom: 0,
@@ -442,7 +497,11 @@ Widget buildGridItem(String title) {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
             decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.black.withOpacity(0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+              gradient: LinearGradient(
+                colors: [Colors.black.withOpacity(0.3), Colors.transparent],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              ),
             ),
             child: Text(
               title,

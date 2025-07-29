@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
-import 'package:flutter3/share/overlay.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand/demo.dart';
 
 import '../../../service/data/skin_data.dart';
-import '../../../share/context.dart';
 import '../../app-view.dart';
 
 class AppHomeWg extends StatefulWidget {
   final dynamic params;
-  const AppHomeWg({this.params,super.key});
+  const AppHomeWg({this.params, super.key});
   @override
   _AppHomeWgState createState() => _AppHomeWgState();
 }
@@ -32,7 +30,8 @@ class _AppHomeWgState extends State<AppHomeWg> {
         child: SafeArea(
           bottom: false,
           child: CustomScrollView(
-            cacheExtent: 1000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
+            cacheExtent:
+                1000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
             controller: _controller,
             slivers: [
               /*SliverAppBar(
@@ -52,15 +51,15 @@ class _AppHomeWgState extends State<AppHomeWg> {
                       //height: currentHeaderIndex == 1 ? AppStyle.getRem(0.9) : 0,
                       height: AppStyle.byRem(0.9),
                       child: BarBrandDemo(),
-                        //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, AppStyle.getRem(0.7), null),
 
+                      //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, AppStyle.getRem(0.7), null),
                     ),
                   ),
                   SliverToBoxAdapter(child: AppView.ofKey("swiper")),
                   SliverToBoxAdapter(child: AppView.ofKey("marquee")),
                 ],
               ),
-              AppView.ofKey("game_home")??Container(),
+              AppView.ofKey("game_home") ?? Container(),
 
               /* SliverPersistentHeader(
                 pinned: true, // 也固定住
@@ -87,13 +86,22 @@ class _AppHomeWgState extends State<AppHomeWg> {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return ListTile(title: Text('Item SliverToBoxAdapter $index'));
+                    return ListTile(
+                      title: Text('Item SliverToBoxAdapter $index'),
+                    );
                   },
                 ),
               ),
               // 只有可视区域的子项才会被构建（懒加载）。
-              SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 20)),
-              SliverList(delegate: SliverChildListDelegate(
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) =>
+                      ListTile(title: Text('Item SliverList $index')),
+                  childCount: 20,
+                ),
+              ),
+              SliverList(
+                delegate: SliverChildListDelegate(
                   List.generate(20, (index) {
                     return Text('Item SliverList $index');
                   }),
@@ -122,10 +130,15 @@ class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => height;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return SizedBox.expand(child: child); // 让图片填满整个 header 区域
   }
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => false;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      false;
 }

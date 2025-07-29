@@ -5,7 +5,6 @@ import 'package:flutter3/app-context.dart';
 import 'package:flutter3/service/game.dart';
 import 'package:flutter3/style/app-style.dart';
 import '../../share/img.dart';
-import '../../share/context.dart';
 
 class TestDetail extends StatelessWidget {
   const TestDetail({super.key, required params});

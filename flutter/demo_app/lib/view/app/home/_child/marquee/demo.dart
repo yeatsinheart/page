@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:marquee/marquee.dart';
 
-import 'package:flutter3/share/context.dart';
-
 class MarqueeDemo extends StatefulWidget {
   const MarqueeDemo({super.key, required params});
 
@@ -12,23 +10,39 @@ class MarqueeDemo extends StatefulWidget {
 }
 
 class _MarqueeDemoState extends State<MarqueeDemo> {
-  Widget iconWithBadge({required IconData icon, required bool showBadge, int? count, double size = 24}) {
+  Widget iconWithBadge({
+    required IconData icon,
+    required bool showBadge,
+    int? count,
+    double size = 24,
+  }) {
     return Stack(
       clipBehavior: Clip.none,
       children: [
         Icon(icon, color: Colors.white, size: size),
         if (showBadge)
           Positioned(
-            right: count!=null?-6:-3,
-            top: count!=null?-6:0,
+            right: count != null ? -6 : -3,
+            top: count != null ? -6 : 0,
             child: Container(
-              padding: count != null ? EdgeInsets.symmetric(horizontal: 4, vertical: 1) : EdgeInsets.all(4),
-              decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(12)),
-              constraints: count!=null?BoxConstraints(minWidth: 16, minHeight: 16):BoxConstraints(minWidth: 4, minHeight: 4),
+              padding: count != null
+                  ? EdgeInsets.symmetric(horizontal: 4, vertical: 1)
+                  : EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              constraints: count != null
+                  ? BoxConstraints(minWidth: 16, minHeight: 16)
+                  : BoxConstraints(minWidth: 4, minHeight: 4),
               child: count != null
                   ? Text(
                       count > 99 ? '99+' : '$count',
-                      style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
                       textAlign: TextAlign.center,
                     )
                   : SizedBox.shrink(), // 只有红点不显示数字
@@ -75,7 +89,11 @@ class _MarqueeDemoState extends State<MarqueeDemo> {
         padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
         child: Row(
           children: [
-            Icon(Icons.volume_up, color: Colors.white, size: AppStyle.byRem(.36)), // 📢 图标
+            Icon(
+              Icons.volume_up,
+              color: Colors.white,
+              size: AppStyle.byRem(.36),
+            ), // 📢 图标
             SizedBox(width: 8),
             Expanded(
               child: Marquee(

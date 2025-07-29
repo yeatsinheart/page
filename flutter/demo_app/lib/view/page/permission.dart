@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../service/permission_service.dart';
@@ -23,13 +22,15 @@ class PagePermission extends StatelessWidget {
       widgets = [Container()];
     }
     return Scaffold(
-        body: Center(
-      child: ListView.builder(
+      body: Center(
+        child: ListView.builder(
           itemCount: 1,
           itemBuilder: (context, index) {
             return widgets[index];
-          }),
-    ));
+          },
+        ),
+      ),
+    );
   }
 }
 
@@ -88,13 +89,11 @@ class _PermissionState extends State<PermissionWidget> {
       ),
       trailing: (_permission is PermissionWithService)
           ? IconButton(
-              icon: const Icon(
-                Icons.info,
-                color: Colors.white,
-              ),
+              icon: const Icon(Icons.info, color: Colors.white),
               onPressed: () {
                 checkServiceStatus(context, _permission);
-              })
+              },
+            )
           : null,
       onTap: () {
         requestPermission(_permission);
@@ -102,10 +101,13 @@ class _PermissionState extends State<PermissionWidget> {
     );
   }
 
-  void checkServiceStatus(BuildContext context, PermissionWithService permission) async {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text((await permission.serviceStatus).toString()),
-    ));
+  void checkServiceStatus(
+    BuildContext context,
+    PermissionWithService permission,
+  ) async {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text((await permission.serviceStatus).toString())),
+    );
   }
 
   Future<void> requestPermission(Permission permission) async {

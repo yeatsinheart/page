@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/app-context.dart';
 import 'package:flutter3/style/app-style.dart';
-import 'package:flutter3/share/context.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
-
 
 class GameHomeTopCategoryDemo extends StatefulWidget {
   final dynamic params;
@@ -12,7 +9,8 @@ class GameHomeTopCategoryDemo extends StatefulWidget {
   const GameHomeTopCategoryDemo({super.key, this.params});
 
   @override
-  _GameHomeTopCategoryDemoState createState() => _GameHomeTopCategoryDemoState();
+  _GameHomeTopCategoryDemoState createState() =>
+      _GameHomeTopCategoryDemoState();
 }
 // with AutomaticKeepAliveClientMixin
 // @override
@@ -104,12 +102,20 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
           AppStyle.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
-
-      _pageScrollController.animateTo(offset.clamp(_pageScrollController.position.minScrollExtent, _pageScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
-        Future.delayed(Duration(milliseconds: 100), () {
-          _scrollingByClick = false;
-        });
-      });
+      _pageScrollController
+          .animateTo(
+            offset.clamp(
+              _pageScrollController.position.minScrollExtent,
+              _pageScrollController.position.maxScrollExtent,
+            ),
+            duration: Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          )
+          .then((_) {
+            Future.delayed(Duration(milliseconds: 100), () {
+              _scrollingByClick = false;
+            });
+          });
     }
   }
 
@@ -206,8 +212,12 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
           // SliverChildListDelegate立即渲染
           delegate: SliverChildListDelegate(
             List.generate(tabs.length, (index) {
-              Widget? x = AppView.ofPath("/game/home_category/list_brand", key: _data_keys[index], params: {"title": tabs[index]});
-              return x??Container();
+              Widget? x = AppView.ofPath(
+                "/game/home_category/list_brand",
+                key: _data_keys[index],
+                params: {"title": tabs[index]},
+              );
+              return x ?? Container();
             }),
           ),
         ),

@@ -41,35 +41,34 @@ class _PageDemoState extends State<PageDemo> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          toolbarHeight: 65,
-          //backgroundColor: GlobalContext.color(),
-          actions: <Widget>[
-            IconButton(
-              //color: GlobalContext.color(),
-              //padding: const EdgeInsets.only(right: 12), //const EdgeInsets.fromLTRB(8, 8, 12, 8),
-              icon: const Icon(Icons.view_module),
-              onPressed: () async {
-                //await Navigator.push(context,MaterialPageRoute(builder: (context) => TagEdit()));
-              },
-            ),
-          ],
-          title: TabBar(
-            //indicatorPadding: EdgeInsets.symmetric(horizontal: 2.0),
-            controller: _tabController, // 指示器的高度/厚度
-            //indicatorWeight: 2.0,
+        toolbarHeight: 65,
+        //backgroundColor: GlobalContext.color(),
+        actions: <Widget>[
+          IconButton(
+            //color: GlobalContext.color(),
+            //padding: const EdgeInsets.only(right: 12), //const EdgeInsets.fromLTRB(8, 8, 12, 8),
+            icon: const Icon(Icons.view_module),
+            onPressed: () async {
+              //await Navigator.push(context,MaterialPageRoute(builder: (context) => TagEdit()));
+            },
+          ),
+        ],
+        title: TabBar(
+          //indicatorPadding: EdgeInsets.symmetric(horizontal: 2.0),
+          controller: _tabController, // 指示器的高度/厚度
+          //indicatorWeight: 2.0,
 
-            //indicatorColor: GlobalContext.color(),
-            //labelColor: Colors.redAccent,
-            //unselectedLabelColor: Colors.black,
+          //indicatorColor: GlobalContext.color(),
+          //labelColor: Colors.redAccent,
+          //unselectedLabelColor: Colors.black,
 
-            //labelPadding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-            isScrollable: true, //和文字等宽
-            indicatorSize: TabBarIndicatorSize.label, tabs: _tabs,
-          )),
-      body: TabBarView(
-        controller: _tabController,
-        children: _tab_content,
+          //labelPadding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+          isScrollable: true, //和文字等宽
+          indicatorSize: TabBarIndicatorSize.label,
+          tabs: _tabs,
+        ),
       ),
+      body: TabBarView(controller: _tabController, children: _tab_content),
     );
   }
 
@@ -78,7 +77,11 @@ class _PageDemoState extends State<PageDemo> with TickerProviderStateMixin {
     bar.add(Tab(height: 24, text: '热门'));
     bar.add(Tab(height: 24, text: '日本'));
     bar.add(Tab(height: 24, text: 'xx'));
-    List<Widget> pages = [Center(child: Text('热门')), Center(child: Text('日本')), Center(child: Text('xx'))];
+    List<Widget> pages = [
+      Center(child: Text('热门')),
+      Center(child: Text('日本')),
+      Center(child: Text('xx')),
+    ];
 
     _tabs = bar;
     _tab_content = pages;
@@ -87,7 +90,11 @@ class _PageDemoState extends State<PageDemo> with TickerProviderStateMixin {
     _tabController.dispose();
 
     int defaultIndex = 0;
-    _tabController = TabController(initialIndex: defaultIndex, vsync: this, length: _tabs.length);
+    _tabController = TabController(
+      initialIndex: defaultIndex,
+      vsync: this,
+      length: _tabs.length,
+    );
 
     setState(() {});
 

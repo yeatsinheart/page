@@ -9,7 +9,8 @@ class GameSearchDemo extends StatefulWidget {
   State<GameSearchDemo> createState() => _GameSearchDemoState();
 }
 
-class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStateMixin {
+class _GameSearchDemoState extends State<GameSearchDemo>
+    with TickerProviderStateMixin {
   int _currentIndex = 0;
 
   final List<String> tabs = ["搜索结果", "最近玩过", "我的收藏"];
@@ -45,23 +46,39 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
                 pinned: true,
                 delegate: ShareSliverPersistentHeaderDelegate(
                   height: 48,
-                  child: tab_bar_demo(tabs: tabs, currentIndex: _currentIndex, onTap: (index) => setState(() => _currentIndex = index)),
+                  child: tab_bar_demo(
+                    tabs: tabs,
+                    currentIndex: _currentIndex,
+                    onTap: (index) => setState(() => _currentIndex = index),
+                  ),
                 ),
               ),
 
               // 当前 Tab 对应的内容
-              SliverPadding(padding: const EdgeInsets.all(12), sliver: sliver_grid_demo(tabs[_currentIndex], 22)),
+              SliverPadding(
+                padding: const EdgeInsets.all(12),
+                sliver: sliver_grid_demo(tabs[_currentIndex], 22),
+              ),
 
               // 最近热门标题
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  child: Text("最近热门", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
+                  child: Text(
+                    "最近热门",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
 
               // 最近热门 Grid
-              SliverPadding(padding: const EdgeInsets.all(12), sliver: sliver_grid_demo('最近热门', 22)),
+              SliverPadding(
+                padding: const EdgeInsets.all(12),
+                sliver: sliver_grid_demo('最近热门', 22),
+              ),
             ],
           ),
         ),

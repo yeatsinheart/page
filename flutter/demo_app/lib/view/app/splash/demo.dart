@@ -1,18 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter3/app-context.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/service/app_service.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/share/context.dart';
 import 'package:flutter3/style/app-style.dart';
-import 'package:flutter3/view/app-view.dart';
 
 class AppSplashDemo extends StatefulWidget {
-
   final dynamic params;
-  const AppSplashDemo({this.params,super.key});
+  const AppSplashDemo({this.params, super.key});
 
   @override
   _AppSplashDemoState createState() => _AppSplashDemoState();
@@ -45,50 +41,60 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
     //展示广告
     //alignment: Alignment(1.0, -1.0), // 右上角对齐
     return Scaffold(
-        body: Stack(
-      children: [
-        Column(
-          children: [
-            AppImg(AppService().get()!.splash,width: AppStyle.screenWidth,height:AppStyle.screenHeight * 7 / 8),
-            Expanded(
-              child: Container(
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              AppImg(
+                AppService().get()!.splash,
                 width: AppStyle.screenWidth,
-                color: AppService().skin()?.container,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
-                  children: <Widget>[
-                    AppImg(AppService().get()!.logo,width: 32,height: 32),
-                    Text(
-                      AppService().get()!.name,
-                      style: TextStyle(color: AppService().skin()?.font, fontSize: 14),
-                    ),
-                  ],
+                height: AppStyle.screenHeight * 7 / 8,
+              ),
+              Expanded(
+                child: Container(
+                  width: AppStyle.screenWidth,
+                  color: AppService().skin()?.container,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
+                    children: <Widget>[
+                      AppImg(AppService().get()!.logo, width: 32, height: 32),
+                      Text(
+                        AppService().get()!.name,
+                        style: TextStyle(
+                          color: AppService().skin()?.font,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            )
-          ],
-        ),
-        Positioned(
-          right: 15,
-          top: 32,
-          child: MaterialButton(
-            color: Color.fromRGBO(0, 0, 0, 0.5),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: Text(
-              getTip(),
-              style: TextStyle(color: Colors.white70, fontSize: 15.0),
-            ),
-            onPressed: () {
-              if (count <= 0) {
-                // 倒计时结束 同时没有别的问题。。。
-                nextPage();
-                //if (initialed) {} else {ErrOverlay.notify();}
-              }
-            },
+            ],
           ),
-        ),
-      ],
-    ));
+          Positioned(
+            right: 15,
+            top: 32,
+            child: MaterialButton(
+              color: Color.fromRGBO(0, 0, 0, 0.5),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text(
+                getTip(),
+                style: TextStyle(color: Colors.white70, fontSize: 15.0),
+              ),
+              onPressed: () {
+                if (count <= 0) {
+                  // 倒计时结束 同时没有别的问题。。。
+                  nextPage();
+                  //if (initialed) {} else {ErrOverlay.notify();}
+                }
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   void startInitial() async {
@@ -114,24 +120,27 @@ class LeftToRightPageRoute extends PageRouteBuilder {
   final Widget newPage;
 
   LeftToRightPageRoute(this.newPage)
-      : super(
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              newPage,
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
-          ) =>
-              SlideTransition(
-            position: Tween(begin: Offset(-1, 0), end: Offset(0, 0)).animate(animation),
-            child: child,
-          ),
-        );
+    : super(
+        pageBuilder:
+            (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+            ) => newPage,
+        transitionsBuilder:
+            (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child,
+            ) => SlideTransition(
+              position: Tween(
+                begin: Offset(-1, 0),
+                end: Offset(0, 0),
+              ).animate(animation),
+              child: child,
+            ),
+      );
 }
 
 class CustomPageRoute extends PageRouteBuilder {
@@ -139,36 +148,36 @@ class CustomPageRoute extends PageRouteBuilder {
   final Widget newPage;
 
   CustomPageRoute(this.currentPage, this.newPage)
-      : super(
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              currentPage,
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
-          ) =>
-              Stack(
-            children: <Widget>[
-              SlideTransition(
-                position: new Tween<Offset>(
-                  begin: const Offset(0, 0),
-                  end: const Offset(0, -1),
-                ).animate(animation),
-                child: currentPage,
-              ),
-              SlideTransition(
-                position: new Tween<Offset>(
-                  begin: const Offset(0, 1),
-                  end: Offset(0, 0),
-                ).animate(animation),
-                child: newPage,
-              )
-            ],
-          ),
-        );
+    : super(
+        pageBuilder:
+            (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+            ) => currentPage,
+        transitionsBuilder:
+            (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child,
+            ) => Stack(
+              children: <Widget>[
+                SlideTransition(
+                  position: new Tween<Offset>(
+                    begin: const Offset(0, 0),
+                    end: const Offset(0, -1),
+                  ).animate(animation),
+                  child: currentPage,
+                ),
+                SlideTransition(
+                  position: new Tween<Offset>(
+                    begin: const Offset(0, 1),
+                    end: Offset(0, 0),
+                  ).animate(animation),
+                  child: newPage,
+                ),
+              ],
+            ),
+      );
 }

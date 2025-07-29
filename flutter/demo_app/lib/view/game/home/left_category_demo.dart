@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/app-context.dart';
 import 'package:flutter3/style/app-style.dart';
-import 'package:flutter3/share/context.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
-
 
 class GameHomeLeftCategoryDemo extends StatefulWidget {
   final dynamic params;
@@ -12,7 +9,8 @@ class GameHomeLeftCategoryDemo extends StatefulWidget {
   const GameHomeLeftCategoryDemo({super.key, this.params});
 
   @override
-  _GameHomeLeftCategoryDemoState createState() => _GameHomeLeftCategoryDemoState();
+  _GameHomeLeftCategoryDemoState createState() =>
+      _GameHomeLeftCategoryDemoState();
 }
 // with AutomaticKeepAliveClientMixin
 // @override
@@ -79,9 +77,17 @@ class _GameHomeLeftCategoryDemoState extends State<GameHomeLeftCategoryDemo> {
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
-      final double targetOffset = index * box.size.height - (screenWidth - box.size.height) / 2;
+      final double targetOffset =
+          index * box.size.height - (screenWidth - box.size.height) / 2;
       //print("tab移动到${targetOffset} 选中 ${_currentIndex}");
-      _tabScrollController.animateTo(targetOffset.clamp(_tabScrollController.position.minScrollExtent, _tabScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+      _tabScrollController.animateTo(
+        targetOffset.clamp(
+          _tabScrollController.position.minScrollExtent,
+          _tabScrollController.position.maxScrollExtent,
+        ),
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
     }
   }
 
@@ -92,14 +98,26 @@ class _GameHomeLeftCategoryDemoState extends State<GameHomeLeftCategoryDemo> {
     if (dataContext != null) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
-      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset - AppStyle.byRem(.9);
+      final offset =
+          box.localToGlobal(Offset.zero).dy +
+          _pageScrollController.offset -
+          AppStyle.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
-      _pageScrollController.animateTo(offset.clamp(_pageScrollController.position.minScrollExtent, _pageScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
-        Future.delayed(Duration(milliseconds: 100), () {
-          _scrollingByClick = false;
-        });
-      });
+      _pageScrollController
+          .animateTo(
+            offset.clamp(
+              _pageScrollController.position.minScrollExtent,
+              _pageScrollController.position.maxScrollExtent,
+            ),
+            duration: Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          )
+          .then((_) {
+            Future.delayed(Duration(milliseconds: 100), () {
+              _scrollingByClick = false;
+            });
+          });
     }
   }
 
@@ -129,36 +147,46 @@ class _GameHomeLeftCategoryDemoState extends State<GameHomeLeftCategoryDemo> {
               });
             },
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(16), // 设置圆角
-                child: AspectRatio(
+              borderRadius: BorderRadius.circular(16), // 设置圆角
+              child: AspectRatio(
                 aspectRatio: 1, // 宽高比 1:1
                 child: Container(
-              key: _tab_keys[index],
-              color: !selected ? Colors.green : null,
-              alignment: Alignment.center,
-              //padding: EdgeInsets.symmetric(horizontal: 16),
-              decoration: selected
-                  ? BoxDecoration(
-                      color: Colors.blue,
-                     // border: Border(bottom: BorderSide(width: 2, color: Colors.blue)),
-                    )
-                  : null,
-              child: Column(
-                mainAxisSize: MainAxisSize.min, // 子组件按内容大小排列，不占满全高
-                mainAxisAlignment: MainAxisAlignment.center, // 垂直方向居中
-                crossAxisAlignment: CrossAxisAlignment.center, // 水平方向居中
-                children: [
-                Icon(Icons.search,size: 20,),
-                Text(
-                  tabs[index].tr,
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? Colors.white : Colors.black),
+                  key: _tab_keys[index],
+                  color: !selected ? Colors.green : null,
+                  alignment: Alignment.center,
+                  //padding: EdgeInsets.symmetric(horizontal: 16),
+                  decoration: selected
+                      ? BoxDecoration(
+                          color: Colors.blue,
+                          // border: Border(bottom: BorderSide(width: 2, color: Colors.blue)),
+                        )
+                      : null,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min, // 子组件按内容大小排列，不占满全高
+                    mainAxisAlignment: MainAxisAlignment.center, // 垂直方向居中
+                    crossAxisAlignment: CrossAxisAlignment.center, // 水平方向居中
+                    children: [
+                      Icon(Icons.search, size: 20),
+                      Text(
+                        tabs[index].tr,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: selected
+                              ? FontWeight.bold
+                              : FontWeight.normal,
+                          color: selected ? Colors.white : Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ],)
-            ),))
+              ),
+            ),
           );
-        }, separatorBuilder: (context, index) => SizedBox(height: 10), // 仅在 item 之间插入 gap
+        },
+        separatorBuilder: (context, index) =>
+            SizedBox(height: 10), // 仅在 item 之间插入 gap
       ),
     );
   }
@@ -187,7 +215,10 @@ class _GameHomeLeftCategoryDemoState extends State<GameHomeLeftCategoryDemo> {
             sliver: SliverPersistentHeader(
               pinned: true,
               // 最大高度
-              delegate: _StickyHeaderDelegate(height: AppStyle.screenHeight - AppStyle.byRem(1.24), child: _buildTabBar()),
+              delegate: _StickyHeaderDelegate(
+                height: AppStyle.screenHeight - AppStyle.byRem(1.24),
+                child: _buildTabBar(),
+              ),
             ),
           ),
 
@@ -214,8 +245,12 @@ class _GameHomeLeftCategoryDemoState extends State<GameHomeLeftCategoryDemo> {
             // SliverChildListDelegate立即渲染
             delegate: SliverChildListDelegate(
               List.generate(tabs.length, (index) {
-                Widget? x = AppView.ofPath("/game/home_category/list_brand", key: _data_keys[index], params: {"title": tabs[index]});
-                return x??Container();
+                Widget? x = AppView.ofPath(
+                  "/game/home_category/list_brand",
+                  key: _data_keys[index],
+                  params: {"title": tabs[index]},
+                );
+                return x ?? Container();
               }),
             ),
           ),
@@ -313,7 +348,9 @@ Widget buildGridItem(String title) {
       children: [
         Container(
           color: Colors.grey[300],
-          child: Center(child: Icon(Icons.image, size: 50, color: Colors.white)),
+          child: Center(
+            child: Icon(Icons.image, size: 50, color: Colors.white),
+          ),
         ),
         Positioned(
           bottom: 0,
@@ -322,7 +359,11 @@ Widget buildGridItem(String title) {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
             decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.black.withOpacity(0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+              gradient: LinearGradient(
+                colors: [Colors.black.withOpacity(0.3), Colors.transparent],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              ),
             ),
             child: Text(
               title,
@@ -352,8 +393,12 @@ class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => height;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SizedBox.expand(child:  child,); // 填满整个 header 区域 否则报错
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
+    return SizedBox.expand(child: child); // 填满整个 header 区域 否则报错
   }
 
   @override

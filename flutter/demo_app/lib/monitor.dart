@@ -7,7 +7,6 @@ import 'package:flutter3/view/app-view.dart';
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'service/network_service.dart';
-import 'share/context.dart';
 // 测试网络状态，有网状态才能启动
 
 // WidgetsBinding.instance.addPostFrameCallback((_) async {

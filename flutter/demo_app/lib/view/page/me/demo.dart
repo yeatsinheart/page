@@ -9,16 +9,31 @@ class PageMeDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: MyEasyRefresh(listView: ListView(
-        padding: const EdgeInsets.only(left: 15, top: 0, right: 15),
-        children: <Widget>[
-          Stack(
-            children: [
-              Align(alignment: AlignmentDirectional.topStart, child: AppImg("assets/images/ic_scan.png", width: 20, height: 20)),
-              Align(alignment: AlignmentDirectional.topEnd, child: AppImg("assets/images/ic_setting.png", width: 20, height: 20)),
-            ],
-          ),
-          Container(
+      body: MyEasyRefresh(
+        listView: ListView(
+          padding: const EdgeInsets.only(left: 15, top: 0, right: 15),
+          children: <Widget>[
+            Stack(
+              children: [
+                Align(
+                  alignment: AlignmentDirectional.topStart,
+                  child: AppImg(
+                    "assets/images/ic_scan.png",
+                    width: 20,
+                    height: 20,
+                  ),
+                ),
+                Align(
+                  alignment: AlignmentDirectional.topEnd,
+                  child: AppImg(
+                    "assets/images/ic_setting.png",
+                    width: 20,
+                    height: 20,
+                  ),
+                ),
+              ],
+            ),
+            Container(
               margin: const EdgeInsets.only(top: 20),
               child: InkWell(
                 onTap: () {
@@ -28,19 +43,37 @@ class PageMeDemo extends StatelessWidget {
                 },
                 child: Stack(
                   alignment: Alignment.center,
-                  children: [Container(width: 110, height: 110, child: AppImg("assets/images/circle_bg.png", width: 20, height: 20)), Text("登录", style: TextStyle(fontSize: 19, color: Colors.white))],
+                  children: [
+                    Container(
+                      width: 110,
+                      height: 110,
+                      child: AppImg(
+                        "assets/images/circle_bg.png",
+                        width: 20,
+                        height: 20,
+                      ),
+                    ),
+                    Text(
+                      "登录",
+                      style: TextStyle(fontSize: 19, color: Colors.white),
+                    ),
+                  ],
                 ),
-              )),
-          MineMenu(),
-          Container(
-            color: Colors.white,
-            height: 50,
-            margin: const EdgeInsets.only(top: 14),
-            padding: const EdgeInsets.only(left: 14, right: 14),
-            child: Stack(
-              children: [
-                const Align(alignment: Alignment.centerLeft, child: Text("你创作的，就是头条", style: TextStyle(fontSize: 15))),
-                Align(
+              ),
+            ),
+            MineMenu(),
+            Container(
+              color: Colors.white,
+              height: 50,
+              margin: const EdgeInsets.only(top: 14),
+              padding: const EdgeInsets.only(left: 14, right: 14),
+              child: Stack(
+                children: [
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("你创作的，就是头条", style: TextStyle(fontSize: 15)),
+                  ),
+                  Align(
                     alignment: AlignmentDirectional.centerEnd,
                     child: SizedBox(
                       width: 69,
@@ -53,27 +86,29 @@ class PageMeDemo extends StatelessWidget {
                       //     print("OutlineButton Click");
                       //   },
                       // ),
-                    ))
-              ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          MoreService(),
-          Container(
-            //color: Colors.white,
-            padding: const EdgeInsets.all(12),
-            margin: const EdgeInsets.only(top: 14, bottom: 20),
-            child: Applets(),
-          )
-        ],
-      )),
+            MoreService(),
+            Container(
+              //color: Colors.white,
+              padding: const EdgeInsets.all(12),
+              margin: const EdgeInsets.only(top: 14, bottom: 20),
+              child: Applets(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
 class MineMenu extends StatelessWidget {
-  final List<String> titles1 ;
+  final List<String> titles1;
 
-  MineMenu({this.titles1=const [],super.key}) {
+  MineMenu({this.titles1 = const [], super.key}) {
     titles1.add("消息通知");
     titles1.add("收藏");
     titles1.add("浏览历史");
@@ -83,18 +118,19 @@ class MineMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        //color: Colors.white,
-        height: 90,
-        alignment: Alignment.center,
-        margin: const EdgeInsets.only(top: 25),
-        child: MenuRow(titles: titles1, iconColor:Colors.red));
+      //color: Colors.white,
+      height: 90,
+      alignment: Alignment.center,
+      margin: const EdgeInsets.only(top: 25),
+      child: MenuRow(titles: titles1, iconColor: Colors.red),
+    );
   }
 }
 
 class MoreService extends StatelessWidget {
-  final List<String> titles1 ;
+  final List<String> titles1;
   final List<String> titles2;
-  MoreService({this.titles1 = const [],this.titles2= const [],super.key}) {
+  MoreService({this.titles1 = const [], this.titles2 = const [], super.key}) {
     titles1.add("用户反馈");
     titles1.add("钱包");
     titles1.add("广告推广");
@@ -119,11 +155,11 @@ class MoreService extends StatelessWidget {
               Align(
                 alignment: AlignmentDirectional.topStart,
                 child: Text("更多服务", style: TextStyle(fontSize: 18)),
-              )
+              ),
             ],
           ),
-          MenuRow(titles: titles1, iconColor:Colors.black87),
-          MenuRow(titles: titles2, iconColor:Colors.black87)
+          MenuRow(titles: titles1, iconColor: Colors.black87),
+          MenuRow(titles: titles2, iconColor: Colors.black87),
         ],
       ),
     );
@@ -145,8 +181,11 @@ class Applets extends StatelessWidget {
               ),
               Align(
                 alignment: AlignmentDirectional.bottomEnd,
-                child: Text("全部 >", style: TextStyle(fontSize: 13, color: Colors.black38)),
-              )
+                child: Text(
+                  "全部 >",
+                  style: TextStyle(fontSize: 13, color: Colors.black38),
+                ),
+              ),
             ],
           ),
           AppletMenuRow(),
@@ -159,10 +198,10 @@ class Applets extends StatelessWidget {
 
 //服务类型组件
 class MenuRow extends StatelessWidget {
-  final List<String> titles ;
+  final List<String> titles;
   final Color iconColor;
 
-  const MenuRow({ required this.titles, this.iconColor=Colors.red,super.key});
+  const MenuRow({required this.titles, this.iconColor = Colors.red, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -174,9 +213,13 @@ class MenuRow extends StatelessWidget {
           children: [
             Container(
               margin: const EdgeInsets.only(top: 20, bottom: 5),
-              child: Icon(Icons.notifications_none_outlined, size: 30, color: iconColor),
+              child: Icon(
+                Icons.notifications_none_outlined,
+                size: 30,
+                color: iconColor,
+              ),
             ),
-            Text(titles[0], style: TextStyle(fontSize: 13))
+            Text(titles[0], style: TextStyle(fontSize: 13)),
           ],
         ),
         Column(
@@ -185,7 +228,7 @@ class MenuRow extends StatelessWidget {
               margin: const EdgeInsets.only(top: 20, bottom: 5),
               child: Icon(Icons.star_border, size: 30, color: iconColor),
             ),
-            Text(titles[1], style: TextStyle(fontSize: 13))
+            Text(titles[1], style: TextStyle(fontSize: 13)),
           ],
         ),
         Column(
@@ -194,7 +237,7 @@ class MenuRow extends StatelessWidget {
               margin: const EdgeInsets.only(top: 20, bottom: 5),
               child: Icon(Icons.history, size: 30, color: iconColor),
             ),
-            Text(titles[2], style: TextStyle(fontSize: 13))
+            Text(titles[2], style: TextStyle(fontSize: 13)),
           ],
         ),
         Column(
@@ -203,7 +246,7 @@ class MenuRow extends StatelessWidget {
               margin: const EdgeInsets.only(top: 20, bottom: 5),
               child: Icon(Icons.download_sharp, size: 30, color: iconColor),
             ),
-            Text(titles[3], style: TextStyle(fontSize: 13))
+            Text(titles[3], style: TextStyle(fontSize: 13)),
           ],
         ),
       ],
@@ -220,10 +263,24 @@ class AppletMenuRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround, //子view空间等分
       mainAxisSize: MainAxisSize.max, //match_parent
       children: [
-        Column(children: [AppIcon("assets/images/ic_app_douyin.png"), Text("抖音")]),
-        Column(children: [AppIcon("assets/images/ic_app_bilibili.png"), Text("bilibili")]),
-        Column(children: [AppIcon("assets/images/ic_app_maoyan.png"), Text("猫眼")]),
-        Column(children: [AppIcon("assets/images/ic_app_nestes_music.png"), Text("云音乐")])
+        Column(
+          children: [AppIcon("assets/images/ic_app_douyin.png"), Text("抖音")],
+        ),
+        Column(
+          children: [
+            AppIcon("assets/images/ic_app_bilibili.png"),
+            Text("bilibili"),
+          ],
+        ),
+        Column(
+          children: [AppIcon("assets/images/ic_app_maoyan.png"), Text("猫眼")],
+        ),
+        Column(
+          children: [
+            AppIcon("assets/images/ic_app_nestes_music.png"),
+            Text("云音乐"),
+          ],
+        ),
       ],
     );
   }

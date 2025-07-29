@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/app-context.dart';
-import 'package:flutter3/app-route.dart';
 import 'package:flutter3/log/logger.dart' show Log;
 import 'package:flutter3/widget_of_path_info.dart';
 
@@ -35,7 +33,9 @@ class AppView {
       Log.e('getWidgetByPath: path 路径为空 null');
       return null;
     }
-    final widget = widgetOfPath(path, key: key, params: params) ?? widgetOfPath('$path/index', key: key, params: params);
+    final widget =
+        widgetOfPath(path, key: key, params: params) ??
+        widgetOfPath('$path/index', key: key, params: params);
     if (widget == null) {
       Log.e('getWidgetByPath: widget 找不到 path $path');
     }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
 
-import 'package:flutter3/share/context.dart';
-
 class BtnLoginRegister extends StatelessWidget {
   const BtnLoginRegister({params, super.key});
 
@@ -28,13 +26,15 @@ class BtnLoginRegister extends StatelessWidget {
         TextButton(
           onPressed: () {},
           child: const Text('登录'),
-          style: ButtonStyle().copyWith(foregroundColor: WidgetStateProperty.all(Colors.blue),
+          style: ButtonStyle().copyWith(
+            foregroundColor: WidgetStateProperty.all(Colors.blue),
             shape: WidgetStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
                 side: const BorderSide(color: Colors.blue),
               ),
-            ),),
+            ),
+          ),
         ),
       ],
     );

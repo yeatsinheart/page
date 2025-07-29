@@ -7,6 +7,7 @@ import 'package:flutter3/request/api.dart';
 import 'package:flutter3/service/cache.dart';
 import 'package:flutter3/style/app-style.dart';
 
+/// 获取 分发 数据
 class BootstrapService {
   static const table = 'bootstrap_config';
   static const key = 'all';

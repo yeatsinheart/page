@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/style/color-style.dart';
 
 class ColorButton extends StatelessWidget {
@@ -21,12 +22,6 @@ class ColorButton extends StatelessWidget {
       child: child,
       style: ButtonStyle(
         textStyle: WidgetStateProperty.all(TextStyle(color: colorStyle.font)),
-        // 去除splash水波纹、highlight hover等
-        // 完全禁用点击水波纹动画
-        splashFactory: NoSplash.splashFactory,
-        overlayColor: WidgetStateProperty.all(Colors.transparent),
-        // 去除阴影
-        shadowColor: WidgetStateProperty.all(colorStyle.shadow),
         // 背景颜色
         backgroundColor: WidgetStateProperty.all(colorStyle.bg),
         // 文字颜色

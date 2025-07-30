@@ -49,8 +49,8 @@ class BootstrapService {
   /// 加载配置
   static Future<Map<String, dynamic>> _get() async {
     // 尝试读取本地缓存
-    final cache = await CacheService.get(table, key);
-    if (cache != null) return jsonDecode(cache);
+    // final cache = await CacheService.get(table, key);
+    // if (cache != null) return jsonDecode(cache);
 
     // 加载打包内置配置
     final str = await _readBuildInConfig();
@@ -61,11 +61,13 @@ class BootstrapService {
   static _updateAsync() async {
     try {
       // 最好是Api调用
+      /*
       Map<String, dynamic>? remote = await Api.init(null);
       if (remote != null) {
         CacheService.set(table, key, jsonEncode(remote));
         _dispatch(remote);
       }
+      */
     } catch (e) {
       // 忽略错误或打印日志
       Log.e("获取远程配置出错，所以取消");

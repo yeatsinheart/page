@@ -6,9 +6,9 @@ import 'package:flutter3/util/color-util.dart';
 import 'package:flutter3/util/gradient-util.dart';
 
 /// 颜色搭配方案，不要想太多，纯颜色组合 不设及其它
-/// color-plan
-/// design-plan
-/// color-style
+/// color-plan ：以底色为主 of bg，
+/// 不属于背景色关联的，应该是通过点缀色直接设置,
+/// 所以什么browser page 头部导航，底部导航属于特别处理方案
 class ColorStyle {
   final Color? bg; // 纯色背景色
   final Gradient? bgGradient; // 渐变背景色

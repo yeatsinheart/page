@@ -8,7 +8,8 @@ class BtnLoginRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      // crossAxisAlignment: CrossAxisAlignment.center,
+      // mainAxisAlignment: MainAxisAlignment.end,
       children: [
         ColorButton("color1", const Text('注册'), radius: AppStyle.byRem(.1)),
         const SizedBox(width: 8),

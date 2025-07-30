@@ -113,3 +113,5 @@ flutter run
 
 
 flutter run -d chrome  --web-hostname 0.0.0.0 --web-port 9123
+
+background-image: linear-gradient( 135deg, #81FFEF 10%, #F067B4 100%);

@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/style/color-font.dart';
+import 'package:flutter3/style/theme/style-text.dart';
+
+globalButtonStyle(){
+  return ButtonStyle(
+
+    // 去除splash水波纹、highlight hover等
+    // 完全禁用点击水波纹动画
+    splashFactory: NoSplash.splashFactory,
+    overlayColor: WidgetStateProperty.all(Colors.transparent),
+    surfaceTintColor: WidgetStateProperty.all(Colors.transparent),
+
+    //数值越大，阴影越大、越明显，看起来就像“悬浮”得更高。
+    elevation: WidgetStateProperty.all(0),
+    // 去除阴影
+    shadowColor: WidgetStateProperty.all(Colors.transparent),
+    // 背景颜色
+    backgroundColor: WidgetStateProperty.all(Colors.transparent),
+    // 文字颜色
+    foregroundColor: WidgetStateProperty.all(ColorFont.get().txt),
+    //iconColor: ,iconSize: ,
+    textStyle: WidgetStateProperty.all(getTextStyle()),
+    iconColor:WidgetStateProperty.all(ColorFont.get().txt),
+    padding: WidgetStateProperty.all(EdgeInsets.all(0)),
+    shape: WidgetStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppStyle.byRem(.14)),
+        side: BorderSide(color: Colors.transparent),
+      ),
+    ),
+  );
+}

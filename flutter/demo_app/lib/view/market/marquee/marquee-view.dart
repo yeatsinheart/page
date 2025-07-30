@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter3/log/logger.dart';
 
 class MarqueeView extends StatefulWidget {
   final String text;

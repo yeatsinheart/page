@@ -65,7 +65,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
                   SliverToBoxAdapter(child: AppView.ofKey("swiper")),
                   // 目前存在热重启问题
 
-                  SliverToBoxAdapter(child: AppView.ofKey("marquee")),
+                  //SliverToBoxAdapter(child: AppView.ofKey("marquee")),
                 ],
               ),
 

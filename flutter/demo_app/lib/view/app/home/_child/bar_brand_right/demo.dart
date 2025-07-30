@@ -13,35 +13,12 @@ class BarBrandRightDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         BtnLoginRegister(),
-
-        const SizedBox(width: 8),
-        SizedBox(width: 8),
+        SizedBox(width: 2),
         //IconButton(onPressed: () {GlobalContext.load("game_search");}, icon: Icon(Icons.search)),
-        ColorIconButton(
-          "",
-          Icon(Icons.search),
-          action: () {
-            AppRoute.slideToKey("game_search");
-          },
-        ),
-        ColorIconButton(
-          "",
-          Icon(Icons.language),
-          action: () {
-            AppRoute.slideToKey("game_search");
-          },
-        ),
-
-        IconButton(
-          onPressed: () {
-            //GlobalOverlayContext.show("language");
-            GlobalOverlayContext.popBy("/pop/close_bottom", "language");
-          },
-          icon: Icon(Icons.language),
-        ),
+        IconButton(icon:Icon(Icons.search),onPressed: ()=>AppRoute.slideToKey("game_search")),
+        IconButton(icon:Icon(Icons.language),onPressed: ()=>GlobalOverlayContext.popBy("/pop/close_bottom", "language")),
       ],
     );
   }

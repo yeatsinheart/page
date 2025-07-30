@@ -25,24 +25,23 @@ class _MarketSwiperDemoState extends State<MarketSwiperDemo> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: AppStyle.byRem(.1), horizontal: AppStyle.byRem(.2)),
+      padding: EdgeInsets.symmetric(vertical: AppStyle.byRem(.1)),//, horizontal: AppStyle.byRem(.1)
       child: Stack(
         alignment: Alignment.bottomCenter, // 控制指示器位置
         children: [
           CarouselSlider(
             items: imageList.map((url) {
-              return AppImg(url, width: AppStyle.byRem(7), height: AppStyle.byRem(3.5), radius: AppStyle.byRem(.25));
+              return Container(child: AppImg(url,  radius: AppStyle.byRem(.14)),margin:  EdgeInsets.symmetric(horizontal: 4),);
             }).toList(),
             carouselController: _controller,
             options: CarouselOptions(
-              height: AppStyle.byRem(3.5),
-              autoPlay: true,
-              enlargeCenterPage: false,
+              aspectRatio: 3 / 1,
+              viewportFraction: .95, // 0.8 表示每页只占 80% 宽度，留出两边空隙
               //关闭放大
-              aspectRatio: 2 / 1,
+              enlargeCenterPage: false, // 中间 item 放大一点，突出当前页
+              autoPlay: true,
               initialPage: 0,
               //初始化显示第 1 张图。
-              viewportFraction: 1,
               autoPlayInterval: Duration(seconds: 5),
               autoPlayAnimationDuration: Duration(milliseconds: 400),
               onPageChanged: (index, reason) => setState(() {
@@ -58,13 +57,13 @@ class _MarketSwiperDemoState extends State<MarketSwiperDemo> {
                 return GestureDetector(
                   onTap: () => _controller.animateToPage(entry.key),
                   child: Container(
-                    width: _currentIndex == entry.key ? 16 : 8.0,
+                    width: _currentIndex == entry.key ? 24 : 8.0,
                     height: 8.0,
                     margin: const EdgeInsets.symmetric(horizontal: 4.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4.0), // 圆角一半，即可变成 pill 形状或小圆点
                       shape: BoxShape.rectangle,
-                      color: _currentIndex == entry.key ? Colors.white : Colors.white.withValues(alpha: 0.4),
+                      color: _currentIndex == entry.key ? AppStyle.getMainColor() : AppStyle.getMainColor().withValues(alpha: 0.3),
                     ),
                   ),
                 );

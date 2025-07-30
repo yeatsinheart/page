@@ -133,9 +133,16 @@ class ApiTest {
           "color-style": {
             "color1": {"bg": "#2196F3", "font": "#fff"},
             "color1-reverse": {"font": "#2196F3", "border": "#2196F3"},
-            "browser": {"bg": "#9195a3"},
+            "browser": {"bg": "#9195a3","bgGradient": {
+              "type": "linear",
+              "colors": ["#2196F3", "#FFF"],
+              "stops": [0, 0.6],
+              "begin": "topRight",
+              "end": "bottomLeft"
+            }},
             "page": {
-              "bg": {
+              "bg": "#FFF",
+              "bgGradient": {
                 "type": "linear",
                 "colors": ["#2196F3", "#FFF"],
                 "stops": [0, 0.6],

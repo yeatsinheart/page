@@ -106,8 +106,23 @@
     "border": "#e3e3e31a",
     "shadow": "#41454940",
     "color-style": {
-      "browser": {"bg": "#9195a3"},
-      "page": {"bg": {"type": "linear", "colors": ["#2196F3", "#FFF"], "stops": [0, 0.6], "begin": "topRight", "end": "bottomLeft"}},
+      "browser": {"bg": "#9195a3","bgGradient": {
+        "type": "linear",
+        "colors": ["#2196F3", "#FFF"],
+        "stops": [0, 0.6],
+        "begin": "topRight",
+        "end": "bottomLeft"
+      }},
+      "page": {
+        "bg": "#FFF",
+        "bgGradient": {
+          "type": "linear",
+          "colors": ["#2196F3", "#FFF"],
+          "stops": [0, 0.6],
+          "begin": "topRight",
+          "end": "bottomLeft"
+        }
+      },
       "color1": {"bg": "#2196F3", "font": "#fff"},
       "color1-reverse": {"font": "#2196F3","border":"#2196F3"},
       "bar": {"bg": "#000", "font": "#fff"},

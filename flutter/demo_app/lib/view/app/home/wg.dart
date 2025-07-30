@@ -70,25 +70,6 @@ class _AppHomeWgState extends State<AppHomeWg> {
               ),
 
               AppView.ofKey("game_home") ?? Container(),
-
-              /* SliverPersistentHeader(
-                pinned: true, // 也固定住
-                delegate: _StickyHeaderDelegate(
-                  child: Container(
-                    color: Colors.white, // 避免透明叠层
-                    padding: EdgeInsets.symmetric(horizontal: AppStyle.getRem(.2)),
-                    alignment: Alignment.centerLeft,
-                    child: GameHomeDemo1(),
-                    */
-              /*child: GameHomeDemo(tabs: ['热门', '电子老虎机', '彩票投注', '体育竞赛', '真人视讯', '捕鱼游戏'],
-                      onTap: (index) {
-                        print('点击了 $index');
-                      },),*/
-              /*
-                  ),
-                  height: 500, // 你想显示的高度
-                ),
-              ),*/
               // 所有 200 项都会同时构建（因为 shrinkWrap: true 表示先算完高度）。
               SliverToBoxAdapter(
                 child: ListView.builder(

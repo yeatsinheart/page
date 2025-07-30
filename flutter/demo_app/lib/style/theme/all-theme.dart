@@ -18,7 +18,8 @@ import 'package:flutter3/style/theme/text.dart';
 /// 如果有缓存，那么需要使用缓存数据。怎么判断有没有缓存，或者某key为空时。。
 ThemeData getFlutterTheme() {
   return ThemeData(
-    scaffoldBackgroundColor: ColorStyle.get("page").bg,
+    // scaffoldBackgroundColor: ColorStyle.get("page").bg,
+    // scaffoldBackgroundColor: Colors.red,
     primaryColor: AppStyle.getMainColor(),
     // 全局页面背景色
     // 点击时的高亮效果设置为透明 长按时的扩散效果设置为透明 以上两者去除按钮点击水波纹

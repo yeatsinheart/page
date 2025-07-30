@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/style/container.dart';
+import 'package:flutter3/style/widget/color-container.dart';
 import 'package:flutter3/view/app/language.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +19,7 @@ class _MainDemoState extends State<MainDemo> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: AppContainer(
+        child: ColorContainer(
           "page",
           Padding(
             padding: EdgeInsets.all(16.0), // 这里设置内边距

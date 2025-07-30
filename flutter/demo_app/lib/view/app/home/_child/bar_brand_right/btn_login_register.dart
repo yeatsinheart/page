@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/style/widget/color-button.dart';
 
 class BtnLoginRegister extends StatelessWidget {
   const BtnLoginRegister({params, super.key});
@@ -9,29 +10,10 @@ class BtnLoginRegister extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        TextButton(
-          onPressed: () {},
-          child: const Text('注册'),
-          style: ButtonStyle().copyWith(
-            backgroundColor: WidgetStateProperty.all(Colors.blue),
-            foregroundColor: WidgetStateProperty.all(Colors.white),
-            shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.byRem(.1)))),
-          ),
-        ),
+        ColorButton("color1",const Text('注册'),radius: AppStyle.byRem(.1),),
         const SizedBox(width: 8),
-        TextButton(
-          onPressed: () {},
-          child: const Text('登录'),
-          style: ButtonStyle().copyWith(
-            foregroundColor: WidgetStateProperty.all(Colors.blue),
-            shape: WidgetStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
-                side: const BorderSide(color: Colors.blue),
-              ),
-            ),
-          ),
-        ),
+        //ColorButton("color1",const Text('登录'),radius: AppStyle.byRem(.1),),
+        ColorButton("color1-reverse",const Text('登录'),radius: AppStyle.byRem(.1),),
       ],
     );
   }

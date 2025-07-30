@@ -122,9 +122,7 @@ class ApiTest {
         },
         "style": {
           "maxWidth": 570,
-          "minWidth": 300,
           "gap": 0.22,
-          "fontSize": 0.22,
           "lineHeight": 1.2,
           "radius": 0.14,
           "font": {"title": "#323233", "name": "#646566", "txt": "#737272", "ghost": "#BBB"},
@@ -132,21 +130,15 @@ class ApiTest {
           "mask": "#0000001f",
           "border": "#e3e3e31a",
           "shadow": "#41454940",
-          "container": {
+          "color-style": {
+            "color1": {"bg": "#2196F3", "font": "#fff"},
+            "color1-reverse": {"font": "#2196F3","border":"#2196F3"},
             "browser": {"bg": "#9195a3"},
-            "page": {
-              "bg": {
-                "type": "linear",
-                "colors": ["#2196F3", "#FFF"],
-                "stops": [0, 0.6],
-                "begin": "topRight",
-                "end": "bottomLeft",
-              },
-            },
+            "page": {"bg": {"type": "linear", "colors": ["#2196F3", "#FFF"], "stops": [0, 0.6], "begin": "topRight", "end": "bottomLeft"}},
             "bar": {"bg": "#000", "font": "#fff"},
             "bar-brand": {"bg": "#000", "font": "#fff"},
-            "bar-bottom": {"bg": "#000", "font": "#fff"},
-          },
+            "bar-bottom": {"bg": "#000", "font": "#fff"}
+          }
         },
       };
     }

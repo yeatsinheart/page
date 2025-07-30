@@ -22,7 +22,7 @@ final Map<String, String> ViewKeyPathMap = {
 class AppView {
   static Map<String,dynamic> layout={};
 
-  static void setMap(Map<String,dynamic> v){
+  static void setViews(Map<String,dynamic> v){
     ViewKeyPathMap.addAll(v.map((k, v) => MapEntry(k.toString(), v.toString())));
   }
 

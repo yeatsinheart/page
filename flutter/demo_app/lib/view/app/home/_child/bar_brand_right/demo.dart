@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/share/overlay.dart';
+import 'package:flutter3/style/widget/color-icon-button.dart';
 
 import 'btn_login_register.dart';
 
@@ -19,13 +20,9 @@ class BarBrandRightDemo extends StatelessWidget {
         const SizedBox(width: 8),
         SizedBox(width: 8),
         //IconButton(onPressed: () {GlobalContext.load("game_search");}, icon: Icon(Icons.search)),
-        IconButton(
-          onPressed: () {
-            AppRoute.slideToKey("game_search");
-            //GlobalOverlayContext.show("game_search", autoRemoveTime: 3000);
-          },
-          icon: Icon(Icons.search),
-        ),
+        ColorIconButton("",Icon(Icons.search),action: (){AppRoute.slideToKey("game_search");},),
+        ColorIconButton("",Icon(Icons.language),action: (){AppRoute.slideToKey("game_search");},),
+
         IconButton(
           onPressed: () {
             //GlobalOverlayContext.show("language");

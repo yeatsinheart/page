@@ -9,16 +9,16 @@ export 'button-text.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/style/color-style.dart';
 import 'package:flutter3/style/theme/button-elevated.dart';
 import 'package:flutter3/style/theme/button-icon.dart';
 import 'package:flutter3/style/theme/button-text.dart';
 import 'package:flutter3/style/theme/text.dart';
-import 'package:flutter3/util/color-util.dart';
 
 /// 如果有缓存，那么需要使用缓存数据。怎么判断有没有缓存，或者某key为空时。。
 ThemeData getFlutterTheme() {
   return ThemeData(
-    scaffoldBackgroundColor: ColorUtil.getColor(AppStyle.getContainerStyle("page").bg) ?? Colors.transparent,
+    scaffoldBackgroundColor: ColorStyle.get("page").bg,
     primaryColor: AppStyle.getMainColor(),
     // 全局页面背景色
     // 点击时的高亮效果设置为透明 长按时的扩散效果设置为透明 以上两者去除按钮点击水波纹

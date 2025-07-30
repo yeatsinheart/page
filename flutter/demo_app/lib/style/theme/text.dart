@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
-import 'package:flutter3/util/color-util.dart';
+import 'package:flutter3/style/color-font.dart';
 
 getTextTheme() {
   return TextTheme(
@@ -22,7 +22,7 @@ getTextTheme() {
   );
 }
 
-TextStyle globalTextStyle = TextStyle(fontSize: AppStyle.byRem(.22), height: 1.5, color: ColorUtil.getColor(AppStyle.getFontStyle().txt));
+TextStyle globalTextStyle = TextStyle(fontSize: AppStyle.byRem(.22), height: 1.5, color: ColorFont.get().txt);
 
 getTextStyle() {
   return globalTextStyle;

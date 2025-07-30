@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
-import 'package:flutter3/style/container.dart';
+import 'package:flutter3/style/widget/color-container.dart';
 
 class Browser extends StatelessWidget {
   final child;
@@ -9,8 +9,8 @@ class Browser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget page = AppContainer("page", child);
-    return AppContainer(
+    Widget page = ColorContainer("page", child);
+    return ColorContainer(
       "browser",
       AppStyle.maxWidth == null
           ? page

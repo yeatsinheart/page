@@ -24,12 +24,12 @@ class BootstrapService {
       /// 数据和页面绑定，且一变动就要在界面展示出来的才放到store中
       //()async{AppStyle.style=config["host"]??{};}(),
       //()async{AppStyle.style=config["language"]??{};}(),
-      ()async{AppView.setMap(config["view"]??{});}(),
+      ()async{AppView.setViews(config["view"]??{});}(),
       ()async{AppView.setLayout(config["layout"]??{});}(),
-      ()async{AppStyle.style=config["style"]??{};}(),
+      ()async{AppStyle.data=config["style"]??{};}(),
       //()async{AppStyle.style=config["app"]??{};}(),
     ]);
-    AppStyle.style = config["style"];
+    AppStyle.data = config["style"];
   }
 
   static init() async {

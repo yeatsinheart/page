@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/style/container.dart';
+import 'package:flutter3/style/widget/color-container.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand_left/demo.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand_right/demo.dart';
 
@@ -10,7 +10,7 @@ class BarBrandDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppContainer(
+    return ColorContainer(
       "bar-brand",
       Container(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter3/share/safe-state.dart';
 class GridDemo extends StatefulWidget {
   const GridDemo({super.key, params});
 
@@ -10,7 +11,7 @@ class GridDemo extends StatefulWidget {
 // @override
 // bool get wantKeepAlive => true;
 
-class _GridDemoState extends State<GridDemo> with TickerProviderStateMixin {
+class _GridDemoState extends SafeState<GridDemo> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container();

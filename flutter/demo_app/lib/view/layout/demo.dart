@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
+import 'package:flutter3/share/safe-state.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/widget/color-container.dart';
 import 'package:flutter3/view/app-view.dart';
@@ -15,7 +16,7 @@ class LayoutDemo extends StatefulWidget {
 }
 
 /// 必须确定初始化打开哪个页面
-class _LayoutDemoState extends State<LayoutDemo> {
+class _LayoutDemoState extends SafeState<LayoutDemo> {
   int _currentIndex = 0;
 
   @override

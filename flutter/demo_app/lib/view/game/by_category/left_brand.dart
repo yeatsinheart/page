@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter3/share/img.dart';
+import 'package:flutter3/share/safe-state.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
@@ -18,7 +19,7 @@ class GameByCategoryLeftBrand extends StatefulWidget {
 // @override
 // bool get wantKeepAlive => true;
 
-class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
+class _GameByCategoryLeftBrandState extends SafeState<GameByCategoryLeftBrand> {
   final ScrollController _pageScrollController = ScrollController();
 
   final ScrollController _tabScrollController = ScrollController();
@@ -121,7 +122,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
 
   @override
   void dispose() {
-    _tabScrollController.dispose();
+    _tabScrollController.dispose();_pageScrollController.dispose();
     super.dispose();
   }
 

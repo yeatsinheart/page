@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/share/safe-state.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ class GameHomeLeftCategoryDemo extends StatefulWidget {
 // @override
 // bool get wantKeepAlive => true;
 
-class _GameHomeLeftCategoryDemoState extends State<GameHomeLeftCategoryDemo> {
+class _GameHomeLeftCategoryDemoState extends SafeState<GameHomeLeftCategoryDemo> {
   late ScrollController _pageScrollController;
 
   final ScrollController _tabScrollController = ScrollController();
@@ -100,7 +101,7 @@ class _GameHomeLeftCategoryDemoState extends State<GameHomeLeftCategoryDemo> {
 
   @override
   void dispose() {
-    _tabScrollController.dispose();
+    _tabScrollController.dispose();_pageScrollController.dispose();
     super.dispose();
   }
 

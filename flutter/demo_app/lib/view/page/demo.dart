@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter3/share/safe-state.dart';
 // Flutter 中如果属性发生变化则会重新构建Widget树 一旦 Widget 自己的属性变了自己就会被替换
 // key，主要的作用是决定是否在下一次build时复用旧的 widget ，决定的条件在canUpdate()方法中。
 
@@ -15,7 +16,7 @@ class PageDemo extends StatefulWidget {
 }
 
 // https://blog.csdn.net/jdsjlzx/article/details/125340702
-class _PageDemoState extends State<PageDemo> with TickerProviderStateMixin {
+class _PageDemoState extends SafeState<PageDemo> with TickerProviderStateMixin {
   // 标签
   List<Widget> _tabs = [];
 

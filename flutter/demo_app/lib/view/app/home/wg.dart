@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/share/safe-state.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand/demo.dart';
@@ -12,7 +13,7 @@ class AppHomeWg extends StatefulWidget {
   _AppHomeWgState createState() => _AppHomeWgState();
 }
 
-class _AppHomeWgState extends State<AppHomeWg> {
+class _AppHomeWgState extends SafeState<AppHomeWg> {
   final ScrollController _controller = ScrollController();
 
   int currentHeaderIndex = 1;

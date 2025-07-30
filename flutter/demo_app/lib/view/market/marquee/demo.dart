@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/share/safe-state.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:marquee/marquee.dart';
 
@@ -9,7 +10,7 @@ class MarketMarqueeDemo extends StatefulWidget {
   _MarketMarqueeDemoState createState() => _MarketMarqueeDemoState();
 }
 
-class _MarketMarqueeDemoState extends State<MarketMarqueeDemo> {
+class _MarketMarqueeDemoState extends SafeState<MarketMarqueeDemo> {
   Widget iconWithBadge({required IconData icon, required bool showBadge, int? count, double size = 24}) {
     return Stack(
       clipBehavior: Clip.none,

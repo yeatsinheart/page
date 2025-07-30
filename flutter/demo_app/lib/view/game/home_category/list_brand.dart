@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
+import 'package:flutter3/share/safe-state.dart';
 import 'package:get/get.dart';
 
 class GameHomeCategoryListBrand extends StatefulWidget {
@@ -14,7 +15,7 @@ class GameHomeCategoryListBrand extends StatefulWidget {
 // @override
 // bool get wantKeepAlive => true;
 
-class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
+class _GameHomeCategoryListBrandState extends SafeState<GameHomeCategoryListBrand> {
   bool expanded = false;
   String title = "";
 

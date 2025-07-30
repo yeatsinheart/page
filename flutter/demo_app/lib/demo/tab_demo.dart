@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter3/share/safe-state.dart';
 class TabDemo extends StatefulWidget {
   const TabDemo({super.key, params});
 
@@ -10,7 +11,7 @@ class TabDemo extends StatefulWidget {
 // @override
 // bool get wantKeepAlive => true;
 
-class _TabDemoState extends State<TabDemo> with TickerProviderStateMixin {
+class _TabDemoState extends SafeState<TabDemo> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

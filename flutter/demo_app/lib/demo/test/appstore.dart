@@ -5,6 +5,7 @@ import 'package:flutter3/demo/game.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/style/app-style.dart';
 
+import 'package:flutter3/share/safe-state.dart';
 import 'nestcs.dart';
 
 class TestAppstore extends StatefulWidget {
@@ -14,7 +15,7 @@ class TestAppstore extends StatefulWidget {
   _AppStoreState createState() => _AppStoreState();
 }
 
-class _AppStoreState extends State<TestAppstore> with TickerProviderStateMixin {
+class _AppStoreState extends SafeState<TestAppstore> with TickerProviderStateMixin {
   final List<Game> _games = games;
 
   @override

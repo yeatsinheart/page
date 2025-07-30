@@ -1,11 +1,12 @@
 import 'dart:ui';
 
+import 'package:flutter3/share/safe-state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3/demo/game.dart';
 
 import '../../share/img.dart';
 
-class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStateMixin {
+class _HeroDetailPageState extends SafeState<TestHerodetail> with TickerProviderStateMixin {
   final ScrollController _pagecontroller = new ScrollController();
   final ScrollController _listcontroller = new ScrollController();
   double off = 0;

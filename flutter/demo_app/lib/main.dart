@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3/log/logger.dart';
@@ -41,6 +42,10 @@ init() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   // 网络更新配置时，这些都需要按照最新网络的数据进行更新
   BootstrapService.init().then((_) {
+    // 在 Web 环境下手动清理可能挂着的回调
+    if (kIsWeb) {
+      WidgetsBinding.instance.platformDispatcher.onDrawFrame = null;
+    }
     runApp(_main(AppView.ofKey("app_layout") ?? Container()));
   });
 }

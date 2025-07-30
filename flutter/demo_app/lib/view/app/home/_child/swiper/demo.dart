@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
+import 'package:flutter3/share/safe-state.dart';
 import 'package:flutter3/style/app-style.dart';
 
 class SwiperDemo extends StatefulWidget {
@@ -10,10 +11,13 @@ class SwiperDemo extends StatefulWidget {
   _SwiperDemoState createState() => _SwiperDemoState();
 }
 
-class _SwiperDemoState extends State<SwiperDemo> {
+class _SwiperDemoState extends SafeState<SwiperDemo> {
   int _currentIndex = 0;
   final CarouselSliderController _controller = CarouselSliderController();
-
+  @override
+  void dispose() {
+    super.dispose();
+  }
   final List<String> imageList = [
     'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80',
     'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',

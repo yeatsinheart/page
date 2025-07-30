@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter3/share/safe-state.dart';
 // Standard iOS 10 tab bar height.
 
 /// 用作测试用
@@ -21,7 +22,7 @@ class WechatDiscover extends StatefulWidget {
   _ContactsPageState createState() => _ContactsPageState();
 }
 
-class _ContactsPageState extends State with AutomaticKeepAliveClientMixin {
+class _ContactsPageState extends SafeState with AutomaticKeepAliveClientMixin {
   ///
   @override
   bool get wantKeepAlive => true;

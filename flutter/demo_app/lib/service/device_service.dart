@@ -113,7 +113,7 @@ class DeviceService {
 
   Map<String, dynamic> _readWebBrowserInfo(WebBrowserInfo data) {
     return <String, dynamic>{
-      'browserName': describeEnum(data.browserName),
+      'browserName': data.browserName.toString(),
       'appCodeName': data.appCodeName,
       'appName': data.appName,
       'appVersion': data.appVersion,

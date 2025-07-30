@@ -59,6 +59,7 @@ class PermissionService {
   }
 
   // 获取存储路径
+  // ignore: unused_element
   Future<String> _findLocalPath() async {
     // 因为Apple没有外置存储，所以第一步我们需要先对所在平台进行判断
     // 如果是android，使用getExternalStorageDirectory

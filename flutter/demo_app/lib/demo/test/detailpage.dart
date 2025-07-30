@@ -68,18 +68,23 @@ class _HeroDetailPageState extends State<TestDetailpage> with TickerProviderStat
     );
   }
 
+  var _animationController;
+  @override
+  initState(){
+    super.initState();
+    _animationController = AnimationController(duration: const Duration(milliseconds: 200), vsync: this);
+  }
+  @override
+  dispose() {
+    _pagecontroller.dispose();
+    _animationController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
-    var _animationController = AnimationController(duration: const Duration(milliseconds: 200), vsync: this);
     // var _animation = Tween<double>(begin: 1, end: 0.1).animate(_animationController);
     // double _top = 0.0; //距顶部的偏移
 
-    @override
-    dispose() {
-      _pagecontroller.dispose();
-      _animationController.dispose();
-      super.dispose();
-    }
 
     _pagecontroller.addListener(() {
       if (_pagecontroller.offset < 0) {

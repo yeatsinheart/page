@@ -18,14 +18,15 @@ final Map<String, String> _views = {
   "game_home": "/game/home/top_category_demo",
   "game_search": "/game/search/demo",
 };
-class AppView {
-  static Map<String,dynamic> layout={};
 
-  static void setViews(Map<String,dynamic> v){
+class AppView {
+  static Map<String, dynamic> layout = {};
+
+  static void setViews(Map<String, dynamic> v) {
     _views.addAll(v.map((k, v) => MapEntry(k.toString(), v.toString())));
   }
 
-  static void setLayout(Map<String,dynamic> v) {
+  static void setLayout(Map<String, dynamic> v) {
     layout.addAll(v);
   }
 
@@ -48,5 +49,4 @@ class AppView {
     }
     return widget;
   }
-
 }

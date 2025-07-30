@@ -7,14 +7,16 @@ class ColorButton extends StatelessWidget {
   final double? radius;
   final child;
 
-  const ColorButton(this.styleKey, this.child, {this.action,this.radius,super.key});
+  const ColorButton(this.styleKey, this.child, {this.action, this.radius, super.key});
 
   @override
   Widget build(BuildContext context) {
     ColorStyle colorStyle = ColorStyle.get(styleKey);
     return TextButton(
       onPressed: () {
-        if(null!=action){action!();}
+        if (null != action) {
+          action!();
+        }
       },
       child: child,
       style: ButtonStyle(
@@ -33,8 +35,8 @@ class ColorButton extends StatelessWidget {
         //padding: WidgetStateProperty.all(EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(radius??0),
-            side: BorderSide(color: colorStyle.border??Colors.transparent),
+            borderRadius: BorderRadius.circular(radius ?? 0),
+            side: BorderSide(color: colorStyle.border ?? Colors.transparent),
           ),
         ),
       ),

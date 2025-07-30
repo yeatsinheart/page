@@ -22,10 +22,10 @@ Future<void> main() async {
   String key = "keytool -genkey -v " + "-keystore " + store_path + name + ".jks -deststoretype pkcs12" + "-alias " + name + " -storepass " + name + "123\$%^ -keypass " + name + "123\$%^ " + "-keyalg RSA -keysize 2048 -validity 36500 -dname CN=" + name + ",OU=Unknown,O=Unknown,L=Unknown,ST=Unknown,C=Unknown";
 
   await shell.run(key);
-    shell = shell.pushd('example');
-    await shell.run('''
+  shell = shell.pushd('example');
+  await shell.run('''
   # Listing directory in the example folder
   ll
     ''');
-    shell = shell.popd();
+  shell = shell.popd();
 }

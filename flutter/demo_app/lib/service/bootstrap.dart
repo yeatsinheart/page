@@ -8,8 +8,8 @@ import 'package:flutter3/service/cache.dart';
 import 'package:flutter3/store/host-status.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
-
 import 'package:get/get.dart';
+
 /// 获取 分发 数据
 class BootstrapService {
   static const table = 'bootstrap_config';
@@ -24,9 +24,15 @@ class BootstrapService {
       /// 数据和页面绑定，且一变动就要在界面展示出来的才放到store中
       //()async{AppStyle.style=config["host"]??{};}(),
       //()async{AppStyle.style=config["language"]??{};}(),
-      ()async{AppView.setViews(config["view"]??{});}(),
-      ()async{AppView.setLayout(config["layout"]??{});}(),
-      ()async{AppStyle.data=config["style"]??{};}(),
+      () async {
+        AppView.setViews(config["view"] ?? {});
+      }(),
+      () async {
+        AppView.setLayout(config["layout"] ?? {});
+      }(),
+      () async {
+        AppStyle.data = config["style"] ?? {};
+      }(),
       //()async{AppStyle.style=config["app"]??{};}(),
     ]);
     AppStyle.data = config["style"];

@@ -20,8 +20,20 @@ class BarBrandRightDemo extends StatelessWidget {
         const SizedBox(width: 8),
         SizedBox(width: 8),
         //IconButton(onPressed: () {GlobalContext.load("game_search");}, icon: Icon(Icons.search)),
-        ColorIconButton("",Icon(Icons.search),action: (){AppRoute.slideToKey("game_search");},),
-        ColorIconButton("",Icon(Icons.language),action: (){AppRoute.slideToKey("game_search");},),
+        ColorIconButton(
+          "",
+          Icon(Icons.search),
+          action: () {
+            AppRoute.slideToKey("game_search");
+          },
+        ),
+        ColorIconButton(
+          "",
+          Icon(Icons.language),
+          action: () {
+            AppRoute.slideToKey("game_search");
+          },
+        ),
 
         IconButton(
           onPressed: () {

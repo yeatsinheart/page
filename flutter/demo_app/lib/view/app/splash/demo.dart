@@ -53,7 +53,7 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
                     mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
                     children: <Widget>[
                       AppImg("logo", width: 32, height: 32),
-                      Text("name", style: TextStyle( fontSize: 14)),
+                      Text("name", style: TextStyle(fontSize: 14)),
                     ],
                   ),
                 ),

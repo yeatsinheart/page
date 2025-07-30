@@ -2,11 +2,13 @@ import 'dart:async';
 
 import 'package:event_bus/event_bus.dart';
 
-class AppEvent{
+class AppEvent {
   static EventBus eventBus = EventBus();
-  static publish(event){
+
+  static publish(event) {
     eventBus.fire(event);
   }
+
   /*
     /// 注意 cancel ⚠️ 调用者必须手动 cancel，否则页面销毁后仍会触发回调（内存泄漏）
     late StreamSubscription _listener;
@@ -27,13 +29,15 @@ class AppEvent{
       action(event);
     });
   }
-/*
+
+  /*
   static StreamSubscription listen(Function action){
     return eventBus.on().listen((event) {
       action(event);
     });
   }*/
 }
+
 /*
 
 

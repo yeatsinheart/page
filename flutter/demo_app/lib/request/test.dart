@@ -113,7 +113,7 @@ class ApiTest {
           {"name": "美国节点", "domain": "us.example.com", "https": true, "wildcard": false},
         ],
 
-        "view": {"splash": "/app/splash/demo", "app_layout": "/layout/demo",  "language": "/app/language", "home": "/app/home/wg", "swiper": "/market/swiper/demo", "marquee": "/market/marquee/demo", "game_home": "/game/home/top_category_demo", "game_search": "/game/search/demo", "discover": "/wechat/discover", "me": "/page/me/demo", "contact": "/wechat/contact"},
+        "view": {"splash": "/app/splash/demo", "app_layout": "/layout/demo", "language": "/app/language", "home": "/app/home/wg", "swiper": "/market/swiper/demo", "marquee": "/market/marquee/demo", "game_home": "/game/home/top_category_demo", "game_search": "/game/search/demo", "discover": "/wechat/discover", "me": "/page/me/demo", "contact": "/wechat/contact"},
         "layout": {
           "barBottom": [
             {"titleI18nKey": "首页", "openViewKey": "home", "iconI18nKey": "https://cdn-icons-png.flaticon.com/128/1946/1946488.png", "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/619/619153.png"},
@@ -132,13 +132,21 @@ class ApiTest {
           "shadow": "#41454940",
           "color-style": {
             "color1": {"bg": "#2196F3", "font": "#fff"},
-            "color1-reverse": {"font": "#2196F3","border":"#2196F3"},
+            "color1-reverse": {"font": "#2196F3", "border": "#2196F3"},
             "browser": {"bg": "#9195a3"},
-            "page": {"bg": {"type": "linear", "colors": ["#2196F3", "#FFF"], "stops": [0, 0.6], "begin": "topRight", "end": "bottomLeft"}},
+            "page": {
+              "bg": {
+                "type": "linear",
+                "colors": ["#2196F3", "#FFF"],
+                "stops": [0, 0.6],
+                "begin": "topRight",
+                "end": "bottomLeft",
+              },
+            },
             "bar": {"bg": "#000", "font": "#fff"},
             "bar-brand": {"bg": "#000", "font": "#fff"},
-            "bar-bottom": {"bg": "#000", "font": "#fff"}
-          }
+            "bar-bottom": {"bg": "#000", "font": "#fff"},
+          },
         },
       };
     }

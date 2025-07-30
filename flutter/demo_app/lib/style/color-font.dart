@@ -1,4 +1,3 @@
-
 import 'dart:ui';
 
 import 'package:flutter3/style/app-style.dart';
@@ -16,9 +15,10 @@ class ColorFont {
     return ColorFont(title: ColorUtil.getColor(json['title']), name: ColorUtil.getColor(json['name']), txt: ColorUtil.getColor(json['txt']), ghost: ColorUtil.getColor(json['ghost']));
   }
 
-  static ColorFont get(){
+  static ColorFont get() {
     return ColorFont.fromJson(AppStyle.data["font"] ?? {});
   }
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     if (title != null) map['title'] = title;

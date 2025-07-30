@@ -7,14 +7,16 @@ class ColorIconButton extends StatelessWidget {
   final double? radius;
   final child;
 
-  const ColorIconButton(this.styleKey, this.child, {this.action,this.radius,super.key});
+  const ColorIconButton(this.styleKey, this.child, {this.action, this.radius, super.key});
 
   @override
   Widget build(BuildContext context) {
     ColorStyle colorStyle = ColorStyle.get(styleKey);
     return IconButton(
       onPressed: () {
-        if(null!=action){action!();}
+        if (null != action) {
+          action!();
+        }
       },
       style: ButtonStyle(
         textStyle: WidgetStateProperty.all(TextStyle(color: colorStyle.font)),
@@ -36,7 +38,8 @@ class ColorIconButton extends StatelessWidget {
         //     side: BorderSide(color: colorStyle.border??Colors.transparent),
         //   ),
         // ),
-      ), icon: child,
+      ),
+      icon: child,
     );
   }
 }

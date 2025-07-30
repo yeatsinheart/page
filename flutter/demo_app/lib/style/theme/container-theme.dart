@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class ContainerTheme{
-
-  final bg;// Color 或者 渐变
-  final font;// 字色
-  final border;// 边框色
-  final radius;// 圆角
-  final shadow;// 阴影色
+class ContainerTheme {
+  final bg; // Color 或者 渐变
+  final font; // 字色
+  final border; // 边框色
+  final radius; // 圆角
+  final shadow; // 阴影色
 
   const ContainerTheme({this.radius, this.bg, this.font, this.border, this.shadow});
+
   // 临时对某一块区域修改主题：根据以上属性，找到所有组件对应的定义
-  getTheme(BuildContext context){
+  getTheme(BuildContext context) {
     return Theme.of(context).copyWith();
   }
 }

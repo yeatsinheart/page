@@ -79,7 +79,7 @@ class AppCsPaneState extends State<TestCs> with TickerProviderStateMixin {
       _animationController.animateTo(close_process, duration: Duration(milliseconds: 0));
     });
     var scale = Tween<double>(begin: 1, end: 0.9).animate(_animationController);
-/*
+    /*
     var transitionTween = Tween<double>(begin: 50, end: 200).animate(
       //非线性动画
       CurvedAnimation(parent: _animationController, curve: Curves.ease),

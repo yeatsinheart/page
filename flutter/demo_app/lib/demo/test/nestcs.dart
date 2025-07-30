@@ -68,7 +68,7 @@ class AppNetCsPaneState extends State<TestNestcs> with TickerProviderStateMixin 
     AnimationController _animationController = AnimationController(duration: const Duration(milliseconds: 200), vsync: this);
 
     var scale = Tween<double>(begin: 1, end: 0.8).animate(_animationController);
-/*
+    /*
 
     var transitionTween = Tween<double>(begin: 50, end: 200).animate(
       //非线性动画

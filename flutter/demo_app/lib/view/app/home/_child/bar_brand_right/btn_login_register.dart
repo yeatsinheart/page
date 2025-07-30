@@ -10,10 +10,10 @@ class BtnLoginRegister extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        ColorButton("color1",const Text('注册'),radius: AppStyle.byRem(.1),),
+        ColorButton("color1", const Text('注册'), radius: AppStyle.byRem(.1)),
         const SizedBox(width: 8),
         //ColorButton("color1",const Text('登录'),radius: AppStyle.byRem(.1),),
-        ColorButton("color1-reverse",const Text('登录'),radius: AppStyle.byRem(.1),),
+        ColorButton("color1-reverse", const Text('登录'), radius: AppStyle.byRem(.1)),
       ],
     );
   }

@@ -19,13 +19,13 @@ class ColorContainer extends StatelessWidget {
         /// 阴影
         boxShadow: colorStyle.shadow != null
             ? [
-          BoxShadow(
-            color: colorStyle.shadow!,
-            spreadRadius: 2,
-            blurRadius: 6,
-            offset: Offset(0, 3), // 阴影位置: x, y
-          ),
-        ]
+                BoxShadow(
+                  color: colorStyle.shadow!,
+                  spreadRadius: 2,
+                  blurRadius: 6,
+                  offset: Offset(0, 3), // 阴影位置: x, y
+                ),
+              ]
             : null,
 
         /// 在定义中：背景和渐变都属于颜色定义=>所以两个都设置？

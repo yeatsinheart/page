@@ -49,7 +49,7 @@ class _HomeViewState extends State {
         child: AppBar(
           elevation: 1,
           automaticallyImplyLeading: false,
-          title: Text("demo", style: TextStyle( fontSize: 16)),
+          title: Text("demo", style: TextStyle(fontSize: 16)),
           // flexibleSpace: SafeArea(
           //   child: Column(
           //     mainAxisAlignment: MainAxisAlignment.end,
@@ -86,7 +86,7 @@ class _HomeViewState extends State {
           // ),
         ),
       ),
-      body: Container( child: _buildListView()),
+      body: Container(child: _buildListView()),
     );
   }
 
@@ -133,11 +133,8 @@ who(item) {
       // 绘制消息主体的上半部分，主要是左边的名称和右边的日期，使用row的flex水平布局
       title: Row(
         children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: Text("${item["title"]}", style: TextStyle()),
-          ),
-          Text("${DateTime.fromMillisecondsSinceEpoch(item["lastTime"])}", style: TextStyle( fontSize: 12)),
+          Expanded(flex: 1, child: Text("${item["title"]}", style: TextStyle())),
+          Text("${DateTime.fromMillisecondsSinceEpoch(item["lastTime"])}", style: TextStyle(fontSize: 12)),
         ],
       ),
       // 子标题，给一个向上的5px的间距 Padding(padding: EdgeInsets.only(top: 5),child: ),，同时右边有一个红色的未读消息的标示 , style: TextStyle(fontSize: 12)
@@ -145,10 +142,7 @@ who(item) {
       // 小圆点，使用Container类似div的方式实现
       subtitle: Row(
         children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: Text("${item["lastMsg"]}", style: TextStyle( fontSize: 12)),
-          ),
+          Expanded(flex: 1, child: Text("${item["lastMsg"]}", style: TextStyle(fontSize: 12))),
           msgcount(item["unRead"]),
         ],
       ),

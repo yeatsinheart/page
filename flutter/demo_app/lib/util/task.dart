@@ -14,6 +14,7 @@ class Task {
       fun();
     });
   }
+
   void stop() {
     _timer.cancel(); // ✅ 现在 _timer 有用途了，IDE 不再提示
   }

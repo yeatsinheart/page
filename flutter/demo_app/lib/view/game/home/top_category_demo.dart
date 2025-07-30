@@ -142,7 +142,6 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     // 在主轴方向（通常是垂直）保持同步滚动行为。

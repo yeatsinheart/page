@@ -16,8 +16,9 @@ class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStat
   }
 
   var _animationController;
+
   @override
-  initState(){
+  initState() {
     super.initState();
     _animationController = AnimationController(duration: const Duration(milliseconds: 200), vsync: this);
   }
@@ -29,6 +30,7 @@ class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStat
     _animationController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     var _animation = Tween<double>(begin: 1, end: 0.5).animate(_animationController);

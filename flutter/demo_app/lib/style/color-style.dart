@@ -19,7 +19,7 @@ class ColorStyle {
     return ColorStyle(bg: ColorUtil.getColor(json['bg']), bgGradient: GradientUtil.getGradient(json['bgGradient']), font: ColorUtil.getColor(json['font']), border: ColorUtil.getColor(json['border']), shadow: ColorUtil.getColor(json['shadow']));
   }
 
-  static ColorStyle get(k){
+  static ColorStyle get(k) {
     return ColorStyle.fromJson(AppStyle.data["color-style"]?[k] ?? {});
   }
 }

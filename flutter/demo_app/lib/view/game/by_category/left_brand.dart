@@ -6,7 +6,6 @@ import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
 
-
 class GameByCategoryLeftBrand extends StatefulWidget {
   final dynamic params;
 

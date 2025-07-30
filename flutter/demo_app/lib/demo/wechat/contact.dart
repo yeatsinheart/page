@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 // Standard iOS 10 tab bar height.
 
 /// 用作测试用
@@ -44,11 +43,7 @@ class _ContactsPageState extends State with AutomaticKeepAliveClientMixin {
       //flutter 中的 Appbar默认高度是 56
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(56),
-        child: AppBar(
-          elevation: 0.5,
-          automaticallyImplyLeading: false,
-          title: Text("通讯录", style: TextStyle( fontSize: 16)),
-        ),
+        child: AppBar(elevation: 0.5, automaticallyImplyLeading: false, title: Text("通讯录", style: TextStyle(fontSize: 16))),
       ),
       body: Container(),
     );

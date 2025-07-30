@@ -5,10 +5,11 @@ import 'package:flutter3/log/logger.dart';
 import 'package:get/get.dart';
 
 class HostStatusStore extends GetxService {
-
   // 单例一旦创建，就会一直存在内存中，直到程序退出或手动销毁
   HostStatusStore._internal();
+
   static final HostStatusStore _instance = HostStatusStore._internal();
+
   factory HostStatusStore() => _instance;
 
   final lines = <LineStatus>[].obs;
@@ -18,7 +19,6 @@ class HostStatusStore extends GetxService {
   // await Get.putAsync(() => HostStatusStore().init(null)); 保证能初始化成功
 
   listen(data) async {}
-
 
   updateByJson(json) async {
     List<LineStatus> tmp = [];

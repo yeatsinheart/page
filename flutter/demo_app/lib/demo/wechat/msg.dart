@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
 
-import 'package:flutter3/share/safe-state.dart';
+
 class WechatMsg extends StatefulWidget {
   const WechatMsg({super.key, required params});
 
@@ -13,7 +13,7 @@ class WechatMsg extends StatefulWidget {
   _HomeViewState createState() => _HomeViewState();
 }
 
-class _HomeViewState extends SafeState {
+class _HomeViewState extends State<WechatMsg> {
   late Timer _timer;
 
   void newMsg() async {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
 
-import 'package:flutter3/share/safe-state.dart';
+
 class Demo1 extends StatefulWidget {
   final dynamic params;
 
@@ -14,7 +14,7 @@ class Demo1 extends StatefulWidget {
 // @override
 // bool get wantKeepAlive => true;
 
-class _Demo1State extends SafeState<Demo1> with TickerProviderStateMixin {
+class _Demo1State extends State<Demo1> with TickerProviderStateMixin {
   late TabController _tabController;
 
   final ScrollController _pageScrollController = ScrollController();

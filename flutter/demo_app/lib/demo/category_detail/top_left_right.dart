@@ -4,7 +4,7 @@ import 'package:flutter3/share/share_widget.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
 import 'package:flutter3/style/app-style.dart';
 
-import 'package:flutter3/share/safe-state.dart';
+
 
 /// 顶部说明操作，左边分类 右边分类详情
 /// 屏幕高度-吸顶高度-底部导航栏高度-顶部导航栏高度==左右联动区域的高度
@@ -19,7 +19,7 @@ class TopLeftRight extends StatefulWidget {
 // @override
 // bool get wantKeepAlive => true;
 
-class _TopLeftRightState extends SafeState<TopLeftRight> with TickerProviderStateMixin {
+class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMixin {
   final ScrollController _pageScrollController = ScrollController();
   final ScrollController _categoryScrollController = ScrollController();
   final ScrollController _detailScrollController = ScrollController();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/share/safe-state.dart';
+
 import 'package:flutter3/style/app-style.dart';
 import 'package:marquee/marquee.dart';
 
@@ -10,7 +10,7 @@ class MarqueeDemo extends StatefulWidget {
   _MarqueeDemoState createState() => _MarqueeDemoState();
 }
 
-class _MarqueeDemoState extends SafeState<MarqueeDemo> {
+class _MarqueeDemoState extends State<MarqueeDemo> {
   Widget iconWithBadge({required IconData icon, required bool showBadge, int? count, double size = 24}) {
     return Stack(
       clipBehavior: Clip.none,

@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/service/bootstrap.dart';
@@ -14,6 +15,22 @@ import 'view/app-view.dart';
 
 //Flutter 中存在三棵树，Widget[虚拟的结构]、Element 和 RenderObject。
 void main() {
+  /*// 先保存原始回调函数引用
+  final originalAddPersistentFrameCallback = SchedulerBinding.instance.addPersistentFrameCallback;
+
+  // 重写 addPersistentFrameCallback，包装异常捕获和打印调用栈
+  SchedulerBinding.instance.addPersistentFrameCallback=(FrameCallback callback) {
+    FrameCallback wrappedCallback = (Duration timeStamp) {
+      try {
+        callback(timeStamp);
+      } catch (e, stack) {
+        debugPrint('🛑 SchedulerBinding frame callback error:\n$e\n$stack');
+        rethrow;
+      }
+    };
+    originalAddPersistentFrameCallback.call(wrappedCallback);
+  };*/
+
   PlatformDispatcher.instance.onError = (error, stack) {
     Log.err('Platform Error: ${error}', error, stackTrace: stack);
     return true; // 表示已处理，防止崩溃
@@ -50,7 +67,9 @@ init() async {
   });
 }
 
+
 _main(child) {
+
   return MaterialApp(
     scrollBehavior: ScrollBehavior().copyWith(
       dragDevices: {

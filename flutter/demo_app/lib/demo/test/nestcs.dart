@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter3/share/safe-state.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/demo/game.dart';
@@ -16,7 +16,7 @@ class TestNestcs extends StatefulWidget {
   AppNetCsPaneState createState() => AppNetCsPaneState();
 }
 
-class AppNetCsPaneState extends SafeState<TestNestcs> with TickerProviderStateMixin {
+class AppNetCsPaneState extends State<TestNestcs> with TickerProviderStateMixin {
   ScrollController scroll_controller = new ScrollController();
   final _lock = Locker();
   final _sessionlock = Mutex();

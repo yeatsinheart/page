@@ -1,11 +1,11 @@
 import 'dart:ui';
 
-import 'package:flutter3/share/safe-state.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter3/demo/game.dart';
 import 'package:flutter3/share/img.dart';
 
-class _HeroDetailPageState extends SafeState<TestDetailpage> with TickerProviderStateMixin {
+class _HeroDetailPageState extends State<TestDetailpage> with TickerProviderStateMixin {
   final ScrollController _pagecontroller = ScrollController();
   double imgarea = 530;
 

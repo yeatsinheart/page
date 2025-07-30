@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/share/safe-state.dart';
+
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../service/permission_service.dart';
@@ -46,7 +46,7 @@ class PermissionWidget extends StatefulWidget {
   _PermissionState createState() => _PermissionState(_permission);
 }
 
-class _PermissionState extends SafeState<PermissionWidget> {
+class _PermissionState extends State<PermissionWidget> {
   _PermissionState(this._permission);
 
   final Permission _permission;

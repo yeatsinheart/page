@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
 
-import 'package:flutter3/share/safe-state.dart';
+
 import '../share/share_widget.dart';
 
 class CustomScrollDemo extends StatefulWidget {
@@ -36,7 +36,7 @@ persit_header(txt, color, height) {
   );
 }
 
-class _CustomScrollDemoState extends SafeState<CustomScrollDemo> with TickerProviderStateMixin {
+class _CustomScrollDemoState extends State<CustomScrollDemo> with TickerProviderStateMixin {
   final ScrollController _controller = ScrollController();
 
   @override

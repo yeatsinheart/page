@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/share/safe-state.dart';
+
 import 'package:flutter3/style/app-style.dart';
 
 class AppSplashDemo extends StatefulWidget {
@@ -15,7 +15,7 @@ class AppSplashDemo extends StatefulWidget {
   _AppSplashDemoState createState() => _AppSplashDemoState();
 }
 
-class _AppSplashDemoState extends SafeState<AppSplashDemo> {
+class _AppSplashDemoState extends State<AppSplashDemo> {
   late Timer _timer;
   int count = 1;
   bool initialed = false;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/share_widget.dart';
 
-import 'package:flutter3/share/safe-state.dart';
+
 class NestScrollDemo extends StatefulWidget {
   const NestScrollDemo({super.key, params});
 
@@ -12,7 +12,7 @@ class NestScrollDemo extends StatefulWidget {
 // @override
 // bool get wantKeepAlive => true;
 
-class _NestScrollDemoState extends SafeState<NestScrollDemo> with TickerProviderStateMixin {
+class _NestScrollDemoState extends State<NestScrollDemo> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

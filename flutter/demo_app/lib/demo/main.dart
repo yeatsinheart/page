@@ -4,7 +4,7 @@ import 'package:flutter3/style/widget/color-container.dart';
 import 'package:flutter3/view/app/language.dart';
 import 'package:get/get.dart';
 
-import 'package:flutter3/share/safe-state.dart';
+
 class MainDemo extends StatefulWidget {
   const MainDemo({super.key, params});
 
@@ -15,7 +15,7 @@ class MainDemo extends StatefulWidget {
 // @override
 // bool get wantKeepAlive => true;
 
-class _MainDemoState extends SafeState<MainDemo> with TickerProviderStateMixin {
+class _MainDemoState extends State<MainDemo> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

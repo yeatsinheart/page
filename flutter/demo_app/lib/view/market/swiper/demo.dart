@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/share/safe-state.dart';
+
 import 'package:flutter3/style/app-style.dart';
 
 class MarketSwiperDemo extends StatefulWidget {
@@ -11,7 +11,7 @@ class MarketSwiperDemo extends StatefulWidget {
   _MarketSwiperDemoState createState() => _MarketSwiperDemoState();
 }
 
-class _MarketSwiperDemoState extends SafeState<MarketSwiperDemo> {
+class _MarketSwiperDemoState extends State<MarketSwiperDemo> {
   int _currentIndex = 0;
   final CarouselSliderController _controller = CarouselSliderController();
 

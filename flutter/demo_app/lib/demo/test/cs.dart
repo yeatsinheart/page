@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter3/share/safe-state.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/demo/game.dart';
@@ -13,7 +13,7 @@ class TestCs extends StatefulWidget {
   AppCsPaneState createState() => AppCsPaneState();
 }
 
-class AppCsPaneState extends SafeState<TestCs> with TickerProviderStateMixin {
+class AppCsPaneState extends State<TestCs> with TickerProviderStateMixin {
   static OverlayEntry ov = OverlayEntry(
     opaque: false,
     maintainState: true,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/share/safe-state.dart';
+
 import 'package:flutter3/style/app-style.dart';
 
 class GameHomeCategoryHotGameDemo extends StatefulWidget {
@@ -22,7 +22,7 @@ class Item {
   Item(this.title, this.imageUrl);
 }
 
-class _GameHomeCategoryHotGameDemoState extends SafeState<GameHomeCategoryHotGameDemo> {
+class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDemo> {
   bool _expanded = false;
   int columns = 3;
   int leastShow = 6;

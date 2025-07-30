@@ -1,6 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter3/share/safe-state.dart';
+
 import 'package:get/get.dart';
 
 import 'host_status/index.dart';
@@ -14,7 +14,7 @@ class NetworkMonitor extends StatefulWidget {
   State<NetworkMonitor> createState() => _NetworkMonitorState();
 }
 
-class _NetworkMonitorState extends SafeState<NetworkMonitor> {
+class _NetworkMonitorState extends State<NetworkMonitor> {
   bool hasConnection = false;
 
   void netChangeAction(status) {

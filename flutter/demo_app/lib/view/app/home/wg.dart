@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/share/safe-state.dart';
+
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand/demo.dart';
@@ -13,7 +13,7 @@ class AppHomeWg extends StatefulWidget {
   _AppHomeWgState createState() => _AppHomeWgState();
 }
 
-class _AppHomeWgState extends SafeState<AppHomeWg> {
+class _AppHomeWgState extends State<AppHomeWg> {
   final ScrollController _controller = ScrollController();
 
   int currentHeaderIndex = 1;
@@ -21,6 +21,14 @@ class _AppHomeWgState extends SafeState<AppHomeWg> {
   @override
   void initState() {
     super.initState();
+  }
+  @override
+  void dispose(){
+    // 先移除监听（可选，但推荐）
+    //_controller.removeListener(() {});
+    // 释放controller资源
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -55,9 +63,12 @@ class _AppHomeWgState extends SafeState<AppHomeWg> {
                     ),
                   ),
                   SliverToBoxAdapter(child: AppView.ofKey("swiper")),
+                  // 目前存在热重启问题
+
                   SliverToBoxAdapter(child: AppView.ofKey("marquee")),
                 ],
               ),
+
               AppView.ofKey("game_home") ?? Container(),
 
               /* SliverPersistentHeader(

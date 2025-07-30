@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/share/safe-state.dart';
+
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
@@ -16,8 +16,8 @@ class GameHomeTopCategoryDemo extends StatefulWidget {
 // @override
 // bool get wantKeepAlive => true;
 
-class _GameHomeTopCategoryDemoState extends SafeState<GameHomeTopCategoryDemo> {
-  late ScrollController _pageScrollController;
+class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
+  ScrollController? _pageScrollController;
 
   final ScrollController _tabScrollController = ScrollController();
   final List<String> tabs = ['热门', '电子老虎机', '彩票投注', '体育竞赛', '真人视讯', '捕鱼游戏'];
@@ -29,18 +29,26 @@ class _GameHomeTopCategoryDemoState extends SafeState<GameHomeTopCategoryDemo> {
   @override
   void initState() {
     super.initState();
-
     _data_keys.addAll(List.generate(tabs.length, (_) => GlobalKey()));
     _tab_keys.addAll(List.generate(tabs.length, (_) => GlobalKey()));
-
-    // 延迟到第一帧渲染后再访问 context
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final scrollable = Scrollable.of(context); // 🔥 此时才安全
-      _pageScrollController = scrollable.widget.controller!;
-      _pageScrollController.addListener(() => _onPageScroll());
-    });
+    listenParentScrollController();
   }
 
+void listenParentScrollController(){
+  // 延迟到第一帧渲染后再访问 context
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (!mounted) return;
+    try {
+      final scrollable = Scrollable.of(context); // 🔥 此时才安全 没有获取到会报错
+      final newController = scrollable.widget.controller!;
+      if (_pageScrollController==null || _pageScrollController != newController) {
+        _pageScrollController?.removeListener(_onPageScroll);
+        _pageScrollController = newController;
+        _pageScrollController?.addListener(_onPageScroll);
+      }
+    } catch (e) {}
+  });
+}
   void _onPageScroll() {
     double minDistance = double.infinity;
     int closestIndex = 0;
@@ -85,13 +93,15 @@ class _GameHomeTopCategoryDemoState extends SafeState<GameHomeTopCategoryDemo> {
     _scrollingByClick = true;
     final dataContext = _data_keys[index].currentContext;
     //print("点击时找到的页面元素${data_context}");
-    if (dataContext != null) {
+    if (dataContext != null && null!=_pageScrollController) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
-      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset - AppStyle.byRem(.9);
+      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController!.offset - AppStyle.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
-      _pageScrollController.animateTo(offset.clamp(_pageScrollController.position.minScrollExtent, _pageScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
+      _pageScrollController!.animateTo(
+          offset.clamp(_pageScrollController!.position.minScrollExtent, _pageScrollController!.position.maxScrollExtent),
+          duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
         Future.delayed(Duration(milliseconds: 100), () {
           _scrollingByClick = false;
         });
@@ -101,7 +111,9 @@ class _GameHomeTopCategoryDemoState extends SafeState<GameHomeTopCategoryDemo> {
 
   @override
   void dispose() {
-    _tabScrollController.dispose();_pageScrollController.dispose();
+    _pageScrollController?.removeListener(_onPageScroll);
+    _pageScrollController=null;
+    _tabScrollController.dispose();
     super.dispose();
   }
 

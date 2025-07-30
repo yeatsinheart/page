@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/share_widget.dart';
 import 'package:flutter3/share/sliver_header_delegate.dart';
-import 'package:flutter3/share/safe-state.dart';
+
 
 class GameSearchDemo extends StatefulWidget {
   const GameSearchDemo({super.key, required params});
@@ -10,7 +10,7 @@ class GameSearchDemo extends StatefulWidget {
   State<GameSearchDemo> createState() => _GameSearchDemoState();
 }
 
-class _GameSearchDemoState extends SafeState<GameSearchDemo> with TickerProviderStateMixin {
+class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStateMixin {
   int _currentIndex = 0;
 
   final List<String> tabs = ["搜索结果", "最近玩过", "我的收藏"];

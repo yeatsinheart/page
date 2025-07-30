@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter3/share/safe-state.dart';
+
 import 'custom_scroll_demo.dart';
 
 class Demo extends StatefulWidget {
@@ -13,7 +13,7 @@ class Demo extends StatefulWidget {
 // @override
 // bool get wantKeepAlive => true;
 
-class _DemoState extends SafeState<Demo> with TickerProviderStateMixin {
+class _DemoState extends State<Demo> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return CustomScrollDemo();

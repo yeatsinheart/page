@@ -6,6 +6,9 @@ import 'package:flutter3/util/color-util.dart';
 import 'package:flutter3/util/gradient-util.dart';
 
 /// 颜色搭配方案，不要想太多，纯颜色组合 不设及其它
+/// color-plan
+/// design-plan
+/// color-style
 class ColorStyle {
   final Color? bg; // 纯色背景色
   final Gradient? bgGradient; // 渐变背景色

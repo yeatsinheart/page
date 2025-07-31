@@ -8,18 +8,18 @@ var setting = {
     bgGradient: gradient_linear(colors: ["#81FFEF", "#F067B4"], stops: [0.1, 1], begin: top_right, end: bottom_left),
   ),
   "page": container(
-    padding: Padding(top: 0),
+    padding: PaddingSetting(top: 0),
     bgGradient: gradient_linear(colors: ["#7ec1f7", "#FFF"], stops: [0, .8], begin: top_right, end: bottom_left),
   ),
 
   "color1": container(bg: "#2196F3", font: "#fff"),
   "color1-reverse": container(
     bg: "#2196F3",
-    border: Border(color: "#2196F3"),
+    border: BorderSetting(color: "#2196F3"),
   ),
 
   "img-loading": container(bg: "#e0e0e0", font: "#fff"),
-  "marquee": container(padding: Padding(left: 0.2, right: 0.2), bg: "transparent", font: "#000"),
+  "marquee": container(padding: PaddingSetting(left: 0.2, right: 0.2), bg: "transparent", font: "#000"),
 
   "game-category-tab": container(bg: "#fff", font: "#000"),
 

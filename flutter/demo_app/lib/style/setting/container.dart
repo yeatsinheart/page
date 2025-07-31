@@ -9,7 +9,7 @@ export 'package:flutter3/style/setting/gradient.dart';
 export 'package:flutter3/style/setting/padding.dart';
 export 'package:flutter3/style/setting/shadow.dart';
 
-container({String? img, Padding? padding, String? bg, bgGradient, String? font, Border? border, double? radius, Shadow? shadow}) {
+container({String? img, PaddingSetting? padding, String? bg, bgGradient, String? font, BorderSetting? border, double? radius, ShadowSetting? shadow}) {
   if (radius != null && radius > 7.5) radius = 0;
   final result = <String, dynamic>{};
   if (img != null) result["img"] = img;

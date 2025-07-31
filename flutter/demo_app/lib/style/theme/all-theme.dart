@@ -15,7 +15,7 @@ import 'package:flutter3/style/theme/style-text.dart';
 import 'style-button.dart';
 
 /// 如果有缓存，那么需要使用缓存数据。怎么判断有没有缓存，或者某key为空时。。
-ThemeData getFlutterTheme({Color?fontColor}) {
+ThemeData getFlutterTheme({Color?bgColor,Color?fontColor,Color?borderColor,Color?shadowColor}) {
   return ThemeData(
     useSystemColors:false,// 某些控件会变成浏览器原生行为（比如 <button>）；
     useMaterial3: true,

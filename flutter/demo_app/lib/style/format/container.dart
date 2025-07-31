@@ -1,24 +1,36 @@
 library setting;
 
-import 'package:flutter3/style/setting/border.dart';
-import 'package:flutter3/style/setting/padding.dart';
-import 'package:flutter3/style/setting/shadow.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter3/style/format/border.dart';
+import 'package:flutter3/style/format/gradient.dart';
+import 'package:flutter3/style/format/padding.dart';
+import 'package:flutter3/style/format/shadow.dart';
+import 'package:flutter3/util/color-util.dart';
 
-export 'package:flutter3/style/setting/border.dart';
-export 'package:flutter3/style/setting/gradient.dart';
-export 'package:flutter3/style/setting/padding.dart';
-export 'package:flutter3/style/setting/shadow.dart';
-
-container({String? img, PaddingSetting? padding, String? bg, bgGradient, String? font, BorderSetting? border, double? radius, ShadowSetting? shadow}) {
-  if (radius != null && radius > 7.5) radius = 0;
-  final result = <String, dynamic>{};
-  if (img != null) result["img"] = img;
-  if (padding != null) result["padding"] = padding.toJson();
-  if (bg != null) result["bg"] = bg;
-  if (bgGradient != null) result["bgGradient"] = bgGradient;
-  if (font != null) result["font"] = font;
-  if (border != null) result["border"] = border.toJson();
-  if (radius != null) result["radius"] = radius;
-  if (shadow != null) result["shadow"] = shadow.toJson();
-  return result;
+class ContainerFormat {
+  static  fromJson(Map<String, dynamic> json,child){
+    return Container(
+      padding: PaddingFormat.fromJson(json["padding"]),
+      decoration: BoxDecoration(
+        /// 边框
+        border: BorderFormat.fromJson(json["border"]),
+        borderRadius: json["radius"] && (json["radius"] > 0) ? BorderRadius.circular(json["radius"]) : null,
+        /// 阴影
+        boxShadow: [
+          ShadowFormat.fromJson(json["shadow"])
+        ],
+        /// 设置纯色背景颜色
+        color: ColorUtil.getColor(json["bg"]),
+        /// 设置渐变背景颜色
+        gradient: GradientFormat.fromJson(json["bgGradient"]),
+      ),
+      child:
+      //DefaultTextStyle 已经在组件树更早的地方被设置了，Text 会优先使用 DefaultTextStyle，而不是你新设置的 Theme.textTheme.bodyMedium。
+      DefaultTextStyle(
+        // 防止嵌套覆盖theme
+        style: TextStyle(color: ColorUtil.getColor(json["font"])),
+        child: child,
+      ),
+    );
+  }
 }

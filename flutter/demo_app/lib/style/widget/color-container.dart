@@ -21,7 +21,7 @@ class ColorContainer extends StatelessWidget {
   const ColorContainer(this.plan, this.child, {EdgeInsetsGeometry? this.padding, Function? this.action, bool this.focus = false, bool this.border = false, bool this.shadow = false, double this.borderWidth = 2, double this.borderRadius = 0, double this.shadowSpreadRadius = 2, double this.shadowBlurRadius = 6, Offset this.shadowOffset = const Offset(0, 3), super.key});
 
   _focusable(child) {
-    MouseRegion(
+    return MouseRegion(
       cursor: SystemMouseCursors.click, // 鼠标变成手指
       child: Focus(
         autofocus: true,
@@ -60,7 +60,7 @@ class ColorContainer extends StatelessWidget {
 
   _container(child) {
     ColorPlan colorPlan = ColorPlan.get(plan);
-    Container(
+    return Container(
       padding: padding,
       decoration: BoxDecoration(
         /// 边框

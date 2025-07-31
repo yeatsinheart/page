@@ -1,13 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class Separator extends StatefulWidget {
   final double radius; // 不能超过容器高度-间隔半径
   final double radius_separator;
   final List<Widget> children;
-  final Color bg;
+  final Color? bg;
+  final Gradient? bgGradient;
   final Color dashColor;
 
-  Separator({this.radius = 10, this.radius_separator = 10, this.children = const <Widget>[], this.bg = Colors.transparent,this.dashColor=Colors.grey});
+  Separator({this.radius = 10, this.radius_separator = 10, this.children = const <Widget>[], this.bgGradient, this.bg , this.dashColor = Colors.grey});
 
   @override
   _SeparatorState createState() => _SeparatorState();
@@ -23,7 +26,12 @@ class _SeparatorState extends State<Separator> {
     super.initState();
     _childKeys.addAll(List.generate(widget.children.length, (_) => GlobalKey()));
     for (int i = 0; i < widget.children.length; i++) {
-      itemsWithKey.add(KeyedSubtree(key: _childKeys[i], child: widget.children[i]));
+      itemsWithKey.add(
+        KeyedSubtree(
+          key: _childKeys[i],
+          child: Container(padding: EdgeInsetsGeometry.all(max(widget.radius, widget.radius_separator)), child: widget.children[i]),
+        ),
+      );
     }
     _record_clip_path();
   }
@@ -65,11 +73,13 @@ class _SeparatorState extends State<Separator> {
   Widget build(BuildContext context) {
     return ClipPath(
       clipper: _ColumnClipper(radius_parent: widget.radius, radius_separator: widget.radius_separator, clipPaths: clipPaths), //将child 裁剪出圈出的模样
-      child: CustomPaint(foregroundPainter: _DashedLinePainter(radius_separator: widget.radius_separator, clipPaths: clipPaths,dashColor: widget.dashColor),
-        child:Container(
-        decoration: BoxDecoration(color: widget.bg),
-        child:  Column(children: itemsWithKey),
-      ),)
+      child: CustomPaint(
+        foregroundPainter: _DashedLinePainter(radius_separator: widget.radius_separator, clipPaths: clipPaths, dashColor: widget.dashColor),
+        child: Container(
+          decoration: BoxDecoration(color: widget.bg, gradient: widget.bgGradient),
+          child: Column(children: itemsWithKey),
+        ),
+      ),
     );
   }
 }

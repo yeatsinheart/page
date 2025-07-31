@@ -54,9 +54,12 @@ class _AppHomeWgState extends State<AppHomeWg> {
                 padding: EdgeInsetsGeometry.symmetric(horizontal: 24),
                 sliver: SliverToBoxAdapter(
                   child: Separator(
+                    //bg:Colors.red,
+                    radius: 24,
+                    bgGradient: LinearGradient(colors: [Colors.blue,Colors.purple]),
                     children: [
-                      Container(height: 50, color: Colors.white),
-                      Container(height: 50, color: Colors.white),
+                      Container(height: 150, color: Colors.white),
+                      Container(height: 250, color: Colors.white),
                       Container(height: 50, color: Colors.white),
                     ],
                   ),

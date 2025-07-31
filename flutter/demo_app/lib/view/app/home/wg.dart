@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter3/share/separator.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand/demo.dart';
@@ -22,8 +22,9 @@ class _AppHomeWgState extends State<AppHomeWg> {
   void initState() {
     super.initState();
   }
+
   @override
-  void dispose(){
+  void dispose() {
     // 先移除监听（可选，但推荐）
     //_controller.removeListener(() {});
     // 释放controller资源
@@ -49,6 +50,18 @@ class _AppHomeWgState extends State<AppHomeWg> {
                 expandedHeight: AppStyle.getRem(0.9),
                 flexibleSpace: FlexibleSpaceBar(titlePadding:EdgeInsetsGeometry.all(0),title: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, AppStyle.getRem(0.7), null)),
               ),*/
+              SliverPadding(
+                padding: EdgeInsetsGeometry.symmetric(horizontal: 24),
+                sliver: SliverToBoxAdapter(
+                  child: Separator(
+                    children: [
+                      Container(height: 50, color: Colors.white),
+                      Container(height: 50, color: Colors.white),
+                      Container(height: 50, color: Colors.white),
+                    ],
+                  ),
+                ),
+              ),
               // 固定顶部图片
               SliverMainAxisGroup(
                 slivers: [
@@ -63,9 +76,8 @@ class _AppHomeWgState extends State<AppHomeWg> {
                     ),
                   ),
                   SliverToBoxAdapter(child: AppView.ofKey("swiper")),
+
                   // 目前存在热重启问题
-
-
                   SliverToBoxAdapter(child: AppView.ofKey("marquee")),
                 ],
               ),
@@ -84,6 +96,8 @@ class _AppHomeWgState extends State<AppHomeWg> {
               ),
               // 只有可视区域的子项才会被构建（懒加载）。
               SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 20)),
+
+
               SliverList(
                 delegate: SliverChildListDelegate(
                   List.generate(20, (index) {

@@ -30,9 +30,9 @@ class ColorContainer extends StatelessWidget {
       child: Theme(
         data: Theme.of(context).copyWith(
           textTheme: getTextTheme(fontColor: colorPlan.font),
+          textButtonTheme: TextButtonThemeData(style: globalButtonStyle(fontColor: colorPlan.font)),
           iconTheme: IconThemeData(color: colorPlan.font, fill: 1),
           iconButtonTheme: IconButtonThemeData(style: globalButtonStyle(fontColor: colorPlan.font)),
-          textButtonTheme: TextButtonThemeData(style: globalButtonStyle(fontColor: colorPlan.font)),
         ), // fontColor: colorPlan.font
         child: Container(
           padding: padding,

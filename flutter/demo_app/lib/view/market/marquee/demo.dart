@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
 
-import 'marquee-main.dart';
 
 class MarketMarqueeDemo extends StatefulWidget {
   const MarketMarqueeDemo({super.key, required params});
@@ -64,10 +63,10 @@ class _MarketMarqueeDemoState extends State<MarketMarqueeDemo> {
             Icon(Icons.volume_up, size: AppStyle.byRem(.36)), // 📢 图标
             SizedBox(width: 8),
 
+            Expanded(child: Container()),
+            //Expanded(child: MarqueeWithoutTicker(text: messages.join('     ★     '))),
 
-
-            //Expanded(child: Container()),
-            Expanded(child: ExtendedMarquee(text: messages.join('     ★     '), velocity: 40)),
+            // Expanded(child: ExtendedMarquee(text: messages.join('     ★     '), velocity: 40)),
             SizedBox(width: 8),
             iconWithBadge(icon: Icons.mail, showBadge: false, count: null),
           ],

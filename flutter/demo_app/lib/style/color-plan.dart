@@ -9,21 +9,21 @@ import 'package:flutter3/util/gradient-util.dart';
 /// color-plan ：以底色为主 of bg，
 /// 不属于背景色关联的，应该是通过点缀色直接设置,
 /// 所以什么browser page 头部导航，底部导航属于特别处理方案
-class ColorStyle {
+class ColorPlan {
   final Color? bg; // 纯色背景色
   final Gradient? bgGradient; // 渐变背景色
   final Color? font; // 通用字色
   final Color? border; // 边框色
   final Color? shadow; // 阴影色
 
-  const ColorStyle({this.bg, this.bgGradient, this.font, this.border, this.shadow});
+  const ColorPlan({this.bg, this.bgGradient, this.font, this.border, this.shadow});
 
-  factory ColorStyle.fromJson(Map<String, dynamic> json) {
-    return ColorStyle(bg: ColorUtil.getColor(json['bg']), bgGradient: GradientUtil.getGradient(json['bgGradient']), font: ColorUtil.getColor(json['font']), border: ColorUtil.getColor(json['border']), shadow: ColorUtil.getColor(json['shadow']));
+  factory ColorPlan.fromJson(Map<String, dynamic> json) {
+    return ColorPlan(bg: ColorUtil.getColor(json['bg']), bgGradient: GradientUtil.getGradient(json['bgGradient']), font: ColorUtil.getColor(json['font']), border: ColorUtil.getColor(json['border']), shadow: ColorUtil.getColor(json['shadow']));
   }
 
-  static ColorStyle get(k) {
-    return ColorStyle.fromJson(AppStyle.data["color-style"]?[k] ?? {});
+  static ColorPlan get(k) {
+    return ColorPlan.fromJson(AppStyle.data["color-plan"]?[k] ?? {});
   }
 }
 

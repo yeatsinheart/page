@@ -3,7 +3,7 @@ import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/color-font.dart';
 import 'package:flutter3/style/theme/style-text.dart';
 
-globalButtonStyle(){
+globalButtonStyle({Color? fontColor}){
   return ButtonStyle(
 
     // 去除splash水波纹、highlight hover等
@@ -19,11 +19,11 @@ globalButtonStyle(){
     // 背景颜色
     backgroundColor: WidgetStateProperty.all(Colors.transparent),
     // 文字颜色
-    foregroundColor: WidgetStateProperty.all(ColorFont.get().txt),
-    //iconColor: ,iconSize: ,
-    textStyle: WidgetStateProperty.all(getTextStyle()),
-    iconColor:WidgetStateProperty.all(ColorFont.get().txt),
+    foregroundColor: WidgetStateProperty.all(fontColor??ColorFont.get().txt),
+    textStyle: WidgetStateProperty.all(getTextStyle(fontColor: fontColor)),
+
     padding: WidgetStateProperty.all(EdgeInsets.all(0)),
+
     shape: WidgetStateProperty.all(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppStyle.byRem(.14)),

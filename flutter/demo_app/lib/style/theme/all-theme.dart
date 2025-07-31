@@ -7,15 +7,15 @@ export 'button-icon.dart';
 export 'button-style-text.dart';
 */
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/style/color-font.dart';
 import 'package:flutter3/style/theme/style-text.dart';
 
 import 'style-button.dart';
 
 /// 如果有缓存，那么需要使用缓存数据。怎么判断有没有缓存，或者某key为空时。。
-ThemeData getFlutterTheme() {
+ThemeData getFlutterTheme({Color?fontColor}) {
   return ThemeData(
     useSystemColors:false,// 某些控件会变成浏览器原生行为（比如 <button>）；
     useMaterial3: true,
@@ -49,14 +49,33 @@ ThemeData getFlutterTheme() {
     // secondaryHeaderColor:Colors.red,
     // shadowColor:Colors.red,
     // unselectedWidgetColor:Colors.red,
-    /// 文件夹中添加对应组件的theme获取方法
-    scrollbarTheme:ScrollbarThemeData(),
-    textTheme: getTextTheme(),
-    textButtonTheme: TextButtonThemeData(style:globalButtonStyle()),
 
-    iconTheme:IconThemeData(color: Colors.red),
-    iconButtonTheme: IconButtonThemeData(style: globalButtonStyle()),
-    elevatedButtonTheme: ElevatedButtonThemeData(style: globalButtonStyle()),
+    /// 文件夹中添加对应组件的theme获取方法
+
+    tabBarTheme:TabBarThemeData(indicatorColor:AppStyle.getMainColor()),
+    appBarTheme:AppBarTheme(),
+    bottomAppBarTheme:BottomAppBarTheme(),
+    bottomNavigationBarTheme:BottomNavigationBarThemeData(),
+
+    scrollbarTheme:ScrollbarThemeData(),
+    textTheme: getTextTheme(fontColor: fontColor),
+
+    listTileTheme:ListTileThemeData(),
+
+
+    iconTheme:IconThemeData(color: fontColor??ColorFont.get().txt,fill: 1,),
+
+    buttonTheme:ButtonThemeData(padding:EdgeInsetsGeometry.all(0)),// 旧的
+
+    textButtonTheme: TextButtonThemeData(style:globalButtonStyle(fontColor:fontColor)),
+    iconButtonTheme: IconButtonThemeData(style: globalButtonStyle(fontColor:fontColor)),
+    elevatedButtonTheme: ElevatedButtonThemeData(style: globalButtonStyle(fontColor:fontColor)),
+    // filledButtonTheme:FilledButtonThemeData(),
+    // floatingActionButtonTheme:FloatingActionButtonThemeData(),
+    // menuButtonTheme:MenuButtonThemeData(),
+    // outlinedButtonTheme:OutlinedButtonThemeData(),
+    // segmentedButtonTheme:SegmentedButtonThemeData(),
+    // toggleButtonsTheme:ToggleButtonsThemeData(),
 
     // GENERAL CONFIGURATION
     // adaptations:<Adaptation<Object>>[],
@@ -76,13 +95,10 @@ ThemeData getFlutterTheme() {
     //
     // COMPONENT THEMES
     // actionIconTheme:ActionIconThemeData(),
-    // appBarTheme:AppBarTheme(),
     // badgeTheme:BadgeThemeData(),
     // bannerTheme:MaterialBannerThemeData(),
-    // bottomAppBarTheme:BottomAppBarTheme(),
-    // bottomNavigationBarTheme:BottomNavigationBarThemeData(),
+
     // bottomSheetTheme:BottomSheetThemeData(),
-    // buttonTheme:ButtonThemeData(),
     // cardTheme:CardThemeData(),
     // checkboxTheme:CheckboxThemeData(),
     // chipTheme:ChipThemeData(),
@@ -93,29 +109,22 @@ ThemeData getFlutterTheme() {
     // drawerTheme:DrawerThemeData(),
     // dropdownMenuTheme:DropdownMenuThemeData(),
     // expansionTileTheme:ExpansionTileThemeData(),
-    // filledButtonTheme:FilledButtonThemeData(),
-    // floatingActionButtonTheme:FloatingActionButtonThemeData(),
-    // listTileTheme:ListTileThemeData(),
+    
     // menuBarTheme:MenuBarThemeData(),
-    // menuButtonTheme:MenuButtonThemeData(),
     // menuTheme:MenuThemeData(),
     // navigationBarTheme:NavigationBarThemeData(),
     // navigationDrawerTheme:NavigationDrawerThemeData(),
     // navigationRailTheme:NavigationRailThemeData(),
-    // outlinedButtonTheme:OutlinedButtonThemeData(),
     // popupMenuTheme:PopupMenuThemeData(),
     // progressIndicatorTheme:ProgressIndicatorThemeData(),
     // radioTheme:RadioThemeData(),
     // searchBarTheme:SearchBarThemeData(),
     // searchViewTheme:SearchViewThemeData(),
-    // segmentedButtonTheme:SegmentedButtonThemeData(),
     // sliderTheme:SliderThemeData(),
     // snackBarTheme:SnackBarThemeData(),
     // switchTheme:SwitchThemeData(),
-    // tabBarTheme:TabBarThemeData(),
     // textSelectionTheme:TextSelectionThemeData(),
     // timePickerTheme:TimePickerThemeData(),
-    // toggleButtonsTheme:ToggleButtonsThemeData(),
     // tooltipTheme:TooltipThemeData(),
 
     // For the sanity of the reader, make sure these properties are in the same

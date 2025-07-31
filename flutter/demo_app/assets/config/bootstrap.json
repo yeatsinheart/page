@@ -105,8 +105,10 @@
     "mask": "#0000001f",
     "border": "#e3e3e31a",
     "shadow": "#41454940",
-    "color-style": {
-      "browser": {"bg": "#9195a3","bgGradient": {
+
+    "color-plan": {
+      "browser": {
+        "bg": "#9195a3","bgGradient": {
         "type": "linear",
         "colors": ["#81FFEF", "#F067B4"],
         "stops": [0.1, 1],
@@ -118,15 +120,17 @@
         "bgGradient": {
           "type": "linear",
           "colors": ["#2196F3", "#FFF"],
-          "stops": [0, 0.6],
+          "stops": [0, 0.8],
           "begin": "topRight",
           "end": "bottomLeft"
         }
       },
+
       "color1": {"bg": "#2196F3", "font": "#fff"},
       "color1-reverse": {"font": "#2196F3","border":"#2196F3"},
+
       "bar": {"bg": "#3f15d1", "font": "#000"},
-      "bar-brand": {"bg": "#ED151C", "font": "#fff"},
+      "bar-brand": {"bg": "#2782CC", "font": "#DC143C"},
       "bar-bottom": {"bg": "#B1BBCF", "font": "#000"}
     }
   },

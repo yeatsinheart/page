@@ -130,7 +130,7 @@ class ApiTest {
           "mask": "#0000001f",
           "border": "#e3e3e31a",
           "shadow": "#41454940",
-          "color-style": {
+          "color-plan": {
             "color1": {"bg": "#2196F3", "font": "#fff"},
             "color1-reverse": {"font": "#2196F3", "border": "#2196F3"},
             "browser": {"bg": "#9195a3","bgGradient": {

@@ -12,11 +12,8 @@ class BarBrandDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColorContainer(
-      "bar-brand",
-      Container(
-        padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2), vertical: 10),
-        child: Row(children: [BarBrandLeftDemo(), Spacer(), BarBrandRightDemo()]),
-      ),
+      "bar-brand",Row(children: [BarBrandLeftDemo(), Spacer(), BarBrandRightDemo()]),
+      padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
     );
   }
 }

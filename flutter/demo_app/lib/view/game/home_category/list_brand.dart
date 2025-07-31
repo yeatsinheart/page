@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
+import 'package:flutter3/style/widget/color-container.dart';
 
 import 'package:get/get.dart';
 
@@ -90,22 +91,22 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
             bottom: 0,
             left: 0,
             right: 0,
-            child: Container(
+            child: ColorContainer("txt-cover",Container(
               height: 50,
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [Colors.black.withValues(alpha: 0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
-              ),
+              // decoration: BoxDecoration(
+              //   gradient: LinearGradient(colors: [Colors.black.withValues(alpha: 0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+              // ),
               child: Center(
                 child: Text(
                   "$title$title$title$title$title$title$title$title$title$title$title",
                   maxLines: 2,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: Colors.white, fontSize: 12),
+                  style: TextStyle( fontSize: 12),
                 ),
               ),
-            ),
+            )),
           ),
         ],
       ),

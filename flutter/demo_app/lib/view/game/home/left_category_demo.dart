@@ -71,11 +71,11 @@ class _GameHomeLeftCategoryDemoState extends State<GameHomeLeftCategoryDemo> {
   }
 
   void _scrollTabToCenter(int index) {
-    final double screenWidth = AppStyle.screenWidth;
+    final double viewWidth = AppStyle.viewWidth;
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
-      final double targetOffset = index * box.size.height - (screenWidth - box.size.height) / 2;
+      final double targetOffset = index * box.size.height - (viewWidth - box.size.height) / 2;
       //print("tab移动到${targetOffset} 选中 ${_currentIndex}");
       _tabScrollController.animateTo(targetOffset.clamp(_tabScrollController.position.minScrollExtent, _tabScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeOut);
     }

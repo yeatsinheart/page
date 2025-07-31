@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter3/style/color-plan.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,7 @@ class AppImg extends StatelessWidget {
   final Color? loadingBg;
   final Color? loadingColor;
 
-  const AppImg(this.url, {this.square, this.width, this.height, this.radius, this.fit = BoxFit.cover, this.loadingBg, this.loadingColor = Colors.grey, super.key});
+  AppImg(this.url, {this.square, this.width, this.height, this.radius, this.fit = BoxFit.cover, Color? loadingBg, Color? loadingColor, super.key}) : this.loadingColor = ColorPlan.get("img-loading").font, this.loadingBg = ColorPlan.get("img-loading").bg;
 
   @override
   Widget build(BuildContext context) {
@@ -42,20 +43,23 @@ final customCacheManager = kIsWeb
         ),
       );
 
-_errWidget(loadingColor) => FractionallySizedBox(
-  widthFactor: 0.8,
-  heightFactor: 0.8,
-  child: FittedBox(
-    fit: BoxFit.contain,
-    child: Icon(Icons.broken_image, color: loadingColor),
+_errWidget(loadingColor) => AspectRatio(
+  aspectRatio: 1,
+  child: FractionallySizedBox(
+    widthFactor: 0.36, // 占正方体宽度的 25%
+    heightFactor: 0.36,
+    child: FittedBox(
+      fit: BoxFit.contain,
+      child: Icon(Icons.broken_image, color: loadingColor),
+    ),
   ),
 );
 
 _loadingWidget(loadingColor) => AspectRatio(
   aspectRatio: 1,
   child: FractionallySizedBox(
-    widthFactor: 0.4, // 占整个宽度的 80%
-    heightFactor: 0.4,
+    widthFactor: 0.36, // 占正方体宽度的 25%
+    heightFactor: 0.36,
     child: LayoutBuilder(
       builder: (context, constraints) {
         double width = constraints.maxWidth;

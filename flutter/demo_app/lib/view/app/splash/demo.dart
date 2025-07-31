@@ -46,10 +46,10 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
         children: [
           Column(
             children: [
-              AppImg("", width: AppStyle.screenWidth, height: AppStyle.screenHeight * 7 / 8),
+              AppImg("", width: AppStyle.viewWidth, height: AppStyle.screenHeight * 7 / 8),
               Expanded(
                 child: Container(
-                  width: AppStyle.screenWidth,
+                  width: AppStyle.viewWidth,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
                     children: <Widget>[

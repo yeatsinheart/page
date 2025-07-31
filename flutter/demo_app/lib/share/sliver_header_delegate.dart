@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 class ShareSliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   final Widget child;
   final double height;
+  final double? heightFixed;// 固定高度
   final Function(double offset)? pinnedCallBack;
 
-  ShareSliverPersistentHeaderDelegate({required this.child, required this.height, this.pinnedCallBack, minHeight, maxHeight});
+  ShareSliverPersistentHeaderDelegate({required this.child, required this.height, this.pinnedCallBack,this.heightFixed, minHeight, maxHeight});
 
   @override
   double get minExtent => height;

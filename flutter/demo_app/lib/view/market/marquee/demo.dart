@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/share/marquee.dart';
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/style/widget/color-container.dart';
 
 
 class MarketMarqueeDemo extends StatefulWidget {
@@ -54,7 +56,7 @@ class _MarketMarqueeDemoState extends State<MarketMarqueeDemo> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColorContainer("marquee",Container(
       height: AppStyle.byRem(.5),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
@@ -63,15 +65,14 @@ class _MarketMarqueeDemoState extends State<MarketMarqueeDemo> {
             Icon(Icons.volume_up, size: AppStyle.byRem(.36)), // 📢 图标
             SizedBox(width: 8),
 
-            Expanded(child: Container()),
             //Expanded(child: MarqueeWithoutTicker(text: messages.join('     ★     '))),
 
-            // Expanded(child: ExtendedMarquee(text: messages.join('     ★     '), velocity: 40)),
+            Expanded(child: Marquee(text: messages.join('     ★     '))),
             SizedBox(width: 8),
             iconWithBadge(icon: Icons.mail, showBadge: false, count: null),
           ],
         ),
       ),
-    );
+    ));
   }
 }

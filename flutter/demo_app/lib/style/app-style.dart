@@ -9,21 +9,23 @@ class AppStyle {
 
   static byPercent(v) {
     // 按宽度的百分比
-    double x = min(screenWidth, maxWidth ?? screenWidth);
-    return v * x / 100;
+    return v * viewWidth / 100;
   }
 
   static byRem(v) {
     // 7.5rem=100%;
-    double x = min(screenWidth, maxWidth ?? screenWidth);
-    return v * x / (750 / 100);
+    return v * viewWidth / (750 / 100);
+  }
+
+  static double get viewWidth{
+    return min(_screenWidth, maxWidth ?? _screenWidth);;
   }
 
   static double? get maxWidth {
     return data["maxWidth"];
   }
 
-  static double get screenWidth {
+  static double get _screenWidth {
     return MediaQuery.of(AppContext.context).size.width;
   }
 

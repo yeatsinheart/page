@@ -141,7 +141,7 @@ class _AppStoreState extends State<TestAppstore> with TickerProviderStateMixin {
                   top: 440,
                   child: Hero(
                     tag: 'hero-dec-${game.title}',
-                    child: SizedBox(width: AppStyle.screenWidth, height: 10),
+                    child: SizedBox(width: AppStyle.viewWidth, height: 10),
                   ),
                 ),
               ],

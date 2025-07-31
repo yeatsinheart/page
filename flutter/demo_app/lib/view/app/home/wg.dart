@@ -50,21 +50,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
                 expandedHeight: AppStyle.getRem(0.9),
                 flexibleSpace: FlexibleSpaceBar(titlePadding:EdgeInsetsGeometry.all(0),title: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, AppStyle.getRem(0.7), null)),
               ),*/
-              SliverPadding(
-                padding: EdgeInsetsGeometry.symmetric(horizontal: 24),
-                sliver: SliverToBoxAdapter(
-                  child: Separator(
-                    //bg:Colors.red,
-                    radius: 24,
-                    bgGradient: LinearGradient(colors: [Colors.blue,Colors.purple]),
-                    children: [
-                      Container(height: 150, color: Colors.white),
-                      Container(height: 250, color: Colors.white),
-                      Container(height: 50, color: Colors.white),
-                    ],
-                  ),
-                ),
-              ),
+
               // 固定顶部图片
               SliverMainAxisGroup(
                 slivers: [
@@ -86,6 +72,22 @@ class _AppHomeWgState extends State<AppHomeWg> {
               ),
 
               AppView.ofKey("game_home") ?? Container(),
+              
+              SliverPadding(
+                padding: EdgeInsetsGeometry.symmetric(horizontal: AppStyle.byRem(.2)),
+                sliver: SliverToBoxAdapter(
+                  child: Separator(
+                    //bg:Colors.red,
+                    radius: AppStyle.byRem(.14),radius_separator: AppStyle.byRem(.14),
+                    bgGradient: LinearGradient(colors: [Colors.blue,Colors.purple]),
+                    children: [
+                      Container(height: 150, color: Colors.white),
+                      Container(height: 250, color: Colors.white),
+                      Container(height: 50, color: Colors.white),
+                    ],
+                  ),
+                ),
+              ),
               // 所有 200 项都会同时构建（因为 shrinkWrap: true 表示先算完高度）。
               SliverToBoxAdapter(
                 child: ListView.builder(

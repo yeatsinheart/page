@@ -20,50 +20,186 @@
     }
   ],
   "language": {
-    "list":  [{"name": "简体中文", "flag": "🇨🇳", "code": "zh_CN"},
-      {"name": "English", "flag": "🇺🇸", "code": "en_US"},
-      {"name": "繁體中文", "flag": "🇹🇼", "code": "zh_TW"},
-      {"name": "Filipino/Tagalog", "flag": "🇵🇭", "code": "fil_PH"},
-
-      {"name": "日本語", "flag": "🇯🇵", "code": "ja_JP"},
-      {"name": "한국어", "flag": "🇰🇷", "code": "ko_KR"},
-      {"name": "Español", "flag": "🇪🇸", "code": "es_ES"},
-      {"name": "Français", "flag": "🇫🇷", "code": "fr_FR"},
-      {"name": "Deutsch", "flag": "🇩🇪", "code": "de_DE"},
-      {"name": "Português", "flag": "🇵🇹", "code": "pt_PT"},
-      {"name": "Русский", "flag": "🇷🇺", "code": "ru_RU"},
-      {"name": "Italiano", "flag": "🇮🇹", "code": "it_IT"},
-      {"name": "Türkçe", "flag": "🇹🇷", "code": "tr_TR"},
-      {"name": "Tiếng Việt", "flag": "🇻🇳", "code": "vi_VN"},
-      {"name": "ภาษาไทย", "flag": "🇹🇭", "code": "th_TH"},
-      {"name": "हिन्दी", "flag": "🇮🇳", "code": "hi_IN"},
-      {"name": "বাংলা", "flag": "🇧🇩", "code": "bn_BD"},
-      {"name": "Bahasa Indonesia", "flag": "🇮🇩", "code": "id_ID"},
-      {"name": "ລາວ", "flag": "🇱🇦", "code": "lo_LA"},
-      {"name": "Українська", "flag": "🇺🇦", "code": "uk_UA"},
-
-      {"name": "Polski", "flag": "🇵🇱", "code": "pl_PL"},
-      {"name": "Nederlands", "flag": "🇳🇱", "code": "nl_NL"},
-
-      {"name": "Svenska", "flag": "🇸🇪", "code": "sv_SE"},
-      {"name": "Čeština", "flag": "🇨🇿", "code": "cs_CZ"},
-      {"name": "Magyar", "flag": "🇭🇺", "code": "hu_HU"},
-      {"name": "Ελληνικά", "flag": "🇬🇷", "code": "el_GR"},
-      {"name": "Română", "flag": "🇷🇴", "code": "ro_RO"},
-      {"name": "Dansk", "flag": "🇩🇰", "code": "da_DK"},
-      {"name": "Suomi", "flag": "🇫🇮", "code": "fi_FI"},
-      {"name": "Norsk", "flag": "🇳🇴", "code": "no_NO"},
-      {"name": "ქართული", "flag": "🇬🇪", "code": "ka_GE"},
-      {"name": "Slovenčina", "flag": "🇸🇰", "code": "sk_SK"},
-      {"name": "Srpski", "flag": "🇷🇸", "code": "sr_RS"},
-      {"name": "Hrvatski", "flag": "🇭🇷", "code": "hr_HR"},
-      {"name": "Malay", "flag": "🇲🇾", "code": "ms_MY"}
+    "list": [
+      {
+        "name": "简体中文",
+        "flag": "🇨🇳",
+        "code": "zh_CN"
+      },
+      {
+        "name": "English",
+        "flag": "🇺🇸",
+        "code": "en_US"
+      },
+      {
+        "name": "繁體中文",
+        "flag": "🇹🇼",
+        "code": "zh_TW"
+      },
+      {
+        "name": "Filipino/Tagalog",
+        "flag": "🇵🇭",
+        "code": "fil_PH"
+      },
+      {
+        "name": "日本語",
+        "flag": "🇯🇵",
+        "code": "ja_JP"
+      },
+      {
+        "name": "한국어",
+        "flag": "🇰🇷",
+        "code": "ko_KR"
+      },
+      {
+        "name": "Español",
+        "flag": "🇪🇸",
+        "code": "es_ES"
+      },
+      {
+        "name": "Français",
+        "flag": "🇫🇷",
+        "code": "fr_FR"
+      },
+      {
+        "name": "Deutsch",
+        "flag": "🇩🇪",
+        "code": "de_DE"
+      },
+      {
+        "name": "Português",
+        "flag": "🇵🇹",
+        "code": "pt_PT"
+      },
+      {
+        "name": "Русский",
+        "flag": "🇷🇺",
+        "code": "ru_RU"
+      },
+      {
+        "name": "Italiano",
+        "flag": "🇮🇹",
+        "code": "it_IT"
+      },
+      {
+        "name": "Türkçe",
+        "flag": "🇹🇷",
+        "code": "tr_TR"
+      },
+      {
+        "name": "Tiếng Việt",
+        "flag": "🇻🇳",
+        "code": "vi_VN"
+      },
+      {
+        "name": "ภาษาไทย",
+        "flag": "🇹🇭",
+        "code": "th_TH"
+      },
+      {
+        "name": "हिन्दी",
+        "flag": "🇮🇳",
+        "code": "hi_IN"
+      },
+      {
+        "name": "বাংলা",
+        "flag": "🇧🇩",
+        "code": "bn_BD"
+      },
+      {
+        "name": "Bahasa Indonesia",
+        "flag": "🇮🇩",
+        "code": "id_ID"
+      },
+      {
+        "name": "ລາວ",
+        "flag": "🇱🇦",
+        "code": "lo_LA"
+      },
+      {
+        "name": "Українська",
+        "flag": "🇺🇦",
+        "code": "uk_UA"
+      },
+      {
+        "name": "Polski",
+        "flag": "🇵🇱",
+        "code": "pl_PL"
+      },
+      {
+        "name": "Nederlands",
+        "flag": "🇳🇱",
+        "code": "nl_NL"
+      },
+      {
+        "name": "Svenska",
+        "flag": "🇸🇪",
+        "code": "sv_SE"
+      },
+      {
+        "name": "Čeština",
+        "flag": "🇨🇿",
+        "code": "cs_CZ"
+      },
+      {
+        "name": "Magyar",
+        "flag": "🇭🇺",
+        "code": "hu_HU"
+      },
+      {
+        "name": "Ελληνικά",
+        "flag": "🇬🇷",
+        "code": "el_GR"
+      },
+      {
+        "name": "Română",
+        "flag": "🇷🇴",
+        "code": "ro_RO"
+      },
+      {
+        "name": "Dansk",
+        "flag": "🇩🇰",
+        "code": "da_DK"
+      },
+      {
+        "name": "Suomi",
+        "flag": "🇫🇮",
+        "code": "fi_FI"
+      },
+      {
+        "name": "Norsk",
+        "flag": "🇳🇴",
+        "code": "no_NO"
+      },
+      {
+        "name": "ქართული",
+        "flag": "🇬🇪",
+        "code": "ka_GE"
+      },
+      {
+        "name": "Slovenčina",
+        "flag": "🇸🇰",
+        "code": "sk_SK"
+      },
+      {
+        "name": "Srpski",
+        "flag": "🇷🇸",
+        "code": "sr_RS"
+      },
+      {
+        "name": "Hrvatski",
+        "flag": "🇭🇷",
+        "code": "hr_HR"
+      },
+      {
+        "name": "Malay",
+        "flag": "🇲🇾",
+        "code": "ms_MY"
+      }
     ],
     "chosen": "en_US",
     "fallback": "en_US"
   },
-
-
   "view": {
     "splash": "/app/splash/demo",
     "app_layout": "/demo/main",
@@ -94,53 +230,126 @@
       }
     ]
   },
-
   "style": {
     "maxWidth": 570,
     "gap": 0.22,
     "lineHeight": 1.2,
     "radius": 0.14,
-    "font": {"title": "#323233", "name": "#646566", "txt": "#737272", "ghost": "#BBB"},
-    "colors": ["#2196F3"],
+    "font": {
+      "title": "#323233",
+      "name": "#646566",
+      "txt": "#737272",
+      "ghost": "#BBB"
+    },
+    "colors": [
+      "#2196F3"
+    ],
     "mask": "#0000001f",
     "border": "#e3e3e31a",
     "shadow": "#41454940",
-
     "color-plan": {
       "browser": {
-        "bg": "#9195a3","bgGradient": {
-        "type": "linear",
-        "colors": ["#81FFEF", "#F067B4"],
-        "stops": [0.1, 1],
-        "begin": "topRight",
-        "end": "bottomLeft"
-      }},
-      "page": {
-        "bg": "#FFF",
+        "bg": "#9195a3",
         "bgGradient": {
           "type": "linear",
-          "colors": ["#2196F3", "#FFF"],
-          "stops": [0, 0.8],
+          "colors": [
+            "#81FFEF",
+            "#F067B4"
+          ],
+          "stops": [
+            0.1,
+            1
+          ],
           "begin": "topRight",
           "end": "bottomLeft"
         }
       },
-
-      "color1": {"bg": "#2196F3", "font": "#fff"},
-      "color1-reverse": {"font": "#2196F3","border":"#2196F3"},
-
-      "bar": {"bg": "#3f15d1", "font": "#000"},
-      "bar-brand": {"bg": "#2782CC", "font": "#DC143C"},
-      "bar-bottom": {"bg": "#B1BBCF", "font": "#000"}
+      "page": {
+        "bg": "#FFF",
+        "bgGradient": {
+          "type": "linear",
+          "colors": [
+            "#7ec1f7",
+            "#FFF"
+          ],
+          "stops": [
+            0,
+            0.8
+          ],
+          "begin": "topRight",
+          "end": "bottomLeft"
+        }
+      },
+      "color1": {
+        "bg": "#2196F3",
+        "font": "#fff"
+      },
+      "color1-reverse": {
+        "font": "#2196F3",
+        "border": "#2196F3"
+      },
+      "img-loading": {
+        "bg": "#e0e0e0",
+        "font": "#fff"
+      },
+      "marquee": {
+        "font": "#000"
+      },
+      "game-category-tab": {
+        "bg": "#fff",
+        "font": "#000"
+      },
+      "txt-cover": {
+        "bgGradient": {
+          "type": "linear",
+          "colors": [
+            "#0000004d",
+            "transparent"
+          ],
+          "stops": [
+            0,
+            1
+          ],
+          "begin": "bottomCenter",
+          "end": "topCenter"
+        },
+        "font": "#fff"
+      },
+      "bar": {
+        "bg": "#3f15d1",
+        "font": "#000"
+      },
+      "bar-brand": {
+        "bg": "#FF403A",
+        "font": "#FFF"
+      },
+      "bar-bottom": {
+        "bg": "#B1BBCF",
+        "bgGradient": {
+          "type": "linear",
+          "colors": [
+            "#7ec1f7",
+            "#FFF"
+          ],
+          "stops": [
+            0,
+            0.8
+          ],
+          "begin": "bottomCenter",
+          "end": "topCenter"
+        },
+        "font": "#000"
+      }
     }
   },
-
-  "app": {"name": "FlutterApp","version": "1.2.3","logo": ""},
-
+  "app": {
+    "name": "FlutterApp",
+    "version": "1.2.3",
+    "logo": ""
+  },
   "enablePayment": true,
   "paymentProviders": [
     "paypal",
     "stripe"
   ]
-
 }

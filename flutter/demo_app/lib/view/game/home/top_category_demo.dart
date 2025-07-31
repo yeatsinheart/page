@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/style/widget/color-container.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +20,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
   ScrollController? _pageScrollController;
 
   final ScrollController _tabScrollController = ScrollController();
-  final List<String> tabs = ['热门', '电子老虎机', '彩票投注', '体育竞赛', '真人视讯', '捕鱼游戏'];
+  final List<String> tabs = ['热门游戏', '热门品牌', '电子老虎机', '彩票投注', '体育竞赛', '真人视讯', '捕鱼游戏'];
   final List<GlobalKey> _data_keys = [];
   final List<GlobalKey> _tab_keys = [];
   int _currentIndex = 0;
@@ -34,21 +34,22 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
     listenParentScrollController();
   }
 
-void listenParentScrollController(){
-  // 延迟到第一帧渲染后再访问 context
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    if (!mounted) return;
-    try {
-      final scrollable = Scrollable.of(context); // 🔥 此时才安全 没有获取到会报错
-      final newController = scrollable.widget.controller!;
-      if (_pageScrollController==null || _pageScrollController != newController) {
-        _pageScrollController?.removeListener(_onPageScroll);
-        _pageScrollController = newController;
-        _pageScrollController?.addListener(_onPageScroll);
-      }
-    } catch (e) {}
-  });
-}
+  void listenParentScrollController() {
+    // 延迟到第一帧渲染后再访问 context
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      try {
+        final scrollable = Scrollable.of(context); // 🔥 此时才安全 没有获取到会报错
+        final newController = scrollable.widget.controller!;
+        if (_pageScrollController == null || _pageScrollController != newController) {
+          _pageScrollController?.removeListener(_onPageScroll);
+          _pageScrollController = newController;
+          _pageScrollController?.addListener(_onPageScroll);
+        }
+      } catch (e) {}
+    });
+  }
+
   void _onPageScroll() {
     double minDistance = double.infinity;
     int closestIndex = 0;
@@ -79,11 +80,11 @@ void listenParentScrollController(){
   }
 
   void _scrollTabToCenter(int index) {
-    final double screenWidth = AppStyle.screenWidth;
+    final double viewWidth = AppStyle.viewWidth;
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
-      final double targetOffset = index * box.size.width - (screenWidth - box.size.width) / 2;
+      final double targetOffset = index * box.size.width - (viewWidth - box.size.width) / 2;
       //print("tab移动到${targetOffset} 选中 ${_currentIndex}");
       _tabScrollController.animateTo(targetOffset.clamp(_tabScrollController.position.minScrollExtent, _tabScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeOut);
     }
@@ -93,15 +94,13 @@ void listenParentScrollController(){
     _scrollingByClick = true;
     final dataContext = _data_keys[index].currentContext;
     //print("点击时找到的页面元素${data_context}");
-    if (dataContext != null && null!=_pageScrollController) {
+    if (dataContext != null && null != _pageScrollController) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
       final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController!.offset - AppStyle.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
-      _pageScrollController!.animateTo(
-          offset.clamp(_pageScrollController!.position.minScrollExtent, _pageScrollController!.position.maxScrollExtent),
-          duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
+      _pageScrollController!.animateTo(offset.clamp(_pageScrollController!.position.minScrollExtent, _pageScrollController!.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
         Future.delayed(Duration(milliseconds: 100), () {
           _scrollingByClick = false;
         });
@@ -112,47 +111,49 @@ void listenParentScrollController(){
   @override
   void dispose() {
     _pageScrollController?.removeListener(_onPageScroll);
-    _pageScrollController=null;
+    _pageScrollController = null;
     _tabScrollController.dispose();
     super.dispose();
   }
 
   Widget _buildTabBar() {
-    return Container(
-      height: 50,
-      color: Colors.white,
-      child: ListView.builder(
-        controller: _tabScrollController,
-        scrollDirection: Axis.horizontal,
-        itemCount: tabs.length,
-        itemBuilder: (context, index) {
-          final selected = index == _currentIndex;
-          return GestureDetector(
-            onTap: () {
-              setState(() {
-                _currentIndex = index;
-                _scrollTabToCenter(index);
-                _clickTo(index);
-              });
+    return ColorContainer("game-category-tab",Container(
+        height: 50,
+        child: ScrollConfiguration(
+          behavior: _NoScrollbarBehavior(),
+          child: ListView.builder(
+            controller: _tabScrollController,
+            scrollDirection: Axis.horizontal,
+            physics: const ClampingScrollPhysics(), // ← 支持手动滚动
+            itemCount: tabs.length,
+            itemBuilder: (context, index) {
+              final selected = index == _currentIndex;
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _currentIndex = index;
+                    _scrollTabToCenter(index);
+                    _clickTo(index);
+                  });
+                },
+                child: Container(
+                  key: _tab_keys[index],
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  decoration: selected
+                      ? BoxDecoration(
+                    border: Border(bottom: BorderSide(width: 2, color: AppStyle.getMainColor())),
+                  )
+                      : null,
+                  child: Text(
+                    tabs[index].tr,
+                    style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? AppStyle.getMainColor() : null),
+                  ),
+                ),
+              );
             },
-            child: Container(
-              key: _tab_keys[index],
-              alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              decoration: selected
-                  ? BoxDecoration(
-                      border: Border(bottom: BorderSide(width: 2, color: Colors.blue)),
-                    )
-                  : null,
-              child: Text(
-                tabs[index].tr,
-                style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? Colors.blue : Colors.black),
-              ),
-            ),
-          );
-        },
-      ),
-    );
+          ),)
+    ));
   }
 
   @override
@@ -191,89 +192,8 @@ void listenParentScrollController(){
             }),
           ),
         ),
-        /*...List.generate(tabs.length, (index) {
-          final title = tabs[index].tr;
-          final expanded = _expandedStates[index];
-          final showCount = expanded ? 32 : 6;
-
-          return index != 0
-              ? SliverToBoxAdapter(
-                  child: getWidgetByPath(
-                    path: "/game/home_category/list_brand",
-                    key: _data_keys[index],
-                    params: {"title": title},
-                  ),
-                )
-              : SliverToBoxAdapter(
-                  child: Column(
-                    key: _data_keys[index],
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 8,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              title,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text("更多 >", style: TextStyle(color: Colors.blue)),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: AppStyle.getRem(.2),
-                          vertical: AppStyle.getRem(.01),
-                        ),
-                        child: GridView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: showCount,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                childAspectRatio: 0.75,
-                                crossAxisSpacing: 8,
-                                mainAxisSpacing: 8,
-                              ),
-                          itemBuilder: (_, gridIndex) {
-                            return buildGridItem(title);
-                          },
-                        ),
-                      ),
-                      if (!expanded)
-                        Center(
-                          child: TextButton(
-                            onPressed: () {
-                              setState(() {
-                                _expandedStates[index] = true;
-                              });
-                            },
-                            child: Text("查看更多"),
-                          ),
-                        ),
-                    ],
-                  ),
-                );
-        }),*/
       ],
     );
-    /*
-      Column(
-      children: [
-        ,
-        // 所有 200 项都会同时构建（因为 shrinkWrap: true 表示先算完高度）。
-        ListView(shrinkWrap: true, children: List.generate(tabs.length, (index) => _buildSection(tabs[index], _data_keys[index]))),
-      ],
-    );*/
   }
 }
 
@@ -330,5 +250,12 @@ class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     return true;
+  }
+}
+
+class _NoScrollbarBehavior extends ScrollBehavior {
+  @override
+  Widget buildScrollbar(BuildContext context, Widget child, ScrollableDetails details) {
+    return child; // 不显示滚动条
   }
 }

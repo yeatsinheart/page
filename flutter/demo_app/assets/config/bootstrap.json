@@ -200,19 +200,7 @@
   "chosen": "en_US",
   "fallback": "en_US"
  },
- "view": {
-  "splash": "/app/splash/demo",
-  "app_layout": "/layout/demo",
-  "language": "/app/language",
-  "home": "/app/home/wg",
-  "swiper": "/market/swiper/demo",
-  "marquee": "/market/marquee/demo",
-  "game_home": "/game/home/top_category_demo",
-  "game_search": "/game/search/demo",
-  "discover": "/wechat/discover",
-  "me": "/page/me/demo",
-  "contact": "/wechat/contact"
- },
+ "view": {},
  "layout": {
   "barBottom": [
    {
@@ -226,6 +214,12 @@
     "openViewKey": "home",
     "iconI18nKey": "https://cdn-icons-png.flaticon.com/128/428/428094.png",
     "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/4697/4697500.png"
+   },
+   {
+    "titleI18nKey": "我",
+    "openViewKey": "me",
+    "iconI18nKey": "https://cdn-icons-png.flaticon.com/128/3177/3177440.png",
+    "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/1077/1077012.png"
    }
   ]
  },
@@ -290,17 +284,22 @@
     }
    },
    "container": {
-    "img": "assets/images/game1.jpg",
-    "margin": {
+    "padding": {
      "top": 0.2,
      "left": 0.2,
      "bottom": 0.2,
      "right": 0.2
     },
+    "margin": {
+     "top": 0.1,
+     "left": 0.2,
+     "bottom": 0.1,
+     "right": 0.2
+    },
     "bg": "#FFF",
-    "radius": 0.1,
+    "radius": 0.14,
     "border": {
-     "color": "#ccc",
+     "color": "transparent",
      "width": 1.0
     },
     "shadows": [
@@ -543,6 +542,22 @@
     },
     "bg": "#FF4D5A",
     "font": "#FFF"
+   },
+   "btn": {
+    "type": "button",
+    "padding": {
+     "top": 0.065,
+     "left": 0.175,
+     "bottom": 0.065,
+     "right": 0.175
+    },
+    "bg": "#FF4D5A",
+    "font": "#FFF",
+    "radius": 0.1,
+    "border": {
+     "color": "transparent",
+     "width": 1.0
+    }
    },
    "btn-login": {
     "type": "button",

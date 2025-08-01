@@ -11,6 +11,7 @@ final Map<String, String> _views = {
   "language": "/app/language",
 
   "home": "/app/home/wg",
+  "me": "/account/home/demo",
 
   "swiper": "/market/swiper/demo",
   "marquee": "/market/marquee/demo",

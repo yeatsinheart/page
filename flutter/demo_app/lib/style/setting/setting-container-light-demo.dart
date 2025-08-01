@@ -28,11 +28,11 @@ var setting = {
   ),
   // 通用容器
   "container": container(
-    img: "assets/images/game1.jpg",
-    //paddingRem: PaddingSetting(all: .1),
-    border: BorderSetting(color: "#ccc"),
-    radiusRem: .1,
-    marginRem: PaddingSetting(all: .2),
+    // img: "assets/images/game1.jpg",
+    paddingRem: PaddingSetting(all: .2),
+    //border: BorderSetting(color: "#ccc"),
+    radiusRem: .14,
+    marginRem: PaddingSetting(horizon: .2,vertical: .1),
     bg: "#FFF",
     shadows: [ShadowSetting(color: "#00000033", blurRadius: 12)],
   ),
@@ -69,7 +69,8 @@ var setting = {
     radiusRem: .14,
     paddingRem: PaddingSetting(all: 0.5),
   ),
-
+  /*linear-gradient(to bottom, #ebebeb 0%, #e3e3e3 100%)*/
+  // bgGradient: GradientSetting.linear(colors: ["#ebebeb","#e3e3e3"],begin:top_center,end:bottom_center)
   "img-loading": container(bg: "#e0e0e0", font: "#fff"),
   "marquee": container(paddingRem: PaddingSetting(left: 0.2, right: 0.2), bg: "transparent", font: "#000"),
 

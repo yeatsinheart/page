@@ -21,8 +21,7 @@ class ContainerFormat extends StatelessWidget {
   _container(Map<String, dynamic>? json, child) {
     if (null == json) return Container(child: child);
     return Container(
-      padding: PaddingFormat.fromJson(json["margin"]),
-      child: Container(
+        margin:  PaddingFormat.fromJson(json["margin"]),
         padding: PaddingFormat.fromJson(json["padding"]),
         decoration: _BoxDecoration(json),
         child:
@@ -32,7 +31,6 @@ class ContainerFormat extends StatelessWidget {
               style: TextStyle(color: ColorUtil.getColor(json["font"])),
               child: ImgBg(json["img"], child, radiusRem: json["radius"]),
             ),
-      ),
     );
   }
 
@@ -69,6 +67,7 @@ class ContainerFormat extends StatelessWidget {
         textButtonTheme: TextButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
         iconButtonTheme: IconButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
         elevatedButtonTheme: ElevatedButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
+        progressIndicatorTheme: ProgressIndicatorThemeData(color: fontColor),
       ), // fontColor: colorPlan.font
       child: child,
     );

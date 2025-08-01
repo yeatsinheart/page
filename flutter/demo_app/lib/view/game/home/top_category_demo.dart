@@ -20,7 +20,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
   ScrollController? _pageScrollController;
 
   final ScrollController _tabScrollController = ScrollController();
-  final List<String> tabs = ['热门游戏', '热门品牌', '电子老虎机', '彩票投注', '体育竞赛', '真人视讯', '捕鱼游戏'];
+  final List<String> tabs = ['关注推荐', '热门精选', '科技资讯', '实时热点', '手机数码', '生活娱乐', '体育财经', '科教文艺', '其它'];
   final List<GlobalKey> _data_keys = [];
   final List<GlobalKey> _tab_keys = [];
   int _currentIndex = 0;

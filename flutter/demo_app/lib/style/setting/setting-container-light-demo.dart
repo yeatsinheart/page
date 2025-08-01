@@ -29,7 +29,7 @@ var setting = {
   // 通用容器
   "container": container(
     // img: "assets/images/game1.jpg",
-    paddingRem: PaddingSetting(all: .2),
+    paddingRem: PaddingSetting(horizon: .2,vertical: .05),
     //border: BorderSetting(color: "#ccc"),
     radiusRem: .14,
     marginRem: PaddingSetting(horizon: .2,vertical: .1),

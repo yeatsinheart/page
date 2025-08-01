@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
-import 'package:flutter3/style/setting/container.dart';
 import 'package:flutter3/util/MyEasyRefresh.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +17,7 @@ class AccountHomeDemo extends StatelessWidget {
     list.add(_buildNavItem(icon: "https://cdn-icons-png.flaticon.com/128/4824/4824252.png", activeIcon: "https://cdn-icons-png.flaticon.com/128/4823/4823363.png", label: "收藏", index: 1));
     list.add(_buildNavItem(icon: "https://cdn-icons-png.flaticon.com/128/4824/4824252.png", activeIcon: "https://cdn-icons-png.flaticon.com/128/4823/4823363.png", label: "浏览历史", index: 1));
     list.add(_buildNavItem(icon: "https://cdn-icons-png.flaticon.com/128/10061/10061767.png", activeIcon: "https://cdn-icons-png.flaticon.com/128/3344/3344374.png", label: "下载管理", index: 2));
-
+    List<String> gridList = List.generate(15, (index) => '选项 ${index + 1}');
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -51,7 +50,13 @@ class AccountHomeDemo extends StatelessWidget {
                 ),
               ),
 
-              ContainerFormat("container", Container(height:AppStyle.byRem(1.4),child:Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: list))),
+              ContainerFormat(
+                "container",
+                Container(
+                  height: AppStyle.byRem(1.4),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: list),
+                ),
+              ),
 
               ContainerFormat(
                 "container",
@@ -69,7 +74,33 @@ class AccountHomeDemo extends StatelessWidget {
                 ),
               ),
 
-              ContainerFormat("container", Container(height: 200)),
+              ContainerFormat(
+                "container",
+                GridView.builder(
+                  itemCount: gridList.length,
+                  shrinkWrap: true,
+                  // ✅ 让 GridView 只占它内容的高度
+                  physics: NeverScrollableScrollPhysics(),
+                  // ✅ 禁用 GridView 的滚动，让 ListView 滚动
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 3.0, // 宽:高 = 2:1
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        // 处理点击
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(border: BoxBorder.all(color: Colors.grey)),
+                        child: Center(child: Text(gridList[index], style: TextStyle(fontSize: 16))),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),

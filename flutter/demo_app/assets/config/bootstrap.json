@@ -220,6 +220,18 @@
     "openViewKey": "me",
     "iconI18nKey": "https://cdn-icons-png.flaticon.com/128/3177/3177440.png",
     "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/1077/1077012.png"
+   },
+   {
+    "titleI18nKey": "充值",
+    "openViewKey": "deposit",
+    "iconI18nKey": "https://cdn-icons-png.flaticon.com/128/9590/9590117.png",
+    "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/6466/6466947.png"
+   },
+   {
+    "titleI18nKey": "提现",
+    "openViewKey": "withdraw",
+    "iconI18nKey": "https://cdn-icons-png.flaticon.com/128/9590/9590117.png",
+    "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/6466/6466947.png"
    }
   ]
  },
@@ -285,9 +297,9 @@
    },
    "container": {
     "padding": {
-     "top": 0.2,
+     "top": 0.05,
      "left": 0.2,
-     "bottom": 0.2,
+     "bottom": 0.05,
      "right": 0.2
     },
     "margin": {

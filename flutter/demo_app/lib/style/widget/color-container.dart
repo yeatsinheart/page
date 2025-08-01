@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/style/color-plan.dart';
+import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/style/theme/style-button.dart';
 import 'package:flutter3/style/theme/style-text.dart';
 
@@ -97,6 +99,7 @@ class ColorContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _theme(context, _container(child));
+    var x = ContainerFormat.render(plan,child);
+    return _theme(context, x);
   }
 }

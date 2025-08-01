@@ -117,7 +117,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
   }
 
   Widget _buildTabBar() {
-    return ColorContainer("game-category-tab",Container(
+    return ColorContainer("tab",Container(
         height: 50,
         child: ScrollConfiguration(
           behavior: _NoScrollbarBehavior(),

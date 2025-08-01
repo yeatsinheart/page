@@ -3,7 +3,8 @@ import 'package:flutter3/util/color-util.dart';
 
 class GradientFormat{
   static _parseAlignment(List<dynamic> position){return Alignment(position[0],position[1]);}
-  static Gradient? fromJson(Map<String, dynamic> json) {
+  static Gradient? fromJson(Map<String, dynamic>? json) {
+    if(null==json)return null;
     final type = (json['type'] as String?)?.toLowerCase() ?? 'linear';
     final colors = (json['colors'] as List?)?.map((c) => ColorUtil.getColor(c)).whereType<Color>().toList() ?? [];
     if (colors.isEmpty) {

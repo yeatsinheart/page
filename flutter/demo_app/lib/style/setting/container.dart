@@ -10,18 +10,28 @@ export 'package:flutter3/style/setting/gradient.dart';
 export 'package:flutter3/style/setting/padding.dart';
 export 'package:flutter3/style/setting/shadow.dart';
 
-Map<String, dynamic> container({String? img, PaddingSetting? padding, String? bg, GradientSetting? bgGradient, String? font, BorderSetting? border, double? radius, ShadowSetting? shadow}) {
-  radius = _clampRadius(radius);
+Map<String, dynamic> container({String? img, PaddingSetting? paddingRem, String? bg, GradientSetting? bgGradient, String? font, BorderSetting? border, double? radiusRem, List<ShadowSetting>? shadows}) {
+  radiusRem = _clampRadius(radiusRem);
   final result = <String, dynamic>{};
 
   if (img != null) result['img'] = img;
-  if (padding != null) result['padding'] = padding.toJson();
+  if (paddingRem != null) result['padding'] = paddingRem.toJson();
   if (bg != null) result['bg'] = bg;
   if (bgGradient != null) result['bgGradient'] = bgGradient.toJson();
   if (font != null) result['font'] = font;
+
+  if (radiusRem != null) result['radius'] = radiusRem??0;
+
   if (border != null) result['border'] = border.toJson();
-  if (radius != null) result['radius'] = radius??0;
-  if (shadow != null) result['shadow'] = shadow.toJson();
+  if(result['radius']!=null && result['radius']>0 && null==result['border']){
+    result['border'] = BorderSetting(color: "transparent");
+  }
+  if (shadows != null && shadows.isNotEmpty) {
+    result['shadows'] = shadows
+        .map((s) => s.toJson())
+        .where((s) => s != null) // 过滤掉为 null 的项
+        .toList();
+  }
 
   return result;
 }

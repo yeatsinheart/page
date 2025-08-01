@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/separator.dart';
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/style/widget/color-container.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand/demo.dart';
 
@@ -66,20 +67,22 @@ class _AppHomeWgState extends State<AppHomeWg> {
                   ),
                   SliverToBoxAdapter(child: AppView.ofKey("swiper")),
 
-                  // 目前存在热重启问题
+                  // web存在热重启问题，可无视
                   SliverToBoxAdapter(child: AppView.ofKey("marquee")),
+                  ..._demos(),
                 ],
               ),
 
               AppView.ofKey("game_home") ?? Container(),
-              
+
               SliverPadding(
                 padding: EdgeInsetsGeometry.symmetric(horizontal: AppStyle.byRem(.2)),
                 sliver: SliverToBoxAdapter(
                   child: Separator(
                     //bg:Colors.red,
-                    radius: AppStyle.byRem(.14),radius_separator: AppStyle.byRem(.14),
-                    bgGradient: LinearGradient(colors: [Colors.blue,Colors.purple]),
+                    radius: AppStyle.byRem(.14),
+                    radius_separator: AppStyle.byRem(.14),
+                    bgGradient: LinearGradient(colors: [Colors.blue, Colors.purple]),
                     children: [
                       Container(height: 150, color: Colors.white),
                       Container(height: 250, color: Colors.white),
@@ -102,7 +105,6 @@ class _AppHomeWgState extends State<AppHomeWg> {
               // 只有可视区域的子项才会被构建（懒加载）。
               SliverList(delegate: SliverChildBuilderDelegate((context, index) => ListTile(title: Text('Item SliverList $index')), childCount: 20)),
 
-
               SliverList(
                 delegate: SliverChildListDelegate(
                   List.generate(20, (index) {
@@ -117,6 +119,25 @@ class _AppHomeWgState extends State<AppHomeWg> {
       ),
     );
   }
+}
+
+_demos() {
+  List list = [];
+  var json = AppStyle.data["color-plan"];
+  //Log.i(json);
+  for (var entry in json.entries) {
+    //print('${entry.key}: ${entry.value}');
+    var k = entry.key;
+    list.add(SliverToBoxAdapter(child: Container(height: 20)));
+    list.add(
+      SliverPadding(
+        padding: EdgeInsetsGeometry.symmetric(horizontal: AppStyle.byRem(.2)),
+        sliver: SliverToBoxAdapter(child: ColorContainer(k, Container(height: 80, child: Text(k)))),
+      ),
+    );
+    list.add(SliverToBoxAdapter(child: Container(height: 20)));
+  }
+  return list;
 }
 
 // 自定义 delegate 来实现吸顶 header

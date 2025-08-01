@@ -13,6 +13,10 @@ final Map<String, String> _views = {
   "home": "/app/home/wg",
   "me": "/account/home/demo",
 
+  "cashier": "/cashier/home/demo",
+  "deposit": "/cashier/deposit/home/demo",
+  "withdraw": "/cashier/withdraw/home/demo",
+
   "swiper": "/market/swiper/demo",
   "marquee": "/market/marquee/demo",
 

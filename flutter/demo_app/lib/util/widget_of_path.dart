@@ -66,7 +66,7 @@ dirLookUp(Directory dir) async {
       if (entity is File && entity.path.endsWith(".dart") && !entity.path.contains("/_child/")) {
         String fileName = p.basename(entity.path); // 只获取文件名
         String file = entity.path.replaceAll(base_path, '');
-        if (file.startsWith("/view/") && !fileName.startsWith("_")) {
+        if (file.startsWith("/view/") && !fileName.startsWith("_") && !fileName.endsWith("app-view.dart")) {
           imports.add("import 'package:${pkg}${file}';");
           String path = file.substring(5, file.length - 5);
           widgets.add({"path": path, "name": fileToName(path)});

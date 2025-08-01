@@ -4,6 +4,7 @@ import 'package:flutter3/demo/main.dart';
 import 'package:flutter3/share/img.dart';
 
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/style/widget/color-container.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
@@ -37,6 +38,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
       Widget widget = AppView.ofKey(item['openViewKey']) ?? Container();
       pages.add(widget);
     }
+
     list.add(_buildNavItem(icon: "https://cdn-icons-png.flaticon.com/128/4824/4824252.png", activeIcon: "https://cdn-icons-png.flaticon.com/128/4823/4823363.png", label: "例子", index: items.length));
     pages.add(ExampleContainer());
 
@@ -47,7 +49,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
       body: pages[_currentIndex],
       bottomNavigationBar: Container(
         height: AppStyle.byRem(1.24),
-        child: ColorContainer("bar-bottom", Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: list)),
+        child: ContainerFormat("bar-bottom", Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: list)),
       ),
     );
   }
@@ -57,7 +59,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
     //自动扩展均分
     return Expanded(
       child: GestureDetector(
-        onTap: () => setState(() => _currentIndex = index),
+        onTap: () {if(index!=_currentIndex)setState(() => _currentIndex = index);},
         behavior: HitTestBehavior.opaque, // 保证整块区域可点
         child: Center(
           child: Column(

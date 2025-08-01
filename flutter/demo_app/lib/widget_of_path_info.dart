@@ -3,6 +3,7 @@ import 'package:flutter3/demo/main.dart';
 import 'package:flutter3/view/app/home/wg.dart';
 import 'package:flutter3/view/app/host_status/index.dart';
 import 'package:flutter3/view/app/language.dart';
+import 'package:flutter3/view/app/network_monitor.dart';
 import 'package:flutter3/view/app/splash/demo.dart';
 import 'package:flutter3/view/game/by_category/left_brand.dart';
 import 'package:flutter3/view/game/home/left_category_demo.dart';
@@ -13,54 +14,27 @@ import 'package:flutter3/view/game/search/demo.dart';
 import 'package:flutter3/view/layout/demo.dart';
 import 'package:flutter3/view/market/marquee/demo.dart';
 import 'package:flutter3/view/market/swiper/demo.dart';
-import 'package:flutter3/view/page/404/undified.dart';
-import 'package:flutter3/view/page/demo.dart';
-import 'package:flutter3/view/page/me/demo.dart';
-import 'package:flutter3/view/page/permission.dart';
 import 'package:flutter3/view/pop/close_bottom.dart';
-
-Widget? widgetOfPath(String? path, {key, params}) {
-  if (null == path) return null;
-  if (null == key) key = UniqueKey();
-  switch (path) {
-    case "/demo/main":
-      return MainDemo(key: key, params: params);
-    case "/app/home/wg":
-      return AppHomeWg(key: key, params: params);
-    case "/app/host_status/index":
-      return AppHostStatusIndex(key: key, params: params);
-    case "/app/language":
-      return AppLanguage(key: key, params: params);
-    case "/app/splash/demo":
-      return AppSplashDemo(key: key, params: params);
-    case "/game/by_category/left_brand":
-      return GameByCategoryLeftBrand(key: key, params: params);
-    case "/game/home/left_category_demo":
-      return GameHomeLeftCategoryDemo(key: key, params: params);
-    case "/game/home/top_category_demo":
-      return GameHomeTopCategoryDemo(key: key, params: params);
-    case "/game/home_category/hot_game_demo":
-      return GameHomeCategoryHotGameDemo(key: key, params: params);
-    case "/game/home_category/list_brand":
-      return GameHomeCategoryListBrand(key: key, params: params);
-    case "/game/search/demo":
-      return GameSearchDemo(key: key, params: params);
-    case "/layout/demo":
-      return LayoutDemo(key: key, params: params);
-    case "/market/marquee/demo":
-      return MarketMarqueeDemo(key: key, params: params);
-    case "/market/swiper/demo":
-      return MarketSwiperDemo(key: key, params: params);
-    case "/page/404/undified":
-      return Page404Undified(key: key, params: params);
-    case "/page/demo":
-      return PageDemo(key: key, params: params);
-    case "/page/me/demo":
-      return PageMeDemo(key: key, params: params);
-    case "/page/permission":
-      return PagePermission(key: key, params: params);
-    case "/pop/close_bottom":
-      return PopCloseBottom(key: key, params: params);
+Widget? widgetOfPath(String? path,{key,params}) {
+  if(null==path)return null;
+  if(null==key)key=UniqueKey();
+  switch (path){
+    case "/demo/main": return MainDemo(key:key,params: params);
+    case "/app/home/wg": return AppHomeWg(key:key,params: params);
+    case "/app/host_status/index": return AppHostStatusIndex(key:key,params: params);
+    case "/app/language": return AppLanguage(key:key,params: params);
+    case "/app/network_monitor": return AppNetworkMonitor(key:key,params: params);
+    case "/app/splash/demo": return AppSplashDemo(key:key,params: params);
+    case "/game/by_category/left_brand": return GameByCategoryLeftBrand(key:key,params: params);
+    case "/game/home/left_category_demo": return GameHomeLeftCategoryDemo(key:key,params: params);
+    case "/game/home/top_category_demo": return GameHomeTopCategoryDemo(key:key,params: params);
+    case "/game/home_category/hot_game_demo": return GameHomeCategoryHotGameDemo(key:key,params: params);
+    case "/game/home_category/list_brand": return GameHomeCategoryListBrand(key:key,params: params);
+    case "/game/search/demo": return GameSearchDemo(key:key,params: params);
+    case "/layout/demo": return LayoutDemo(key:key,params: params);
+    case "/market/marquee/demo": return MarketMarqueeDemo(key:key,params: params);
+    case "/market/swiper/demo": return MarketSwiperDemo(key:key,params: params);
+    case "/pop/close_bottom": return PopCloseBottom(key:key,params: params);
   }
   return null;
 }

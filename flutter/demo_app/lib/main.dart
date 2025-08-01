@@ -79,7 +79,7 @@ _main(child) {
     ),
     navigatorKey: AppContext.navigatorKey,
     debugShowCheckedModeBanner: false,
-    home: Browser(NetworkMonitor(child: child)),
+    home: Browser(AppNetworkMonitor(child: child)),
 
     /// 按照路由展示界面
     // onGenerateRoute: (setting) {

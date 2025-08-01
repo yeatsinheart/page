@@ -69,30 +69,13 @@ class _AppHomeWgState extends State<AppHomeWg> {
 
                   // web存在热重启问题，可无视
                   SliverToBoxAdapter(child: AppView.ofKey("marquee")),
-                  ..._demos(),
                 ],
               ),
 
               AppView.ofKey("game_home") ?? Container(),
 
-              SliverPadding(
-                padding: EdgeInsetsGeometry.symmetric(horizontal: AppStyle.byRem(.2)),
-                sliver: SliverToBoxAdapter(
-                  child: Separator(
-                    //bg:Colors.red,
-                    radius: AppStyle.byRem(.14),
-                    radius_separator: AppStyle.byRem(.14),
-                    bgGradient: LinearGradient(colors: [Colors.blue, Colors.purple]),
-                    children: [
-                      Container(height: 150, color: Colors.white),
-                      Container(height: 250, color: Colors.white),
-                      Container(height: 50, color: Colors.white),
-                    ],
-                  ),
-                ),
-              ),
               // 所有 200 项都会同时构建（因为 shrinkWrap: true 表示先算完高度）。
-              SliverToBoxAdapter(
+              /*SliverToBoxAdapter(
                 child: ListView.builder(
                   itemCount: 20,
                   shrinkWrap: true,
@@ -111,7 +94,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
                     return Text('Item SliverList $index');
                   }),
                 ),
-              ),
+              ),*/
               //SliverToBoxAdapter(child: SizedBox(height: 10000)),
             ],
           ),
@@ -119,22 +102,6 @@ class _AppHomeWgState extends State<AppHomeWg> {
       ),
     );
   }
-}
-
-_demos() {
-  List list = [];
-  var json = AppStyle.data["color-plan"];
-  //Log.i(json);
-  for (var entry in json.entries) {
-    //print('${entry.key}: ${entry.value}');
-    var k = entry.key;
-    list.add(SliverToBoxAdapter(child: Container(height: 20)));
-    list.add(
-      SliverToBoxAdapter(child: ColorContainer(k, Container(height: 80, child: Text(k)))),
-    );
-    list.add(SliverToBoxAdapter(child: Container(height: 20)));
-  }
-  return list;
 }
 
 // 自定义 delegate 来实现吸顶 header

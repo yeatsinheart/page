@@ -22,7 +22,6 @@ globalButtonStyle({Color? fontColor}){
     // 文字颜色
     foregroundColor: WidgetStateProperty.all(fontColor??ColorFont.get().txt),
     textStyle: WidgetStateProperty.all(getTextStyle(fontColor: fontColor)),
-
     padding: WidgetStateProperty.all(EdgeInsets.all(0)),
 
     shape: WidgetStateProperty.all(

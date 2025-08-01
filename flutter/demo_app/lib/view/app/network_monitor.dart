@@ -5,16 +5,16 @@ import 'package:get/get.dart';
 
 import 'host_status/index.dart';
 
-class NetworkMonitor extends StatefulWidget {
-  final Widget child;
-
-  const NetworkMonitor({super.key, required this.child});
+class AppNetworkMonitor extends StatefulWidget {
+  final Widget? child;
+  final params;
+  const AppNetworkMonitor({super.key, this.child,this.params});
 
   @override
-  State<NetworkMonitor> createState() => _NetworkMonitorState();
+  State<AppNetworkMonitor> createState() => _AppNetworkMonitorState();
 }
 
-class _NetworkMonitorState extends State<NetworkMonitor> {
+class _AppNetworkMonitorState extends State<AppNetworkMonitor> {
   bool hasConnection = false;
 
   void netChangeAction(status) {
@@ -51,7 +51,7 @@ class _NetworkMonitorState extends State<NetworkMonitor> {
     if (!hasConnection) {
       return _buildNoNetworkOverlay();
     }
-    return widget.child;
+    return widget.child??Container();
   }
 
   Widget _buildNoNetworkOverlay() {

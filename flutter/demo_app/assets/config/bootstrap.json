@@ -290,11 +290,12 @@
     }
    },
    "container": {
-    "padding": {
-     "top": 0.1,
-     "left": 0.1,
-     "bottom": 0.1,
-     "right": 0.1
+    "img": "assets/images/game1.jpg",
+    "margin": {
+     "top": 0.2,
+     "left": 0.2,
+     "bottom": 0.2,
+     "right": 0.2
     },
     "bg": "#FFF",
     "radius": 0.1,
@@ -322,6 +323,12 @@
      "bottom": 0.3,
      "right": 0.3
     },
+    "margin": {
+     "top": 0.2,
+     "left": 0.2,
+     "bottom": 0.2,
+     "right": 0.2
+    },
     "bg": "#f5f5f5",
     "font": "#737272",
     "radius": 0.2,
@@ -337,11 +344,23 @@
      "bottom": 0.3,
      "right": 0.3
     },
+    "margin": {
+     "top": 0.2,
+     "left": 0.2,
+     "bottom": 0.2,
+     "right": 0.2
+    },
     "bg": "#333",
     "font": "#fff",
     "radius": 0.0
    },
    "modal": {
+    "margin": {
+     "top": 0.2,
+     "left": 0.2,
+     "bottom": 0.2,
+     "right": 0.2
+    },
     "bg": "#fff",
     "radius": 0.14,
     "border": {
@@ -362,6 +381,12 @@
     ]
    },
    "card": {
+    "margin": {
+     "top": 0.2,
+     "left": 0.2,
+     "bottom": 0.2,
+     "right": 0.2
+    },
     "bg": "#fafafa",
     "radius": 0.14,
     "border": {
@@ -388,6 +413,12 @@
      "bottom": 0.5,
      "right": 0.5
     },
+    "margin": {
+     "top": 0.2,
+     "left": 0.2,
+     "bottom": 0.2,
+     "right": 0.2
+    },
     "bg": "#fff",
     "radius": 0.14,
     "border": {
@@ -396,10 +427,26 @@
     }
    },
    "color1": {
+    "padding": {
+     "top": 0.1,
+     "left": 0.2,
+     "bottom": 0.1,
+     "right": 0.2
+    },
     "bg": "#2196F3",
-    "font": "#fff"
+    "font": "#fff",
+    "border": {
+     "color": "#2196F3",
+     "width": 1.0
+    }
    },
    "color1-reverse": {
+    "padding": {
+     "top": 0.1,
+     "left": 0.2,
+     "bottom": 0.1,
+     "right": 0.2
+    },
     "bg": "#2196F3",
     "border": {
      "color": "#2196F3",
@@ -475,6 +522,12 @@
     "font": "#000"
    },
    "bar-brand": {
+    "padding": {
+     "top": 0.0,
+     "left": 0.2,
+     "bottom": 0.0,
+     "right": 0.2
+    },
     "bg": "#FF403A",
     "font": "#FFF"
    },

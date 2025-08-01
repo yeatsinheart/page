@@ -32,7 +32,7 @@ class _MarketSwiperDemoState extends State<MarketSwiperDemo> {
         children: [
           CarouselSlider(
             items: imageList.map((url) {
-              return Container(child: AppImg(url,  radius: AppStyle.byRem(.14)),margin:  EdgeInsets.symmetric(horizontal: 4),);
+              return Container(child: AppImg(url,  radiusRem: .14),margin:  EdgeInsets.symmetric(horizontal: 4),);
             }).toList(),
             carouselController: _controller,
             options: CarouselOptions(

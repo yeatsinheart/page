@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter3/log/logger.dart';
+import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/color-plan.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
@@ -11,18 +13,19 @@ class AppImg extends StatelessWidget {
   final double? square;
   final double? width;
   final double? height;
-  final double? radius;
+  final double? radiusRem;
   final BoxFit? fit;
   final Color? loadingBg;
   final Color? loadingColor;
 
-  AppImg(this.url, {this.square, this.width, this.height, this.radius, this.fit = BoxFit.cover, Color? loadingBg, Color? loadingColor, super.key}) : this.loadingColor = ColorPlan.get("img-loading").font, this.loadingBg = ColorPlan.get("img-loading").bg;
+  AppImg(this.url, {this.square, this.width, this.height, this.radiusRem, this.fit = BoxFit.cover, Color? loadingBg, Color? loadingColor, super.key}) : this.loadingColor = ColorPlan.get("img-loading").font, this.loadingBg = ColorPlan.get("img-loading").bg;
 
   @override
   Widget build(BuildContext context) {
     // ClipOval = ClipRRect[radius为半径时] = 圆形⭕️
     final image = img(url, fit: fit!, loadingBg: loadingBg, loadingColor: loadingColor!);
-    var item = null != radius ? ClipRRect(borderRadius: BorderRadius.circular(radius!), child: image) : image;
+    //Log.i(radiusRem);
+    var item = null != radiusRem ? ClipRRect(borderRadius: BorderRadius.circular(AppStyle.byRem(radiusRem!)), child: image) : image;
 
     final effectiveWidth = square ?? width;
     final effectiveHeight = square ?? height;

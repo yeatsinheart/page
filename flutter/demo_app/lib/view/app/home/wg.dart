@@ -130,10 +130,7 @@ _demos() {
     var k = entry.key;
     list.add(SliverToBoxAdapter(child: Container(height: 20)));
     list.add(
-      SliverPadding(
-        padding: EdgeInsetsGeometry.symmetric(horizontal: AppStyle.byRem(.2)),
-        sliver: SliverToBoxAdapter(child: ColorContainer(k, Container(height: 80, child: Text(k)))),
-      ),
+      SliverToBoxAdapter(child: ColorContainer(k, Container(height: 80, child: Text(k)))),
     );
     list.add(SliverToBoxAdapter(child: Container(height: 20)));
   }

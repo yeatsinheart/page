@@ -16,7 +16,7 @@ import 'package:flutter3/style/setting/container.dart';
 
 var fontsDark = {"title": "#ffffff", "name": "#dddddd", "txt": "#aaaaaa", "ghost": "#666666"};
 var fonts = {"title": "#323233", "name": "#646566", "txt": "#737272", "ghost": "#BBB"};
-var defaultFont=fonts["txt"];
+var defaultFont = fonts["txt"];
 
 var colors = ["#2196F3", "#007BFF", "#F44336", "#E53935", "#4CAF50", "#28A745", "#9C27B0", "#7E57C2", "#FF9800", "#FFA500", "#FFEB3B", "#FFC107", "#00BCD4", "#17A2B8", "#212121", "#333333"];
 var setting = {
@@ -28,27 +28,34 @@ var setting = {
   ),
   // 通用容器
   "container": container(
-    paddingRem: PaddingSetting(all: .1),
+    img: "assets/images/game1.jpg",
+    //paddingRem: PaddingSetting(all: .1),
     border: BorderSetting(color: "#ccc"),
     radiusRem: .1,
+    marginRem: PaddingSetting(all: .2),
     bg: "#FFF",
     shadows: [ShadowSetting(color: "#00000033", blurRadius: 12)],
   ),
 
   "input": container(
-    bg: "#f5f5f5",border: BorderSetting(color: "#ccc"),
+    bg: "#f5f5f5",
+    marginRem: PaddingSetting(all: .2),
+    border: BorderSetting(color: "#ccc"),
     font: "#737272",
     radiusRem: .2,
     paddingRem: PaddingSetting(all: 0.3),
   ),
 
-  "tooltip": container(bg: "#333", radiusRem: 6, font: "#fff", paddingRem: PaddingSetting(all: 0.3)),
+  "tooltip": container(
+      marginRem: PaddingSetting(all: .2),bg: "#333", radiusRem: 6, font: "#fff", paddingRem: PaddingSetting(all: 0.3)),
   "modal": container(
+    marginRem: PaddingSetting(all: .2),
     bg: "#fff",
     radiusRem: .14,
     shadows: [ShadowSetting(color: "#00000033", blurRadius: 12)],
   ),
   "card": container(
+    marginRem: PaddingSetting(all: .2),
     bg: "#fafafa",
     border: BorderSetting(color: "#ccc"),
     radiusRem: .14,
@@ -56,15 +63,22 @@ var setting = {
   ),
 
   "list-item": container(
+    marginRem: PaddingSetting(all: .2),
     bg: "#fff",
     border: BorderSetting(color: "#ddd"),
     radiusRem: .14,
     paddingRem: PaddingSetting(all: 0.5),
   ),
 
-  "color1": container(bg: colors[0], font: "#fff"),
+  "color1": container(
+    bg: colors[0],
+    font: "#fff",
+    border: BorderSetting(color: colors[0]),
+    paddingRem: PaddingSetting(horizon: 0.2, vertical: .1),
+  ),
   "color1-reverse": container(
     bg: colors[0],
+    paddingRem: PaddingSetting(horizon: 0.2, vertical: .1),
     border: BorderSetting(color: colors[0]),
   ),
 
@@ -89,7 +103,7 @@ var setting = {
   "success-soft": container(bg: "#E9F7EF", font: "#4CAF50"), // 柔和绿色背景 + 主绿字体
 
   "bar": container(bg: "#3f15d1", font: "#000"),
-  "bar-brand": container(bg: "#FF403A", font: "#FFF"),
+  "bar-brand": container(bg: "#FF403A", font: "#FFF",paddingRem: PaddingSetting(horizon: 0.2),),
   "bar-bottom": container(
     bgGradient: GradientSetting.linear(colors: ["#7ec1f7", "#FFF"], stops: [0, .8], begin: bottom_center, end: top_center),
     font: "#000",

@@ -8,9 +8,10 @@ globalButtonStyle({Color? fontColor}){
 
     // 去除splash水波纹、highlight hover等
     // 完全禁用点击水波纹动画
-    splashFactory: NoSplash.splashFactory,
-    overlayColor: WidgetStateProperty.all(Colors.transparent),
-    surfaceTintColor: WidgetStateProperty.all(Colors.transparent),
+    // splashFactory: NoSplash.splashFactory,
+    // surfaceTintColor: WidgetStateProperty.all(Colors.transparent),
+    // 鼠标在上面时的周围阴影
+    // overlayColor: WidgetStateProperty.all(Colors.transparent),
 
     //数值越大，阴影越大、越明显，看起来就像“悬浮”得更高。
     elevation: WidgetStateProperty.all(0),
@@ -26,7 +27,7 @@ globalButtonStyle({Color? fontColor}){
 
     shape: WidgetStateProperty.all(
       RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppStyle.byRem(.14)),
+        borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
         side: BorderSide(color: Colors.transparent),
       ),
     ),

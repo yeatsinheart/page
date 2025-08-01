@@ -10,10 +10,11 @@ export 'package:flutter3/style/setting/gradient.dart';
 export 'package:flutter3/style/setting/padding.dart';
 export 'package:flutter3/style/setting/shadow.dart';
 
-Map<String, dynamic> container({String? img, PaddingSetting? paddingRem, PaddingSetting? marginRem,String? bg, GradientSetting? bgGradient, String? font, BorderSetting? border, double? radiusRem, List<ShadowSetting>? shadows}) {
+Map<String, dynamic> container({String? type,String? img, PaddingSetting? paddingRem, PaddingSetting? marginRem,String? bg, GradientSetting? bgGradient, String? font, BorderSetting? border, double? radiusRem, List<ShadowSetting>? shadows}) {
   radiusRem = _clampRadius(radiusRem);
   final result = <String, dynamic>{};
 
+  if (type != null) result['type'] = type;
   if (img != null) result['img'] = img;
   if (paddingRem != null) result['padding'] = paddingRem.toJson();
   if (marginRem != null) result['margin'] = marginRem.toJson();

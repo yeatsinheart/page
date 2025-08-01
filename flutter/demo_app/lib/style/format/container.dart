@@ -6,53 +6,93 @@ import 'package:flutter3/style/format/border.dart';
 import 'package:flutter3/style/format/gradient.dart';
 import 'package:flutter3/style/format/padding.dart';
 import 'package:flutter3/style/format/shadow.dart';
+import 'package:flutter3/style/theme/style-button.dart';
+import 'package:flutter3/style/theme/style-text.dart';
 import 'package:flutter3/style/widget/img-bg.dart';
 import 'package:flutter3/util/color-util.dart';
 
-class ContainerFormat {
-  static render(k, child) {
-    var x = fromJson(AppStyle.data["color-plan"]?[k] ?? {}, child);
-    // if (k == "container") {
-    //   var json = AppStyle.data["color-plan"]?[k]??{};
-    //   Log.i("${json}");
-    // }
-    return x;
-  }
+class ContainerFormat extends StatelessWidget {
+  final String k;
+  final child;
+  final Function? click;
 
-  static fromJson(Map<String, dynamic>? json, child) {
+  const ContainerFormat(this.k, this.child, {this.click, super.key});
+
+  _container(Map<String, dynamic>? json, child) {
     if (null == json) return Container(child: child);
-    // Log.i("${json["shadows"]}");
     return Container(
       padding: PaddingFormat.fromJson(json["margin"]),
-      child:
-      // ClipRRect(
-      //   borderRadius: json["radius"] != null && (json["radius"] > 0) ? BorderRadius.circular(AppStyle.byRem(json["radius"])) : BorderRadius.circular(0),
-      //   child:
-        Container(
-          padding: PaddingFormat.fromJson(json["padding"]),
-          decoration: BoxDecoration(
-            /// 边框
-            border: BorderFormat.fromJson(json["border"]),
-            borderRadius: json["radius"] != null && (json["radius"] > 0) ? BorderRadius.circular(AppStyle.byRem(json["radius"])) : null,
-
-            /// 阴影
-            boxShadow: ShadowFormat.listFromJson(json["shadows"]),
-
-            /// 设置纯色背景颜色
-            color: ColorUtil.getColor(json["bg"]),
-
-            /// 设置渐变背景颜色
-            gradient: GradientFormat.fromJson(json["bgGradient"]),
-          ),
-          child:
-              //DefaultTextStyle 已经在组件树更早的地方被设置了，Text 会优先使用 DefaultTextStyle，而不是你新设置的 Theme.textTheme.bodyMedium。
-              DefaultTextStyle(
-                // 防止嵌套覆盖theme
-                style: TextStyle(color: ColorUtil.getColor(json["font"])),
-                child: ImgBg(json["img"], child,radiusRem: json["radius"],),
-              ),
-        // ),
+      child: Container(
+        padding: PaddingFormat.fromJson(json["padding"]),
+        decoration: _BoxDecoration(json),
+        child:
+            //DefaultTextStyle 已经在组件树更早的地方被设置了，Text 会优先使用 DefaultTextStyle，而不是你新设置的 Theme.textTheme.bodyMedium。
+            DefaultTextStyle(
+              // 防止嵌套覆盖theme
+              style: TextStyle(color: ColorUtil.getColor(json["font"])),
+              child: ImgBg(json["img"], child, radiusRem: json["radius"]),
+            ),
       ),
+    );
+  }
+
+  _button(Map<String, dynamic>? json, child) {
+      return TextButton(
+          style: TextButton.styleFrom(padding: EdgeInsets.zero),
+        onPressed: () {
+          if (null != click) {
+            click!();
+          }
+        },
+        child: child,
+      );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Map<String, dynamic>? config = AppStyle.data["color-plan"]?[k] ?? {};
+    // Log.i("$k ${config?["font"]}");
+    var widget = null;
+    if (config?["type"] == "button") {
+      widget = _button(config, _container(config, child));
+    } else {
+      widget = _container(config, child);
+    }
+    // Log.i("$k ${config?["type"]} $widget");
+
+    return _theme(context, widget);
+  }
+
+  _theme(context, child) {
+    Map<String, dynamic>? data = AppStyle.data["color-plan"]?[k] ?? {};
+    Color? fontColor = ColorUtil.getColor(data?["font"]);
+    if (null == fontColor) return Theme(data: Theme.of(context), child: child);
+    return Theme(
+      data: Theme.of(context).copyWith(
+        textTheme: getTextTheme(fontColor: fontColor),
+        iconTheme: IconThemeData(color: fontColor, fill: 1),
+        textButtonTheme: TextButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
+        iconButtonTheme: IconButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
+        elevatedButtonTheme: ElevatedButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
+      ), // fontColor: colorPlan.font
+      child: child,
+    );
+  }
+
+  _BoxDecoration(Map<String, dynamic> json) {
+    return BoxDecoration(
+      /// 边框
+      border: BorderFormat.fromJson(json["border"]),
+      borderRadius: json["radius"] != null && (json["radius"] > 0) ? BorderRadius.circular(AppStyle.byRem(json["radius"])) : null,
+
+      /// 阴影
+      boxShadow: ShadowFormat.listFromJson(json["shadows"]),
+
+      /// 设置纯色背景颜色
+      color: ColorUtil.getColor(json["bg"]),
+
+      /// 设置渐变背景颜色
+      gradient: GradientFormat.fromJson(json["bgGradient"]),
     );
   }
 }

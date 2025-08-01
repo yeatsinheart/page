@@ -56,7 +56,7 @@ var setting = {
   ),
   "card": container(
     marginRem: PaddingSetting(all: .2),
-    bg: "#fafafa",
+    bgGradient: GradientSetting.linear(colors: ["#2196F3","#21CBF3"]),
     border: BorderSetting(color: "#ccc"),
     radiusRem: .14,
     shadows: [ShadowSetting(color: "#0000001a")],
@@ -70,16 +70,19 @@ var setting = {
     paddingRem: PaddingSetting(all: 0.5),
   ),
 
-  "color1": container(
-    bg: colors[0],
-    font: "#fff",
-    border: BorderSetting(color: colors[0]),
-    paddingRem: PaddingSetting(horizon: 0.2, vertical: .1),
+  "btn-login": container(
+    type: "button",radiusRem: .1,
+    font: colors[0],border: BorderSetting(color: colors[0]),
+    // bgGradient: GradientSetting.linear(colors: ["#2196F3","#21CBF3"],begin: [0,0],end: bottom_right)
+    // border: BorderSetting(color: colors[0]),
+    paddingRem: PaddingSetting(horizon: 0.22, vertical: .09),
   ),
-  "color1-reverse": container(
-    bg: colors[0],
-    paddingRem: PaddingSetting(horizon: 0.2, vertical: .1),
-    border: BorderSetting(color: colors[0]),
+
+  "btn-register": container(
+    type: "button",font: "#fff",radiusRem: .1,
+    bgGradient: GradientSetting.linear(colors: ["#21CBF3","#2196F3"],begin: top_left,end: bottom_right),
+    paddingRem: PaddingSetting(horizon: 0.22, vertical: .09),
+    // border: BorderSetting(color: colors[0]),
   ),
 
   "img-loading": container(bg: "#e0e0e0", font: "#fff"),

@@ -27,11 +27,12 @@ ThemeData getFlutterTheme({Color?bgColor,Color?fontColor,Color?borderColor,Color
     // applyElevationOverlayColor:false,
 
     // 点击时的高亮效果设置为透明 长按时的扩散效果设置为透明 以上两者去除按钮点击水波纹
-    splashFactory: NoSplash.splashFactory,// final bool useInkSparkle = platform == TargetPlatform.android && !kIsWeb;splashFactory ?? useMaterial3? useInkSparkle? InkSparkle.splashFactory: InkRipple.splashFactory: InkSplash.splashFactory;
 
-    hoverColor: Colors.transparent,
-    splashColor: Colors.transparent,
-    highlightColor: Colors.transparent,
+    // splashFactory: NoSplash.splashFactory,// final bool useInkSparkle = platform == TargetPlatform.android && !kIsWeb;splashFactory ?? useMaterial3? useInkSparkle? InkSparkle.splashFactory: InkRipple.splashFactory: InkSplash.splashFactory;
+    // hoverColor: Colors.transparent,
+    // splashColor: Colors.transparent,
+    // highlightColor: Colors.transparent,
+
     // materialTapTargetSize:MaterialTapTargetSize.padded,
     // COLOR
     // brightness:Brightness(),

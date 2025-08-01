@@ -47,22 +47,8 @@ class ColorContainer extends StatelessWidget {
     );
   }
 
-  _theme(context, child) {
-    ColorPlan colorPlan = ColorPlan.get(plan);
-    return Theme(
-      data: Theme.of(context).copyWith(
-        textTheme: getTextTheme(fontColor: colorPlan.font),
-        textButtonTheme: TextButtonThemeData(style: globalButtonStyle(fontColor: colorPlan.font)),
-        iconTheme: IconThemeData(color: colorPlan.font, fill: 1),
-        iconButtonTheme: IconButtonThemeData(style: globalButtonStyle(fontColor: colorPlan.font)),
-      ), // fontColor: colorPlan.font
-      child: child,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    var x = ContainerFormat.render(plan,child);
-    return _theme(context, x);
+    return ContainerFormat(plan, child);
   }
 }

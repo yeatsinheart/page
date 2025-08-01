@@ -18,7 +18,7 @@ var fontsDark = {"title": "#ffffff", "name": "#dddddd", "txt": "#aaaaaa", "ghost
 var fonts = {"title": "#323233", "name": "#646566", "txt": "#737272", "ghost": "#BBB"};
 var defaultFont = fonts["txt"];
 
-var colors = ["#2196F3", "#007BFF", "#F44336", "#E53935", "#4CAF50", "#28A745", "#9C27B0", "#7E57C2", "#FF9800", "#FFA500", "#FFEB3B", "#FFC107", "#00BCD4", "#17A2B8", "#212121", "#333333"];
+var colors = ["#ff4b52","#2196F3", "#007BFF", "#F44336", "#E53935", "#4CAF50", "#28A745", "#9C27B0", "#7E57C2", "#FF9800", "#FFA500", "#FFEB3B", "#FFC107", "#00BCD4", "#17A2B8", "#212121", "#333333"];
 var setting = {
   "browser": container(
     bgGradient: GradientSetting.linear(colors: ["#81FFEF", "#F067B4"], stops: [0.1, 1], begin: top_right, end: bottom_left),
@@ -70,21 +70,6 @@ var setting = {
     paddingRem: PaddingSetting(all: 0.5),
   ),
 
-  "btn-login": container(
-    type: "button",radiusRem: .1,
-    font: colors[0],border: BorderSetting(color: colors[0]),
-    // bgGradient: GradientSetting.linear(colors: ["#2196F3","#21CBF3"],begin: [0,0],end: bottom_right)
-    // border: BorderSetting(color: colors[0]),
-    paddingRem: PaddingSetting(horizon: 0.22, vertical: .09),
-  ),
-
-  "btn-register": container(
-    type: "button",font: "#fff",radiusRem: .1,
-    bgGradient: GradientSetting.linear(colors: ["#21CBF3","#2196F3"],begin: top_left,end: bottom_right),
-    paddingRem: PaddingSetting(horizon: 0.22, vertical: .09),
-    // border: BorderSetting(color: colors[0]),
-  ),
-
   "img-loading": container(bg: "#e0e0e0", font: "#fff"),
   "marquee": container(paddingRem: PaddingSetting(left: 0.2, right: 0.2), bg: "transparent", font: "#000"),
 
@@ -106,11 +91,34 @@ var setting = {
   "success-soft": container(bg: "#E9F7EF", font: "#4CAF50"), // 柔和绿色背景 + 主绿字体
 
   "bar": container(bg: "#3f15d1", font: "#000"),
-  "bar-brand": container(bg: "#FF403A", font: "#FFF",paddingRem: PaddingSetting(horizon: 0.2),),
   "bar-bottom": container(
     bgGradient: GradientSetting.linear(colors: ["#7ec1f7", "#FFF"], stops: [0, .8], begin: bottom_center, end: top_center),
     font: "#000",
   ),
+
+  "bar-brand": container(bg: "#FF4D5A", font: "#FFF",paddingRem: PaddingSetting(horizon: 0.2),),
+
+  "btn": container(
+    type: "button",
+    bg: "#FF4D5A",font: "#FFF",
+    radiusRem: .1,
+    paddingRem: PaddingSetting(horizon: 0.175, vertical: .065),
+  ),
+  "btn-login": container(
+    type: "button",
+    bg: "#fff",font: "#333",
+    radiusRem: .1,
+    paddingRem: PaddingSetting(horizon: 0.175, vertical: .065),
+  ),
+
+  "btn-register": container(
+    type: "button",
+    bg:"#FFFFFF17",font: "#fff",
+    border: BorderSetting(color: "#FFFFFF29"),
+    radiusRem: .1,
+    paddingRem: PaddingSetting(horizon: 0.175, vertical: .065),
+  ),
+
 };
 
 main() async {

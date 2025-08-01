@@ -18,10 +18,11 @@ class ContainerFormat extends StatelessWidget {
 
   const ContainerFormat(this.k, this.child, {this.click, super.key});
 
-  _container(Map<String, dynamic>? json, child) {
+  _container(Map<String, dynamic>? json, child,{align}) {
     if (null == json) return Container(child: child);
     return Container(
       padding: PaddingFormat.fromJson(json["margin"]),
+      alignment: align,
       child: Container(
         padding: PaddingFormat.fromJson(json["padding"]),
         decoration: _BoxDecoration(json),
@@ -38,7 +39,13 @@ class ContainerFormat extends StatelessWidget {
 
   _button(Map<String, dynamic>? json, child) {
       return TextButton(
-          style: TextButton.styleFrom(padding: EdgeInsets.zero),
+        // style: TextButton.styleFrom(
+        //   padding: EdgeInsets.zero,
+        //   minimumSize: Size(0, 0), // ✅ 移除 TextButton 默认最小尺寸
+        //   tapTargetSize: MaterialTapTargetSize.shrinkWrap, // ✅ 去除额外可点击区域
+        //   // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        // ),
+          //style: TextButton.styleFrom(padding: EdgeInsets.zero),
         onPressed: () {
           if (null != click) {
             click!();
@@ -54,7 +61,7 @@ class ContainerFormat extends StatelessWidget {
     // Log.i("$k ${config?["font"]}");
     var widget = null;
     if (config?["type"] == "button") {
-      widget = _button(config, _container(config, child));
+      widget = _button(config, _container(config, child));//加了这个Container高度反而占满了,align: Alignment.center
     } else {
       widget = _container(config, child);
     }

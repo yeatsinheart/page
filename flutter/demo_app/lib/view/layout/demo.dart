@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/demo/example-container.dart';
+import 'package:flutter3/demo/main.dart';
 import 'package:flutter3/share/img.dart';
 
 import 'package:flutter3/style/app-style.dart';
@@ -35,6 +37,11 @@ class _LayoutDemoState extends State<LayoutDemo> {
       Widget widget = AppView.ofKey(item['openViewKey']) ?? Container();
       pages.add(widget);
     }
+    list.add(_buildNavItem(icon: "https://cdn-icons-png.flaticon.com/128/4824/4824252.png", activeIcon: "https://cdn-icons-png.flaticon.com/128/4823/4823363.png", label: "例子", index: items.length));
+    pages.add(ExampleContainer());
+
+    list.add(_buildNavItem(icon: "https://cdn-icons-png.flaticon.com/128/10061/10061767.png", activeIcon: "https://cdn-icons-png.flaticon.com/128/3344/3344374.png", label: "测试", index: items.length+1));
+    pages.add(MainDemo());
 
     return Scaffold(
       body: pages[_currentIndex],

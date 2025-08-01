@@ -74,30 +74,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
               ),
 
               AppView.ofKey("game_home") ?? Container(),
-              SliverToBoxAdapter(child: TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero, // 去除默认 padding
-                ),
-                child: Ink(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFF2196F3), Color(0xFF21CBF3)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    alignment: Alignment.center,
-                    child: Text(
-                      '渐变按钮',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),),
+
               SliverPadding(
                 padding: EdgeInsetsGeometry.symmetric(horizontal: AppStyle.byRem(.2)),
                 sliver: SliverToBoxAdapter(

@@ -11,6 +11,22 @@ var buttons = {
     paddingRem: PaddingSetting(horizon: 0.175, vertical: .065),
   ),
 
+  "btn-can-not-click": container(
+    type: "button",
+    bg: "#fff",
+    font: "#333",
+    radiusRem: .1,
+    paddingRem: PaddingSetting(horizon: 0.175, vertical: .065),
+  ),
+
+  "btn-can-click": container(
+    type: "button",
+    bg: "#fff",
+    font: "#333",
+    radiusRem: .1,
+    paddingRem: PaddingSetting(horizon: 0.175, vertical: .065),
+  ),
+
   "btn-login": container(
     type: "button",
     bg: "#fff",

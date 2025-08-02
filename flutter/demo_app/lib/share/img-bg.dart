@@ -5,8 +5,8 @@ class ImgBg extends StatelessWidget {
   final url;
   final child;
   final double? radiusRem;
-
-  const ImgBg(this.url, this.child, {this.radiusRem, super.key});
+  final BoxFit? fit;
+  const ImgBg(this.url, this.child, {this.radiusRem,this.fit, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ImgBg extends StatelessWidget {
         : Stack(
             children: [
               Positioned.fill(
-                child: AppImg(url!, radiusRem: radiusRem, loadingBg: Colors.transparent, loadingColor: Colors.transparent),
+                child: AppImg(url!, radiusRem: radiusRem, fit:fit,loadingBg: Colors.transparent, loadingFont: Colors.transparent),
               ),
               child,
             ],

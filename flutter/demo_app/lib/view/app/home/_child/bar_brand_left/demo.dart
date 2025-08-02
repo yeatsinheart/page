@@ -12,7 +12,7 @@ class BarBrandLeftDemo extends StatelessWidget {
     return Row(
       children: [
         // 左侧 logo
-        AppImg('http://android-artworks.25pp.com/fs08/2025/07/29/11/125_82f5f2f4d108ed66632096e3abf042cf_con.png', width: AppStyle.byRem(0.7), height: AppStyle.byRem(0.7)),
+        AppImg('assets/jinritoutiao.png', width: AppStyle.byRem(0.7), height: AppStyle.byRem(0.7)),
       ],
     );
   }

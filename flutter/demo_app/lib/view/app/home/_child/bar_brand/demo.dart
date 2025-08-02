@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
-import 'package:flutter3/style/widget/color-container.dart';
+import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand_left/demo.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand_right/demo.dart';
 
@@ -11,9 +11,8 @@ class BarBrandDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ColorContainer(
+    return ContainerFormat(
       "bar-brand",Row(children: [BarBrandLeftDemo(), Spacer(), BarBrandRightDemo()]),
-      padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
     );
   }
 }

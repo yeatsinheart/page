@@ -2,21 +2,23 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class Separator extends StatefulWidget {
+class ColumnSeparator extends StatefulWidget {
   final double radius; // 不能超过容器高度-间隔半径
-  final double radius_separator;
   final List<Widget> children;
+
   final Color? bg;
   final Gradient? bgGradient;
+
+  final double radius_separator;
   final Color dashColor;
 
-  Separator({this.radius = 10, this.radius_separator = 10, this.children = const <Widget>[], this.bgGradient, this.bg , this.dashColor = Colors.grey});
+  ColumnSeparator({this.radius = 10, this.radius_separator = 10, this.children = const <Widget>[], this.bgGradient, this.bg, this.dashColor = Colors.grey});
 
   @override
   _SeparatorState createState() => _SeparatorState();
 }
 
-class _SeparatorState extends State<Separator> {
+class _SeparatorState extends State<ColumnSeparator> {
   final List<GlobalKey> _childKeys = [];
   final List<Widget> itemsWithKey = [];
   final List<double> clipPaths = [];
@@ -59,11 +61,6 @@ class _SeparatorState extends State<Separator> {
   }
 
   /*
-  CustomPaint(painter: _DashedLinePainter(radius_separator: widget.radius_separator, clipPaths: clipPaths,dashColor: Colors.grey),
-      child: )
-  * */
-
-  /*
 1. painter (背景绘制)
 2. child (正常布局的 widget)
 3. foregroundPainter (前景绘制) 给child上画
@@ -72,10 +69,11 @@ class _SeparatorState extends State<Separator> {
   @override
   Widget build(BuildContext context) {
     return ClipPath(
-      clipper: _ColumnClipper(radius_parent: widget.radius, radius_separator: widget.radius_separator, clipPaths: clipPaths), //将child 裁剪出圈出的模样
+      clipper: _ColumnClipper(radius_parent: widget.radius, radius_separator: widget.radius_separator, clipPaths: clipPaths),
       child: CustomPaint(
         foregroundPainter: _DashedLinePainter(radius_separator: widget.radius_separator, clipPaths: clipPaths, dashColor: widget.dashColor),
         child: Container(
+          // 裁剪 形状
           decoration: BoxDecoration(color: widget.bg, gradient: widget.bgGradient),
           child: Column(children: itemsWithKey),
         ),

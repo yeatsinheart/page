@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/share/img.dart';
-import 'package:flutter3/style/widget/color-container.dart';
-import 'package:flutter3/view/app/language.dart';
 import 'package:flutter3/view/cashier/home/demo.dart';
-import 'package:get/get.dart';
 
 
 class MainDemo extends StatefulWidget {
@@ -19,6 +15,6 @@ class MainDemo extends StatefulWidget {
 class _MainDemoState extends State<MainDemo> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return CashierHomeDemo();;
+    return CashierHomeDemo();
   }
 }

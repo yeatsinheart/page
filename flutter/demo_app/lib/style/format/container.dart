@@ -8,7 +8,7 @@ import 'package:flutter3/style/format/padding.dart';
 import 'package:flutter3/style/format/shadow.dart';
 import 'package:flutter3/style/theme/style-button.dart';
 import 'package:flutter3/style/theme/style-text.dart';
-import 'package:flutter3/style/widget/img-bg.dart';
+import 'package:flutter3/share/img-bg.dart';
 import 'package:flutter3/util/color-util.dart';
 
 class ContainerFormat extends StatelessWidget {

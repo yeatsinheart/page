@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/marquee.dart';
 import 'package:flutter3/style/app-style.dart';
-import 'package:flutter3/style/widget/color-container.dart';
+import 'package:flutter3/style/format/container.dart';
 
 
 class MarketMarqueeDemo extends StatefulWidget {
@@ -56,7 +56,7 @@ class _MarketMarqueeDemoState extends State<MarketMarqueeDemo> {
 
   @override
   Widget build(BuildContext context) {
-    return ColorContainer("marquee",Container(
+    return ContainerFormat("marquee",Container(
       height: AppStyle.byRem(.5),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),

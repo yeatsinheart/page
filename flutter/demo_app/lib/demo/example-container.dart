@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/share/separator.dart';
+import 'package:flutter3/share/column-separator.dart';
 import 'package:flutter3/style/app-style.dart';
-import 'package:flutter3/style/widget/color-container.dart';
+import 'package:flutter3/style/format/container.dart';
 
 class ExampleContainer extends StatelessWidget {
   @override
@@ -16,7 +16,7 @@ class ExampleContainer extends StatelessWidget {
               SliverPadding(
                 padding: EdgeInsetsGeometry.symmetric(horizontal: AppStyle.byRem(.2)),
                 sliver: SliverToBoxAdapter(
-                  child: Separator(
+                  child: ColumnSeparator(
                     //bg:Colors.red,
                     radius: AppStyle.byRem(.14),
                     radius_separator: AppStyle.byRem(.14),
@@ -45,7 +45,7 @@ class ExampleContainer extends StatelessWidget {
       //print('${entry.key}: ${entry.value}');
       var k = entry.key;
       list.add(SliverToBoxAdapter(child: Container(height: 20)));
-      list.add(SliverToBoxAdapter(child: Container(height: 50, child: ColorContainer(k, Text(k)))));
+      list.add(SliverToBoxAdapter(child: Container(height: 50, child: ContainerFormat(k, Text(k)))));
       list.add(SliverToBoxAdapter(child: Container(height: 20)));
     }
     return list;

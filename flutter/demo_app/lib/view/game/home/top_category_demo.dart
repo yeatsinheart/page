@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
-import 'package:flutter3/style/widget/color-container.dart';
+import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
 
@@ -117,7 +117,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
   }
 
   Widget _buildTabBar() {
-    return ColorContainer("tab",Container(
+    return ContainerFormat("tab",Container(
         height: 50,
         child: ScrollConfiguration(
           behavior: _NoScrollbarBehavior(),

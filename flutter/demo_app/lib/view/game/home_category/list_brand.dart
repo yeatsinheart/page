@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
-import 'package:flutter3/style/widget/color-container.dart';
+import 'package:flutter3/style/format/container.dart';
 
 import 'package:get/get.dart';
 
@@ -91,7 +91,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
             bottom: 0,
             left: 0,
             right: 0,
-            child: ColorContainer("txt-cover",Container(
+            child: ContainerFormat("txt-cover",Container(
               height: 50,
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
               // decoration: BoxDecoration(

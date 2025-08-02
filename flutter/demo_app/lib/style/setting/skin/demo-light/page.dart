@@ -27,7 +27,7 @@ var page = {
   "img-loading": container(bg: "#e0e0e0", font: "#fff"),
 
   "txt-cover": container(
-    bgGradient: GradientSetting.linear(colors: ["#0000004d", "transparent"], stops: [0, .8], begin: bottom_center, end: top_center),
+    bgGradient: GradientSetting.linear(colors: ["#0000004d", "transparent"], stops: [0, .9], begin: bottom_center, end: top_center),
     font: "#fff",
   ),
 

@@ -1,17 +1,17 @@
-import 'package:flutter3/style/rem.dart';
+import 'package:flutter3/style/rem-setting.dart';
 
 class PaddingSetting {
-  late Rem top;
-  late Rem left;
-  late Rem bottom;
-  late Rem right;
+  late RemSetting top;
+  late RemSetting left;
+  late RemSetting bottom;
+  late RemSetting right;
 
   // 以 rem 为单位，7.5rem = 100%
-  PaddingSetting({Rem? all, Rem? horizon, Rem? vertical, Rem? top, Rem? left, Rem? bottom, Rem? right}) {
-    this.top = top ?? vertical ?? all ?? Rem.ofRem(0);
-    this.bottom = bottom ?? vertical ?? all ?? Rem.ofRem(0);
-    this.left = left ?? horizon ?? all ?? Rem.ofRem(0);
-    this.right = right ?? horizon ?? all ?? Rem.ofRem(0);
+  PaddingSetting({RemSetting? all, RemSetting? horizon, RemSetting? vertical, RemSetting? top, RemSetting? left, RemSetting? bottom, RemSetting? right}) {
+    this.top = top ?? vertical ?? all ?? RemSetting.ofRem(0);
+    this.bottom = bottom ?? vertical ?? all ?? RemSetting.ofRem(0);
+    this.left = left ?? horizon ?? all ?? RemSetting.ofRem(0);
+    this.right = right ?? horizon ?? all ?? RemSetting.ofRem(0);
     top?.check(maxLimit: 3.75);
     bottom?.check(maxLimit: 3.75);
     left?.check(maxLimit: 3.75);

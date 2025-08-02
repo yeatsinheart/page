@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter3/style/rem.dart';
+import 'package:flutter3/style/rem-setting.dart';
 import 'package:flutter3/style/setting/container.dart';
 
 import 'bars.dart';
@@ -44,29 +44,29 @@ var colors = [
 
 var setting = {
 
-  "tooltip": container(margin: PaddingSetting(all: Rem.ofRem(.2)), bg: "#333",
-      border: BorderSetting(borderRadius: Rem.byPx(6)),
-      font: "#fff", padding: PaddingSetting(all: Rem.ofRem(.3))),
+  "tooltip": container(margin: PaddingSetting(all: RemSetting.ofRem(.2)), bg: "#333",
+      border: BorderSetting(borderRadius: RemSetting.byPx(6)),
+      font: "#fff", padding: PaddingSetting(all: RemSetting.ofRem(.3))),
 
   "modal": container(
-    margin: PaddingSetting(all: Rem.ofRem(.2)),
+    margin: PaddingSetting(all: RemSetting.ofRem(.2)),
     bg: "#fff",
-    border: BorderSetting(borderRadius: Rem.ofRem(.14)),
-    shadows: [ShadowSetting(color: "#00000033", blurRadius: Rem.byPx(12))],
+    border: BorderSetting(borderRadius: RemSetting.ofRem(.14)),
+    shadows: [ShadowSetting(color: "#00000033", blurRadius: RemSetting.byPx(12))],
   ),
 
   "card": container(
-    margin: PaddingSetting(all:  Rem.ofRem(.2)),
+    margin: PaddingSetting(all:  RemSetting.ofRem(.2)),
     bgGradient: GradientSetting.linear(colors: ["#2196F3", "#21CBF3"]),
-    border: BorderSetting(color: "#ccc",borderRadius: Rem.ofRem(.14)),
+    border: BorderSetting(color: "#ccc",borderRadius: RemSetting.ofRem(.14)),
     shadows: [ShadowSetting(color: "#0000001a")],
   ),
 
   "list-item": container(
-    margin: PaddingSetting(all: Rem.ofRem(.2)),
+    margin: PaddingSetting(all: RemSetting.ofRem(.2)),
     bg: "#fff",
-    border: BorderSetting(color: "#ddd",borderRadius: Rem.ofRem(.14)),
-    padding: PaddingSetting(all: Rem.ofRem(.5)),
+    border: BorderSetting(color: "#ddd",borderRadius: RemSetting.ofRem(.14)),
+    padding: PaddingSetting(all: RemSetting.ofRem(.5)),
   ),
 
 };

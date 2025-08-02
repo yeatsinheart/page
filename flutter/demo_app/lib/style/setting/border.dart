@@ -1,15 +1,15 @@
-import 'package:flutter3/style/rem.dart';
+import 'package:flutter3/style/rem-setting.dart';
 
 class BorderSetting {
   final String? color;
-   Rem? width;
-   Rem? borderRadius;
+   RemSetting? width;
+   RemSetting? borderRadius;
 
-  BorderSetting({String? this.color, Rem? this.width, Rem? this.borderRadius});
+  BorderSetting({String? this.color, RemSetting? this.width, RemSetting? this.borderRadius});
 
 
   Map<String, dynamic>? toJson() {
-    if(null==width){width = Rem.byPx(1);}
+    if(null==width){width = RemSetting.byPx(1);}
     width?.check(maxLimit: 3.75);
     borderRadius?.check();
     final result = <String, dynamic>{};

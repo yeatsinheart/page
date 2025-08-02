@@ -1,4 +1,4 @@
-import 'package:flutter3/style/rem.dart';
+import 'package:flutter3/style/rem-setting.dart';
 import 'package:flutter3/style/setting/container.dart';
 
 var fonts = {"title": "#323233", "name": "#646566", "txt": "#737272", "ghost": "#BBB"};
@@ -16,12 +16,12 @@ var page = {
   // 通用容器
   "container": container(
     // img: "assets/images/game1.jpg",
-    margin: PaddingSetting(horizon:  Rem.ofRem(.2), top:  Rem.ofRem(.1)),
-    padding: PaddingSetting(horizon:  Rem.ofRem(.2), vertical:  Rem.ofRem(.05)),
+    margin: PaddingSetting(horizon:  RemSetting.ofRem(.2), top:  RemSetting.ofRem(.1)),
+    padding: PaddingSetting(horizon:  RemSetting.ofRem(.2), vertical:  RemSetting.ofRem(.05)),
     //border: BorderSetting(color: "#ccc"),
-    border: BorderSetting(borderRadius: Rem.ofRem(.14)),
+    border: BorderSetting(borderRadius: RemSetting.ofRem(.14)),
     bg: "#FFF",
-    shadows: [ShadowSetting(color: "#00000033", blurRadius: Rem.byPx(12))],
+    shadows: [ShadowSetting(color: "#00000033", blurRadius: RemSetting.byPx(12))],
   ),
 
   "img-loading": container(bg: "#e0e0e0", font: "#fff"),

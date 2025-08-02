@@ -5,7 +5,6 @@ import 'package:flutter3/app-route.dart';
 import 'package:flutter3/share/img.dart';
 
 import 'package:flutter3/style/app-style.dart';
-import 'package:flutter3/style/rem.dart';
 
 class AppSplashDemo extends StatefulWidget {
   final dynamic params;

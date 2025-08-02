@@ -1,16 +1,16 @@
-import 'package:flutter3/style/rem.dart';
+import 'package:flutter3/style/rem-setting.dart';
 
 class ShadowSetting {
   final String? color;
-  final Rem blurRadius;
-  final Rem spreadRadius;
+  final RemSetting blurRadius;
+  final RemSetting spreadRadius;
   final List<double> offset;
   final String blurStyle; // normal, solid, outer, inner
 
-  ShadowSetting({String? color, Rem? blurRadius, Rem? spreadRadius, List<double>? offset, String blurStyle = "normal"})
+  ShadowSetting({String? color, RemSetting? blurRadius, RemSetting? spreadRadius, List<double>? offset, String blurStyle = "normal"})
     : color = _cleanColor(color),
-      blurRadius = blurRadius ?? Rem.byPx(6),
-      spreadRadius = spreadRadius ?? Rem.byPx(2),
+      blurRadius = blurRadius ?? RemSetting.byPx(6),
+      spreadRadius = spreadRadius ?? RemSetting.byPx(2),
       offset = (offset != null && offset.length == 2) ? offset : [0, 3],
       blurStyle = blurStyle;
 

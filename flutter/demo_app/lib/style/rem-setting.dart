@@ -1,16 +1,16 @@
-class Rem {
+class RemSetting {
   double size;
 
   // 私有构造函数
-  Rem._internal(this.size);
+  RemSetting._internal(this.size);
 
   /// 根据 px 设定
-  static Rem byPx(double px) {
-    return Rem._internal(px / 100);
+  static RemSetting byPx(double px) {
+    return RemSetting._internal(px / 100);
   }
   /// 根据 rem 设定
-  static Rem ofRem(double rem) {
-    return Rem._internal(rem);
+  static RemSetting ofRem(double rem) {
+    return RemSetting._internal(rem);
   }
 
   // rem 在指定宽度中代表多少px
@@ -30,7 +30,7 @@ class Rem {
 
   @override
   bool operator ==(Object other) {
-    return size==other || other is Rem && other.size == size;
+    return size==other || other is RemSetting && other.size == size;
   }
 
   @override

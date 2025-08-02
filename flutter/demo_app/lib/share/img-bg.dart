@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/style/rem.dart';
 
 class ImgBg extends StatelessWidget {
   final url;

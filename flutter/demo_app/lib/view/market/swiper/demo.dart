@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
 
 import 'package:flutter3/style/app-style.dart';
-import 'package:flutter3/style/rem.dart';
 
 class MarketSwiperDemo extends StatefulWidget {
   const MarketSwiperDemo({super.key, required params});

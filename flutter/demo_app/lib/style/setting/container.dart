@@ -1,6 +1,6 @@
 library setting;
 
-import 'package:flutter3/style/rem.dart';
+import 'package:flutter3/style/rem-setting.dart';
 import 'package:flutter3/style/setting/border.dart';
 import 'package:flutter3/style/setting/gradient.dart';
 import 'package:flutter3/style/setting/padding.dart';

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
 
 import 'package:flutter3/style/app-style.dart';
-import 'package:flutter3/style/rem.dart';
 
 class GameHomeCategoryHotGameDemo extends StatefulWidget {
   final dynamic params;
@@ -28,10 +27,10 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
   int columns = 3;
   int leastShow = 6;
   int total = 20;
-  Rem crossAxisSpacing = Rem.byPx(8); // 水平间距
-  Rem mainAxisSpacing = Rem.byPx(8); // 垂直间距
+  double crossAxisSpacing = 8; // 水平间距
+  double mainAxisSpacing = 8; // 垂直间距
+  double borderRadius = 12; // 宽高比
   double childAspectRatio = 3 / 4; // 宽高比
-  Rem borderRadius = Rem.byPx(12); // 宽高比
   final List<Item> items = List.generate(20, (index) => Item("fasdfasfasfasfasdfasdfasdfasdfasfasfasdfsadTitle $index", "https://via.placeholder.com/100"));
 
   @override
@@ -48,8 +47,8 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
   @override
   Widget build(BuildContext context) {
     final displayItems = _expanded ? items : items.take(leastShow).toList();
-    double gridWidthRem = (7.5 - (crossAxisSpacing.size * (columns - 1))) / columns; // 宽高比
-    double gridHeightRem = gridWidthRem / childAspectRatio; // 宽高比
+    double gridWidth = (AppStyle.viewWidth - (crossAxisSpacing * (columns - 1))) / columns; // 宽高比
+    double gridHeight = gridWidth / childAspectRatio; // 宽高比
 
     return Column(
       children: [
@@ -75,16 +74,16 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: columns, // 每行 3 个
             childAspectRatio: childAspectRatio, //宽高比 = 宽 / 高
-            mainAxisSpacing: AppStyle.byRem(mainAxisSpacing.size), // 垂直间距
-            crossAxisSpacing: AppStyle.byRem(crossAxisSpacing.size), // 水平间距
+            mainAxisSpacing: AppStyle.byPx(mainAxisSpacing), // 垂直间距
+            crossAxisSpacing: AppStyle.byPx(crossAxisSpacing), // 水平间距
           ),
           itemBuilder: (context, index) {
             final item = displayItems[index];
             return ClipRRect(
-              borderRadius: BorderRadius.circular(AppStyle.byRem(borderRadius.size)), // 圆角半径
+              borderRadius: BorderRadius.circular(AppStyle.byPx(borderRadius)), // 圆角半径
               child: Stack(
                 children: [
-                  AppImg(item.imageUrl, width: AppStyle.byRem(gridWidthRem), height: AppStyle.byRem(gridHeightRem)),
+                  AppImg(item.imageUrl, width: AppStyle.byRem(gridWidth), height: AppStyle.byRem(gridHeight)),
                   // 底部标题，遮罩 + 居中 + 固定高度
                   Positioned(
                     bottom: 0,

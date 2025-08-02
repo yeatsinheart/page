@@ -1,6 +1,5 @@
 library setting;
 
-import 'package:flutter3/style/setting/rem-setting.dart';
 import 'package:flutter3/style/setting/border.dart';
 import 'package:flutter3/style/setting/gradient.dart';
 import 'package:flutter3/style/setting/padding.dart';
@@ -16,8 +15,8 @@ Map<String, dynamic> container({
   String? img,
   PaddingSetting? padding,
   PaddingSetting? margin,
-  String? bg,
   GradientSetting? bgGradient,
+  String? bg,
   String? font,
   BorderSetting? border,
   List<ShadowSetting>? shadows,
@@ -28,11 +27,13 @@ Map<String, dynamic> container({
   if (img != null) result['img'] = img;
   if (padding != null) result['padding'] = padding.toJson();
   if (margin != null) result['margin'] = margin.toJson();
-  if (bg != null) result['bg'] = bg;
-  if (bgGradient != null) result['bgGradient'] = bgGradient.toJson();
-  if (font != null) result['font'] = font;
-
   if (border != null) result['border'] = border.toJson();
+
+  if (bgGradient != null) result['bgGradient'] = bgGradient.toJson();
+
+  if (bg != null) result['bg'] = _cleanColor(bg);
+
+  if (font != null) result['font'] = _cleanColor(font);
 
   if (shadows != null && shadows.isNotEmpty) {
     result['shadows'] = shadows
@@ -42,6 +43,12 @@ Map<String, dynamic> container({
   }
 
   return result;
+}
+
+String? _cleanColor(String? c) {
+  if (c == null) return null;
+  final trimmed = c.trim();
+  return trimmed.isEmpty ? null : trimmed;
 }
 
 double? _clampRadius(double? r) {

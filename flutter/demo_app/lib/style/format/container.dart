@@ -1,6 +1,7 @@
 library setting;
 
 import 'package:flutter/material.dart';
+import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/share/img-bg.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/format/border.dart';
@@ -20,7 +21,8 @@ class ContainerFormat extends StatelessWidget {
 
   _container(Map<String, dynamic>? json, child) {
     if (null == json) return Container(child: child);
-    var border = json["border"];
+    var borderConfig = json["border"];
+
     return Container(
       margin: PaddingFormat.fromJson(json["margin"]),
       padding: PaddingFormat.fromJson(json["padding"]),
@@ -30,7 +32,7 @@ class ContainerFormat extends StatelessWidget {
           DefaultTextStyle(
             // 防止嵌套覆盖theme
             style: TextStyle(color: ColorUtil.getColor(json["font"])),
-            child: ImgBg(json["img"], child, borderRadius: border?["radius"]),
+            child: ImgBg(json["img"], child, borderRadius: AppStyle.byRem(borderConfig?["borderRadius"]??0)),
           ),
     );
   }
@@ -75,11 +77,11 @@ class ContainerFormat extends StatelessWidget {
   }
 
   _BoxDecoration(Map<String, dynamic> json) {
-    var border = json["border"];
+    var borderConfig = json["border"];
     return BoxDecoration(
       /// 边框
-      border: BorderFormat.fromJson(border),
-      borderRadius: border["borderRadius"] != null && (border["borderRadius"] > 0) ? BorderRadius.circular(AppStyle.byRem(border["borderRadius"])) : null,
+      border: BorderFormat.fromJson(borderConfig),
+      borderRadius:borderConfig!=null&&borderConfig["borderRadius"] != null && (borderConfig["borderRadius"] > 0) ? BorderRadius.circular(AppStyle.byRem(borderConfig["borderRadius"])) : null,
 
       /// 阴影
       boxShadow: ShadowFormat.listFromJson(json["shadows"]),

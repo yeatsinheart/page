@@ -56,7 +56,8 @@ _errWidget(loadingColor) => AspectRatio(
     heightFactor: 0.36,
     child: FittedBox(
       fit: BoxFit.contain,
-      child: Icon(Icons.broken_image, color: loadingColor),
+      child: Icon(Icons.image, color: loadingColor),
+      // child: Icon(Icons.broken_image, color: loadingColor),
     ),
   ),
 );

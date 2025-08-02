@@ -2,13 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/style/format/container.dart';
 
-Widget sliver_grid_demo(List<dynamic> list, {numberOfRow, gap = 8, aspectRatio = 3 / 4}) {
+Widget grid_sliver_demo(List<dynamic> list, {Function render=card_demo,numberOfRow, gap = 8, aspectRatio = 3 / 4}) {
   return SliverGrid(
     delegate: SliverChildBuilderDelegate((context, index) {
-      return card_demo(list[index]);
+      return render(list[index]);
     }, childCount: list.length),
-
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: numberOfRow, childAspectRatio: aspectRatio, crossAxisSpacing: gap, mainAxisSpacing: gap),
+  );
+}
+
+Widget grid_demo(List<dynamic> list, {Function render=card_demo,bool shrinkWrap=false,numberOfRow=3, gap = 8, aspectRatio = 3 / 4}) {
+  return GridView.builder(
+    shrinkWrap: shrinkWrap,
+    physics: shrinkWrap?NeverScrollableScrollPhysics():BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: numberOfRow, childAspectRatio: aspectRatio, crossAxisSpacing: gap, mainAxisSpacing: gap),
+    itemBuilder: (context, index) => render(list[index]),
+    itemCount: list.length,
   );
 }
 

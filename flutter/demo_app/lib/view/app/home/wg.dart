@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/share/column-separator.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand/demo.dart';

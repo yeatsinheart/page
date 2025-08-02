@@ -5,6 +5,7 @@ import 'package:flutter3/app-route.dart';
 import 'package:flutter3/share/img.dart';
 
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/style/rem.dart';
 
 class AppSplashDemo extends StatefulWidget {
   final dynamic params;
@@ -53,7 +54,7 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
                     children: <Widget>[
-                      AppImg("logo", width: 32, height: 32),
+                      AppImg("logo", square: AppStyle.byPx(32)),
                       Text("name", style: TextStyle(fontSize: 14)),
                     ],
                   ),

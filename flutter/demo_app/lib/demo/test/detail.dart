@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/demo/game.dart';
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/style/rem.dart';
 
 import '../../share/img.dart';
 
@@ -24,7 +25,7 @@ class TestDetail extends StatelessWidget {
                   height: AppStyle.screenHeight,
                   child: Stack(
                     children: <Widget>[
-                      AppImg(game!.imageUrl, fit: BoxFit.cover, height: 500),
+                      AppImg(game!.imageUrl, fit: BoxFit.cover, height: AppStyle.byRem(Rem.byPx(500).size)),
                       SafeArea(
                         bottom: false,
                         child: Padding(

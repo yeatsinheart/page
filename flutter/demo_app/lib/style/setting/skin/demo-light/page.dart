@@ -1,3 +1,4 @@
+import 'package:flutter3/style/rem.dart';
 import 'package:flutter3/style/setting/container.dart';
 
 var fonts = {"title": "#323233", "name": "#646566", "txt": "#737272", "ghost": "#BBB"};
@@ -15,17 +16,22 @@ var page = {
   // 通用容器
   "container": container(
     // img: "assets/images/game1.jpg",
-    marginRem: PaddingSetting(horizon: .2, top: .1),
-    paddingRem: PaddingSetting(horizon: .2, vertical: .05),
+    margin: PaddingSetting(horizon:  Rem.ofRem(.2), top:  Rem.ofRem(.1)),
+    padding: PaddingSetting(horizon:  Rem.ofRem(.2), vertical:  Rem.ofRem(.05)),
     //border: BorderSetting(color: "#ccc"),
-    radiusRem: .14,
+    border: BorderSetting(borderRadius: Rem.ofRem(.14)),
     bg: "#FFF",
-    shadows: [ShadowSetting(color: "#00000033", blurRadius: 12)],
+    shadows: [ShadowSetting(color: "#00000033", blurRadius: Rem.byPx(12))],
   ),
 
   "img-loading": container(bg: "#e0e0e0", font: "#fff"),
 
   "txt-cover": container(
+    bgGradient: GradientSetting.linear(colors: ["#0000004d", "transparent"], stops: [0, .8], begin: bottom_center, end: top_center),
+    font: "#fff",
+  ),
+
+  "focus": container(
     bgGradient: GradientSetting.linear(colors: ["#0000004d", "transparent"], stops: [0, .8], begin: bottom_center, end: top_center),
     font: "#fff",
   ),

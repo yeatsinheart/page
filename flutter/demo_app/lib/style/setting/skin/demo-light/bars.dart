@@ -1,3 +1,4 @@
+import 'package:flutter3/style/rem.dart';
 import 'package:flutter3/style/setting/container.dart';
 
 var bars = {
@@ -7,10 +8,18 @@ var bars = {
     bgGradient: GradientSetting.linear(colors: ["#7ec1f7", "#FFF"], stops: [0, .8], begin: bottom_center, end: top_center),
     font: "#000",
   ),
-  "bar-brand": container(bg: "#FF4D5A", font: "#FFF", paddingRem: PaddingSetting(horizon: 0.2)),
+  "bar-brand": container(
+    bg: "#FF4D5A",
+    font: "#FFF",
+    padding: PaddingSetting(horizon: Rem.ofRem(.2)),
+  ),
 
   /*linear-gradient(to bottom, #ebebeb 0%, #e3e3e3 100%)*/
   // bgGradient: GradientSetting.linear(colors: ["#ebebeb","#e3e3e3"],begin:top_center,end:bottom_center)
-  "bar-marquee": container(paddingRem: PaddingSetting(left: 0.2, right: 0.2), bg: "transparent", font: "#000"),
+  "bar-marquee": container(
+    padding: PaddingSetting(horizon: Rem.ofRem(.2)),
+    bg: "transparent",
+    font: "#000",
+  ),
   "marquee": container(bg: "transparent", font: "#000"),
 };

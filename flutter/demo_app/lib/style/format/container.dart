@@ -20,6 +20,7 @@ class ContainerFormat extends StatelessWidget {
 
   _container(Map<String, dynamic>? json, child) {
     if (null == json) return Container(child: child);
+    var border = json["border"];
     return Container(
       margin: PaddingFormat.fromJson(json["margin"]),
       padding: PaddingFormat.fromJson(json["padding"]),
@@ -29,7 +30,7 @@ class ContainerFormat extends StatelessWidget {
           DefaultTextStyle(
             // 防止嵌套覆盖theme
             style: TextStyle(color: ColorUtil.getColor(json["font"])),
-            child: ImgBg(json["img"], child, radiusRem: json["radius"]),
+            child: ImgBg(json["img"], child, borderRadius: border?["radius"]),
           ),
     );
   }
@@ -74,10 +75,11 @@ class ContainerFormat extends StatelessWidget {
   }
 
   _BoxDecoration(Map<String, dynamic> json) {
+    var border = json["border"];
     return BoxDecoration(
       /// 边框
-      border: BorderFormat.fromJson(json["border"]),
-      borderRadius: json["radius"] != null && (json["radius"] > 0) ? BorderRadius.circular(AppStyle.byRem(json["radius"])) : null,
+      border: BorderFormat.fromJson(border),
+      borderRadius: border["borderRadius"] != null && (border["borderRadius"] > 0) ? BorderRadius.circular(AppStyle.byRem(border["borderRadius"])) : null,
 
       /// 阴影
       boxShadow: ShadowFormat.listFromJson(json["shadows"]),

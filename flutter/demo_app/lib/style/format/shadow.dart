@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/log/logger.dart';
+import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/util/color-util.dart';
 class ShadowFormat {
   static BoxShadow? fromJson(Map<String, dynamic>? json) {
@@ -8,8 +9,8 @@ class ShadowFormat {
     if (c == null) return null;
     return BoxShadow(
       color: c,
-      spreadRadius: (json["spreadRadius"] ?? 0).toDouble(),
-      blurRadius: (json["blurRadius"] ?? 0).toDouble(),
+      spreadRadius: AppStyle.byRem((json["spreadRadius"] ?? 0).toDouble()),
+      blurRadius:  AppStyle.byRem((json["blurRadius"] ?? 0).toDouble()),
       offset: Offset(
         (json["offset"]?[0] ?? 0).toDouble(),
         (json["offset"]?[1] ?? 0).toDouble(),

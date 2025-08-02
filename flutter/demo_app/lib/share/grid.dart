@@ -22,7 +22,7 @@ Widget grid_demo(List<dynamic> list, {Function render=card_demo,bool shrinkWrap=
 }
 
 Widget card_demo(data, {borderRadiusRem = .12, bg = Colors.grey, nestTitle = true}) {
-  Widget img = AppImg(data["imgI18nKey"], radiusRem: borderRadiusRem);
+  Widget img = AppImg(data["imgI18nKey"], borderRadius: borderRadiusRem);
   Widget name = Text(
     data["nameI18nKey"],
     textAlign: TextAlign.center,

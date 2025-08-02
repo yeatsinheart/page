@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
 
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/style/rem.dart';
 
 class MarketSwiperDemo extends StatefulWidget {
   const MarketSwiperDemo({super.key, required params});
@@ -31,7 +32,7 @@ class _MarketSwiperDemoState extends State<MarketSwiperDemo> {
         children: [
           CarouselSlider(
             items: imageList.map((url) {
-              return Container(child: AppImg(url,  radiusRem: .14),margin:  EdgeInsets.symmetric(horizontal: 4),);
+              return Container(child: AppImg(url,  borderRadius: AppStyle.byRem(.14)),margin:  EdgeInsets.symmetric(horizontal: AppStyle.byRem(.065)),);
             }).toList(),
             carouselController: _controller,
             options: CarouselOptions(
@@ -57,11 +58,11 @@ class _MarketSwiperDemoState extends State<MarketSwiperDemo> {
                 return GestureDetector(
                   onTap: () => _controller.animateToPage(entry.key),
                   child: Container(
-                    width: _currentIndex == entry.key ? 24 : 8.0,
-                    height: 8.0,
-                    margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                    width: _currentIndex == entry.key ? AppStyle.byPx(24) : AppStyle.byPx(8),
+                    height: AppStyle.byPx(8.0),
+                    margin:  EdgeInsets.symmetric(horizontal: AppStyle.byPx(4.0)),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4.0), // 圆角一半，即可变成 pill 形状或小圆点
+                      borderRadius: BorderRadius.circular(AppStyle.byPx(4.0)), // 圆角一半，即可变成 pill 形状或小圆点
                       shape: BoxShape.rectangle,
                       color: _currentIndex == entry.key ? AppStyle.getMainColor() : AppStyle.getMainColor().withValues(alpha: 0.3),
                     ),

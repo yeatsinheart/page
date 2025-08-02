@@ -4,6 +4,7 @@ import 'package:flutter3/app-route.dart';
 import 'package:flutter3/demo/game.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/style/rem.dart';
 
 
 import 'nestcs.dart';
@@ -55,9 +56,8 @@ class _AppStoreState extends State<TestAppstore> with TickerProviderStateMixin {
                         AppImg(
                           // 'https://s33xa.runtu123.com/0/global/1741121380209_icon_btm_sy.avif'
                           'https://99designs-blog.imgix.net/blog/wp-content/uploads/2022/06/Starbucks_Corporation_Logo_2011.svg-e1657703028844.png?auto=format&q=60&fit=max&w=930',
-                          width: 50,
-                          height: 50,
-                          radiusRem: .14,
+                          square: AppStyle.byPx(Rem.byPx(50).size),
+                          borderRadius: AppStyle.byRem(Rem.ofRem(.14).size),
                         ),
                       ],
                     ),

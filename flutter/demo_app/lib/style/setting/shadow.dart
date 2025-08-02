@@ -1,12 +1,20 @@
+import 'package:flutter3/style/rem.dart';
+
 class ShadowSetting {
   final String? color;
-  final double blurRadius;
-  final double spreadRadius;
+  final Rem blurRadius;
+  final Rem spreadRadius;
   final List<double> offset;
   final String blurStyle; // normal, solid, outer, inner
 
-  ShadowSetting({String? color, double blurRadius = 6, double spreadRadius = 2, List<double>? offset, String blurStyle = "normal"}) : color = _cleanColor(color), blurRadius = _clamp(blurRadius), spreadRadius = _clamp(spreadRadius), offset = (offset != null && offset.length == 2) ? offset : [0, 3], blurStyle = blurStyle;
+  ShadowSetting({String? color, Rem? blurRadius, Rem? spreadRadius, List<double>? offset, String blurStyle = "normal"})
+    : color = _cleanColor(color),
+      blurRadius = blurRadius ?? Rem.byPx(6),
+      spreadRadius = spreadRadius ?? Rem.byPx(2),
+      offset = (offset != null && offset.length == 2) ? offset : [0, 3],
+      blurStyle = blurStyle;
 
+  // 两个redius 的值在0-100
   static double _clamp(double value) => (value >= 0 && value <= 100) ? value : 0;
 
   static String? _cleanColor(String? c) {

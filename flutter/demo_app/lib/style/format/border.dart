@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/util/color-util.dart';
 
 class BorderFormat {
@@ -7,6 +8,6 @@ class BorderFormat {
     if(null==json)return null;
     Color? c = ColorUtil.getColor(json["color"]);
     if(null==c) return null;
-    return Border.all(color:c, width: json["width"]);
+    return Border.all(color:c, width: AppStyle.byRem(json["width"]));
   }
 }

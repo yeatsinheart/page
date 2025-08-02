@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-context.dart';
+import 'package:flutter3/style/rem.dart';
 import 'package:flutter3/util/color-util.dart';
 
 class AppStyle {
@@ -12,11 +13,16 @@ class AppStyle {
     return v * viewWidth / 100;
   }
 
-  static byRem(v) {
-    // 7.5rem=100%;
-    return v * viewWidth / (750 / 100);
+  // 直接按照 px 设定 固定布局px
+  static byPx(double pxValue) {
+    return byRem(Rem.byPx(pxValue).size);
   }
 
+  static byRem(double remValue) {
+    // 7.5rem=100%;
+    return Rem.getPx(remValue,viewWidth);
+  }
+  /// 实际宽度
   static double get viewWidth{
     return min(_screenWidth, maxWidth ?? _screenWidth);;
   }

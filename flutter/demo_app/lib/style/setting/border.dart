@@ -1,26 +1,27 @@
+import 'package:flutter3/style/rem.dart';
+
 class BorderSetting {
-  /// 默认边框颜色和宽度（单位为 rem，最大值 7.5）
   final String? color;
-  final double width;
+   Rem? width;
+   Rem? borderRadius;
 
-  BorderSetting({String? color, double width = 1}) : width = _clamp(width), color = _cleanColor(color);
+  BorderSetting({String? this.color, Rem? this.width, Rem? this.borderRadius});
 
-  static String? _cleanColor(String? c) {
-    if (c == null) return null;
-    final trimmed = c.trim();
-    return trimmed.isEmpty ? null : trimmed;
-  }
-
-  static double _clamp(double w) {
-    return (w >= 0 && w <= 7.5) ? w : 0;
-  }
 
   Map<String, dynamic>? toJson() {
-    if (color == null && width <= 0) return null;
-
+    if(null==width){width = Rem.byPx(1);}
+    width?.check(maxLimit: 3.75);
+    borderRadius?.check();
     final result = <String, dynamic>{};
-    if (color != null) result['color'] = color;
-    if (width > 0) result['width'] = width;
+    result['color'] = _cleanColor(color);
+    result['width'] = width;
+    result['borderRadius'] = borderRadius;
     return result;
+  }
+
+  static String? _cleanColor(String? c) {
+    if (c == null) return "transparent";
+    final trimmed = c.trim();
+    return trimmed.isEmpty ? "transparent" : trimmed;
   }
 }

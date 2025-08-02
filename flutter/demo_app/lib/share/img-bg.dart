@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
+import 'package:flutter3/style/rem.dart';
 
 class ImgBg extends StatelessWidget {
   final url;
   final child;
-  final double? radiusRem;
+  final double? borderRadius;
   final BoxFit? fit;
-  const ImgBg(this.url, this.child, {this.radiusRem,this.fit, super.key});
+  const ImgBg(this.url, this.child, {this.borderRadius,this.fit, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class ImgBg extends StatelessWidget {
         : Stack(
             children: [
               Positioned.fill(
-                child: AppImg(url!, radiusRem: radiusRem, fit:fit,loadingBg: Colors.transparent, loadingFont: Colors.transparent),
+                child: AppImg(url!, borderRadius: borderRadius, fit:fit,loadingBg: Colors.transparent, loadingFont: Colors.transparent),
               ),
               child,
             ],

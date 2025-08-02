@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/color-plan.dart';
+import 'package:flutter3/style/rem.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 
@@ -13,27 +14,28 @@ class AppImg extends StatelessWidget {
   final double? square;
   final double? width;
   final double? height;
-
-  final double? radiusRem;
+  final double? borderRadius;
 
   final BoxFit? fit;
   final Color? loadingBg;
   final Color? loadingFont;
 
-  AppImg(this.url, {this.square, this.width, this.height, this.radiusRem, this.fit = BoxFit.cover, Color? this.loadingBg, Color? this.loadingFont, super.key});
+  AppImg(this.url, {this.square, this.width, this.height, this.borderRadius, this.fit = BoxFit.cover, Color? this.loadingBg, Color? this.loadingFont, super.key});
 
   @override
   Widget build(BuildContext context) {
     // ClipOval = ClipRRect[radius为半径时] = 圆形⭕️
     ColorPlan colorPlan = ColorPlan.get("img-loading");
-    final image = img(url, fit: fit!, loadingBg: loadingBg ?? colorPlan.bg, loadingFont: loadingFont ?? colorPlan.font);
+    final raw_image = img(url, fit: fit!, loadingBg: loadingBg ?? colorPlan.bg, loadingFont: loadingFont ?? colorPlan.font);
     //Log.i(radiusRem);
-    var item = null != radiusRem ? ClipRRect(borderRadius: BorderRadius.circular(AppStyle.byRem(radiusRem!)), child: image) : image;
+    var clipped_image = (null != borderRadius ? ClipRRect(borderRadius: BorderRadius.circular(borderRadius!), child: raw_image) : raw_image);
 
     final effectiveWidth = square ?? width;
     final effectiveHeight = square ?? height;
-    if (effectiveWidth == null && effectiveHeight == null) return item;
-    return SizedBox(width: effectiveWidth, height: effectiveHeight, child: item);
+    // 没有宽高限制
+    if (effectiveWidth == null && effectiveHeight == null) return clipped_image;
+
+    return SizedBox(width: effectiveWidth, height: effectiveHeight, child: clipped_image);
   }
 }
 

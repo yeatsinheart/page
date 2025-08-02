@@ -23,7 +23,7 @@ globalButtonStyle({Color? fontColor}){
     foregroundColor: WidgetStateProperty.all(fontColor??ColorFont.get().txt),
     textStyle: WidgetStateProperty.all(getTextStyle(fontColor: fontColor)),
     padding: WidgetStateProperty.all(EdgeInsets.all(0)),
-
+    minimumSize:WidgetStateProperty.all(Size(0, 0)),// 按钮最小限制
     shape: WidgetStateProperty.all(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),

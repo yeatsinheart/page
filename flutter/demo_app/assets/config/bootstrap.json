@@ -222,16 +222,10 @@
     "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/1077/1077012.png"
    },
    {
-    "titleI18nKey": "充值",
-    "openViewKey": "deposit",
-    "iconI18nKey": "https://cdn-icons-png.flaticon.com/128/9590/9590117.png",
-    "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/6466/6466947.png"
-   },
-   {
-    "titleI18nKey": "提现",
-    "openViewKey": "withdraw",
-    "iconI18nKey": "https://cdn-icons-png.flaticon.com/128/9590/9590117.png",
-    "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/6466/6466947.png"
+    "titleI18nKey": "收银台",
+    "openViewKey": "cashier",
+    "iconI18nKey": "https://cdn-icons-png.flaticon.com/128/4689/4689923.png",
+    "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/5705/5705161.png"
    }
   ]
  },

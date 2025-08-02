@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/style/widget/color-container.dart';
 import 'package:flutter3/view/app/language.dart';
+import 'package:flutter3/view/cashier/home/demo.dart';
 import 'package:get/get.dart';
 
 
@@ -18,27 +19,6 @@ class MainDemo extends StatefulWidget {
 class _MainDemoState extends State<MainDemo> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ColorContainer(
-          "page",
-          Padding(
-            padding: EdgeInsets.all(16.0), // 这里设置内边距
-            child: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("testImage"))),
-                SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("assets/images/game1.jpg"))),
-                SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("assets/images/game2.png"))),
-                SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("assets/images/game3.jpg"))),
-                SliverToBoxAdapter(child: Text("testImage".tr)),
-                SliverToBoxAdapter(child: Text("testImage".trParams())),
-                SliverToBoxAdapter(child: Text("微信".tr)),
-                SliverToBoxAdapter(child: SizedBox(child: AppLanguage())),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+    return CashierHomeDemo();;
   }
 }

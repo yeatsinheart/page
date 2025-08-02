@@ -1,6 +1,7 @@
 library setting;
 
 import 'package:flutter/material.dart';
+import 'package:flutter3/share/img-bg.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/format/border.dart';
 import 'package:flutter3/style/format/gradient.dart';
@@ -8,7 +9,6 @@ import 'package:flutter3/style/format/padding.dart';
 import 'package:flutter3/style/format/shadow.dart';
 import 'package:flutter3/style/theme/style-button.dart';
 import 'package:flutter3/style/theme/style-text.dart';
-import 'package:flutter3/share/img-bg.dart';
 import 'package:flutter3/util/color-util.dart';
 
 class ContainerFormat extends StatelessWidget {
@@ -21,23 +21,23 @@ class ContainerFormat extends StatelessWidget {
   _container(Map<String, dynamic>? json, child) {
     if (null == json) return Container(child: child);
     return Container(
-        margin:  PaddingFormat.fromJson(json["margin"]),
-        padding: PaddingFormat.fromJson(json["padding"]),
-        decoration: _BoxDecoration(json),
-        child:
-            //DefaultTextStyle 已经在组件树更早的地方被设置了，Text 会优先使用 DefaultTextStyle，而不是你新设置的 Theme.textTheme.bodyMedium。
-            DefaultTextStyle(
-              // 防止嵌套覆盖theme
-              style: TextStyle(color: ColorUtil.getColor(json["font"])),
-              child: ImgBg(json["img"], child, radiusRem: json["radius"]),
-            ),
+      margin: PaddingFormat.fromJson(json["margin"]),
+      padding: PaddingFormat.fromJson(json["padding"]),
+      decoration: _BoxDecoration(json),
+      child:
+          //DefaultTextStyle 已经在组件树更早的地方被设置了，Text 会优先使用 DefaultTextStyle，而不是你新设置的 Theme.textTheme.bodyMedium。
+          DefaultTextStyle(
+            // 防止嵌套覆盖theme
+            style: TextStyle(color: ColorUtil.getColor(json["font"])),
+            child: ImgBg(json["img"], child, radiusRem: json["radius"]),
+          ),
     );
   }
 
   _button(Map<String, dynamic>? json, child) {
     return Align(
       alignment: Alignment.center,
-      child: TextButton(onPressed: click == null ? null : () => click!(), child: child),
+      child: TextButton(onPressed: click == null ? () => {} : () => click!(), child: child),
     );
   }
 

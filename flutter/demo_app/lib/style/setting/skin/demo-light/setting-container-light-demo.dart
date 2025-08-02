@@ -71,11 +71,12 @@ var setting = {
 };
 
 main() async {
-  print(jsonEncode({...setting,...page,...bars,...buttons,...inputs,...notifies}));
+  var config = {...page,...bars,...buttons,...inputs,...notifies,...setting,};
+  print(jsonEncode(config));
   // 同步到配置文件中 方便调试
   String path = 'assets/config/bootstrap.json';
   final json = await readJsonFile(path);
-  json["style"]["color-plan"] = setting;
+  json["style"]["color-plan"] = config;
   print('');
   print('');
   print('');

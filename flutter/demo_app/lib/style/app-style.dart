@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-context.dart';
-import 'package:flutter3/style/rem-setting.dart';
 import 'package:flutter3/util/color-util.dart';
 
 class AppStyle {
@@ -13,14 +12,16 @@ class AppStyle {
     return v * viewWidth / 100;
   }
 
-  // 直接按照 px 设定 固定布局px
   static byPx(double pxValue) {
-    return byRem(RemSetting.byPx(pxValue).size);
+    // 与 设计稿 等比例 还原
+    // ??px/750px = pxValue/viewWidth
+    return pxValue*750/viewWidth;
   }
-
-  static byRem(double remValue) {
+  static byRem(double rem) {
     // 7.5rem=100%;
-    return RemSetting.getPx(remValue,viewWidth);
+    // 屏幕750px 1rem = 100px
+    // 当前屏幕   1rem = 100px * viewWidth/750 (等比例屏幕)
+    return rem * 100 * (viewWidth/750);
   }
   /// 实际宽度
   static double get viewWidth{

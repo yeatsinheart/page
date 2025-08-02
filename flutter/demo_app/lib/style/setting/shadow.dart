@@ -1,4 +1,4 @@
-import 'package:flutter3/style/rem-setting.dart';
+import 'package:flutter3/style/setting/rem-setting.dart';
 
 class ShadowSetting {
   final String? color;

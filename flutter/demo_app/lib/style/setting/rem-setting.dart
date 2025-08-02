@@ -4,11 +4,11 @@ class RemSetting {
   // 私有构造函数
   RemSetting._internal(this.size);
 
-  /// 根据 px 设定
+  /// 根据 px 设定 750px设计稿 100px=1rem
   static RemSetting byPx(double px) {
     return RemSetting._internal(px / 100);
   }
-  /// 根据 rem 设定
+  /// 根据 rem 设定 750px设计稿 100px=1rem
   static RemSetting ofRem(double rem) {
     return RemSetting._internal(rem);
   }

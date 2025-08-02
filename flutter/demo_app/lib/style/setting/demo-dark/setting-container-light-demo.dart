@@ -68,9 +68,6 @@ var setting = {
     paddingRem: PaddingSetting(all: 0.5),
   ),
 
-  /*linear-gradient(to bottom, #ebebeb 0%, #e3e3e3 100%)*/
-  // bgGradient: GradientSetting.linear(colors: ["#ebebeb","#e3e3e3"],begin:top_center,end:bottom_center)
-  "marquee": container(paddingRem: PaddingSetting(left: 0.2, right: 0.2), bg: "transparent", font: "#000"),
 };
 
 main() async {

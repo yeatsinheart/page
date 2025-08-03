@@ -62,7 +62,7 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
       children: [
         ContainerFormat(
           "section",
-          grid_demo_wrap(payments, width: AppStyle.byRem((7.5 - 0.4) / 3), gap: AppStyle.byRem(.5), render: _payment),
+          grid_demo_wrap(payments, num: 3,  render: _payment),
           width: double.infinity,
         ),
 

@@ -22,6 +22,7 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     scaffoldBackgroundColor: Colors.transparent,
 
     primaryColor: AppStyle.getMainColor(),
+    colorScheme: ColorScheme.fromSeed(seedColor:  AppStyle.getMainColor()),
     secondaryHeaderColor: AppStyle.getMainColor(),
     hoverColor: AppStyle.getMainColor(),
     highlightColor: AppStyle.getMainColor(),
@@ -95,7 +96,6 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
 
     buttonTheme: ButtonThemeData(padding: EdgeInsetsGeometry.all(0),minWidth: 0,height: 0),
 
-    // 旧的
     textButtonTheme: TextButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
     iconButtonTheme: IconButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
     elevatedButtonTheme: ElevatedButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),

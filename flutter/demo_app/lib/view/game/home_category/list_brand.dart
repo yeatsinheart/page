@@ -55,7 +55,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
               ),
             ],
           ),
-          grid_demo(List.generate(expanded ? 32 : 6, (_) => "$title"), render: buildGridItem, shrinkWrap: true),
+          grid_demo_aspect_ratio(List.generate(expanded ? 32 : 6, (_) => "$title"), render: buildGridItem, shrinkWrap: true),
           if (!expanded)
             Center(
               child: TextButton(

@@ -27,7 +27,9 @@ class DepositService {
     {"code":"USDT-Omni","name":"ERC-20","logo":"","logo3x1":"","status":"maintaining"},
 
   ];
-  payments(){}
+  payments(){
+    return list;
+  }
 
   channels(){
     return [

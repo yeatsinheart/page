@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/service/cashier/deposit.dart';
+import 'package:flutter3/share/grid.dart';
+import 'package:flutter3/share/img.dart';
+import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 
-class CashierDepositHomeDemo extends StatefulWidget{
+class CashierDepositHomeDemo extends StatefulWidget {
   final dynamic params;
+
   const CashierDepositHomeDemo({super.key, this.params});
 
   @override
@@ -13,69 +18,73 @@ class CashierDepositHomeDemo extends StatefulWidget{
 // bool get wantKeepAlive => true;
 
 class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
+  List<Map<String, dynamic>> payments = DepositService().payments();
+  String chosen = "";
+  @override
+  @override
+  void initState() {
+    super.initState();
+    if(null!=payments && payments.length>0){
+      chosen = payments[0]["code"];
+    }
+  }
+  _payment(payment) {
+    return GestureDetector(
+      onTap: () {
+        // 处理点击
+        setState(() {
+          chosen = payment["code"];
+        });
+      },
+      child: Column(
+        children: [
+          AspectRatio(aspectRatio: 1, child:AppImg(payment["logo"]), ),
+          Center(child: Text(payment["name"], style: TextStyle(fontSize: AppStyle.byPx(24),color: payment["code"]==chosen?AppStyle.getMainColor():null))),
+          // Center(child: Text(payment["name"], style: TextStyle(fontSize: AppStyle.byRem(.22)))),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     List<String> gridList = List.generate(15, (index) => '选项 ${index + 1}');
 
+    return Column(
+      children: [
+        ContainerFormat("container", grid_demo_aspect_ratio(payments, aspectRatio:3/4,numberOfRow:5,render: _payment, shrinkWrap: true,)),
 
-
-    return Column(children: [
-      ContainerFormat("container", GridView.builder(
-        itemCount: gridList.length,
-        shrinkWrap: true,                    // ✅ 让 GridView 只占它内容的高度
-        physics: NeverScrollableScrollPhysics(),  // ✅ 禁用 GridView 的滚动，让 ListView 滚动
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 3.0, // 宽:高 = 2:1
-          crossAxisCount: 3,crossAxisSpacing: 10,mainAxisSpacing: 10,
-        ),
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              // 处理点击
-            },
-            child: Container(
-              decoration: BoxDecoration(border: BoxBorder.all(color: Colors.grey)),
-              child: Center(
-                child: Text(
-                  gridList[index],
-                  style: TextStyle(fontSize: 16),
-                ),
+        ContainerFormat(
+          "container",
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("已绑定账号"),
+              TextButton(
+                child: Text("+去绑定"),
+                onPressed: () {
+                  print("OutlineButton Click");
+                },
               ),
-            ),
-          );
-        },
-      )),
-      ContainerFormat(
-        "container",
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("已绑定账号"),
-            TextButton(
-              child: Text("+发布"),
-              onPressed: () {
-                print("OutlineButton Click");
-              },
-            ),
-          ],
+            ],
+          ),
         ),
-
-      ),
-      ContainerFormat(
-        "container",
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("创建订单：☑️金额"),
-            TextButton(
-              child: Text("+发布"),
-              onPressed: () {
-                print("OutlineButton Click");
-              },
-            ),
-          ],
+        ContainerFormat(
+          "container",
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("创建订单：☑️金额"),
+              TextButton(
+                child: Text(""),
+                onPressed: () {
+                  print("OutlineButton Click");
+                },
+              ),
+            ],
+          ),
         ),
-      )
-    ],);
+      ],
+    );
   }
 }

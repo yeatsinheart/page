@@ -13,9 +13,8 @@ class AppStyle {
   }
 
   static byPx(double pxValue) {
-    // 与 设计稿 等比例 还原
-    // ??px/750px = pxValue/viewWidth
-    return pxValue*750/viewWidth;
+    // 750px设计稿中的px大小 等比例 还原
+    return pxValue*(viewWidth/750);
   }
   static byRem(double rem) {
     // 7.5rem=100%;

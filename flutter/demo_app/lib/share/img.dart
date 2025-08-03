@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter3/style/color-plan.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
@@ -103,18 +102,23 @@ Widget img(String url, {BoxFit? fit, Color? loadingBg, Color? loadingFont}) {
             placeholder: (context, url) => Container(color: loadingBg, alignment: Alignment.center, child: _loadingWidget(loadingFont)),
             errorWidget: (context, url, error) => Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont)),
           )
-        : FutureBuilder(
-            future: rootBundle.load(resource),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-                return Image.asset(resource, fit: fit);
-              } else if (snapshot.hasError) {
-                return Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont));
-              } else {
-                return Container(color: loadingBg, alignment: Alignment.center, child: _loadingWidget(loadingFont));
-              }
-            },
+        : Image.asset(
+            resource,
+            fit: fit,
+            errorBuilder: (context, error, stackTrace) => Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont)),
           ),
+    // FutureBuilder(
+    //   future: rootBundle.load(resource),
+    //   builder: (context, snapshot) {
+    //     if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+    //       return Image.asset(resource, fit: fit);
+    //     } else if (snapshot.hasError) {
+    //       return Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont));
+    //     } else {
+    //       return Container(color: loadingBg, alignment: Alignment.center, child: _loadingWidget(loadingFont));
+    //     }
+    //   },
+    // ),
   );
 }
 

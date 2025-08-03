@@ -12,14 +12,15 @@ class RemSetting {
   static RemSetting ofRem(double rem) {
     return RemSetting._internal(rem);
   }
-
+/*
   // rem 在指定宽度中代表多少px
   static double getPx(double rem,double width) {
     return rem*width/7.5;
-  }
+  }*/
 
 
   check({double maxLimit=7.5}){
+    // 7.5rem ==100%
     if(size<0||size>maxLimit) throw Exception('最大宽度 750');
   }
 

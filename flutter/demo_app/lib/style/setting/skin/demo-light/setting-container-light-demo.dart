@@ -77,7 +77,22 @@ main() async {
   // 同步到配置文件中 方便调试
   String path = 'assets/config/bootstrap.json';
   final json = await readJsonFile(path);
+
+  json["style"]["colors"] = colors;
+  json["style"]["maxWidth"] = 570;
+  json["style"]["gap"] = .22;
+  json["style"]["fontSize"] = .22;
+  json["style"]["lineHeight"] = 1.5;
+  json["style"]["radius"] = .14;
+
+  json["style"]["font"] = fonts;
+  json["style"]["mask"] = mask;
+  json["style"]["border"] = border;
+  json["style"]["shadow"] = shadow;
+
   json["style"]["color-plan"] = config;
+
+
   print('');
   print('');
   print('');

@@ -1,8 +1,12 @@
 import 'package:flutter3/style/setting/rem-setting.dart';
 import 'package:flutter3/style/setting/container.dart';
 
-var fonts = {"title": "#323233", "name": "#646566", "txt": "#737272", "ghost": "#BBB"};
 var defaultFont = fonts["txt"];
+
+var fonts = {"title": "#323233", "name": "#646566", "txt": "#737272", "ghost": "#BBB"};
+var mask= "#0000001f";
+var border="#e3e3e31a";
+var shadow="#41454940";
 
 var page = {
   "browser": container(

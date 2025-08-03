@@ -60,23 +60,6 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
       children: [
         ContainerFormat("section", grid_demo_wrap(payments, num: 3, render: _payment), width: double.infinity),
         ContainerFormat("section", Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [ContainerFormat("btn", Text("使用教程")), ContainerFormat("btn", Text("软件下载"))])),
-        ContainerFormat("browser", Text("已绑定账号")),
-        ContainerFormat("container", Text("已绑定账号")),
-        ContainerFormat("page", Text("已绑定账号")),
-        ContainerFormat(
-          "container",
-          Text(
-            "已绑定账号",
-            style: TextStyle(
-              color: () {
-                Log.i("DefaultTextStyle : ${DefaultTextStyle.of(context).style.color}"); // 查看默认颜色
-                Log.i("textTheme : ${Theme.of(context).textTheme}"); // 查看默认颜色
-                return null;
-              }(),
-            ),
-          ),
-        ),
-        ContainerFormat("btn", Text("已绑定账号")),
         ContainerFormat(
           "section",
           Column(

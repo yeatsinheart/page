@@ -36,16 +36,11 @@ class ContainerFormat extends StatelessWidget {
       margin: margin??PaddingFormat.fromJson(json["margin"]),
       padding: padding??PaddingFormat.fromJson(json["padding"]),
       decoration: _BoxDecoration(json),
-      child:
-          //DefaultTextStyle 已经在组件树更早的地方被设置了，Text 会优先使用 DefaultTextStyle，而不是你新设置的 Theme.textTheme.bodyMedium。
-          DefaultTextStyle(
-            //  null=>Text 就会回退到 Flutter 默认颜色，也就是：Colors.black.withOpacity(0.87) == Color(0xDD000000) == black87
-            style: TextStyle(color: ColorUtil.getColor(json["font"])??ColorFont.get().txt),
-            child: ImgBg(json["img"], child, borderRadius: AppStyle.byRem(borderConfig?["borderRadius"]??0)),
-          ),
+        //DefaultTextStyle 已经在组件树更早的地方被设置了，Text 会优先使用 DefaultTextStyle，而不是你后期新设置的 Theme.textTheme.bodyMedium。
+      child: DefaultTextStyle.merge(style: TextStyle(color: ColorUtil.getColor(json["font"])),
+          child: ImgBg(json["img"], child, borderRadius: AppStyle.byRem(borderConfig?["borderRadius"]??0)))
     );
   }
-
   _button(Map<String, dynamic>? json, child) {
     return Align(
       alignment: Alignment.center,

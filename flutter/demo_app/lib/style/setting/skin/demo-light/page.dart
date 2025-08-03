@@ -11,7 +11,7 @@ var page = {
   "page": container(
     bgGradient: GradientSetting.linear(colors: ["#7ec1f7", "#FFF"], stops: [0, .8], begin: top_right, end: bottom_left),
   ),
-  "section": container(bg: "#FFF"),
+  "section": container(bg: "#FFF",padding: PaddingSetting(all:  RemSetting.ofRem(.2))),
 
   // 通用容器
   "container": container(

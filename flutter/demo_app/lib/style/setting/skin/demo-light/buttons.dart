@@ -4,16 +4,25 @@ import 'package:flutter3/style/setting/container.dart';
 var buttons = {
   "btn": container(
     type: "button",
-    bg: "#FF4D5A",
-    font: "#FFF",
-    border: BorderSetting(borderRadius: RemSetting.ofRem(.1)),
+    bg: "#f5f5f5",
+    font: "#737272",
+    border: BorderSetting(color: "#ccc",borderRadius: RemSetting.ofRem(.1)),
     padding: PaddingSetting(horizon: RemSetting.byPx(14), vertical: RemSetting.byPx(6)),
   ),
+
   "btn-disabled": container(
     type: "button",
     bg: "#f5f5f5",
     font: "#737272",
     border: BorderSetting(color: "#ccc", borderRadius: RemSetting.ofRem(.1)),
+    padding: PaddingSetting(horizon: RemSetting.byPx(14), vertical: RemSetting.byPx(6)),
+  ),
+
+  "btn-main": container(
+    type: "button",
+    bg: "#FF4D5A",
+    font: "#FFF",
+    border: BorderSetting(borderRadius: RemSetting.ofRem(.1)),
     padding: PaddingSetting(horizon: RemSetting.byPx(14), vertical: RemSetting.byPx(6)),
   ),
 

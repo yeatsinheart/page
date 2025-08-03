@@ -43,7 +43,7 @@ class AppStyle {
     return data["colors"] ?? ["#2196F3"];
   }
 
-  static getMainColor() {
-    return ColorUtil.getColor(getColors()[0]);
+  static Color getMainColor() {
+    return ColorUtil.getColor(getColors()[0])!;
   }
 }

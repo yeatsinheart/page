@@ -14,13 +14,18 @@ import 'package:flutter3/style/theme/style-text.dart';
 
 import 'style-button.dart';
 
-/// 如果有缓存，那么需要使用缓存数据。怎么判断有没有缓存，或者某key为空时。。
-ThemeData getFlutterTheme({Color?bgColor,Color?fontColor,Color?borderColor,Color?shadowColor}) {
+ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor, Color? shadowColor}) {
   return ThemeData(
-    useSystemColors:false,// 某些控件会变成浏览器原生行为（比如 <button>）；
+    useSystemColors: false,
+    // 某些控件会变成浏览器原生行为（比如 <button>）；
     useMaterial3: true,
     scaffoldBackgroundColor: Colors.transparent,
+
     primaryColor: AppStyle.getMainColor(),
+    secondaryHeaderColor: AppStyle.getMainColor(),
+    hoverColor: AppStyle.getMainColor(),
+    highlightColor: AppStyle.getMainColor(),
+
     // colorSchemeSeed:Colors.red,
     // colorScheme:ColorScheme(),
     // primarySwatch:MaterialColor(),
@@ -31,7 +36,6 @@ ThemeData getFlutterTheme({Color?bgColor,Color?fontColor,Color?borderColor,Color
     // splashFactory: NoSplash.splashFactory,// final bool useInkSparkle = platform == TargetPlatform.android && !kIsWeb;splashFactory ?? useMaterial3? useInkSparkle? InkSparkle.splashFactory: InkRipple.splashFactory: InkSplash.splashFactory;
     // hoverColor: Colors.transparent,
     // splashColor: Colors.transparent,
-    // highlightColor: Colors.transparent,
 
     // materialTapTargetSize:MaterialTapTargetSize.padded,
     // COLOR
@@ -52,25 +56,56 @@ ThemeData getFlutterTheme({Color?bgColor,Color?fontColor,Color?borderColor,Color
     // unselectedWidgetColor:Colors.red,
 
     /// 文件夹中添加对应组件的theme获取方法
+    tabBarTheme: TabBarThemeData(indicatorColor: AppStyle.getMainColor()),
+    appBarTheme: AppBarTheme(),
+    bottomAppBarTheme: BottomAppBarTheme(),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(),
 
-    tabBarTheme:TabBarThemeData(indicatorColor:AppStyle.getMainColor()),
-    appBarTheme:AppBarTheme(),
-    bottomAppBarTheme:BottomAppBarTheme(),
-    bottomNavigationBarTheme:BottomNavigationBarThemeData(),
-
-    scrollbarTheme:ScrollbarThemeData(),
+    scrollbarTheme: ScrollbarThemeData(),
     textTheme: getTextTheme(fontColor: fontColor),
 
-    listTileTheme:ListTileThemeData(),
+    listTileTheme: ListTileThemeData(
+      // contentPadding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
+      contentPadding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(0)),
+      iconColor: fontColor ?? ColorFont.get().txt,
+      textColor: fontColor ?? ColorFont.get().txt,
+      tileColor: fontColor ?? ColorFont.get().txt,
+      style: ListTileStyle.list,
+    ),
 
+    checkboxTheme: CheckboxThemeData(
+      /** [WidgetState.selected].
+          ///  * [WidgetState.hovered].
+          ///  * [WidgetState.focused].
+          ///  * [WidgetState.disabled].*/
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.byRem(.14))),
+      side: BorderSide(color: fontColor ?? ColorFont.get().txt!),
+      //overlayColor: WidgetStateProperty.all(AppStyle.getMainColor().withOpacity(0.2)),
+      // 选中后颜色 √ 勾的颜色（前景色）
+      checkColor: WidgetStateProperty.all( AppStyle.getMainColor()),
+      fillColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppStyle.getMainColor().withValues(alpha: .2); // 背景色
+        }
+        return Colors.transparent;
+      }),
+    ),
 
-    iconTheme:IconThemeData(color: fontColor??ColorFont.get().txt,fill: 1,),
+    iconTheme: IconThemeData(color: fontColor ?? ColorFont.get().txt, fill: 1),
 
-    buttonTheme:ButtonThemeData(padding:EdgeInsetsGeometry.all(0)),// 旧的
+    buttonTheme: ButtonThemeData(padding: EdgeInsetsGeometry.all(0),minWidth: 0,height: 0),
 
-    textButtonTheme: TextButtonThemeData(style:globalButtonStyle(fontColor:fontColor)),
-    iconButtonTheme: IconButtonThemeData(style: globalButtonStyle(fontColor:fontColor)),
-    elevatedButtonTheme: ElevatedButtonThemeData(style: globalButtonStyle(fontColor:fontColor)),
+    // 旧的
+    textButtonTheme: TextButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
+    iconButtonTheme: IconButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
+    elevatedButtonTheme: ElevatedButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
+    
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(),
+      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppStyle.getMainColor())),
+      labelStyle: TextStyle(color: AppStyle.getMainColor()),
+    ),
+
     // filledButtonTheme:FilledButtonThemeData(),
     // floatingActionButtonTheme:FloatingActionButtonThemeData(),
     // menuButtonTheme:MenuButtonThemeData(),
@@ -110,7 +145,7 @@ ThemeData getFlutterTheme({Color?bgColor,Color?fontColor,Color?borderColor,Color
     // drawerTheme:DrawerThemeData(),
     // dropdownMenuTheme:DropdownMenuThemeData(),
     // expansionTileTheme:ExpansionTileThemeData(),
-    
+
     // menuBarTheme:MenuBarThemeData(),
     // menuTheme:MenuThemeData(),
     // navigationBarTheme:NavigationBarThemeData(),
@@ -133,7 +168,6 @@ ThemeData getFlutterTheme({Color?bgColor,Color?fontColor,Color?borderColor,Color
     // GENERAL CONFIGURATION). Each section except for deprecations should be
     // alphabetical by symbol name.
 
-
     // DEPRECATED (newest deprecations at the bottom)
     /*@Deprecated(
     'Use OverflowBar instead. '
@@ -151,6 +185,5 @@ ThemeData getFlutterTheme({Color?bgColor,Color?fontColor,Color?borderColor,Color
     )
     Color? indicatorColor,
 */
-
   );
 }

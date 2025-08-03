@@ -101,9 +101,13 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     elevatedButtonTheme: ElevatedButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
     
     inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(),
-      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppStyle.getMainColor())),
-      labelStyle: TextStyle(color: AppStyle.getMainColor()),
+      border: OutlineInputBorder(borderSide: BorderSide(color: fontColor??ColorFont.get().txt!)),
+      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: fontColor??ColorFont.get().txt!)),
+      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: fontColor??ColorFont.get().txt!)),
+      hoverColor: Colors.transparent,
+      // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppStyle.getMainColor())),
+      // labelStyle: TextStyle(color: AppStyle.getMainColor()),
+      labelStyle: TextStyle(color:  fontColor??ColorFont.get().txt!),
     ),
 
     // filledButtonTheme:FilledButtonThemeData(),

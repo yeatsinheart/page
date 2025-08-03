@@ -124,6 +124,7 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
                   ),
                 ],
               ),*/
+            ContainerFormat("warning-soft",Text("当前通道需要指定绑定账号"),),
               Row(
                 children: [
                   Expanded(
@@ -146,6 +147,9 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
                   ),
                 ],
               ),
+              Text("汇率"),
+              Text("1游戏币=1人民币"),
+              Text("1人民币=1游戏币"),
             ],
           ),
         ),

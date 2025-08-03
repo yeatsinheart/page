@@ -1,6 +1,7 @@
 library setting;
 
 import 'package:flutter3/style/setting/border.dart';
+import 'package:flutter3/style/setting/color-setting.dart';
 import 'package:flutter3/style/setting/gradient.dart';
 import 'package:flutter3/style/setting/padding.dart';
 import 'package:flutter3/style/setting/shadow.dart';
@@ -16,8 +17,8 @@ Map<String, dynamic> container({
   PaddingSetting? padding,
   PaddingSetting? margin,
   GradientSetting? bgGradient,
-  String? bg,
-  String? font,
+  ColorSetting? bg,
+  ColorSetting? font,
   BorderSetting? border,
   List<ShadowSetting>? shadows,
 }) {
@@ -31,9 +32,9 @@ Map<String, dynamic> container({
 
   if (bgGradient != null) result['bgGradient'] = bgGradient.toJson();
 
-  if (bg != null) result['bg'] = _cleanColor(bg);
+  if (bg != null) result['bg'] = bg;
 
-  if (font != null) result['font'] = _cleanColor(font);
+  if (font != null) result['font'] = font;
 
   if (shadows != null && shadows.isNotEmpty) {
     result['shadows'] = shadows

@@ -1,42 +1,95 @@
-import 'package:flutter3/style/setting/rem-setting.dart';
+import 'package:flutter3/style/setting/color-setting.dart';
 import 'package:flutter3/style/setting/container.dart';
+import 'package:flutter3/style/setting/rem-setting.dart';
 
 var defaultFont = fonts["txt"];
 
-var fonts = {"title": "#323233", "name": "#646566", "txt": "#737272", "ghost": "#BBB"};
-var mask= "#0000001f";
-var border="#e3e3e31a";
-var shadow="#41454940";
+var fonts = {
+  "title": ColorSetting(light: "#323233", dark: "#ffffff"),
+  "name": ColorSetting(light: "#646566", dark: "#dddddd"),
+  "txt": ColorSetting(light: "#737272", dark: "#aaaaaa"),
+  "ghost": ColorSetting(light: "#BBB", dark: "#666666"),
+};
+
+var mask = ColorSetting(light: "#0000001f", dark: "#ffffff1f");
+var border = ColorSetting(light: "#e3e3e31a", dark: "#e3e3e31a");
+var shadow = ColorSetting(light: "#41454940", dark: "#41454940");
 
 var page = {
   "browser": container(
-    bgGradient: GradientSetting.linear(colors: ["#81FFEF", "#F067B4"], stops: [0.1, 1], begin: top_right, end: bottom_left),
+    bgGradient: GradientSetting.linear(
+      colors: [
+        ColorSetting(light: "#81FFEF", dark: "#81FFEF"),
+        ColorSetting(light: "#F067B4", dark: "#F067B4"),
+      ],
+      stops: [0.1, 1],
+      begin: top_right,
+      end: bottom_left,
+    ),
   ),
+
   "page": container(
-    bgGradient: GradientSetting.linear(colors: ["#7ec1f7", "#FFF"], stops: [0, .8], begin: top_right, end: bottom_left),
+    bgGradient: GradientSetting.linear(
+      colors: [
+        ColorSetting(light: "#7ec1f7", dark: "#7ec1f7"),
+        ColorSetting(light: "#FFF", dark: "#000"),
+      ],
+      stops: [0, .8],
+      begin: top_right,
+      end: bottom_left,
+    ),
   ),
-  "section": container(bg: "#FFF",padding: PaddingSetting(all:  RemSetting.ofRem(.2))),
+  "section": container(
+    bg: ColorSetting(light: "#FFF", dark: "#000"),
+    margin: PaddingSetting(vertical: RemSetting.ofRem(.1)),
+    padding: PaddingSetting(all: RemSetting.ofRem(.2)),
+  ),
 
   // 通用容器
   "container": container(
     // img: "assets/images/game1.jpg",
-    margin: PaddingSetting(horizon:  RemSetting.ofRem(.2), top:  RemSetting.ofRem(.1)),
-    padding: PaddingSetting(horizon:  RemSetting.ofRem(.2), vertical:  RemSetting.ofRem(.05)),
+    margin: PaddingSetting(horizon: RemSetting.ofRem(.2), top: RemSetting.ofRem(.1)),
+    padding: PaddingSetting(horizon: RemSetting.ofRem(.2), vertical: RemSetting.ofRem(.05)),
     //border: BorderSetting(color: "#ccc"),
     border: BorderSetting(borderRadius: RemSetting.ofRem(.14)),
-    bg: "#FFF",
-    shadows: [ShadowSetting(color: "#00000033", blurRadius: RemSetting.byPx(12))],
+    bg: ColorSetting(light: "#FFF", dark: "#000"),
+    shadows: [
+      ShadowSetting(
+        color: ColorSetting(light: "#00000033", dark: "#00000033"),
+        blurRadius: RemSetting.byPx(12),
+      ),
+    ],
   ),
 
-  "img-loading": container(bg: "#e0e0e0", font: "#fff"),
+  "img-loading": container(
+    bg: ColorSetting(light: "#e0e0e0", dark: "#e0e0e0"),
+    font: ColorSetting(light: "#FFF", dark: "#000"),
+  ),
 
   "txt-cover": container(
-    bgGradient: GradientSetting.linear(colors: ["#0000004d", "transparent"], stops: [0, .9], begin: bottom_center, end: top_center),
-    font: "#fff",
+    bgGradient: GradientSetting.linear(
+      colors: [
+        ColorSetting(light: "#0000004d", dark: "#0000004d"),
+        ColorSetting(light: "transparent", dark: "transparent"),
+      ],
+      stops: [0, .9],
+      begin: bottom_center,
+      end: top_center,
+    ),
+
+    font: ColorSetting(light: "#FFF", dark: "#000"),
   ),
 
   "focus": container(
-    bgGradient: GradientSetting.linear(colors: ["#0000004d", "transparent"], stops: [0, .8], begin: bottom_center, end: top_center),
-    font: "#fff",
+    bgGradient: GradientSetting.linear(
+      colors: [
+        ColorSetting(light: "#0000004d", dark: "#0000004d"),
+        ColorSetting(light: "transparent", dark: "transparent"),
+      ],
+      stops: [0, .8],
+      begin: bottom_center,
+      end: top_center,
+    ),
+    font: ColorSetting(light: "#FFF", dark: "#000"),
   ),
 };

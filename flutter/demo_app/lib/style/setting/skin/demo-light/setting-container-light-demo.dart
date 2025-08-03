@@ -20,8 +20,7 @@ import 'page.dart';
 // 黑色/深灰	#212121 / #333333	极简、专业、高端（如 Apple 官网、奢侈品）
 // 黄色	  #FFEB3B / #FFC107	活泼、注意力提示、游戏类（如新浪微博）
 // 青色 / 蓝绿	#00BCD4 / #17A2B8	时尚、科技、医疗类（如滴滴）
-
-var fontsDark = {"title": "#ffffff", "name": "#dddddd", "txt": "#aaaaaa", "ghost": "#666666"};
+// ColorSetting(light: "#ff4b52", dark: "#ff4b52"),
 var colors = [
   "#ff4b52",
   "#2196F3",
@@ -42,49 +41,21 @@ var colors = [
   "#333333",
 ];
 
-var setting = {
-
-  "tooltip": container(margin: PaddingSetting(all: RemSetting.ofRem(.2)), bg: "#333",
-      border: BorderSetting(borderRadius: RemSetting.byPx(6)),
-      font: "#fff", padding: PaddingSetting(all: RemSetting.ofRem(.3))),
-
-  "modal": container(
-    margin: PaddingSetting(all: RemSetting.ofRem(.2)),
-    bg: "#fff",
-    border: BorderSetting(borderRadius: RemSetting.ofRem(.14)),
-    shadows: [ShadowSetting(color: "#00000033", blurRadius: RemSetting.byPx(12))],
-  ),
-
-  "card": container(
-    margin: PaddingSetting(all:  RemSetting.ofRem(.2)),
-    bgGradient: GradientSetting.linear(colors: ["#2196F3", "#21CBF3"]),
-    border: BorderSetting(color: "#ccc",borderRadius: RemSetting.ofRem(.14)),
-    shadows: [ShadowSetting(color: "#0000001a")],
-  ),
-
-  "list-item": container(
-    margin: PaddingSetting(all: RemSetting.ofRem(.2)),
-    bg: "#fff",
-    border: BorderSetting(color: "#ddd",borderRadius: RemSetting.ofRem(.14)),
-    padding: PaddingSetting(all: RemSetting.ofRem(.5)),
-  ),
-
-};
 
 main() async {
-  var config = {...page,...bars,...buttons,...inputs,...notifies,...setting,};
+  var config = {...page,...bars,...buttons,...inputs,...notifies,};
   print(jsonEncode(config));
   // 同步到配置文件中 方便调试
   String path = 'assets/config/bootstrap.json';
   final json = await readJsonFile(path);
 
-  json["style"]["colors"] = colors;
   json["style"]["maxWidth"] = 570;
   json["style"]["gap"] = .22;
   json["style"]["fontSize"] = .22;
   json["style"]["lineHeight"] = 1.5;
   json["style"]["radius"] = .14;
 
+  json["style"]["colors"] = colors;
   json["style"]["font"] = fonts;
   json["style"]["mask"] = mask;
   json["style"]["border"] = border;

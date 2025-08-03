@@ -6,7 +6,7 @@ import 'package:flutter3/util/color-util.dart';
 
 class AppStyle {
   static Map<String, dynamic> data = {};
-
+  static String Brightness = "light";// dark
   static byPercent(v) {
     // 按宽度的百分比
     return v * viewWidth / 100;

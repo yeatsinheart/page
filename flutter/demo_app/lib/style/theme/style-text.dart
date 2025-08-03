@@ -3,7 +3,11 @@ import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/color-font.dart';
 
 getTextTheme({Color? fontColor}) {
-  TextStyle globalTextStyle = getTextStyle(fontColor: fontColor);
+  TextStyle globalTextStyle = TextStyle(fontSize: AppStyle.byRem(.22), height: 1.4, color: fontColor??ColorFont.get().txt);
+
+  TextStyle large = TextStyle(fontSize: AppStyle.byRem(.26), height: 1.5, color: fontColor??ColorFont.get().txt);
+  TextStyle medium = TextStyle(fontSize: AppStyle.byRem(.22), height: 1.5, color: fontColor??ColorFont.get().txt);
+  TextStyle small = TextStyle(fontSize: AppStyle.byRem(.18), height: 1.5, color: fontColor??ColorFont.get().txt);
 
   return TextTheme(
     displayLarge: globalTextStyle,
@@ -20,12 +24,35 @@ getTextTheme({Color? fontColor}) {
     bodySmall: globalTextStyle,
     labelLarge: globalTextStyle,
     labelMedium: globalTextStyle,
-    labelSmall: globalTextStyle, // Material 3 默认 Text()
+    labelSmall: globalTextStyle,
+    // Material 3 默认 Text()
+    // 大标题类
+    /*displayLarge: large,
+    displayMedium: large,
+    displaySmall: large,
+    headlineLarge: large,
+    headlineMedium: large,
+    headlineSmall: medium,
+
+    // 正文类
+    titleLarge: medium,
+    titleMedium: medium,
+    titleSmall: small,
+
+    // 正文正文
+    bodyLarge: medium,
+    bodyMedium: medium,
+    bodySmall: small,
+
+    // 标签、辅助文字
+    labelLarge: small,
+    labelMedium: small,
+    labelSmall: small,*/
   );
 }
 
 getTextStyle({Color? fontColor}) {
-  return  TextStyle(fontSize: AppStyle.byRem(.22), height: 1.5, color: fontColor??ColorFont.get().txt);
+  return  TextStyle(color: fontColor??ColorFont.get().txt);
 }
 
 // 默认rem计算

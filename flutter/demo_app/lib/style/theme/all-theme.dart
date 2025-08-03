@@ -76,10 +76,12 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     checkboxTheme: getCheckBoxTheme(fontColor:fontColor),
 
     iconTheme: IconThemeData(color: fontColor ?? ColorFont.get().txt, fill: 1),
+
     buttonTheme: ButtonThemeData(padding: EdgeInsetsGeometry.all(0),minWidth: 0,height: 0),
     textButtonTheme: TextButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
     iconButtonTheme: IconButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
     elevatedButtonTheme: ElevatedButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
+
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(borderSide: BorderSide(color: fontColor??ColorFont.get().txt!)),
       enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: fontColor??ColorFont.get().txt!)),

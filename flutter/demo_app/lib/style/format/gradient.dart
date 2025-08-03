@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/util/color-util.dart';
 
 class GradientFormat{
@@ -6,7 +7,7 @@ class GradientFormat{
   static Gradient? fromJson(Map<String, dynamic>? json) {
     if(null==json)return null;
     final type = (json['type'] as String?)?.toLowerCase() ?? 'linear';
-    final colors = (json['colors'] as List?)?.map((c) => ColorUtil.getColor(c)).whereType<Color>().toList() ?? [];
+    final colors = (json['colors'] as List?)?.map((c) => ColorUtil.getColor(c[AppStyle.Brightness])).whereType<Color>().toList() ?? [];
     if (colors.isEmpty) {
       return null;
     }

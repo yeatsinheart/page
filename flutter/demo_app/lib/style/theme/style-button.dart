@@ -35,7 +35,7 @@ globalButtonStyle({Color? fontColor}){
     backgroundColor: WidgetStateProperty.all(Colors.transparent),
     // 文字颜色
     foregroundColor: WidgetStateProperty.all(fontColor??ColorFont.get().txt),
-    textStyle: WidgetStateProperty.all(getTextStyle(fontColor: fontColor)),
+    textStyle: WidgetStateProperty.all(TextStyle(color: fontColor??ColorFont.get().txt)),
     padding: WidgetStateProperty.all(EdgeInsets.all(0)),
     minimumSize:WidgetStateProperty.all(Size(0, 0)),// 按钮最小限制
     shape: WidgetStateProperty.all(

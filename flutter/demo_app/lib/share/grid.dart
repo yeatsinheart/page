@@ -11,6 +11,16 @@ Widget grid_sliver_demo(List<dynamic> list, {Function render=card_demo,numberOfR
   );
 }
 
+Widget grid_demo(List<dynamic> list, {Function render=card_demo,gap = 8, width= 200,}) {
+  return Wrap(
+    spacing: gap,
+    runSpacing: gap,
+    children: List.generate(list.length, (index) {
+      return Container(width: width,child: render(list[index]),);
+    }),
+  );
+}
+
 Widget grid_demo_aspect_ratio(List<dynamic> list, {Function render=card_demo,bool shrinkWrap=false,numberOfRow=3, gap = 8, aspectRatio = 3 / 4,maxCrossAxisExtent= 200,}) {
   return GridView.builder(
     shrinkWrap: shrinkWrap,

@@ -38,7 +38,7 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
       },
       child: Column(
         children: [
-          AspectRatio(aspectRatio: 1, child:AppImg(payment["logo"]), ),
+          AppImg(payment["logo"],square: AppStyle.byRem(.5),),
           Center(child: Text(payment["name"], style: TextStyle(fontSize: AppStyle.byPx(24),color: payment["code"]==chosen?AppStyle.getMainColor():null))),
           // Center(child: Text(payment["name"], style: TextStyle(fontSize: AppStyle.byRem(.22)))),
         ],
@@ -52,7 +52,8 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
 
     return Column(
       children: [
-        ContainerFormat("container", grid_demo_aspect_ratio(payments, aspectRatio:3/4,numberOfRow:5,render: _payment, shrinkWrap: true,)),
+        ContainerFormat("container", grid_demo_aspect_ratio(payments, aspectRatio:3/4,numberOfRow:7,render: _payment, shrinkWrap: true,)),
+        ContainerFormat("section", grid_demo(payments,width: AppStyle.byRem(.9),render: _payment,),width: double.infinity,),
 
         ContainerFormat(
           "container",

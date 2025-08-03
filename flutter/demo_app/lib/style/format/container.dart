@@ -16,14 +16,17 @@ class ContainerFormat extends StatelessWidget {
   final String k;
   final child;
   final Function? click;
+  final double? width;
+  final double? height;
 
-  const ContainerFormat(this.k, this.child, {this.click, super.key});
+  const ContainerFormat(this.k, this.child, {this.click, this.width,this.height,super.key});
 
   _container(Map<String, dynamic>? json, child) {
     if (null == json) return Container(child: child);
     var borderConfig = json["border"];
 
     return Container(
+      width: width,height: height,
       margin: PaddingFormat.fromJson(json["margin"]),
       padding: PaddingFormat.fromJson(json["padding"]),
       decoration: _BoxDecoration(json),

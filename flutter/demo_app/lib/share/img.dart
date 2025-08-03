@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:flutter3/style/color-plan.dart';
+import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/util/color-util.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 
@@ -22,8 +23,11 @@ class AppImg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ClipOval = ClipRRect[radius为半径时] = 圆形⭕️
-    ColorPlan colorPlan = ColorPlan.get("img-loading");
-    final raw_image = img(url, fit: fit!, loadingBg: loadingBg ?? colorPlan.bg, loadingFont: loadingFont ?? colorPlan.font);
+    Map<String, dynamic>? data = AppStyle.data["color-plan"]?["img-loading"] ?? {};
+    Color? bgColor = ColorUtil.getColor(data?["bg"]?[AppStyle.Brightness]);
+    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStyle.Brightness]);
+
+    final raw_image = img(url, fit: fit!, loadingBg: loadingBg ?? bgColor, loadingFont: loadingFont ?? fontColor);
     //Log.i(radiusRem);
     var clipped_image = (null != borderRadius ? ClipRRect(borderRadius: BorderRadius.circular(borderRadius!), child: raw_image) : raw_image);
 

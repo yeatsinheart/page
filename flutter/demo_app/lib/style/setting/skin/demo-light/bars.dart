@@ -5,8 +5,8 @@ import 'package:flutter3/style/setting/rem-setting.dart';
 var bars = {
   // ColorSetting(light: "transparent", dark: "transparent"),
   "tab": container(
-    bg: ColorSetting(light: "#fff", dark: "#fff"),
-    font: ColorSetting(light: "#000", dark: "#000"),
+    bg: ColorSetting(light: "#fff", dark: "#000"),
+    font: ColorSetting(light: "#000", dark: "#fff"),
   ),
   "bar": container(
     bg: ColorSetting(light: "#3f15d1", dark: "#3f15d1"),
@@ -16,13 +16,13 @@ var bars = {
     bgGradient: GradientSetting.linear(
       colors: [
         ColorSetting(light: "#7ec1f7", dark: "#7ec1f7"),
-        ColorSetting(light: "#fff", dark: "#fff"),
+        ColorSetting(light: "#fff", dark: "#000"),
       ],
       stops: [0, .8],
       begin: bottom_center,
       end: top_center,
     ),
-    font: ColorSetting(light: "#000", dark: "#000"),
+    font: ColorSetting(light: "#000", dark: "#fff"),
   ),
   "bar-brand": container(
     bg: ColorSetting(light: "#FF4D5A", dark: "#FF4D5A"),
@@ -35,10 +35,11 @@ var bars = {
   "bar-marquee": container(
     padding: PaddingSetting(horizon: RemSetting.ofRem(.2)),
     bg: ColorSetting(light: "transparent", dark: "transparent"),
-    font: ColorSetting(light: "#000", dark: "#000"),
+    font: ColorSetting(light: "#000", dark: "#fff"),
   ),
+
   "marquee": container(
     bg: ColorSetting(light: "transparent", dark: "transparent"),
-    font: ColorSetting(light: "#000", dark: "#000"),
+    font: ColorSetting(light: "#000", dark: "#fff"),
   ),
 };

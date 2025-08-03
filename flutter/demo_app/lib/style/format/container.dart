@@ -38,7 +38,7 @@ class ContainerFormat extends StatelessWidget {
       padding: padding??PaddingFormat.fromJson(json["padding"]),
       decoration: _BoxDecoration(json),
         //DefaultTextStyle 已经在组件树更早的地方被设置了，Text 会优先使用 DefaultTextStyle，而不是你后期新设置的 Theme.textTheme.bodyMedium。
-      child: DefaultTextStyle.merge(style: TextStyle(color: ColorUtil.getColor(json["font"][AppStyle.Brightness])),
+      child: DefaultTextStyle.merge(style: TextStyle(color: ColorUtil.getColor(json["font"]?[AppStyle.Brightness])),
           child: ImgBg(json["img"], child, borderRadius: AppStyle.byRem(borderConfig?["borderRadius"]??0)))
     );
   }
@@ -66,7 +66,7 @@ class ContainerFormat extends StatelessWidget {
 
   _theme(context, child) {
     Map<String, dynamic>? data = AppStyle.data["color-plan"]?[k] ?? {};
-    Color? fontColor = ColorUtil.getColor(data?["font"][AppStyle.Brightness]);
+    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStyle.Brightness]);
     if (null == fontColor) return Theme(data: Theme.of(context), child: child);
     return Theme(
       data: Theme.of(context).copyWith(
@@ -91,7 +91,7 @@ class ContainerFormat extends StatelessWidget {
       boxShadow: ShadowFormat.listFromJson(json["shadows"]),
 
       /// 设置纯色背景颜色
-      color: ColorUtil.getColor(json["bg"][AppStyle.Brightness]),
+      color: ColorUtil.getColor(json["bg"]?[AppStyle.Brightness]),
 
       /// 设置渐变背景颜色
       gradient: GradientFormat.fromJson(json["bgGradient"]),

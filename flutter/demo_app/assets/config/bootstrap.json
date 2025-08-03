@@ -397,7 +397,7 @@
    },
    "img-loading": {
     "bg": {
-     "dark": "#e0e0e0",
+     "dark": "#2c2c2c",
      "light": "#e0e0e0"
     },
     "font": {
@@ -469,11 +469,11 @@
    },
    "tab": {
     "bg": {
-     "dark": "#fff",
+     "dark": "#000",
      "light": "#fff"
     },
     "font": {
-     "dark": "#000",
+     "dark": "#fff",
      "light": "#000"
     }
    },
@@ -496,7 +496,7 @@
        "light": "#7ec1f7"
       },
       {
-       "dark": "#fff",
+       "dark": "#000",
        "light": "#fff"
       }
      ],
@@ -514,7 +514,7 @@
      ]
     },
     "font": {
-     "dark": "#000",
+     "dark": "#fff",
      "light": "#000"
     }
    },
@@ -546,7 +546,7 @@
      "light": "transparent"
     },
     "font": {
-     "dark": "#000",
+     "dark": "#fff",
      "light": "#000"
     }
    },
@@ -556,7 +556,7 @@
      "light": "transparent"
     },
     "font": {
-     "dark": "#000",
+     "dark": "#fff",
      "light": "#000"
     }
    },

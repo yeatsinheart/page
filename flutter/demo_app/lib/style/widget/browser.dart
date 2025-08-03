@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/style/theme/all-theme.dart';
+import 'package:get/get.dart';
 
 class Browser extends StatelessWidget {
   final child;
-
   const Browser(this.child, {super.key});
 
   @override
@@ -34,11 +35,11 @@ class Browser extends StatelessWidget {
                 children: [
                   KeyedSubtree(
                     key: GlobalKey(debugLabel: "day-time"),
-                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("白天"), click: () => {})),
+                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("白天"), click: (){AppStyle.Brightness="light";Get.find<AppStore>().rebuildApp();})),
                   ),
                   KeyedSubtree(
                     key: GlobalKey(debugLabel: "night-time"),
-                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("黑夜"), click: () => {})),
+                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("黑夜"), click: (){AppStyle.Brightness="dark";Get.find<AppStore>().rebuildApp();})),
                   ),
                 ],
               ),

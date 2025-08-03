@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/service/bootstrap.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/widget/browser.dart';
 import 'package:flutter3/view/app/network_monitor.dart';
+import 'package:get/get.dart';
 
 import 'app-context.dart';
 import 'view/app-view.dart';
@@ -66,27 +68,29 @@ init() async {
   });
 }
 
-
 _main(child) {
+  Get.put(AppStore());
+  return Obx(() {
+    return MaterialApp(
+      key: Get.find<AppStore>().appKey.value,
+      scrollBehavior: ScrollBehavior().copyWith(
+        dragDevices: {
+          PointerDeviceKind.touch, //移动设备的手指滑动
+          PointerDeviceKind.mouse, //鼠标滚轮/拖动
+          PointerDeviceKind.trackpad, //触控板
+        },
+      ),
+      theme: ThemeData.light(useMaterial3: true),
+      navigatorKey: AppContext.navigatorKey,
+      debugShowCheckedModeBanner: false,
+      home: Browser(AppNetworkMonitor(child: child)),
 
-  return MaterialApp(
-    scrollBehavior: ScrollBehavior().copyWith(
-      dragDevices: {
-        PointerDeviceKind.touch, //移动设备的手指滑动
-        PointerDeviceKind.mouse, //鼠标滚轮/拖动
-        PointerDeviceKind.trackpad, //触控板
-      },
-    ),
-    theme:  ThemeData.light(useMaterial3: true),
-    navigatorKey: AppContext.navigatorKey,
-    debugShowCheckedModeBanner: false,
-    home: Browser(AppNetworkMonitor(child: child)),
-
-    /// 按照路由展示界面
-    // onGenerateRoute: (setting) {
-    //         return getRoute(setting);
-    //       },
-  );
+      /// 按照路由展示界面
+      // onGenerateRoute: (setting) {
+      //         return getRoute(setting);
+      //       },
+    );
+  });
 }
 
 /*builder: (context, child) {

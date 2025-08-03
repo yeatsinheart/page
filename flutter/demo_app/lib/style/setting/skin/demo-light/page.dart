@@ -62,7 +62,7 @@ var page = {
   ),
 
   "img-loading": container(
-    bg: ColorSetting(light: "#e0e0e0", dark: "#e0e0e0"),
+    bg: ColorSetting(light: "#e0e0e0", dark: "#2c2c2c"),
     font: ColorSetting(light: "#FFF", dark: "#000"),
   ),
 

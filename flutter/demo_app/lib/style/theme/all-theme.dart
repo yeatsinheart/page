@@ -10,6 +10,8 @@ export 'button-style-text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/color-font.dart';
+import 'package:flutter3/style/theme/checkbox.dart';
+import 'package:flutter3/style/theme/list-title.dart';
 import 'package:flutter3/style/theme/style-text.dart';
 
 import 'style-button.dart';
@@ -19,13 +21,17 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     useSystemColors: false,
     // 某些控件会变成浏览器原生行为（比如 <button>）；
     useMaterial3: true,
+
     scaffoldBackgroundColor: Colors.transparent,
 
+    // colorScheme: ColorScheme.fromSeed(seedColor:  AppStyle.getMainColor()),
+
     primaryColor: AppStyle.getMainColor(),
-    colorScheme: ColorScheme.fromSeed(seedColor:  AppStyle.getMainColor()),
     secondaryHeaderColor: AppStyle.getMainColor(),
     hoverColor: AppStyle.getMainColor(),
+    focusColor: AppStyle.getMainColor(),
     highlightColor: AppStyle.getMainColor(),
+    splashColor: AppStyle.getMainColor(),
 
     // colorSchemeSeed:Colors.red,
     // colorScheme:ColorScheme(),
@@ -63,43 +69,17 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(),
 
     scrollbarTheme: ScrollbarThemeData(),
+
+
     textTheme: getTextTheme(fontColor: fontColor),
-
-    listTileTheme: ListTileThemeData(
-      // contentPadding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
-      contentPadding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(0)),
-      iconColor: fontColor ?? ColorFont.get().txt,
-      textColor: fontColor ?? ColorFont.get().txt,
-      tileColor: fontColor ?? ColorFont.get().txt,
-      style: ListTileStyle.list,
-    ),
-
-    checkboxTheme: CheckboxThemeData(
-      /** [WidgetState.selected].
-          ///  * [WidgetState.hovered].
-          ///  * [WidgetState.focused].
-          ///  * [WidgetState.disabled].*/
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.byRem(.14))),
-      side: BorderSide(color: fontColor ?? ColorFont.get().txt!),
-      //overlayColor: WidgetStateProperty.all(AppStyle.getMainColor().withOpacity(0.2)),
-      // 选中后颜色 √ 勾的颜色（前景色）
-      checkColor: WidgetStateProperty.all( AppStyle.getMainColor()),
-      fillColor: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.selected)) {
-          return AppStyle.getMainColor().withValues(alpha: .2); // 背景色
-        }
-        return Colors.transparent;
-      }),
-    ),
+    listTileTheme: getListTitleTheme(fontColor:fontColor),
+    checkboxTheme: getCheckBoxTheme(fontColor:fontColor),
 
     iconTheme: IconThemeData(color: fontColor ?? ColorFont.get().txt, fill: 1),
-
     buttonTheme: ButtonThemeData(padding: EdgeInsetsGeometry.all(0),minWidth: 0,height: 0),
-
     textButtonTheme: TextButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
     iconButtonTheme: IconButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
     elevatedButtonTheme: ElevatedButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
-    
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(borderSide: BorderSide(color: fontColor??ColorFont.get().txt!)),
       enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: fontColor??ColorFont.get().txt!)),

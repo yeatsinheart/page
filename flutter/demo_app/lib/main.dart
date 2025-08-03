@@ -77,6 +77,7 @@ _main(child) {
         PointerDeviceKind.trackpad, //触控板
       },
     ),
+    theme:  ThemeData.light(useMaterial3: true),
     navigatorKey: AppContext.navigatorKey,
     debugShowCheckedModeBanner: false,
     home: Browser(AppNetworkMonitor(child: child)),

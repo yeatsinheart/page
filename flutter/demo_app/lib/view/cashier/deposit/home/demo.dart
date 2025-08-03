@@ -40,10 +40,7 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
         children: [
           AppImg(payment["logo"], square: AppStyle.byRem(.5)),
           Center(
-            child: Text(
-              payment["name"],
-              style: TextStyle(fontSize: AppStyle.byPx(16)),
-            ),
+            child: Text(payment["name"], style: TextStyle(fontSize: AppStyle.byPx(16))),
           ),
           // Center(child: Text(payment["name"], style: TextStyle(fontSize: AppStyle.byRem(.22)))),
         ],
@@ -60,12 +57,14 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        ContainerFormat("section", grid_demo_wrap(payments, num: 3, render: _payment), width: double.infinity),
         ContainerFormat(
           "section",
-          grid_demo_wrap(payments, num: 3,  render: _payment),
-          width: double.infinity,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [ContainerFormat("btn", Text("使用教程")), ContainerFormat("btn", Text("软件下载")), ],
+          ),
         ),
-
         ContainerFormat(
           "section",
           Column(
@@ -74,11 +73,22 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("已绑定账号"),
-                  TextButton(
-                    child: Text("+去绑定"),
-                    onPressed: () {
-                      print("OutlineButton Click");
-                    },
+                  Row(
+                    children: [
+                      TextButton(
+                        child: Text("+去绑定"),
+                        onPressed: () {
+                          print("OutlineButton Click");
+                        },
+                      ),
+                      SizedBox(width: AppStyle.byRem(.2)),
+                      TextButton(
+                        child: Text("教程"),
+                        onPressed: () {
+                          print("OutlineButton Click");
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -90,7 +100,7 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
                   return ListTile(
                     title: Text(items[index]),
                     trailing: Checkbox(
-                      value: chosen_account==items[index],
+                      value: chosen_account == items[index],
                       onChanged: (value) {
                         setState(() {
                           chosen_account = items[index];
@@ -124,7 +134,8 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
                   ),
                 ],
               ),*/
-            ContainerFormat("warning-soft",Text("当前通道需要指定绑定账号"),),
+              ContainerFormat("warning-soft", Text("当前通道需要指定绑定账号"), width: double.infinity),
+
               Row(
                 children: [
                   Expanded(

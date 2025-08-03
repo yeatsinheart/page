@@ -19,7 +19,12 @@ class ContainerFormat extends StatelessWidget {
   final double? width;
   final double? height;
 
-  const ContainerFormat(this.k, this.child, {this.click, this.width,this.height,super.key});
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
+
+
+
+  const ContainerFormat(this.k, this.child, {this.click,this.padding,this.margin, this.width,this.height,super.key});
 
   _container(Map<String, dynamic>? json, child) {
     if (null == json) return Container(child: child);
@@ -27,8 +32,8 @@ class ContainerFormat extends StatelessWidget {
 
     return Container(
       width: width,height: height,
-      margin: PaddingFormat.fromJson(json["margin"]),
-      padding: PaddingFormat.fromJson(json["padding"]),
+      margin: margin??PaddingFormat.fromJson(json["margin"]),
+      padding: padding??PaddingFormat.fromJson(json["padding"]),
       decoration: _BoxDecoration(json),
       child:
           //DefaultTextStyle 已经在组件树更早的地方被设置了，Text 会优先使用 DefaultTextStyle，而不是你新设置的 Theme.textTheme.bodyMedium。

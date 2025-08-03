@@ -542,7 +542,7 @@
    },
    "warning-soft": {
     "bg": "#FEF5DF",
-    "font": "#D2B77E"
+    "font": "#FFC107"
    },
    "error-soft": {
     "bg": "#FEECEC",

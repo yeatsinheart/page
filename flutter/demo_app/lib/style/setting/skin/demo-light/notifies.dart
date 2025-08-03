@@ -7,7 +7,7 @@ var notifies = {
   "success": container(bg: "#4CAF50", font: "#fff"),
 
   // 低对比（用于背景/说明）
-  "warning-soft": container(bg: "#FEF5DF", font: "#D2B77E"),
+  "warning-soft": container(bg: "#FEF5DF", font: "#FFC107"),
   "error-soft": container(bg: "#FEECEC", font: "#D66B6B"), // 柔和红色背景 + 深红字体
   "success-soft": container(bg: "#E9F7EF", font: "#4CAF50"), // 柔和绿色背景 + 主绿字体
 };

@@ -3,7 +3,7 @@ import 'package:flutter3/share/img.dart';
 import 'package:flutter3/style/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 
-Widget grid_sliver_demo(List<dynamic> list, {Function render=card_demo,numberOfRow, gap = 8, aspectRatio = 3 / 4}) {
+Widget grid_sliver_demo(List<dynamic> list, {Function render = card_demo, numberOfRow, gap = 8, aspectRatio = 3 / 4}) {
   return SliverGrid(
     delegate: SliverChildBuilderDelegate((context, index) {
       return render(list[index]);
@@ -12,33 +12,39 @@ Widget grid_sliver_demo(List<dynamic> list, {Function render=card_demo,numberOfR
   );
 }
 
-Widget grid_demo_wrap(List<dynamic> list, {num=3,Function render=card_demo}) {
-  double gap=  AppStyle.byRem(.1);
-  double width=  AppStyle.byRem((7.5 - 0.4 - (num-1)*.1 ) / num);
+Widget grid_demo_wrap(List<dynamic> list, {num = 3, Function render = card_demo}) {
+  double gap = AppStyle.byRem(.1);
+  double width = AppStyle.byRem((7.5 - 0.4 - (num - 1) * .1) / num);
   return Wrap(
-     spacing: gap,
-     runSpacing: gap,
+    spacing: gap,
+    runSpacing: gap,
     children: List.generate(list.length, (index) {
-      return Container(width: width,child: render(list[index]),);
+      return Container(width: width, child: render(list[index]));
     }),
   );
 }
 
-Widget grid_demo_aspect_ratio(List<dynamic> list, {Function render=card_demo,bool shrinkWrap=false,numberOfRow=3, gap = 8, aspectRatio = 3 / 4,maxCrossAxisExtent= 200,}) {
+Widget grid_demo_aspect_ratio(List<dynamic> list, {Function render = card_demo, bool shrinkWrap = false, numberOfRow = 3, gap = 8, aspectRatio = 3 / 4, maxCrossAxisExtent = 200}) {
   return GridView.builder(
     shrinkWrap: shrinkWrap,
-    physics: shrinkWrap?NeverScrollableScrollPhysics():BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+    physics: shrinkWrap ? NeverScrollableScrollPhysics() : BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: numberOfRow, childAspectRatio: aspectRatio, crossAxisSpacing: gap, mainAxisSpacing: gap),
     itemBuilder: (context, index) => render(list[index]),
     itemCount: list.length,
   );
 }
 
-Widget grid_demo_width(List<dynamic> list, {Function render=card_demo,bool shrinkWrap=false, gap = 8, width= 200,aspectRatio = 3 / 4,}) {
+Widget grid_demo_width(List<dynamic> list, {Function render = card_demo, bool shrinkWrap = false, gap = 8, width = 200, aspectRatio = 3 / 4}) {
   return GridView.builder(
     shrinkWrap: shrinkWrap,
-    physics: shrinkWrap?NeverScrollableScrollPhysics():BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent( maxCrossAxisExtent: width,mainAxisExtent: width, childAspectRatio: aspectRatio,crossAxisSpacing: gap, mainAxisSpacing: gap),
+    physics: shrinkWrap ? NeverScrollableScrollPhysics() : BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+      maxCrossAxisExtent: width,
+      mainAxisExtent: width,
+      childAspectRatio: aspectRatio,
+      crossAxisSpacing: gap,
+      mainAxisSpacing: gap,
+    ),
     itemBuilder: (context, index) => render(list[index]),
     itemCount: list.length,
   );

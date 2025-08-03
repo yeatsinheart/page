@@ -11,11 +11,11 @@ class Browser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget page = ContainerFormat("page", child);
-    return ContainerFormat(
-      "browser",
-      Theme(
-        data: getFlutterTheme(),
-        child: Stack(
+    return Theme(
+      data: getFlutterTheme(),
+      child: ContainerFormat(
+        "browser",
+        Stack(
           children: [
             AppStyle.maxWidth == null
                 ? page

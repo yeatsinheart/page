@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/service/cashier/deposit.dart';
 import 'package:flutter3/share/grid.dart';
 import 'package:flutter3/share/img.dart';
@@ -60,6 +59,8 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
       children: [
         ContainerFormat("section", grid_demo_wrap(payments, num: 3, render: _payment), width: double.infinity),
         ContainerFormat("section", Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [ContainerFormat("btn", Text("使用教程")), ContainerFormat("btn", Text("软件下载"))])),
+        ContainerFormat("warning-soft", Text("当前通道需要指定绑定账号"), width: double.infinity),
+
         ContainerFormat(
           "section",
           Column(
@@ -87,7 +88,6 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
                   ),
                 ],
               ),
-              ContainerFormat("warning-soft", Text("当前通道需要指定绑定账号"), width: double.infinity),
 
               ListView.builder(
                 itemCount: items.length,
@@ -131,7 +131,6 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
                   ),
                 ],
               ),*/
-
               Row(
                 children: [
                   Expanded(

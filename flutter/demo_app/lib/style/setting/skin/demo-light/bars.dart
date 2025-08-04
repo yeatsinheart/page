@@ -25,8 +25,8 @@ var bars = {
     font: ColorSetting(light: "#000", dark: "#55657e"),
   ),
   "bar-brand": container(
-    bg: ColorSetting(light: "#FF4D5A", dark: "#7A3A3A"),
-    font: ColorSetting(light: "#fff", dark: "#55657e"),
+    bg: ColorSetting(light: "#FF4D5A", dark: "#e57373"),
+    font: ColorSetting(light: "#fff", dark: "#0e131b"),
     padding: PaddingSetting(horizon: RemSetting.ofRem(.2)),
   ),
 

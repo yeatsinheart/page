@@ -87,6 +87,8 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
                   ),
                 ],
               ),
+              ContainerFormat("warning-soft", Text("当前通道需要指定绑定账号"), width: double.infinity),
+
               ListView.builder(
                 itemCount: items.length,
                 shrinkWrap: true,
@@ -129,7 +131,6 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
                   ),
                 ],
               ),*/
-              ContainerFormat("warning-soft", Text("当前通道需要指定绑定账号"), width: double.infinity),
 
               Row(
                 children: [

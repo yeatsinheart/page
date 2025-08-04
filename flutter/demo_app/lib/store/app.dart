@@ -11,21 +11,23 @@ class AppStore extends GetxService {
   AppStore._internal();
   static final AppStore _instance = AppStore._internal();
   factory AppStore() => _instance;
-  Rx<Key> appKey = UniqueKey().obs;
 
+  static String Brightness = "dark";//"light";// dark
+  static setStyleDark(){
+    Brightness = "dark";
+    AppStore().rebuildApp();
+  }
+  static setStyleLight(){
+    Brightness = "light";
+    AppStore().rebuildApp();
+  }
+
+  Rx<Key> appKey = UniqueKey().obs;
   void rebuildApp() {
     appKey.value = UniqueKey(); // 改变 key，触发 rebuild
   }
 
-  Rx<ThemeMode> themeMode = ThemeMode.light.obs;
-
-  void toggleTheme() {
-    themeMode.value = themeMode.value == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
-  }
-
-
   static Map<String, dynamic> data = {};
-  static String Brightness = "dark";//"light";// dark
   static byPercent(v) {
     // 按宽度的百分比
     return v * viewWidth / 100;

@@ -29,18 +29,19 @@ var page = {
   ),
 
   "page": container(
-    bgGradient: GradientSetting.linear(
-      colors: [
-        ColorSetting(light: "#7ec1f7", dark: "#7ec1f7"),
-        ColorSetting(light: "#FFF", dark: "#000"),
-      ],
-      stops: [0, .8],
-      begin: top_right,
-      end: bottom_left,
-    ),
+    bg: ColorSetting(light: "#fff",dark: "#121212"),
+    // bgGradient: GradientSetting.linear(
+    //   colors: [
+    //     ColorSetting(light: "#7ec1f7", dark: "#0F2027"),
+    //     ColorSetting(light: "#FFF", dark: "#203A43"),
+    //   ],
+    //   stops: [0, .8],
+    //   begin: top_right,
+    //   end: bottom_left,
+    // ),
   ),
   "section": container(
-    bg: ColorSetting(light: "#FFF", dark: "#000"),
+    bg: ColorSetting(light: "#F5F5F5", dark: "#1E1E1E"),
     margin: PaddingSetting(vertical: RemSetting.ofRem(.1)),
     padding: PaddingSetting(all: RemSetting.ofRem(.2)),
   ),
@@ -52,7 +53,7 @@ var page = {
     padding: PaddingSetting(horizon: RemSetting.ofRem(.2), vertical: RemSetting.ofRem(.05)),
     //border: BorderSetting(color: "#ccc"),
     border: BorderSetting(borderRadius: RemSetting.ofRem(.14)),
-    bg: ColorSetting(light: "#FFF", dark: "#000"),
+    bg: ColorSetting(light: "#F5F5F5", dark: "#1E1E1E"),
     shadows: [
       ShadowSetting(
         color: ColorSetting(light: "#00000033", dark: "#00000033"),

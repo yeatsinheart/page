@@ -35,11 +35,11 @@ class Browser extends StatelessWidget {
                 children: [
                   KeyedSubtree(
                     key: GlobalKey(debugLabel: "day-time"),
-                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("白天"), click: (){AppStore.Brightness="light";Get.find<AppStore>().rebuildApp();})),
+                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("白天"), click: (){AppStore.setStyleLight();})),
                   ),
                   KeyedSubtree(
                     key: GlobalKey(debugLabel: "night-time"),
-                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("黑夜"), click: (){AppStore.Brightness="dark";Get.find<AppStore>().rebuildApp();})),
+                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("黑夜"), click: (){AppStore.setStyleDark();})),
                   ),
                 ],
               ),

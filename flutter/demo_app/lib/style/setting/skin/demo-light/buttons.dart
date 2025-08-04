@@ -6,17 +6,17 @@ var buttons = {
   //
   "btn": container(
     type: "button",
-    bg: ColorSetting(light: "#f5f5f5", dark: "#f5f5f5"),
-    font: ColorSetting(light: "#737272", dark: "#737272"),
-    border: BorderSetting(color: ColorSetting(light: "#ccc", dark: "#ccc"),borderRadius: RemSetting.ofRem(.1)),
+    bg: ColorSetting(light: "#f5f5f5", dark: "#2a2a2a"),
+    font: ColorSetting(light: "#737272", dark: "#bbbbbb"),
+    border: BorderSetting(color: ColorSetting(light: "#ccc", dark: "#444"),borderRadius: RemSetting.ofRem(.1)),
     padding: PaddingSetting(horizon: RemSetting.byPx(14), vertical: RemSetting.byPx(6)),
   ),
 
   "btn-disabled": container(
     type: "button",
-    bg:  ColorSetting(light: "#f5f5f5", dark: "#f5f5f5"),
-    font: ColorSetting(light: "#737272", dark: "#737272"),
-    border: BorderSetting(color: ColorSetting(light: "#ccc", dark: "#ccc"), borderRadius: RemSetting.ofRem(.1)),
+    bg:  ColorSetting(light: "#f5f5f5", dark: "#2a2a2a"),
+    font: ColorSetting(light: "#737272", dark: "#bbbbbb"),
+    border: BorderSetting(color: ColorSetting(light: "#ccc", dark: "#444"), borderRadius: RemSetting.ofRem(.1)),
     padding: PaddingSetting(horizon: RemSetting.byPx(14), vertical: RemSetting.byPx(6)),
   ),
 

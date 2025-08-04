@@ -3,7 +3,7 @@ import 'package:flutter3/share/img.dart';
 import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/format/container.dart';
 
-Widget grid_sliver_demo(List<dynamic> list, {Function render = card_demo, numberOfRow, gap = 8, aspectRatio = 3 / 4}) {
+Widget grid_sliver_demo(List<dynamic> list, {Function render = card_demo, numberOfRow=3, gap = 8, aspectRatio = 3 / 4}) {
   return SliverGrid(
     delegate: SliverChildBuilderDelegate((context, index) {
       return render(list[index]);
@@ -50,10 +50,10 @@ Widget grid_demo_width(List<dynamic> list, {Function render = card_demo, bool sh
   );
 }
 
-Widget card_demo(data, {borderRadiusRem = .12, bg = Colors.grey, nestTitle = true}) {
-  Widget img = AppImg(data["imgI18nKey"], borderRadius: borderRadiusRem);
+Widget card_demo(data, {borderRadiusRem = 14, nestTitle = true}) {
+  Widget img = AppImg("data", borderRadius: borderRadiusRem);
   Widget name = Text(
-    data["nameI18nKey"],
+    data,
     textAlign: TextAlign.center,
     maxLines: 2,
     overflow: TextOverflow.ellipsis,

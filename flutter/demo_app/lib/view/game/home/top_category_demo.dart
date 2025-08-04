@@ -197,38 +197,6 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
   }
 }
 
-Widget buildGridItem(String title) {
-  return ClipRRect(
-    borderRadius: BorderRadius.circular(12),
-    child: Stack(
-      children: [
-        Container(
-          color: Colors.grey[300],
-          child: Center(child: Icon(Icons.image, size: 50, color: Colors.white)),
-        ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.black.withValues(alpha: 0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
-            ),
-            child: Text(
-              title,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.white, fontSize: 12),
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
 // 自定义 delegate 来实现吸顶 header
 class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   final Widget child;

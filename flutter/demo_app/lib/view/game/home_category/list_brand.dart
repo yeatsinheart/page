@@ -44,14 +44,14 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title.tr, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              Text(title.tr, style: TextStyle( fontWeight: FontWeight.bold)),
               TextButton(
                 onPressed: () {
                   setState(() {
                     AppRoute.slideToPath("/game/by_category/left_brand");
                   });
                 },
-                child: Text("更多 >", style: TextStyle(color: Colors.blue)),
+                child: Text("更多 >", style: TextStyle(color: AppStore.getColors()[1])),
               ),
             ],
           ),

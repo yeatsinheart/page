@@ -131,3 +131,63 @@ Future<void> clearMyCache() async {
     await customCacheManager?.emptyCache();
   }
 }
+/*
+在 Flutter 中实现“背景过渡遮罩”或“统一滤镜风格”的方式有几种，以下是常用实现方式，适合亮暗模式下对图片进行视觉适配：
+🎯 目标
+背景图片在 Dark Mode 下不要太刺眼
+给图片加一层 半透明遮罩
+或者统一加个 色调滤镜 让风格一致
+✅ 方法一：加遮罩（适合背景图）
+Stack(
+  children: [
+    Image.asset(
+      'assets/bg.jpg',
+      width: double.infinity,
+      height: double.infinity,
+      fit: BoxFit.cover,
+    ),
+    Container(
+      color: Theme.of(context).brightness == Brightness.dark
+        ? Colors.black.withOpacity(0.4)
+        : Colors.transparent,
+    ),
+    // 其他子组件在上层...
+  ],
+)
+✅ 说明：
+在暗色模式下，给背景图加 黑色半透明 遮罩；
+Stack 实现遮罩覆盖。
+✅ 方法二：统一滤镜（ColorFiltered）
+ColorFiltered(
+  colorFilter: Theme.of(context).brightness == Brightness.dark
+      ? ColorFilter.mode(Colors.grey.shade700, BlendMode.multiply)
+      : ColorFilter.mode(Colors.transparent, BlendMode.multiply),
+  child: Image.asset('assets/bg.jpg'),
+)
+✅ 效果：
+在 dark 模式下让图变暗/变冷色调；
+可结合 BlendMode 实现不同视觉效果（如柔和、变暗、偏冷）；
+滤镜适合照片、插图等统一风格处理。
+
+✅ 方法三：使用 BackdropFilter + ImageFiltered（更复杂的模糊/叠加风格）
+Stack(
+  children: [
+    Image.asset('assets/bg.jpg'),
+    Positioned.fill(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+        child: Container(color: Colors.black.withOpacity(0.2)),
+      ),
+    ),
+  ],
+)
+🔍 适用于做毛玻璃/柔和效果，但性能稍重。
+💡 小技巧（适配多图）
+🧪 推荐遮罩透明度对比参考
+场景	遮罩颜色	透明度建议
+暗色模式背景图	Colors.black	0.2 - 0.4
+强光图片过渡	Colors.black54	0.3 - 0.5
+冷色调风格统一	Colors.blueGrey	0.1 - 0.3 + 滤镜
+
+如果你有具体图片类型或想做具体滤镜风格（比如暗调蓝冷风、漫画风等），我可以帮你细化滤镜调配。你想尝试哪一种？
+* */

@@ -45,7 +45,7 @@ class ExampleContainer extends StatelessWidget {
       //print('${entry.key}: ${entry.value}');
       var k = entry.key;
       list.add(SliverToBoxAdapter(child: Container(height: 20)));
-      list.add(SliverToBoxAdapter(child: Container(height: 50, child: ContainerFormat(k, Text(k)))));
+      list.add(SliverToBoxAdapter(child: Container(child: ContainerFormat(k, Text(k)))));
       list.add(SliverToBoxAdapter(child: Container(height: 20)));
     }
     return list;

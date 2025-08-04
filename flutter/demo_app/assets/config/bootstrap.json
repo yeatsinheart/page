@@ -376,11 +376,11 @@
    },
    "img-loading": {
     "bg": {
-     "dark": "#2c2c2c",
+     "dark": "#2A2A2A",
      "light": "#e0e0e0"
     },
     "font": {
-     "dark": "#000",
+     "dark": "#1E1E1E",
      "light": "#FFF"
     }
    },

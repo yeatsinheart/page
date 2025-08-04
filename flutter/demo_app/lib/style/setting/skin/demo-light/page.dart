@@ -63,8 +63,8 @@ var page = {
   ),
 
   "img-loading": container(
-    bg: ColorSetting(light: "#e0e0e0", dark: "#2c2c2c"),
-    font: ColorSetting(light: "#FFF", dark: "#000"),
+    bg: ColorSetting(light: "#e0e0e0", dark: "#2A2A2A"),
+    font: ColorSetting(light: "#FFF", dark: "#1E1E1E"),
   ),
 
   "txt-cover": container(

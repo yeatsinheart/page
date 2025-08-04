@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/marquee.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/format/container.dart';
 
 
@@ -57,12 +57,12 @@ class _MarketMarqueeDemoState extends State<MarketMarqueeDemo> {
   @override
   Widget build(BuildContext context) {
     return ContainerFormat("marquee",Container(
-      height: AppStyle.byRem(.5),
+      height: AppStyleStore.byRem(.5),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
+        padding: EdgeInsets.symmetric(horizontal: AppStyleStore.byRem(.2)),
         child: Row(
           children: [
-            Icon(Icons.volume_up, size: AppStyle.byRem(.36)), // 📢 图标
+            Icon(Icons.volume_up, size: AppStyleStore.byRem(.36)), // 📢 图标
             SizedBox(width: 8),
 
             //Expanded(child: MarqueeWithoutTicker(text: messages.join('     ★     '))),

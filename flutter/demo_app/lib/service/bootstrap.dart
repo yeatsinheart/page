@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/store/host-status.dart';
 import 'package:flutter3/store/language.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
 
@@ -21,8 +21,8 @@ class BootstrapService {
     data = config;
     await Future.wait<dynamic>([
       /// 数据和页面绑定，且一变动就要在界面展示出来的才放到store中
-      //()async{AppStyle.style=config["host"]??{};}(),
-      //()async{AppStyle.style=config["language"]??{};}(),
+      //()async{AppStyleStore.style=config["host"]??{};}(),
+      //()async{AppStyleStore.style=config["language"]??{};}(),
       () async {
         AppView.setViews(config["view"] ?? {});
       }(),
@@ -30,11 +30,11 @@ class BootstrapService {
         AppView.setLayout(config["layout"] ?? {});
       }(),
       () async {
-        AppStyle.data = config["style"] ?? {};
+        AppStyleStore.data = config["style"] ?? {};
       }(),
-      //()async{AppStyle.style=config["app"]??{};}(),
+      //()async{AppStyleStore.style=config["app"]??{};}(),
     ]);
-    AppStyle.data = config["style"];
+    AppStyleStore.data = config["style"];
   }
 
   static init() async {

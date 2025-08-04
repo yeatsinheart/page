@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter3/log/logger.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/util/color-util.dart';
 
 class ColorFont {
@@ -13,11 +13,11 @@ class ColorFont {
   const ColorFont({this.title, this.name, this.txt, this.ghost});
 
   factory ColorFont.fromJson(Map<String, dynamic> json) {
-    return ColorFont(title: ColorUtil.getColor(json['title'][AppStyle.Brightness]), name: ColorUtil.getColor(json['name'][AppStyle.Brightness]), txt: ColorUtil.getColor(json['txt'][AppStyle.Brightness]), ghost: ColorUtil.getColor(json['ghost'][AppStyle.Brightness]));
+    return ColorFont(title: ColorUtil.getColor(json['title'][AppStyleStore.Brightness]), name: ColorUtil.getColor(json['name'][AppStyleStore.Brightness]), txt: ColorUtil.getColor(json['txt'][AppStyleStore.Brightness]), ghost: ColorUtil.getColor(json['ghost'][AppStyleStore.Brightness]));
   }
 
   static ColorFont get() {
-    return ColorFont.fromJson(AppStyle.data["font"] ?? {});
+    return ColorFont.fromJson(AppStyleStore.data["font"] ?? {});
   }
 
   Map<String, dynamic> toJson() {

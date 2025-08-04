@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/util/MyEasyRefresh.dart';
 
@@ -60,7 +60,7 @@ class _CashierHomeDemoState extends State<CashierHomeDemo> {
                 Row(
                   children: [
                     Container(child: Text("不可用余额")),
-                    IconButton(onPressed: (){}, icon: Icon(Icons.help,size: AppStyle.byRem(.22),)),
+                    IconButton(onPressed: (){}, icon: Icon(Icons.help,size: AppStyleStore.byRem(.22),)),
                     Container(child: Text("9099999999.00")),
                   ],
                 ),

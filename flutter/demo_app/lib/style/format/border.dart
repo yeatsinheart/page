@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/util/color-util.dart';
 
 class BorderFormat {
   // 以 rem为准 7.5rem=100%；
   static fromJson(Map<String, dynamic>? json){
     if(null==json)return null;
-    Color? c = ColorUtil.getColor(json["color"]?[AppStyle.Brightness]);
+    Color? c = ColorUtil.getColor(json["color"]?[AppStyleStore.Brightness]);
     if(null==c) return null;
-    return Border.all(color:c, width: AppStyle.byRem(json["width"]));
+    return Border.all(color:c, width: AppStyleStore.byRem(json["width"]));
   }
 }

@@ -8,7 +8,7 @@ export 'button-style-text.dart';
 */
 
 import 'package:flutter/material.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/color-font.dart';
 import 'package:flutter3/style/theme/checkbox.dart';
 import 'package:flutter3/style/theme/list-title.dart';
@@ -24,14 +24,14 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
 
     scaffoldBackgroundColor: Colors.transparent,
 
-    // colorScheme: ColorScheme.fromSeed(seedColor:  AppStyle.getMainColor()),
+    // colorScheme: ColorScheme.fromSeed(seedColor:  AppStyleStore.getMainColor()),
 
-    primaryColor: AppStyle.getMainColor(),
-    secondaryHeaderColor: AppStyle.getMainColor(),
-    hoverColor: AppStyle.getMainColor(),
-    focusColor: AppStyle.getMainColor(),
-    highlightColor: AppStyle.getMainColor(),
-    splashColor: AppStyle.getMainColor(),
+    primaryColor: AppStyleStore.getMainColor(),
+    secondaryHeaderColor: AppStyleStore.getMainColor(),
+    hoverColor: AppStyleStore.getMainColor(),
+    focusColor: AppStyleStore.getMainColor(),
+    highlightColor: AppStyleStore.getMainColor(),
+    splashColor: AppStyleStore.getMainColor(),
 
     // colorSchemeSeed:Colors.red,
     // colorScheme:ColorScheme(),
@@ -63,7 +63,7 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     // unselectedWidgetColor:Colors.red,
 
     /// 文件夹中添加对应组件的theme获取方法
-    tabBarTheme: TabBarThemeData(indicatorColor: AppStyle.getMainColor()),
+    tabBarTheme: TabBarThemeData(indicatorColor: AppStyleStore.getMainColor()),
     appBarTheme: AppBarTheme(),
     bottomAppBarTheme: BottomAppBarTheme(),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(),
@@ -87,8 +87,8 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
       enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: fontColor??ColorFont.get().txt!)),
       focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: fontColor??ColorFont.get().txt!)),
       hoverColor: Colors.transparent,
-      // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppStyle.getMainColor())),
-      // labelStyle: TextStyle(color: AppStyle.getMainColor()),
+      // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppStyleStore.getMainColor())),
+      // labelStyle: TextStyle(color: AppStyleStore.getMainColor()),
       labelStyle: TextStyle(color:  fontColor??ColorFont.get().txt!),
     ),
 

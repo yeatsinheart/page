@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/format/container.dart';
 
 Widget grid_sliver_demo(List<dynamic> list, {Function render = card_demo, numberOfRow, gap = 8, aspectRatio = 3 / 4}) {
@@ -13,8 +13,8 @@ Widget grid_sliver_demo(List<dynamic> list, {Function render = card_demo, number
 }
 
 Widget grid_demo_wrap(List<dynamic> list, {num = 3, Function render = card_demo}) {
-  double gap = AppStyle.byRem(.1);
-  double width = AppStyle.byRem((7.5 - 0.4 - (num - 1) * .1) / num);
+  double gap = AppStyleStore.byRem(.1);
+  double width = AppStyleStore.byRem((7.5 - 0.4 - (num - 1) * .1) / num);
   return Wrap(
     spacing: gap,
     runSpacing: gap,

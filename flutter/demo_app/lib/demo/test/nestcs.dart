@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/demo/game.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:mutex/mutex.dart';
 
 import '../../util/lock.dart';
@@ -170,7 +170,7 @@ class AppNetCsPaneState extends State<TestNestcs> with TickerProviderStateMixin 
       },
       body: Container(
         color: Colors.white,
-        constraints: BoxConstraints(minHeight: (AppStyle.screenHeight - 501)),
+        constraints: BoxConstraints(minHeight: (AppStyleStore.screenHeight - 501)),
         child: CustomScrollView(
           physics: physics,
           //physics: BouncingScrollPhysics(parent: BouncingScrollPhysics()),

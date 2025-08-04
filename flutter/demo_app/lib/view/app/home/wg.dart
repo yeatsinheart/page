@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:flutter3/view/app/home/_child/bar_brand/demo.dart';
 
@@ -46,8 +46,8 @@ class _AppHomeWgState extends State<AppHomeWg> {
                 backgroundColor: Colors.transparent,
                 pinned: true,
                 // 👈 吸顶关键
-                expandedHeight: AppStyle.getRem(0.9),
-                flexibleSpace: FlexibleSpaceBar(titlePadding:EdgeInsetsGeometry.all(0),title: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, AppStyle.getRem(0.7), null)),
+                expandedHeight: AppStyleStore.getRem(0.9),
+                flexibleSpace: FlexibleSpaceBar(titlePadding:EdgeInsetsGeometry.all(0),title: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, AppStyleStore.getRem(0.7), null)),
               ),*/
 
               // 固定顶部图片
@@ -56,11 +56,11 @@ class _AppHomeWgState extends State<AppHomeWg> {
                   SliverPersistentHeader(
                     pinned: true, // 关键：固定吸顶
                     delegate: _StickyHeaderDelegate(
-                      //height: currentHeaderIndex == 1 ? AppStyle.getRem(0.9) : 0,
-                      height: AppStyle.byRem(0.9),
+                      //height: currentHeaderIndex == 1 ? AppStyleStore.getRem(0.9) : 0,
+                      height: AppStyleStore.byRem(0.9),
                       child: BarBrandDemo(),
 
-                      //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, AppStyle.getRem(0.7), null),
+                      //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, AppStyleStore.getRem(0.7), null),
                     ),
                   ),
                   SliverToBoxAdapter(child: AppView.ofKey("swiper")),

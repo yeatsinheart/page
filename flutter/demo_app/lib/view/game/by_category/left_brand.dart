@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter3/share/img.dart';
 
 import 'package:flutter3/share/sliver_header_delegate.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
 
@@ -48,13 +48,13 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       if (header2_context != null) {
         final header2 = header2_context.findRenderObject() as RenderBox;
         final offset2 = header2.localToGlobal(Offset.zero).dy;
-        print("$offset2 ${offset2 - AppStyle.byRem(.9)} $_header2Padding");
-        if (offset2 < AppStyle.byRem(.9)) {
+        print("$offset2 ${offset2 - AppStyleStore.byRem(.9)} $_header2Padding");
+        if (offset2 < AppStyleStore.byRem(.9)) {
           setState(() {
-            _header2Padding = (offset2 - AppStyle.byRem(.9)).abs();
+            _header2Padding = (offset2 - AppStyleStore.byRem(.9)).abs();
           });
         }
-        if (offset2 >= AppStyle.byRem(.9) && _header2Padding != 0) {
+        if (offset2 >= AppStyleStore.byRem(.9) && _header2Padding != 0) {
           setState(() {
             _header2Padding = 0;
           });
@@ -92,7 +92,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
   }
 
   void _scrollTabToCenter(int index) {
-    final double screenHeight = AppStyle.screenHeight;
+    final double screenHeight = AppStyleStore.screenHeight;
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
@@ -109,7 +109,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     if (dataContext != null) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
-      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset - AppStyle.byRem(.9);
+      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset - AppStyleStore.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
       _pageScrollController.animateTo(offset.clamp(_pageScrollController.position.minScrollExtent, _pageScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
@@ -192,12 +192,12 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       pinned: true,
       // 最大高度
       delegate: ShareSliverPersistentHeaderDelegate(
-        height: AppStyle.byRem(.9),
+        height: AppStyleStore.byRem(.9),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // 左侧 logo
-            AppImg('assets/images/launcher.png', width: AppStyle.byRem(0.7), height: AppStyle.byRem(0.7)),
+            AppImg('assets/images/launcher.png', width: AppStyleStore.byRem(0.7), height: AppStyleStore.byRem(0.7)),
             TextButton(
               onPressed: () {
                 setState(() {
@@ -209,7 +209,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                 foregroundColor: WidgetStateProperty.all(Colors.blue),
                 shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
+                    borderRadius: BorderRadius.circular(AppStyleStore.byRem(.1)),
                     side: BorderSide(color: Colors.blue),
                   ),
                 ),
@@ -228,7 +228,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
         // padding 永远和header保持>一个导航栏高度
         pinned: true,
         // 最大高度
-        delegate: ShareSliverPersistentHeaderDelegate(height: AppStyle.screenHeight - AppStyle.byRem(1.24), child: _buildTabBar()),
+        delegate: ShareSliverPersistentHeaderDelegate(height: AppStyleStore.screenHeight - AppStyleStore.byRem(1.24), child: _buildTabBar()),
       ),
     );
   }
@@ -279,7 +279,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                     ),
                     getHeader1(),
                     SliverPadding(
-                      padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
+                      padding: EdgeInsets.symmetric(horizontal: AppStyleStore.byRem(.2)),
                       sliver: SliverCrossAxisGroup(
                         slivers: [
                           getHeader2(),
@@ -351,8 +351,8 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: AppStyle.getRem(.2),
-                          vertical: AppStyle.getRem(.01),
+                          horizontal: AppStyleStore.getRem(.2),
+                          vertical: AppStyleStore.getRem(.01),
                         ),
                         child: GridView.builder(
                           shrinkWrap: true,

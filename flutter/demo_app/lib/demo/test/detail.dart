@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/demo/game.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 
 import '../../share/img.dart';
 
@@ -21,10 +21,10 @@ class TestDetail extends StatelessWidget {
               Hero(
                 tag: 'hero${game?.title}',
                 child: Container(
-                  height: AppStyle.screenHeight,
+                  height: AppStyleStore.screenHeight,
                   child: Stack(
                     children: <Widget>[
-                      AppImg(game!.imageUrl, fit: BoxFit.cover, height: AppStyle.byPx(500)),
+                      AppImg(game!.imageUrl, fit: BoxFit.cover, height: AppStyleStore.byPx(500)),
                       SafeArea(
                         bottom: false,
                         child: Padding(

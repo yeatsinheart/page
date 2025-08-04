@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/store/app.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/style/theme/all-theme.dart';
 import 'package:get/get.dart';
@@ -18,28 +18,28 @@ class Browser extends StatelessWidget {
         "browser",
         Stack(
           children: [
-            AppStyle.maxWidth == null
+            AppStyleStore.maxWidth == null
                 ? page
                 : Center(
                     child: ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: AppStyle.maxWidth!),
+                      constraints: BoxConstraints(maxWidth: AppStyleStore.maxWidth!),
                       child: page,
                     ),
                   ),
 
             Positioned(
               left: 0,
-              bottom: AppStyle.byRem(1.44),
+              bottom: AppStyleStore.byRem(1.44),
               child: Column(
-                spacing: AppStyle.byRem(.2),
+                spacing: AppStyleStore.byRem(.2),
                 children: [
                   KeyedSubtree(
                     key: GlobalKey(debugLabel: "day-time"),
-                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("白天"), click: (){AppStyle.Brightness="light";Get.find<AppStore>().rebuildApp();})),
+                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("白天"), click: (){AppStyleStore.Brightness="light";Get.find<AppStyleStore>().rebuildApp();})),
                   ),
                   KeyedSubtree(
                     key: GlobalKey(debugLabel: "night-time"),
-                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("黑夜"), click: (){AppStyle.Brightness="dark";Get.find<AppStore>().rebuildApp();})),
+                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("黑夜"), click: (){AppStyleStore.Brightness="dark";Get.find<AppStyleStore>().rebuildApp();})),
                   ),
                 ],
               ),
@@ -47,9 +47,9 @@ class Browser extends StatelessWidget {
 
             Positioned(
               right: 0,
-              bottom: AppStyle.byRem(1.44),
+              bottom: AppStyleStore.byRem(1.44),
               child: Column(
-                spacing: AppStyle.byRem(.2),
+                spacing: AppStyleStore.byRem(.2),
                 children: [
                   KeyedSubtree(
                     key: GlobalKey(debugLabel: "toutiao"),

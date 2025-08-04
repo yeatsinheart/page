@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/color-font.dart';
 import 'package:flutter3/style/theme/style-text.dart';
 
@@ -40,7 +40,7 @@ globalButtonStyle({Color? fontColor}){
     minimumSize:WidgetStateProperty.all(Size(0, 0)),// 按钮最小限制
     shape: WidgetStateProperty.all(
       RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
+        borderRadius: BorderRadius.circular(AppStyleStore.byRem(.1)),
         side: BorderSide(color: Colors.transparent),
       ),
     ),

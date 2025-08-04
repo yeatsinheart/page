@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/overlay.dart';
-import 'package:flutter3/style/app-style.dart';
+import 'package:flutter3/store/app.dart';
 
 class PopCloseBottom extends StatelessWidget {
   final dynamic params;
@@ -19,12 +19,12 @@ class PopCloseBottom extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: AppStyle.viewWidth * .8, maxHeight: AppStyle.screenHeight * .8),
+              constraints: BoxConstraints(maxWidth: AppStyleStore.viewWidth * .8, maxHeight: AppStyleStore.screenHeight * .8),
               child: Container(
-                padding: EdgeInsetsGeometry.all(AppStyle.byRem(.2)),
+                padding: EdgeInsetsGeometry.all(AppStyleStore.byRem(.2)),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(AppStyle.byRem(.2)), // 设置圆角半径
+                  borderRadius: BorderRadius.circular(AppStyleStore.byRem(.2)), // 设置圆角半径
                 ),
                 child: params ?? Container(),
               ),

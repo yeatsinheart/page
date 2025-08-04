@@ -23,16 +23,29 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     useMaterial3: true,
 
     scaffoldBackgroundColor: Colors.transparent,
-
-    // colorScheme: ColorScheme.fromSeed(seedColor:  AppStyleStore.getMainColor()),
-
-    primaryColor: AppStore.getMainColor(),
-    secondaryHeaderColor: AppStore.getMainColor(),
-    hoverColor: AppStore.getMainColor(),
-    focusColor: AppStore.getMainColor(),
-    highlightColor: AppStore.getMainColor(),
-    splashColor: AppStore.getMainColor(),
-
+    // colorScheme: ColorScheme(
+    //   brightness: Brightness.light,     // 亮色模式或暗色模式
+    //
+    //   primary: AppStore.getMainColor(),              // 主要颜色
+    //   onPrimary: Colors.white,           // 主要颜色上的文字或图标颜色
+    //
+    //   secondary: Colors.amber,           // 次要颜色
+    //   onSecondary: Colors.black,         // 次要颜色上的文字颜色
+    //
+    //   surface: Colors.white,             // 背景色卡片等表面颜色
+    //   onSurface: Colors.black,           // 背景色表面颜色上的文字颜色
+    //
+    //   error: Colors.red,                 // 错误颜色
+    //   onError: Colors.white,             // 错误颜色上的文字颜色
+    // ),
+    // 使用 colorScheme 的现代 Flutter 主题中，它们往往是被弱化或者部分覆盖的，甚至某些控件不再使用这些旧属性。
+    // primaryColor: AppStore.getMainColor(),
+    // secondaryHeaderColor: AppStore.getMainColor(),
+    // hoverColor: AppStore.getMainColor(),
+    // focusColor: AppStore.getMainColor(),
+    // highlightColor: AppStore.getMainColor(),
+    // splashColor: AppStore.getMainColor(),
+    colorScheme: ColorScheme.fromSeed(seedColor: AppStore.getMainColor()),
     // colorSchemeSeed:Colors.red,
     // colorScheme:ColorScheme(),
     // primarySwatch:MaterialColor(),
@@ -70,26 +83,35 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
 
     scrollbarTheme: ScrollbarThemeData(),
 
-
+    textSelectionTheme: TextSelectionThemeData(cursorColor: AppStore.getMainColor()),
     textTheme: getTextTheme(fontColor: fontColor),
-    listTileTheme: getListTitleTheme(fontColor:fontColor),
-    checkboxTheme: getCheckBoxTheme(fontColor:fontColor),
+    listTileTheme: getListTitleTheme(fontColor: fontColor),
+    checkboxTheme: getCheckBoxTheme(fontColor: fontColor),
 
     iconTheme: IconThemeData(color: fontColor ?? ColorFont.get().txt, fill: 1),
 
-    buttonTheme: ButtonThemeData(padding: EdgeInsetsGeometry.all(0),minWidth: 0,height: 0),
+    buttonTheme: ButtonThemeData(padding: EdgeInsetsGeometry.all(0), minWidth: 0, height: 0),
     textButtonTheme: TextButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
     iconButtonTheme: IconButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
     elevatedButtonTheme: ElevatedButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
 
     inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(borderSide: BorderSide(color: fontColor??ColorFont.get().txt!)),
-      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: fontColor??ColorFont.get().txt!)),
-      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: fontColor??ColorFont.get().txt!)),
+      // 设置 isCollapsed: true 时，输入框高度只由 contentPadding 决定，适合你想做非常紧凑的样式。
+      isCollapsed: true,
+      contentPadding: EdgeInsets.symmetric(vertical: AppStore.byRem(.2), horizontal: AppStore.byRem(.2)),
+      // 调整内边距大小
+      border: OutlineInputBorder(
+        borderSide: BorderSide(color: fontColor ?? ColorFont.get().txt!),
+      ),
+      // 圆角设置
+      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: fontColor ?? ColorFont.get().txt!), borderRadius: BorderRadius.circular(AppStore.byRem(.14)),),
+      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: fontColor ?? ColorFont.get().txt!), borderRadius: BorderRadius.circular(AppStore.byRem(.14)),),
       hoverColor: Colors.transparent,
       // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppStyleStore.getMainColor())),
       // labelStyle: TextStyle(color: AppStyleStore.getMainColor()),
-      labelStyle: TextStyle(color:  fontColor??ColorFont.get().txt!),
+      labelStyle: TextStyle(color: fontColor ?? ColorFont.get().txt!),
+
+      // 全局光标颜色设置
     ),
 
     // filledButtonTheme:FilledButtonThemeData(),

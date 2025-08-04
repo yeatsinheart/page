@@ -128,8 +128,8 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
             itemCount: tabs.length,
             itemBuilder: (context, index) {
               final selected = index == _currentIndex;
-              return GestureDetector(
-                onTap: () {
+              return TextButton(
+                onPressed: () {
                   setState(() {
                     _currentIndex = index;
                     _scrollTabToCenter(index);

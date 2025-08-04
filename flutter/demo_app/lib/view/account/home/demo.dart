@@ -13,10 +13,33 @@ class AccountHomeDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> list = [];
-    list.add(_buildNavItem(icon: "https://cdn-icons-png.flaticon.com/128/4824/4824252.png", activeIcon: "https://cdn-icons-png.flaticon.com/128/4823/4823363.png", label: "消息通知", index: 1));
-    list.add(_buildNavItem(icon: "https://cdn-icons-png.flaticon.com/128/4824/4824252.png", activeIcon: "https://cdn-icons-png.flaticon.com/128/4823/4823363.png", label: "收藏", index: 1));
-    list.add(_buildNavItem(icon: "https://cdn-icons-png.flaticon.com/128/4824/4824252.png", activeIcon: "https://cdn-icons-png.flaticon.com/128/4823/4823363.png", label: "浏览历史", index: 1));
-    list.add(_buildNavItem(icon: "https://cdn-icons-png.flaticon.com/128/10061/10061767.png", activeIcon: "https://cdn-icons-png.flaticon.com/128/3344/3344374.png", label: "下载管理", index: 2));
+    list.add(
+      _buildNavItem(
+        icon: "https://cdn-icons-png.flaticon.com/128/4824/4824252.png",
+        activeIcon: "https://cdn-icons-png.flaticon.com/128/4823/4823363.png",
+        label: "消息通知",
+        index: 1,
+      ),
+    );
+    list.add(
+      _buildNavItem(icon: "https://cdn-icons-png.flaticon.com/128/4824/4824252.png", activeIcon: "https://cdn-icons-png.flaticon.com/128/4823/4823363.png", label: "收藏", index: 1),
+    );
+    list.add(
+      _buildNavItem(
+        icon: "https://cdn-icons-png.flaticon.com/128/4824/4824252.png",
+        activeIcon: "https://cdn-icons-png.flaticon.com/128/4823/4823363.png",
+        label: "浏览历史",
+        index: 1,
+      ),
+    );
+    list.add(
+      _buildNavItem(
+        icon: "https://cdn-icons-png.flaticon.com/128/10061/10061767.png",
+        activeIcon: "https://cdn-icons-png.flaticon.com/128/3344/3344374.png",
+        label: "下载管理",
+        index: 2,
+      ),
+    );
     List<String> gridList = List.generate(15, (index) => '选项 ${index + 1}');
     return Scaffold(
       body: SafeArea(
@@ -28,26 +51,34 @@ class AccountHomeDemo extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.qr_code_scanner, size: AppStore.byRem(.4)),
-                  Icon(Icons.settings, size: AppStore.byRem(.4)),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.qr_code_scanner, size: AppStore.byRem(.4))),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.settings, size: AppStore.byRem(.4))),
                 ],
               ),
-
-              Container(
-                margin: EdgeInsets.only(top: AppStore.byRem(.4), bottom: AppStore.byRem(.6)),
-                child: InkWell(
-                  onTap: () {},
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(width: AppStore.byRem(2), height: AppStore.byRem(2), child: AppImg("assets/images/circle_bg.png")),
-                      Text(
-                        "登录",
-                        style: TextStyle(fontSize: AppStore.byRem(.4), color: Colors.white),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: AppStore.byRem(.4), bottom: AppStore.byRem(.6)),
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          print("");
+                        },
+                        child: Container(width: AppStore.byRem(2),
+                            height: AppStore.byRem(2),
+                            decoration: BoxDecoration(color: AppStore.getMainColor(), shape: BoxShape.circle),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '登陆',
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: AppStore.byRem(.4)),
+                            ),
+                          ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
 
               ContainerFormat(

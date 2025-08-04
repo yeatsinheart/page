@@ -92,27 +92,29 @@ Widget img(String url, {BoxFit? fit, Color? loadingBg, Color? loadingFont}) {
   if (kIsWeb && resource.startsWith("assets/")) {
     resource = resource.substring(7);
   }
-  return _darkFilter(SizedBox.expand(
-    child: url.startsWith('http')
-        ? CachedNetworkImage(
-            fadeOutDuration: const Duration(milliseconds: 200),
-            fadeInDuration: const Duration(milliseconds: 200),
-            imageUrl: url.tr,
-            httpHeaders: {
-              "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36", // 伪装请求头，某些 CDN 要求
-            },
-            cacheManager: customCacheManager,
-            useOldImageOnUrlChange: true,
-            fit: fit,
-            alignment: Alignment.center,
-            placeholder: (context, url) => Container(color: loadingBg, alignment: Alignment.center, child: _loadingWidget(loadingFont)),
-            errorWidget: (context, url, error) => Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont)),
-          )
-        : Image.asset(
-            resource,
-            fit: fit,
-            errorBuilder: (context, error, stackTrace) => Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont)),
-          ),)
+  return _darkFilter(
+    SizedBox.expand(
+      child: url.startsWith('http')
+          ? CachedNetworkImage(
+              fadeOutDuration: const Duration(milliseconds: 200),
+              fadeInDuration: const Duration(milliseconds: 200),
+              imageUrl: url.tr,
+              httpHeaders: {
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36", // 伪装请求头，某些 CDN 要求
+              },
+              cacheManager: customCacheManager,
+              useOldImageOnUrlChange: true,
+              fit: fit,
+              alignment: Alignment.center,
+              placeholder: (context, url) => Container(color: loadingBg, alignment: Alignment.center, child: _loadingWidget(loadingFont)),
+              errorWidget: (context, url, error) => Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont)),
+            )
+          : Image.asset(
+              resource,
+              fit: fit,
+              errorBuilder: (context, error, stackTrace) => Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont)),
+            ),
+    ),
     // FutureBuilder(
     //   future: rootBundle.load(resource),
     //   builder: (context, snapshot) {
@@ -129,10 +131,10 @@ Widget img(String url, {BoxFit? fit, Color? loadingBg, Color? loadingFont}) {
 }
 
 // ✅ 方法二：统一滤镜（ColorFiltered）使用颜色矩阵（ColorMatrix）或自定义 ColorFilter 实现亮度压暗
-_darkFilter(img){
-  if(AppStore.Brightness=="light")return img;
+_darkFilter(img) {
+  if (AppStore.Brightness == "light") return img;
   return ColorFiltered(
-    // 所有 RGB 通道都被乘以 0.6（压暗约 40%）
+    // // 所有 RGB 通道都被乘以 0.6（压暗约 40%）
     colorFilter: const ColorFilter.matrix(<double>[
       0.6, 0,   0,   0, 0,  // R channel
       0,   0.6, 0,   0, 0,  // G channel
@@ -140,27 +142,42 @@ _darkFilter(img){
       0,   0,   0,   1, 0,  // A channel stays the same
     ]),
     // 这种方式透明会变白
-    // ColorFilter.mode(Colors.grey.shade700, BlendMode.multiply),//将灰色与图像颜色通过 multiply 模式叠加 色彩会“变脏”，有点 desaturate（去饱和）
+    // colorFilter: ColorFilter.mode(Colors.grey.shade700, BlendMode.multiply),//将灰色与图像颜色通过 multiply 模式叠加 色彩会“变脏”，有点 desaturate（去饱和）
+    // 乘金色 像金色滤镜，保留明暗
+    // colorFilter: ColorFilter.mode(Color(0xFFFFD700), BlendMode.modulate, ),
+    // 所有颜色变金色 变指定颜色 图像完全变为金色，透明保留	白色图标、矢量 Logo 染色
+    // colorFilter: ColorFilter.mode(Color(0xFFFFD700), BlendMode.srcIn,),
+    // 颜色矩阵 高级风格化，像照片滤镜
+    // colorFilter: const ColorFilter.matrix(<double>[
+    //   // R
+    //   1.0, 0.8, 0.0, 0, 0,
+    //   // G
+    //   0.6, 0.7, 0.0, 0, 0,
+    //   // B
+    //   0.1, 0.3, 0.0, 0, 0,
+    //   // A
+    //   0, 0, 0, 1, 0,
+    // ]),
     child: img,
   );
 }
+
 //✅ 方法三：使用 BackdropFilter + ImageFiltered（更复杂的模糊/叠加风格） 模糊背景内容的一个组件，常用于实现「毛玻璃」或「背景虚化」效果。
 //🔍 适用于做毛玻璃/柔和效果，但性能稍重。
 //💡 小技巧（适配多图）
-_blurFilter(img){
-  if(AppStore.Brightness=="light")return img;
-  return
-    Stack(
-      children: [
-        img,
-        Positioned.fill(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
-            child: Container(color: Colors.black.withValues(alpha: 0.2)),
-          ),
+_blurFilter(img) {
+  if (AppStore.Brightness == "light") return img;
+  return Stack(
+    children: [
+      img,
+      Positioned.fill(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+          child: Container(color: Colors.black.withValues(alpha: 0.2)),
         ),
-      ],
-    );
+      ),
+    ],
+  );
 }
 
 Future<void> clearMyCache() async {

@@ -26,8 +26,8 @@ var page = {
     bg: ColorSetting(light: "#fff",dark: "#293549"),
     bgGradient: GradientSetting.linear(
       colors: [
-        ColorSetting(light: "#81FFEF", dark: "#81FFEF"),
-        ColorSetting(light: "#F067B4", dark: "#F067B4"),
+        ColorSetting(light: "#81FFEF", dark: "#293549"),
+        ColorSetting(light: "#F067B4", dark: "#293549"),
       ],
       stops: [0.1, 1],
       begin: top_right,
@@ -36,7 +36,6 @@ var page = {
   ),
 
   "page": container(
-    bg: ColorSetting(light: "#fff",dark: "#0e131b"),
     bgGradient: GradientSetting.linear(
       colors: [
         ColorSetting(light: "#7ec1f7", dark: "#0e131b"),

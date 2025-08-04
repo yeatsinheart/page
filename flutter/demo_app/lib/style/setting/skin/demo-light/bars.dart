@@ -13,11 +13,10 @@ var bars = {
     font: ColorSetting(light: "#000", dark: "#55657e"),
   ),
   "bar-bottom": container(
-    bg: ColorSetting(light: "#fff", dark: "#141d29"),
     bgGradient: GradientSetting.linear(
       colors: [
-        ColorSetting(light: "#7ec1f7", dark: "transparent"),
-        ColorSetting(light: "#fff", dark: "transparent"),
+        ColorSetting(light: "#7ec1f7", dark: "#141d29"),
+        ColorSetting(light: "#fff", dark: "#141d29"),
       ],
       stops: [0, .8],
       begin: bottom_center,

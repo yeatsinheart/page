@@ -290,11 +290,11 @@
      "type": "linear",
      "colors": [
       {
-       "dark": "#81FFEF",
+       "dark": "#293549",
        "light": "#81FFEF"
       },
       {
-       "dark": "#F067B4",
+       "dark": "#293549",
        "light": "#F067B4"
       }
      ],
@@ -341,10 +341,6 @@
       -1.0,
       1.0
      ]
-    },
-    "bg": {
-     "dark": "#0e131b",
-     "light": "#fff"
     }
    },
    "section": {
@@ -500,11 +496,11 @@
      "type": "linear",
      "colors": [
       {
-       "dark": "transparent",
+       "dark": "#141d29",
        "light": "#7ec1f7"
       },
       {
-       "dark": "transparent",
+       "dark": "#141d29",
        "light": "#fff"
       }
      ],
@@ -520,10 +516,6 @@
       0.0,
       -1.0
      ]
-    },
-    "bg": {
-     "dark": "#141d29",
-     "light": "#fff"
     },
     "font": {
      "dark": "#55657e",

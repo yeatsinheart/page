@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/service/bootstrap.dart';
 import 'package:flutter3/store/app.dart';
+import 'package:flutter3/store/auto-brightness.dart';
 import 'package:flutter3/style/widget/browser.dart';
 import 'package:flutter3/view/app/network_monitor.dart';
 import 'package:get/get.dart';
@@ -70,6 +71,7 @@ init() async {
 
 _main(child) {
   Get.put(AppStore());
+  AutoBrightness.check();
   return Obx(() {
     return MaterialApp(
       key: Get.find<AppStore>().appKey.value,

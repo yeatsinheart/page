@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-context.dart';
-import 'package:flutter3/service/language.dart';
 import 'package:flutter3/util/color-util.dart';
 import 'package:get/get.dart';
 
@@ -67,4 +66,5 @@ class AppStore extends GetxService {
   static Color getMainColor() {
     return ColorUtil.getColor(getColors()[0])!;
   }
+
 }

@@ -47,13 +47,13 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
   @override
   Widget build(BuildContext context) {
     final displayItems = _expanded ? items : items.take(leastShow).toList();
-    double gridWidth = (AppStyleStore.viewWidth - (crossAxisSpacing * (columns - 1))) / columns; // 宽高比
+    double gridWidth = (AppStore.viewWidth - (crossAxisSpacing * (columns - 1))) / columns; // 宽高比
     double gridHeight = gridWidth / childAspectRatio; // 宽高比
 
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppStyleStore.byRem(.2), vertical: AppStyleStore.byRem(.05)),
+          padding: EdgeInsets.symmetric(horizontal: AppStore.byRem(.2), vertical: AppStore.byRem(.05)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -66,7 +66,7 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
           ),
         ),
         GridView.builder(
-          padding: EdgeInsets.symmetric(horizontal: AppStyleStore.byRem(.2), vertical: AppStyleStore.byRem(.05)),
+          padding: EdgeInsets.symmetric(horizontal: AppStore.byRem(.2), vertical: AppStore.byRem(.05)),
           // 可设置外边距
           //physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
@@ -74,16 +74,16 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: columns, // 每行 3 个
             childAspectRatio: childAspectRatio, //宽高比 = 宽 / 高
-            mainAxisSpacing: AppStyleStore.byPx(mainAxisSpacing), // 垂直间距
-            crossAxisSpacing: AppStyleStore.byPx(crossAxisSpacing), // 水平间距
+            mainAxisSpacing: AppStore.byPx(mainAxisSpacing), // 垂直间距
+            crossAxisSpacing: AppStore.byPx(crossAxisSpacing), // 水平间距
           ),
           itemBuilder: (context, index) {
             final item = displayItems[index];
             return ClipRRect(
-              borderRadius: BorderRadius.circular(AppStyleStore.byPx(borderRadius)), // 圆角半径
+              borderRadius: BorderRadius.circular(AppStore.byPx(borderRadius)), // 圆角半径
               child: Stack(
                 children: [
-                  AppImg(item.imageUrl, width: AppStyleStore.byRem(gridWidth), height: AppStyleStore.byRem(gridHeight)),
+                  AppImg(item.imageUrl, width: AppStore.byRem(gridWidth), height: AppStore.byRem(gridHeight)),
                   // 底部标题，遮罩 + 居中 + 固定高度
                   Positioned(
                     bottom: 0,

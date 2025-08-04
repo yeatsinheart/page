@@ -80,7 +80,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
   }
 
   void _scrollTabToCenter(int index) {
-    final double viewWidth = AppStyleStore.viewWidth;
+    final double viewWidth = AppStore.viewWidth;
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
@@ -97,7 +97,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
     if (dataContext != null && null != _pageScrollController) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
-      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController!.offset - AppStyleStore.byRem(.9);
+      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController!.offset - AppStore.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
       _pageScrollController!.animateTo(offset.clamp(_pageScrollController!.position.minScrollExtent, _pageScrollController!.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
@@ -142,12 +142,12 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   decoration: selected
                       ? BoxDecoration(
-                    border: Border(bottom: BorderSide(width: 2, color: AppStyleStore.getMainColor())),
+                    border: Border(bottom: BorderSide(width: 2, color: AppStore.getMainColor())),
                   )
                       : null,
                   child: Text(
                     tabs[index].tr,
-                    style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? AppStyleStore.getMainColor() : null),
+                    style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? AppStore.getMainColor() : null),
                   ),
                 ),
               );

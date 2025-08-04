@@ -26,12 +26,12 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
 
     // colorScheme: ColorScheme.fromSeed(seedColor:  AppStyleStore.getMainColor()),
 
-    primaryColor: AppStyleStore.getMainColor(),
-    secondaryHeaderColor: AppStyleStore.getMainColor(),
-    hoverColor: AppStyleStore.getMainColor(),
-    focusColor: AppStyleStore.getMainColor(),
-    highlightColor: AppStyleStore.getMainColor(),
-    splashColor: AppStyleStore.getMainColor(),
+    primaryColor: AppStore.getMainColor(),
+    secondaryHeaderColor: AppStore.getMainColor(),
+    hoverColor: AppStore.getMainColor(),
+    focusColor: AppStore.getMainColor(),
+    highlightColor: AppStore.getMainColor(),
+    splashColor: AppStore.getMainColor(),
 
     // colorSchemeSeed:Colors.red,
     // colorScheme:ColorScheme(),
@@ -63,7 +63,7 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     // unselectedWidgetColor:Colors.red,
 
     /// 文件夹中添加对应组件的theme获取方法
-    tabBarTheme: TabBarThemeData(indicatorColor: AppStyleStore.getMainColor()),
+    tabBarTheme: TabBarThemeData(indicatorColor: AppStore.getMainColor()),
     appBarTheme: AppBarTheme(),
     bottomAppBarTheme: BottomAppBarTheme(),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(),

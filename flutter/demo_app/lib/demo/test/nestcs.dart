@@ -170,7 +170,7 @@ class AppNetCsPaneState extends State<TestNestcs> with TickerProviderStateMixin 
       },
       body: Container(
         color: Colors.white,
-        constraints: BoxConstraints(minHeight: (AppStyleStore.screenHeight - 501)),
+        constraints: BoxConstraints(minHeight: (AppStore.screenHeight - 501)),
         child: CustomScrollView(
           physics: physics,
           //physics: BouncingScrollPhysics(parent: BouncingScrollPhysics()),

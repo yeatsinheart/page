@@ -23,9 +23,9 @@ class AppImg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ClipOval = ClipRRect[radius为半径时] = 圆形⭕️
-    Map<String, dynamic>? data = AppStyleStore.data["color-plan"]?["img-loading"] ?? {};
-    Color? bgColor = ColorUtil.getColor(data?["bg"]?[AppStyleStore.Brightness]);
-    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStyleStore.Brightness]);
+    Map<String, dynamic>? data = AppStore.data["color-plan"]?["img-loading"] ?? {};
+    Color? bgColor = ColorUtil.getColor(data?["bg"]?[AppStore.Brightness]);
+    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStore.Brightness]);
 
     final raw_image = img(url, fit: fit!, loadingBg: loadingBg ?? bgColor, loadingFont: loadingFont ?? fontColor);
     //Log.i(radiusRem);

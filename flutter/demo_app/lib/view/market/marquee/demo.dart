@@ -57,12 +57,12 @@ class _MarketMarqueeDemoState extends State<MarketMarqueeDemo> {
   @override
   Widget build(BuildContext context) {
     return ContainerFormat("marquee",Container(
-      height: AppStyleStore.byRem(.5),
+      height: AppStore.byRem(.5),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppStyleStore.byRem(.2)),
+        padding: EdgeInsets.symmetric(horizontal: AppStore.byRem(.2)),
         child: Row(
           children: [
-            Icon(Icons.volume_up, size: AppStyleStore.byRem(.36)), // 📢 图标
+            Icon(Icons.volume_up, size: AppStore.byRem(.36)), // 📢 图标
             SizedBox(width: 8),
 
             //Expanded(child: MarqueeWithoutTicker(text: messages.join('     ★     '))),

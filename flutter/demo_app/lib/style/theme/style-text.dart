@@ -3,11 +3,11 @@ import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/color-font.dart';
 
 getTextTheme({Color? fontColor}) {
-  TextStyle globalTextStyle = TextStyle(fontSize: AppStyleStore.byRem(.22), height: 1.4, color: fontColor??ColorFont.get().txt);
+  TextStyle globalTextStyle = TextStyle(fontSize: AppStore.byRem(.22), height: 1.4, color: fontColor??ColorFont.get().txt);
 
-  TextStyle large = TextStyle(fontSize: AppStyleStore.byRem(.26), height: 1.5, color: fontColor??ColorFont.get().txt);
-  TextStyle medium = TextStyle(fontSize: AppStyleStore.byRem(.22), height: 1.5, color: fontColor??ColorFont.get().txt);
-  TextStyle small = TextStyle(fontSize: AppStyleStore.byRem(.18), height: 1.5, color: fontColor??ColorFont.get().txt);
+  TextStyle large = TextStyle(fontSize: AppStore.byRem(.26), height: 1.5, color: fontColor??ColorFont.get().txt);
+  TextStyle medium = TextStyle(fontSize: AppStore.byRem(.22), height: 1.5, color: fontColor??ColorFont.get().txt);
+  TextStyle small = TextStyle(fontSize: AppStore.byRem(.18), height: 1.5, color: fontColor??ColorFont.get().txt);
 
   return TextTheme(
     displayLarge: globalTextStyle,

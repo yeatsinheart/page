@@ -30,11 +30,11 @@ class BootstrapService {
         AppView.setLayout(config["layout"] ?? {});
       }(),
       () async {
-        AppStyleStore.data = config["style"] ?? {};
+        AppStore.data = config["style"] ?? {};
       }(),
       //()async{AppStyleStore.style=config["app"]??{};}(),
     ]);
-    AppStyleStore.data = config["style"];
+    AppStore.data = config["style"];
   }
 
   static init() async {

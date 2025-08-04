@@ -18,28 +18,28 @@ class Browser extends StatelessWidget {
         "browser",
         Stack(
           children: [
-            AppStyleStore.maxWidth == null
+            AppStore.maxWidth == null
                 ? page
                 : Center(
                     child: ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: AppStyleStore.maxWidth!),
+                      constraints: BoxConstraints(maxWidth: AppStore.maxWidth!),
                       child: page,
                     ),
                   ),
 
             Positioned(
               left: 0,
-              bottom: AppStyleStore.byRem(1.44),
+              bottom: AppStore.byRem(1.44),
               child: Column(
-                spacing: AppStyleStore.byRem(.2),
+                spacing: AppStore.byRem(.2),
                 children: [
                   KeyedSubtree(
                     key: GlobalKey(debugLabel: "day-time"),
-                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("白天"), click: (){AppStyleStore.Brightness="light";Get.find<AppStyleStore>().rebuildApp();})),
+                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("白天"), click: (){AppStore.Brightness="light";Get.find<AppStore>().rebuildApp();})),
                   ),
                   KeyedSubtree(
                     key: GlobalKey(debugLabel: "night-time"),
-                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("黑夜"), click: (){AppStyleStore.Brightness="dark";Get.find<AppStyleStore>().rebuildApp();})),
+                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("黑夜"), click: (){AppStore.Brightness="dark";Get.find<AppStore>().rebuildApp();})),
                   ),
                 ],
               ),
@@ -47,9 +47,9 @@ class Browser extends StatelessWidget {
 
             Positioned(
               right: 0,
-              bottom: AppStyleStore.byRem(1.44),
+              bottom: AppStore.byRem(1.44),
               child: Column(
-                spacing: AppStyleStore.byRem(.2),
+                spacing: AppStore.byRem(.2),
                 children: [
                   KeyedSubtree(
                     key: GlobalKey(debugLabel: "toutiao"),

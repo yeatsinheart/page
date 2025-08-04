@@ -9,14 +9,14 @@ getCheckBoxTheme({Color? fontColor}){
         ///  * [WidgetState.focused].
         ///  * [WidgetState.disabled].*/
       overlayColor: WidgetStateProperty.all(Colors.transparent),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyleStore.byRem(.14))),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStore.byRem(.14))),
       side: BorderSide(color: fontColor ?? ColorFont.get().txt!),
       //overlayColor: WidgetStateProperty.all(AppStyleStore.getMainColor().withOpacity(0.2)),
       // 选中后颜色 √ 勾的颜色（前景色）
-      checkColor: WidgetStateProperty.all( AppStyleStore.getMainColor()),
+      checkColor: WidgetStateProperty.all( AppStore.getMainColor()),
       fillColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return AppStyleStore.getMainColor().withValues(alpha: .2); // 背景色
+          return AppStore.getMainColor().withValues(alpha: .2); // 背景色
         }
         return Colors.transparent;
       }));

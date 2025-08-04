@@ -6,11 +6,11 @@ import 'package:flutter3/service/language.dart';
 import 'package:flutter3/util/color-util.dart';
 import 'package:get/get.dart';
 
-class AppStyleStore extends GetxService {
+class AppStore extends GetxService {
   // 单例一旦创建，就会一直存在内存中，直到程序退出或手动销毁
-  AppStyleStore._internal();
-  static final AppStyleStore _instance = AppStyleStore._internal();
-  factory AppStyleStore() => _instance;
+  AppStore._internal();
+  static final AppStore _instance = AppStore._internal();
+  factory AppStore() => _instance;
   Rx<Key> appKey = UniqueKey().obs;
 
   void rebuildApp() {

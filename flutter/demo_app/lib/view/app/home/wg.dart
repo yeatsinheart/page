@@ -57,7 +57,7 @@ class _AppHomeWgState extends State<AppHomeWg> {
                     pinned: true, // 关键：固定吸顶
                     delegate: _StickyHeaderDelegate(
                       //height: currentHeaderIndex == 1 ? AppStyleStore.getRem(0.9) : 0,
-                      height: AppStyleStore.byRem(0.9),
+                      height: AppStore.byRem(0.9),
                       child: BarBrandDemo(),
 
                       //child: getUrlImg('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80', double.infinity, AppStyleStore.getRem(0.7), null),

@@ -39,9 +39,9 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
       payment["code"] == chosen ? "btn-main" : "btn",
       Row(
         children: [
-          AppImg(payment["logo"], square: AppStyleStore.byRem(.5)),
+          AppImg(payment["logo"], square: AppStore.byRem(.5)),
           Center(
-            child: Text(payment["name"], style: TextStyle(fontSize: AppStyleStore.byPx(16))),
+            child: Text(payment["name"], style: TextStyle(fontSize: AppStore.byPx(16))),
           ),
           // Center(child: Text(payment["name"], style: TextStyle(fontSize: AppStyleStore.byRem(.22)))),
         ],
@@ -76,7 +76,7 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
                           print("OutlineButton Click");
                         },
                       ),
-                      SizedBox(width: AppStyleStore.byRem(.2)),
+                      SizedBox(width: AppStore.byRem(.2)),
                       TextButton(
                         child: Text("教程"),
                         onPressed: () {

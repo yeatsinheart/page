@@ -9,12 +9,12 @@ class Mask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return null == AppStyleStore.data["mask"]
+    return null == AppStore.data["mask"]
         ? child
         : Stack(
             children: [
               Positioned.fill(
-                child: IgnorePointer(child: Container(color: ColorUtil.getColor(AppStyleStore.data["mask"]))),
+                child: IgnorePointer(child: Container(color: ColorUtil.getColor(AppStore.data["mask"]))),
               ),
               child,
             ],

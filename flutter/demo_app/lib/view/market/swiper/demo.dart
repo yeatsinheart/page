@@ -25,13 +25,13 @@ class _MarketSwiperDemoState extends State<MarketSwiperDemo> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: AppStyleStore.byRem(.1)),//, horizontal: AppStyleStore.byRem(.1)
+      padding: EdgeInsets.symmetric(vertical: AppStore.byRem(.1)),//, horizontal: AppStyleStore.byRem(.1)
       child: Stack(
         alignment: Alignment.bottomCenter, // 控制指示器位置
         children: [
           CarouselSlider(
             items: imageList.map((url) {
-              return Container(child: AppImg(url,  borderRadius: AppStyleStore.byRem(.14)),margin:  EdgeInsets.symmetric(horizontal: AppStyleStore.byRem(.065)),);
+              return Container(child: AppImg(url,  borderRadius: AppStore.byRem(.14)),margin:  EdgeInsets.symmetric(horizontal: AppStore.byRem(.065)),);
             }).toList(),
             carouselController: _controller,
             options: CarouselOptions(
@@ -50,20 +50,20 @@ class _MarketSwiperDemoState extends State<MarketSwiperDemo> {
             ),
           ),
           Positioned(
-            bottom: AppStyleStore.byRem(.2), // 距离底部位置
+            bottom: AppStore.byRem(.2), // 距离底部位置
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: imageList.asMap().entries.map((entry) {
                 return GestureDetector(
                   onTap: () => _controller.animateToPage(entry.key),
                   child: Container(
-                    width: _currentIndex == entry.key ? AppStyleStore.byPx(24) : AppStyleStore.byPx(8),
-                    height: AppStyleStore.byPx(8.0),
-                    margin:  EdgeInsets.symmetric(horizontal: AppStyleStore.byPx(4.0)),
+                    width: _currentIndex == entry.key ? AppStore.byPx(24) : AppStore.byPx(8),
+                    height: AppStore.byPx(8.0),
+                    margin:  EdgeInsets.symmetric(horizontal: AppStore.byPx(4.0)),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(AppStyleStore.byPx(4.0)), // 圆角一半，即可变成 pill 形状或小圆点
+                      borderRadius: BorderRadius.circular(AppStore.byPx(4.0)), // 圆角一半，即可变成 pill 形状或小圆点
                       shape: BoxShape.rectangle,
-                      color: _currentIndex == entry.key ? AppStyleStore.getMainColor() : AppStyleStore.getMainColor().withValues(alpha: 0.3),
+                      color: _currentIndex == entry.key ? AppStore.getMainColor() : AppStore.getMainColor().withValues(alpha: 0.3),
                     ),
                   ),
                 );

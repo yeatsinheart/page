@@ -5,12 +5,12 @@ import 'package:flutter3/util/color-util.dart';
 class ShadowFormat {
   static BoxShadow? fromJson(Map<String, dynamic>? json) {
     if (json == null) return null;
-    Color? c = ColorUtil.getColor(json["color"][AppStyleStore.Brightness]);
+    Color? c = ColorUtil.getColor(json["color"][AppStore.Brightness]);
     if (c == null) return null;
     return BoxShadow(
       color: c,
-      spreadRadius: AppStyleStore.byRem((json["spreadRadius"] ?? 0).toDouble()),
-      blurRadius:  AppStyleStore.byRem((json["blurRadius"] ?? 0).toDouble()),
+      spreadRadius: AppStore.byRem((json["spreadRadius"] ?? 0).toDouble()),
+      blurRadius:  AppStore.byRem((json["blurRadius"] ?? 0).toDouble()),
       offset: Offset(
         (json["offset"]?[0] ?? 0).toDouble(),
         (json["offset"]?[1] ?? 0).toDouble(),

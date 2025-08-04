@@ -21,10 +21,10 @@ class TestDetail extends StatelessWidget {
               Hero(
                 tag: 'hero${game?.title}',
                 child: Container(
-                  height: AppStyleStore.screenHeight,
+                  height: AppStore.screenHeight,
                   child: Stack(
                     children: <Widget>[
-                      AppImg(game!.imageUrl, fit: BoxFit.cover, height: AppStyleStore.byPx(500)),
+                      AppImg(game!.imageUrl, fit: BoxFit.cover, height: AppStore.byPx(500)),
                       SafeArea(
                         bottom: false,
                         child: Padding(

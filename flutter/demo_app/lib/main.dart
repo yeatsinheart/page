@@ -69,10 +69,10 @@ init() async {
 }
 
 _main(child) {
-  Get.put(AppStyleStore());
+  Get.put(AppStore());
   return Obx(() {
     return MaterialApp(
-      key: Get.find<AppStyleStore>().appKey.value,
+      key: Get.find<AppStore>().appKey.value,
       scrollBehavior: ScrollBehavior().copyWith(
         dragDevices: {
           PointerDeviceKind.touch, //移动设备的手指滑动

@@ -13,8 +13,8 @@ Widget grid_sliver_demo(List<dynamic> list, {Function render = card_demo, number
 }
 
 Widget grid_demo_wrap(List<dynamic> list, {num = 3, Function render = card_demo}) {
-  double gap = AppStyleStore.byRem(.1);
-  double width = AppStyleStore.byRem((7.5 - 0.4 - (num - 1) * .1) / num);
+  double gap = AppStore.byRem(.1);
+  double width = AppStore.byRem((7.5 - 0.4 - (num - 1) * .1) / num);
   return Wrap(
     spacing: gap,
     runSpacing: gap,

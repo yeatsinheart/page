@@ -23,8 +23,8 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
   final ScrollController _pageScrollController = ScrollController();
   final ScrollController _categoryScrollController = ScrollController();
   final ScrollController _detailScrollController = ScrollController();
-  double persit_header_height = AppStyleStore.byRem(1.24);
-  double left_right_height = AppStyleStore.screenHeight;
+  double persit_header_height = AppStore.byRem(1.24);
+  double left_right_height = AppStore.screenHeight;
 
   persit_header(txt, color, height) {
     return SliverPersistentHeader(
@@ -51,7 +51,7 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    left_right_height = AppStyleStore.screenHeight - persit_header_height;
+    left_right_height = AppStore.screenHeight - persit_header_height;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //print("详情滚动条：${_detailScrollController.position.minScrollExtent} ${_detailScrollController.position.maxScrollExtent}");
       // 防止没有详情滚动条的情况
@@ -137,7 +137,7 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
             child: Row(
               children: [
                 Container(
-                  width: AppStyleStore.byRem(2),
+                  width: AppStore.byRem(2),
                   color: Colors.grey,
                   // 虽然这里滚动到底也会拉动最外层的滚动到底，但是也没啥影响
                   child: ListView.builder(

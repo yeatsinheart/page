@@ -163,7 +163,7 @@ class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStat
       tag: 'heropic${game?.title}',
       child: Stack(
         children: <Widget>[
-          AppImg(game!.imageUrl, fit: BoxFit.cover, height: AppStyleStore.byPx(480)),
+          AppImg(game!.imageUrl, fit: BoxFit.cover, height: AppStore.byPx(480)),
           Padding(
             padding: const EdgeInsets.only(left: 18.0, bottom: 0),
             child: SizedBox(

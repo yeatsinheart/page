@@ -90,7 +90,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
             child: ContainerFormat(
               "txt-cover",
               Container(
-                height: AppStyleStore.byRem(.72),
+                height: AppStore.byRem(.72),
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
                 child: Align(
                   alignment: Alignment.bottomCenter,

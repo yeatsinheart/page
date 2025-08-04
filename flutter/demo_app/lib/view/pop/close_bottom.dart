@@ -19,12 +19,12 @@ class PopCloseBottom extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: AppStyleStore.viewWidth * .8, maxHeight: AppStyleStore.screenHeight * .8),
+              constraints: BoxConstraints(maxWidth: AppStore.viewWidth * .8, maxHeight: AppStore.screenHeight * .8),
               child: Container(
-                padding: EdgeInsetsGeometry.all(AppStyleStore.byRem(.2)),
+                padding: EdgeInsetsGeometry.all(AppStore.byRem(.2)),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(AppStyleStore.byRem(.2)), // 设置圆角半径
+                  borderRadius: BorderRadius.circular(AppStore.byRem(.2)), // 设置圆角半径
                 ),
                 child: params ?? Container(),
               ),

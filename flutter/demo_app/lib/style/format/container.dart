@@ -38,8 +38,8 @@ class ContainerFormat extends StatelessWidget {
       padding: padding??PaddingFormat.fromJson(json["padding"]),
       decoration: _BoxDecoration(json),
         //DefaultTextStyle 已经在组件树更早的地方被设置了，Text 会优先使用 DefaultTextStyle，而不是你后期新设置的 Theme.textTheme.bodyMedium。
-      child: DefaultTextStyle.merge(style: TextStyle(color: ColorUtil.getColor(json["font"]?[AppStyleStore.Brightness])),
-          child: ImgBg(json["img"], child, borderRadius: AppStyleStore.byRem(borderConfig?["borderRadius"]??0)))
+      child: DefaultTextStyle.merge(style: TextStyle(color: ColorUtil.getColor(json["font"]?[AppStore.Brightness])),
+          child: ImgBg(json["img"], child, borderRadius: AppStore.byRem(borderConfig?["borderRadius"]??0)))
     );
   }
   _button(Map<String, dynamic>? json, child) {
@@ -51,7 +51,7 @@ class ContainerFormat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic>? config = AppStyleStore.data["color-plan"]?[k] ?? {};
+    Map<String, dynamic>? config = AppStore.data["color-plan"]?[k] ?? {};
     // Log.i("$k ${config?["font"]}");
     var widget = null;
     if (config?["type"] == "button") {
@@ -65,8 +65,8 @@ class ContainerFormat extends StatelessWidget {
   }
 
   _theme(context, child) {
-    Map<String, dynamic>? data = AppStyleStore.data["color-plan"]?[k] ?? {};
-    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStyleStore.Brightness]);
+    Map<String, dynamic>? data = AppStore.data["color-plan"]?[k] ?? {};
+    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStore.Brightness]);
     if (null == fontColor) return Theme(data: Theme.of(context), child: child);
     return Theme(
       data: Theme.of(context).copyWith(
@@ -85,13 +85,13 @@ class ContainerFormat extends StatelessWidget {
     return BoxDecoration(
       /// 边框
       border: BorderFormat.fromJson(borderConfig),
-      borderRadius:borderConfig!=null&&borderConfig["borderRadius"] != null && (borderConfig["borderRadius"] > 0) ? BorderRadius.circular(AppStyleStore.byRem(borderConfig["borderRadius"])) : null,
+      borderRadius:borderConfig!=null&&borderConfig["borderRadius"] != null && (borderConfig["borderRadius"] > 0) ? BorderRadius.circular(AppStore.byRem(borderConfig["borderRadius"])) : null,
 
       /// 阴影
       boxShadow: ShadowFormat.listFromJson(json["shadows"]),
 
       /// 设置纯色背景颜色
-      color: ColorUtil.getColor(json["bg"]?[AppStyleStore.Brightness]),
+      color: ColorUtil.getColor(json["bg"]?[AppStore.Brightness]),
 
       /// 设置渐变背景颜色
       gradient: GradientFormat.fromJson(json["bgGradient"]),

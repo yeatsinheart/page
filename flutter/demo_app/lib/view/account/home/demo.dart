@@ -23,27 +23,27 @@ class AccountHomeDemo extends StatelessWidget {
         bottom: false,
         child: MyEasyRefresh(
           listView: ListView(
-            padding: EdgeInsets.all(AppStyleStore.byRem(.2)),
+            padding: EdgeInsets.all(AppStore.byRem(.2)),
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.qr_code_scanner, size: AppStyleStore.byRem(.4)),
-                  Icon(Icons.settings, size: AppStyleStore.byRem(.4)),
+                  Icon(Icons.qr_code_scanner, size: AppStore.byRem(.4)),
+                  Icon(Icons.settings, size: AppStore.byRem(.4)),
                 ],
               ),
 
               Container(
-                margin: EdgeInsets.only(top: AppStyleStore.byRem(.4), bottom: AppStyleStore.byRem(.6)),
+                margin: EdgeInsets.only(top: AppStore.byRem(.4), bottom: AppStore.byRem(.6)),
                 child: InkWell(
                   onTap: () {},
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      Container(width: AppStyleStore.byRem(2), height: AppStyleStore.byRem(2), child: AppImg("assets/images/circle_bg.png")),
+                      Container(width: AppStore.byRem(2), height: AppStore.byRem(2), child: AppImg("assets/images/circle_bg.png")),
                       Text(
                         "登录",
-                        style: TextStyle(fontSize: AppStyleStore.byRem(.4), color: Colors.white),
+                        style: TextStyle(fontSize: AppStore.byRem(.4), color: Colors.white),
                       ),
                     ],
                   ),
@@ -53,7 +53,7 @@ class AccountHomeDemo extends StatelessWidget {
               ContainerFormat(
                 "container",
                 Container(
-                  height: AppStyleStore.byRem(1.4),
+                  height: AppStore.byRem(1.4),
                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: list),
                 ),
               ),
@@ -118,7 +118,7 @@ class AccountHomeDemo extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AppImg(icon, square: AppStyleStore.byRem(.5)),
+              AppImg(icon, square: AppStore.byRem(.5)),
               Text(label.tr),
             ],
           ),

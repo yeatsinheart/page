@@ -10,7 +10,7 @@ var fonts = {
 };
 var defaultFont = fonts["txt"];
 
-var mask = ColorSetting(light: "#0000001f", dark: "rgba(0, 0, 0, 0.3)");
+var mask = ColorSetting(light: "#00000080", dark: "#00000080");
 var border = ColorSetting(light: "#e3e3e31a", dark: "#e3e3e31a");
 var shadow = ColorSetting(light: "#41454940", dark: "#41454940");
 

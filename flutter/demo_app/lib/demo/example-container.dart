@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/column-separator.dart';
+import 'package:flutter3/share/img.dart';
 import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/format/container.dart';
 
@@ -29,6 +30,15 @@ class ExampleContainer extends StatelessWidget {
                   ),
                 ),
               ),
+              SliverToBoxAdapter(child:  Container(height: 150,child: AppImg("assets/images/bg.jpg"))),
+              SliverToBoxAdapter(child:  Container(height: 150,child: AppImg("assets/images/bg.png"))),
+              SliverToBoxAdapter(child:  Container(height: 150,child: AppImg("assets/images/black_bg.jpg"))),
+              SliverToBoxAdapter(child:  Container(height: 150,child: AppImg("assets/images/game1.jpg"))),
+              SliverToBoxAdapter(child:  Container(height: 150,child: AppImg("assets/images/game2.png"))),
+              SliverToBoxAdapter(child:  Container(height: 150,child: AppImg("assets/images/game3.jpg"))),
+              SliverToBoxAdapter(child:  Container(height: 150,child: AppImg("assets/images/Zelda.png"))),
+              SliverToBoxAdapter(child:  Container(height: 150,child: AppImg("assets/images/wanimal.png"))),
+              SliverToBoxAdapter(child:  Container(height: 150,child: AppImg("assets/images/news4.jpeg"))),
               ..._demos(),
             ],
           ),

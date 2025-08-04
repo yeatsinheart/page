@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
@@ -90,7 +92,7 @@ Widget img(String url, {BoxFit? fit, Color? loadingBg, Color? loadingFont}) {
   if (kIsWeb && resource.startsWith("assets/")) {
     resource = resource.substring(7);
   }
-  return SizedBox.expand(
+  return _darkFilter(SizedBox.expand(
     child: url.startsWith('http')
         ? CachedNetworkImage(
             fadeOutDuration: const Duration(milliseconds: 200),
@@ -110,7 +112,7 @@ Widget img(String url, {BoxFit? fit, Color? loadingBg, Color? loadingFont}) {
             resource,
             fit: fit,
             errorBuilder: (context, error, stackTrace) => Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont)),
-          ),
+          ),)
     // FutureBuilder(
     //   future: rootBundle.load(resource),
     //   builder: (context, snapshot) {
@@ -126,68 +128,43 @@ Widget img(String url, {BoxFit? fit, Color? loadingBg, Color? loadingFont}) {
   );
 }
 
+// ✅ 方法二：统一滤镜（ColorFiltered）使用颜色矩阵（ColorMatrix）或自定义 ColorFilter 实现亮度压暗
+_darkFilter(img){
+  if(AppStore.Brightness=="light")return img;
+  return ColorFiltered(
+    // 所有 RGB 通道都被乘以 0.6（压暗约 40%）
+    colorFilter: const ColorFilter.matrix(<double>[
+      0.6, 0,   0,   0, 0,  // R channel
+      0,   0.6, 0,   0, 0,  // G channel
+      0,   0,   0.6, 0, 0,  // B channel
+      0,   0,   0,   1, 0,  // A channel stays the same
+    ]),
+    // 这种方式透明会变白
+    // ColorFilter.mode(Colors.grey.shade700, BlendMode.multiply),//将灰色与图像颜色通过 multiply 模式叠加 色彩会“变脏”，有点 desaturate（去饱和）
+    child: img,
+  );
+}
+//✅ 方法三：使用 BackdropFilter + ImageFiltered（更复杂的模糊/叠加风格） 模糊背景内容的一个组件，常用于实现「毛玻璃」或「背景虚化」效果。
+//🔍 适用于做毛玻璃/柔和效果，但性能稍重。
+//💡 小技巧（适配多图）
+_blurFilter(img){
+  if(AppStore.Brightness=="light")return img;
+  return
+    Stack(
+      children: [
+        img,
+        Positioned.fill(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+            child: Container(color: Colors.black.withValues(alpha: 0.2)),
+          ),
+        ),
+      ],
+    );
+}
+
 Future<void> clearMyCache() async {
   if (!kIsWeb) {
     await customCacheManager?.emptyCache();
   }
 }
-/*
-在 Flutter 中实现“背景过渡遮罩”或“统一滤镜风格”的方式有几种，以下是常用实现方式，适合亮暗模式下对图片进行视觉适配：
-🎯 目标
-背景图片在 Dark Mode 下不要太刺眼
-给图片加一层 半透明遮罩
-或者统一加个 色调滤镜 让风格一致
-✅ 方法一：加遮罩（适合背景图）
-Stack(
-  children: [
-    Image.asset(
-      'assets/bg.jpg',
-      width: double.infinity,
-      height: double.infinity,
-      fit: BoxFit.cover,
-    ),
-    Container(
-      color: Theme.of(context).brightness == Brightness.dark
-        ? Colors.black.withOpacity(0.4)
-        : Colors.transparent,
-    ),
-    // 其他子组件在上层...
-  ],
-)
-✅ 说明：
-在暗色模式下，给背景图加 黑色半透明 遮罩；
-Stack 实现遮罩覆盖。
-✅ 方法二：统一滤镜（ColorFiltered）
-ColorFiltered(
-  colorFilter: Theme.of(context).brightness == Brightness.dark
-      ? ColorFilter.mode(Colors.grey.shade700, BlendMode.multiply)
-      : ColorFilter.mode(Colors.transparent, BlendMode.multiply),
-  child: Image.asset('assets/bg.jpg'),
-)
-✅ 效果：
-在 dark 模式下让图变暗/变冷色调；
-可结合 BlendMode 实现不同视觉效果（如柔和、变暗、偏冷）；
-滤镜适合照片、插图等统一风格处理。
-
-✅ 方法三：使用 BackdropFilter + ImageFiltered（更复杂的模糊/叠加风格）
-Stack(
-  children: [
-    Image.asset('assets/bg.jpg'),
-    Positioned.fill(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
-        child: Container(color: Colors.black.withOpacity(0.2)),
-      ),
-    ),
-  ],
-)
-🔍 适用于做毛玻璃/柔和效果，但性能稍重。
-💡 小技巧（适配多图）
-🧪 推荐遮罩透明度对比参考
-场景	遮罩颜色	透明度建议
-暗色模式背景图	Colors.black	0.2 - 0.4
-强光图片过渡	Colors.black54	0.3 - 0.5
-冷色调风格统一	Colors.blueGrey	0.1 - 0.3 + 滤镜
-
-如果你有具体图片类型或想做具体滤镜风格（比如暗调蓝冷风、漫画风等），我可以帮你细化滤镜调配。你想尝试哪一种？
-* */

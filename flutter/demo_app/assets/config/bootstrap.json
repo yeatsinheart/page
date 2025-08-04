@@ -259,20 +259,28 @@
     "light": "#ff4b52"
    },
    {
-    "dark": "#42a5f5",
-    "light": "#2196F3"
-   },
-   {
-    "dark": "#338bff",
-    "light": "#007BFF"
-   },
-   {
     "dark": "#ef5350",
     "light": "#F44336"
    },
    {
     "dark": "#f0625d",
     "light": "#E53935"
+   },
+   {
+    "dark": "#ffcc80",
+    "light": "#FFA500"
+   },
+   {
+    "dark": "#ffb74d",
+    "light": "#FF9800"
+   },
+   {
+    "dark": "#ffd54f",
+    "light": "#FFC107"
+   },
+   {
+    "dark": "#fff176",
+    "light": "#FFEB3B"
    },
    {
     "dark": "#66bb6a",
@@ -283,36 +291,28 @@
     "light": "#28A745"
    },
    {
-    "dark": "#ab47bc",
-    "light": "#9C27B0"
-   },
-   {
-    "dark": "#9575cd",
-    "light": "#7E57C2"
-   },
-   {
-    "dark": "#ffb74d",
-    "light": "#FF9800"
-   },
-   {
-    "dark": "#ffcc80",
-    "light": "#FFA500"
-   },
-   {
-    "dark": "#fff176",
-    "light": "#FFEB3B"
-   },
-   {
-    "dark": "#ffd54f",
-    "light": "#FFC107"
-   },
-   {
     "dark": "#4dd0e1",
     "light": "#00BCD4"
    },
    {
     "dark": "#4fc3f7",
     "light": "#17A2B8"
+   },
+   {
+    "dark": "#42a5f5",
+    "light": "#2196F3"
+   },
+   {
+    "dark": "#338bff",
+    "light": "#007BFF"
+   },
+   {
+    "dark": "#ab47bc",
+    "light": "#9C27B0"
+   },
+   {
+    "dark": "#9575cd",
+    "light": "#7E57C2"
    },
    {
     "dark": "#eeeeee",

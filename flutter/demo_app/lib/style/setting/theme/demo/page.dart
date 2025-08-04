@@ -8,6 +8,7 @@ var fonts = {
   "txt": ColorSetting(light: "#737272", dark: "#55657e"),
   "ghost": ColorSetting(light: "#BBBBBB", dark: "#BBBBBB"),
 };
+
 var defaultFont = fonts["txt"];
 
 var mask = ColorSetting(light: "#00000080", dark: "#00000080");
@@ -32,20 +33,20 @@ var darkLevel3 = ["#161823", "#141d29", "#0f0e0e", "#000000"];
 // ColorSetting(light: "#7E57C2", dark: "#7E57C2"),
 var colors = [
   ColorSetting(light: "#ff4b52", dark: "#e57373"),     // 柔和红
-  ColorSetting(light: "#2196F3", dark: "#42a5f5"),     // 柔和蓝
-  ColorSetting(light: "#007BFF", dark: "#338bff"),     // 柔和亮蓝
   ColorSetting(light: "#F44336", dark: "#ef5350"),     // 柔红
   ColorSetting(light: "#E53935", dark: "#f0625d"),     // 暖红
+  ColorSetting(light: "#FFA500", dark: "#ffcc80"),     // 浅柔橙
+  ColorSetting(light: "#FF9800", dark: "#ffb74d"),     // 柔橙
+  ColorSetting(light: "#FFC107", dark: "#ffd54f"),     // 柔琥珀
+  ColorSetting(light: "#FFEB3B", dark: "#fff176"),     // 柔黄（尽量避免强黄）
   ColorSetting(light: "#4CAF50", dark: "#66bb6a"),     // 柔和绿
   ColorSetting(light: "#28A745", dark: "#5cbf78"),     // 草绿柔和版
-  ColorSetting(light: "#9C27B0", dark: "#ab47bc"),     // 柔紫
-  ColorSetting(light: "#7E57C2", dark: "#9575cd"),     // 紫灰
-  ColorSetting(light: "#FF9800", dark: "#ffb74d"),     // 柔橙
-  ColorSetting(light: "#FFA500", dark: "#ffcc80"),     // 浅柔橙
-  ColorSetting(light: "#FFEB3B", dark: "#fff176"),     // 柔黄（尽量避免强黄）
-  ColorSetting(light: "#FFC107", dark: "#ffd54f"),     // 柔琥珀
   ColorSetting(light: "#00BCD4", dark: "#4dd0e1"),     // 柔青
   ColorSetting(light: "#17A2B8", dark: "#4fc3f7"),     // 柔蓝绿
+  ColorSetting(light: "#2196F3", dark: "#42a5f5"),     // 柔和蓝
+  ColorSetting(light: "#007BFF", dark: "#338bff"),     // 柔和亮蓝
+  ColorSetting(light: "#9C27B0", dark: "#ab47bc"),     // 柔紫
+  ColorSetting(light: "#7E57C2", dark: "#9575cd"),     // 紫灰
   ColorSetting(light: "#212121", dark: "#eeeeee"),     // 黑变浅灰（适合文字）
   ColorSetting(light: "#333333", dark: "#e0e0e0"),     // 深灰变为中亮灰
 ];

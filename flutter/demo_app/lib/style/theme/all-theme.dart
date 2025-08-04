@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/color-font.dart';
 import 'package:flutter3/style/theme/checkbox.dart';
+import 'package:flutter3/style/theme/input.dart';
 import 'package:flutter3/style/theme/list-title.dart';
 import 'package:flutter3/style/theme/style-text.dart';
 
@@ -76,13 +77,29 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     // unselectedWidgetColor:Colors.red,
 
     /// 文件夹中添加对应组件的theme获取方法
-    tabBarTheme: TabBarThemeData(indicatorColor: AppStore.getMainColor()),
+    ///
+    dialogTheme: DialogThemeData(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStore.byRem(.14))),
+      insetPadding: EdgeInsets.all(AppStore.byRem(.2)),
+      backgroundColor: AppStore.Brightness=="dark"?Colors.black:Colors.white,
+      titleTextStyle: TextStyle(color: fontColor ?? ColorFont.get().txt),
+      contentTextStyle: TextStyle(color: fontColor ?? ColorFont.get().txt),
+    ),
+
+    tabBarTheme: TabBarThemeData(
+      indicatorColor: AppStore.getMainColor(),
+      labelColor: AppStore.getMainColor(),
+      labelStyle: TextStyle(fontWeight: FontWeight.bold),
+      unselectedLabelColor: ColorFont.get().ghost,
+      unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
+      dividerColor: ColorFont.get().txt,
+    ),
     appBarTheme: AppBarTheme(),
     bottomAppBarTheme: BottomAppBarTheme(),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(),
 
     scrollbarTheme: ScrollbarThemeData(),
-
+    // 全局光标颜色设置
     textSelectionTheme: TextSelectionThemeData(cursorColor: AppStore.getMainColor()),
     textTheme: getTextTheme(fontColor: fontColor),
     listTileTheme: getListTitleTheme(fontColor: fontColor),
@@ -95,24 +112,9 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     iconButtonTheme: IconButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
     elevatedButtonTheme: ElevatedButtonThemeData(style: globalButtonStyle(fontColor: fontColor)),
 
-    inputDecorationTheme: InputDecorationTheme(
-      // 设置 isCollapsed: true 时，输入框高度只由 contentPadding 决定，适合你想做非常紧凑的样式。
-      isCollapsed: true,
-      contentPadding: EdgeInsets.symmetric(vertical: AppStore.byRem(.2), horizontal: AppStore.byRem(.2)),
-      // 调整内边距大小
-      border: OutlineInputBorder(
-        borderSide: BorderSide(color: fontColor ?? ColorFont.get().txt!),
-      ),
-      // 圆角设置
-      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: fontColor ?? ColorFont.get().txt!), borderRadius: BorderRadius.circular(AppStore.byRem(.14)),),
-      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: fontColor ?? ColorFont.get().txt!), borderRadius: BorderRadius.circular(AppStore.byRem(.14)),),
-      hoverColor: Colors.transparent,
-      // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppStyleStore.getMainColor())),
-      // labelStyle: TextStyle(color: AppStyleStore.getMainColor()),
-      labelStyle: TextStyle(color: fontColor ?? ColorFont.get().txt!),
+    inputDecorationTheme: getInputTheme(fontColor: fontColor),
 
-      // 全局光标颜色设置
-    ),
+    dividerTheme: DividerThemeData(color: fontColor ?? ColorFont.get().txt),
 
     // filledButtonTheme:FilledButtonThemeData(),
     // floatingActionButtonTheme:FloatingActionButtonThemeData(),
@@ -148,8 +150,6 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     // chipTheme:ChipThemeData(),
     // dataTableTheme:DataTableThemeData(),
     // datePickerTheme:DatePickerThemeData(),
-    // dialogTheme:DialogThemeData(),
-    // dividerTheme:DividerThemeData(),
     // drawerTheme:DrawerThemeData(),
     // dropdownMenuTheme:DropdownMenuThemeData(),
     // expansionTileTheme:ExpansionTileThemeData(),

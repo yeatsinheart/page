@@ -82,6 +82,10 @@ var page = {
     ),
   ),
 
+  "mask": container(
+    bg: ColorSetting(light: "#00000080", dark: "#00000080"),
+  ),
+
   "section": container(
     bg: ColorSetting(light: "#ffffff", dark: "#141d29"),
     margin: PaddingSetting(vertical: RemSetting.ofRem(.1)),

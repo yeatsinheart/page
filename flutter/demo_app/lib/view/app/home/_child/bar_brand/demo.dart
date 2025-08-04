@@ -21,7 +21,7 @@ class BarBrandDemo extends StatelessWidget {
           Spacer(),
           ContainerFormat("btn-register", Text('注册'.t),click: ()=> {},),
           const SizedBox(width: 8),
-          ContainerFormat("btn-login", Text('登录'.t),click: ()=> {},),
+          ContainerFormat("btn-login", Text('登录'.t),click: ()=> {AppRoute.dialog()},),
           SizedBox(width: AppStore.byRem(.2)),
           IconButton(icon:Icon(Icons.search),onPressed: ()=>AppRoute.slideToKey("game_search")),
           SizedBox(width: AppStore.byRem(.2)),

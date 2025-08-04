@@ -26,7 +26,7 @@ class Browser extends StatelessWidget {
                       child: page,
                     ),
                   ),
-
+            // 左下角
             Positioned(
               left: 0,
               bottom: AppStore.byRem(1.44),
@@ -44,7 +44,7 @@ class Browser extends StatelessWidget {
                 ],
               ),
             ),
-
+            // 右下角
             Positioned(
               right: 0,
               bottom: AppStore.byRem(1.44),

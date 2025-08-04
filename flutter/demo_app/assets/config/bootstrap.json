@@ -398,6 +398,12 @@
      "light": "#f7f8ff"
     }
    },
+   "mask": {
+    "bg": {
+     "dark": "#00000080",
+     "light": "#00000080"
+    }
+   },
    "section": {
     "padding": {
      "top": 0.2,

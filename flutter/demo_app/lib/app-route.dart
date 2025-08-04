@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/store/app.dart';
+import 'package:flutter3/style/format/container.dart';
+import 'package:flutter3/style/theme/all-theme.dart';
 import 'package:flutter3/style/widget/browser.dart';
+import 'package:flutter3/view/account/auth/demo/index.dart';
 import 'package:flutter3/view/app-view.dart';
 
 import 'app-context.dart';
 
 class AppRoute {
-
   static OverlayState? get overlay => AppContext.navigatorKey.currentState!.overlay;
 
   /// 各种效果模式 https://juejin.cn/post/6844903890291261447
@@ -40,6 +43,29 @@ class AppRoute {
   /// 获取路由携带的参数
   static Object? routeArgs() {
     return ModalRoute.of(AppContext.context)!.settings.arguments;
+  }
+
+  static dialog() {
+    showDialog(
+      context: AppContext.context,
+      builder: (context) {
+        // 直接挂载在 MaterialApp 下 所以样式哪些 要不要自己封装个Theme：data
+        // Browser 下面有个 page 导致背景不透明了。但是又要broser 宽度限制效果，又不需要page限制。
+        // return Browser( );
+        var page = ContainerFormat("mask", Dialog(child: AccountAuthDemoIndex()));
+        return Theme(
+          data: getFlutterTheme(),
+          child: AppStore.maxWidth == null
+              ? page
+              : Center(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: AppStore.maxWidth!),
+                    child: page,
+                  ),
+                ),
+        );
+      },
+    );
   }
 }
 

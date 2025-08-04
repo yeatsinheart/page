@@ -2,21 +2,28 @@ import 'package:flutter3/style/setting/color-setting.dart';
 import 'package:flutter3/style/setting/container.dart';
 import 'package:flutter3/style/setting/rem-setting.dart';
 
-var defaultFont = fonts["txt"];
 
 var fonts = {
-  "title": ColorSetting(light: "#323233", dark: "#ffffff"),
-  "name": ColorSetting(light: "#646566", dark: "#dddddd"),
-  "txt": ColorSetting(light: "#737272", dark: "#aaaaaa"),
-  "ghost": ColorSetting(light: "#BBB", dark: "#666666"),
+  "title": ColorSetting(light: "#323233", dark: "#FFFFFF"),
+  "name": ColorSetting(light: "#646566", dark: "#adb6c4"),
+  "txt": ColorSetting(light: "#737272", dark: "#55657e"),
+  "ghost": ColorSetting(light: "#BBBBBB", dark: "#BBBBBB"),
 };
+var defaultFont = fonts["txt"];
 
-var mask = ColorSetting(light: "#0000001f", dark: "#ffffff1f");
+var mask = ColorSetting(light: "#0000001f", dark: "rgba(0, 0, 0, 0.3)");
 var border = ColorSetting(light: "#e3e3e31a", dark: "#e3e3e31a");
 var shadow = ColorSetting(light: "#41454940", dark: "#41454940");
 
+var lightLevel = ["#f7f8ff", "#ffffff", "#f6f6f6", "#E4E4E4"];
+var darkLevel1 = ["#0e131b", "#141d29", "#0f0e0e", "#000000"];
+var darkLevel2 = ["#333333", "#141d29", "#0f0e0e", "#000000"];
+var darkLevel3 = ["#161823", "#141d29", "#0f0e0e", "#000000"];
+
 var page = {
+
   "browser": container(
+    bg: ColorSetting(light: "#fff",dark: "#293549"),
     bgGradient: GradientSetting.linear(
       colors: [
         ColorSetting(light: "#81FFEF", dark: "#81FFEF"),
@@ -29,7 +36,7 @@ var page = {
   ),
 
   "page": container(
-    bg: ColorSetting(light: "#fff",dark: "#121212"),
+    bg: ColorSetting(light: "#fff",dark: "#0e131b"),
     // bgGradient: GradientSetting.linear(
     //   colors: [
     //     ColorSetting(light: "#7ec1f7", dark: "#0F2027"),
@@ -41,7 +48,7 @@ var page = {
     // ),
   ),
   "section": container(
-    bg: ColorSetting(light: "#F5F5F5", dark: "#1E1E1E"),
+    bg: ColorSetting(light: "#F5F5F5", dark: "#141d29"),
     margin: PaddingSetting(vertical: RemSetting.ofRem(.1)),
     padding: PaddingSetting(all: RemSetting.ofRem(.2)),
   ),
@@ -53,7 +60,7 @@ var page = {
     padding: PaddingSetting(horizon: RemSetting.ofRem(.2), vertical: RemSetting.ofRem(.05)),
     //border: BorderSetting(color: "#ccc"),
     border: BorderSetting(borderRadius: RemSetting.ofRem(.14)),
-    bg: ColorSetting(light: "#F5F5F5", dark: "#1E1E1E"),
+    bg: ColorSetting(light: "#F5F5F5", dark: "#141d29"),
     shadows: [
       ShadowSetting(
         color: ColorSetting(light: "#00000033", dark: "#00000033"),
@@ -63,8 +70,8 @@ var page = {
   ),
 
   "img-loading": container(
-    bg: ColorSetting(light: "#e0e0e0", dark: "#2A2A2A"),
-    font: ColorSetting(light: "#FFF", dark: "#1E1E1E"),
+    bg: ColorSetting(light: "#e0e0e0", dark: "#2a2f3a"),
+    font: ColorSetting(light: "#FFF", dark: "#474747"),
   ),
 
   "txt-cover": container(
@@ -78,7 +85,7 @@ var page = {
       end: top_center,
     ),
 
-    font: ColorSetting(light: "#FFF", dark: "#000"),
+    font: ColorSetting(light: "#FFF", dark: "#adb6c4"),
   ),
 
   "focus": container(

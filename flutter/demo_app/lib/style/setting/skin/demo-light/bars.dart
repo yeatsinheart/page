@@ -6,11 +6,11 @@ var bars = {
   // ColorSetting(light: "transparent", dark: "transparent"),
   "tab": container(
     bg: ColorSetting(light: "#fff", dark: "#000"),
-    font: ColorSetting(light: "#000", dark: "#fff"),
+    font: ColorSetting(light: "#000", dark: "#55657e"),
   ),
   "bar": container(
     bg: ColorSetting(light: "#3f15d1", dark: "#3f15d1"),
-    font: ColorSetting(light: "#000", dark: "#000"),
+    font: ColorSetting(light: "#000", dark: "#55657e"),
   ),
   "bar-bottom": container(
     bgGradient: GradientSetting.linear(
@@ -22,11 +22,11 @@ var bars = {
       begin: bottom_center,
       end: top_center,
     ),
-    font: ColorSetting(light: "#000", dark: "#fff"),
+    font: ColorSetting(light: "#000", dark: "#55657e"),
   ),
   "bar-brand": container(
     bg: ColorSetting(light: "#FF4D5A", dark: "#FF4D5A"),
-    font: ColorSetting(light: "#fff", dark: "#fff"),
+    font: ColorSetting(light: "#fff", dark: "#55657e"),
     padding: PaddingSetting(horizon: RemSetting.ofRem(.2)),
   ),
 
@@ -35,11 +35,11 @@ var bars = {
   "bar-marquee": container(
     padding: PaddingSetting(horizon: RemSetting.ofRem(.2)),
     bg: ColorSetting(light: "transparent", dark: "transparent"),
-    font: ColorSetting(light: "#000", dark: "#fff"),
+    font: ColorSetting(light: "#000", dark: "#55657e"),
   ),
 
   "marquee": container(
     bg: ColorSetting(light: "transparent", dark: "transparent"),
-    font: ColorSetting(light: "#000", dark: "#fff"),
+    font: ColorSetting(light: "#000", dark: "#55657e"),
   ),
 };

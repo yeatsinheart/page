@@ -13,10 +13,11 @@ var bars = {
     font: ColorSetting(light: "#000", dark: "#55657e"),
   ),
   "bar-bottom": container(
+    bg: ColorSetting(light: "#fff", dark: "#141d29"),
     bgGradient: GradientSetting.linear(
       colors: [
-        ColorSetting(light: "#7ec1f7", dark: "#7ec1f7"),
-        ColorSetting(light: "#fff", dark: "#000"),
+        ColorSetting(light: "#7ec1f7", dark: "transparent"),
+        ColorSetting(light: "#fff", dark: "transparent"),
       ],
       stops: [0, .8],
       begin: bottom_center,
@@ -25,7 +26,7 @@ var bars = {
     font: ColorSetting(light: "#000", dark: "#55657e"),
   ),
   "bar-brand": container(
-    bg: ColorSetting(light: "#FF4D5A", dark: "#FF4D5A"),
+    bg: ColorSetting(light: "#FF4D5A", dark: "#7A3A3A"),
     font: ColorSetting(light: "#fff", dark: "#55657e"),
     padding: PaddingSetting(horizon: RemSetting.ofRem(.2)),
   ),

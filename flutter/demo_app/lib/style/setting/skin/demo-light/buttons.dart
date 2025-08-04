@@ -30,8 +30,8 @@ var buttons = {
 
   "btn-login": container(
     type: "button",
-    bg: ColorSetting(light: "#FFF", dark: "#FFF"),
-    font: ColorSetting(light: "#333", dark: "#333"),
+    bg: ColorSetting(light: "#FFF", dark: "#141d29"),
+    font: ColorSetting(light: "#333", dark: "#55657e"),
     border: BorderSetting(borderRadius: RemSetting.ofRem(.1)),
     padding: PaddingSetting(horizon: RemSetting.byPx(14), vertical: RemSetting.byPx(6)),
   ),

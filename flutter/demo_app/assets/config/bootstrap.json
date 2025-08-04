@@ -317,6 +317,31 @@
     }
    },
    "page": {
+    "bgGradient": {
+     "type": "linear",
+     "colors": [
+      {
+       "dark": "#0e131b",
+       "light": "#7ec1f7"
+      },
+      {
+       "dark": "#0e131b",
+       "light": "#FFF"
+      }
+     ],
+     "stops": [
+      0.0,
+      0.8
+     ],
+     "begin": [
+      1.0,
+      -1.0
+     ],
+     "end": [
+      -1.0,
+      1.0
+     ]
+    },
     "bg": {
      "dark": "#0e131b",
      "light": "#fff"
@@ -475,11 +500,11 @@
      "type": "linear",
      "colors": [
       {
-       "dark": "#7ec1f7",
+       "dark": "transparent",
        "light": "#7ec1f7"
       },
       {
-       "dark": "#000",
+       "dark": "transparent",
        "light": "#fff"
       }
      ],
@@ -496,6 +521,10 @@
       -1.0
      ]
     },
+    "bg": {
+     "dark": "#141d29",
+     "light": "#fff"
+    },
     "font": {
      "dark": "#55657e",
      "light": "#000"
@@ -509,7 +538,7 @@
      "right": 0.2
     },
     "bg": {
-     "dark": "#FF4D5A",
+     "dark": "#7A3A3A",
      "light": "#FF4D5A"
     },
     "font": {
@@ -629,11 +658,11 @@
      "borderRadius": 0.1
     },
     "bg": {
-     "dark": "#FFF",
+     "dark": "#141d29",
      "light": "#FFF"
     },
     "font": {
-     "dark": "#333",
+     "dark": "#55657e",
      "light": "#333"
     }
    },

@@ -37,15 +37,15 @@ var page = {
 
   "page": container(
     bg: ColorSetting(light: "#fff",dark: "#0e131b"),
-    // bgGradient: GradientSetting.linear(
-    //   colors: [
-    //     ColorSetting(light: "#7ec1f7", dark: "#0F2027"),
-    //     ColorSetting(light: "#FFF", dark: "#203A43"),
-    //   ],
-    //   stops: [0, .8],
-    //   begin: top_right,
-    //   end: bottom_left,
-    // ),
+    bgGradient: GradientSetting.linear(
+      colors: [
+        ColorSetting(light: "#7ec1f7", dark: "#0e131b"),
+        ColorSetting(light: "#FFF", dark: "#0e131b"),
+      ],
+      stops: [0, .8],
+      begin: top_right,
+      end: bottom_left,
+    ),
   ),
   "section": container(
     bg: ColorSetting(light: "#F5F5F5", dark: "#141d29"),

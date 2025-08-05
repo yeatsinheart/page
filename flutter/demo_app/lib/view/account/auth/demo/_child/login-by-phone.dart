@@ -1,8 +1,15 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter3/store/app.dart';
 
 class LoginByPhone extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text("手机登陆"),);
+    return Column(
+      children: [
+        TextField(decoration: InputDecoration(labelText: "手机号")),
+        SizedBox(height: AppStore.byRem(.2)),
+        TextField(decoration: InputDecoration(labelText: "密码"), obscureText: true),
+      ],
+    );
   }
 }

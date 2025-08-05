@@ -14,13 +14,32 @@ class AppImg extends StatelessWidget {
   final double? square;
   final double? width;
   final double? height;
+
   final double? borderRadius;
+  final double? borderRadiusTopLeft;
+  final double? borderRadiusBottomLeft;
+  final double? borderRadiusTopRight;
+  final double? borderRadiusBottomRight;
 
   final BoxFit? fit;
   final Color? loadingBg;
   final Color? loadingFont;
 
-  AppImg(this.url, {this.square, this.width, this.height, this.borderRadius, this.fit = BoxFit.cover, Color? this.loadingBg, Color? this.loadingFont, super.key});
+  AppImg(
+    this.url, {
+    this.square,
+    this.width,
+    this.height,
+    this.borderRadius,
+    this.borderRadiusTopRight,
+    this.borderRadiusTopLeft,
+    this.borderRadiusBottomLeft,
+    this.borderRadiusBottomRight,
+    this.fit = BoxFit.cover,
+    Color? this.loadingBg,
+    Color? this.loadingFont,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +50,17 @@ class AppImg extends StatelessWidget {
 
     final raw_image = img(url, fit: fit!, loadingBg: loadingBg ?? bgColor, loadingFont: loadingFont ?? fontColor);
     //Log.i(radiusRem);
-    var clipped_image = (null != borderRadius ? ClipRRect(borderRadius: BorderRadius.circular(borderRadius!), child: raw_image) : raw_image);
+    var clipped_image = (null != borderRadius || null!=borderRadiusTopLeft || null!=borderRadiusTopRight || null!=borderRadiusBottomLeft || null!=borderRadiusBottomRight
+        ? ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(borderRadius ?? borderRadiusTopLeft ?? 0),
+              topRight: Radius.circular(borderRadius ?? borderRadiusTopRight ?? 0),
+              bottomLeft: Radius.circular(borderRadius ?? borderRadiusBottomLeft ?? 0),
+              bottomRight: Radius.circular(borderRadius ?? borderRadiusBottomRight ?? 0),
+            ),
+            child: raw_image,
+          )
+        : raw_image);
 
     final effectiveWidth = square ?? width;
     final effectiveHeight = square ?? height;
@@ -136,10 +165,10 @@ _darkFilter(img) {
   return ColorFiltered(
     // // 所有 RGB 通道都被乘以 0.6（压暗约 40%）
     colorFilter: const ColorFilter.matrix(<double>[
-      0.6, 0,   0,   0, 0,  // R channel
-      0,   0.6, 0,   0, 0,  // G channel
-      0,   0,   0.6, 0, 0,  // B channel
-      0,   0,   0,   1, 0,  // A channel stays the same
+      0.6, 0, 0, 0, 0, // R channel
+      0, 0.6, 0, 0, 0, // G channel
+      0, 0, 0.6, 0, 0, // B channel
+      0, 0, 0, 1, 0, // A channel stays the same
     ]),
     // 这种方式透明会变白
     // colorFilter: ColorFilter.mode(Colors.grey.shade700, BlendMode.multiply),//将灰色与图像颜色通过 multiply 模式叠加 色彩会“变脏”，有点 desaturate（去饱和）

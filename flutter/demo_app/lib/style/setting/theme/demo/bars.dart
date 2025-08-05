@@ -9,7 +9,7 @@ var bars = {
     font: ColorSetting(light: "#000", dark: "#55657e"),
   ),
   "bar": container(
-    bg: ColorSetting(light: "#3f15d1", dark: "#3f15d1"),
+    bg: ColorSetting(light: "#fff", dark: "#000"),
     font: ColorSetting(light: "#000", dark: "#55657e"),
   ),
   "bar-bottom": container(
@@ -24,6 +24,7 @@ var bars = {
     ),
     font: ColorSetting(light: "#000", dark: "#55657e"),
   ),
+
   "bar-brand": container(
     bg: ColorSetting(light: "#FF4D5A", dark: "#e57373"),
     font: ColorSetting(light: "#fff", dark: "#0e131b"),

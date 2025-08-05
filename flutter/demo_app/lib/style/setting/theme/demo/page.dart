@@ -6,7 +6,7 @@ var fonts = {
   "title": ColorSetting(light: "#323233", dark: "#FFFFFF"),
   "name": ColorSetting(light: "#646566", dark: "#adb6c4"),
   "txt": ColorSetting(light: "#737272", dark: "#55657e"),
-  "ghost": ColorSetting(light: "#BBBBBB", dark: "#BBBBBB"),
+  "ghost": ColorSetting(light: "#BBBBBB", dark: "#3B393E"),
 };
 
 var defaultFont = fonts["txt"];
@@ -82,14 +82,14 @@ var page = {
     ),
   ),
 
-
+  /// 100% 没有圆角
   "section": container(
     bg: ColorSetting(light: "#ffffff", dark: "#141d29"),
     margin: PaddingSetting(vertical: RemSetting.ofRem(.1)),
     padding: PaddingSetting(all: RemSetting.ofRem(.2)),
   ),
 
-  // 通用容器
+  /// 通用容器 圆角内外边距
   "container": container(
     margin: PaddingSetting(horizon: RemSetting.ofRem(.2), top: RemSetting.ofRem(.2)),
     padding: PaddingSetting(horizon: RemSetting.ofRem(.2), vertical: RemSetting.ofRem(.2)),
@@ -123,7 +123,6 @@ var page = {
       begin: bottom_center,
       end: top_center,
     ),
-
     font: ColorSetting(light: "#FFF", dark: "#B0BEC5"),
   ),
 

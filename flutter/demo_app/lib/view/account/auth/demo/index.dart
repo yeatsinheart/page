@@ -3,6 +3,11 @@ import 'package:flutter3/i18n.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/format/container.dart';
+import 'package:flutter3/view/account/auth/demo/_child/login-by-phone.dart';
+import 'package:flutter3/view/account/auth/demo/_child/register-by-name.dart';
+import 'package:flutter3/view/account/auth/demo/_child/register-by-phone.dart';
+
+import '_child/login-by-name.dart';
 
 class AccountAuthDemoIndex extends StatefulWidget {
   final Map<String, dynamic>? params;
@@ -17,6 +22,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
   late TabController _tabController;
   final tabs = ['login', 'register'];
   var active;
+  var type = "name"; // "phone"
 
   @override
   void initState() {
@@ -24,6 +30,18 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
     active = widget.params?["action"] ?? tabs[0];
     final initialIndex = tabs.indexOf(active);
     _tabController = TabController(length: tabs.length, vsync: this, initialIndex: initialIndex >= 0 ? initialIndex : 0);
+    _tabController.addListener(() {
+      // 会触发两次，一次动画中，一次动画完成
+      if (_tabController.indexIsChanging) {
+        // 点击触发，但动画尚未完成 这时候切换，动画效果更流畅
+        final selectedTab = tabs[_tabController.index];
+        setState(() {
+          active = selectedTab;
+        });
+      } else {
+        // 动画完成后，index 确认变更
+      }
+    });
   }
 
   @override
@@ -34,31 +52,55 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
       Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(height: AppStore.byRem(2), child: AppImg("assets/images/game1.jpg")),
+          Container(
+            height: AppStore.byRem(2),
+            child: AppImg("assets/images/game1.jpg", borderRadiusTopLeft: AppStore.byRem(.14), borderRadiusTopRight: AppStore.byRem(.14)),
+          ),
           TabBar(
             controller: _tabController,
             tabs: tabs.map((e) => Tab(text: e.t)).toList(),
           ),
-          SizedBox(
-            height: 200,
-            child: TabBarView(
-              controller: _tabController,
+
+          Container(
+            padding: EdgeInsetsGeometry.all(AppStore.byRem(.2)),
+            child: Column(
               children: [
-                Container(child: Text("登陆")),
-                Container(child: Text("注册")),
+                type == "name" && active == "login" ? LoginByName() : SizedBox.shrink(),
+                type == "name" && active == "register" ? RegisterByName() : SizedBox.shrink(),
+                type == "phone" && active == "login" ? LoginByPhone() : SizedBox.shrink(),
+                type == "phone" && active == "register" ? RegisterByPhone() : SizedBox.shrink(),
               ],
             ),
           ),
-          Divider(),
-          TextButton(onPressed: () {}, child: Text("切换")),
+
+          //Divider(),
+          TextButton(
+            onPressed: () {
+              type = type == 'phone' ? 'name' : 'phone';
+              setState(() {});
+            },
+            child: Text("切换 ${type == 'phone' ? '用户名' : '手机号'} ${active == 'login' ? '登陆' : '注册'}"),
+            style: ButtonStyle().copyWith(overlayColor: WidgetStateProperty.all(Colors.transparent)),
+          ),
           Divider(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              TextButton(onPressed: () {}, child: Text("谷歌")),
-              TextButton(onPressed: () {}, child: Text("facebook")),
+              Expanded(child: TextButton(
+                onPressed: () {},
+                child: Text("谷歌"),
+                //style: ButtonStyle().copyWith(overlayColor: WidgetStateProperty.all(Colors.transparent)),
+              )),
+              SizedBox(width: AppStore.byRem(.2),),
+              Expanded(child: TextButton(
+                onPressed: () {},
+                child: Text("facebook"),
+                //style: ButtonStyle().copyWith(overlayColor: WidgetStateProperty.all(Colors.transparent)),
+              )),
             ],
           ),
+
+          SizedBox(height: AppStore.byRem(.2)),
         ],
       ),
       padding: EdgeInsetsGeometry.all(0),

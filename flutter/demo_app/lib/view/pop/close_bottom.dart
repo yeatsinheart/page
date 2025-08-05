@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/overlay.dart';
 import 'package:flutter3/store/app.dart';
+import 'package:flutter3/style/color-font.dart';
 import 'package:flutter3/style/format/container.dart';
 
 class PopCloseBottom extends StatelessWidget {
@@ -14,7 +15,7 @@ class PopCloseBottom extends StatelessWidget {
       children: [
         // 全屏遮罩
         Positioned.fill(
-          child: IgnorePointer(child: Container(color: Colors.black.withValues(alpha: 0.5))),
+          child: IgnorePointer(child: Container(color: Colors.black.withValues(alpha: 0.4))),
         ),
 
         Column(
@@ -22,7 +23,7 @@ class PopCloseBottom extends StatelessWidget {
           children: [
             ConstrainedBox(
               constraints: BoxConstraints(minWidth: AppStore.byPercent(30),maxWidth:  AppStore.byPercent(80),minHeight: AppStore.screenHeight*.3,maxHeight:  AppStore.screenHeight*.8),
-              child: params ?? Container(),
+              child: DefaultTextStyle.merge(style: TextStyle(color: ColorFont.get().txt), child: params ?? Container()),
             ),
             Center(
               child: IconButton(

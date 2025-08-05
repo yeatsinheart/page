@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/app-route.dart';
 import 'package:flutter3/store/app.dart';
 import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/format/container.dart';
@@ -40,6 +41,10 @@ class Browser extends StatelessWidget {
                   KeyedSubtree(
                     key: GlobalKey(debugLabel: "night-time"),
                     child: ContainerFormat("text-cover", ContainerFormat("btn", Text("黑夜"), click: (){AppStore.setStyleDark();})),
+                  ),
+                  KeyedSubtree(
+                    key: GlobalKey(debugLabel: "language-setting"),
+                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("语言"), click: (){AppRoute.to("language");})),
                   ),
                 ],
               ),

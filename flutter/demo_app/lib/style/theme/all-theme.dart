@@ -85,14 +85,13 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
       titleTextStyle: TextStyle(color: fontColor ?? ColorFont.get().txt),
       contentTextStyle: TextStyle(color: fontColor ?? ColorFont.get().txt),
     ),
-
     tabBarTheme: TabBarThemeData(
       indicatorColor: AppStore.getMainColor(),
       labelColor: AppStore.getMainColor(),
       labelStyle: TextStyle(fontWeight: FontWeight.bold),
-      unselectedLabelColor: ColorFont.get().ghost,
+      unselectedLabelColor: ColorFont.get().txt,
       unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
-      dividerColor: ColorFont.get().txt,
+      dividerColor: ColorFont.get().ghost,
     ),
     appBarTheme: AppBarTheme(),
     bottomAppBarTheme: BottomAppBarTheme(),
@@ -117,7 +116,7 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
 
     inputDecorationTheme: getInputTheme(fontColor: fontColor),
 
-    dividerTheme: DividerThemeData(color: fontColor ?? ColorFont.get().txt),
+    dividerTheme: DividerThemeData(color: ColorFont.get().ghost),
 
     // filledButtonTheme:FilledButtonThemeData(),
     // floatingActionButtonTheme:FloatingActionButtonThemeData(),

@@ -15,6 +15,18 @@ var buttons = {
     padding: PaddingSetting(horizon: RemSetting.byPx(14), vertical: RemSetting.byPx(6)),
   ),
 
+  "btn-transparent": container(
+    type: "button",
+    bg: ColorSetting(light: "#f5f5f5", dark: "#141d29"),
+    font: ColorSetting(light: "#737272", dark: "#55657e"),
+    border: BorderSetting(
+      color: ColorSetting(light: "#ccc", dark: "#444"),
+      borderRadius: RemSetting.ofRem(.1),
+    ),
+    padding: PaddingSetting(horizon: RemSetting.byPx(14), vertical: RemSetting.byPx(6)),
+  ),
+
+
   "btn-disabled": container(
     type: "button",
     bg: ColorSetting(light: "#f5f5f5", dark: "#2a2a2a"),
@@ -39,7 +51,6 @@ var buttons = {
     bg: ColorSetting(light: "#FFF", dark: "#141d29"),
     font: ColorSetting(light: "#333", dark: "#55657e"),
     border: BorderSetting(borderRadius: RemSetting.ofRem(.1)),
-    padding: PaddingSetting(horizon: RemSetting.byPx(14), vertical: RemSetting.byPx(6)),
   ),
 
   "btn-register": container(
@@ -50,6 +61,5 @@ var buttons = {
       color: ColorSetting(light: "#FFFFFF29", dark: "#FFFFFF29"),
       borderRadius: RemSetting.ofRem(.1),
     ),
-    padding: PaddingSetting(horizon: RemSetting.byPx(14), vertical: RemSetting.byPx(6)),
   ),
 };

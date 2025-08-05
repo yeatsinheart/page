@@ -24,28 +24,57 @@ class ContainerFormat extends StatelessWidget {
   final double? width;
   final EdgeInsetsGeometry? margin;
 
-
-
-  const ContainerFormat(this.k, this.child, {this.click,this.padding,this.margin, this.width,this.height,super.key});
+  const ContainerFormat(this.k, this.child, {this.click, this.padding, this.margin, this.width, this.height, super.key});
 
   _container(Map<String, dynamic>? json, child) {
     if (null == json) return Container(child: child);
     var borderConfig = json["border"];
 
     return Container(
-      width: width,height: height,
-      margin: margin??PaddingFormat.fromJson(json["margin"]),
-      padding: padding??PaddingFormat.fromJson(json["padding"]),
+      width: width,
+      height: height,
+      margin: margin ?? PaddingFormat.fromJson(json["margin"]),
+      padding: padding ?? PaddingFormat.fromJson(json["padding"]),
       decoration: _BoxDecoration(json),
-        //DefaultTextStyle 已经在组件树更早的地方被设置了，Text 会优先使用 DefaultTextStyle，而不是你后期新设置的 Theme.textTheme.bodyMedium。
-      child: DefaultTextStyle.merge(style: TextStyle(color: ColorUtil.getColor(json["font"]?[AppStore.Brightness])),
-          child: ImgBg(json["img"], child, borderRadius: AppStore.byRem(borderConfig?["borderRadius"]??0)))
+      //DefaultTextStyle 已经在组件树更早的地方被设置了，Text 会优先使用 DefaultTextStyle，而不是你后期新设置的 Theme.textTheme.bodyMedium。
+      child: DefaultTextStyle.merge(
+        style: TextStyle(color: ColorUtil.getColor(json["font"]?[AppStore.Brightness])),
+        child: ImgBg(json["img"], child, borderRadius: AppStore.byRem(borderConfig?["borderRadius"] ?? 0)),
+      ),
     );
   }
+
   _button(Map<String, dynamic>? json, child) {
-    return Align(
-      alignment: Alignment.center,
-      child: TextButton(onPressed: click == null ? () => {} : () => click!(), child: child),
+    return
+      // Align(
+      // alignment: Alignment.center,
+      // child:
+      TextButton(
+        onPressed: click == null ? () => {} : () => click!(),
+        child: child,
+        style: ButtonStyle().copyWith(
+          // padding: WidgetStateProperty.all(
+          //   EdgeInsets.only(
+          //     top: AppStore.byRem(json?["padding"]["top"]),
+          //     left: AppStore.byRem(json?["padding"]["left"]),
+          //     bottom: AppStore.byRem(json?["padding"]["bottom"]),
+          //     right: AppStore.byRem(json?["padding"]["right"]),
+          //   ),
+          // ),
+          // 背景颜色
+          backgroundColor: WidgetStateProperty.all(ColorUtil.getColor(json?["bg"]?[AppStore.Brightness]!) ??Colors.transparent),
+          // 文字颜色
+          foregroundColor: WidgetStateProperty.all(ColorUtil.getColor(json?["font"]?[AppStore.Brightness]!)??ColorFont.get().txt),
+          textStyle: WidgetStateProperty.all(TextStyle(color: ColorUtil.getColor(json?["font"]?[AppStore.Brightness]!)??ColorFont.get().txt)),
+
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppStore.byRem(.14)),
+              side: BorderSide(color:ColorUtil.getColor(json?["border"]?["color"]?[AppStore.Brightness]!) ?? Colors.transparent),
+            ),
+          ),
+        ),
+      // ),
     );
   }
 
@@ -55,7 +84,7 @@ class ContainerFormat extends StatelessWidget {
     // Log.i("$k ${config?["font"]}");
     var widget = null;
     if (config?["type"] == "button") {
-      widget = _button(config, _container(config, child)); //加了这个Container高度反而占满了,align: Alignment.center
+      widget = _button(config, child); //加了这个Container高度反而占满了,align: Alignment.center
     } else {
       widget = _container(config, child);
     }
@@ -85,7 +114,9 @@ class ContainerFormat extends StatelessWidget {
     return BoxDecoration(
       /// 边框
       border: BorderFormat.fromJson(borderConfig),
-      borderRadius:borderConfig!=null&&borderConfig["borderRadius"] != null && (borderConfig["borderRadius"] > 0) ? BorderRadius.circular(AppStore.byRem(borderConfig["borderRadius"])) : null,
+      borderRadius: borderConfig != null && borderConfig["borderRadius"] != null && (borderConfig["borderRadius"] > 0)
+          ? BorderRadius.circular(AppStore.byRem(borderConfig["borderRadius"]))
+          : null,
 
       /// 阴影
       boxShadow: ShadowFormat.listFromJson(json["shadows"]),

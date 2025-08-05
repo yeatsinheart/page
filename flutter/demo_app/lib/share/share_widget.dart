@@ -23,6 +23,7 @@ Widget tab_bar_demo({tabs, currentIndex, onTap}) {
       final selected = index == currentIndex;
       return Expanded(
         child: Container(
+          height: AppStore.byRem(.6),
           decoration: BoxDecoration(
             border: selected ? Border(bottom: BorderSide(color: AppStore.getMainColor(), width: 2)) : null,
           ),
@@ -30,7 +31,7 @@ Widget tab_bar_demo({tabs, currentIndex, onTap}) {
             onPressed: () => onTap(index),
             child: Text(
               tabs[index],
-              style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? AppStore.getMainColor() : null),
+              style: TextStyle(fontSize:AppStore.byRem(.22),fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? AppStore.getMainColor() : null),
             ),
           ),
         ),

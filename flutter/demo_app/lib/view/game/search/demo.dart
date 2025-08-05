@@ -14,25 +14,45 @@ class GameSearchDemo extends StatefulWidget {
 
 class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStateMixin {
   int _currentIndex = 0;
+  ScrollController _pageScrollController = ScrollController();
 
   final List<String> tabs = ["搜索结果", "最近玩过", "我的收藏"];
 
+  final _textController = TextEditingController();
+
   build_search() {
     return Padding(
-      padding: EdgeInsets.all(AppStore.byRem(.2)),
+      padding: EdgeInsets.only(top: AppStore.byRem(.2), left: AppStore.byRem(.2), right: AppStore.byRem(.2)),
       child: Row(
         children: [
           Expanded(
             child: TextField(
+              controller: _textController,
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search),
-                hintText: "搜索",
+                prefixIcon:Padding(
+                  padding: EdgeInsets.only(left: AppStore.byRem(.1), ),
+                  child: Icon(Icons.search, size: AppStore.byRem(.22)), // 适配设计稿大小
+                ),
+                hintText: "输入搜索内容",
+                suffix: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        _textController.clear();
+                      },
+                      child: Icon(Icons.clear,size: AppStore.byRem(.22),),
+                    ),
+                    SizedBox(width: AppStore.byRem(.1)),
+                    TextButton(onPressed: () {}, child: Text("搜索",style: TextStyle(fontSize:AppStore.byRem(.22),),)),
+                  ],
+                ),
                 // fillColor: Colors.grey[200],
               ),
             ),
           ),
-          SizedBox(width: AppStore.byRem(.1)),
-          TextButton(onPressed: () {}, child: Text("搜索"), style: ButtonStyle().copyWith()),
+          // SizedBox(width: AppStore.byRem(.1)),
+          // TextButton(onPressed: () {}, child: Text("搜索"), style: ButtonStyle().copyWith()),
         ],
       ),
     );
@@ -45,17 +65,30 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
       child: Scaffold(
         body: SafeArea(
           child: CustomScrollView(
+            controller: _pageScrollController,
             slivers: [
               SliverPersistentHeader(
                 pinned: true,
                 delegate: ShareSliverPersistentHeaderDelegate(
-                  height: AppStore.byRem(1.65),
+                  height: AppStore.byRem(1.45),
                   child: ContainerFormat(
                     "tab",
                     Column(
                       children: [
+                        //
                         build_search(),
-                        tab_bar_demo(tabs: tabs, currentIndex: _currentIndex, onTap: (index) => setState(() => _currentIndex = index)),
+                        // .6rem
+                        tab_bar_demo(
+                          tabs: tabs,
+                          currentIndex: _currentIndex,
+                          onTap: (index) {
+                            setState(() {
+                              _currentIndex = index;
+                            });
+                            // 滚动到顶部
+                            _pageScrollController.animateTo(0, duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+                          },
+                        ),
                       ],
                     ),
                   ),

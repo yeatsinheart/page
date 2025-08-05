@@ -42,7 +42,7 @@ var buttons = {
     type: "button",
     bg: ColorSetting(light: "#FF4D5A", dark: "#e57373"),
     font: ColorSetting(light: "#FFF", dark: "#0e131b"),
-    border: BorderSetting(borderRadius: RemSetting.ofRem(.1)),
+    border: BorderSetting(borderRadius: RemSetting.ofRem(.14)),
     padding: PaddingSetting(horizon: RemSetting.byPx(14), vertical: RemSetting.byPx(6)),
   ),
 
@@ -50,7 +50,8 @@ var buttons = {
     type: "button",
     bg: ColorSetting(light: "#FFF", dark: "#141d29"),
     font: ColorSetting(light: "#333", dark: "#55657e"),
-    border: BorderSetting(borderRadius: RemSetting.ofRem(.1)),
+    border: BorderSetting(color: ColorSetting(light: "transparent", dark: "transparent"),borderRadius: RemSetting.ofRem(.14)),
+    padding: PaddingSetting(horizon: RemSetting.byPx(14), vertical: RemSetting.byPx(6)),
   ),
 
   "btn-register": container(
@@ -59,7 +60,8 @@ var buttons = {
     font: ColorSetting(light: "#FFF", dark: "#FFF"),
     border: BorderSetting(
       color: ColorSetting(light: "#FFFFFF29", dark: "#FFFFFF29"),
-      borderRadius: RemSetting.ofRem(.1),
+      borderRadius: RemSetting.ofRem(.14),
     ),
+    padding: PaddingSetting(horizon: RemSetting.byPx(14), vertical: RemSetting.byPx(6)),
   ),
 };

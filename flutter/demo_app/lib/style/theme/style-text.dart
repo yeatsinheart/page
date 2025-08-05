@@ -52,7 +52,7 @@ getTextTheme({Color? fontColor}) {
 }
 
 getTextStyle({Color? fontColor}) {
-  return  TextStyle(color: fontColor??ColorFont.get().txt);
+  return  TextStyle(fontSize: AppStore.byRem(.22),height: 1.5, color: fontColor??ColorFont.get().txt);
 }
 
 // 默认rem计算

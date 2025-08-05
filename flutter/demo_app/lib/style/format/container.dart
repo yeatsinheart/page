@@ -52,28 +52,6 @@ class ContainerFormat extends StatelessWidget {
       TextButton(
         onPressed: click == null ? () => {} : () => click!(),
         child: child,
-        style: ButtonStyle().copyWith(
-          // padding: WidgetStateProperty.all(
-          //   EdgeInsets.only(
-          //     top: AppStore.byRem(json?["padding"]["top"]),
-          //     left: AppStore.byRem(json?["padding"]["left"]),
-          //     bottom: AppStore.byRem(json?["padding"]["bottom"]),
-          //     right: AppStore.byRem(json?["padding"]["right"]),
-          //   ),
-          // ),
-          // 背景颜色
-          backgroundColor: WidgetStateProperty.all(ColorUtil.getColor(json?["bg"]?[AppStore.Brightness]!) ??Colors.transparent),
-          // 文字颜色
-          foregroundColor: WidgetStateProperty.all(ColorUtil.getColor(json?["font"]?[AppStore.Brightness]!)??ColorFont.get().txt),
-          textStyle: WidgetStateProperty.all(TextStyle(color: ColorUtil.getColor(json?["font"]?[AppStore.Brightness]!)??ColorFont.get().txt)),
-
-          shape: WidgetStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(AppStore.byRem(.14)),
-              side: BorderSide(color:ColorUtil.getColor(json?["border"]?["color"]?[AppStore.Brightness]!) ?? Colors.transparent),
-            ),
-          ),
-        ),
       // ),
     );
   }
@@ -84,7 +62,7 @@ class ContainerFormat extends StatelessWidget {
     // Log.i("$k ${config?["font"]}");
     var widget = null;
     if (config?["type"] == "button") {
-      widget = _button(config, child); //加了这个Container高度反而占满了,align: Alignment.center
+      widget = _button(config, _container(config, child)); //加了这个Container高度反而占满了,align: Alignment.center
     } else {
       widget = _container(config, child);
     }

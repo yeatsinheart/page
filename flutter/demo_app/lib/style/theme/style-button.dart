@@ -3,6 +3,7 @@ import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/color-font.dart';
 import 'package:flutter3/style/theme/style-text.dart';
 
+/// 把按钮当做一个可点击的容器，样式由容器控制
 globalButtonStyle({Color? fontColor}){
   return ButtonStyle(
 
@@ -43,10 +44,10 @@ globalButtonStyle({Color? fontColor}){
     tapTargetSize: MaterialTapTargetSize.shrinkWrap,  // 点击区域不扩大
     visualDensity: VisualDensity.compact,             // 紧凑布局（可选）
 
-    padding: WidgetStateProperty.all(EdgeInsets.symmetric(horizontal: AppStore.byRem(.28), vertical: AppStore.byRem(.21))),
+    padding: WidgetStateProperty.all(EdgeInsets.all(0)),
     shape: WidgetStateProperty.all(
       RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppStore.byRem(.14)),
+        // borderRadius: BorderRadius.circular(AppStore.byRem(.14)),
         // side: BorderSide(color: ColorFont.get().txt!),
         side: BorderSide(color: Colors.transparent),
       ),

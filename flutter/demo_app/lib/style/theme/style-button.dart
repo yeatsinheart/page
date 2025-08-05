@@ -36,7 +36,7 @@ globalButtonStyle({Color? fontColor}){
     backgroundColor: WidgetStateProperty.all(Colors.transparent),
     // 文字颜色
     foregroundColor: WidgetStateProperty.all(fontColor??ColorFont.get().txt),
-    textStyle: WidgetStateProperty.all(TextStyle(color: fontColor??ColorFont.get().txt)),
+    textStyle: WidgetStateProperty.all(TextStyle(fontSize:AppStore.byRem(.22),color: fontColor??ColorFont.get().txt)),
     // padding: WidgetStateProperty.all(EdgeInsets.all(0)),
 
 

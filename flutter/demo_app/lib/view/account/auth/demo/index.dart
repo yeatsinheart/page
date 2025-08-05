@@ -58,7 +58,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
           ),
           TabBar(
             controller: _tabController,
-            tabs: tabs.map((e) => Tab(text: e.t)).toList(),
+            tabs: tabs.map((e) => Tab(height:AppStore.byRem(.5),text: e.t)).toList(),
           ),
 
           Container(

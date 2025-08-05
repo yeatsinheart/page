@@ -118,7 +118,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
 
   Widget _buildTabBar() {
     return ContainerFormat("tab",Container(
-        height: 50,
+        height: AppStore.byRem(.9),
         child: ScrollConfiguration(
           behavior: _NoScrollbarBehavior(),
           child: ListView.builder(
@@ -139,7 +139,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
                 child: Container(
                   key: _tab_keys[index],
                   alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: AppStore.byRem(.1)),
                   decoration: selected
                       ? BoxDecoration(
                     border: Border(bottom: BorderSide(width: 2, color: AppStore.getMainColor())),
@@ -163,7 +163,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
     // 左右结构 SliverCrossAxisGroup
     return SliverMainAxisGroup(
       slivers: [
-        SliverPersistentHeader(pinned: true, delegate: _StickyHeaderDelegate(height: 50, child: _buildTabBar())),
+        SliverPersistentHeader(pinned: true, delegate: _StickyHeaderDelegate(height: AppStore.byRem(.9), child: _buildTabBar())),
         /*
         SliverChildBuilderDelegate懒加载[监听位置会有找不到的问题]
         SliverList(

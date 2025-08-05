@@ -36,7 +36,7 @@ class BarBrandDemo extends StatelessWidget {
           SizedBox(width: AppStore.byRem(.1)),
 
           IconButton(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.search,size: AppStore.byRem(.4)),
             onPressed: () => AppRoute.slideToKey("game_search"),
             style: ButtonStyle().copyWith(
               padding: WidgetStateProperty.all(EdgeInsets.all(0)),
@@ -50,7 +50,7 @@ class BarBrandDemo extends StatelessWidget {
           ),
           SizedBox(width: AppStore.byRem(.1)),
           IconButton(
-            icon: Icon(Icons.language),
+            icon: Icon(Icons.language,size: AppStore.byRem(.4),),
             onPressed: () => AppRoute.to("language"),
             style: ButtonStyle().copyWith(
               padding: WidgetStateProperty.all(EdgeInsets.all(0)),

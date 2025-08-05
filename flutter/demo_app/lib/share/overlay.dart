@@ -4,6 +4,7 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-context.dart';
 import 'package:flutter3/log/logger.dart';
+import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/theme/all-theme.dart';
 import 'package:flutter3/view/app-view.dart';
 
@@ -36,22 +37,34 @@ class GlobalOverlayContext {
             if (blockTouch) ModalBarrier(color: barrierColor ?? Colors.transparent, dismissible: false),
             Theme(
               data: getFlutterTheme(),
-              child: SafeArea(child: widget),
+              child: AppStore.maxWidth == null
+                  ? widget
+                  : Center(
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(maxWidth: AppStore.maxWidth!),
+                        child: widget,
+                      ),
+                    ),
             ),
           ],
         ),
-      )
+      ),
     );
   }
 
   static final Map<String, OverlayEntry> _entries = {};
 
-  static void show(String key, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
-    pop(AppView.ofKey(key), autoRemoveTime: autoRemoveTime, sysCanRemove: sysCanRemove, backName: backName);
+  static void show(String key, {params, int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
+    pop(
+      AppView.ofKey(key, params: params),
+      autoRemoveTime: autoRemoveTime,
+      sysCanRemove: sysCanRemove,
+      backName: backName,
+    );
   }
 
-  static void popBy(String containerPath, String childKey, {int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
-    Widget? childWidget = AppView.ofKey(childKey);
+  static void popBy(String containerPath, String childKey, {params, int autoRemoveTime = 0, bool sysCanRemove = false, String? backName}) {
+    Widget? childWidget = AppView.ofKey(childKey, params: params);
     pop(
       AppView.ofPath(containerPath, params: childWidget),
       autoRemoveTime: autoRemoveTime,

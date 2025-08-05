@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/share/overlay.dart';
 import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/style/theme/all-theme.dart';
@@ -10,6 +11,18 @@ import 'app-context.dart';
 
 class AppRoute {
   static OverlayState? get overlay => AppContext.navigatorKey.currentState!.overlay;
+
+  static to(String? key, {params}) {
+    var info = {
+      "language":{ "popBy": "/pop/close_bottom"},
+      "auth":{ "popBy": "/pop/close_bottom"}
+    };
+    if (null != info[key] && null != info[key]!["popBy"]) {
+      GlobalOverlayContext.popBy(info[key]!["popBy"]!, key!);
+    }else{
+      //slideToKey(key,params: params);
+    }
+  }
 
   /// 各种效果模式 https://juejin.cn/post/6844903890291261447
   static slideToKey(String? key, {params, Offset from = SlideRoute.right, int time = 300}) {

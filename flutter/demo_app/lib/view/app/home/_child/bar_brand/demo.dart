@@ -19,13 +19,13 @@ class BarBrandDemo extends StatelessWidget {
         children: [
           AppImg('assets/images/jinritoutiao.png', width: AppStore.byRem(2.1), height: AppStore.byRem(0.7)),
           Spacer(),
-          ContainerFormat("btn-register", Text('注册'.t),click: ()=> {},),
+          ContainerFormat("btn-register", Text('注册'.t),click: ()=> {AppRoute.to("auth",params: {"action":"register"})},),
           const SizedBox(width: 8),
-          ContainerFormat("btn-login", Text('登录'.t),click: ()=> {AppRoute.dialog()},),
+          ContainerFormat("btn-login", Text('登录'.t),click: ()=> {AppRoute.to("auth",params: {"action":"login"})},),
           SizedBox(width: AppStore.byRem(.2)),
           IconButton(icon:Icon(Icons.search),onPressed: ()=>AppRoute.slideToKey("game_search")),
           SizedBox(width: AppStore.byRem(.2)),
-          IconButton(icon:Icon(Icons.language),onPressed: ()=>GlobalOverlayContext.popBy("/pop/close_bottom", "language")),
+          IconButton(icon:Icon(Icons.language),onPressed: ()=>AppRoute.to("language")),
         ],
       ),
     );

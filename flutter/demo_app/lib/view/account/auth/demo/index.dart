@@ -3,6 +3,8 @@ import 'package:flutter3/share/img.dart';
 import 'package:flutter3/store/app.dart';
 
 class AccountAuthDemoIndex extends StatefulWidget {
+  var params;
+  AccountAuthDemoIndex({this.params,super.key});
   @override
   State<StatefulWidget> createState() => _State();
 }
@@ -19,9 +21,8 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding:  EdgeInsets.all(AppStore.byRem(.2)),
-        child: Column(
+    return //Padding(padding:  EdgeInsets.all(AppStore.byRem(.2)),child:
+    Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(height: AppStore.byRem(2),child: AppImg("assets/images/game1.jpg"),),
@@ -50,7 +51,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
               ],
             ),
           ],
-        ),
+        //),
     );
   }
 }

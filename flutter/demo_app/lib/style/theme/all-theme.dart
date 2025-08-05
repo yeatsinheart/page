@@ -80,7 +80,7 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     ///
     dialogTheme: DialogThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStore.byRem(.14))),
-      insetPadding: EdgeInsets.all(AppStore.byRem(.2)),
+      //insetPadding: EdgeInsets.all(AppStore.byRem(.2)),
       backgroundColor: AppStore.Brightness=="dark"?Colors.black:Colors.white,
       titleTextStyle: TextStyle(color: fontColor ?? ColorFont.get().txt),
       contentTextStyle: TextStyle(color: fontColor ?? ColorFont.get().txt),
@@ -99,6 +99,9 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(),
 
     scrollbarTheme: ScrollbarThemeData(),
+    // AppStore.Brightness=="dark"?Colors.white:Colors.black,
+    progressIndicatorTheme:ProgressIndicatorThemeData(color: AppStore.getMainColor(),),
+
     // 全局光标颜色设置
     textSelectionTheme: TextSelectionThemeData(cursorColor: AppStore.getMainColor()),
     textTheme: getTextTheme(fontColor: fontColor),
@@ -160,7 +163,6 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     // navigationDrawerTheme:NavigationDrawerThemeData(),
     // navigationRailTheme:NavigationRailThemeData(),
     // popupMenuTheme:PopupMenuThemeData(),
-    // progressIndicatorTheme:ProgressIndicatorThemeData(),
     // radioTheme:RadioThemeData(),
     // searchBarTheme:SearchBarThemeData(),
     // searchViewTheme:SearchViewThemeData(),

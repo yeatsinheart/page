@@ -12,6 +12,7 @@ final Map<String, String> _views = {
 
   "home": "/app/home/wg",
   "me": "/account/home/demo",
+  "auth": "/account/auth/demo",
 
   "cashier": "/cashier/home/demo",
 

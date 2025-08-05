@@ -29,18 +29,18 @@ getInputTheme({fontColor}) {
     hoverColor: Colors.transparent,
     // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppStyleStore.getMainColor())),
     // labelStyle: TextStyle(color: AppStyleStore.getMainColor()),
-    labelStyle: TextStyle(fontSize:AppStore.byRem(.22),color: fontColor ?? ColorFont.get().txt!),
-    floatingLabelStyle: TextStyle(fontSize:AppStore.byRem(.22),color: fontColor ?? ColorFont.get().txt!),
-    helperStyle: TextStyle(fontSize:AppStore.byRem(.22),color: fontColor ?? ColorFont.get().txt!),
-    errorStyle: TextStyle(fontSize:AppStore.byRem(.22),color: fontColor ?? ColorFont.get().txt!),
+    labelStyle: getTextStyle(),
+    floatingLabelStyle: getTextStyle(),
+    helperStyle: getTextStyle(),
+    errorStyle: getTextStyle(),
 
     iconColor: fontColor ?? ColorFont.get().txt!,
 
-    prefixStyle: TextStyle(fontSize:AppStore.byRem(.22),color: fontColor ?? ColorFont.get().txt!),
+    prefixStyle: getTextStyle(),
     prefixIconColor: fontColor ?? ColorFont.get().txt!,
     prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0,),
 
-    suffixStyle: TextStyle(fontSize:AppStore.byRem(.22),color: fontColor ?? ColorFont.get().txt!),
+    suffixStyle: getTextStyle(),
     suffixIconColor: fontColor ?? ColorFont.get().txt!,
     suffixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0,),
 

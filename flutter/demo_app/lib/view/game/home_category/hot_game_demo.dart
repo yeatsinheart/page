@@ -59,6 +59,7 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
             children: [
               Text('标题', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               InkWell(
+                overlayColor: WidgetStateProperty.all(Colors.transparent),
                 onTap: () => print("点击更多"),
                 child: Text('更多 >', style: TextStyle(fontSize: 14, color: Colors.blue)),
               ),

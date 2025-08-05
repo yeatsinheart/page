@@ -46,6 +46,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
             children: [
               Text(title.tr, style: TextStyle( fontWeight: FontWeight.bold)),
               TextButton(
+                style: ButtonStyle().copyWith(overlayColor:WidgetStateProperty.all(Colors.transparent)),
                 onPressed: () {
                   setState(() {
                     AppRoute.slideToPath("/game/by_category/left_brand");

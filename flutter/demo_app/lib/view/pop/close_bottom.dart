@@ -22,8 +22,7 @@ class PopCloseBottom extends StatelessWidget {
           children: [
             ConstrainedBox(
               constraints: BoxConstraints(minWidth: AppStore.byPercent(30),maxWidth:  AppStore.byPercent(80),minHeight: AppStore.screenHeight*.3,maxHeight:  AppStore.screenHeight*.8),
-              child: ContainerFormat("container",params ?? Container(),
-              ),
+              child: params ?? Container(),
             ),
             Center(
               child: IconButton(

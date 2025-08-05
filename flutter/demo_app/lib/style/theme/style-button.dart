@@ -40,7 +40,7 @@ globalButtonStyle({Color? fontColor}){
     minimumSize:WidgetStateProperty.all(Size(0, 0)),// 按钮最小限制
     shape: WidgetStateProperty.all(
       RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppStore.byRem(.1)),
+        borderRadius: BorderRadius.circular(AppStore.byRem(.14)),
         side: BorderSide(color: Colors.transparent),
       ),
     ),

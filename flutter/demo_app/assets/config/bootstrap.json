@@ -398,12 +398,6 @@
      "light": "#f7f8ff"
     }
    },
-   "mask": {
-    "bg": {
-     "dark": "#00000080",
-     "light": "#00000080"
-    }
-   },
    "section": {
     "padding": {
      "top": 0.2,
@@ -424,13 +418,13 @@
    },
    "container": {
     "padding": {
-     "top": 0.05,
+     "top": 0.2,
      "left": 0.2,
-     "bottom": 0.05,
+     "bottom": 0.2,
      "right": 0.2
     },
     "margin": {
-     "top": 0.1,
+     "top": 0.2,
      "left": 0.2,
      "bottom": 0.0,
      "right": 0.2
@@ -459,6 +453,29 @@
       "blurStyle": "normal"
      }
     ]
+   },
+   "mask": {
+    "bg": {
+     "dark": "#00000080",
+     "light": "#00000080"
+    }
+   },
+   "pop-container": {
+    "padding": {
+     "top": 0.2,
+     "left": 0.2,
+     "bottom": 0.2,
+     "right": 0.2
+    },
+    "border": {
+     "color": null,
+     "width": 0.01,
+     "borderRadius": 0.14
+    },
+    "bg": {
+     "dark": "#141d29",
+     "light": "#ffffff"
+    }
    },
    "img-loading": {
     "bg": {

@@ -82,9 +82,6 @@ var page = {
     ),
   ),
 
-  "mask": container(
-    bg: ColorSetting(light: "#00000080", dark: "#00000080"),
-  ),
 
   "section": container(
     bg: ColorSetting(light: "#ffffff", dark: "#141d29"),
@@ -94,9 +91,8 @@ var page = {
 
   // 通用容器
   "container": container(
-    // img: "assets/images/game1.jpg",
-    margin: PaddingSetting(horizon: RemSetting.ofRem(.2), top: RemSetting.ofRem(.1)),
-    padding: PaddingSetting(horizon: RemSetting.ofRem(.2), vertical: RemSetting.ofRem(.05)),
+    margin: PaddingSetting(horizon: RemSetting.ofRem(.2), top: RemSetting.ofRem(.2)),
+    padding: PaddingSetting(horizon: RemSetting.ofRem(.2), vertical: RemSetting.ofRem(.2)),
     border: BorderSetting(borderRadius: RemSetting.ofRem(.14)),
     bg: ColorSetting(light: "#ffffff", dark: "#141d29"),
     shadows: [
@@ -106,6 +102,11 @@ var page = {
       ),
     ],
   ),
+
+  "mask": container(
+    bg: ColorSetting(light: "#00000080", dark: "#00000080"),
+  ),
+
 
   "img-loading": container(
     bg: ColorSetting(light: "#e0e0e0", dark: "#2a2f3a"),

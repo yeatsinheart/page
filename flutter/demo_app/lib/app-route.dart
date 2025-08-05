@@ -18,7 +18,7 @@ class AppRoute {
       "auth":{ "popBy": "/pop/close_bottom"}
     };
     if (null != info[key] && null != info[key]!["popBy"]) {
-      GlobalOverlayContext.popBy(info[key]!["popBy"]!, key!);
+      GlobalOverlayContext.popBy(info[key]!["popBy"]!, key!,params: params);
     }else{
       //slideToKey(key,params: params);
     }

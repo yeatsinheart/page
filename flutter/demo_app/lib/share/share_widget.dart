@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/share/img.dart';
 import 'package:flutter3/store/app.dart';
-import 'package:flutter3/style/format/container.dart';
 
 container_demo({height, txt = '占位', color = Colors.white}) {
   return Container(
@@ -20,27 +18,23 @@ list_demo(count) {
 }
 
 Widget tab_bar_demo({tabs, currentIndex, onTap}) {
-  return ContainerFormat("tab",
-     Row(
-      children: List.generate(tabs.length, (index) {
-        final selected = index == currentIndex;
-        return Expanded(
-          child: GestureDetector(
-            onTap: () => onTap(index),
-            child: Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: selected ? AppStore.getMainColor() : Colors.transparent, width: 2)),
-              ),
-              child: Text(
-                tabs[index],
-                style: TextStyle(fontSize: 14, fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ?AppStore.getMainColor() :null),
-              ),
+  return Row(
+    children: List.generate(tabs.length, (index) {
+      final selected = index == currentIndex;
+      return Expanded(
+        child: Container(
+          decoration: BoxDecoration(
+            border: selected ? Border(bottom: BorderSide(color: AppStore.getMainColor(), width: 2)) : null,
+          ),
+          child: TextButton(
+            onPressed: () => onTap(index),
+            child: Text(
+              tabs[index],
+              style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? AppStore.getMainColor() : null),
             ),
           ),
-        );
-      }),
-    ),
+        ),
+      );
+    }),
   );
 }

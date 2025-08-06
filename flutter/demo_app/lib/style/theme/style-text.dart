@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/color-font.dart';
-var _lineHeight = 1.4;
-getTextTheme({Color? fontColor}) {
-  TextStyle globalTextStyle = TextStyle(fontSize: AppStyle.byRem(AppStyle.defaultFontSize), height: _lineHeight, color: fontColor??ColorFont.get().txt);
 
-  TextStyle large = TextStyle(fontSize: AppStyle.byRem(.26), height: _lineHeight, color: fontColor??ColorFont.get().txt);
-  TextStyle medium = TextStyle(fontSize: AppStyle.byRem(.22), height: _lineHeight, color: fontColor??ColorFont.get().txt);
-  TextStyle small = TextStyle(fontSize: AppStyle.byRem(.18), height: _lineHeight, color: fontColor??ColorFont.get().txt);
+getTextTheme({Color? fontColor}) {
+  TextStyle globalTextStyle = TextStyle(fontSize: AppStyle.fontSize, height: AppStyle.lineHeight, color: fontColor??ColorFont.get().txt);
+
+  TextStyle large = TextStyle(fontSize: AppStyle.fontSize+2, height: AppStyle.lineHeight, color: fontColor??ColorFont.get().txt);
+  TextStyle medium = TextStyle(fontSize:AppStyle.fontSize, height: AppStyle.lineHeight, color: fontColor??ColorFont.get().txt);
+  TextStyle small = TextStyle(fontSize: AppStyle.fontSize-2, height: AppStyle.lineHeight, color: fontColor??ColorFont.get().txt);
 
   return TextTheme(
     displayLarge: globalTextStyle,
@@ -52,7 +52,7 @@ getTextTheme({Color? fontColor}) {
 }
 
 TextStyle getTextStyle({Color? fontColor}) {
-  return  TextStyle(fontSize: AppStyle.byRem(AppStyle.defaultFontSize),height:_lineHeight, color: fontColor??ColorFont.get().txt);
+  return  TextStyle(fontSize: AppStyle.fontSize,height:AppStyle.lineHeight, color: fontColor??ColorFont.get().txt);
 }
 
 // 默认rem计算

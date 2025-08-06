@@ -91,7 +91,16 @@ class AppStyle extends GetxService {
     return getColors()[0];
   }
 
-  static double get defaultFontSize{
-    return data["fontSize"];
+  static double get fontSize{
+    return byPx(data["fontSize"]);
+  }
+  static double get gap{
+    return byPx(data["gap"]);
+  }
+  static double get radius{
+    return byPx(data["radius"]);
+  }
+  static double get lineHeight{
+    return byPx(data["lineHeight"]);
   }
 }

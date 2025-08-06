@@ -79,7 +79,7 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     /// 文件夹中添加对应组件的theme获取方法
     ///
     dialogTheme: DialogThemeData(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.byRem(.14))),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.radius)),
       //insetPadding: EdgeInsets.all(AppStore.byRem(.2)),
       backgroundColor: AppStyle.isDark()?Colors.black:Colors.white,
       titleTextStyle: getTextStyle(),

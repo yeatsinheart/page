@@ -15,17 +15,17 @@ getInputTheme({fontColor}) {
 
     // 调整内边距大小
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(AppStyle.byRem(.14)),
+      borderRadius: BorderRadius.circular(AppStyle.radius),
       borderSide: BorderSide(color: fontColor ?? ColorFont.get().txt!,width: _borderWidth),
     ),
     // 圆角设置
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: fontColor ?? ColorFont.get().txt!,width: _borderWidth),
-      borderRadius: BorderRadius.circular(AppStyle.byRem(.14)),
+      borderRadius: BorderRadius.circular(AppStyle.radius),
     ),
     focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(color: fontColor ?? ColorFont.get().txt!,width: _borderWidth),
-      borderRadius: BorderRadius.circular(AppStyle.byRem(.14)),
+      borderRadius: BorderRadius.circular(AppStyle.radius),
     ),
 
     hoverColor: Colors.transparent,

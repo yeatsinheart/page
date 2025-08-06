@@ -8,7 +8,7 @@ getCheckBoxTheme({Color? fontColor}) {
         ///  * [WidgetState.hovered].
         ///  * [WidgetState.focused].
         ///  * [WidgetState.disabled].*/
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.byRem(.14))),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.radius)),
     // side: BorderSide(color: fontColor ?? ColorFont.get().txt!),
     //overlayColor: WidgetStateProperty.all(AppStyleStore.getMainColor().withOpacity(0.2)),
     // overlayColor: WidgetStateProperty.all(Colors.transparent),

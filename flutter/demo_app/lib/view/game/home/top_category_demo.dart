@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/view/app-view.dart';
@@ -51,32 +52,37 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
   }
 
   void _onPageScroll() {
-    double minDistance = double.infinity;
-    int closestIndex = 0;
+    // NotificationListener 没有这个高效
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      double minDistance = double.infinity;
+      int closestIndex = 0;
 
-    for (int i = 0; i < _data_keys.length; i++) {
-      final context = _data_keys[i].currentContext;
-      if (context != null) {
-        final box = context.findRenderObject() as RenderBox;
-        final offset = box.localToGlobal(Offset.zero).dy;
+      for (int i = 0; i < _data_keys.length; i++) {
+        final context = _data_keys[i].currentContext;
+        if (context != null) {
+          final box = context.findRenderObject() as RenderBox;
+          final offset = box
+              .localToGlobal(Offset.zero)
+              .dy;
 
-        // 计算距离屏幕顶部的距离（越小越接近顶部）
-        final distanceFromTop = offset.abs();
+          // 计算距离屏幕顶部的距离（越小越接近顶部）
+          final distanceFromTop = offset.abs();
 
-        if (distanceFromTop < minDistance) {
-          minDistance = distanceFromTop;
-          closestIndex = i;
+          if (distanceFromTop < minDistance) {
+            minDistance = distanceFromTop;
+            closestIndex = i;
+          }
         }
       }
-    }
-    if (closestIndex != _currentIndex) {
-      setState(() {
-        if (_scrollingByClick) return;
-        //print("距离顶部最近的是第 $closestIndex 个元素");
-        _currentIndex = closestIndex;
-        _scrollTabToCenter(closestIndex);
-      });
-    }
+      if (closestIndex != _currentIndex) {
+        setState(() {
+          if (_scrollingByClick) return;
+          //print("距离顶部最近的是第 $closestIndex 个元素");
+          _currentIndex = closestIndex;
+          _scrollTabToCenter(closestIndex);
+        });
+      }
+    });
   }
 
   void _scrollTabToCenter(int index) {

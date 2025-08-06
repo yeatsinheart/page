@@ -51,7 +51,7 @@ getTextTheme({Color? fontColor}) {
   );
 }
 
-getTextStyle({Color? fontColor}) {
+TextStyle getTextStyle({Color? fontColor}) {
   return  TextStyle(fontSize: AppStore.byRem(.22),height:_lineHeight, color: fontColor??ColorFont.get().txt);
 }
 

@@ -11,6 +11,11 @@ class RegisterByName extends StatelessWidget{
         TextField(decoration: InputDecoration(labelText: "输入密码"), obscureText: true),
         SizedBox(height: AppStyle.byRem(.2)),
         TextField(decoration: InputDecoration(labelText: "确认密码"), obscureText: true),
+        TextField(decoration: InputDecoration(labelText: "确认密码"), obscureText: true),
+        TextField(decoration: InputDecoration(labelText: "确认密码"), obscureText: true),
+        TextField(decoration: InputDecoration(labelText: "确认密码"), obscureText: true),
+        TextField(decoration: InputDecoration(labelText: "确认密码"), obscureText: true),
+        TextField(decoration: InputDecoration(labelText: "确认密码"), obscureText: true),
       ],
     );
   }

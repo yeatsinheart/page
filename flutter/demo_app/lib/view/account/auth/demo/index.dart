@@ -58,7 +58,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
           ),
           TabBar(
             controller: _tabController,
-            tabs: tabs.map((e) => Tab(height:AppStyle.byRem(.5),text: e.t)).toList(),
+            tabs: tabs.map((e) => Tab(height: AppStyle.byRem(.5), text: e.t)).toList(),
           ),
 
           Container(
@@ -74,34 +74,40 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
           ),
 
           //Divider(),
-    Container(height: AppStyle.byRem(.5),child:
-          TextButton(
-            onPressed: () {
-              type = type == 'phone' ? 'name' : 'phone';
-              setState(() {});
-            },
-            child: Center(child: Text("切换 ${type == 'phone' ? '用户名' : '手机号'} ${active == 'login' ? '登陆' : '注册'}")),
-            // style: ButtonStyle().copyWith(overlayColor: WidgetStateProperty.all(Colors.transparent)),
+          Container(
+            height: AppStyle.byRem(.5),
+            child: TextButton(
+              onPressed: () {
+                type = type == 'phone' ? 'name' : 'phone';
+                setState(() {});
+              },
+              child: Center(child: Text("切换 ${type == 'phone' ? '用户名' : '手机号'} ${active == 'login' ? '登陆' : '注册'}")),
+              // style: ButtonStyle().copyWith(overlayColor: WidgetStateProperty.all(Colors.transparent)),
+            ),
           ),
-    ),
           Divider(),
 
-          Container(height: AppStyle.byRem(.5),
+          Container(
+            height: AppStyle.byRem(.5),
             child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(child: TextButton(
-                onPressed: () {},
-                child: Center(child: Text("谷歌")),// center能拉伸高度
-              )),
-              SizedBox(width: AppStyle.byRem(.2),),
-              Expanded(child: TextButton(
-                onPressed: () {},
-                child: Center(child: Text("facebook"),)// center能拉伸高度
-              )),
-            ],
-          ),),
-
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Center(child: Text("谷歌")), // center能拉伸高度
+                  ),
+                ),
+                SizedBox(width: AppStyle.byRem(.2)),
+                Expanded(
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Center(child: Text("facebook")), // center能拉伸高度
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
       padding: EdgeInsetsGeometry.all(0),

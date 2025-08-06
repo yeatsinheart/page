@@ -56,7 +56,16 @@ class _State extends State<TestTextField> {
         ),),
         Text("屏幕宽度：${AppStyle.viewWidth}"), // 411.42 -> 12.068
         Text("精度倍数： ${MediaQuery.of(context).textScaler}"), // 411.42 -> 12.068
-        Text("字体大小：${AppStyle.byRem(.22)}"),
+        Text("字体大小：.22rem = ${AppStyle.byRem(.22)}"),
+        Text("字体大小：.23rem = ${AppStyle.byRem(.23)}"),
+        Text("字体大小：.24rem = ${AppStyle.byRem(.24)}"),
+        Text("字体大小：.25rem = ${AppStyle.byRem(.25)}"),
+        Text("字体大小：.26rem = ${AppStyle.byRem(.26)}"),
+        Text("字体大小：.27rem = ${AppStyle.byRem(.27)}"),
+        Text("字体大小：.28rem = ${AppStyle.byRem(.28)}"),
+        Text("字体大小：.29rem = ${AppStyle.byRem(.29)}"),
+        Text("字体大小：.3rem = ${AppStyle.byRem(.3)}"),
+
         Text(""),
         Text(""),
         Text(""),

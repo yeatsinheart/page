@@ -90,4 +90,8 @@ class AppStyle extends GetxService {
   static Color getMainColor() {
     return getColors()[0];
   }
+
+  static double get defaultFontSize{
+    return data["fontSize"];
+  }
 }

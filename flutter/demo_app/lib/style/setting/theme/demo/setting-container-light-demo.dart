@@ -16,7 +16,8 @@ main() async {
 
   json["style"]["maxWidth"] = 570;
   json["style"]["gap"] = .22;
-  json["style"]["fontSize"] = .22;
+  // 412屏幕 。29显示16号字体 .26显示14号字体  .22显示12号字体
+  json["style"]["fontSize"] = .29;
   json["style"]["lineHeight"] = 1.5;
   json["style"]["radius"] = .14;
 

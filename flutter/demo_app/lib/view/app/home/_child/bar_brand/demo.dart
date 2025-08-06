@@ -15,6 +15,7 @@ class BarBrandDemo extends StatelessWidget {
     return ContainerFormat(
       "bar-brand",
       Row(
+        mainAxisAlignment: MainAxisAlignment.center,// 水平居中
         children: [
           Img('assets/images/jinritoutiao.png', width: AppStyle.byRem(2.1), height: AppStyle.byRem(0.7)),
           Spacer(),

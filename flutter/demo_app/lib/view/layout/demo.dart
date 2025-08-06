@@ -61,7 +61,9 @@ class _LayoutDemoState extends State<LayoutDemo> {
     return Scaffold(
       body: pages[_currentIndex],
       bottomNavigationBar: Container(
-        height: AppStyle.byRem(1.24),
+        // height: AppStyle.byRem(1.24),// 0.24 * 1.4 + 0.5 = 0.836
+        height: AppStyle.byRem(1.35),// 0.32 * 1.4 + 0.5 = 0.948
+        // padding: EdgeInsetsGeometry.symmetric(vertical: AppStyle.byRem(.2)), // 按照padding来计算高度，不会出现修改rem而出问题
         child: ContainerFormat("bar-bottom", Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: list)),
       ),
     );
@@ -72,27 +74,22 @@ class _LayoutDemoState extends State<LayoutDemo> {
     //自动扩展均分
     return Expanded(
       child: TextButton(
-          onPressed: () {
-            if (index != _currentIndex) setState(() => _currentIndex = index);
-          },
-          // behavior: HitTestBehavior.opaque, // 保证整块区域可点
-          child: Center( // center能拉伸高度
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Img(isActive ? activeIcon : icon, square: AppStyle.byRem(.5)),
-                Text(
-                  label.tr,
-                  style: TextStyle(
-                    color: isActive ? AppStyle.getMainColor() : null,
-                    fontSize: AppStyle.byRem(0.24),
-                    //height: 1.2, // 行高为字体大小，避免顶部留白
-                    // 也可以尝试 height: null，如果你完全想用默认布局计算
-                  ),
-                ),
-              ],
-            ),
+        onPressed: () {
+          if (index != _currentIndex) setState(() => _currentIndex = index);
+        },
+        child: Center(
+          // center能拉伸高度
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Img(isActive ? activeIcon : icon, square: AppStyle.byRem(.5)),
+              Text(
+                label.tr,
+                style: TextStyle(color: isActive ? AppStyle.getMainColor() : null, fontSize: AppStyle.byRem(0.32)),
+              ),
+            ],
           ),
+        ),
         // ),
       ),
     );

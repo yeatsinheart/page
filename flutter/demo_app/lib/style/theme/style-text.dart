@@ -3,7 +3,7 @@ import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/color-font.dart';
 var _lineHeight = 1.4;
 getTextTheme({Color? fontColor}) {
-  TextStyle globalTextStyle = TextStyle(fontSize: AppStyle.byRem(.22), height: _lineHeight, color: fontColor??ColorFont.get().txt);
+  TextStyle globalTextStyle = TextStyle(fontSize: AppStyle.byRem(AppStyle.defaultFontSize), height: _lineHeight, color: fontColor??ColorFont.get().txt);
 
   TextStyle large = TextStyle(fontSize: AppStyle.byRem(.26), height: _lineHeight, color: fontColor??ColorFont.get().txt);
   TextStyle medium = TextStyle(fontSize: AppStyle.byRem(.22), height: _lineHeight, color: fontColor??ColorFont.get().txt);
@@ -52,7 +52,7 @@ getTextTheme({Color? fontColor}) {
 }
 
 TextStyle getTextStyle({Color? fontColor}) {
-  return  TextStyle(fontSize: AppStyle.byRem(.22),height:_lineHeight, color: fontColor??ColorFont.get().txt);
+  return  TextStyle(fontSize: AppStyle.byRem(AppStyle.defaultFontSize),height:_lineHeight, color: fontColor??ColorFont.get().txt);
 }
 
 // 默认rem计算

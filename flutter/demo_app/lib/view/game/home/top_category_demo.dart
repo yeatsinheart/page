@@ -100,11 +100,17 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
       final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController!.offset - AppStyle.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
-      _pageScrollController!.animateTo(offset.clamp(_pageScrollController!.position.minScrollExtent, _pageScrollController!.position.maxScrollExtent), duration: Duration(milliseconds: 100), curve: Curves.easeInOut).then((_) {
-        Future.delayed(Duration(milliseconds: 100), () {
-          _scrollingByClick = false;
-        });
-      });
+      _pageScrollController!
+          .animateTo(
+            offset.clamp(_pageScrollController!.position.minScrollExtent, _pageScrollController!.position.maxScrollExtent),
+            duration: Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          )
+          .then((_) {
+            Future.delayed(Duration(milliseconds: 100), () {
+              _scrollingByClick = false;
+            });
+          });
     }
   }
 
@@ -117,14 +123,17 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
   }
 
   Widget _buildTabBar() {
-    return ContainerFormat("tab",Container(
+    return ContainerFormat(
+      "tab",
+      Container(
         height: AppStyle.byRem(.9),
         child: ScrollConfiguration(
           behavior: _NoScrollbarBehavior(),
           child: ListView.builder(
             controller: _tabScrollController,
             scrollDirection: Axis.horizontal,
-            physics: const ClampingScrollPhysics(), // ← 支持手动滚动
+            physics: const ClampingScrollPhysics(),
+            // ← 支持手动滚动
             itemCount: tabs.length,
             itemBuilder: (context, index) {
               final selected = index == _currentIndex;
@@ -142,8 +151,8 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
                   padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.1)),
                   decoration: selected
                       ? BoxDecoration(
-                    border: Border(bottom: BorderSide(width: 2, color: AppStyle.getMainColor())),
-                  )
+                          border: Border(bottom: BorderSide(width: 2, color: AppStyle.getMainColor())),
+                        )
                       : null,
                   child: Text(
                     tabs[index].tr,
@@ -152,8 +161,10 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
                 ),
               );
             },
-          ),)
-    ));
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -163,7 +174,10 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
     // 左右结构 SliverCrossAxisGroup
     return SliverMainAxisGroup(
       slivers: [
-        SliverPersistentHeader(pinned: true, delegate: _StickyHeaderDelegate(height: AppStyle.byRem(.9), child: _buildTabBar())),
+        SliverPersistentHeader(
+          pinned: true,
+          delegate: _StickyHeaderDelegate(height: AppStyle.byRem(.9), child: _buildTabBar()),
+        ),
         /*
         SliverChildBuilderDelegate懒加载[监听位置会有找不到的问题]
         SliverList(

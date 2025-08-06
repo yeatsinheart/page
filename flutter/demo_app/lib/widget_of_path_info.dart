@@ -17,6 +17,7 @@ import 'package:flutter3/view/game/home_category/hot_game_demo.dart';
 import 'package:flutter3/view/game/home_category/list_brand.dart';
 import 'package:flutter3/view/game/search/demo.dart';
 import 'package:flutter3/view/layout/demo.dart';
+import 'package:flutter3/view/market/announce/demo.dart';
 import 'package:flutter3/view/market/marquee/demo.dart';
 import 'package:flutter3/view/market/swiper/demo.dart';
 import 'package:flutter3/view/pop/close_bottom.dart';
@@ -42,6 +43,7 @@ Widget? widgetOfPath(String? path,{key,params}) {
     case "/game/home_category/list_brand": return GameHomeCategoryListBrand(key:key,params: params);
     case "/game/search/demo": return GameSearchDemo(key:key,params: params);
     case "/layout/demo": return LayoutDemo(key:key,params: params);
+    case "/market/announce/demo": return MarketAnnounceDemo(key:key,params: params);
     case "/market/marquee/demo": return MarketMarqueeDemo(key:key,params: params);
     case "/market/swiper/demo": return MarketSwiperDemo(key:key,params: params);
     case "/pop/close_bottom": return PopCloseBottom(key:key,params: params);

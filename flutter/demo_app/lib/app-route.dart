@@ -20,7 +20,7 @@ class AppRoute {
     if (null != info[key] && null != info[key]!["popBy"]) {
       GlobalOverlayContext.popBy(info[key]!["popBy"]!, key!,params: params);
     }else{
-      //slideToKey(key,params: params);
+      slideToKey(key,params: params);
     }
   }
 

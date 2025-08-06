@@ -18,6 +18,7 @@ final Map<String, String> _views = {
   "deposit": "/cashier/deposit/home",
   "withdraw": "/cashier/withdraw/home",
 
+  "announce": "/market/announce/demo",
   "swiper": "/market/swiper/demo",
   "marquee": "/market/marquee/demo",
 

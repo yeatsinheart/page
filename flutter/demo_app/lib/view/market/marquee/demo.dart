@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/app-route.dart';
 import 'package:flutter3/share/marquee.dart';
 import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/format/container.dart';
@@ -15,7 +16,7 @@ Widget iconWithBadge({required IconData icon, required bool showBadge, color, in
   return Stack(
     clipBehavior: Clip.none,
     children: [
-      Icon(icon, color: color, size: size),
+      TextButton(onPressed: ()=>{AppRoute.to("announce")}, child: Icon(icon, color: color, size: size)),
       if (showBadge)
         Positioned(
           right: count != null ? -6 : -3,
@@ -62,13 +63,11 @@ class _MarketMarqueeDemoState extends State<MarketMarqueeDemo> {
         padding: EdgeInsets.symmetric(horizontal: AppStore.byRem(.2)),
         child: Row(
           children: [
-            Icon(Icons.volume_up, size: AppStore.byRem(.36)), // 📢 图标
-            SizedBox(width: 8),
-
+            TextButton(onPressed: ()=>AppRoute.to("announce"), child: Icon(Icons.volume_up, size: AppStore.byRem(.36)),),
+            SizedBox(width: AppStore.byRem(.1)),
             //Expanded(child: MarqueeWithoutTicker(text: messages.join('     ★     '))),
-
             Expanded(child: Marquee(text: messages.join('     ★     '))),
-            SizedBox(width: 8),
+            SizedBox(width: AppStore.byRem(.1)),
             iconWithBadge(icon: Icons.mail, showBadge: false, count: null),
           ],
         ),

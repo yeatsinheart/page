@@ -82,7 +82,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
           //   color: Colors.grey[300],
           //   child: Center(child: Icon(Icons.image, size: 50, color: Colors.white)),
           // ),
-          Img("data[]"),
+          Img("assets/images/wanimal.png"),
 
           Positioned(
             bottom: 0,

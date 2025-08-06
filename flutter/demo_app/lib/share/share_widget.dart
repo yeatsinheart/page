@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 
 container_demo({height, txt = '占位', color = Colors.white}) {
   return Container(
@@ -23,15 +23,15 @@ Widget tab_bar_demo({tabs, currentIndex, onTap}) {
       final selected = index == currentIndex;
       return Expanded(
         child: Container(
-          height: AppStore.byRem(.6),
+          height: AppStyle.byRem(.6),
           decoration: BoxDecoration(
-            border: selected ? Border(bottom: BorderSide(color: AppStore.getMainColor(), width: 2)) : null,
+            border: selected ? Border(bottom: BorderSide(color: AppStyle.getMainColor(), width: 2)) : null,
           ),
           child: TextButton(
             onPressed: () => onTap(index),
             child: Text(
               tabs[index],
-              style: TextStyle(fontSize:AppStore.byRem(.22),fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? AppStore.getMainColor() : null),
+              style: TextStyle(fontSize:AppStyle.byRem(.22),fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? AppStyle.getMainColor() : null),
             ),
           ),
         ),

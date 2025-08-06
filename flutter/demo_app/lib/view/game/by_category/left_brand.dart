@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter3/share/img.dart';
 
 import 'package:flutter3/share/sticky-header.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
 
@@ -48,13 +48,13 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       if (header2_context != null) {
         final header2 = header2_context.findRenderObject() as RenderBox;
         final offset2 = header2.localToGlobal(Offset.zero).dy;
-        print("$offset2 ${offset2 - AppStore.byRem(.9)} $_header2Padding");
-        if (offset2 < AppStore.byRem(.9)) {
+        print("$offset2 ${offset2 - AppStyle.byRem(.9)} $_header2Padding");
+        if (offset2 < AppStyle.byRem(.9)) {
           setState(() {
-            _header2Padding = (offset2 - AppStore.byRem(.9)).abs();
+            _header2Padding = (offset2 - AppStyle.byRem(.9)).abs();
           });
         }
-        if (offset2 >= AppStore.byRem(.9) && _header2Padding != 0) {
+        if (offset2 >= AppStyle.byRem(.9) && _header2Padding != 0) {
           setState(() {
             _header2Padding = 0;
           });
@@ -92,7 +92,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
   }
 
   void _scrollTabToCenter(int index) {
-    final double screenHeight = AppStore.screenHeight;
+    final double screenHeight = AppStyle.screenHeight;
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
@@ -109,7 +109,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     if (dataContext != null) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
-      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset - AppStore.byRem(.9);
+      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset - AppStyle.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
       _pageScrollController.animateTo(offset.clamp(_pageScrollController.position.minScrollExtent, _pageScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
@@ -192,12 +192,12 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       pinned: true,
       // 最大高度
       delegate: StickyHeader(
-        height: AppStore.byRem(.9),
+        height: AppStyle.byRem(.9),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // 左侧 logo
-            Img('assets/images/launcher.png', width: AppStore.byRem(0.7), height: AppStore.byRem(0.7)),
+            Img('assets/images/launcher.png', width: AppStyle.byRem(0.7), height: AppStyle.byRem(0.7)),
             TextButton(
               onPressed: () {
                 setState(() {
@@ -209,7 +209,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                 foregroundColor: WidgetStateProperty.all(Colors.blue),
                 shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppStore.byRem(.1)),
+                    borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
                     side: BorderSide(color: Colors.blue),
                   ),
                 ),
@@ -228,7 +228,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
         // padding 永远和header保持>一个导航栏高度
         pinned: true,
         // 最大高度
-        delegate: StickyHeader(height: AppStore.screenHeight - AppStore.byRem(1.24), child: _buildTabBar()),
+        delegate: StickyHeader(height: AppStyle.screenHeight - AppStyle.byRem(1.24), child: _buildTabBar()),
       ),
     );
   }
@@ -279,7 +279,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                     ),
                     getHeader1(),
                     SliverPadding(
-                      padding: EdgeInsets.symmetric(horizontal: AppStore.byRem(.2)),
+                      padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
                       sliver: SliverCrossAxisGroup(
                         slivers: [
                           getHeader2(),

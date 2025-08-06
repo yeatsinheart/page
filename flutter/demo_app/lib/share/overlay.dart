@@ -4,7 +4,7 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-context.dart';
 import 'package:flutter3/log/logger.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/theme/all-theme.dart';
 import 'package:flutter3/view/app-view.dart';
 
@@ -37,11 +37,11 @@ class GlobalOverlayContext {
             if (blockTouch) ModalBarrier(color: barrierColor ?? Colors.transparent, dismissible: false),
             Theme(
               data: getFlutterTheme(),
-              child: AppStore.maxWidth == null
+              child: AppStyle.maxWidth == null
                   ? widget
                   : Center(
                       child: ConstrainedBox(
-                        constraints: BoxConstraints(maxWidth: AppStore.maxWidth!),
+                        constraints: BoxConstraints(maxWidth: AppStyle.maxWidth!),
                         child: widget,
                       ),
                     ),

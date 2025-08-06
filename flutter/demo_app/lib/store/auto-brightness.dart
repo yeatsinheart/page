@@ -1,7 +1,7 @@
 
 import 'dart:async';
 
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 
 class AutoBrightness{
   static Timer? _themeTimer;
@@ -17,13 +17,13 @@ Duration _checkTheme() {
 
   if (hour >= 18 || hour < 6) {
     // 18:00 到 第二天 06:00 使用深色
-    if (!AppStore.isDark()) {
-      AppStore.setStyleDark();
+    if (!AppStyle.isDark()) {
+      AppStyle.setStyleDark();
     }
   } else {
     // 06:00 到 18:00 使用浅色
-    if (AppStore.isDark()) {
-      AppStore.setStyleLight();
+    if (AppStyle.isDark()) {
+      AppStyle.setStyleLight();
     }
   }
   // 计算下次切换时间

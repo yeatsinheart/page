@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/service/cashier/deposit.dart';
 import 'package:flutter3/share/grid.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 
 class CashierDepositHomeDemo extends StatefulWidget {
@@ -38,9 +38,9 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
       payment["code"] == chosen ? "btn-main" : "btn",
       Row(
         children: [
-          Img(payment["logo"], square: AppStore.byRem(.5)),
+          Img(payment["logo"], square: AppStyle.byRem(.5)),
           Center(
-            child: Text(payment["name"], style: TextStyle(fontSize: AppStore.byPx(16))),
+            child: Text(payment["name"], style: TextStyle(fontSize: AppStyle.byPx(16))),
           ),
           // Center(child: Text(payment["name"], style: TextStyle(fontSize: AppStyleStore.byRem(.22)))),
         ],
@@ -77,7 +77,7 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
                           print("OutlineButton Click");
                         },
                       ),
-                      SizedBox(width: AppStore.byRem(.2)),
+                      SizedBox(width: AppStyle.byRem(.2)),
                       TextButton(
                         child: Text("教程"),
                         onPressed: () {

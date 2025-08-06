@@ -1,18 +1,16 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter3/app-context.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/util/color-util.dart';
 import 'package:get/get.dart';
 
-class AppStore extends GetxService {
+class AppStyle extends GetxService {
   // 单例一旦创建，就会一直存在内存中，直到程序退出或手动销毁
-  AppStore._internal();
-
-  static final AppStore _instance = AppStore._internal();
-
-  factory AppStore() => _instance;
+  AppStyle._internal();
+  static final AppStyle _instance = AppStyle._internal();
+  factory AppStyle() => _instance;
 
   static String Brightness = "light"; //"light";// dark
   static isDark(){
@@ -21,13 +19,13 @@ class AppStore extends GetxService {
   static setStyleDark() {
     if(isDark())return;
     Brightness = "dark";
-    AppStore().rebuildApp();
+    AppStyle().rebuildApp();
   }
 
   static setStyleLight() {
     if(!isDark())return;
     Brightness = "light";
-    AppStore().rebuildApp();
+    AppStyle().rebuildApp();
   }
 
   Rx<Key> appKey = UniqueKey().obs;
@@ -50,15 +48,14 @@ class AppStore extends GetxService {
 
   static byRem(double rem) {
     // 7.5rem=100%;
-    // 屏幕750px 1rem = 100px
-    // 当前屏幕   1rem = 100px * viewWidth/750 (等比例屏幕)
+    // 设计稿 750px
+    // 1rem = 100px Html 根元素fontsize
     return rem * 100 * (viewWidth / 750);
   }
 
   /// 实际宽度
   static double get viewWidth {
     return min(_screenWidth, maxWidth ?? _screenWidth);
-    ;
   }
 
   static double? get maxWidth {
@@ -67,15 +64,29 @@ class AppStore extends GetxService {
   }
 
   static double get _screenWidth {
-    return MediaQuery.of(AppContext.context).size.width;
+    // 获取屏幕逻辑宽度
+    final platformDispatcher = PlatformDispatcher.instance;
+    // 获取主视图 FlutterView
+    final flutterView = platformDispatcher.views.first;
+    // 获取屏幕宽度（逻辑像素）
+    final screenWidth = flutterView.physicalSize.width / flutterView.devicePixelRatio;
+    // return MediaQuery.of(AppContext.context).size.width;
+    return screenWidth;
   }
 
   static double get screenHeight {
-    return MediaQuery.of(AppContext.context).size.height;
+    // 获取屏幕逻辑高度
+    final platformDispatcher = PlatformDispatcher.instance;
+    // 获取主视图 FlutterView
+    final flutterView = platformDispatcher.views.first;
+    // 获取屏幕高度（逻辑像素）
+    final screenHeight = flutterView.physicalSize.height / flutterView.devicePixelRatio;
+    return screenHeight;
+    // return MediaQuery.of(AppContext.context).size.height;
   }
 
   static List<dynamic> getColors() {
-    var list = (data["colors"] as List?)?.map((c) => ColorUtil.getColor(c?[AppStore.Brightness])).whereType<Color>().toList();
+    var list = (data["colors"] as List?)?.map((c) => ColorUtil.getColor(c?[AppStyle.Brightness])).whereType<Color>().toList();
     return list ?? [ColorUtil.getColor("#2196F3")];
   }
 

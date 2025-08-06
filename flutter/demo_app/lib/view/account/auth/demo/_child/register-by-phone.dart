@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 
 class RegisterByPhone extends StatefulWidget {
   final Map<String, dynamic>? params;
@@ -42,12 +42,12 @@ class _State extends State<RegisterByPhone> with SingleTickerProviderStateMixin 
     return Column(
       children: [
         TextField(decoration: InputDecoration(labelText: "手机号")),
-        SizedBox(height: AppStore.byRem(.2)),
+        SizedBox(height: AppStyle.byRem(.2)),
         TextField(decoration: InputDecoration(labelText: "密码"), obscureText: true),
-        SizedBox(height: AppStore.byRem(.2)),
+        SizedBox(height: AppStyle.byRem(.2)),
         Row(children: [
           Expanded(child: TextField(decoration: InputDecoration(labelText: "短信验证码"), obscureText: true),),
-          SizedBox(height: AppStore.byRem(.1)),
+          SizedBox(height: AppStyle.byRem(.1)),
           TextButton(
             onPressed: disabled ? null : _onSendPressed,
             child: Text(disabled ? '$_seconds 秒' : '发送验证码'),

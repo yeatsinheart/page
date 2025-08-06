@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/i18n.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 
 class BarBrandDemo extends StatelessWidget {
@@ -16,7 +16,7 @@ class BarBrandDemo extends StatelessWidget {
       "bar-brand",
       Row(
         children: [
-          Img('assets/images/jinritoutiao.png', width: AppStore.byRem(2.1), height: AppStore.byRem(0.7)),
+          Img('assets/images/jinritoutiao.png', width: AppStyle.byRem(2.1), height: AppStyle.byRem(0.7)),
           Spacer(),
           ContainerFormat(
             "btn-register",
@@ -33,10 +33,10 @@ class BarBrandDemo extends StatelessWidget {
               AppRoute.to("auth", params: {"action": "login"}),
             },
           ),
-          SizedBox(width: AppStore.byRem(.1)),
+          SizedBox(width: AppStyle.byRem(.1)),
 
           IconButton(
-            icon: Icon(Icons.search,size: AppStore.byRem(.4)),
+            icon: Icon(Icons.search,size: AppStyle.byRem(.4)),
             onPressed: () => AppRoute.slideToKey("game_search"),
             style: ButtonStyle().copyWith(
               padding: WidgetStateProperty.all(EdgeInsets.all(0)),
@@ -48,9 +48,9 @@ class BarBrandDemo extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: AppStore.byRem(.1)),
+          SizedBox(width: AppStyle.byRem(.1)),
           IconButton(
-            icon: Icon(Icons.language,size: AppStore.byRem(.4),),
+            icon: Icon(Icons.language,size: AppStyle.byRem(.4),),
             onPressed: () => AppRoute.to("language"),
             style: ButtonStyle().copyWith(
               padding: WidgetStateProperty.all(EdgeInsets.all(0)),

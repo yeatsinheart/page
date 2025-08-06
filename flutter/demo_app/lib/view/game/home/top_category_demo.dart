@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
@@ -80,7 +80,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
   }
 
   void _scrollTabToCenter(int index) {
-    final double viewWidth = AppStore.viewWidth;
+    final double viewWidth = AppStyle.viewWidth;
     final tab_context = _tab_keys[index].currentContext;
     if (tab_context != null) {
       final box = tab_context.findRenderObject() as RenderBox;
@@ -97,7 +97,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
     if (dataContext != null && null != _pageScrollController) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
-      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController!.offset - AppStore.byRem(.9);
+      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController!.offset - AppStyle.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
       _pageScrollController!.animateTo(offset.clamp(_pageScrollController!.position.minScrollExtent, _pageScrollController!.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
@@ -118,7 +118,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
 
   Widget _buildTabBar() {
     return ContainerFormat("tab",Container(
-        height: AppStore.byRem(.9),
+        height: AppStyle.byRem(.9),
         child: ScrollConfiguration(
           behavior: _NoScrollbarBehavior(),
           child: ListView.builder(
@@ -139,15 +139,15 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
                 child: Container(
                   key: _tab_keys[index],
                   alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(horizontal: AppStore.byRem(.1)),
+                  padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.1)),
                   decoration: selected
                       ? BoxDecoration(
-                    border: Border(bottom: BorderSide(width: 2, color: AppStore.getMainColor())),
+                    border: Border(bottom: BorderSide(width: 2, color: AppStyle.getMainColor())),
                   )
                       : null,
                   child: Text(
                     tabs[index].tr,
-                    style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? AppStore.getMainColor() : null),
+                    style: TextStyle(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? AppStyle.getMainColor() : null),
                   ),
                 ),
               );
@@ -163,7 +163,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
     // 左右结构 SliverCrossAxisGroup
     return SliverMainAxisGroup(
       slivers: [
-        SliverPersistentHeader(pinned: true, delegate: _StickyHeaderDelegate(height: AppStore.byRem(.9), child: _buildTabBar())),
+        SliverPersistentHeader(pinned: true, delegate: _StickyHeaderDelegate(height: AppStyle.byRem(.9), child: _buildTabBar())),
         /*
         SliverChildBuilderDelegate懒加载[监听位置会有找不到的问题]
         SliverList(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter3/share/share_widget.dart';
 import 'package:flutter3/share/sticky-header.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 
 
 
@@ -23,8 +23,8 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
   final ScrollController _pageScrollController = ScrollController();
   final ScrollController _categoryScrollController = ScrollController();
   final ScrollController _detailScrollController = ScrollController();
-  double persit_header_height = AppStore.byRem(1.24);
-  double left_right_height = AppStore.screenHeight;
+  double persit_header_height = AppStyle.byRem(1.24);
+  double left_right_height = AppStyle.screenHeight;
 
   persit_header(txt, color, height) {
     return SliverPersistentHeader(
@@ -51,7 +51,7 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    left_right_height = AppStore.screenHeight - persit_header_height;
+    left_right_height = AppStyle.screenHeight - persit_header_height;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //print("详情滚动条：${_detailScrollController.position.minScrollExtent} ${_detailScrollController.position.maxScrollExtent}");
       // 防止没有详情滚动条的情况
@@ -137,7 +137,7 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
             child: Row(
               children: [
                 Container(
-                  width: AppStore.byRem(2),
+                  width: AppStyle.byRem(2),
                   color: Colors.grey,
                   // 虽然这里滚动到底也会拉动最外层的滚动到底，但是也没啥影响
                   child: ListView.builder(

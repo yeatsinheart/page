@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/store/language.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:get/get.dart';
@@ -21,10 +21,10 @@ class AppLanguage extends StatelessWidget {
         return ContainerFormat("container", Center(child: CircularProgressIndicator()));
       }
 
-      return ContainerFormat("container", padding: EdgeInsetsGeometry.symmetric(vertical:  AppStore.byRem(.2),),ListView.separated(
+      return ContainerFormat("container", padding: EdgeInsetsGeometry.symmetric(vertical:  AppStyle.byRem(.2),),ListView.separated(
         shrinkWrap: true,
         itemCount: languageStore.list.length,
-        padding:  EdgeInsets.symmetric( horizontal: AppStore.byRem(.2)),
+        padding:  EdgeInsets.symmetric( horizontal: AppStyle.byRem(.2)),
         itemBuilder: (context, index) {
           final lang = languageStore.list[index];
           final selected = (languageStore.chosen.value == lang["code"]);
@@ -38,10 +38,10 @@ class AppLanguage extends StatelessWidget {
                   child: Text(
                     lang["name"]!,
                     textAlign: TextAlign.left,
-                    style: TextStyle(color: selected ?AppStore.getMainColor() : null),
+                    style: TextStyle(color: selected ?AppStyle.getMainColor() : null),
                   ),
                 ),
-                Text(lang["flag"]!, style: TextStyle(fontSize: AppStore.byRem(.26))),
+                Text(lang["flag"]!, style: TextStyle(fontSize: AppStyle.byRem(.26))),
               ],
             ),
           );

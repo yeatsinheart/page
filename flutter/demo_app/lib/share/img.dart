@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/util/color-util.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
@@ -44,9 +44,9 @@ class Img extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ClipOval = ClipRRect[radius为半径时] = 圆形⭕️
-    Map<String, dynamic>? data = AppStore.data["color-plan"]?["img-loading"] ?? {};
-    Color? bgColor = ColorUtil.getColor(data?["bg"]?[AppStore.Brightness]);
-    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStore.Brightness]);
+    Map<String, dynamic>? data = AppStyle.data["color-plan"]?["img-loading"] ?? {};
+    Color? bgColor = ColorUtil.getColor(data?["bg"]?[AppStyle.Brightness]);
+    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStyle.Brightness]);
 
     final raw_image = img(url, fit: fit!, loadingBg: loadingBg ?? bgColor, loadingFont: loadingFont ?? fontColor);
     //Log.i(radiusRem);
@@ -161,7 +161,7 @@ Widget img(String url, {BoxFit? fit, Color? loadingBg, Color? loadingFont}) {
 
 // ✅ 方法二：统一滤镜（ColorFiltered）使用颜色矩阵（ColorMatrix）或自定义 ColorFilter 实现亮度压暗
 _darkFilter(img) {
-  if (!AppStore.isDark()) return img;
+  if (!AppStyle.isDark()) return img;
   return ColorFiltered(
     // // 所有 RGB 通道都被乘以 0.6（压暗约 40%）
     colorFilter: const ColorFilter.matrix(<double>[
@@ -195,7 +195,7 @@ _darkFilter(img) {
 //🔍 适用于做毛玻璃/柔和效果，但性能稍重。
 //💡 小技巧（适配多图）
 _blurFilter(img) {
-  if (!AppStore.isDark()) return img;
+  if (!AppStyle.isDark()) return img;
   return Stack(
     children: [
       img,

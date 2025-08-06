@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/demo/game.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 
 
 import 'nestcs.dart';
@@ -55,8 +55,8 @@ class _AppStoreState extends State<TestAppstore> with TickerProviderStateMixin {
                         Img(
                           // 'https://s33xa.runtu123.com/0/global/1741121380209_icon_btm_sy.avif'
                           'https://99designs-blog.imgix.net/blog/wp-content/uploads/2022/06/Starbucks_Corporation_Logo_2011.svg-e1657703028844.png?auto=format&q=60&fit=max&w=930',
-                          square: AppStore.byPx(50),
-                          borderRadius: AppStore.byRem(.14),
+                          square: AppStyle.byPx(50),
+                          borderRadius: AppStyle.byRem(.14),
                         ),
                       ],
                     ),
@@ -140,7 +140,7 @@ class _AppStoreState extends State<TestAppstore> with TickerProviderStateMixin {
                   top: 440,
                   child: Hero(
                     tag: 'hero-dec-${game.title}',
-                    child: SizedBox(width: AppStore.viewWidth, height: 10),
+                    child: SizedBox(width: AppStyle.viewWidth, height: 10),
                   ),
                 ),
               ],

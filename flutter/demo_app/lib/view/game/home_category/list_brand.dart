@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/share/grid.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:get/get.dart';
 
@@ -52,7 +52,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
                     AppRoute.slideToPath("/game/by_category/left_brand");
                   });
                 },
-                child: Text("更多 >", style: TextStyle(color: AppStore.getColors()[1])),
+                child: Text("更多 >", style: TextStyle(color: AppStyle.getColors()[1])),
               ),
             ],
           ),
@@ -91,7 +91,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
             child: ContainerFormat(
               "txt-cover",
               Container(
-                height: AppStore.byRem(.72),
+                height: AppStyle.byRem(.72),
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
                 child: Align(
                   alignment: Alignment.bottomCenter,

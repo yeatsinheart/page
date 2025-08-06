@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/color-font.dart';
 
 getCheckBoxTheme({Color? fontColor}) {
@@ -8,7 +8,7 @@ getCheckBoxTheme({Color? fontColor}) {
         ///  * [WidgetState.hovered].
         ///  * [WidgetState.focused].
         ///  * [WidgetState.disabled].*/
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStore.byRem(.14))),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.byRem(.14))),
     // side: BorderSide(color: fontColor ?? ColorFont.get().txt!),
     //overlayColor: WidgetStateProperty.all(AppStyleStore.getMainColor().withOpacity(0.2)),
     // overlayColor: WidgetStateProperty.all(Colors.transparent),

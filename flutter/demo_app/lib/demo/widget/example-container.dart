@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/column-separator.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 
 class ExampleContainer extends StatelessWidget {
@@ -15,12 +15,12 @@ class ExampleContainer extends StatelessWidget {
             cacheExtent: 1000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
             slivers: [
               SliverPadding(
-                padding: EdgeInsetsGeometry.symmetric(horizontal: AppStore.byRem(.2)),
+                padding: EdgeInsetsGeometry.symmetric(horizontal: AppStyle.byRem(.2)),
                 sliver: SliverToBoxAdapter(
                   child: ColumnSeparator(
                     //bg:Colors.red,
-                    radius: AppStore.byRem(.14),
-                    radius_separator: AppStore.byRem(.14),
+                    radius: AppStyle.byRem(.14),
+                    radius_separator: AppStyle.byRem(.14),
                     bgGradient: LinearGradient(colors: [Colors.blue, Colors.purple]),
                     children: [
                       Container(height: 150, color: Colors.white),
@@ -49,7 +49,7 @@ class ExampleContainer extends StatelessWidget {
 
   _demos() {
     List list = [];
-    var json = AppStore.data["color-plan"];
+    var json = AppStyle.data["color-plan"];
     //Log.i(json);
     for (var entry in json.entries) {
       //print('${entry.key}: ${entry.value}');

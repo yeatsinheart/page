@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/share/marquee.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 
 
@@ -58,16 +58,16 @@ class _MarketMarqueeDemoState extends State<MarketMarqueeDemo> {
   @override
   Widget build(BuildContext context) {
     return ContainerFormat("marquee",Container(
-      height: AppStore.byRem(.5),
+      height: AppStyle.byRem(.5),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppStore.byRem(.2)),
+        padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
         child: Row(
           children: [
-            TextButton(onPressed: ()=>AppRoute.to("announce"), child: Icon(Icons.volume_up, size: AppStore.byRem(.36)),),
-            SizedBox(width: AppStore.byRem(.1)),
+            TextButton(onPressed: ()=>AppRoute.to("announce"), child: Icon(Icons.volume_up, size: AppStyle.byRem(.36)),),
+            SizedBox(width: AppStyle.byRem(.1)),
             //Expanded(child: MarqueeWithoutTicker(text: messages.join('     ★     '))),
             Expanded(child: Marquee(text: messages.join('     ★     '))),
-            SizedBox(width: AppStore.byRem(.1)),
+            SizedBox(width: AppStyle.byRem(.1)),
             iconWithBadge(icon: Icons.mail, showBadge: false, count: null),
           ],
         ),

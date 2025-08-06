@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 
 class TestTextField extends StatefulWidget {
   @override
@@ -32,11 +32,11 @@ class _State extends State<TestTextField> {
         TextField(key: _key,
           decoration: InputDecoration(
           prefixIcon:Padding(
-            padding: EdgeInsets.only(left: AppStore.byRem(.1), ),
+            padding: EdgeInsets.only(left: AppStyle.byRem(.1), ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
-              children: [Text("data"),Icon(Icons.search, size: AppStore.byRem(.22))],), // 适配设计稿大小
+              children: [Text("data"),Icon(Icons.search, size: AppStyle.byRem(.22))],), // 适配设计稿大小
           ),
             hintText: "输入搜索内容",
 
@@ -46,27 +46,27 @@ class _State extends State<TestTextField> {
               TextButton(
                 onPressed: () {
                 },
-                child: Icon(Icons.clear,size: AppStore.byRem(.22),),
+                child: Icon(Icons.clear,size: AppStyle.byRem(.22),),
               ),
-              SizedBox(width: AppStore.byRem(.1)),
-              TextButton(onPressed: () {}, child: Text("搜索",style: TextStyle(fontSize:AppStore.byRem(.22),),)),
+              SizedBox(width: AppStyle.byRem(.1)),
+              TextButton(onPressed: () {}, child: Text("搜索",style: TextStyle(fontSize:AppStyle.byRem(.22),),)),
             ],
           ),
           // fillColor: Colors.grey[200],
         ),),
-        Text("屏幕宽度：${AppStore.viewWidth}"), // 411.42 -> 12.068
+        Text("屏幕宽度：${AppStyle.viewWidth}"), // 411.42 -> 12.068
         Text("精度倍数： ${MediaQuery.of(context).textScaler}"), // 411.42 -> 12.068
-        Text("字体大小：${AppStore.byRem(.22)}"),
+        Text("字体大小：${AppStyle.byRem(.22)}"),
         Text(""),
         Text(""),
         Text(""),
         Text(""),
         Text(""),
-        Text("${AppStore.byRem(1)} ${_size} ${AppStore.byRem(.66)}"),
-        Text("${_size - AppStore.byRem(.66) }"),
+        Text("${AppStyle.byRem(1)} ${_size} ${AppStyle.byRem(.66)}"),
+        Text("${_size - AppStyle.byRem(.66) }"),
         // 字体 边框 上下padding
         Text("${.22 +2*.02+2*.2}"),
-        Text("${_size-AppStore.byRem(.22) - 2*AppStore.byRem(.02) - 2*AppStore.byRem(.2) - AppStore.byRem(.05)}"),
+        Text("${_size-AppStyle.byRem(.22) - 2*AppStyle.byRem(.02) - 2*AppStyle.byRem(.2) - AppStyle.byRem(.05)}"),
       ],
     );
   }

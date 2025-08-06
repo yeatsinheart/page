@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/store/host-status.dart';
 import 'package:flutter3/store/language.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
 
@@ -30,11 +30,11 @@ class BootstrapService {
         AppView.setLayout(config["layout"] ?? {});
       }(),
       () async {
-        AppStore.data = config["style"] ?? {};
+        AppStyle.data = config["style"] ?? {};
       }(),
       //()async{AppStyleStore.style=config["app"]??{};}(),
     ]);
-    AppStore.data = config["style"];
+    AppStyle.data = config["style"];
   }
 
   static init() async {

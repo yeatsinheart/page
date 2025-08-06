@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/util/MyEasyRefresh.dart';
 import 'package:get/get.dart';
@@ -46,33 +46,33 @@ class AccountHomeDemo extends StatelessWidget {
         bottom: false,
         child: MyEasyRefresh(
           listView: ListView(
-            padding: EdgeInsets.all(AppStore.byRem(.2)),
+            padding: EdgeInsets.all(AppStyle.byRem(.2)),
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(onPressed: (){}, icon: Icon(Icons.qr_code_scanner, size: AppStore.byRem(.4))),
-                  IconButton(onPressed: (){}, icon: Icon(Icons.settings, size: AppStore.byRem(.4))),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.qr_code_scanner, size: AppStyle.byRem(.4))),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.settings, size: AppStyle.byRem(.4))),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: AppStore.byRem(.4), bottom: AppStore.byRem(.6)),
+                    margin: EdgeInsets.only(top: AppStyle.byRem(.4), bottom: AppStyle.byRem(.6)),
                     child: MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
                           print("");
                         },
-                        child: Container(width: AppStore.byRem(2),
-                            height: AppStore.byRem(2),
-                            decoration: BoxDecoration(color: AppStore.getMainColor(), shape: BoxShape.circle),
+                        child: Container(width: AppStyle.byRem(2),
+                            height: AppStyle.byRem(2),
+                            decoration: BoxDecoration(color: AppStyle.getMainColor(), shape: BoxShape.circle),
                             alignment: Alignment.center,
                             child: Text(
                               '登陆',
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: AppStore.byRem(.4)),
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: AppStyle.byRem(.4)),
                             ),
                           ),
                       ),
@@ -84,7 +84,7 @@ class AccountHomeDemo extends StatelessWidget {
               ContainerFormat(
                 "container",
                 Container(
-                  height: AppStore.byRem(1.4),
+                  height: AppStyle.byRem(1.4),
                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: list),
                 ),
               ),
@@ -149,7 +149,7 @@ class AccountHomeDemo extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Img(icon, square: AppStore.byRem(.5)),
+              Img(icon, square: AppStyle.byRem(.5)),
               Text(label.tr),
             ],
           ),

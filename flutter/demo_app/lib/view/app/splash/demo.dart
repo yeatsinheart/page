@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/share/img.dart';
 
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 
 class AppSplashDemo extends StatefulWidget {
   final dynamic params;
@@ -46,14 +46,14 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
         children: [
           Column(
             children: [
-              Img("", width: AppStore.viewWidth, height: AppStore.screenHeight * 7 / 8),
+              Img("", width: AppStyle.viewWidth, height: AppStyle.screenHeight * 7 / 8),
               Expanded(
                 child: Container(
-                  width: AppStore.viewWidth,
+                  width: AppStyle.viewWidth,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
                     children: <Widget>[
-                      Img("logo", square: AppStore.byPx(32)),
+                      Img("logo", square: AppStyle.byPx(32)),
                       Text("name", style: TextStyle(fontSize: 14)),
                     ],
                   ),

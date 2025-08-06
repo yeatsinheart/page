@@ -1,12 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter3/style/theme/all-theme.dart';
 import 'package:flutter3/style/widget/browser.dart';
 import 'package:flutter3/view/app/network_monitor.dart';
 import 'package:get/get.dart';
 
 import 'app-context.dart';
-import 'store/app.dart';
+import 'app-style.dart';
 
 class App extends StatelessWidget {
   final Widget child;
@@ -19,7 +20,7 @@ class App extends StatelessWidget {
       data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
       child: Obx(() {
         return MaterialApp(
-          key: Get.find<AppStore>().appKey.value,
+          key: Get.find<AppStyle>().appKey.value,
           scrollBehavior: ScrollBehavior().copyWith(
             dragDevices: {
               PointerDeviceKind.touch, //移动设备的手指滑动
@@ -27,7 +28,8 @@ class App extends StatelessWidget {
               PointerDeviceKind.trackpad, //触控板
             },
           ),
-          theme: ThemeData.light(useMaterial3: true),
+          // theme: ThemeData.light(useMaterial3: true),
+          theme: getFlutterTheme(),
           navigatorKey: AppContext.navigatorKey,
           debugShowCheckedModeBanner: false,
           // 不生效了

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/i18n.dart';
 import 'package:flutter3/share/img.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/view/account/auth/demo/_child/login-by-phone.dart';
 import 'package:flutter3/view/account/auth/demo/_child/register-by-name.dart';
@@ -53,16 +53,16 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            height: AppStore.byRem(2),
-            child: Img("assets/images/game1.jpg", borderRadiusTopLeft: AppStore.byRem(.14), borderRadiusTopRight: AppStore.byRem(.14)),
+            height: AppStyle.byRem(2),
+            child: Img("assets/images/game1.jpg", borderRadiusTopLeft: AppStyle.byRem(.14), borderRadiusTopRight: AppStyle.byRem(.14)),
           ),
           TabBar(
             controller: _tabController,
-            tabs: tabs.map((e) => Tab(height:AppStore.byRem(.5),text: e.t)).toList(),
+            tabs: tabs.map((e) => Tab(height:AppStyle.byRem(.5),text: e.t)).toList(),
           ),
 
           Container(
-            padding: EdgeInsetsGeometry.all(AppStore.byRem(.2)),
+            padding: EdgeInsetsGeometry.all(AppStyle.byRem(.2)),
             child: Column(
               children: [
                 type == "name" && active == "login" ? LoginByName() : SizedBox.shrink(),
@@ -74,7 +74,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
           ),
 
           //Divider(),
-    Container(height: AppStore.byRem(.5),child:
+    Container(height: AppStyle.byRem(.5),child:
           TextButton(
             onPressed: () {
               type = type == 'phone' ? 'name' : 'phone';
@@ -86,7 +86,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
     ),
           Divider(),
 
-          Container(height: AppStore.byRem(.5),
+          Container(height: AppStyle.byRem(.5),
             child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -94,7 +94,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
                 onPressed: () {},
                 child: Center(child: Text("谷歌")),// center能拉伸高度
               )),
-              SizedBox(width: AppStore.byRem(.2),),
+              SizedBox(width: AppStyle.byRem(.2),),
               Expanded(child: TextButton(
                 onPressed: () {},
                 child: Center(child: Text("facebook"),)// center能拉伸高度

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/overlay.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/style/theme/all-theme.dart';
 import 'package:flutter3/style/widget/browser.dart';
@@ -68,11 +68,11 @@ class AppRoute {
         var page = ContainerFormat("mask", Dialog(child: AccountAuthDemoIndex()));
         return Theme(
           data: getFlutterTheme(),
-          child: AppStore.maxWidth == null
+          child: AppStyle.maxWidth == null
               ? page
               : Center(
                   child: ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: AppStore.maxWidth!),
+                    constraints: BoxConstraints(maxWidth: AppStyle.maxWidth!),
                     child: page,
                   ),
                 ),

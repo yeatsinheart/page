@@ -8,7 +8,7 @@ export 'button-style-text.dart';
 */
 
 import 'package:flutter/material.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/color-font.dart';
 import 'package:flutter3/style/theme/checkbox.dart';
 import 'package:flutter3/style/theme/input.dart';
@@ -46,7 +46,7 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     // focusColor: AppStore.getMainColor(),
     // highlightColor: AppStore.getMainColor(),
     // splashColor: AppStore.getMainColor(),
-    colorScheme: ColorScheme.fromSeed(seedColor: AppStore.getMainColor()),
+    colorScheme: ColorScheme.fromSeed(seedColor: AppStyle.getMainColor()),
     // colorSchemeSeed:Colors.red,
     // colorScheme:ColorScheme(),
     // primarySwatch:MaterialColor(),
@@ -79,15 +79,15 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     /// 文件夹中添加对应组件的theme获取方法
     ///
     dialogTheme: DialogThemeData(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStore.byRem(.14))),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.byRem(.14))),
       //insetPadding: EdgeInsets.all(AppStore.byRem(.2)),
-      backgroundColor: AppStore.isDark()?Colors.black:Colors.white,
+      backgroundColor: AppStyle.isDark()?Colors.black:Colors.white,
       titleTextStyle: getTextStyle(),
       contentTextStyle: getTextStyle(),
     ),
     tabBarTheme: TabBarThemeData(
-      indicatorColor: AppStore.getMainColor(),
-      labelColor: AppStore.getMainColor(),
+      indicatorColor: AppStyle.getMainColor(),
+      labelColor: AppStyle.getMainColor(),
       labelStyle: getTextStyle().copyWith(fontWeight: FontWeight.bold),
       unselectedLabelColor: ColorFont.get().txt,
       unselectedLabelStyle: getTextStyle(),
@@ -99,10 +99,10 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
 
     scrollbarTheme: ScrollbarThemeData(),
     // AppStore.Brightness=="dark"?Colors.white:Colors.black,
-    progressIndicatorTheme:ProgressIndicatorThemeData(color: AppStore.getMainColor(),),
+    progressIndicatorTheme:ProgressIndicatorThemeData(color: AppStyle.getMainColor(),),
 
     // 全局光标颜色设置
-    textSelectionTheme: TextSelectionThemeData(cursorColor: AppStore.getMainColor(),selectionColor: AppStore.getMainColor().withValues(alpha: 0.3),),
+    textSelectionTheme: TextSelectionThemeData(cursorColor: AppStyle.getMainColor(),selectionColor: AppStyle.getMainColor().withValues(alpha: 0.3),),
     textTheme: getTextTheme(fontColor: fontColor),
     listTileTheme: getListTitleTheme(fontColor: fontColor),
     checkboxTheme: getCheckBoxTheme(fontColor: fontColor),
@@ -116,7 +116,7 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
 
     inputDecorationTheme: getInputTheme(fontColor: fontColor),
 
-    dividerTheme: DividerThemeData(color: ColorFont.get().ghost,space: AppStore.byRem(.05)),
+    dividerTheme: DividerThemeData(color: ColorFont.get().ghost,space: AppStyle.byRem(.05)),
 
     // filledButtonTheme:FilledButtonThemeData(),
     // floatingActionButtonTheme:FloatingActionButtonThemeData(),

@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3/demo/game.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 
 import '../../share/img.dart';
 
@@ -163,7 +163,7 @@ class _HeroDetailPageState extends State<TestHerodetail> with TickerProviderStat
       tag: 'heropic${game?.title}',
       child: Stack(
         children: <Widget>[
-          Img(game!.imageUrl, fit: BoxFit.cover, height: AppStore.byPx(480)),
+          Img(game!.imageUrl, fit: BoxFit.cover, height: AppStyle.byPx(480)),
           Padding(
             padding: const EdgeInsets.only(left: 18.0, bottom: 0),
             child: SizedBox(

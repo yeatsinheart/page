@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
-import 'package:flutter3/store/app.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/style/theme/all-theme.dart';
 import 'package:get/get.dart';
@@ -19,11 +19,11 @@ class Browser extends StatelessWidget {
         "browser",
         Stack(
           children: [
-            AppStore.maxWidth == null
+            AppStyle.maxWidth == null
                 ? page
                 : Center(
                     child: ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: AppStore.maxWidth!),
+                      constraints: BoxConstraints(maxWidth: AppStyle.maxWidth!),
                       child: page,
                     ),
                   ),
@@ -40,9 +40,9 @@ _bottom_left() {
   // 左下角
   return Positioned(
     left: 0,
-    bottom: AppStore.byRem(1.44),
+    bottom: AppStyle.byRem(1.44),
     child: Column(
-      spacing: AppStore.byRem(.2),
+      spacing: AppStyle.byRem(.2),
       children: [
         KeyedSubtree(
           key: GlobalKey(debugLabel: "day-time"),
@@ -52,7 +52,7 @@ _bottom_left() {
               "btn",
               Text("白天"),
               click: () {
-                AppStore.setStyleLight();
+                AppStyle.setStyleLight();
               },
             ),
           ),
@@ -65,7 +65,7 @@ _bottom_left() {
               "btn",
               Text("黑夜"),
               click: () {
-                AppStore.setStyleDark();
+                AppStyle.setStyleDark();
               },
             ),
           ),
@@ -92,9 +92,9 @@ _bottom_right() {
   // 右下角
   return Positioned(
     right: 0,
-    bottom: AppStore.byRem(1.44),
+    bottom: AppStyle.byRem(1.44),
     child: Column(
-      spacing: AppStore.byRem(.2),
+      spacing: AppStyle.byRem(.2),
       children: [
         KeyedSubtree(
           key: GlobalKey(debugLabel: "toutiao"),

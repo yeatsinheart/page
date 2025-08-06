@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter3/app.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/service/bootstrap.dart';
-import 'package:flutter3/store/app.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/store/auto-brightness.dart';
 import 'package:flutter3/style/widget/browser.dart';
 import 'package:flutter3/view/app/network_monitor.dart';
@@ -79,7 +79,7 @@ init() async {
 }
 
 _main(child) {
-  Get.put(AppStore());
+  Get.put(AppStyle());
   AutoBrightness.check();
   return App(child);
 }

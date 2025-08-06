@@ -42,7 +42,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
       _buildNavItem(
         icon: "https://cdn-icons-png.flaticon.com/128/10061/10061767.png",
         activeIcon: "https://cdn-icons-png.flaticon.com/128/3344/3344374.png",
-        label: "测试",
+        label: "容器展示",
         index: items.length + 1,
       ),
     );
@@ -76,7 +76,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
             if (index != _currentIndex) setState(() => _currentIndex = index);
           },
           // behavior: HitTestBehavior.opaque, // 保证整块区域可点
-          child: Center(
+          child: Center( // center能拉伸高度
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

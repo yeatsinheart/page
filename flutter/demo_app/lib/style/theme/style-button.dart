@@ -39,7 +39,6 @@ globalButtonStyle({Color? fontColor}){
     textStyle: WidgetStateProperty.all(getTextStyle()),
     // padding: WidgetStateProperty.all(EdgeInsets.all(0)),
 
-
     minimumSize: WidgetStateProperty.all(Size(0, 0)), // 关键：去掉默认最小尺寸  按钮最小限制
     tapTargetSize: MaterialTapTargetSize.shrinkWrap,  // 点击区域不扩大
     visualDensity: VisualDensity.compact,             // 紧凑布局（可选）

@@ -17,12 +17,12 @@ Duration _checkTheme() {
 
   if (hour >= 18 || hour < 6) {
     // 18:00 到 第二天 06:00 使用深色
-    if (AppStore.Brightness != "dark") {
+    if (!AppStore.isDark()) {
       AppStore.setStyleDark();
     }
   } else {
     // 06:00 到 18:00 使用浅色
-    if (AppStore.Brightness != "light") {
+    if (AppStore.isDark()) {
       AppStore.setStyleLight();
     }
   }

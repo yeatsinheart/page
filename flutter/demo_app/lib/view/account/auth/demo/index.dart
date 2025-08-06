@@ -74,33 +74,34 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
           ),
 
           //Divider(),
+    Container(height: AppStore.byRem(.5),child:
           TextButton(
             onPressed: () {
               type = type == 'phone' ? 'name' : 'phone';
               setState(() {});
             },
-            child: Text("切换 ${type == 'phone' ? '用户名' : '手机号'} ${active == 'login' ? '登陆' : '注册'}"),
-            style: ButtonStyle().copyWith(overlayColor: WidgetStateProperty.all(Colors.transparent)),
+            child: Center(child: Text("切换 ${type == 'phone' ? '用户名' : '手机号'} ${active == 'login' ? '登陆' : '注册'}")),
+            // style: ButtonStyle().copyWith(overlayColor: WidgetStateProperty.all(Colors.transparent)),
           ),
+    ),
           Divider(),
-          Row(
+
+          Container(height: AppStore.byRem(.5),
+            child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(child: TextButton(
                 onPressed: () {},
-                child: Text("谷歌"),
-                //style: ButtonStyle().copyWith(overlayColor: WidgetStateProperty.all(Colors.transparent)),
+                child: Center(child: Text("谷歌")),// center能拉伸高度
               )),
               SizedBox(width: AppStore.byRem(.2),),
               Expanded(child: TextButton(
                 onPressed: () {},
-                child: Text("facebook"),
-                //style: ButtonStyle().copyWith(overlayColor: WidgetStateProperty.all(Colors.transparent)),
+                child: Center(child: Text("facebook"),)// center能拉伸高度
               )),
             ],
-          ),
+          ),),
 
-          SizedBox(height: AppStore.byRem(.2)),
         ],
       ),
       padding: EdgeInsetsGeometry.all(0),

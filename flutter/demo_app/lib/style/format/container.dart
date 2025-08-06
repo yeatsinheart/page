@@ -38,7 +38,7 @@ class ContainerFormat extends StatelessWidget {
       decoration: _BoxDecoration(json),
       //DefaultTextStyle 已经在组件树更早的地方被设置了，Text 会优先使用 DefaultTextStyle，而不是你后期新设置的 Theme.textTheme.bodyMedium。
       child: DefaultTextStyle.merge(
-        style: TextStyle(color: ColorUtil.getColor(json["font"]?[AppStore.Brightness])),
+        style: TextStyle(color: ColorUtil.getColor(json["font"]?[AppStore().Brightness.value])),
         child: ImgBg(json["img"], child, borderRadius: AppStore.byRem(borderConfig?["borderRadius"] ?? 0)),
       ),
     );
@@ -73,7 +73,7 @@ class ContainerFormat extends StatelessWidget {
 
   _theme(context, child) {
     Map<String, dynamic>? data = AppStore.data["color-plan"]?[k] ?? {};
-    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStore.Brightness]);
+    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStore().Brightness.value]);
     if (null == fontColor) return Theme(data: Theme.of(context), child: child);
     return Theme(
       data: Theme.of(context).copyWith(
@@ -100,7 +100,7 @@ class ContainerFormat extends StatelessWidget {
       boxShadow: ShadowFormat.listFromJson(json["shadows"]),
 
       /// 设置纯色背景颜色
-      color: ColorUtil.getColor(json["bg"]?[AppStore.Brightness]),
+      color: ColorUtil.getColor(json["bg"]?[AppStore().Brightness.value]),
 
       /// 设置渐变背景颜色
       gradient: GradientFormat.fromJson(json["bgGradient"]),

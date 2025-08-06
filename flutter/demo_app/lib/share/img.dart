@@ -45,8 +45,8 @@ class AppImg extends StatelessWidget {
   Widget build(BuildContext context) {
     // ClipOval = ClipRRect[radius为半径时] = 圆形⭕️
     Map<String, dynamic>? data = AppStore.data["color-plan"]?["img-loading"] ?? {};
-    Color? bgColor = ColorUtil.getColor(data?["bg"]?[AppStore.Brightness]);
-    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStore.Brightness]);
+    Color? bgColor = ColorUtil.getColor(data?["bg"]?[AppStore().Brightness.value]);
+    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStore().Brightness.value]);
 
     final raw_image = img(url, fit: fit!, loadingBg: loadingBg ?? bgColor, loadingFont: loadingFont ?? fontColor);
     //Log.i(radiusRem);
@@ -161,7 +161,7 @@ Widget img(String url, {BoxFit? fit, Color? loadingBg, Color? loadingFont}) {
 
 // ✅ 方法二：统一滤镜（ColorFiltered）使用颜色矩阵（ColorMatrix）或自定义 ColorFilter 实现亮度压暗
 _darkFilter(img) {
-  if (AppStore.Brightness == "light") return img;
+  if (!AppStore.isDark()) return img;
   return ColorFiltered(
     // // 所有 RGB 通道都被乘以 0.6（压暗约 40%）
     colorFilter: const ColorFilter.matrix(<double>[
@@ -195,7 +195,7 @@ _darkFilter(img) {
 //🔍 适用于做毛玻璃/柔和效果，但性能稍重。
 //💡 小技巧（适配多图）
 _blurFilter(img) {
-  if (AppStore.Brightness == "light") return img;
+  if (!AppStore.isDark()) return img;
   return Stack(
     children: [
       img,

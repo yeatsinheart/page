@@ -81,7 +81,7 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     dialogTheme: DialogThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStore.byRem(.14))),
       //insetPadding: EdgeInsets.all(AppStore.byRem(.2)),
-      backgroundColor: AppStore.Brightness=="dark"?Colors.black:Colors.white,
+      backgroundColor: AppStore.isDark()?Colors.black:Colors.white,
       titleTextStyle: getTextStyle(),
       contentTextStyle: getTextStyle(),
     ),
@@ -102,7 +102,7 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     progressIndicatorTheme:ProgressIndicatorThemeData(color: AppStore.getMainColor(),),
 
     // 全局光标颜色设置
-    textSelectionTheme: TextSelectionThemeData(cursorColor: AppStore.getMainColor()),
+    textSelectionTheme: TextSelectionThemeData(cursorColor: AppStore.getMainColor(),selectionColor: AppStore.getMainColor().withValues(alpha: 0.3),),
     textTheme: getTextTheme(fontColor: fontColor),
     listTileTheme: getListTitleTheme(fontColor: fontColor),
     checkboxTheme: getCheckBoxTheme(fontColor: fontColor),
@@ -116,7 +116,7 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
 
     inputDecorationTheme: getInputTheme(fontColor: fontColor),
 
-    dividerTheme: DividerThemeData(color: ColorFont.get().ghost),
+    dividerTheme: DividerThemeData(color: ColorFont.get().ghost,space: AppStore.byRem(.05)),
 
     // filledButtonTheme:FilledButtonThemeData(),
     // floatingActionButtonTheme:FloatingActionButtonThemeData(),

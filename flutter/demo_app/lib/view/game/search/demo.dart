@@ -30,7 +30,7 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
               controller: _textController,
               decoration: InputDecoration(
                 prefixIcon:Padding(
-                  padding: EdgeInsets.only(left: AppStore.byRem(.1), ),
+                  padding: EdgeInsets.only(left: AppStore.byRem(.1),),
                   child: Icon(Icons.search, size: AppStore.byRem(.22)), // 适配设计稿大小
                 ),
                 hintText: "输入搜索内容",
@@ -70,12 +70,12 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
               SliverPersistentHeader(
                 pinned: true,
                 delegate: ShareSliverPersistentHeaderDelegate(
-                  height: AppStore.byRem(1.45),
+                  height: AppStore.byRem(1.46),// 输入框最大高度.66 + .2 + .6
                   child: ContainerFormat(
                     "tab",
                     Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,// 这样才能解决输入框高度不确定问题
                       children: [
-                        //
                         build_search(),
                         // .6rem
                         tab_bar_demo(

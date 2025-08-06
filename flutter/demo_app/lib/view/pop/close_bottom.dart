@@ -25,25 +25,18 @@ class PopCloseBottom extends StatelessWidget {
               constraints: BoxConstraints(minWidth: AppStore.byPercent(30),maxWidth:  AppStore.byPercent(80),minHeight: AppStore.screenHeight*.3,maxHeight:  AppStore.screenHeight*.8),
               child: DefaultTextStyle.merge(style: TextStyle(color: ColorFont.get().txt), child: params ?? Container()),
             ),
-            Center(
-              child: IconButton(
+            Container(
                 padding: EdgeInsetsGeometry.only(top:AppStore.byRem(.1) ),
-
-                // style: ButtonStyle().copyWith(
-                //   padding: WidgetStateProperty.all(EdgeInsets.all(0)),
-                //   shape: WidgetStateProperty.all(
-                //     RoundedRectangleBorder(
-                //       side: BorderSide(color: Colors.transparent),
-                //     ),
-                //   ),
-                // ),
+                child: Center(
+              child: IconButton(
                 icon: Icon(Icons.cancel, size: AppStore.byRem(.4), color: Colors.white),
                 onPressed: () {
                   // 执行关闭逻辑，例如：OverlayEntry?.remove()
                   GlobalOverlayContext.removeByWidgetSelf(key.toString());
                 },
               ),
-            ),
+            ),)
+
           ],
         ),
       ],

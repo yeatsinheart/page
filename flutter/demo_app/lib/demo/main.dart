@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/demo/test-textfield.dart';
 import 'package:flutter3/view/account/auth/demo/index.dart';
 import 'package:flutter3/view/cashier/deposit/home/demo.dart';
 import 'package:flutter3/view/cashier/home/demo.dart';
@@ -17,6 +18,6 @@ class MainDemo extends StatefulWidget {
 class _MainDemoState extends State<MainDemo> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return AccountAuthDemoIndex();
+    return TestTextField();
   }
 }

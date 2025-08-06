@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter3/share/share_widget.dart';
-import 'package:flutter3/share/sliver_header_delegate.dart';
+import 'package:flutter3/share/sticky-header.dart';
 import 'package:flutter3/store/app.dart';
 
 
@@ -29,7 +29,7 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
   persit_header(txt, color, height) {
     return SliverPersistentHeader(
       pinned: true,
-      delegate: ShareSliverPersistentHeaderDelegate(
+      delegate: StickyHeader(
         //pinnedCallBack: pinnedCallBack,
         child: container_demo(height: height, txt: txt, color: color),
         height: height,

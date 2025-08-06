@@ -149,7 +149,7 @@ class AccountHomeDemo extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AppImg(icon, square: AppStore.byRem(.5)),
+              Img(icon, square: AppStore.byRem(.5)),
               Text(label.tr),
             ],
           ),

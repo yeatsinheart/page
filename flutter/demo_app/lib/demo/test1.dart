@@ -27,10 +27,10 @@ class _MainDemoState extends State<MainDemo> with TickerProviderStateMixin {
             padding: EdgeInsets.all(16.0), // 这里设置内边距
             child: CustomScrollView(
               slivers: [
-                SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("testImage"))),
-                SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("assets/images/game1.jpg"))),
-                SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("assets/images/game2.png"))),
-                SliverToBoxAdapter(child: SizedBox(height: 300, child: AppImg("assets/images/game3.jpg"))),
+                SliverToBoxAdapter(child: SizedBox(height: 300, child: Img("testImage"))),
+                SliverToBoxAdapter(child: SizedBox(height: 300, child: Img("assets/images/game1.jpg"))),
+                SliverToBoxAdapter(child: SizedBox(height: 300, child: Img("assets/images/game2.png"))),
+                SliverToBoxAdapter(child: SizedBox(height: 300, child: Img("assets/images/game3.jpg"))),
                 SliverToBoxAdapter(child: Text("testImage".tr)),
                 SliverToBoxAdapter(child: Text("testImage".trParams())),
                 SliverToBoxAdapter(child: Text("微信".tr)),

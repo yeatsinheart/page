@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/share/grid.dart';
 import 'package:flutter3/share/share_widget.dart';
-import 'package:flutter3/share/sliver_header_delegate.dart';
+import 'package:flutter3/share/sticky-header.dart';
 import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/format/container.dart';
 
@@ -69,7 +69,7 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
             slivers: [
               SliverPersistentHeader(
                 pinned: true,
-                delegate: ShareSliverPersistentHeaderDelegate(
+                delegate: StickyHeader(
                   height: AppStore.byRem(1.46),// 输入框最大高度.66 + .2 + .6
                   child: ContainerFormat(
                     "tab",

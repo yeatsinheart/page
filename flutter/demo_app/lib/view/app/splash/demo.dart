@@ -46,14 +46,14 @@ class _AppSplashDemoState extends State<AppSplashDemo> {
         children: [
           Column(
             children: [
-              AppImg("", width: AppStore.viewWidth, height: AppStore.screenHeight * 7 / 8),
+              Img("", width: AppStore.viewWidth, height: AppStore.screenHeight * 7 / 8),
               Expanded(
                 child: Container(
                   width: AppStore.viewWidth,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
                     children: <Widget>[
-                      AppImg("logo", square: AppStore.byPx(32)),
+                      Img("logo", square: AppStore.byPx(32)),
                       Text("name", style: TextStyle(fontSize: 14)),
                     ],
                   ),

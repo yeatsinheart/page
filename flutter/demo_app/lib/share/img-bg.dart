@@ -15,7 +15,7 @@ class ImgBg extends StatelessWidget {
         : Stack(
             children: [
               Positioned.fill(
-                child: AppImg(url!, borderRadius: borderRadius, fit:fit,loadingBg: Colors.transparent, loadingFont: Colors.transparent),
+                child: Img(url!, borderRadius: borderRadius, fit:fit,loadingBg: Colors.transparent, loadingFont: Colors.transparent),
               ),
               child,
             ],

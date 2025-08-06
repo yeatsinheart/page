@@ -128,7 +128,7 @@ who(item) {
         height: 40,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(5),
-          child: CachedNetworkImage(fit: BoxFit.cover, placeholder: (context, url) => AppImg("images/a002.jpg"), errorWidget: (context, url, error) => Text("图片失败"), imageUrl: item["img"]),
+          child: CachedNetworkImage(fit: BoxFit.cover, placeholder: (context, url) => Img("images/a002.jpg"), errorWidget: (context, url, error) => Text("图片失败"), imageUrl: item["img"]),
         ),
       ),
       // 绘制消息主体的上半部分，主要是左边的名称和右边的日期，使用row的flex水平布局

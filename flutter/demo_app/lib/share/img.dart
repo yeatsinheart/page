@@ -8,7 +8,7 @@ import 'package:flutter3/util/color-util.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 
-class AppImg extends StatelessWidget {
+class Img extends StatelessWidget {
   final String url;
 
   final double? square;
@@ -25,7 +25,7 @@ class AppImg extends StatelessWidget {
   final Color? loadingBg;
   final Color? loadingFont;
 
-  AppImg(
+  Img(
     this.url, {
     this.square,
     this.width,

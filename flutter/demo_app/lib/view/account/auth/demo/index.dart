@@ -54,7 +54,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
         children: [
           Container(
             height: AppStore.byRem(2),
-            child: AppImg("assets/images/game1.jpg", borderRadiusTopLeft: AppStore.byRem(.14), borderRadiusTopRight: AppStore.byRem(.14)),
+            child: Img("assets/images/game1.jpg", borderRadiusTopLeft: AppStore.byRem(.14), borderRadiusTopRight: AppStore.byRem(.14)),
           ),
           TabBar(
             controller: _tabController,

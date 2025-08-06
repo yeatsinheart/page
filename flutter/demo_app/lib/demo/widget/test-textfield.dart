@@ -33,9 +33,13 @@ class _State extends State<TestTextField> {
           decoration: InputDecoration(
           prefixIcon:Padding(
             padding: EdgeInsets.only(left: AppStore.byRem(.1), ),
-            child: Icon(Icons.search, size: AppStore.byRem(.22)), // 适配设计稿大小
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [Text("data"),Icon(Icons.search, size: AppStore.byRem(.22))],), // 适配设计稿大小
           ),
-          hintText: "输入搜索内容",
+            hintText: "输入搜索内容",
+
           suffix: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ShareSliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
+class StickyHeader extends SliverPersistentHeaderDelegate {
   final Widget child;
   final double height;
   final double? heightFixed;// 固定高度
   final Function(double offset)? pinnedCallBack;
 
-  ShareSliverPersistentHeaderDelegate({required this.child, required this.height, this.pinnedCallBack,this.heightFixed, minHeight, maxHeight});
+  StickyHeader({required this.child, required this.height, this.pinnedCallBack,this.heightFixed, minHeight, maxHeight});
 
   @override
   double get minExtent => height;
@@ -27,7 +27,7 @@ class ShareSliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate
   }
 
   @override
-  bool shouldRebuild(covariant ShareSliverPersistentHeaderDelegate oldDelegate) {
+  bool shouldRebuild(covariant StickyHeader oldDelegate) {
     return true;
   }
 }

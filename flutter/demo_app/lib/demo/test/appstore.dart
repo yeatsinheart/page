@@ -52,7 +52,7 @@ class _AppStoreState extends State<TestAppstore> with TickerProviderStateMixin {
                             ],
                           ),
                         ),
-                        AppImg(
+                        Img(
                           // 'https://s33xa.runtu123.com/0/global/1741121380209_icon_btm_sy.avif'
                           'https://99designs-blog.imgix.net/blog/wp-content/uploads/2022/06/Starbucks_Corporation_Logo_2011.svg-e1657703028844.png?auto=format&q=60&fit=max&w=930',
                           square: AppStore.byPx(50),

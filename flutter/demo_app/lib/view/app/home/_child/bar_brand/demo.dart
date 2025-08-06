@@ -16,7 +16,7 @@ class BarBrandDemo extends StatelessWidget {
       "bar-brand",
       Row(
         children: [
-          AppImg('assets/images/jinritoutiao.png', width: AppStore.byRem(2.1), height: AppStore.byRem(0.7)),
+          Img('assets/images/jinritoutiao.png', width: AppStore.byRem(2.1), height: AppStore.byRem(0.7)),
           Spacer(),
           ContainerFormat(
             "btn-register",

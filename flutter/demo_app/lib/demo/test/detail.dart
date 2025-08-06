@@ -24,7 +24,7 @@ class TestDetail extends StatelessWidget {
                   height: AppStore.screenHeight,
                   child: Stack(
                     children: <Widget>[
-                      AppImg(game!.imageUrl, fit: BoxFit.cover, height: AppStore.byPx(500)),
+                      Img(game!.imageUrl, fit: BoxFit.cover, height: AppStore.byPx(500)),
                       SafeArea(
                         bottom: false,
                         child: Padding(

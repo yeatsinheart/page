@@ -18,7 +18,7 @@ gameView(game, height, double radius) {
       Positioned.fill(
         child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(radius)),
-          child: AppImg(game.imageUrl, fit: BoxFit.cover),
+          child: Img(game.imageUrl, fit: BoxFit.cover),
         ),
       ),
       SizedBox(

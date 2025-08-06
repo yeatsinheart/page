@@ -39,7 +39,7 @@ class _HeroDetailPageState extends State<TestDetailpage> with TickerProviderStat
   }
 
   _ImgLayerLayer(game) {
-    return AppImg(game!.imageUrl, fit: BoxFit.cover, height: imgarea);
+    return Img(game!.imageUrl, fit: BoxFit.cover, height: imgarea);
   }
 
   _ImgLayerTitleLayer(game) {

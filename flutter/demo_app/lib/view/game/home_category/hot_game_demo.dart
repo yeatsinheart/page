@@ -84,7 +84,7 @@ class _GameHomeCategoryHotGameDemoState extends State<GameHomeCategoryHotGameDem
               borderRadius: BorderRadius.circular(AppStore.byPx(borderRadius)), // 圆角半径
               child: Stack(
                 children: [
-                  AppImg(item.imageUrl, width: AppStore.byRem(gridWidth), height: AppStore.byRem(gridHeight)),
+                  Img(item.imageUrl, width: AppStore.byRem(gridWidth), height: AppStore.byRem(gridHeight)),
                   // 底部标题，遮罩 + 居中 + 固定高度
                   Positioned(
                     bottom: 0,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/share/sliver_header_delegate.dart';
+import 'package:flutter3/share/sticky-header.dart';
 
 
 import '../share/share_widget.dart';
@@ -29,7 +29,7 @@ cross_right_part() {
 persit_header(txt, color, height) {
   return SliverPersistentHeader(
     pinned: true,
-    delegate: ShareSliverPersistentHeaderDelegate(
+    delegate: StickyHeader(
       child: container_demo(height: height, txt: txt, color: color),
       height: height,
     ),

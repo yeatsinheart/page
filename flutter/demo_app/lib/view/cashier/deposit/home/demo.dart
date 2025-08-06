@@ -38,7 +38,7 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
       payment["code"] == chosen ? "btn-main" : "btn",
       Row(
         children: [
-          AppImg(payment["logo"], square: AppStore.byRem(.5)),
+          Img(payment["logo"], square: AppStore.byRem(.5)),
           Center(
             child: Text(payment["name"], style: TextStyle(fontSize: AppStore.byPx(16))),
           ),

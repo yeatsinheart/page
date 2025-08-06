@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3/demo/example-container.dart';
+import 'package:flutter3/demo/widget/example-container.dart';
 import 'package:flutter3/demo/main.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/store/app.dart';
@@ -80,7 +80,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppImg(isActive ? activeIcon : icon, square: AppStore.byRem(.5)),
+                Img(isActive ? activeIcon : icon, square: AppStore.byRem(.5)),
                 Text(
                   label.tr,
                   style: TextStyle(

@@ -97,7 +97,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
     if (dataContext != null && null != _pageScrollController) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
-      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController!.offset - AppStyle.byRem(.9);
+      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController!.offset - AppStyle.byRem(.9) - AppStyle.byRem(.6);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
       _pageScrollController!

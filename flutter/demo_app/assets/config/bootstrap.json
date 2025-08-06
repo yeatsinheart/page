@@ -230,11 +230,11 @@
   ]
  },
  "style": {
-  "maxWidth": 570,
-  "gap": 0.22,
-  "fontSize": 0.29,
-  "lineHeight": 1.5,
-  "radius": 0.14,
+  "maxWidth": 570.0,
+  "gap": 20.0,
+  "fontSize": 30.0,
+  "lineHeight": 1.4,
+  "radius": 14.0,
   "font": {
    "title": {
     "dark": "#FFFFFF",

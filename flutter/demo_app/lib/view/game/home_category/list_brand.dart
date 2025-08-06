@@ -37,14 +37,14 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding:  EdgeInsets.symmetric(horizontal: AppStyle.gap),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title.tr, style: TextStyle( fontWeight: FontWeight.bold)),
+              Text(title.tr, style: TextStyle().copyWith(fontWeight: FontWeight.bold,fontSize: AppStyle.fontSize+2)),
               TextButton(
                 style: ButtonStyle().copyWith(overlayColor:WidgetStateProperty.all(Colors.transparent)),
                 onPressed: () {
@@ -65,7 +65,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
                     expanded = true;
                   });
                 },
-                child: Text("查看更多"),
+                child: Container(height: AppStyle.fontSize*AppStyle.lineHeight+AppStyle.gap,child: Center(child: Text("查看更多"),)),
               ),
             ),
         ],
@@ -75,7 +75,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
 
   Widget buildGridItem(String title) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(AppStyle.radius),
       child: Stack(
         children: [
           // Container(
@@ -91,8 +91,8 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
             child: ContainerFormat(
               "txt-cover",
               Container(
-                height: AppStyle.byRem(.72),
-                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                height: AppStyle.fontSize*AppStyle.lineHeight *2*1.5,
+                //padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Text(

@@ -21,10 +21,10 @@ class AppLanguage extends StatelessWidget {
         return ContainerFormat("container", Center(child: CircularProgressIndicator()));
       }
 
-      return ContainerFormat("container", padding: EdgeInsetsGeometry.symmetric(vertical:  AppStyle.byRem(.2),),ListView.separated(
+      return ContainerFormat("container", padding: EdgeInsetsGeometry.symmetric(vertical:  AppStyle.gap,),ListView.separated(
         shrinkWrap: true,
         itemCount: languageStore.list.length,
-        padding:  EdgeInsets.symmetric( horizontal: AppStyle.byRem(.2)),
+        padding:  EdgeInsets.symmetric( horizontal: AppStyle.gap),
         itemBuilder: (context, index) {
           final lang = languageStore.list[index];
           final selected = (languageStore.chosen.value == lang["code"]);
@@ -41,7 +41,7 @@ class AppLanguage extends StatelessWidget {
                     style: TextStyle(color: selected ?AppStyle.getMainColor() : null),
                   ),
                 ),
-                Text(lang["flag"]!, style: TextStyle(fontSize: AppStyle.byRem(.26))),
+                Text(lang["flag"]!, style: TextStyle()),
               ],
             ),
           );

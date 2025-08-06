@@ -98,7 +98,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       final box = tab_context.findRenderObject() as RenderBox;
       final double targetOffset = index * box.size.height - (screenHeight - box.size.height) / 2;
       //print("tab移动到${targetOffset} 选中 ${_currentIndex}");
-      _tabScrollController.animateTo(targetOffset.clamp(_tabScrollController.position.minScrollExtent, _tabScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+      _tabScrollController.jumpTo(targetOffset.clamp(_tabScrollController.position.minScrollExtent, _tabScrollController.position.maxScrollExtent));
     }
   }
 
@@ -167,7 +167,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                     mainAxisAlignment: MainAxisAlignment.center, // 垂直方向居中
                     crossAxisAlignment: CrossAxisAlignment.center, // 水平方向居中
                     children: [
-                      Icon(Icons.search, size: 20),
+                      Icon(Icons.search, size: AppStyle.byRem(.5)),
                       Text(
                         tabs[index].tr,
                         textAlign: TextAlign.center,
@@ -279,18 +279,10 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                     ),
                     getHeader1(),
                     SliverPadding(
-                      padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
+                      padding: EdgeInsets.symmetric(horizontal: AppStyle.gap),
                       sliver: SliverCrossAxisGroup(
                         slivers: [
                           getHeader2(),
-
-                          /*
-        SliverChildBuilderDelegate懒加载[监听位置会有找不到的问题]
-        SliverList(
-          delegate: SliverChildBuilderDelegate((context, index) {
-            return _buildSection(tabs[index], _data_keys[index]);
-          }, childCount: tabs.length),
-        ),*/
 
                           // SliverChildListDelegate立即渲染
                           //SliverList(delegate: SliverChildListDelegate(
@@ -312,79 +304,6 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                               }),
                             ),
                           ),
-                          /*...List.generate(tabs.length, (index) {
-          final title = tabs[index].tr;
-          final expanded = _expandedStates[index];
-          final showCount = expanded ? 32 : 6;
-
-          return index != 0
-              ? SliverToBoxAdapter(
-                  child: getWidgetByPath(
-                    path: "/game/home_category/list_brand",
-                    key: _data_keys[index],
-                    params: {"title": title},
-                  ),
-                )
-              : SliverToBoxAdapter(
-                  child: Column(
-                    key: _data_keys[index],
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 8,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              title,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text("更多 >", style: TextStyle(color: Colors.blue)),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: AppStyleStore.getRem(.2),
-                          vertical: AppStyleStore.getRem(.01),
-                        ),
-                        child: GridView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: showCount,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                childAspectRatio: 0.75,
-                                crossAxisSpacing: 8,
-                                mainAxisSpacing: 8,
-                              ),
-                          itemBuilder: (_, gridIndex) {
-                            return buildGridItem(title);
-                          },
-                        ),
-                      ),
-                      if (!expanded)
-                        Center(
-                          child: TextButton(
-                            onPressed: () {
-                              setState(() {
-                                _expandedStates[index] = true;
-                              });
-                            },
-                            child: Text("查看更多"),
-                          ),
-                        ),
-                    ],
-                  ),
-                );
-        }),*/
                         ],
                       ),
                     ),
@@ -413,34 +332,3 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
   }
 }
 
-Widget buildGridItem(String title) {
-  return ClipRRect(
-    borderRadius: BorderRadius.circular(12),
-    child: Stack(
-      children: [
-        Container(
-          color: Colors.grey[300],
-          child: Center(child: Icon(Icons.image, size: 50, color: Colors.white)),
-        ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.black.withValues(alpha: 0.3), Colors.transparent], begin: Alignment.bottomCenter, end: Alignment.topCenter),
-            ),
-            child: Text(
-              title,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.white, fontSize: 12),
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-}

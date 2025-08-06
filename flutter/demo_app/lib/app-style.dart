@@ -101,6 +101,6 @@ class AppStyle extends GetxService {
     return byPx(data["radius"]);
   }
   static double get lineHeight{
-    return byPx(data["lineHeight"]);
+    return data["lineHeight"];
   }
 }

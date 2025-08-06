@@ -22,7 +22,7 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
 
   build_search() {
     return Padding(
-      padding: EdgeInsets.only(top: AppStyle.byRem(.2), left: AppStyle.byRem(.2), right: AppStyle.byRem(.2)),
+      padding: EdgeInsets.only(top: AppStyle.gap, left: AppStyle.gap, right: AppStyle.gap),
       child: Row(
         children: [
           Expanded(
@@ -30,8 +30,8 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
               controller: _textController,
               decoration: InputDecoration(
                 prefixIcon:Padding(
-                  padding: EdgeInsets.only(left: AppStyle.byRem(.1),),
-                  child: Icon(Icons.search, size: AppStyle.byRem(.22)), // 适配设计稿大小
+                  padding: EdgeInsets.only(left: 6,),
+                  child: Icon(Icons.search, size: AppStyle.fontSize*AppStyle.lineHeight), // 适配设计稿大小
                 ),
                 hintText: "输入搜索内容",
                 suffix: Row(
@@ -41,10 +41,10 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
                       onPressed: () {
                         _textController.clear();
                       },
-                      child: Icon(Icons.clear,size: AppStyle.byRem(.22),),
+                      child: Icon(Icons.clear,size: AppStyle.fontSize*AppStyle.lineHeight,),
                     ),
                     SizedBox(width: AppStyle.byRem(.1)),
-                    TextButton(onPressed: () {}, child: Text("搜索",style: TextStyle(fontSize:AppStyle.byRem(.22),),)),
+                    TextButton(onPressed: () {}, child: Text("搜索",style: TextStyle(fontSize:AppStyle.fontSize,),)),
                   ],
                 ),
                 // fillColor: Colors.grey[200],
@@ -70,7 +70,7 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
               SliverPersistentHeader(
                 pinned: true,
                 delegate: StickyHeader(
-                  height: AppStyle.byRem(1.46),// 输入框最大高度.66 + .2 + .6
+                  height: AppStyle.byRem(1.66),// 输入框最大高度.66 + .2 + .6
                   child: ContainerFormat(
                     "tab",
                     Column(

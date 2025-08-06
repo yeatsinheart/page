@@ -54,7 +54,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
         children: [
           Container(
             height: AppStyle.byRem(2),
-            child: Img("assets/images/game1.jpg", borderRadiusTopLeft: AppStyle.byRem(.14), borderRadiusTopRight: AppStyle.byRem(.14)),
+            child: Img("assets/images/game1.jpg", borderRadiusTopLeft: AppStyle.radius, borderRadiusTopRight: AppStyle.radius),
           ),
           TabBar(
             controller: _tabController,
@@ -62,7 +62,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
           ),
 
           Container(
-            padding: EdgeInsetsGeometry.all(AppStyle.byRem(.2)),
+            padding: EdgeInsetsGeometry.all(AppStyle.gap),
             child: Column(
               children: [
                 type == "name" && active == "login" ? LoginByName() : SizedBox.shrink(),
@@ -75,7 +75,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
 
           //Divider(),
           Container(
-            height: AppStyle.byRem(.5),
+            height: AppStyle.gap+AppStyle.fontSize,
             child: TextButton(
               onPressed: () {
                 type = type == 'phone' ? 'name' : 'phone';
@@ -88,7 +88,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
           Divider(),
 
           Container(
-            height: AppStyle.byRem(.5),
+            height: AppStyle.gap+AppStyle.fontSize,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

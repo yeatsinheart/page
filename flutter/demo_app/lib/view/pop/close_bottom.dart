@@ -26,10 +26,10 @@ class PopCloseBottom extends StatelessWidget {
               child: DefaultTextStyle.merge(style: TextStyle(color: ColorFont.get().txt), child: params ?? Container()),
             ),
             Container(
-                padding: EdgeInsetsGeometry.only(top:AppStyle.byRem(.1) ),
+                padding: EdgeInsetsGeometry.only(top:AppStyle.gap/2),
                 child: Center(
               child: IconButton(
-                icon: Icon(Icons.cancel, size: AppStyle.byRem(.4), color: Colors.white),
+                icon: Icon(Icons.cancel, size: AppStyle.fontSize*2, color: Colors.white),
                 onPressed: () {
                   // 执行关闭逻辑，例如：OverlayEntry?.remove()
                   GlobalOverlayContext.removeByWidgetSelf(key.toString());

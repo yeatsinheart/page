@@ -46,7 +46,7 @@ class AccountHomeDemo extends StatelessWidget {
         bottom: false,
         child: MyEasyRefresh(
           listView: ListView(
-            padding: EdgeInsets.all(AppStyle.byRem(.2)),
+            padding: EdgeInsets.all(AppStyle.gap),
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,7 +59,7 @@ class AccountHomeDemo extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: AppStyle.byRem(.4), bottom: AppStyle.byRem(.6)),
+                    margin: EdgeInsets.only(top: 2*AppStyle.gap, bottom: 3*AppStyle.gap),
                     child: MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
@@ -126,7 +126,7 @@ class AccountHomeDemo extends StatelessWidget {
                       },
                       child: Container(
                         decoration: BoxDecoration(border: BoxBorder.all(color: Colors.grey)),
-                        child: Center(child: Text(gridList[index], style: TextStyle(fontSize: 16))),
+                        child: Center(child: Text(gridList[index])),
                       ),
                     );
                   },

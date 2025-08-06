@@ -31,7 +31,7 @@ Widget tab_bar_demo({tabs, currentIndex, onTap}) {
             onPressed: () => onTap(index),
             child: Text(
               tabs[index],
-              style: TextStyle(fontSize:AppStyle.byRem(.22),fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? AppStyle.getMainColor() : null),
+              style: TextStyle().copyWith(fontWeight: selected ? FontWeight.bold : FontWeight.normal, color: selected ? AppStyle.getMainColor() : null),
             ),
           ),
         ),

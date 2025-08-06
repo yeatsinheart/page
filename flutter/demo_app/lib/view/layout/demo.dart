@@ -42,7 +42,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
       _buildNavItem(
         icon: "https://cdn-icons-png.flaticon.com/128/10061/10061767.png",
         activeIcon: "https://cdn-icons-png.flaticon.com/128/3344/3344374.png",
-        label: "容器展示",
+        label: "容器",
         index: items.length + 1,
       ),
     );
@@ -62,7 +62,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
       body: pages[_currentIndex],
       bottomNavigationBar: Container(
         // height: AppStyle.byRem(1.24),// 0.24 * 1.4 + 0.5 = 0.836
-        height: AppStyle.byRem(1.35),// 0.32 * 1.4 + 0.5 = 0.948
+        height: (AppStyle.fontSize+2)*AppStyle.lineHeight + AppStyle.byRem(.5) + 2*AppStyle.gap,// 0.32 * 1.4 + 0.5 = 0.948
         // padding: EdgeInsetsGeometry.symmetric(vertical: AppStyle.byRem(.2)), // 按照padding来计算高度，不会出现修改rem而出问题
         child: ContainerFormat("bar-bottom", Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: list)),
       ),
@@ -85,7 +85,7 @@ class _LayoutDemoState extends State<LayoutDemo> {
               Img(isActive ? activeIcon : icon, square: AppStyle.byRem(.5)),
               Text(
                 label.tr,
-                style: TextStyle(color: isActive ? AppStyle.getMainColor() : null, fontSize: AppStyle.byRem(0.32)),
+                style: TextStyle(color: isActive ? AppStyle.getMainColor() : null, fontSize: AppStyle.fontSize+2),
               ),
             ],
           ),

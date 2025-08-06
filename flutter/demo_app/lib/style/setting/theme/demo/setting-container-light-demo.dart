@@ -14,12 +14,12 @@ main() async {
   String path = 'assets/config/bootstrap.json';
   final json = await readJsonFile(path);
 
-  json["style"]["maxWidth"] = 570;
+  json["style"]["maxWidth"] = 570.0;
   // 412屏幕 .3显示16号字体 .26显示14号字体  .22显示12号字体  每个字体差4
   // 750 设计稿中的正文字体大小 通用字号
-  json["style"]["fontSize"] = 30;
-  json["style"]["gap"] = 20;
-  json["style"]["radius"] = 14;
+  json["style"]["fontSize"] = 30.0;
+  json["style"]["gap"] = 20.0;
+  json["style"]["radius"] = 14.0;
   json["style"]["lineHeight"] = 1.4;
 
   json["style"]["colors"] = colors;

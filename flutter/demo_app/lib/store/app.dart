@@ -14,19 +14,19 @@ class AppStore extends GetxService {
 
   factory AppStore() => _instance;
 
-  var Brightness = "dark".obs; //"light";// dark
+  static String Brightness = "light"; //"light";// dark
   static isDark(){
-    return AppStore().Brightness.value == "dark";
+    return Brightness == "dark";
   }
   static setStyleDark() {
     if(isDark())return;
-    AppStore().Brightness.value = "dark";
+    Brightness = "dark";
     AppStore().rebuildApp();
   }
 
   static setStyleLight() {
     if(!isDark())return;
-    AppStore(). Brightness.value = "light";
+    Brightness = "light";
     AppStore().rebuildApp();
   }
 
@@ -74,7 +74,7 @@ class AppStore extends GetxService {
   }
 
   static List<dynamic> getColors() {
-    var list = (data["colors"] as List?)?.map((c) => ColorUtil.getColor(c?[AppStore().Brightness.value])).whereType<Color>().toList();
+    var list = (data["colors"] as List?)?.map((c) => ColorUtil.getColor(c?[AppStore.Brightness])).whereType<Color>().toList();
     return list ?? [ColorUtil.getColor("#2196F3")];
   }
 

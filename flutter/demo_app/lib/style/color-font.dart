@@ -13,7 +13,7 @@ class ColorFont {
   const ColorFont({this.title, this.name, this.txt, this.ghost});
 
   factory ColorFont.fromJson(Map<String, dynamic> json) {
-    return ColorFont(title: ColorUtil.getColor(json['title'][AppStore().Brightness.value]), name: ColorUtil.getColor(json['name'][AppStore().Brightness.value]), txt: ColorUtil.getColor(json['txt'][AppStore().Brightness.value]), ghost: ColorUtil.getColor(json['ghost'][AppStore().Brightness.value]));
+    return ColorFont(title: ColorUtil.getColor(json['title'][AppStore.Brightness]), name: ColorUtil.getColor(json['name'][AppStore.Brightness]), txt: ColorUtil.getColor(json['txt'][AppStore.Brightness]), ghost: ColorUtil.getColor(json['ghost'][AppStore.Brightness]));
   }
 
   static ColorFont get() {

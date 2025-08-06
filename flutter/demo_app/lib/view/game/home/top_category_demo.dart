@@ -86,7 +86,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
       final box = tab_context.findRenderObject() as RenderBox;
       final double targetOffset = index * box.size.width - (viewWidth - box.size.width) / 2;
       //print("tab移动到${targetOffset} 选中 ${_currentIndex}");
-      _tabScrollController.animateTo(targetOffset.clamp(_tabScrollController.position.minScrollExtent, _tabScrollController.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+      _tabScrollController.jumpTo(targetOffset.clamp(_tabScrollController.position.minScrollExtent, _tabScrollController.position.maxScrollExtent));
     }
   }
 
@@ -100,7 +100,7 @@ class _GameHomeTopCategoryDemoState extends State<GameHomeTopCategoryDemo> {
       final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController!.offset - AppStyle.byRem(.9);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
 
-      _pageScrollController!.animateTo(offset.clamp(_pageScrollController!.position.minScrollExtent, _pageScrollController!.position.maxScrollExtent), duration: Duration(milliseconds: 300), curve: Curves.easeInOut).then((_) {
+      _pageScrollController!.animateTo(offset.clamp(_pageScrollController!.position.minScrollExtent, _pageScrollController!.position.maxScrollExtent), duration: Duration(milliseconds: 100), curve: Curves.easeInOut).then((_) {
         Future.delayed(Duration(milliseconds: 100), () {
           _scrollingByClick = false;
         });

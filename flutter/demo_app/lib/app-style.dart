@@ -12,6 +12,11 @@ class AppStyle extends GetxService {
   static final AppStyle _instance = AppStyle._internal();
   factory AppStyle() => _instance;
 
+  // PlatformDispatcher 是 Flutter 中用于访问和监听平台层事件与信息的一个高级接口。它属于 dart:ui 底层层级，跟视图（View）、窗口（Window）、输入、字体、生命周期等交互紧密相关。
+  static final platformDispatcher = PlatformDispatcher.instance;
+  // 获取主窗口
+  static final screen = platformDispatcher.views.first;
+
   static String Brightness = "light"; //"light";// dark
   static isDark(){
     return Brightness == "dark";
@@ -29,10 +34,10 @@ class AppStyle extends GetxService {
   }
 
   Rx<Key> appKey = UniqueKey().obs;
-
   void rebuildApp() {
     appKey.value = UniqueKey(); // 改变 key，触发 rebuild
   }
+
 
   static Map<String, dynamic> data = {};
 
@@ -64,23 +69,15 @@ class AppStyle extends GetxService {
   }
 
   static double get _screenWidth {
-    // 获取屏幕逻辑宽度
-    final platformDispatcher = PlatformDispatcher.instance;
-    // 获取主视图 FlutterView
-    final flutterView = platformDispatcher.views.first;
     // 获取屏幕宽度（逻辑像素）
-    final screenWidth = flutterView.physicalSize.width / flutterView.devicePixelRatio;
+    final screenWidth = screen.physicalSize.width / screen.devicePixelRatio;
     // return MediaQuery.of(AppContext.context).size.width;
     return screenWidth;
   }
 
   static double get screenHeight {
-    // 获取屏幕逻辑高度
-    final platformDispatcher = PlatformDispatcher.instance;
-    // 获取主视图 FlutterView
-    final flutterView = platformDispatcher.views.first;
     // 获取屏幕高度（逻辑像素）
-    final screenHeight = flutterView.physicalSize.height / flutterView.devicePixelRatio;
+    final screenHeight = screen.physicalSize.height / screen.devicePixelRatio;
     return screenHeight;
     // return MediaQuery.of(AppContext.context).size.height;
   }

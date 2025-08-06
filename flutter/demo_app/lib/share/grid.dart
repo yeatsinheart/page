@@ -3,7 +3,7 @@ import 'package:flutter3/share/img.dart';
 import 'package:flutter3/store/app.dart';
 import 'package:flutter3/style/format/container.dart';
 
-Widget grid_sliver_demo(List<dynamic> list, {Function render = card_demo, numberOfRow=3, gap = 8, aspectRatio = 3 / 4}) {
+Widget grid_sliver_demo(List<dynamic> list, {Function render = card_demo, numberOfRow=3, double gap = 8.0, aspectRatio = 3 / 4}) {
   return SliverGrid(
     delegate: SliverChildBuilderDelegate((context, index) {
       return render(list[index]);
@@ -24,7 +24,7 @@ Widget grid_demo_wrap(List<dynamic> list, {num = 3, Function render = card_demo}
   );
 }
 
-Widget grid_demo_aspect_ratio(List<dynamic> list, {Function render = card_demo, bool shrinkWrap = false, numberOfRow = 3, gap = 8, aspectRatio = 3 / 4, maxCrossAxisExtent = 200}) {
+Widget grid_demo_aspect_ratio(List<dynamic> list, {Function render = card_demo, bool shrinkWrap = false, numberOfRow = 3, double gap = 8.0, aspectRatio = 3 / 4, maxCrossAxisExtent = 200}) {
   return GridView.builder(
     shrinkWrap: shrinkWrap,
     physics: shrinkWrap ? NeverScrollableScrollPhysics() : BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
@@ -34,7 +34,7 @@ Widget grid_demo_aspect_ratio(List<dynamic> list, {Function render = card_demo, 
   );
 }
 
-Widget grid_demo_width(List<dynamic> list, {Function render = card_demo, bool shrinkWrap = false, gap = 8, width = 200, aspectRatio = 3 / 4}) {
+Widget grid_demo_width(List<dynamic> list, {Function render = card_demo, bool shrinkWrap = false, double gap = 8, width = 200, aspectRatio = 3 / 4}) {
   return GridView.builder(
     shrinkWrap: shrinkWrap,
     physics: shrinkWrap ? NeverScrollableScrollPhysics() : BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
@@ -50,7 +50,7 @@ Widget grid_demo_width(List<dynamic> list, {Function render = card_demo, bool sh
   );
 }
 
-Widget card_demo(data, {borderRadiusRem = 14, nestTitle = true}) {
+Widget card_demo(data, {borderRadiusRem = 14.0, nestTitle = true}) {
   Widget img = Img("data", borderRadius: borderRadiusRem);
   Widget name = Text(
     data,

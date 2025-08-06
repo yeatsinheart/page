@@ -54,6 +54,14 @@ class _State extends State<TestTextField> {
           ),
           // fillColor: Colors.grey[200],
         ),),
+        Text("屏幕宽度：${AppStore.viewWidth}"), // 411.42 -> 12.068
+        Text("精度倍数： ${MediaQuery.of(context).textScaler}"), // 411.42 -> 12.068
+        Text("字体大小：${AppStore.byRem(.22)}"),
+        Text(""),
+        Text(""),
+        Text(""),
+        Text(""),
+        Text(""),
         Text("${AppStore.byRem(1)} ${_size} ${AppStore.byRem(.66)}"),
         Text("${_size - AppStore.byRem(.66) }"),
         // 字体 边框 上下padding

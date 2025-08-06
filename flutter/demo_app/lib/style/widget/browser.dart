@@ -27,49 +27,84 @@ class Browser extends StatelessWidget {
                       child: page,
                     ),
                   ),
-            // 左下角
-            Positioned(
-              left: 0,
-              bottom: AppStore.byRem(1.44),
-              child: Column(
-                spacing: AppStore.byRem(.2),
-                children: [
-                  KeyedSubtree(
-                    key: GlobalKey(debugLabel: "day-time"),
-                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("白天"), click: (){AppStore.setStyleLight();})),
-                  ),
-                  KeyedSubtree(
-                    key: GlobalKey(debugLabel: "night-time"),
-                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("黑夜"), click: (){AppStore.setStyleDark();})),
-                  ),
-                  KeyedSubtree(
-                    key: GlobalKey(debugLabel: "language-setting"),
-                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("语言"), click: (){AppRoute.to("language");})),
-                  ),
-                ],
-              ),
-            ),
-            // 右下角
-            Positioned(
-              right: 0,
-              bottom: AppStore.byRem(1.44),
-              child: Column(
-                spacing: AppStore.byRem(.2),
-                children: [
-                  KeyedSubtree(
-                    key: GlobalKey(debugLabel: "toutiao"),
-                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("头条"), click: () => {})),
-                  ),
-                  KeyedSubtree(
-                    key: GlobalKey(debugLabel: "demo"),
-                    child: ContainerFormat("text-cover", ContainerFormat("btn", Text("Demo"), click: () => {})),
-                  ),
-                ],
-              ),
-            ),
+            _bottom_left(),
+            _bottom_right(),
           ],
         ),
       ),
     );
   }
+}
+
+_bottom_left() {
+  // 左下角
+  return Positioned(
+    left: 0,
+    bottom: AppStore.byRem(1.44),
+    child: Column(
+      spacing: AppStore.byRem(.2),
+      children: [
+        KeyedSubtree(
+          key: GlobalKey(debugLabel: "day-time"),
+          child: ContainerFormat(
+            "text-cover",
+            ContainerFormat(
+              "btn",
+              Text("白天"),
+              click: () {
+                AppStore.setStyleLight();
+              },
+            ),
+          ),
+        ),
+        KeyedSubtree(
+          key: GlobalKey(debugLabel: "night-time"),
+          child: ContainerFormat(
+            "text-cover",
+            ContainerFormat(
+              "btn",
+              Text("黑夜"),
+              click: () {
+                AppStore.setStyleDark();
+              },
+            ),
+          ),
+        ),
+        KeyedSubtree(
+          key: GlobalKey(debugLabel: "language-setting"),
+          child: ContainerFormat(
+            "text-cover",
+            ContainerFormat(
+              "btn",
+              Text("语言"),
+              click: () {
+                AppRoute.to("language");
+              },
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+_bottom_right() {
+  // 右下角
+  return Positioned(
+    right: 0,
+    bottom: AppStore.byRem(1.44),
+    child: Column(
+      spacing: AppStore.byRem(.2),
+      children: [
+        KeyedSubtree(
+          key: GlobalKey(debugLabel: "toutiao"),
+          child: ContainerFormat("text-cover", ContainerFormat("btn", Text("头条"), click: () => {})),
+        ),
+        KeyedSubtree(
+          key: GlobalKey(debugLabel: "demo"),
+          child: ContainerFormat("text-cover", ContainerFormat("btn", Text("Demo"), click: () => {})),
+        ),
+      ],
+    ),
+  );
 }

@@ -47,14 +47,14 @@ class _State extends State<CkEditorHtml> {
         opacity: contentReady ? 1 : 0,
         child: InAppWebView(
           initialSettings: settings,
-          initialUrlRequest:URLRequest(url: WebUri("https://inappwebview.dev/")),
-          // initialData: InAppWebViewInitialData(data: data),
+          // initialUrlRequest:URLRequest(url: WebUri("https://inappwebview.dev/")),
+          initialData: InAppWebViewInitialData(data: data),
           onReceivedError: (InAppWebViewController controller, WebResourceRequest request, WebResourceError error) {
             Log.e(error);
           },
           onWebViewCreated: (controller) {
             webViewController = controller;
-            webViewController.loadData(data: data);
+            // webViewController.loadData(data: data);
             // 简单轮询检测页面加载完成
             /*Future.doWhile(() async {
               var readyState = await webViewController.evaluateJavascript(source: "document.readyState");

@@ -62,7 +62,8 @@ class AppStore extends GetxService {
   }
 
   static double? get maxWidth {
-    return data["maxWidth"];
+    var value= data["maxWidth"];
+    return value is num ? value.toDouble() : null;
   }
 
   static double get _screenWidth {

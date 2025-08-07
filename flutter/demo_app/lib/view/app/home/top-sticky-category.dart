@@ -1,11 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/i18n.dart';
 import 'package:flutter3/log/logger.dart';
-import 'package:flutter3/share/safe-status-bar.dart';
 import 'package:flutter3/share/sticky-header.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/view/app-view.dart';
@@ -68,7 +66,7 @@ class _State extends State<AppHomeTopStickyCategory> {
           bottom: false,
           child: NotificationListener(
             onNotification: (notification) {
-              if (_scrollingByClick)  return true;// 阻止通知继续传递
+              if (_scrollingByClick) return true; // 阻止通知继续传递
               //print(notification);
               if (notification is ScrollStartNotification) {
                 //print('🚀 Start Scrolling');
@@ -229,8 +227,8 @@ class _State extends State<AppHomeTopStickyCategory> {
             // ← 支持手动滚动
             itemCount: tabs.length,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
+              return TextButton(
+                onPressed: () {
                   _clickTo(index);
                   _updateTabSelection(index);
                   _scrollTabToCenter(index);
@@ -270,7 +268,7 @@ class _TabItemState extends State<TabItem> {
       builder: (_, isSelected, __) {
         return Container(
           alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+          padding: EdgeInsets.symmetric(horizontal: AppStyle.gap),
           decoration: isSelected
               ? BoxDecoration(
                   border: Border(bottom: BorderSide(width: 2, color: AppStyle.getMainColor())),

@@ -49,7 +49,7 @@ class _State extends State<CkEditorHtml> {
   @override
   Widget build(BuildContext context) {
     if(kIsWeb)return Container(child: Center(child: Text("web端暂不支持"),));
-    Log.e(" color:${AppStyle.data["font"]["txt"][AppStyle.Brightness]};font-size: ${AppStyle.fontSize}px;");
+    //Log.e(" color:${AppStyle.data["font"]["txt"][AppStyle.Brightness]};font-size: ${AppStyle.fontSize}px;");
     var data = wrapHtml(widget.htmlContent);
     return SizedBox(
       height: contentHeight,

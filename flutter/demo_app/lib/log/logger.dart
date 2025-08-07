@@ -3,13 +3,15 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
+import 'printer.dart';
+
 class Log {
   static Logger logger = Logger(
     //output: output,// 可以修改到写入文件
-    printer: PrettyPrinter(
+    printer: AppLogPrinter(
       // 打印 调用堆栈（stack trace）显示多少层函数调用路径
-      methodCount: 50,
-      errorMethodCount: 50,
+      methodCount: 150,
+      errorMethodCount: 150,
       printEmojis: true,
       // （一般是工具类名）
       excludeBox: {},
@@ -21,9 +23,11 @@ class Log {
       // 这就会导致 excludePaths 无法匹配你设定的路径，因为路径根本不一样。
       excludePaths: [
         // 日志打印的可以排除
-        'logger/src/', 'flutter3/log/logger.dart',
+        'logger/src/', 'flutter3/log/',
         'dio/src/',
         "flutter/", "lib/", "dio/", "get/",
+        // "dart:async/zone"
+        // "dart:isolate-patch/timer_patch"
         //'flutter3/views.dart',
         "flutter3/request/",
       ],

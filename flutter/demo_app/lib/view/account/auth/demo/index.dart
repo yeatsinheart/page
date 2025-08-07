@@ -27,7 +27,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
   var type = "name"; // "phone"
   var _key = GlobalKey();
   double contentHeight=0;
-
+  final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     super.initState();
@@ -71,12 +71,14 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
     if(over<=0)padding=(keyboardHeight + over).clamp(0.0, keyboardHeight);
     /// 允许的 padding（不能小于 0）
     if(over>0)padding =  (keyboardHeight - over).clamp(0.0, keyboardHeight);
+    //_scrollController.jumpTo(padding.clamp(0.0, _scrollController.position.maxScrollExtent));
     //Log.i("$contentHeight $keyboardHeight ${AppStyle.screenHeight*.8} $padding");
     return AnimatedPadding(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
       padding: EdgeInsets.only(bottom: padding),
       child: SingleChildScrollView(
+        controller: _scrollController,
         child: ContainerFormat(
           key:_key,
           "section",

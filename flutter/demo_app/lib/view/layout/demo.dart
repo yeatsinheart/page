@@ -38,26 +38,6 @@ class _LayoutDemoState extends State<LayoutDemo> {
       pages.add(widget);
     }
 
-    list.add(
-      _buildNavItem(
-        icon: "https://cdn-icons-png.flaticon.com/128/10061/10061767.png",
-        activeIcon: "https://cdn-icons-png.flaticon.com/128/3344/3344374.png",
-        label: "容器",
-        index: items.length + 1,
-      ),
-    );
-    pages.add(MainDemo());
-
-    list.add(
-      _buildNavItem(
-        icon: "https://cdn-icons-png.flaticon.com/128/4824/4824252.png",
-        activeIcon: "https://cdn-icons-png.flaticon.com/128/4823/4823363.png",
-        label: "例子",
-        index: items.length,
-      ),
-    );
-    pages.add(ExampleContainer());
-
     return Scaffold(
       body: pages[_currentIndex],
       bottomNavigationBar: Container(

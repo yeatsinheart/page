@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/app-style.dart';
+import 'package:flutter3/demo/widget/example-container.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/style/theme/all-theme.dart';
 import 'package:get/get.dart';
+
+import 'package:flutter3/demo/main.dart';
 
 class Browser extends StatelessWidget {
   final child;
@@ -100,9 +103,15 @@ _bottom_right() {
           key: GlobalKey(debugLabel: "toutiao"),
           child: ContainerFormat("text-cover", ContainerFormat("btn", Text("头条"), click: () => {})),
         ),
+
         KeyedSubtree(
           key: GlobalKey(debugLabel: "demo"),
-          child: ContainerFormat("text-cover", ContainerFormat("btn", Text("Demo"), click: () => {})),
+          child: ContainerFormat("text-cover", ContainerFormat("btn", Text("测试页面"), click: () => AppRoute.open(MainDemo()))),
+        ),
+
+        KeyedSubtree(
+          key: GlobalKey(debugLabel: "demo-container"),
+          child: ContainerFormat("text-cover", ContainerFormat("btn", Text("容器展示"), click: () => AppRoute.open(ExampleContainer())),),
         ),
       ],
     ),

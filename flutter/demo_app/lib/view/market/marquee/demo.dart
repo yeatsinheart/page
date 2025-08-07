@@ -22,13 +22,13 @@ Widget iconWithBadge({required IconData icon, required bool showBadge, color, in
           right: count != null ? -6 : -3,
           top: count != null ? -6 : 0,
           child: Container(
-            padding: count != null ? EdgeInsets.symmetric(horizontal: 4, vertical: 1) : EdgeInsets.all(4),
+            padding: count != null ? EdgeInsets.symmetric(horizontal: 2, vertical: 1) : EdgeInsets.all(4),
             decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(12)),
-            constraints: count != null ? BoxConstraints(minWidth: 16, minHeight: 16) : BoxConstraints(minWidth: 4, minHeight: 4),
+            constraints: count != null ? null : BoxConstraints(minWidth: 4, minHeight: 4),
             child: count != null
                 ? Text(
-                    count > 99 ? '99+' : '$count',
-                    style: TextStyle(color: color, fontSize: 10, fontWeight: FontWeight.bold),
+                    count > 9 ? '9+' : '$count',
+                    style: TextStyle().copyWith(color: color, fontSize: 10, fontWeight: FontWeight.bold,height: 1),
                     textAlign: TextAlign.center,
                   )
                 : SizedBox.shrink(), // 只有红点不显示数字
@@ -58,17 +58,17 @@ class _MarketMarqueeDemoState extends State<MarketMarqueeDemo> {
   @override
   Widget build(BuildContext context) {
     return ContainerFormat("marquee",Container(
-      height: AppStyle.byRem(.5),
+      height: AppStyle.fontSize*AppStyle.lineHeight+2*AppStyle.gap,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(.2)),
+        padding: EdgeInsets.symmetric(horizontal: AppStyle.gap),
         child: Row(
           children: [
-            TextButton(onPressed: ()=>AppRoute.to("announce"), child: Icon(Icons.volume_up, size: AppStyle.byRem(.36)),),
+            TextButton(onPressed: ()=>AppRoute.to("announce"), child: Icon(Icons.volume_up, size: AppStyle.fontSize*AppStyle.lineHeight),),
             SizedBox(width: AppStyle.byRem(.1)),
             //Expanded(child: MarqueeWithoutTicker(text: messages.join('     ★     '))),
             Expanded(child: Marquee(text: messages.join('     ★     '))),
             SizedBox(width: AppStyle.byRem(.1)),
-            iconWithBadge(icon: Icons.mail, showBadge: false, count: null),
+            iconWithBadge(icon: Icons.mail, size:AppStyle.fontSize*AppStyle.lineHeight,showBadge: true, count: 247),
           ],
         ),
       ),

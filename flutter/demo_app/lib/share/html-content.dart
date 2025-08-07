@@ -5,39 +5,42 @@ import 'package:flutter3/app-style.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-class CkEditorHtml extends StatefulWidget {
+class HtmlContent extends StatefulWidget {
+  final String html;
   final String? fontSize;
   final String? fontColor;
   final String? bgColor;
-  CkEditorHtml({this.fontSize="16",this.bgColor="transparent",this.fontColor});
-
   // 网页背景 默认字体大小 默认字颜色
-  final String htmlContent = """
-      <div style="padding: 16px; font-size: 18px;color:red;">
-        <p>This is some HTML content.</p>
-        <p>It can contain <strong>CKEditor</strong> output.</p>
-        <p>More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...More lines...</p>
-        <p>More lines...</p>
-        <p>More lines...</p>
-      </div>
-      <h2>Congratulations on setting up ! 🎉</h2><p>You\'ve successfully created a  project. This powerful text editorwill enhance your application, enabling rich text editing capabilities thatare customizable and easy to use.</p><figure class="image">
-        <img style="aspect-ratio:544/184;" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" width="544" height="184">
-    </figure><h3>What\'s next?</h3><ol><li><strong>Integrate into your app</strong>: time to bring the editing intoyour application. Take the code you created and add to your application.</li><li><strong>Explore features:</strong> Experiment with different plugins andtoolbar options to discover what works best for your needs.</li><li><strong>Customize your editor:</strong> Tailor the editor\'sconfiguration to match your application\'s style and requirements. Oreven write your plugin!</li></ol><p>Keep experimenting, and don\'t hesitate to push the boundaries of what youcan achieve with CKEditor 5. Your feedback is invaluable to us as we striveto improve and evolve. Happy editing!</p><h3>Helpful resources</h3><ul><li>📝 <a href="https://portal.ckeditor.com/checkout?plan=free">Trial sign up</a>,</li><li>📕 <a href="https://ckeditor.com/docs/ckeditor5/latest/installation/index.html">Documentation</a>,</li><li>⭐️ <a href="https://github.com/ckeditor/ckeditor5">GitHub</a> (star us if you can!),</li><li>🏠 <a href="https://ckeditor.com">CKEditor Homepage</a>,</li><li>🧑‍💻 <a href="https://ckeditor.com/ckeditor-5/demo/">CKEditor 5 Demos</a>,</li></ul><h3>Need help?</h3><p>See this text, but the editor is not starting up? Check the browser\'sconsole for clues and guidance. It may be related to an incorrect licensekey if you use premium features or another feature-related requirement. Ifyou cannot make it work, file a GitHub issue, and we will help as soon aspossible!</p>
-  """;
+  HtmlContent({required this.html,this.fontSize="16",this.bgColor="transparent",this.fontColor});
 
   @override
   State<StatefulWidget> createState() => _State();
 }
+// 加载后就一直存活，防止滚动后被销毁，再次加载高度出错
+class _State extends State<HtmlContent> with AutomaticKeepAliveClientMixin{
+  @override
+  bool get wantKeepAlive => true;
 
-class _State extends State<CkEditorHtml> {
   late InAppWebViewController webViewController;
   InAppWebViewSettings settings = InAppWebViewSettings(
-    isInspectable: kDebugMode,
-    mediaPlaybackRequiresUserGesture: false,
-    allowsInlineMediaPlayback: true,
+    // isInspectable: kDebugMode,
     iframeAllow: "camera; microphone",
     iframeAllowFullscreen: true,
-    transparentBackground: true
+    javaScriptEnabled: true, // 启用 JavaScript
+    transparentBackground: true, // 背景透明（适用于某些自定义 UI）
+    supportZoom: true, // 禁止双指缩放
+    useShouldOverrideUrlLoading: true, // 允许拦截请求
+    mediaPlaybackRequiresUserGesture: false, // 自动播放媒体（视频/音频）
+    allowsInlineMediaPlayback: true, // 允许内联媒体播放
+    verticalScrollBarEnabled: false, // 禁止垂直滚动条
+    horizontalScrollBarEnabled: false, // 禁止水平滚动条
+    disableContextMenu: true, // 禁用长按菜单（防止用户选中文字或弹出原生菜单）
+    useOnLoadResource: true, // 允许使用 onLoadResource 事件
+    useShouldInterceptAjaxRequest: true, // 拦截 AJAX 请求（调试或修改数据）
+    useShouldInterceptFetchRequest: true, // 拦截 fetch 请求
+    allowFileAccessFromFileURLs: true, // 允许本地文件访问（用于本地 HTML）
+    allowUniversalAccessFromFileURLs: true, // 允许本地文件访问网络
+    allowsBackForwardNavigationGestures: true, // 启用 iOS 手势返回
   );
   double contentHeight = 0;
 
@@ -50,7 +53,7 @@ class _State extends State<CkEditorHtml> {
   Widget build(BuildContext context) {
     if(kIsWeb)return Container(child: Center(child: Text("web端暂不支持"),));
     //Log.e(" color:${AppStyle.data["font"]["txt"][AppStyle.Brightness]};font-size: ${AppStyle.fontSize}px;");
-    var data = wrapHtml(widget.htmlContent);
+    var data = wrapHtml(widget.html);
     return SizedBox(
       height: contentHeight,
         child: InAppWebView(
@@ -59,7 +62,7 @@ class _State extends State<CkEditorHtml> {
           initialSettings: settings,
           // initialUrlRequest:URLRequest(url: WebUri("https://inappwebview.dev/")),
           //baseUrl: WebUri("https://localhost/"),
-          initialData: InAppWebViewInitialData(data: data,baseUrl:WebUri("file://localhost/")),
+          initialData: InAppWebViewInitialData(data: data),// ,baseUrl:WebUri("file://localhost/")
           onReceivedError: (InAppWebViewController controller, WebResourceRequest request, WebResourceError error) {
             Log.e(error);
           },
@@ -709,13 +712,16 @@ list-style-type: disc;
               });
               if (loaded === images.length) callback();
             }
-            waitForImagesToLoad(function() {
+            
+            window.onload = function () {
+    waitForImagesToLoad(function() {
               //window.flutter_inappwebview.callHandler('contentReady', document.documentElement.scrollHeight);
               // const el = document.getElementById("server-html-content");
               // const height = el ? el.offsetHeight : 20;
               // console.log(height);
-              window.flutter_inappwebview.callHandler('contentReady', height);
+              window.flutter_inappwebview.callHandler('contentReady', '');
             });
+            };
             </script>
             
     <body><div id="server-html-content" class="ck-content">

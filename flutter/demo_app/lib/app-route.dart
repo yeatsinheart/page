@@ -25,7 +25,7 @@ class AppRoute {
   }
 
   /// 各种效果模式 https://juejin.cn/post/6844903890291261447
-  static slideToKey(String? key, {params, Offset from = SlideRoute.right, int time = 300}) {
+  static slideToKey(String? key, {params, Offset from = SlideRoute.right, int time = 100}) {
     open(
       SlideRoute(
         Browser(AppView.ofKey(key, params: params)),
@@ -35,7 +35,7 @@ class AppRoute {
     );
   }
 
-  static slideToPath(String? path, {params, Offset from = SlideRoute.right, int time = 300}) {
+  static slideToPath(String? path, {params, Offset from = SlideRoute.right, int time = 100}) {
     open(
       SlideRoute(
         Browser(AppView.ofPath(path, params: params)),
@@ -117,6 +117,7 @@ class SlideRoute extends PageRouteBuilder {
 
   // 左上角为-1,-1 左下角为 0,0  右上角为1,-1 右为 1,0  右下角 1,1
   // 默认页面都是从右到左
+  // 自定义 Route（非 MaterialPageRoute）默认不包含 Material 上下文语义！
   SlideRoute(this.newPage, {Offset from = right, int time = 500, RouteSettings? settings})
     : super(
         settings: settings,
@@ -127,7 +128,8 @@ class SlideRoute extends PageRouteBuilder {
           //使新页面从底部动画出来，它应该从 Offset(0,1) 到 Offset(0, 0) 进行动画
           //Offset (dx,dy) dx=-1:左边 dy=-1:上面 =0当前屏幕  方向和距离 1整个屏幕宽 高 系数
           position: Tween(begin: from, end: const Offset(0, 0)).animate(animation),
-          child: child,
+          child:  Material(
+            type: MaterialType.transparency,child:child),
         ),
         //SizeTransition(axisAlignment: -1,sizeFactor: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: animation, curve: Curves.easeInSine)),child: widget,
       );

@@ -7,7 +7,7 @@ class GradientFormat{
   static Gradient? fromJson(Map<String, dynamic>? json) {
     if(null==json)return null;
     final type = (json['type'] as String?)?.toLowerCase() ?? 'linear';
-    final colors = (json['colors'] as List?)?.map((c) => ColorUtil.getColor(c[AppStyle.Brightness])).whereType<Color>().toList() ?? [];
+    final colors = (json['colors'] as List?)?.map((c) => ColorUtil.getColor(c[AppStyle.BrightMode])).whereType<Color>().toList() ?? [];
     if (colors.isEmpty) {
       return null;
     }

@@ -45,8 +45,8 @@ class Img extends StatelessWidget {
   Widget build(BuildContext context) {
     // ClipOval = ClipRRect[radius为半径时] = 圆形⭕️
     Map<String, dynamic>? data = AppStyle.data["color-plan"]?["img-loading"] ?? {};
-    Color? bgColor = ColorUtil.getColor(data?["bg"]?[AppStyle.Brightness]);
-    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStyle.Brightness]);
+    Color? bgColor = ColorUtil.getColor(data?["bg"]?[AppStyle.BrightMode]);
+    Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStyle.BrightMode]);
 
     final raw_image = img(url, fit: fit!, loadingBg: loadingBg ?? bgColor, loadingFont: loadingFont ?? fontColor);
     //Log.i(radiusRem);

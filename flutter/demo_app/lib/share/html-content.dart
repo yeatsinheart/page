@@ -156,7 +156,7 @@ class _State extends State<HtmlContent> with AutomaticKeepAliveClientMixin{
     -webkit-user-select: none;
     
     background-color: transparent; /* 背景色 */
-    color:${AppStyle.data["font"]["txt"][AppStyle.Brightness]};
+    color:${AppStyle.data["font"]["txt"][AppStyle.BrightMode]};
     font-size: ${AppStyle.fontSize}px;
   }
       </style>

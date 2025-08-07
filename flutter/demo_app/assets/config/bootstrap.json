@@ -211,7 +211,7 @@
    },
    {
     "titleI18nKey": "发现",
-    "openViewKey": "home",
+    "openViewKey": "game_search",
     "iconI18nKey": "https://cdn-icons-png.flaticon.com/128/428/428094.png",
     "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/4697/4697500.png"
    },
@@ -222,10 +222,10 @@
     "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/1077/1077012.png"
    },
    {
-    "titleI18nKey": "收银台",
+    "titleI18nKey": "钱包",
     "openViewKey": "cashier",
-    "iconI18nKey": "https://cdn-icons-png.flaticon.com/128/4689/4689923.png",
-    "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/5705/5705161.png"
+    "iconI18nKey": "https://cdn-icons-png.flaticon.com/128/3846/3846014.png",
+    "iconFocusI18nKey": "https://cdn-icons-png.flaticon.com/128/8984/8984212.png"
    }
   ]
  },

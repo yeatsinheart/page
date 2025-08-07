@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/util/color-util.dart';
 import 'package:get/get.dart';
@@ -17,24 +18,29 @@ class AppStyle extends GetxService {
   // 获取主窗口
   static final screen = platformDispatcher.views.first;
 
-  static String Brightness = "light"; //"light";// dark
+  static String BrightMode = "light"; //"light";// dark
   static isDark(){
-    return Brightness == "dark";
+    return BrightMode == "dark";
   }
   static setStyleDark() {
     if(isDark())return;
-    Brightness = "dark";
+    BrightMode = "dark";
     AppStyle().rebuildApp();
   }
 
   static setStyleLight() {
     if(!isDark())return;
-    Brightness = "light";
+    BrightMode = "light";
     AppStyle().rebuildApp();
   }
 
   Rx<Key> appKey = UniqueKey().obs;
   void rebuildApp() {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent, // 设置状态栏颜色
+      statusBarBrightness: AppStyle.isDark() ? Brightness.light : Brightness.dark,
+      statusBarIconBrightness: AppStyle.isDark() ? Brightness.light : Brightness.dark, // 图标颜色，根据背景选择
+    ));
     appKey.value = UniqueKey(); // 改变 key，触发 rebuild
   }
 
@@ -83,7 +89,7 @@ class AppStyle extends GetxService {
   }
 
   static List<dynamic> getColors() {
-    var list = (data["colors"] as List?)?.map((c) => ColorUtil.getColor(c?[AppStyle.Brightness])).whereType<Color>().toList();
+    var list = (data["colors"] as List?)?.map((c) => ColorUtil.getColor(c?[AppStyle.BrightMode])).whereType<Color>().toList();
     return list ?? [ColorUtil.getColor("#2196F3")];
   }
 

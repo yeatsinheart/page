@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/share/overlay.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/color-font.dart';
@@ -17,29 +18,37 @@ class PopCloseBottom extends StatelessWidget {
         Positioned.fill(
           child: IgnorePointer(child: Container(color: Colors.black.withValues(alpha: 0.4))),
         ),
-
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ConstrainedBox(
-              constraints: BoxConstraints(minWidth: AppStyle.byPercent(30),maxWidth:  AppStyle.byPercent(80),minHeight: AppStyle.screenHeight*.3,maxHeight:  AppStyle.screenHeight*.8),
-              child: DefaultTextStyle.merge(style: TextStyle(color: ColorFont.get().txt), child: params ?? Container()),
-            ),
-            Container(
-                padding: EdgeInsetsGeometry.only(top:AppStyle.gap/2),
-                child: Center(
-              child: IconButton(
-                icon: Icon(Icons.cancel, size: AppStyle.fontSize*2, color: Colors.white),
-                onPressed: () {
-                  // 执行关闭逻辑，例如：OverlayEntry?.remove()
-                  GlobalOverlayContext.removeByWidgetSelf(key.toString());
-                },
-              ),
-            ),)
-
-          ],
-        ),
+        Column(mainAxisAlignment: MainAxisAlignment.center, children: [_content(), _close()]),
       ],
+    );
+  }
+
+  _content() {
+    return ConstrainedBox(
+      constraints: BoxConstraints(minWidth: AppStyle.byPercent(10), maxWidth: AppStyle.byPercent(80), minHeight: AppStyle.screenHeight * .1, maxHeight: AppStyle.screenHeight * .8),
+      child: DefaultTextStyle.merge(
+        style: TextStyle(color: ColorFont.get().txt),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(AppStyle.radius),
+          child: params ?? Container(color: Colors.red),
+          //SafeArea(child: SingleChildScrollView(child: ),
+        ),
+      ),
+    );
+  }
+
+  _close() {
+    return Container(
+      padding: EdgeInsetsGeometry.only(top: AppStyle.gap / 2),
+      child: Center(
+        child: IconButton(
+          icon: Icon(Icons.cancel, size: AppStyle.fontSize * 2, color: Colors.white),
+          onPressed: () {
+            // 执行关闭逻辑，例如：OverlayEntry?.remove()
+            GlobalOverlayContext.removeByWidgetSelf(key.toString());
+          },
+        ),
+      ),
     );
   }
 }

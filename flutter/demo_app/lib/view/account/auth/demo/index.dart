@@ -66,7 +66,7 @@ class _State extends State<AccountAuthDemoIndex> with SingleTickerProviderStateM
     final total = contentHeight + keyboardHeight ;
     /// 总体不能超过屏幕高
     final over = total - AppStyle.screenHeight ;
-    Log.i("$total ${AppStyle.screenHeight} $over");
+    //Log.i("$total ${AppStyle.screenHeight} $over");
     double padding = keyboardHeight;
     if(over<=0)padding=(keyboardHeight + over).clamp(0.0, keyboardHeight);
     /// 允许的 padding（不能小于 0）

@@ -27,12 +27,9 @@ cross_right_part() {
 }
 
 persit_header(txt, color, height) {
-  return SliverPersistentHeader(
-    pinned: true,
-    delegate: StickyHeader(
-      child: container_demo(height: height, txt: txt, color: color),
+  return StickyHeader(
+       container_demo(height: height, txt: txt, color: color),
       height: height,
-    ),
   );
 }
 

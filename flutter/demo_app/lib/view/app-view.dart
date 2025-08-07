@@ -10,7 +10,7 @@ final Map<String, String> _views = {
   //"app_layout": "/demo/main", // 先只跑演示
   "language": "/app/language",
 
-  "home": "/app/home/wg",
+  "home": "/app/home/top-sticky-category",
   "me": "/account/home/demo",
   "auth": "/account/auth/demo",
 

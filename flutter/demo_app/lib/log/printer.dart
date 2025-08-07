@@ -243,7 +243,7 @@ class AppLogPrinter extends LogPrinter {
   bool _isInExcludePaths(String segment) {
     for (var element in excludePaths) {
       /// 排除方法再这里
-      print(segment);
+      //print(segment);
       if (segment.startsWith(element)||segment.contains("package:"+element)) {
         return true;
       }

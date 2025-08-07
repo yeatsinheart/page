@@ -27,13 +27,10 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
   double left_right_height = AppStyle.screenHeight;
 
   persit_header(txt, color, height) {
-    return SliverPersistentHeader(
-      pinned: true,
-      delegate: StickyHeader(
+    return StickyHeader(
         //pinnedCallBack: pinnedCallBack,
-        child: container_demo(height: height, txt: txt, color: color),
+         container_demo(height: height, txt: txt, color: color),
         height: height,
-      ),
     );
   }
 

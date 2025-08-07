@@ -64,11 +64,9 @@ class _Demo1State extends State<Demo1> with TickerProviderStateMixin {
                           return [
                             SliverOverlapAbsorber(
                               handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                              sliver: SliverPersistentHeader(
-                                pinned: true,
-                                delegate: StickyHeader(
+                              sliver: StickyHeader(
                                   height: 50,
-                                  child: SizedBox.expand(
+                                SizedBox.expand(
                                     child: Container(
                                       color: Colors.orange,
                                       child: TabBar(
@@ -80,7 +78,6 @@ class _Demo1State extends State<Demo1> with TickerProviderStateMixin {
                                       ),
                                     ),
                                   ),
-                                ),
                               ),
                             ),
                           ];

@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
 
-class StickyHeader extends SliverPersistentHeaderDelegate {
+class StickyHeader extends StatelessWidget {
+  final double height;
+  final Widget child;
+  StickyHeader(this.child,{required this.height,super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverPersistentHeader(
+      pinned: true, // 关键：固定吸顶
+      delegate: _Header(
+        height:height,
+        child: child,
+      ),
+    );
+  }
+
+}
+class _Header extends SliverPersistentHeaderDelegate {
   final Widget child;
   final double height;
   final double? heightFixed;// 固定高度
   final Function(double offset)? pinnedCallBack;
 
-  StickyHeader({required this.child, required this.height, this.pinnedCallBack,this.heightFixed, minHeight, maxHeight});
+  _Header({required this.child, required this.height, this.pinnedCallBack,this.heightFixed, minHeight, maxHeight});
 
   @override
   double get minExtent => height;
@@ -27,7 +44,7 @@ class StickyHeader extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  bool shouldRebuild(covariant StickyHeader oldDelegate) {
+  bool shouldRebuild(covariant _Header oldDelegate) {
     return true;
   }
 }

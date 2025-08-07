@@ -28,7 +28,7 @@ Widget iconWithBadge({required IconData icon, required bool showBadge, color, in
             child: count != null
                 ? Text(
                     count > 9 ? '9+' : '$count',
-                    style: TextStyle().copyWith(color: color, fontSize: 10, fontWeight: FontWeight.bold,height: 1),
+                    style: TextStyle().copyWith(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold,height: 1),
                     textAlign: TextAlign.center,
                   )
                 : SizedBox.shrink(), // 只有红点不显示数字

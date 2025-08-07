@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3/demo/main.dart';
 import 'package:flutter3/view/account/auth/demo/index.dart';
 import 'package:flutter3/view/account/home/demo.dart';
+import 'package:flutter3/view/app/home/top-sticky-category.dart';
 import 'package:flutter3/view/app/home/wg.dart';
 import 'package:flutter3/view/app/host_status/index.dart';
 import 'package:flutter3/view/app/language.dart';
@@ -28,6 +29,7 @@ Widget? widgetOfPath(String? path,{key,params}) {
     case "/demo/main": return MainDemo(key:key,params: params);
     case "/account/auth/demo/index": return AccountAuthDemoIndex(key:key,params: params);
     case "/account/home/demo": return AccountHomeDemo(key:key,params: params);
+    case "/app/home/top-sticky-category": return AppHomeTopStickyCategory(key:key,params: params);
     case "/app/home/wg": return AppHomeWg(key:key,params: params);
     case "/app/host_status/index": return AppHostStatusIndex(key:key,params: params);
     case "/app/language": return AppLanguage(key:key,params: params);

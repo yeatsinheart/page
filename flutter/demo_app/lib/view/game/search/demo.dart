@@ -67,11 +67,9 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
           child: CustomScrollView(
             controller: _pageScrollController,
             slivers: [
-              SliverPersistentHeader(
-                pinned: true,
-                delegate: StickyHeader(
+              StickyHeader(
                   height: AppStyle.byRem(1.66),// 输入框最大高度.66 + .2 + .6
-                  child: ContainerFormat(
+                   ContainerFormat(
                     "tab",
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,// 这样才能解决输入框高度不确定问题
@@ -93,7 +91,6 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
                     ),
                   ),
                 ),
-              ),
 
               // 当前 Tab 对应的内容
               SliverPadding(

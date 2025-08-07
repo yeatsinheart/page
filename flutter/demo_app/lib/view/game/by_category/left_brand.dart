@@ -187,49 +187,36 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
   }
 
   Widget getHeader1() {
-    return SliverPersistentHeader(
-      // padding 永远和header保持>一个导航栏高度
-      pinned: true,
-      // 最大高度
-      delegate: StickyHeader(
-        height: AppStyle.byRem(.9),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // 左侧 logo
-            Img('assets/images/launcher.png', width: AppStyle.byRem(0.7), height: AppStyle.byRem(0.7)),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  _changeCategory = !_changeCategory;
-                });
-              },
-              child: Text('某分类'),
-              style: ButtonStyle(
-                foregroundColor: WidgetStateProperty.all(Colors.blue),
-                shape: WidgetStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
-                    side: BorderSide(color: Colors.blue),
-                  ),
-                ),
+    return StickyHeader(Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        // 左侧 logo
+        Img('assets/images/launcher.png', width: AppStyle.byRem(0.7), height: AppStyle.byRem(0.7)),
+        TextButton(
+          onPressed: () {
+            setState(() {
+              _changeCategory = !_changeCategory;
+            });
+          },
+          child: Text('某分类'),
+          style: ButtonStyle(
+            foregroundColor: WidgetStateProperty.all(Colors.blue),
+            shape: WidgetStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppStyle.byRem(.1)),
+                side: BorderSide(color: Colors.blue),
               ),
             ),
-          ],
+          ),
         ),
-      ),
-    );
+      ],
+    ), height: AppStyle.byRem(.9));
   }
 
   Widget getHeader2() {
     return SliverConstrainedCrossAxis(
       maxExtent: 80,
-      sliver: SliverPersistentHeader(
-        // padding 永远和header保持>一个导航栏高度
-        pinned: true,
-        // 最大高度
-        delegate: StickyHeader(height: AppStyle.screenHeight - AppStyle.byRem(1.24), child: _buildTabBar()),
-      ),
+      sliver: StickyHeader(height: AppStyle.screenHeight - AppStyle.byRem(1.24),  _buildTabBar()),
     );
   }
 

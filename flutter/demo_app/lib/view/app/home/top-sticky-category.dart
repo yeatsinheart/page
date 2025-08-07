@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/i18n.dart';
 import 'package:flutter3/share/sticky-header.dart';
@@ -41,84 +42,91 @@ class _State extends State<AppHomeTopStickyCategory> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: SafeArea(
-          bottom: false,
-          child: NotificationListener(
-            onNotification: (notification) {
-              //print(notification);
-              if (notification is ScrollStartNotification) {
-                //print('🚀 Start Scrolling');
-                //isScrolling = true;
-              } else if (notification is ScrollUpdateNotification) {
-                //headerSticky();_onPageScroll();
-                //print('📦 Offset = ${notification.metrics.pixels}');
-              } else if (notification is ScrollEndNotification) {
-                //print('🛑 Scroll End'); // 一直接收到
-                _onPageScroll();
-                //isScrolling = false;
-              } else if (notification is OverscrollNotification) {
-                //headerSticky();_onPageScroll();
-              }
-              // return true; // 阻止通知继续传递
-              return false; // 不阻止通知继续传递
-            },
-            child: CustomScrollView(
-              cacheExtent: 1000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
-              controller: _pageScrollController,
-              slivers: [
-                // 固定顶部图片
-                // 在主轴方向（通常是垂直）保持同步滚动行为。
-                // 上下结构 SliverMainAxisGroup
-                // 左右结构 SliverCrossAxisGroup
-                SliverMainAxisGroup(
-                  slivers: [
-                    StickyHeader(height: AppStyle.byRem(0.9), BarBrandDemo()),
-                    NotificationListener<ScrollNotification>(
-                      onNotification: (_) => true, // 拦截，不向上传递
-                      child: SliverToBoxAdapter(child: AppView.ofKey("swiper")),
-                    ),
-                    // web存在热重启问题，可无视
-                    NotificationListener<ScrollNotification>(
-                      onNotification: (_) => true, // 拦截，不向上传递
-                      child: SliverToBoxAdapter(child: AppView.ofKey("marquee")),
-                    ),
-                    StickyHeader(height: AppStyle.byRem(.9), _buildTabBar()),
-                    /*
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        statusBarColor: AppStyle.getMainColor(),  // 设置状态栏颜色为红色
+        statusBarIconBrightness: AppStyle.isDark()?Brightness.dark:Brightness.light, // 图标颜色，根据背景选择
+      ),
+      child: Scaffold(
+        body: Container(
+          child: SafeArea(
+            bottom: false,
+            child: NotificationListener(
+              onNotification: (notification) {
+                //print(notification);
+                if (notification is ScrollStartNotification) {
+                  //print('🚀 Start Scrolling');
+                  //isScrolling = true;
+                } else if (notification is ScrollUpdateNotification) {
+                  //headerSticky();_onPageScroll();
+                  //print('📦 Offset = ${notification.metrics.pixels}');
+                } else if (notification is ScrollEndNotification) {
+                  //print('🛑 Scroll End'); // 一直接收到
+                  _onPageScroll();
+                  //isScrolling = false;
+                } else if (notification is OverscrollNotification) {
+                  //headerSticky();_onPageScroll();
+                }
+                // return true; // 阻止通知继续传递
+                return false; // 不阻止通知继续传递
+              },
+              child: CustomScrollView(
+                cacheExtent: 1000000, // 可以理解为预渲染多少px 设一个较大值让它提前布局 首页数量少可以这样操作，这样tab连动就不会出bug
+                controller: _pageScrollController,
+                slivers: [
+                  // 固定顶部图片
+                  // 在主轴方向（通常是垂直）保持同步滚动行为。
+                  // 上下结构 SliverMainAxisGroup
+                  // 左右结构 SliverCrossAxisGroup
+                  SliverMainAxisGroup(
+                    slivers: [
+                      StickyHeader(height: AppStyle.byRem(0.9), BarBrandDemo()),
+                      // SliverToBoxAdapter(child: BarBrandDemo(),),
+                      NotificationListener<ScrollNotification>(
+                        onNotification: (_) => true, // 拦截，不向上传递
+                        child: SliverToBoxAdapter(child: AppView.ofKey("swiper")),
+                      ),
+                      // web存在热重启问题，可无视
+                      NotificationListener<ScrollNotification>(
+                        onNotification: (_) => true, // 拦截，不向上传递
+                        child: SliverToBoxAdapter(child: AppView.ofKey("marquee")),
+                      ),
+                      StickyHeader(height: AppStyle.byRem(.9), _buildTabBar()),
+                      /*
         SliverChildBuilderDelegate懒加载[监听位置会有找不到的问题]
         SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
             return _buildSection(tabs[index], _data_keys[index]);
           }, childCount: tabs.length),
         ),*/
-                    // SliverChildListDelegate立即渲染
-                    //SliverList(delegate: SliverChildListDelegate(
-                    // 为什么用 SliverToBoxAdapter 包裹组件后，localToGlobal(Offset.zero) 只能获取到 viewport 内的偏移？而用 SliverList 的子项则能返回全局偏移（如 2390）？
-                    // 因为 SliverList 使用了 SliverChildBuilderDelegate，具有 懒加载 机制，它会：
-                    // 根据当前滚动情况提前加载一些 item（前后多个 buffer 区域）；
-                    // 如果你用 SliverChildListDelegate（你用的是这个），它实际上是一次性构建所有子项，所以你会发现所有组件的 key.currentContext 都能用；
-                    // 所以你才能获取 Offset(0.0, 2390.0)，因为它被提前 build 出来了。
-                    //
-                    // 虽然每个 SliverToBoxAdapter 是一个完整的 Sliver，但它不会自动预渲染所有项；
-                    // 并且如果组件太大或不在视图附近，Flutter 就不构建它（为了性能优化）；
-                    // 所以你在尝试获取 key.currentContext 时会失败或得到 Offset.zero（默认坐标）；
-                    SliverList(
                       // SliverChildListDelegate立即渲染
-                      delegate: SliverChildListDelegate(
-                        List.generate(tabs.length, (index) {
-                          Widget? x = AppView.ofPath("/game/home_category/list_brand", key: _data_keys[index], params: {"title": tabs[index]});
-                          return x ?? Container();
-                        }),
+                      //SliverList(delegate: SliverChildListDelegate(
+                      // 为什么用 SliverToBoxAdapter 包裹组件后，localToGlobal(Offset.zero) 只能获取到 viewport 内的偏移？而用 SliverList 的子项则能返回全局偏移（如 2390）？
+                      // 因为 SliverList 使用了 SliverChildBuilderDelegate，具有 懒加载 机制，它会：
+                      // 根据当前滚动情况提前加载一些 item（前后多个 buffer 区域）；
+                      // 如果你用 SliverChildListDelegate（你用的是这个），它实际上是一次性构建所有子项，所以你会发现所有组件的 key.currentContext 都能用；
+                      // 所以你才能获取 Offset(0.0, 2390.0)，因为它被提前 build 出来了。
+                      //
+                      // 虽然每个 SliverToBoxAdapter 是一个完整的 Sliver，但它不会自动预渲染所有项；
+                      // 并且如果组件太大或不在视图附近，Flutter 就不构建它（为了性能优化）；
+                      // 所以你在尝试获取 key.currentContext 时会失败或得到 Offset.zero（默认坐标）；
+                      SliverList(
+                        // SliverChildListDelegate立即渲染
+                        delegate: SliverChildListDelegate(
+                          List.generate(tabs.length, (index) {
+                            Widget? x = AppView.ofPath("/game/home_category/list_brand", key: _data_keys[index], params: {"title": tabs[index]});
+                            return x ?? Container();
+                          }),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
+      )
     );
   }
 

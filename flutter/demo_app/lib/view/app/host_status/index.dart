@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/app-style.dart';
+import 'package:flutter3/i18n.dart';
 import 'package:flutter3/store/host-status.dart';
 import 'package:get/get.dart';
 
@@ -13,12 +15,12 @@ class AppHostStatusIndex extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.separated(
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.all(AppStyle.gap),
         itemBuilder: (context, index) {
           final line = hostStatusStore.lines[index];
           return _build(line);
         },
-        separatorBuilder: (_, __) => const SizedBox(height: 10),
+        separatorBuilder: (_, __) => const SizedBox(height: 3),
         itemCount: hostStatusStore.lines.length,
       ),
     );
@@ -26,37 +28,42 @@ class AppHostStatusIndex extends StatelessWidget {
 
   Widget _build(LineStatus line) {
     return Obx(() {
-      return Card(
-        elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        child: ListTile(
-          // leading: _buildStatusIcon(line.status.value),
-          leading: SignalBar(line),
-          title: Text(line.name, style: const TextStyle(fontWeight: FontWeight.bold)),
-          subtitle: Text(_getStatusText(line)),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              line.status.value == 'testing'
-                  ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
-                  : SizedBox(
-                      width: 24,
-                      height: 24,
-                      child: IconButton(icon: const Icon(Icons.refresh, size: 18), padding: EdgeInsets.zero, constraints: const BoxConstraints(), onPressed: () => hostStatusStore.testLine(line)),
+      return ListTile(
+        // leading: _buildStatusIcon(line.status.value),
+        leading: SignalBar(line),
+        title: Text(line.name, style: TextStyle().copyWith(fontWeight: FontWeight.bold)),
+        subtitle: Text(_getStatusText(line)),
+        onTap: () {
+          hostStatusStore.testLine(line);
+          hostStatusStore.chooseLine(line);
+        },
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            line.status.value == 'testing'
+                ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+                : SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: IconButton(
+                      icon: const Icon(Icons.refresh, size: 18),
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
+                      onPressed: () => hostStatusStore.testLine(line),
                     ),
-              const SizedBox(width: 4),
-              SizedBox(
-                width: 24,
-                height: 24,
-                child: IconButton(
-                  icon: Icon(line.chosen.value ? Icons.check_circle : Icons.circle_outlined, color: line.chosen.value ? Colors.blue : Colors.grey, size: 20),
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(),
-                  onPressed: () => hostStatusStore.chooseLine(line),
-                ),
+                  ),
+            const SizedBox(width: 4),
+            SizedBox(
+              width: 24,
+              height: 24,
+              child: IconButton(
+                icon: Icon(line.chosen.value ? Icons.check_circle : Icons.circle_outlined, color: line.chosen.value ? Colors.blue : Colors.grey, size: 20),
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                onPressed: () => hostStatusStore.chooseLine(line),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       );
     });
@@ -66,7 +73,7 @@ class AppHostStatusIndex extends StatelessWidget {
 String _getStatusText(LineStatus line) {
   switch (line.status.value) {
     case 'online':
-      return '延迟: {value} ms'.trParams({"value": line.speed.value.toString()});
+      return '延迟: @value ms'.tParams({"value": line.speed.value.toString()});
     case 'off':
       return '无法连接'.tr;
     case 'testing':
@@ -89,9 +96,9 @@ class SignalBar extends StatelessWidget {
     int activeBars = 0;
     Color activeColor = Colors.green;
     if (line.status.value == 'unknown') {
-      return const Icon(Icons.help_outline, color: Colors.orange);
+      return const Icon(Icons.help_outline, color: Colors.orange ,size: 30,);
     } else if (line.status.value == 'off') {
-      return const Icon(Icons.warning, color: Colors.red);
+      return const Icon(Icons.warning, color: Colors.red,size: 30);
     }
     int speed = line.speed.value;
     if (speed < 80) {

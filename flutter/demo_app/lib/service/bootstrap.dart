@@ -24,6 +24,12 @@ class BootstrapService {
       //()async{AppStyleStore.style=config["host"]??{};}(),
       //()async{AppStyleStore.style=config["language"]??{};}(),
       () async {
+        HostStatusStore().listen(config["host"] ?? []);
+      }(),
+          () async {
+            LanguageStore().listen(config["language"] ?? []);
+      }(),
+      () async {
         AppView.setViews(config["view"] ?? {});
       }(),
       () async {

@@ -15,7 +15,7 @@ class ApiDio {
 
   factory ApiDio() => _instance;
   static final ApiDio _instance = ApiDio._internal();
-  Dio dio = getDio(Get.find<HostStatusStore>().chosenLine ?? 'https://example.com');
+  Dio dio = getDio(Get.find<HostStatusStore>().chosenLine?.getHost() ?? 'https://example.com');
 }
 
 class HostCheckDio {

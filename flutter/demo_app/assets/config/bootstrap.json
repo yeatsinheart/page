@@ -197,8 +197,8 @@
     "code": "ms_MY"
    }
   ],
-  "chosen": "en_US",
-  "fallback": "en_US"
+  "chosen": "zh_CN",
+  "fallback": "zh_CN"
  },
  "view": {},
  "layout": {

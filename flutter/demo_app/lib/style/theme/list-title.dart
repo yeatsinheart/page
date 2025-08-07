@@ -4,11 +4,12 @@ import 'package:flutter3/style/color-font.dart';
 
 getListTitleTheme({fontColor}){
   return ListTileThemeData(
+
     // contentPadding: EdgeInsets.symmetric(horizontal: AppStyleStore.byRem(.2)),
     contentPadding: EdgeInsets.symmetric(horizontal: AppStyle.byRem(0)),
     iconColor: fontColor ?? ColorFont.get().txt,
     textColor: fontColor ?? ColorFont.get().txt,
-    tileColor: fontColor ?? ColorFont.get().txt,
+    //tileColor: fontColor ?? ColorFont.get().txt, 影响背景色
     style: ListTileStyle.list,
   );
 }

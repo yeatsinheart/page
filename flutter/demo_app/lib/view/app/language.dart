@@ -31,7 +31,9 @@ class AppLanguage extends StatelessWidget {
           return TextButton(
             // style: ElevatedButton.styleFrom(backgroundColor: selected ? Colors.blue : null, padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16)),
             onPressed: () => languageStore.choose(lang["code"]!),
-            child: Row(
+            child: Container(
+              padding: EdgeInsetsGeometry.all(AppStyle.gap),
+                child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
@@ -43,7 +45,8 @@ class AppLanguage extends StatelessWidget {
                 ),
                 Text(lang["flag"]!, style: TextStyle()),
               ],
-            ),
+            ),)
+            
           );
         },
         separatorBuilder: (_, __) => const Divider(),

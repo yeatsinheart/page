@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter3/log/logger.dart';
+import 'package:flutter3/request/api.dart';
 import 'package:get/get.dart';
 
 class HostStatusStore extends GetxService {
@@ -18,9 +19,7 @@ class HostStatusStore extends GetxService {
   //final Rxn<List<LineStatus>> lines = Rxn<List<LineStatus>>([]);
   // await Get.putAsync(() => HostStatusStore().init(null)); 保证能初始化成功
 
-  listen(data) async {}
-
-  updateByJson(json) async {
+  listen(json) async {
     List<LineStatus> tmp = [];
     for (var data in json) {
       tmp.add(LineStatus(name: data["name"], domain: data["domain"], https: data["https"], wildcard: data["wildcard"]));
@@ -49,10 +48,12 @@ class HostStatusStore extends GetxService {
     final stopwatch = Stopwatch()..start();
     try {
       line.status.value = "testing";
-
       /// 因为要指定域名
-      //await Api.checkHost(line.getHost());
+      // var data = await Api.checkHost(line.getHost());
       stopwatch.stop();
+      // if(data==null){
+      //   line.status.value = "off";return;
+      // }
       // 是不是对应域名的响应速度回写到线路中呢。
       line.speed.value = stopwatch.elapsedMilliseconds;
       line.status.value = "online";

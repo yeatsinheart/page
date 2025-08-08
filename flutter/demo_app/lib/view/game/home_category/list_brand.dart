@@ -4,6 +4,7 @@ import 'package:flutter3/share/grid.dart';
 import 'package:flutter3/share/img.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/format/container.dart';
+import 'package:flutter3/view/game/open.dart';
 import 'package:get/get.dart';
 
 class GameHomeCategoryListBrand extends StatefulWidget {
@@ -76,7 +77,9 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
   Widget buildGridItem(String title) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(AppStyle.radius),
-      child: Stack(
+      child: TextButton(onPressed: (){
+        AppRoute.open(GameOpen());
+      }, child: Stack(
         children: [
           // Container(
           //   color: Colors.grey[300],
@@ -107,7 +110,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
             ),
           ),
         ],
-      ),
+      )),
     );
   }
 }

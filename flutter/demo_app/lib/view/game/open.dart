@@ -69,18 +69,30 @@ class _State extends State<GameOpen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ListTile(leading: Icon(Icons.home), title: Text('主页'), onTap: () {}),
           ListTile(leading: Icon(Icons.wallet), title: Text('充值'), onTap: () {}),
+          ListTile(leading: Icon(Icons.list_alt), title: Text('帐变记录'), onTap: () {}),
+          ListTile(leading: Icon(Icons.list), title: Text('游戏记录'), onTap: () {}),
           ListTile(leading: Icon(Icons.currency_exchange), title: Text('余额操作'), onTap: () {}),
           ListTile(leading: Icon(Icons.info), title: Text('关于'), onTap: () {}),
           ListTile(
             leading: Icon(Icons.exit_to_app),
-            title: Text('退出'),
+            title: Text('退出游戏'),
             onTap: () {
               Navigator.pop(context);// 先关闭 showModalBottomSheet
               AppRoute.back();
             },
           ),
+          SizedBox(height: 24,),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.block),
+            title: Text('不操作'),
+            onTap: () {
+              Navigator.pop(context);// 关闭 showModalBottomSheet
+            },
+          ),
+
+          SizedBox(height: 24,),
         ],
       ),
     );
@@ -110,7 +122,7 @@ class _State extends State<GameOpen> {
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(100)),
-                child: Container(padding: EdgeInsetsGeometry.all(6), color: Colors.white, child: const Icon(Icons.home, size: 44)),
+                child: Container(padding: EdgeInsetsGeometry.all(6), color: Colors.white, child: const Icon(Icons.settings, size: 44)),
               ),
             ),
           ),

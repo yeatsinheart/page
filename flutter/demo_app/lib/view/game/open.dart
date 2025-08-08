@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/share/webview.dart';
+import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/view/game/helper.dart';
 
 class GameOpen extends StatefulWidget {
@@ -90,14 +91,14 @@ class _State extends State<GameOpen> {
   }
 
   _layout_default() {
-    return SafeArea(
+    return ContainerFormat("page", SafeArea(
       child: Stack(
         children: [
           Positioned.fill(child: WebView(url: "https://m.yfsp.tv/",html: widget.html,type: widget.type,header: widget.header,body: widget.body,)),
           GameHelper(),
         ],
       ),
-    );
+    ));
   }
 
   @override

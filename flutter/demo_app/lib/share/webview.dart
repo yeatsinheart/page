@@ -64,7 +64,7 @@ class _HtmlContentState extends State<WebView> with AutomaticKeepAliveClientMixi
   void initState() {
     super.initState();
     contentHeight = widget.initHeight;
-
+    if (kIsWeb) {return;}
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(Colors.transparent)
@@ -148,7 +148,7 @@ class _HtmlContentState extends State<WebView> with AutomaticKeepAliveClientMixi
   Widget build(BuildContext context) {
     super.build(context);
     if (kIsWeb) {
-      return Center(child: Text("Web端暂不支持"));
+      return Center(child: Text("网页版暂不支持"));
     }
     return SizedBox(
       width: double.infinity,

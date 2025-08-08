@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class StickyHeader extends StatelessWidget {
   final double height;
   final Widget child;
-  StickyHeader(this.child,{required this.height,super.key});
+  final Function(double offset)? pinnedCallBack;
+  StickyHeader(this.child,{required this.height,super.key,this.pinnedCallBack});
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +15,7 @@ class StickyHeader extends StatelessWidget {
       delegate: _Header(
         height:height,
         child: child,
+        pinnedCallBack: pinnedCallBack
       ),
     );
   }

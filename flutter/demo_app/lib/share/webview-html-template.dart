@@ -26,24 +26,11 @@ String html_template_wrap(String content,{bgColor,fontColor,fontSize}) {
     pointer-events: none;
   }
   #server-html-content {
-    width: 100%;display: block;
+    width: 100%;
     pointer-events: auto; /* 允许内容内交互 */
   }
 </style>
 ${ckeditor_css()}
-<script>
-  ${all_loaded()}
-  // 监听内容变化自动更新高度（可选）
-  // const observer = new MutationObserver(() => {
-  //   sendHeight();
-  // });
-  // window.addEventListener('load', () => {
-  //   const el = document.getElementById('server-html-content');
-  //   if(el){
-  //     observer.observe(el, { childList: true, subtree: true, attributes: true });
-  //   }
-  // });
-</script>
 </head>
 <body>
   <div id="server-html-content" class="ck-content">
@@ -88,11 +75,11 @@ String all_loaded(){
     HeightHandler.postMessage(height.toString());
   }
 
-  window.onload = function() {
+  //window.onload = function() {
     waitForImagesToLoad(() => {
       sendHeight();
     });
-  };
+  //};
 """;
 }
 String ckeditor_css(){

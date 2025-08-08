@@ -111,6 +111,7 @@ class _HtmlContentState extends State<WebView> with AutomaticKeepAliveClientMixi
           setState(() {
             _canGoBack = canGoBack;
           });
+          await _controller.runJavaScript(all_loaded());
         },
       ),
     );
@@ -145,10 +146,11 @@ class _HtmlContentState extends State<WebView> with AutomaticKeepAliveClientMixi
     return SizedBox(
       width: double.infinity,
       height: contentHeight,
-      child: PopScope(
-          onPopInvokedWithResult: _handlePop,
-          child:  WebViewWidget(controller: _controller),
-      ),
+      child: WebViewWidget(controller: _controller),
+      // PopScope(
+      //     onPopInvokedWithResult: _handlePop,
+      //     child:
+      // ),
     );
   }
 

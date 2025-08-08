@@ -1,17 +1,39 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
+
+class NativeWebView {
+  static const _channel = MethodChannel('com.example/native_webview');
+  static Future<void> open(String url) async {
+    await _channel.invokeMethod('openWebView', {'url': url});
+  }
+  static Future<void> openContent({
+    String? url,
+    String? html,
+    String? title,
+  }) async {
+    await _channel.invokeMethod('openWebView', {
+      'url': url,
+      'html': html,
+      'title': title,
+    });
+  }
+}
 class HtmlContent extends StatefulWidget {
   final String html;
+  final double initHeight;
+  final bool dynamicHeight;
+
   final String? fontSize;
   final String? fontColor;
   final String? bgColor;
   // 网页背景 默认字体大小 默认字颜色
-  HtmlContent({required this.html,this.fontSize="16",this.bgColor="transparent",this.fontColor});
+  HtmlContent({required this.html,this.fontSize="16",this.bgColor="transparent",this.fontColor,initHeight,this.dynamicHeight=false}):this.initHeight=AppStyle.screenHeight;
 
   @override
   State<StatefulWidget> createState() => _State();
@@ -24,9 +46,15 @@ class _State extends State<HtmlContent> with AutomaticKeepAliveClientMixin{
   late InAppWebViewController webViewController;
   InAppWebViewSettings settings = InAppWebViewSettings(
     // isInspectable: kDebugMode,
-    iframeAllow: "camera; microphone",
-    iframeAllowFullscreen: true,
     javaScriptEnabled: true, // 启用 JavaScript
+    // iframeAllow: "camera; microphone",
+    iframeAllowFullscreen: true,
+    useHybridComposition: true, // 重要
+
+    alwaysBounceVertical: false,
+
+    builtInZoomControls: false,
+    displayZoomControls: false,
     transparentBackground: true, // 背景透明（适用于某些自定义 UI）
     supportZoom: true, // 禁止双指缩放
     useShouldOverrideUrlLoading: true, // 允许拦截请求
@@ -42,11 +70,20 @@ class _State extends State<HtmlContent> with AutomaticKeepAliveClientMixin{
     allowUniversalAccessFromFileURLs: true, // 允许本地文件访问网络
     allowsBackForwardNavigationGestures: true, // 启用 iOS 手势返回
   );
-  double contentHeight = 0;
+  double contentHeight = 300;
 
   @override
   void initState() {
     super.initState();
+    contentHeight = widget.initHeight;
+  }
+
+  @override
+  void dispose() {
+    webViewController.stopLoading();
+    webViewController.clearCache();
+    webViewController.clearFocus();
+    super.dispose();
   }
 
   @override
@@ -57,7 +94,6 @@ class _State extends State<HtmlContent> with AutomaticKeepAliveClientMixin{
     return SizedBox(
       height: contentHeight,
         child: InAppWebView(
-
           gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{}.toSet(), // 空集合，不响应任何手势
           initialSettings: settings,
           // initialUrlRequest:URLRequest(url: WebUri("https://inappwebview.dev/")),
@@ -99,10 +135,12 @@ class _State extends State<HtmlContent> with AutomaticKeepAliveClientMixin{
             webViewController.addJavaScriptHandler(
               handlerName: 'heightReady',
               callback: (args) {
-                final height = double.tryParse(args.first.toString()) ?? 100;
-                setState(() {
-                  contentHeight = height;
-                });
+                if(widget.dynamicHeight){
+                  final height = double.tryParse(args.first.toString()) ?? 300;
+                  setState(() {
+                    contentHeight = height;
+                  });
+                }
               },
             );
           },
@@ -110,7 +148,7 @@ class _State extends State<HtmlContent> with AutomaticKeepAliveClientMixin{
 
             // Web 平台不支持 addJavaScriptHandler，但可以直接用 evaluateJavascript
             //controller.evaluateJavascript(source: "console.log('Hello from Flutter Web');");
-            await controller.evaluateJavascript(source: "const el = document.getElementById('server-html-content');const height = el ? el.offsetHeight : 20;console.log('window.innerWidth', window.innerWidth);console.log(document.body.clientWidth);console.log(height);");
+            //await controller.evaluateJavascript(source: "const el = document.getElementById('server-html-content');const height = el ? el.offsetHeight : 20;console.log('window.innerWidth', window.innerWidth);console.log(document.body.clientWidth);console.log(height);");
             //var heightStr = await controller.evaluateJavascript(source: "document.body.scrollHeight.toString()");
             //Log.i(heightStr);
             //setState(() {

@@ -7,7 +7,7 @@ class MarketAnnounceDemo extends StatelessWidget {
 
   MarketAnnounceDemo({this.params, super.key});
 
-  final List<Map<String, String>> data = List.generate(22, (index) => {"title": "标题 $index", "content": "这是内容 $index"});
+  final List<Map<String, String>> data = List.generate(2, (index) => {"title": "标题 $index", "content": "这是内容 $index"});
 
   @override
   Widget build(BuildContext context) {

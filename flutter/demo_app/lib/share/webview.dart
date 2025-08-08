@@ -23,9 +23,9 @@ class WebView extends StatefulWidget {
   final String? url;
 
   // get post-form post-json
-  final String type;
+  final String? type;
   final Map<String, dynamic>? body;
-  final Map<String, String> header;
+  final Map<String, String>? header;
 
   final String? html;
   final double initHeight;
@@ -84,24 +84,28 @@ class _HtmlContentState extends State<WebView> with AutomaticKeepAliveClientMixi
     if (null != widget.html) {
       _controller.loadHtmlString(html_template_wrap(widget.html!, fontSize: widget.fontSize, fontColor: widget.fontColor, bgColor: widget.bgColor));
     } else if (null != widget.url) {
+      LoadRequestMethod requestMethod = LoadRequestMethod.get;
       Uint8List? body;
-      Map<String, String> headers = Map.from(widget.header);
-      switch (widget.type.toLowerCase()) {
+      Map<String, String> headers = Map.from(widget.header??{});
+      switch (widget.type?.toLowerCase()) {
         case "get":
           body = null;
           break;
         case "post-json":
+          requestMethod = LoadRequestMethod.post;
           body = _body_post_json_format(widget.body);
           headers.putIfAbsent('Content-Type', () => 'application/json');
           break;
         case "post-form":
+          requestMethod = LoadRequestMethod.post;
           body = _body_post_form_formate(widget.body);
           headers.putIfAbsent('Content-Type', () => 'application/x-www-form-urlencoded');
           break;
-        default:
-          throw UnimplementedError('Unsupported request type: ${widget.type}');
+        default://就是get
+          body = null;
+          break;
       }
-      _controller.loadRequest(Uri.parse(widget.url!), method: widget.type.toLowerCase() == "get" ? LoadRequestMethod.get : LoadRequestMethod.post, headers: headers, body: body);
+      _controller.loadRequest(Uri.parse(widget.url!), method: requestMethod, headers: headers, body: body);
     }
     // 在 WebView 加载完成回调里更新状态
     _controller.setNavigationDelegate(

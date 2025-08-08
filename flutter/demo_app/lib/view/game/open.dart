@@ -8,11 +8,19 @@ import 'package:flutter3/share/webview.dart';
 import 'package:flutter3/view/game/helper.dart';
 
 class GameOpen extends StatefulWidget {
+  final String? url;
+  // get post-form post-json
+  final String? type;
+  final Map<String, dynamic>? body;
+  final Map<String, String>? header;
+
+  final String? html;
+
   final orientation; //屏幕方向 默认向上 up down left down
   final aspect; //（长宽比例）
   final String layout; //（布局）
 
-  GameOpen({this.orientation = "up", this.aspect, this.layout = "default"});
+  GameOpen({this.url,this.type,this.body,this.header,this.html,this.orientation = "up", this.aspect, this.layout = "default"});
 
   @override
   _State createState() => _State();
@@ -55,6 +63,21 @@ class _State extends State<GameOpen> {
     //Navigator.of(context).pop(result);
   }
 
+  //
+  // ClipRRect(
+  // borderRadius: BorderRadius.all(Radius.circular(100)),
+  // child: Container(padding: EdgeInsetsGeometry.all(6), color: Colors.white, child: const Icon(Icons.settings, size: 44)),
+  // ),
+  @override
+  Widget build(BuildContext context) {
+    return PopScope(
+      canPop: false, // <- 这行是关键！
+      onPopInvokedWithResult: _handleback,
+      child: _layout(),
+    );
+  }
+
+
   _layout() {
     return switch (widget.layout.trim().toLowerCase()) {
       'xxx' => _layout_xxx(),
@@ -70,24 +93,10 @@ class _State extends State<GameOpen> {
     return SafeArea(
       child: Stack(
         children: [
-          Positioned.fill(child: WebView(url: "https://m.yfsp.tv/")),
+          Positioned.fill(child: WebView(url: "https://m.yfsp.tv/",html: widget.html,type: widget.type,header: widget.header,body: widget.body,)),
           GameHelper(),
         ],
       ),
-    );
-  }
-
-  //
-  // ClipRRect(
-  // borderRadius: BorderRadius.all(Radius.circular(100)),
-  // child: Container(padding: EdgeInsetsGeometry.all(6), color: Colors.white, child: const Icon(Icons.settings, size: 44)),
-  // ),
-  @override
-  Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false, // <- 这行是关键！
-      onPopInvokedWithResult: _handleback,
-      child: _layout(),
     );
   }
 

@@ -121,7 +121,9 @@ class _HtmlContentState extends State<WebView> with AutomaticKeepAliveClientMixi
   void dispose() {
     super.dispose();
   }
-  bool _canGoBack=false;
+
+  bool _canGoBack = false;
+
   void _handlePop(bool didPop, Object? result) {
     // didPop: 系统尝试pop时为true
     if (didPop) {
@@ -133,8 +135,9 @@ class _HtmlContentState extends State<WebView> with AutomaticKeepAliveClientMixi
       _controller.goBack();
     } else {
       // WebView不能后退，允许页面退出
-      Navigator.of(context).pop(result);
+      //Navigator.of(context).pop(result);
     }
+    _controller.goBack();
   }
 
   @override
@@ -146,11 +149,11 @@ class _HtmlContentState extends State<WebView> with AutomaticKeepAliveClientMixi
     return SizedBox(
       width: double.infinity,
       height: contentHeight,
-      child: WebViewWidget(controller: _controller),
-      // PopScope(
-      //     onPopInvokedWithResult: _handlePop,
-      //     child:
-      // ),
+      child: PopScope(
+        canPop: false, // <- 这行是关键！
+        onPopInvokedWithResult: _handlePop,
+        child: WebViewWidget(controller: _controller),
+      ),
     );
   }
 

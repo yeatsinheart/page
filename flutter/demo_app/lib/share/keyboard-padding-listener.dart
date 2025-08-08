@@ -16,7 +16,7 @@ class KeyboardPaddingListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedPadding(
-      duration: const Duration(milliseconds: 150),
+      duration: const Duration(milliseconds: 10),
       curve: Curves.easeOut,
       padding: EdgeInsets.only(bottom: _get_keyboard_padding(context)),
       // child: child,
@@ -41,12 +41,12 @@ class KeyboardPaddingListener extends StatelessWidget {
     }
     realHeight();
     double gap = (AppStyle.screenHeight - maxHeight) / 2;
-    double overflow = childHeight - keyboardHeight - AppStyle.screenHeight;
-
-    if (overflow <= 0) {
-      return (keyboardHeight + overflow).clamp(0.0, keyboardHeight);
+    // 默认弹出键盘时padding,键盘是慢慢弹出的,防止为空
+    double padding_default = keyboardHeight-gap;
+    // 如果子元素高度并没有超过最大屏幕，就需要padding扣除超过部分再加点位移
+    if(childHeight<maxHeight){
+      padding_default=padding_default-(maxHeight-childHeight)/2 +gap;
     }
-    Log.i(overflow);
-    return (keyboardHeight - overflow + gap).clamp(0.0, keyboardHeight);
+    return max(padding_default,0);
   }
 }

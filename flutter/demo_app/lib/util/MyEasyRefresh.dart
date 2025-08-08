@@ -1,6 +1,7 @@
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter3/i18n.dart';
 
 //刷新加载控件封装
 class MyEasyRefresh extends StatelessWidget {
@@ -19,13 +20,13 @@ class MyEasyRefresh extends StatelessWidget {
         // refreshedText: "刷新完成",
         // refreshingText: "正在刷新",
         // refreshReadyText: "快放手"
-        dragText: 'Pull to refresh',
-        armedText: 'Release ready',
-        readyText: 'Refreshing...',
-        processingText: 'Refreshing...',
-        processedText: 'Succeeded',
-        noMoreText: 'No more',
-        failedText: 'Failed',
+        dragText: 'Pull to refresh'.t,
+        armedText: 'Release ready'.t,
+        readyText: 'Refreshing...'.t,
+        processingText: 'Refreshing...'.t,
+        processedText: 'Succeeded'.t,
+        noMoreText: 'No more'.t,
+        failedText: 'Failed'.t,
         messageText: 'Last updated at %T',
         safeArea: false,
       ),
@@ -46,10 +47,10 @@ class MyEasyRefresh extends StatelessWidget {
         messageText: 'Last updated at %T',
       ),
       onRefresh: () async {
-        print("刷新完成");
+        //print("刷新完成");
       },
       onLoad: () async {
-        print("加载完成");
+        //print("加载完成");
       },
       child: listView,
     );

@@ -3,8 +3,8 @@ import 'package:flutter3/app-route.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/demo/widget/example-container.dart';
-import 'package:flutter3/share/html-content.dart';
 import 'package:flutter3/share/safe-status-bar.dart';
+import 'package:flutter3/share/webview.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/style/theme/all-theme.dart';
 import 'package:get/get.dart';
@@ -118,7 +118,7 @@ _bottom_right() {
         ),
 
         KeyedSubtree(
-          key: GlobalKey(debugLabel: "demo-webview"),
+          key: GlobalKey(debugLabel: "demo-native-webview"),
           child: ContainerFormat(
             "text-cover",
             ContainerFormat(
@@ -141,17 +141,14 @@ _bottom_right() {
           ),
         ),
         KeyedSubtree(
-          key: GlobalKey(debugLabel: "demo-url"),
+          key: GlobalKey(debugLabel: "demo-native-url"),
           child: ContainerFormat(
             "text-cover",
             ContainerFormat(
               "btn",
               Text("调用URL"),
               click: () {
-                NativeWebView.openContent(
-                  url: "https://chatgpt.com/",
-                  title: "ChatGpt",
-                );
+                NativeWebView.openContent(url: "https://chatgpt.com/", title: "ChatGpt");
               },
             ),
           ),

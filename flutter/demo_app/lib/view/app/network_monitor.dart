@@ -38,10 +38,11 @@ class _AppNetworkMonitorState extends State<AppNetworkMonitor> {
   @override
   void initState() {
     super.initState();
-    _checkInitialConnection();
-    Connectivity().onConnectivityChanged.listen((status) {
-      netChangeAction(status);
-    });
+    hasConnection = true;
+    // _checkInitialConnection();
+    // Connectivity().onConnectivityChanged.listen((status) {
+    //   netChangeAction(status);
+    // });
   }
 
   Future<void> _checkInitialConnection() async {

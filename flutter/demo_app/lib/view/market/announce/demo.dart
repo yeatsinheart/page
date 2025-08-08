@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/share/html-content.dart';
+import 'package:flutter3/share/webview.dart';
 
 class MarketAnnounceDemo extends StatelessWidget {
   final params;
@@ -26,7 +27,7 @@ class MarketAnnounceDemo extends StatelessWidget {
                     style: TextStyle().copyWith(fontSize: AppStyle.fontSize + 2, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 4),
-                  HtmlContent(html: "<div>${data[index]['content']}</div"),
+                  WebView(html: "<div>${data[index]['content']}</div"),
                   Divider(), // 分隔线
                 ],
               ),

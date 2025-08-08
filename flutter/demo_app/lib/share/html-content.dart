@@ -1,29 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 
-class NativeWebView {
-  static const _channel = MethodChannel('com.example/native_webview');
-  static Future<void> open(String url) async {
-    await _channel.invokeMethod('openWebView', {'url': url});
-  }
-  static Future<void> openContent({
-    String? url,
-    String? html,
-    String? title,
-  }) async {
-    await _channel.invokeMethod('openWebView', {
-      'url': url,
-      'html': html,
-      'title': title,
-    });
-  }
-}
 class HtmlContent extends StatefulWidget {
   final String html;
   final double initHeight;
@@ -186,9 +168,7 @@ class _State extends State<HtmlContent> with AutomaticKeepAliveClientMixin{
       <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
       <style>
         html, body {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;margin: 0;padding: 0;
+    width: 100%;max-width: 100%;box-sizing: border-box;margin: 0;padding: 0;
      pointer-events: none;
     user-select: none;
     -webkit-user-select: none;

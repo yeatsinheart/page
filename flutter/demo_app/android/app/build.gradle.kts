@@ -49,4 +49,6 @@ flutter {
 dependencies {
   // ✅ 添加 desugaring 支持库（关键）
   coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+  implementation ("androidx.appcompat:appcompat:1.6.1")
+  implementation ("androidx.webkit:webkit:1.7.0")
 }

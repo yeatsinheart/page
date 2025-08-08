@@ -1,6 +1,8 @@
 import UIKit
 import WebKit
-class WebView: UIViewController {
+
+class WebViewController: UIViewController {
+
     private var webView: WKWebView!
     private var url: URL?
     private var html: String?
@@ -27,12 +29,12 @@ class WebView: UIViewController {
         super.viewDidLoad()
         title = pageTitle
 
-        if let htmlContent = html {
-            webView.loadHTMLString(htmlContent, baseURL: nil)
+        if let html = html {
+            webView.loadHTMLString(html, baseURL: nil)
         } else if let url = url {
             webView.load(URLRequest(url: url))
         } else {
-            webView.loadHTMLString("<h1>No content provided</h1>", baseURL: nil)
+            webView.loadHTMLString("<h1>没有提供内容</h1>", baseURL: nil)
         }
     }
 }

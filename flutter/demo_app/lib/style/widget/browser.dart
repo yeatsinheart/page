@@ -3,6 +3,7 @@ import 'package:flutter3/app-route.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/demo/widget/example-container.dart';
+import 'package:flutter3/share/html-content.dart';
 import 'package:flutter3/share/safe-status-bar.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/style/theme/all-theme.dart';
@@ -12,6 +13,7 @@ import 'package:flutter3/demo/main.dart';
 
 class Browser extends StatelessWidget {
   final child;
+
   const Browser(this.child, {super.key});
 
   @override
@@ -112,7 +114,47 @@ _bottom_right() {
 
         KeyedSubtree(
           key: GlobalKey(debugLabel: "demo-container"),
-          child: ContainerFormat("text-cover", ContainerFormat("btn", Text("容器展示"), click: () => AppRoute.open(ExampleContainer())),),
+          child: ContainerFormat("text-cover", ContainerFormat("btn", Text("容器展示"), click: () => AppRoute.open(ExampleContainer()))),
+        ),
+
+        KeyedSubtree(
+          key: GlobalKey(debugLabel: "demo-webview"),
+          child: ContainerFormat(
+            "text-cover",
+            ContainerFormat(
+              "btn",
+              Text("HTML"),
+              click: () {
+                NativeWebView.openContent(
+                  html: """
+        <html>
+        <body>
+          <h1>公告标题</h1>
+          <p>这是通过 Flutter 传过来的 HTML 内容。</p>
+        </body>
+        </html>
+      """,
+                  title: "公告详情",
+                );
+              },
+            ),
+          ),
+        ),
+        KeyedSubtree(
+          key: GlobalKey(debugLabel: "demo-url"),
+          child: ContainerFormat(
+            "text-cover",
+            ContainerFormat(
+              "btn",
+              Text("调用URL"),
+              click: () {
+                NativeWebView.openContent(
+                  url: "https://chatgpt.com/",
+                  title: "ChatGpt",
+                );
+              },
+            ),
+          ),
         ),
       ],
     ),

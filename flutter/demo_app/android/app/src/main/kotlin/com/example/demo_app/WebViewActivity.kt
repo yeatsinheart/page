@@ -5,18 +5,19 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 
-class WebView : AppCompatActivity() {
+class WebViewActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val titleText = intent.getStringExtra("title")
-    val url = intent.getStringExtra("url")
-    val html = intent.getStringExtra("html")
-
-    supportActionBar?.title = titleText
-
     val webView = WebView(this)
     setContentView(webView)
+
+    val url = intent.getStringExtra("url")
+    val html = intent.getStringExtra("html")
+    val title = intent.getStringExtra("title")
+
+    supportActionBar?.title = title
+
     webView.settings.javaScriptEnabled = true
     webView.webViewClient = WebViewClient()
 
@@ -25,7 +26,7 @@ class WebView : AppCompatActivity() {
     } else if (!url.isNullOrEmpty()) {
       webView.loadUrl(url)
     } else {
-      webView.loadData("<h1>No content provided</h1>", "text/html", "utf-8")
+      webView.loadData("<h1>没有内容</h1>", "text/html", "utf-8")
     }
   }
 }

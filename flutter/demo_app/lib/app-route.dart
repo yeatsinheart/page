@@ -45,8 +45,8 @@ class AppRoute {
     );
   }
 
-  static open(Widget child, {params, Offset from = SlideRoute.right, int time = 100}) {
-    _open(SlideRoute(Browser(child), from: from, time: time));
+  static open(Widget child, {bool browserLimit=true,params, Offset from = SlideRoute.right, int time = 100}) {
+    _open(SlideRoute(browserLimit?Browser(child):child, from: from, time: time));
   }
 
   static _open(PageRouteBuilder route) {

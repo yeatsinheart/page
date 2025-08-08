@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3/app-route.dart';
+import 'package:flutter3/app-style.dart';
 import 'package:flutter3/share/webview.dart';
+import 'package:flutter3/view/game/helper.dart';
 
 class GameOpen extends StatefulWidget {
   final orientation; //屏幕方向 默认向上 up down left down
@@ -41,12 +45,6 @@ class _State extends State<GameOpen> {
     }
   }
 
-  @override
-  void dispose() {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    super.dispose();
-  }
-
   void _handleback(bool didPop, Object? result) {
     // didPop: 系统尝试pop时为true
     if (didPop) {
@@ -63,40 +61,6 @@ class _State extends State<GameOpen> {
       _ => _layout_default(),
     };
   }
-  _action(){
-    return Container(
-      padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ListTile(leading: Icon(Icons.wallet), title: Text('充值'), onTap: () {}),
-          ListTile(leading: Icon(Icons.list_alt), title: Text('帐变记录'), onTap: () {}),
-          ListTile(leading: Icon(Icons.list), title: Text('游戏记录'), onTap: () {}),
-          ListTile(leading: Icon(Icons.currency_exchange), title: Text('余额操作'), onTap: () {}),
-          ListTile(leading: Icon(Icons.info), title: Text('关于'), onTap: () {}),
-          ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('退出游戏'),
-            onTap: () {
-              Navigator.pop(context);// 先关闭 showModalBottomSheet
-              AppRoute.back();
-            },
-          ),
-          SizedBox(height: 24,),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.block),
-            title: Text('不操作'),
-            onTap: () {
-              Navigator.pop(context);// 关闭 showModalBottomSheet
-            },
-          ),
-
-          SizedBox(height: 24,),
-        ],
-      ),
-    );
-  }
 
   _layout_xxx() {
     return Container();
@@ -106,31 +70,18 @@ class _State extends State<GameOpen> {
     return SafeArea(
       child: Stack(
         children: [
-          WebView(url: "https://m.yfsp.tv/"),
-          Positioned(
-            top: 36,
-            left: 16,
-            child: TextButton(
-              onPressed: () async {
-                // 弹出底部菜单
-                showModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return _action();
-                  },
-                );
-              },
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(100)),
-                child: Container(padding: EdgeInsetsGeometry.all(6), color: Colors.white, child: const Icon(Icons.settings, size: 44)),
-              ),
-            ),
-          ),
+          Positioned.fill(child: WebView(url: "https://m.yfsp.tv/")),
+          GameHelper(),
         ],
       ),
     );
   }
 
+  //
+  // ClipRRect(
+  // borderRadius: BorderRadius.all(Radius.circular(100)),
+  // child: Container(padding: EdgeInsetsGeometry.all(6), color: Colors.white, child: const Icon(Icons.settings, size: 44)),
+  // ),
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -138,5 +89,11 @@ class _State extends State<GameOpen> {
       onPopInvokedWithResult: _handleback,
       child: _layout(),
     );
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    super.dispose();
   }
 }

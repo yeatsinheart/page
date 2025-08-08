@@ -17,6 +17,8 @@ class AppStyle extends GetxService {
   static final platformDispatcher = PlatformDispatcher.instance;
   // 获取主窗口
   static final screen = platformDispatcher.views.first;
+  // 记录当前竖屏宽度，不受横竖屏影响
+  static final screenWidth = screen.physicalSize.width / screen.devicePixelRatio;
 
   static String BrightMode = "light"; //"light";// dark
   static isDark(){
@@ -66,7 +68,7 @@ class AppStyle extends GetxService {
 
   /// 实际宽度
   static double get viewWidth {
-    return min(_screenWidth, maxWidth ?? _screenWidth);
+    return min(screenWidth, maxWidth ?? screenWidth);
   }
 
   static double? get maxWidth {
@@ -74,12 +76,6 @@ class AppStyle extends GetxService {
     return value is num ? value.toDouble() : null;
   }
 
-  static double get _screenWidth {
-    // 获取屏幕宽度（逻辑像素）
-    final screenWidth = screen.physicalSize.width / screen.devicePixelRatio;
-    // return MediaQuery.of(AppContext.context).size.width;
-    return screenWidth;
-  }
 
   static double get screenHeight {
     // 获取屏幕高度（逻辑像素）

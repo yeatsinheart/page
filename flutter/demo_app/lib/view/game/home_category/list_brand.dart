@@ -78,7 +78,7 @@ class _GameHomeCategoryListBrandState extends State<GameHomeCategoryListBrand> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(AppStyle.radius),
       child: TextButton(onPressed: (){
-        AppRoute.open(GameOpen());
+        AppRoute.open(GameOpen(),browserLimit:false);
       }, child: Stack(
         children: [
           // Container(

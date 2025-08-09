@@ -29,7 +29,6 @@ class AppHostStatusIndex extends StatelessWidget {
   Widget _build(LineStatus line) {
     return Obx(() {
       return ListTile(
-        // leading: _buildStatusIcon(line.status.value),
         leading: SignalBar(line),
         title: Text(line.name, style: TextStyle().copyWith(fontWeight: FontWeight.bold)),
         subtitle: Text(_getStatusText(line)),

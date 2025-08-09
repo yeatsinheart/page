@@ -2,47 +2,22 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/i18n.dart';
+import 'package:flutter3/share/render-by-value-notify.dart';
 
 import 'package:get/get.dart';
 
 import 'host_status/index.dart';
 
-class AppNetworkMonitor extends StatefulWidget {
+class AppNetworkMonitor extends StatelessWidget {
   final Widget? child;
   final params;
+  final ValueNotifier<bool> hasConnection = ValueNotifier(true);
 
-  const AppNetworkMonitor({super.key, this.child, this.params});
-
-  @override
-  State<AppNetworkMonitor> createState() => _AppNetworkMonitorState();
-}
-
-class _AppNetworkMonitorState extends State<AppNetworkMonitor> {
-  bool hasConnection = false;
-
-  void netChangeAction(status) {
-    if (hasConnection && status.contains(ConnectivityResult.none)) {
-      // 有网变没网
-      setState(() {
-        hasConnection = false;
-      });
-    }
-    if (!hasConnection && !status.contains(ConnectivityResult.none)) {
-      // 网络恢复 执行重试逻辑
-      setState(() {
-        hasConnection = true;
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    hasConnection = true;
-    // _checkInitialConnection();
-    // Connectivity().onConnectivityChanged.listen((status) {
-    //   netChangeAction(status);
-    // });
+  AppNetworkMonitor({super.key, this.child, this.params}) {
+    _checkInitialConnection();
+    Connectivity().onConnectivityChanged.listen((status) {
+      netChangeAction(status);
+    });
   }
 
   Future<void> _checkInitialConnection() async {
@@ -50,13 +25,28 @@ class _AppNetworkMonitorState extends State<AppNetworkMonitor> {
     netChangeAction(status);
   }
 
+  void netChangeAction(status) {
+    if (hasConnection.value && status.contains(ConnectivityResult.none)) {
+      // 有网变没网
+      hasConnection.value = false;
+    }
+    if (!hasConnection.value && !status.contains(ConnectivityResult.none)) {
+      // 网络恢复 执行重试逻辑
+      hasConnection.value = true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // return _buildNoNetworkOverlay();
-    if (!hasConnection) {
-      return _buildNoNetworkOverlay();
-    }
-    return widget.child??Container();
+    return RenderByValueNotify(
+      notifier: hasConnection,
+      render: (value) {
+        if (value == false) {
+          return _buildNoNetworkOverlay();
+        }
+        return child ?? Container();
+      },
+    );
   }
 
   Widget _buildNoNetworkOverlay() {

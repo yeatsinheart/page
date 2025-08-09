@@ -32,7 +32,7 @@ class Img extends StatelessWidget {
     this.square,
     this.width,
     this.height,
-    this.expand=false,
+    this.expand=true,
     this.borderRadius,
     this.borderRadiusTopRight,
     this.borderRadiusTopLeft,

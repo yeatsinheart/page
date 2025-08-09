@@ -6,6 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class AppContext extends GetxService{
+  // 单例一旦创建，就会一直存在内存中，直到程序退出或手动销毁
+  AppContext._internal();
+  static final AppContext _instance = AppContext._internal();
+  factory AppContext() => _instance;
+
 
   // PlatformDispatcher 是 Flutter 中用于访问和监听平台层事件与信息的一个高级接口。它属于 dart:ui 底层层级，跟视图（View）、窗口（Window）、输入、字体、生命周期等交互紧密相关。
   static final platformDispatcher = PlatformDispatcher.instance;

@@ -37,7 +37,7 @@ class GlobalOverlayContext {
             if (blockTouch) ModalBarrier(color: barrierColor ?? Colors.transparent, dismissible: false),
             Theme(
               data: getFlutterTheme(),
-              child: AppStyle.maxWidth == null
+              child: AppStyle.viewWidth >= AppStyle.screenWidth
                   ? widget
                   : Center(
                       child: ConstrainedBox(

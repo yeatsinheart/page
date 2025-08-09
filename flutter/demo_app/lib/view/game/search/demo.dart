@@ -26,7 +26,7 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
 
   build_search() {
     return Padding(
-      padding: EdgeInsets.only(top: AppStyle.gap),
+      padding: EdgeInsets.only(top: AppStyle.gap,right:AppStyle.gap,),
       child: Row(
         children: [
           TextButton(
@@ -40,21 +40,20 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
           ),
           Expanded(
             child: Input(
-              color: Colors.grey[200],
-              animation: true,
-              border:  OutlineInputBorder(
-                borderSide: BorderSide(color: ColorFont.get().txt!,width: 0),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: ColorFont.get().txt!, width: 2),
                 borderRadius: BorderRadius.circular(AppStyle.radius),
               ),
               placeHolder: "输入搜索内容",
               prefix: Icon(Icons.search, size: AppStyle.fontSize * AppStyle.lineHeight), // 适配设计稿大小
-              suffix: TextButton(onPressed: () {}, child: Text("搜索"), style: ButtonStyle().copyWith()),
-                  //TextButton(onPressed: () {}, child: Text("搜索",style: TextStyle(fontSize:AppStyle.fontSize,),)),
+              suffix: TextButton(onPressed: () {}, child:  Text("搜索"), style: ButtonStyle().copyWith()),
+              //TextButton(onPressed: () {}, child: Text("搜索",style: TextStyle(fontSize:AppStyle.fontSize,),)),
             ),
-            ),
-            // prefixIcon:
-            // hintText: "输入搜索内容",
-            // fillColor: Colors.grey[200],
+          ),
+          TextButton(onPressed: () {}, child: Text("搜索"), style: ButtonStyle().copyWith())
+          // prefixIcon:
+          // hintText: "输入搜索内容",
+          // fillColor: Colors.grey[200],
           // SizedBox(width: AppStore.byRem(.1)),
           //
         ],
@@ -72,26 +71,28 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
             controller: _pageScrollController,
             slivers: [
               StickyHeader(
-                heightFixed: AppStyle.byRem(1.66), // 输入框最大高度.66 + .2 + .6
+                heightFixed: AppStyle.byRem(2.66), // 输入框最大高度.66 + .2 + .6
                 ContainerFormat(
                   "tab",
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween, // 这样才能解决输入框高度不确定问题
-                    children: [
-                      build_search(),
-                      // .6rem
-                      tab_bar_demo(
-                        tabs: tabs,
-                        currentIndex: _currentIndex,
-                        onTap: (index) {
-                          setState(() {
-                            _currentIndex = index;
-                          });
-                          // 滚动到顶部
-                          _pageScrollController.animateTo(0, duration: Duration(milliseconds: 300), curve: Curves.easeOut);
-                        },
-                      ),
-                    ],
+                  SizedBox.expand(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween, // 这样才能解决输入框高度不确定问题
+                      children: [
+                        build_search(),
+                        // .6rem
+                        tab_bar_demo(
+                          tabs: tabs,
+                          currentIndex: _currentIndex,
+                          onTap: (index) {
+                            setState(() {
+                              _currentIndex = index;
+                            });
+                            // 滚动到顶部
+                            _pageScrollController.animateTo(0, duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

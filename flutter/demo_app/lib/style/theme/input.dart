@@ -22,6 +22,7 @@ getInputTheme({fontColor}) {
 // 有 hintText → Flutter 会把 contentPadding 调整得更大（尤其是 bottom padding），以便给 hint 文本留空间，结果光标整体被抬高或下移，导致看起来“超过了下边框”。
   final double fontSize = 14;
   final double verticalPadding = (48 - fontSize) / 2; // 48 是总高度
+  var txt = getTextStyle();
   return InputDecorationTheme(
     // 设置 isCollapsed: true 时，输入框高度只由 contentPadding 决定，适合你想做非常紧凑的样式。
     isCollapsed: true,isDense: true,
@@ -42,17 +43,17 @@ getInputTheme({fontColor}) {
     // focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppStyleStore.getMainColor())),
     // labelStyle: TextStyle(color: AppStyleStore.getMainColor()),
 
-    helperStyle: getTextStyle(),
-    errorStyle: getTextStyle(),
-    labelStyle: getTextStyle(),
-    floatingLabelStyle: getTextStyle(),
+    helperStyle: txt,
+    errorStyle: txt,
+    labelStyle: txt,
+    floatingLabelStyle: txt,
     iconColor: fontColor ?? ColorFont.get().txt!,
 
-    prefixStyle: getTextStyle(),
+    prefixStyle: txt,
     prefixIconColor: fontColor ?? ColorFont.get().txt!,
     prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0,),
 
-    suffixStyle: getTextStyle(),
+    suffixStyle: txt,
     suffixIconColor: fontColor ?? ColorFont.get().txt!,
     suffixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0,),
 

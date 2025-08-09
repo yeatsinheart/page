@@ -77,4 +77,7 @@ class AppStyle extends GetxService {
   static double get lineHeight{
     return data["lineHeight"];
   }
+  static int get fontHeight{
+    return (lineHeight*fontSize).round();
+  }
 }

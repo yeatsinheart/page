@@ -7,8 +7,9 @@ class Input extends StatefulWidget {
    final String? placeHolder;
 
    late final Color? bgColor;
-   final Widget? prefix;
-   final Widget? suffix;
+   /// 高度要适中，会撑开输入框
+   final Widget? prefix;// 头部区
+   final Widget? suffix;// 尾部区
    final InputBorder border;
    /*
   InputBorder border = OutlineInputBorder(
@@ -31,17 +32,21 @@ class Input extends StatefulWidget {
 
 class _State extends State<Input> {
   final _textController = TextEditingController();
-
   double offsetHorizon = 16;
-  double offsetVertical = 10;
-  double offsetBottom = 10;
+  double offsetVertical = 12;
+  double offsetBottom = 12;
+  double rowHeight = 0;
   var clearButton = ValueNotifier<bool>(false);
 
   @override
   void initState() {
     super.initState();
-    offsetBottom = null != widget.placeHolder ? offsetVertical - 3 : offsetVertical;
+    // 字高 1.2 时相差1.2
+    // 实际bottom=设置的bottom−3.6
+    offsetBottom = null != widget.placeHolder ? offsetVertical - 1.2 : offsetVertical;
+    // offsetBottom =  offsetVertical;
     _textController.addListener(_inputListen);
+    rowHeight=AppStyle.fontHeight+2*(12-3.6);
   }
 
   @override
@@ -52,9 +57,7 @@ class _State extends State<Input> {
   }
 
   _inputListen() {
-    if (widget.clear && _textController.text.length > 0) {
-      clearButton.value = true;
-    }
+      clearButton.value = widget.clear && _textController.text.length > 0;
   }
 
   @override
@@ -64,7 +67,9 @@ class _State extends State<Input> {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.only(left: offsetHorizon, right: offsetHorizon, bottom: offsetVertical, top: offsetBottom),
         labelText: widget.animation ? widget.placeHolder : null,
-        hintText: widget.animation ? null : widget.placeHolder,
+
+        hintText: widget.animation ? null : "${widget.placeHolder}",
+
         fillColor: widget.bgColor,
         //  suffix（以及 prefix）位置并不是自由居中的，它是被 InputDecorator 按照基线（baseline）对齐规则放置的，而不是垂直居中放置。
         // 所以当你在 suffix 里放一个 TextButton，它会以文字基线来对齐，而不是以整个输入框高度来对齐，这就导致你看到它会有一点“偏下”或者“偏上”。
@@ -72,7 +77,7 @@ class _State extends State<Input> {
 
         /// 一直会显示
         // suffix: suffix,
-        suffixIcon: Row(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.center, children: [_clear_button(), ..._suffix()]),
+        suffixIcon: SizedBox(height: rowHeight,child:Row(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.center, children: [_clear_button(), ..._suffix()])),
 
         border: widget.border,
         enabledBorder: widget.border,
@@ -82,11 +87,11 @@ class _State extends State<Input> {
       ),
     );
   }
-
+  // 高度 = 上下Padding值-3.6 + 字高*字大小
   _suffix() {
     return [
       widget.suffix == null ? SizedBox.shrink() : SizedBox(width: 16),
-      ?widget.suffix == null ? SizedBox.shrink() : Padding(padding: EdgeInsets.only(left: 6), child: widget.suffix),
+      ?widget.suffix == null ? SizedBox.shrink() : Padding(padding: EdgeInsets.only(right: 6), child: widget.suffix),
     ];
   }
 

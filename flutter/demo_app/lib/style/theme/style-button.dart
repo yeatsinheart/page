@@ -34,9 +34,11 @@ globalButtonStyle({Color? fontColor}){
     shadowColor: WidgetStateProperty.all(Colors.transparent),
     // 背景颜色
     backgroundColor: WidgetStateProperty.all(Colors.transparent),
+    // backgroundColor: WidgetStateProperty.all(Colors.red),
     // 文字颜色
     foregroundColor: WidgetStateProperty.all(fontColor??ColorFont.get().txt),
     textStyle: WidgetStateProperty.all(getTextStyle()),
+    // textStyle: WidgetStateProperty.all(TextStyle(fontSize: AppStyle.fontSize,height:1.2, color: fontColor??ColorFont.get().txt)),
     // padding: WidgetStateProperty.all(EdgeInsets.all(0)),
 
     minimumSize: WidgetStateProperty.all(Size(0, 0)), // 关键：去掉默认最小尺寸  按钮最小限制

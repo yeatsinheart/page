@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/color-font.dart';
-
+/// 实际渲染出来的行高系数大约是 1.2（字体度量值决定）
 getTextTheme({Color? fontColor}) {
   TextStyle globalTextStyle = TextStyle(fontSize: AppStyle.fontSize, height: AppStyle.lineHeight, color: fontColor??ColorFont.get().txt);
 

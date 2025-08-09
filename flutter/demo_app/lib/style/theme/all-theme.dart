@@ -26,16 +26,12 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     scaffoldBackgroundColor: Colors.transparent,
     // colorScheme: ColorScheme(
     //   brightness: Brightness.light,     // 亮色模式或暗色模式
-    //
     //   primary: AppStore.getMainColor(),              // 主要颜色
     //   onPrimary: Colors.white,           // 主要颜色上的文字或图标颜色
-    //
     //   secondary: Colors.amber,           // 次要颜色
     //   onSecondary: Colors.black,         // 次要颜色上的文字颜色
-    //
     //   surface: Colors.white,             // 背景色卡片等表面颜色
     //   onSurface: Colors.black,           // 背景色表面颜色上的文字颜色
-    //
     //   error: Colors.red,                 // 错误颜色
     //   onError: Colors.white,             // 错误颜色上的文字颜色
     // ),

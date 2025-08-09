@@ -44,8 +44,7 @@ class _Header extends SliverPersistentHeaderDelegate {
         }
       });
     });
-    // return SizedBox.expand(child: child); // 填满整个 header 区域 否则报错
-    return child;
+    return minExtent==maxExtent?SizedBox.expand(child: child):child; // 高度相同时 填满整个 header 区域 否则报错
   }
 
   @override

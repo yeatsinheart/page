@@ -45,11 +45,7 @@ init() async {
   WidgetsFlutterBinding.ensureInitialized();
   // debugPaintSizeEnabled = true; // ✅ 开启边界调试 会把所有东西，边距什么的都画线
   // 默认竖屏 打开网页可能横屏
-  // await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
-
-  // 初始化 Hive，自动使用合适的目录（适用于 Android/iOS）
-  await Hive.initFlutter();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   BootstrapService.init().then((_) {
     // 在 Web 环境下手动清理可能挂着的回调
     if (kIsWeb) {

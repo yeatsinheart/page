@@ -9,6 +9,7 @@ import 'package:flutter3/store/language.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/view/app-view.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/adapters.dart';
 
 /// 获取 分发 数据
 class BootstrapService {
@@ -22,6 +23,7 @@ class BootstrapService {
     /// 已存在配置，是否通过网络获取的最新配置
     if(null!=data && !newest)return;
     data = config;
+    Get.put(AppStyle());
     Get.put(HostStatusStore());
     Get.put(LanguageStore());
     await Future.wait<dynamic>([
@@ -36,6 +38,8 @@ class BootstrapService {
   }
 
   static init() async {
+    // 初始化 Hive，自动使用合适的目录（适用于 Android/iOS）
+    await Hive.initFlutter();
     _updateAsync();
     _dispatch(await _get(),false);
   }

@@ -72,7 +72,7 @@ class AppRoute {
         var page = ContainerFormat("mask", Dialog(child: AccountAuthDemoIndex()));
         return Theme(
           data: getFlutterTheme(),
-          child: AppStyle.maxWidth == null
+          child: AppStyle.viewWidth >= AppStyle.screenWidth
               ? page
               : Center(
                   child: ConstrainedBox(

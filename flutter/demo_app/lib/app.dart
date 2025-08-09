@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3/demo/main.dart';
+import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/style/theme/all-theme.dart';
 import 'package:flutter3/style/widget/browser.dart';
 import 'package:flutter3/view/app/network_monitor.dart';
@@ -33,24 +34,28 @@ class App extends StatelessWidget {
           navigatorKey: AppContext.navigatorKey,
           debugShowCheckedModeBanner: false,
           // 一直 pop 到最后一页：如果这是用 home 设置的首页 → 继续 pop 会直接退出应用 如果是用 onGenerateRoute 生成 / 路径页面 → 效果一样，最后退出应用
+
           /// 按照路由展示界面
           onGenerateRoute: (RouteSettings settings) {
             switch (settings.name.toString().toLowerCase()) {
-              case '/':
-                return MaterialPageRoute(builder: (context) => Browser(AppNetworkMonitor(child: child)));
+              case '/':/// 等同于配置home属性
+                return MaterialPageRoute(builder: (context) => _to_route(Browser(AppNetworkMonitor(child: child))));
               case '/test':
-                return MaterialPageRoute(builder: (context) => Browser(MainDemo()));
+                return MaterialPageRoute(builder: (context) => _to_route(Browser(MainDemo())));
               case '/details':
                 final args = settings.arguments as String?; // 取传过来的参数
-                return MaterialPageRoute(builder: (context) => Container());
+                return MaterialPageRoute(builder: (context) => _to_route(Container()));
               default:
               // 未匹配的路由
-                return MaterialPageRoute(builder: (context) => Container());
+                return MaterialPageRoute(builder: (context) => _to_route(Container()));
             }
           },
         );
       }),
     );
+  }
+  _to_route(child){
+    return Material(type: MaterialType.transparency, child: child);
   }
 /*
            ┌──────────────────────────┐

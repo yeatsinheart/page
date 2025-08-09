@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/app-style.dart';
-import 'package:flutter3/app-style.dart';
 import 'package:flutter3/demo/widget/example-container.dart';
-import 'package:flutter3/share/safe-status-bar.dart';
 import 'package:flutter3/share/webview.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/style/theme/all-theme.dart';
-import 'package:get/get.dart';
 
 import 'package:flutter3/demo/main.dart';
 
@@ -25,7 +22,7 @@ class Browser extends StatelessWidget {
         "browser",
         Stack(
           children: [
-            AppStyle.maxWidth == null
+            AppStyle.viewWidth >= AppStyle.screenWidth
                 ? page
                 : Center(
                     child: ConstrainedBox(

@@ -25,7 +25,6 @@ class GameHistory extends StatelessWidget {
               subtitle: Text("time"),
               trailing: Row(mainAxisSize: MainAxisSize.min, children: []),
             );
-            ;
           },
           separatorBuilder: (_, __) => const SizedBox(height: 3),
           itemCount: 22,

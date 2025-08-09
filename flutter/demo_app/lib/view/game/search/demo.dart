@@ -68,7 +68,7 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
             controller: _pageScrollController,
             slivers: [
               StickyHeader(
-                  height: AppStyle.byRem(1.66),// 输入框最大高度.66 + .2 + .6
+                heightFixed: AppStyle.byRem(1.66),// 输入框最大高度.66 + .2 + .6
                    ContainerFormat(
                     "tab",
                     Column(

@@ -102,12 +102,12 @@ class _State extends State<AppHomeTopStickyCategory> {
               // 左右结构 SliverCrossAxisGroup
               SliverMainAxisGroup(
                 slivers: [
-                  StickyHeader(height: AppStyle.byRem(0.9), BarBrandDemo()),
+                  StickyHeader(heightFixed: AppStyle.byRem(0.9), BarBrandDemo()),
                   // SliverToBoxAdapter(child: BarBrandDemo(),),
                   SliverToBoxAdapter(child: AppView.ofKey("swiper")),
                   // web存在热重启问题，可无视
                   SliverToBoxAdapter(child: AppView.ofKey("marquee")),
-                  StickyHeader(height: AppStyle.byRem(.9), _buildTabBar()),
+                  StickyHeader(heightFixed: AppStyle.byRem(.9), _buildTabBar()),
 
                   // SliverChildListDelegate 立即渲染 有具体高度 一次性构建所有子项
                   // SliverChildBuilderDelegate，懒加载 高度未知 只有在渲染部分的高度
@@ -184,7 +184,7 @@ class _State extends State<AppHomeTopStickyCategory> {
     if (dataContext != null) {
       final box = dataContext.findRenderObject() as RenderBox;
       // 去除吸顶的头部
-      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController!.offset - AppStyle.byRem(.9) - AppStyle.byRem(.9) - AppStyle.byRem(.6);
+      final offset = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset - AppStyle.byRem(.9) - AppStyle.byRem(.9) - AppStyle.byRem(.6);
       //print('🚀 组件${box}偏移：${box.localToGlobal(Offset.zero)}');
       _pageScrollController
           .animateTo(

@@ -70,6 +70,7 @@ class _State extends State<HtmlContent> with AutomaticKeepAliveClientMixin{
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     if(kIsWeb)return Container(child: Center(child: Text("web端暂不支持"),));
     //Log.e(" color:${AppStyle.data["font"]["txt"][AppStyle.Brightness]};font-size: ${AppStyle.fontSize}px;");
     var data = wrapHtml(widget.html);

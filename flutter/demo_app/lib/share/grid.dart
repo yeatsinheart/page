@@ -12,7 +12,8 @@ Widget grid_sliver_demo(List<dynamic> list, {Function render = card_demo, number
   );
 }
 
-Widget grid_demo_wrap(List<dynamic> list, {num = 3, Function render = card_demo}) {
+Widget grid_demo_wrap(List<dynamic>? list, {num = 3, Function render = card_demo}) {
+  if(null==list)return Container();
   double gap = AppStyle.byRem(.1);
   double width = AppStyle.byRem((7.5 - 2*.2 - (num - 1) * .1) / num);
   return Wrap(

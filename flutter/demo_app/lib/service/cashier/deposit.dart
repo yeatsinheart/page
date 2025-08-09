@@ -27,7 +27,7 @@ class DepositService {
     {"code":"USDT-Omni","name":"USDT-Omni","logo":"","logo3x1":"","status":"maintaining"},
 
   ];
-  payments(){
+  List<Map<String, dynamic>>? payments(){
     return list;
   }
 

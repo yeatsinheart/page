@@ -60,7 +60,6 @@ class WebView extends StatefulWidget {
 class _HtmlContentState extends State<WebView> with AutomaticKeepAliveClientMixin {
   late final WebViewController _controller;
   double contentHeight = AppStyle.screenHeight;
-  final Completer<WebViewController> _controllerCompleter = Completer<WebViewController>();
 
   @override
   void initState() {

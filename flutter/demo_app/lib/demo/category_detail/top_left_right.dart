@@ -30,7 +30,7 @@ class _TopLeftRightState extends State<TopLeftRight> with TickerProviderStateMix
     return StickyHeader(
         //pinnedCallBack: pinnedCallBack,
          container_demo(height: height, txt: txt, color: color),
-        height: height,
+        heightFixed: height,
     );
   }
 

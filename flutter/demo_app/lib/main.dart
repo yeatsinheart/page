@@ -20,22 +20,6 @@ import 'view/app-view.dart';
 
 //Flutter 中存在三棵树，Widget[虚拟的结构]、Element 和 RenderObject。
 void main() {
-  /*// 先保存原始回调函数引用
-  final originalAddPersistentFrameCallback = SchedulerBinding.instance.addPersistentFrameCallback;
-
-  // 重写 addPersistentFrameCallback，包装异常捕获和打印调用栈
-  SchedulerBinding.instance.addPersistentFrameCallback=(FrameCallback callback) {
-    FrameCallback wrappedCallback = (Duration timeStamp) {
-      try {
-        callback(timeStamp);
-      } catch (e, stack) {
-        debugPrint('🛑 SchedulerBinding frame callback error:\n$e\n$stack');
-        rethrow;
-      }
-    };
-    originalAddPersistentFrameCallback.call(wrappedCallback);
-  };*/
-
   PlatformDispatcher.instance.onError = (error, stack) {
     Log.err('Platform Error: ${error}', error, stackTrace: stack);
     return true; // 表示已处理，防止崩溃
@@ -66,23 +50,17 @@ init() async {
 
   // 初始化 Hive，自动使用合适的目录（适用于 Android/iOS）
   await Hive.initFlutter();
-  // （可选）注册适配器
-  // Hive.registerAdapter(MyModelAdapter());
-  // 网络更新配置时，这些都需要按照最新网络的数据进行更新
   BootstrapService.init().then((_) {
     // 在 Web 环境下手动清理可能挂着的回调
     if (kIsWeb) {
       WidgetsBinding.instance.platformDispatcher.onDrawFrame = null;
     }
-    runApp(_main(AppView.ofKey("app_layout") ?? Container()));
+    Get.put(AppStyle());
+    AutoBrightness.check();
+    runApp(App(AppView.ofKey("app_layout") ?? Container()));
   });
 }
 
-_main(child) {
-  Get.put(AppStyle());
-  AutoBrightness.check();
-  return App(child);
-}
 
 /*builder: (context, child) {
       // 延迟设置 title（不会影响 AppBar 的 title）

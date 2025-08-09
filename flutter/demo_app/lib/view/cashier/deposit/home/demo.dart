@@ -18,7 +18,7 @@ class CashierDepositHomeDemo extends StatefulWidget {
 // bool get wantKeepAlive => true;
 
 class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
-  List<Map<String, dynamic>> payments = DepositService().payments();
+  List<Map<String, dynamic>>? payments = DepositService().payments();
   String chosen = "";
 
   List<String> items = ['账号1', '账号2', '账号3'];
@@ -28,8 +28,8 @@ class _CashierDepositHomeDemoState extends State<CashierDepositHomeDemo> {
   @override
   void initState() {
     super.initState();
-    if (null != payments && payments.length > 0) {
-      chosen = payments[0]["code"];
+    if (null != payments && payments!.length > 0) {
+      chosen = payments![0]["code"];
     }
   }
 

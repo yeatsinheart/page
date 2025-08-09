@@ -142,7 +142,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
 
   Widget getHeader1() {
     return StickyHeader(
-      pinnedCallBack: _tab_padding,
+      offsetListener: _tab_padding,
       ContainerFormat(
         "tab",
         Container(
@@ -188,14 +188,14 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
           ),
         ),
       ),
-      height: AppStyle.byRem(.9),
+      heightFixed: AppStyle.byRem(.9),
     );
   }
 
   Widget getHeader2() {
     return SliverConstrainedCrossAxis(
       maxExtent: AppStyle.byRem(1.6),
-      sliver: StickyHeader(height: AppStyle.screenHeight - AppStyle.byRem(1.24), _buildTabBar()),
+      sliver: StickyHeader(heightFixed: AppStyle.screenHeight - AppStyle.byRem(1.24), _buildTabBar()),
     );
   }
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter3/i18n.dart';
@@ -33,7 +35,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
   final ScrollController _pageScrollController = ScrollController();
   final ScrollController _tabScrollController = ScrollController();
   final ScrollController _categoryScrollController = ScrollController();
-  final List<String> categories = [ '热门精选', '科技资讯', '实时热点', '手机数码', '生活娱乐', '体育财经', '科教文艺', '其它'];
+  final List<String> categories = ['热门精选', '科技资讯', '实时热点', '手机数码', '生活娱乐', '体育财经', '科教文艺', '其它'];
   final List<String> tabs = ['某品牌1', '某品牌2', '某品牌3', '某品牌4', '某品牌5', '某品牌6'];
 
   final List<GlobalKey> _category_keys = [];
@@ -45,19 +47,25 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
   List<ValueNotifier<bool>> _tabSelectionNotifiers = []; // 这样不需要rebuild
   ValueNotifier<double> stickyOffsetNotifier = ValueNotifier(0); // 这样不需要rebuild
   ValueNotifier<int> categorySelectedNotifier = ValueNotifier(0); // 这样不需要rebuild
-
+  ValueNotifier<bool> loadingNotifier = ValueNotifier(true); // 这样不需要rebuild
+  Timer? _timer;
   @override
   void initState() {
     super.initState();
     _category_keys.addAll(List.generate(categories.length, (_) => GlobalKey()));
     _tabSelectionNotifiers = List.generate(tabs.length, (_) => ValueNotifier(false));
     _tabSelectionNotifiers[_currentIndex].value = true;
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if(loadingNotifier.value){
+        loadingNotifier.value=false;
+      }
+    });
   }
 
   void _updateCategorySelection(int newIndex) {
     categorySelectedNotifier.value = newIndex;
-
     _scrollCategoryToCenter(newIndex);
+    loadingNotifier.value = true;
   }
 
   void _updateTabSelection(int newIndex) {
@@ -77,11 +85,8 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
     if (tabContext != null && scrollBox != null) {
       final box = tabContext.findRenderObject() as RenderBox;
 
-
-
       // 获取当前 tab 相对滚动区域的偏移
       final tabOffsetX = box.localToGlobal(Offset.zero, ancestor: scrollBox).dx;
-
 
       final tabWidth = box.size.width;
       final scrollViewWidth = scrollBox.size.width;
@@ -92,18 +97,18 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
         curve: Curves.easeInOut,
       );
 
-      final tabOffsetY = box.localToGlobal(Offset.zero).dy+_pageScrollController.offset;
-      if(tabOffsetY>0){
-        _pageScrollController.animateTo(tabOffsetY, duration: Duration(milliseconds: 500),curve: Curves.easeInOut,);
+      final tabOffsetY = box.localToGlobal(Offset.zero).dy + _pageScrollController.offset;
+      if (tabOffsetY > 0) {
+        _pageScrollController.animateTo(tabOffsetY, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
       }
     }
   }
-
 
   @override
   void dispose() {
     _tabScrollController.dispose();
     _pageScrollController.dispose();
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -112,7 +117,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
       valueListenable: stickyOffsetNotifier,
       builder: (_, listenedValue, __) {
         return Container(
-          padding: EdgeInsetsGeometry.only(top: listenedValue + 10,left: 10,right: 10),
+          padding: EdgeInsetsGeometry.only(top: listenedValue + 10, left: 10, right: 10),
           color: Colors.transparent,
           child: ListView.separated(
             shrinkWrap: true,
@@ -125,7 +130,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                 onPressed: () {
                   _updateTabSelection(index);
                 },
-                child: TabItem( title: tabs[index].t, isSelectedNotifier: _tabSelectionNotifiers[index]),
+                child: TabItem(title: tabs[index].t, isSelectedNotifier: _tabSelectionNotifiers[index]),
               );
             },
             separatorBuilder: (context, index) => SizedBox(height: 10), // 仅在 item 之间插入 gap
@@ -156,9 +161,7 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                   builder: (_, listenedValue, __) {
                     return TextButton(
                       onPressed: () {
-
                         _updateCategorySelection(index);
-
                       },
                       child: Container(
                         key: _category_keys[index],
@@ -190,7 +193,10 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
   }
 
   Widget getHeader2() {
-    return SliverConstrainedCrossAxis(maxExtent: AppStyle.byRem(1.6), sliver: StickyHeader(height: AppStyle.screenHeight - AppStyle.byRem(1.24), _buildTabBar()));
+    return SliverConstrainedCrossAxis(
+      maxExtent: AppStyle.byRem(1.6),
+      sliver: StickyHeader(height: AppStyle.screenHeight - AppStyle.byRem(1.24), _buildTabBar()),
+    );
   }
 
   @override
@@ -217,15 +223,16 @@ class _GameByCategoryLeftBrandState extends State<GameByCategoryLeftBrand> {
                   //   padding: EdgeInsets.symmetric(horizontal: AppStyle.gap),
                   //   sliver:
                   // ),
-                  SliverCrossAxisGroup(
-                    slivers: [
-                      getHeader2(),
-                      grid_sliver_demo(List.generate(52, (_) => tabs[_currentIndex]), numberOfRow: 3),
-                    ],
+                  ValueListenableBuilder<bool>(
+                    valueListenable: loadingNotifier,
+                    builder: (_, listenedValue, __) {
+                      return listenedValue
+                          ? SliverFillRemaining(child: Center(child: CircularProgressIndicator()))
+                          : SliverCrossAxisGroup(slivers: [getHeader2(), grid_sliver_demo(List.generate(52, (_) => tabs[_currentIndex]), numberOfRow: 3)]);
+                    },
                   ),
                 ],
               ),
-
             ],
           ),
         ),

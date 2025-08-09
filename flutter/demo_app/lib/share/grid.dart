@@ -51,7 +51,7 @@ Widget grid_demo_width(List<dynamic> list, {Function render = card_demo, bool sh
 }
 
 Widget card_demo(data, {borderRadiusRem = 14.0, nestTitle = true}) {
-  Widget img = Img("data", borderRadius: borderRadiusRem);
+  Widget img = Img("assets/images/wanimal.png", borderRadius: borderRadiusRem);
   Widget name = Text(
     data,
     textAlign: TextAlign.center,

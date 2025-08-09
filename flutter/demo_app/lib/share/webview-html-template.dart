@@ -9,8 +9,7 @@ String html_template_wrap(String content,{bgColor,fontColor,fontSize}) {
     return content;
   }
 
-  return '''
-<!DOCTYPE html><html><head><meta charset="UTF-8" />
+  return '''<!DOCTYPE html><html><head><meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <style>
   html,body{width: 100%;max-width: 100%;box-sizing: border-box;margin: 0;padding: 0;

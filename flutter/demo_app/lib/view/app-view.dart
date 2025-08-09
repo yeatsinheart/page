@@ -12,7 +12,8 @@ final Map<String, String> _views = {
 
   "home": "/app/home/top-sticky-category",
   "me": "/account/home/demo",
-  "auth": "/account/auth/demo",
+  // "auth": "/account/auth/demo",
+  "auth": "/account/auth/sport",
 
   "cashier": "/cashier/home/demo",
   "deposit": "/cashier/deposit/home",
@@ -22,6 +23,7 @@ final Map<String, String> _views = {
   "swiper": "/market/swiper/demo",
   "marquee": "/market/marquee/demo",
 
+  "game_lobby": "/game/by_category/left_brand",
   "game_home": "/game/home/top_category_demo",
   "game_search": "/game/search/demo",
 };

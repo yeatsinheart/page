@@ -12,10 +12,10 @@ import 'app-context.dart';
 class AppRoute {
   static OverlayState? get overlay => AppContext.navigatorKey.currentState!.overlay;
 
-  static to(String? key, {params}) {
+  static to(String? key, {params,animation="slide"}) {
     var info = {
       "language": {"popBy": "/pop/close_bottom"},
-      "auth": {"popBy": "/pop/close_bottom"},
+     // "auth": {"popBy": "/pop/close_bottom"},
     };
     if (null != info[key] && null != info[key]!["popBy"]) {
       GlobalOverlayContext.popBy(info[key]!["popBy"]!, key!, params: params);
@@ -45,7 +45,7 @@ class AppRoute {
     );
   }
 
-  static open(Widget child, {bool browserLimit=true,params, Offset from = SlideRoute.right, int time = 100}) {
+  static open(Widget child, {bool browserLimit=true,params,animation="slide", Offset from = SlideRoute.right, int time = 100}) {
     _open(SlideRoute(browserLimit?Browser(child):child, from: from, time: time));
   }
 

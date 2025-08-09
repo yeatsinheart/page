@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3/demo/main.dart';
 import 'package:flutter3/view/account/auth/demo/index.dart';
+import 'package:flutter3/view/account/auth/sport/index.dart';
 import 'package:flutter3/view/account/home/demo.dart';
 import 'package:flutter3/view/app/home/top-sticky-category.dart';
 import 'package:flutter3/view/app/home/wg.dart';
@@ -27,7 +28,8 @@ Widget? widgetOfPath(String? path,{key,params}) {
   if(null==key)key=UniqueKey();
   switch (path){
     case "/demo/main": return MainDemo(key:key,params: params);
-    case "/account/auth/demo/index": return AccountAuthDemoIndex(key:key,params: params);
+    case "/account/auth/sport": return AccountAuthSport(key:key,params: params);
+    case "/account/auth/demo": return AccountAuthDemoIndex(key:key,params: params);
     case "/account/home/demo": return AccountHomeDemo(key:key,params: params);
     case "/app/home/top-sticky-category": return AppHomeTopStickyCategory(key:key,params: params);
     case "/app/home/wg": return AppHomeWg(key:key,params: params);

@@ -122,8 +122,8 @@ Widget img(String url, {BoxFit? fit, Color? loadingBg, Color? loadingFont}) {
     resource = resource.substring(7);
   }
   return _darkFilter(
-    SizedBox.expand(
-      child: url.startsWith('http')
+    // SizedBox.expand(child:
+      url.startsWith('http')
           ? CachedNetworkImage(
               fadeOutDuration: const Duration(milliseconds: 200),
               fadeInDuration: const Duration(milliseconds: 200),
@@ -143,7 +143,7 @@ Widget img(String url, {BoxFit? fit, Color? loadingBg, Color? loadingFont}) {
               fit: fit,
               errorBuilder: (context, error, stackTrace) => Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont)),
             ),
-    ),
+    // ),
     // FutureBuilder(
     //   future: rootBundle.load(resource),
     //   builder: (context, snapshot) {

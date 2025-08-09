@@ -11,10 +11,12 @@ class NativeWebView {
   static const _channel = MethodChannel('com.example/native_webview');
 
   static Future<void> open(String url) async {
+    if(kIsWeb)return;
     await _channel.invokeMethod('openWebView', {'url': url});
   }
 
   static Future<void> openContent({String? url, String? html, String? title}) async {
+    if(kIsWeb)return;
     await _channel.invokeMethod('openWebView', {'url': url, 'html': html, 'title': title});
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter3/app-route.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/demo/widget/example-container.dart';
 import 'package:flutter3/share/webview.dart';
+import 'package:flutter3/store/auto-brightness.dart';
 import 'package:flutter3/style/format/container.dart';
 import 'package:flutter3/style/theme/all-theme.dart';
 
@@ -16,6 +17,10 @@ class Browser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // 在下一帧中安全地调用 setState
+      AutoBrightness.check();
+    });
     Widget page = ContainerFormat("page", child);
     return Theme(
       data: getFlutterTheme(),
@@ -23,14 +28,15 @@ class Browser extends StatelessWidget {
         "browser",
         Stack(
           children: [
-            AppStyle.viewWidth >= AppStyle.screenWidth
-                ? page
-                : Center(
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: AppStyle.maxWidth!),
-                      child: page,
-                    ),
-                  ),
+            page,
+            // AppStyle.viewWidth >= AppStyle.screenWidth
+            //     ? page
+            //     : Center(
+            //         child: ConstrainedBox(
+            //           constraints: BoxConstraints(maxWidth: AppStyle.maxWidth!),
+            //           child: page,
+            //         ),
+            //       ),
             _bottom_left(),
             _bottom_right(),
           ],
@@ -115,42 +121,6 @@ _bottom_right() {
           child: ContainerFormat("text-cover", ContainerFormat("btn", Text("容器展示"), click: () => AppRoute.open(ExampleContainer()))),
         ),
 
-        KeyedSubtree(
-          key: GlobalKey(debugLabel: "demo-native-webview"),
-          child: ContainerFormat(
-            "text-cover",
-            ContainerFormat(
-              "btn",
-              Text("HTML"),
-              click: () {
-                NativeWebView.openContent(
-                  html: """
-        <html>
-        <body>
-          <h1>公告标题</h1>
-          <p>这是通过 Flutter 传过来的 HTML 内容。</p>
-        </body>
-        </html>
-      """,
-                  title: "公告详情",
-                );
-              },
-            ),
-          ),
-        ),
-        KeyedSubtree(
-          key: GlobalKey(debugLabel: "demo-native-url"),
-          child: ContainerFormat(
-            "text-cover",
-            ContainerFormat(
-              "btn",
-              Text("调用URL"),
-              click: () {
-                NativeWebView.openContent(url: "https://chatgpt.com/", title: "ChatGpt");
-              },
-            ),
-          ),
-        ),
       ],
     ),
   );

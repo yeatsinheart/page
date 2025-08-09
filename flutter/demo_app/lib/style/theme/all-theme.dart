@@ -23,6 +23,8 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     useSystemColors: false,
     // 某些控件会变成浏览器原生行为（比如 <button>）；
     useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(seedColor: AppStyle.getMainColor(),brightness: AppContext.brightness),
+    brightness: AppContext.brightness,
 
     scaffoldBackgroundColor: Colors.transparent,
     // colorScheme: ColorScheme(
@@ -43,7 +45,6 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     // focusColor: AppStore.getMainColor(),
     // highlightColor: AppStore.getMainColor(),
     splashColor: AppStyle.getMainColor().withValues(alpha: .05),
-    colorScheme: ColorScheme.fromSeed(seedColor: AppStyle.getMainColor()),
     // colorSchemeSeed:Colors.red,
     // colorScheme:ColorScheme(),
     // primarySwatch:MaterialColor(),

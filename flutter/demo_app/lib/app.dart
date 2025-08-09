@@ -22,8 +22,6 @@ class App extends StatelessWidget {
       child: Obx(() {
         return MaterialApp(
           key: Get.find<AppContext>().appKey.value,
-          themeMode: Get.find<AppContext>().themeMode.value,
-
           scrollBehavior: ScrollBehavior().copyWith(
             dragDevices: {
               PointerDeviceKind.touch, //移动设备的手指滑动
@@ -58,7 +56,7 @@ class App extends StatelessWidget {
     );
   }
   _to_route(child){
-    return Material(type: MaterialType.transparency, child: child);
+    return Material(type: MaterialType.transparency, child: Browser(child));
   }
 /*
            ┌──────────────────────────┐

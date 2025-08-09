@@ -54,10 +54,10 @@ class WebView extends StatefulWidget {
        super(key: key);
 
   @override
-  State<WebView> createState() => _HtmlContentState();
+  _State createState() => _State();
 }
 
-class _HtmlContentState extends State<WebView> with AutomaticKeepAliveClientMixin {
+class _State extends State<WebView> with AutomaticKeepAliveClientMixin {
   late final WebViewController _controller;
   double contentHeight = AppStyle.screenHeight;
 
@@ -128,7 +128,7 @@ class _HtmlContentState extends State<WebView> with AutomaticKeepAliveClientMixi
   }
 
   bool _canGoBack = false;
-
+  // 这里有问题
   void _handlePop(bool didPop, Object? result) {
     // didPop: 系统尝试pop时为true
     if (didPop) {

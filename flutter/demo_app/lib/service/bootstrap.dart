@@ -36,8 +36,7 @@ class BootstrapService {
       () async {AppView.layout=(config["layout"] ?? {});}(),
       () async {AppStyle.data = config["style"] ?? {};}(),
     ]);
-    AutoBrightness.check();
-    
+
   }
 
   static init() async {

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter3/log/logger.dart';
 
 import 'package:get/get.dart';
 
@@ -38,24 +39,29 @@ class AppContext extends GetxService{
     appKey.value = UniqueKey(); // 改变 key，触发 rebuild
   }
 
-  Rx<ThemeMode> themeMode = ThemeMode.light.obs;
+  static Brightness brightness = Brightness.light;
 
   static bool get isDark {
-    // Flutter 的亮/暗模式切换是响应式的——只要你的 build 方法里依赖了 MediaQuery.of(context).platformBrightness 或 Theme.of(context).brightness，系统切换主题时 Widget 会自动重建，你不需要额外订阅事件。
-    // bool isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    // Flutter 的亮/暗模式切换是响应式的——只要你的 build 方法里依赖了 MediaQuery.of(context).platformBrightness 或 Theme.of(context).brightness，
+    // 系统切换主题时 Widget 会自动重建，你不需要额外订阅事件。
+
+    // 这个值表示系统（操作系统）当前的亮暗模式，是系统层面告诉 Flutter 的。
+    // 它不会根据 app 内部切换的主题实时改变，除非系统本身切换了。
     // bool isDarkMode1 = Theme.of(context).brightness == Brightness.dark;
-    return AppContext().themeMode.value==ThemeMode.dark;
+    return brightness==Brightness.dark;
   }
 
   static setStyleDark() {
+    // Log.i("${ Theme.of(context).brightness }");
     if(isDark)return;
-    AppContext().themeMode.value =ThemeMode.dark;
+    brightness =Brightness.dark;
     AppContext().rebuildApp();
   }
 
   static setStyleLight() {
+    // Log.i("${ Theme.of(context).brightness }");
     if(!isDark)return;
-    AppContext().themeMode.value =ThemeMode.light;
+    brightness =Brightness.light;
     AppContext().rebuildApp();
   }
 

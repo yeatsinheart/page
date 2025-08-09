@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3/app-route.dart';
-import 'package:flutter3/demo/game.dart';
+import 'package:flutter3/demo/test/game.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:mutex/mutex.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../share/img.dart';
+import '../../share/img.dart';
 
 class Game {
   String title;

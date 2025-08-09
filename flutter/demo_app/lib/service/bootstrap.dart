@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3/log/logger.dart';
+import 'package:flutter3/store/auto-brightness.dart';
 import 'package:flutter3/store/host-status.dart';
 import 'package:flutter3/store/language.dart';
 import 'package:flutter3/app-style.dart';
@@ -14,40 +15,29 @@ class BootstrapService {
   static const table = 'bootstrap_config';
   static const key = 'all';
 
-  static Map<String, dynamic> data = {};
+  static Map<String, dynamic>? data ;
 
   // 将配置分发到各个store
-  static _dispatch(Map<String, dynamic> config) async {
+  static _dispatch(Map<String, dynamic> config,bool newest) async {
+    /// 已存在配置，是否通过网络获取的最新配置
+    if(null!=data && !newest)return;
     data = config;
+    Get.put(HostStatusStore());
+    Get.put(LanguageStore());
     await Future.wait<dynamic>([
       /// 数据和页面绑定，且一变动就要在界面展示出来的才放到store中
-      //()async{AppStyleStore.style=config["host"]??{};}(),
-      //()async{AppStyleStore.style=config["language"]??{};}(),
-      () async {
-        HostStatusStore().listen(config["host"] ?? []);
-      }(),
-          () async {
-            LanguageStore().listen(config["language"] ?? []);
-      }(),
-      () async {
-        AppView.setViews(config["view"] ?? {});
-      }(),
-      () async {
-        AppView.setLayout(config["layout"] ?? {});
-      }(),
-      () async {
-        AppStyle.data = config["style"] ?? {};
-      }(),
-      //()async{AppStyleStore.style=config["app"]??{};}(),
+      () async {HostStatusStore().listen(config["host"] ?? []);}(),
+      () async {LanguageStore().listen(config["language"] ?? []);}(),
+      () async {AppView.setViews(config["view"] ?? {});}(),
+      () async {AppView.layout=(config["layout"] ?? {});}(),
+      () async {AppStyle.data = config["style"] ?? {};}(),
     ]);
-    AppStyle.data = config["style"];
+    AutoBrightness.check();
   }
 
   static init() async {
-    Get.put(LanguageStore());
-    Get.put(HostStatusStore());
     _updateAsync();
-    await _dispatch(await _get());
+    _dispatch(await _get(),false);
   }
 
   /// 加载配置
@@ -55,7 +45,6 @@ class BootstrapService {
     // 尝试读取本地缓存
     // final cache = await CacheService.get(table, key);
     // if (cache != null) return jsonDecode(cache);
-
     // 加载打包内置配置
     final str = await _readBuildInConfig();
     return json.decode(str!);
@@ -69,7 +58,8 @@ class BootstrapService {
       Map<String, dynamic>? remote = await Api.init(null);
       if (remote != null) {
         CacheService.set(table, key, jsonEncode(remote));
-        _dispatch(remote);
+        _dispatch(remote,true);
+        return remote;
       }
       */
     } catch (e) {

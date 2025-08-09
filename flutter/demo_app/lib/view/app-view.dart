@@ -35,9 +35,6 @@ class AppView {
     _views.addAll(v.map((k, v) => MapEntry(k.toString(), v.toString())));
   }
 
-  static void setLayout(Map<String, dynamic> v) {
-    layout.addAll(v);
-  }
 
   static Widget? ofKey(String? key, {params}) {
     if (key == null) {

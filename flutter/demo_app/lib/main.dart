@@ -55,8 +55,6 @@ init() async {
     if (kIsWeb) {
       WidgetsBinding.instance.platformDispatcher.onDrawFrame = null;
     }
-    Get.put(AppStyle());
-    AutoBrightness.check();
     runApp(App(AppView.ofKey("app_layout") ?? Container()));
   });
 }

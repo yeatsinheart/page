@@ -32,7 +32,9 @@ class Img extends StatelessWidget {
     this.square,
     this.width,
     this.height,
-    this.expand=true,
+    this.expand = true,
+
+    /// 默认放大填充满整个容器
     this.borderRadius,
     this.borderRadiusTopRight,
     this.borderRadiusTopLeft,
@@ -52,8 +54,9 @@ class Img extends StatelessWidget {
     Color? fontColor = ColorUtil.getColor(data?["font"]?[AppStyle.BrightMode]);
 
     final raw_image = img(url, fit: fit!, loadingBg: loadingBg ?? bgColor, loadingFont: loadingFont ?? fontColor);
-    //Log.i(radiusRem);
-    var clipped_image = (null != borderRadius || null!=borderRadiusTopLeft || null!=borderRadiusTopRight || null!=borderRadiusBottomLeft || null!=borderRadiusBottomRight
+    final hasRadius = (borderRadius ?? borderRadiusTopLeft ?? borderRadiusTopRight ?? borderRadiusBottomLeft ?? borderRadiusBottomRight) != null;
+
+    final clipped_image = hasRadius
         ? ClipRRect(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(borderRadius ?? borderRadiusTopLeft ?? 0),
@@ -63,13 +66,13 @@ class Img extends StatelessWidget {
             ),
             child: raw_image,
           )
-        : raw_image);
+        : raw_image;
 
     final effectiveWidth = square ?? width;
     final effectiveHeight = square ?? height;
     // 没有宽高限制
-    if (effectiveWidth == null && effectiveHeight == null){
-      return expand? SizedBox.expand(child: clipped_image):clipped_image;
+    if (effectiveWidth == null && effectiveHeight == null) {
+      return expand ? SizedBox.expand(child: clipped_image) : clipped_image;
     }
 
     return SizedBox(width: effectiveWidth, height: effectiveHeight, child: clipped_image);
@@ -128,26 +131,26 @@ Widget img(String url, {BoxFit? fit, Color? loadingBg, Color? loadingFont}) {
   }
   return _darkFilter(
     // SizedBox.expand(child:
-      url.startsWith('http')
-          ? CachedNetworkImage(
-              fadeOutDuration: const Duration(milliseconds: 200),
-              fadeInDuration: const Duration(milliseconds: 200),
-              imageUrl: url.tr,
-              httpHeaders: {
-                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36", // 伪装请求头，某些 CDN 要求
-              },
-              cacheManager: customCacheManager,
-              useOldImageOnUrlChange: true,
-              fit: fit,
-              alignment: Alignment.center,
-              placeholder: (context, url) => Container(color: loadingBg, alignment: Alignment.center, child: _loadingWidget(loadingFont)),
-              errorWidget: (context, url, error) => Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont)),
-            )
-          : Image.asset(
-              resource,
-              fit: fit,
-              errorBuilder: (context, error, stackTrace) => Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont)),
-            ),
+    url.startsWith('http')
+        ? CachedNetworkImage(
+            fadeOutDuration: const Duration(milliseconds: 200),
+            fadeInDuration: const Duration(milliseconds: 200),
+            imageUrl: url.tr,
+            httpHeaders: {
+              "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36", // 伪装请求头，某些 CDN 要求
+            },
+            cacheManager: customCacheManager,
+            useOldImageOnUrlChange: true,
+            fit: fit,
+            alignment: Alignment.center,
+            placeholder: (context, url) => Container(color: loadingBg, alignment: Alignment.center, child: _loadingWidget(loadingFont)),
+            errorWidget: (context, url, error) => Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont)),
+          )
+        : Image.asset(
+            resource,
+            fit: fit,
+            errorBuilder: (context, error, stackTrace) => Container(color: loadingBg, alignment: Alignment.center, child: _errWidget(loadingFont)),
+          ),
     // ),
     // FutureBuilder(
     //   future: rootBundle.load(resource),

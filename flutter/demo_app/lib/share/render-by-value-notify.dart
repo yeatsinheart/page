@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 /*
-ValueNotifier<bool> loading = ValueNotifier(true);//定义加载中
+final xxx = ValueNotifier<int>(1);//定义加载中
 //方法中回调设置
-loading.value=true;
-loading.value=false;
-Loading(child:Container(),loading);
+xxx.value=2;
+xxx.value=0;
+RenderByValueNotify<int>(notifier:xxx,render:(value){return Container()});
 * */
 
 class RenderByValueNotify<T> extends StatelessWidget {
-  final Function(T value) render;
+  final Widget Function(T value) render;
   final ValueNotifier<T> notifier;
 
-  RenderByValueNotify({required this.notifier,required this.render});
+  RenderByValueNotify({required this.notifier,required this.render,super.key});
 
   @override
   Widget build(BuildContext context) {

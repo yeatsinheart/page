@@ -13,13 +13,13 @@ class Loading<bool> extends StatelessWidget {
   final Widget child;
   final ValueNotifier<bool> notifier;
 
-  Loading({required this.child, required this.notifier});
+  Loading({required this.child, required this.notifier,super.key});
 
   @override
   Widget build(BuildContext context) {
     return RenderByValueNotify<bool>(
       notifier: notifier,
-      render: (bool value) {
+      render: (value) {
         if (value == true) {
           return child;
         }

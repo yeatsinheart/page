@@ -10,25 +10,16 @@ String html_template_wrap(String content,{bgColor,fontColor,fontSize}) {
   }
 
   return '''
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
+<!DOCTYPE html><html><head><meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <style>
-  html, body {
-    width: 100%;max-width: 100%;box-sizing: border-box;margin: 0;padding: 0;
+  html,body{width: 100%;max-width: 100%;box-sizing: border-box;margin: 0;padding: 0;
     background-color: ${bgColor};
     color: ${fontColor ?? AppStyle.data["font"]["txt"][AppStyle.BrightMode]};
     font-size: ${fontSize}px;
-    -webkit-user-select: none;
-    user-select: none;
-    pointer-events: none;
+    user-select: none;-webkit-user-select: none;pointer-events: none;
   }
-  #server-html-content {
-    width: 100%;
-    pointer-events: auto; /* 允许内容内交互 */
-  }
+  #server-html-content {width: 100%;pointer-events: auto; /* 允许内容内交互 */}
 </style>
 ${ckeditor_css()}
 </head>
@@ -45,23 +36,14 @@ String all_loaded(){
 """
   function waitForImagesToLoad(callback) {
     const images = Array.from(document.images);
-    if (images.length === 0) {
-      callback();
-      return;
-    }
+    if (images.length === 0) {callback();return;}
     let loaded = 0;
     images.forEach(img => {
       if(img.complete) {
         loaded++;
       } else {
-        img.addEventListener('load', () => {
-          loaded++;
-          if (loaded === images.length) callback();
-        });
-        img.addEventListener('error', () => {
-          loaded++;
-          if (loaded === images.length) callback();
-        });
+        img.addEventListener('load', () => {loaded++;if (loaded === images.length) callback();});
+        img.addEventListener('error', () => {loaded++;if (loaded === images.length) callback();});
       }
     });
     if (loaded === images.length) callback();
@@ -75,11 +57,8 @@ String all_loaded(){
     HeightHandler.postMessage(height.toString());
   }
 
-  //window.onload = function() {
-    waitForImagesToLoad(() => {
-      sendHeight();
-    });
-  //};
+  //window.onload = function() {};
+  waitForImagesToLoad(() => {sendHeight();});
 """;
 }
 String ckeditor_css(){

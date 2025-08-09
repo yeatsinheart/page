@@ -15,6 +15,8 @@ class Img extends StatelessWidget {
   final double? width;
   final double? height;
 
+  final bool expand;
+
   final double? borderRadius;
   final double? borderRadiusTopLeft;
   final double? borderRadiusBottomLeft;
@@ -30,6 +32,7 @@ class Img extends StatelessWidget {
     this.square,
     this.width,
     this.height,
+    this.expand=false,
     this.borderRadius,
     this.borderRadiusTopRight,
     this.borderRadiusTopLeft,
@@ -65,7 +68,9 @@ class Img extends StatelessWidget {
     final effectiveWidth = square ?? width;
     final effectiveHeight = square ?? height;
     // 没有宽高限制
-    if (effectiveWidth == null && effectiveHeight == null) return clipped_image;
+    if (effectiveWidth == null && effectiveHeight == null){
+      return expand? SizedBox.expand(child: clipped_image):clipped_image;
+    }
 
     return SizedBox(width: effectiveWidth, height: effectiveHeight, child: clipped_image);
   }

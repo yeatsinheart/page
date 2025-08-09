@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter3/app-context.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/store/auto-brightness.dart';
 import 'package:flutter3/store/host-status.dart';
@@ -23,6 +24,7 @@ class BootstrapService {
     /// 已存在配置，是否通过网络获取的最新配置
     if(null!=data && !newest)return;
     data = config;
+    Get.put(AppContext());
     Get.put(AppStyle());
     Get.put(HostStatusStore());
     Get.put(LanguageStore());
@@ -35,6 +37,7 @@ class BootstrapService {
       () async {AppStyle.data = config["style"] ?? {};}(),
     ]);
     AutoBrightness.check();
+    
   }
 
   static init() async {

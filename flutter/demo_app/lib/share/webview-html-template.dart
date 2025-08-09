@@ -1,4 +1,5 @@
 
+import 'package:flutter3/app-context.dart';
 import 'package:flutter3/app-style.dart';
 
 String html_template_wrap(String content,{bgColor,fontColor,fontSize}) {
@@ -14,7 +15,7 @@ String html_template_wrap(String content,{bgColor,fontColor,fontSize}) {
 <style>
   html,body{width: 100%;max-width: 100%;box-sizing: border-box;margin: 0;padding: 0;
     background-color: ${bgColor};
-    color: ${fontColor ?? AppStyle.data["font"]["txt"][AppStyle.BrightMode]};
+    color: ${fontColor ?? AppStyle.data["font"]["txt"][AppContext.isDark?'dark':'light']};
     font-size: ${fontSize}px;
     user-select: none;-webkit-user-select: none;pointer-events: none;
   }

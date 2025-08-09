@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/app-context.dart';
 
 class ColorUtil {
   static Color? getColor(dynamic v) {
-    return colorValue(v);
+    if(v is String){return colorValue(v);}
+    if(v is Map){return colorValue(AppContext.isDark?v["dark"]:v["light"]);}
+    return null;
   }
 }
 

@@ -8,6 +8,7 @@ export 'button-style-text.dart';
 */
 
 import 'package:flutter/material.dart';
+import 'package:flutter3/app-context.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/style/color-font.dart';
 import 'package:flutter3/style/theme/checkbox.dart';
@@ -77,7 +78,7 @@ ThemeData getFlutterTheme({Color? bgColor, Color? fontColor, Color? borderColor,
     dialogTheme: DialogThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.radius)),
       //insetPadding: EdgeInsets.all(AppStore.byRem(.2)),
-      backgroundColor: AppStyle.isDark()?Colors.black:Colors.white,
+      backgroundColor: AppContext.isDark?Colors.black:Colors.white,
       titleTextStyle: getTextStyle(),
       contentTextStyle: getTextStyle(),
     ),

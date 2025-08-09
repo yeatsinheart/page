@@ -1,8 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter3/app-context.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter3/util/color-util.dart';
 import 'package:get/get.dart';
@@ -19,33 +18,6 @@ class AppStyle extends GetxService {
   static final screen = platformDispatcher.views.first;
   // 记录当前竖屏宽度，不受横竖屏影响
   static final screenWidth = screen.physicalSize.width / screen.devicePixelRatio;
-
-  static String BrightMode = "light"; //"light";// dark
-  static isDark(){
-    return BrightMode == "dark";
-  }
-  static setStyleDark() {
-    if(isDark())return;
-    BrightMode = "dark";
-    AppStyle().rebuildApp();
-  }
-
-  static setStyleLight() {
-    if(!isDark())return;
-    BrightMode = "light";
-    AppStyle().rebuildApp();
-  }
-
-  Rx<Key> appKey = UniqueKey().obs;
-  void rebuildApp() {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent, // 设置状态栏颜色
-      statusBarBrightness: AppStyle.isDark() ? Brightness.light : Brightness.dark,
-      statusBarIconBrightness: AppStyle.isDark() ? Brightness.light : Brightness.dark, // 图标颜色，根据背景选择
-    ));
-    appKey.value = UniqueKey(); // 改变 key，触发 rebuild
-  }
-
 
   static Map<String, dynamic> data = {};
 
@@ -85,7 +57,7 @@ class AppStyle extends GetxService {
   }
 
   static List<dynamic> getColors() {
-    var list = (data["colors"] as List?)?.map((c) => ColorUtil.getColor(c?[AppStyle.BrightMode])).whereType<Color>().toList();
+    var list = (data["colors"] as List?)?.map((c) => ColorUtil.getColor(c)).whereType<Color>().toList();
     return list ?? [ColorUtil.getColor("#2196F3")];
   }
 

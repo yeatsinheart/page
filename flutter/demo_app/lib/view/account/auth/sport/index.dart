@@ -167,7 +167,6 @@ class AccountAuthSport extends StatelessWidget {
           Expanded(
             child: TextField(
               decoration: const InputDecoration(border: InputBorder.none, hintText: "请输入验证码",
-
                 enabledBorder: InputBorder.none, // 普通状态
                 focusedBorder: InputBorder.none, // 聚焦状态
                 disabledBorder: InputBorder.none, // 禁用状态

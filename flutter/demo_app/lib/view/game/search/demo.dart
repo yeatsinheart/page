@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/app-route.dart';
 import 'package:flutter3/share/grid.dart';
+import 'package:flutter3/share/input.dart';
 import 'package:flutter3/share/share_widget.dart';
 import 'package:flutter3/share/sticky-header.dart';
 import 'package:flutter3/app-style.dart';
+import 'package:flutter3/style/color-font.dart';
 import 'package:flutter3/style/format/container.dart';
+import 'package:flutter3/style/setting/theme/demo/page.dart';
 
 class GameSearchDemo extends StatefulWidget {
   const GameSearchDemo({super.key, required params});
@@ -22,37 +26,37 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
 
   build_search() {
     return Padding(
-      padding: EdgeInsets.only(top: AppStyle.gap, left: AppStyle.gap, right: AppStyle.gap),
+      padding: EdgeInsets.only(top: AppStyle.gap),
       child: Row(
         children: [
-          Expanded(
-            child: TextField(
-              controller: _textController,
-              decoration: InputDecoration(
-                prefixIcon:Padding(
-                  padding: EdgeInsets.only(left: 6,),
-                  child: Icon(Icons.search, size: AppStyle.fontSize*AppStyle.lineHeight), // 适配设计稿大小
-                ),
-                hintText: "输入搜索内容",
-                suffix: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        _textController.clear();
-                      },
-                      child: Icon(Icons.clear,size: AppStyle.fontSize*AppStyle.lineHeight,),
-                    ),
-                    SizedBox(width: AppStyle.byRem(.1)),
-                    TextButton(onPressed: () {}, child: Text("搜索",style: TextStyle(fontSize:AppStyle.fontSize,),)),
-                  ],
-                ),
-                // fillColor: Colors.grey[200],
-              ),
+          TextButton(
+            onPressed: () {
+              AppRoute.back();
+            },
+            child: Container(
+              padding: EdgeInsetsGeometry.symmetric(horizontal: 14, vertical: 8),
+              child: Icon(Icons.arrow_back, size: AppStyle.fontSize),
             ),
           ),
+          Expanded(
+            child: Input(
+              color: Colors.grey[200],
+              animation: true,
+              border:  OutlineInputBorder(
+                borderSide: BorderSide(color: ColorFont.get().txt!,width: 0),
+                borderRadius: BorderRadius.circular(AppStyle.radius),
+              ),
+              placeHolder: "输入搜索内容",
+              prefix: Icon(Icons.search, size: AppStyle.fontSize * AppStyle.lineHeight), // 适配设计稿大小
+              suffix: TextButton(onPressed: () {}, child: Text("搜索"), style: ButtonStyle().copyWith()),
+                  //TextButton(onPressed: () {}, child: Text("搜索",style: TextStyle(fontSize:AppStyle.fontSize,),)),
+            ),
+            ),
+            // prefixIcon:
+            // hintText: "输入搜索内容",
+            // fillColor: Colors.grey[200],
           // SizedBox(width: AppStore.byRem(.1)),
-          // TextButton(onPressed: () {}, child: Text("搜索"), style: ButtonStyle().copyWith()),
+          //
         ],
       ),
     );
@@ -68,29 +72,29 @@ class _GameSearchDemoState extends State<GameSearchDemo> with TickerProviderStat
             controller: _pageScrollController,
             slivers: [
               StickyHeader(
-                heightFixed: AppStyle.byRem(1.66),// 输入框最大高度.66 + .2 + .6
-                   ContainerFormat(
-                    "tab",
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,// 这样才能解决输入框高度不确定问题
-                      children: [
-                        build_search(),
-                        // .6rem
-                        tab_bar_demo(
-                          tabs: tabs,
-                          currentIndex: _currentIndex,
-                          onTap: (index) {
-                            setState(() {
-                              _currentIndex = index;
-                            });
-                            // 滚动到顶部
-                            _pageScrollController.animateTo(0, duration: Duration(milliseconds: 300), curve: Curves.easeOut);
-                          },
-                        ),
-                      ],
-                    ),
+                heightFixed: AppStyle.byRem(1.66), // 输入框最大高度.66 + .2 + .6
+                ContainerFormat(
+                  "tab",
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween, // 这样才能解决输入框高度不确定问题
+                    children: [
+                      build_search(),
+                      // .6rem
+                      tab_bar_demo(
+                        tabs: tabs,
+                        currentIndex: _currentIndex,
+                        onTap: (index) {
+                          setState(() {
+                            _currentIndex = index;
+                          });
+                          // 滚动到顶部
+                          _pageScrollController.animateTo(0, duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+                        },
+                      ),
+                    ],
                   ),
                 ),
+              ),
 
               // 当前 Tab 对应的内容
               SliverPadding(

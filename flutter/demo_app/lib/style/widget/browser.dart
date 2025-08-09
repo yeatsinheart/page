@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3/app-context.dart';
 import 'package:flutter3/app-route.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/demo/widget/example-container.dart';
@@ -55,7 +56,7 @@ _bottom_left() {
               "btn",
               Text("白天"),
               click: () {
-                AppStyle.setStyleLight();
+                AppContext.setStyleLight();
               },
             ),
           ),
@@ -68,7 +69,7 @@ _bottom_left() {
               "btn",
               Text("黑夜"),
               click: () {
-                AppStyle.setStyleDark();
+                AppContext.setStyleDark();
               },
             ),
           ),

@@ -5,7 +5,7 @@ import 'package:flutter3/util/color-util.dart';
 class ShadowFormat {
   static BoxShadow? fromJson(Map<String, dynamic>? json) {
     if (json == null) return null;
-    Color? c = ColorUtil.getColor(json["color"][AppStyle.BrightMode]);
+    Color? c = ColorUtil.getColor(json["color"]);
     if (c == null) return null;
     return BoxShadow(
       color: c,

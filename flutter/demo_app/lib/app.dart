@@ -21,7 +21,9 @@ class App extends StatelessWidget {
       data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
       child: Obx(() {
         return MaterialApp(
-          key: Get.find<AppStyle>().appKey.value,
+          key: Get.find<AppContext>().appKey.value,
+          themeMode: Get.find<AppContext>().themeMode.value,
+
           scrollBehavior: ScrollBehavior().copyWith(
             dragDevices: {
               PointerDeviceKind.touch, //移动设备的手指滑动
@@ -37,11 +39,12 @@ class App extends StatelessWidget {
 
           /// 按照路由展示界面
           onGenerateRoute: (RouteSettings settings) {
+            // name -> view
             switch (settings.name.toString().toLowerCase()) {
               case '/':/// 等同于配置home属性
-                return MaterialPageRoute(builder: (context) => _to_route(Browser(AppNetworkMonitor(child: child))));
+                return MaterialPageRoute(builder: (context) => _to_route(AppNetworkMonitor(child: child)));
               case '/test':
-                return MaterialPageRoute(builder: (context) => _to_route(Browser(MainDemo())));
+                return MaterialPageRoute(builder: (context) => _to_route(MainDemo()));
               case '/details':
                 final args = settings.arguments as String?; // 取传过来的参数
                 return MaterialPageRoute(builder: (context) => _to_route(Container()));

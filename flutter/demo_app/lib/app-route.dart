@@ -28,7 +28,7 @@ class AppRoute {
   static slideToKey(String? key, {params, Offset from = SlideRoute.right, int time = 100}) {
     _open(
       SlideRoute(
-        Browser(AppView.ofKey(key, params: params)),
+        AppView.ofKey(key, params: params),
         from: from,
         time: time,
       ),
@@ -38,7 +38,7 @@ class AppRoute {
   static slideToPath(String? path, {params, Offset from = SlideRoute.right, int time = 100}) {
     _open(
       SlideRoute(
-        Browser(AppView.ofPath(path, params: params)),
+        AppView.ofPath(path, params: params),
         from: from,
         time: time,
       ),
@@ -46,7 +46,7 @@ class AppRoute {
   }
 
   static open(Widget child, {bool browserLimit=true,params,animation="slide", Offset from = SlideRoute.right, int time = 100}) {
-    _open(SlideRoute(browserLimit?Browser(child):child, from: from, time: time));
+    _open(SlideRoute(child, from: from, time: time));
   }
 
   static _open(PageRouteBuilder route) {

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter3/app-context.dart';
 import 'package:flutter3/app-style.dart';
 import 'package:flutter3/log/logger.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -175,7 +176,7 @@ class _State extends State<HtmlContent> with AutomaticKeepAliveClientMixin{
     -webkit-user-select: none;
     
     background-color: transparent; /* 背景色 */
-    color:${AppStyle.data["font"]["txt"][AppStyle.BrightMode]};
+    color:${AppStyle.data["font"]["txt"][AppContext.isDark?'dark':'light']};
     font-size: ${AppStyle.fontSize}px;
   }
       </style>

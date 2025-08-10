@@ -41,8 +41,8 @@ CREATE TABLE game_brand (
 CREATE TABLE game (
     id VARCHAR(20) NOT NULL COMMENT '游戏ID',
     name VARCHAR(100) NOT NULL COMMENT '游戏名称',
-    game_developer_id VARCHAR(20) NOT NULL COMMENT '游戏产商ID，关联game_developer.id',
-    game_brand_id VARCHAR(20) NOT NULL COMMENT '游戏品牌ID，关联game_brand.id',
+    developer_id VARCHAR(20) NOT NULL COMMENT '游戏产商ID，关联game_developer.id',
+    brand_id VARCHAR(20) NOT NULL COMMENT '游戏品牌ID，关联game_brand.id',
     img1x1 VARCHAR(255) DEFAULT NULL COMMENT '游戏1:1比例图片地址',
     img3x4 VARCHAR(255) DEFAULT NULL COMMENT '游戏3:4比例图片地址',
     description TEXT DEFAULT NULL COMMENT '游戏介绍',
@@ -68,9 +68,9 @@ CREATE TABLE game_play_mode (
 
 CREATE TABLE game_developer_agent (
     tenant_id VARCHAR(20) NOT NULL COMMENT '租户ID，关联租户系统,或者share共用',
-    game_developer_id VARCHAR(20) NOT NULL COMMENT '游戏产商ID，关联game_developer.id',
+    developer_id VARCHAR(20) NOT NULL COMMENT '游戏产商ID，关联game_developer.id',
     agent_config VARCHAR(2000) NOT NULL COMMENT '账户配置，json字符串',
-    balance_mode VARCHAR(50) NOT NULL COMMENT '扣钱方式:预存deposit，回调接口帐变api',
+    transaction_mode VARCHAR(50) NOT NULL COMMENT '帐变方式:预存deposit，回调接口帐变api',
     status VARCHAR(20) DEFAULT 'active' COMMENT '账号状态（active, frozen等）',
     created_at BIGINT NOT NULL COMMENT '创建时间戳（毫秒）',
     updated_at BIGINT NOT NULL COMMENT '更新时间戳（毫秒）',
